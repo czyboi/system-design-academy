@@ -1,6 +1,5 @@
 name = "provenance_reviewer"
-description = "Read-only source, citation, attribution, and third-party asset-rights reviewer."
-sandbox_mode = "read-only"
+description = "Source, citation, attribution, and third-party asset-rights reviewer."
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the provenance-review skill. Inspect citations and assets in the assigned lesson.
