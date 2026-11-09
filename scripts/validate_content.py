@@ -172,8 +172,8 @@ def main() -> int:
             for field in ("name", "description", "developer_instructions"):
                 if not isinstance(agent_config.get(field), str) or not agent_config[field].strip():
                     errors.append(f"{rel_agent}: missing/empty '{field}'")
-            if agent_config.get("sandbox_mode") not in {"read-only", "workspace-write", "danger-full-access", None}:
-                errors.append(f"{rel_agent}: unsupported sandbox_mode")
+            if "sandbox_mode" in agent_config:
+                errors.append(f"{rel_agent}: custom subagents inherit parent permissions; sandbox_mode is not an enforceable per-agent setting")
             agent_count += 1
         if agent_count == 0:
             errors.append("No custom agent TOML files found under .codex/agents")
