@@ -1,0 +1,36 @@
+name: Content validation
+
+on:
+  pull_request:
+    paths:
+      - '**.md'
+      - '**.csv'
+      - '**.json'
+      - 'scripts/**'
+      - '.github/workflows/content-validation.yml'
+  push:
+    branches: [main]
+    paths:
+      - '**.md'
+      - '**.csv'
+      - '**.json'
+      - 'scripts/**'
+      - '.github/workflows/content-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate course content structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Markdown lessons, source registry, manifest, and relative links
+        run: python scripts/validate_content.py
