@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-WORKFLOW-COVERAGE-RESET",
   "module_id": "database",
-  "current_phase": "coverage-agent",
+  "current_phase": "teaching-contract",
   "created_at": "2026-11-09T15:54:44Z",
-  "updated_at": "2026-11-09T16:05:08Z",
+  "updated_at": "2026-11-09T16:05:37Z",
   "steps": [
     {
       "step_id": "coverage-agent",
@@ -68,7 +68,7 @@
     {
       "step_id": "teaching-contract",
       "title": "Encode audience, language, concise teaching, and separate assessment artifacts",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "coverage-agent"
       ],
@@ -97,7 +97,33 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "5e3defa217ea600c0e64f5feaa5a9b96d0819a11",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-authoring-skill.original.md": "e20e95a7b16e28d70142b01263b65ef40a02cfe273d57ccd5c30320ee3bfbb14",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/assessment-design-skill.original.md": "b5223c59b341b14c2fdafee5b9387139b37f34fc91b91b7899ec2a9695a08df9",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogical-review-skill.original.md": "ba9dbf138adff94afaced6ca8639ef600cb140fb48a234387211e43d9467342f",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/task-intake-skill.original.md": "f5ba890ae52de086ad2c697f8aa8b96dc97c595e1f0e38de51b14c6158e72a4b",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-author.codex.original.toml": "1d050e910be957b16f9837048ff899562415e8cb66ec4fa452f7df200d3e3207",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-author.claude.original.md": "d84c32d7959ae493b3dd3bce96acf4c85785b643b2aa78897bab6ff58aaecf43",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogy-reviewer.codex.original.toml": "e8c45e759722673d97812296b8d16bae8ec9c864211c193a931231e429608028",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogy-reviewer.claude.original.md": "b97ef59a093a5ac655eb7d934c3c92dd7fc0cc05263ebb5f1e3e1413874f9d0b"
+      },
+      "start_output_hashes": {
+        ".agents/skills/lesson-authoring/SKILL.md": "e20e95a7b16e28d70142b01263b65ef40a02cfe273d57ccd5c30320ee3bfbb14",
+        ".agents/skills/assessment-design/SKILL.md": "b5223c59b341b14c2fdafee5b9387139b37f34fc91b91b7899ec2a9695a08df9",
+        ".agents/skills/pedagogical-review/SKILL.md": "ba9dbf138adff94afaced6ca8639ef600cb140fb48a234387211e43d9467342f",
+        ".agents/skills/task-intake/SKILL.md": "f5ba890ae52de086ad2c697f8aa8b96dc97c595e1f0e38de51b14c6158e72a4b",
+        ".codex/agents/lesson-author.toml": "1d050e910be957b16f9837048ff899562415e8cb66ec4fa452f7df200d3e3207",
+        ".claude/agents/lesson-author.md": "d84c32d7959ae493b3dd3bce96acf4c85785b643b2aa78897bab6ff58aaecf43",
+        ".codex/agents/pedagogy-reviewer.toml": "e8c45e759722673d97812296b8d16bae8ec9c864211c193a931231e429608028",
+        ".claude/agents/pedagogy-reviewer.md": "b97ef59a093a5ac655eb7d934c3c92dd7fc0cc05263ebb5f1e3e1413874f9d0b"
+      },
+      "started_at": "2026-11-09T16:05:37Z",
+      "active_spec_hash": "2e9ed215b9f4d047b8472cd762fd520085c9985fd5d123f18b17fe412dbcbb80",
+      "active_fingerprint": "b3639ef4a581796d2a0c12702fa98353109a768dceb1c0363bfa6a4edee8129e",
+      "run_id": "SD-WORKFLOW-COVERAGE-RESET-teaching-contract-20261109T160536Z",
+      "agent": "lesson-author-and-reviewer"
     },
     {
       "step_id": "pipeline-cleanup",
