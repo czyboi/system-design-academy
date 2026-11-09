@@ -8,31 +8,29 @@
 - Keep generated lessons at `status: draft`. Never merge a PR or publish learner-facing content without explicit human approval.
 - Never invent citations, benchmarks, guarantees, versions, licenses, or test results. Mark unresolved claims.
 - Never commit credentials, API keys, tokens, learner data, or secrets.
-- ChatGPT subscriptions do not include OpenAI API credits. Do not assume API access.
 
-## Persistent task state — mandatory for multi-step work
-- Before starting a multi-step task, search for an existing GitHub Issue and `.academy/state/tasks/<TASK-ID>.json`. Reuse the existing task when the goal is the same; do not create duplicate work.
-- Read `.academy/state/README.md`, then run `python scripts/taskctl.py status <TASK-ID>` before doing task work.
-- Treat `SKIP` as completed and reusable: do not repeat it. Treat `RESUME` as an interrupted step: read its checkpoint and continue. Treat `STALE` as changed inputs/outputs: inspect the diff and explicitly invalidate/re-run only what is affected. Treat `BLOCKED` as a dependency that must be resolved first.
-- After every state-mutating `taskctl` command, commit the task JSON and JSONL worklog to the active branch. Commit `start` before editing; commit each checkpoint before handoff; commit declared outputs before `taskctl complete`, then commit the updated state/worklog.
-- Never manually mark a step completed in JSON. `taskctl complete` verifies output files are tracked and clean, then records hashes and the commit SHA.
-- Keep detailed progress in task JSON/JSONL; put only the owner, high-level status, links, blocker, and next action in the GitHub Issue.
-- One active writer per task/lesson. Parallel reviewers must write to distinct report paths. The task state file is not a distributed lock.
+## Persistent task protocol
+- For every multi-step task, find or create the matching GitHub Issue and task ID. Reuse equivalent work; do not create duplicates.
+- The canonical requirements are in `.academy/specs/<TASK-ID>.json`. Do not treat Issue prose as a second specification.
+- The task execution state is `.academy/state/tasks/<TASK-ID>.json`; event history is `.academy/state/worklog/<TASK-ID>.jsonl`.
+- Read `.academy/state/README.md`, the Issue, spec, state, and worklog before acting. Inspect branch, commits, and `git status`.
+- Run `python scripts/taskctl.py status <TASK-ID>`. Never repeat `SKIP`; inspect and selectively handle `STALE`; resume only unchanged `RESUME`; start only `READY`; do not run `BLOCKED`.
+- Initialize with `python scripts/taskctl.py init TASK-ID --module MODULE --goal "..." --owner "@username" --template .academy/state/task.template.json`. Complete the spec and remove placeholders before execution.
+- `start` records clean tracked input/spec hashes and a starting commit. Commit the task state/worklog before editing.
+- Commit declared outputs before `complete`. Completion verifies input/spec stability and requires new committed output, unless intentional reuse is explicitly recorded with `--reuse-output PATH --reuse-reason "..."`.
+- Commit state/worklog after every mutation. Checkpoint and commit before handing off to another provider/session.
+- One active writer per task. The JSON state is not a distributed lock.
 
-## Skills and delegation
-- Reusable procedures live in `.agents/skills/`. Use `task-intake` to create/claim work, `task-handoff` to resume across agents/providers, and `module-pipeline` for coordinated module generation.
-- Specialist skills cover source research, curriculum design, lesson authoring, assessments, technical review, pedagogical review, and provenance review.
-- Custom Codex subagent profiles live in `.codex/agents/`: `source_researcher`, `curriculum_designer`, `lesson_author`, `technical_reviewer`, `pedagogy_reviewer`, and `provenance_reviewer`.
-- For a complete module task, delegate research and curriculum mapping in parallel; wait for both before authoring. After drafting, run technical, pedagogical, and provenance reviews in parallel; wait for all before revision.
-- Give each agent exact inputs, output paths, and a stop condition. Never have two agents edit the same file. Parent owns shared files and final synthesis.
-- Maximum two automated revision cycles. Stop for human judgment if critical disagreement remains.
-- A role instruction such as "do not edit" is not a permission boundary. Custom subagent profiles inherit the parent session's permissions; set actual read-only access at the parent/host permission layer when needed.
+## Skills and agents
+- Shared procedures live only in `.agents/skills/`. Codex profiles live in `.codex/agents/`; Claude Code project subagents live in `.claude/agents/`.
+- Provider-specific files must reference the shared skill and define only role/configuration; do not fork the procedure into provider profiles.
+- Parent/orchestrator owns task state, shared files, final synthesis, and PR preparation. Use specialist agents only on bounded, distinct outputs.
+- A "do not edit" instruction is not an enforced permission boundary. Codex subagents inherit parent permissions. Configure actual host/session permissions where read-only behavior is required.
+- Do not have multiple agents edit the same output. Maximum two automated revision cycles; stop for human judgment if a critical disagreement remains.
 
-## Content gates
+## Content and approval gates
 - Every lesson needs outcomes, prerequisites, motivating problem, mechanism, worked example, trade-offs/failure modes, exercise, 5–8 knowledge checks with explanations, and direct references.
-- Map every learning outcome to an assessment.
-- Distinguish general principles from vendor-specific semantics.
-- Use Deep Research only for multi-source synthesis or contested questions; use standard search and direct docs for bounded facts.
-- Run `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate`.
-- Structural CI does not establish factual correctness, source reachability, legal rights, or teaching quality.
-- Create a focused branch and draft PR. Never push generated lessons directly to `main`.
+- Map every learning outcome to an assessment. Distinguish general principles from vendor-specific semantics.
+- Run `pip install -r requirements-dev.txt`, `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate`.
+- CI structural validation does not establish factual correctness, legal rights, source reachability, or pedagogical quality.
+- Automation completion is not human approval. Keep the PR draft until reviewers explicitly approve; never auto-publish learner-facing content.
