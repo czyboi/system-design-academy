@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "teaching-contract",
   "created_at": "2026-11-09T15:54:44Z",
-  "updated_at": "2026-11-09T16:05:37Z",
+  "updated_at": "2026-11-09T16:10:26Z",
   "steps": [
     {
       "step_id": "coverage-agent",
@@ -68,7 +68,7 @@
     {
       "step_id": "teaching-contract",
       "title": "Encode audience, language, concise teaching, and separate assessment artifacts",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "coverage-agent"
       ],
@@ -120,10 +120,23 @@
         ".claude/agents/pedagogy-reviewer.md": "b97ef59a093a5ac655eb7d934c3c92dd7fc0cc05263ebb5f1e3e1413874f9d0b"
       },
       "started_at": "2026-11-09T16:05:37Z",
-      "active_spec_hash": "2e9ed215b9f4d047b8472cd762fd520085c9985fd5d123f18b17fe412dbcbb80",
-      "active_fingerprint": "b3639ef4a581796d2a0c12702fa98353109a768dceb1c0363bfa6a4edee8129e",
       "run_id": "SD-WORKFLOW-COVERAGE-RESET-teaching-contract-20261109T160536Z",
-      "agent": "lesson-author-and-reviewer"
+      "agent": "lesson-author-and-reviewer",
+      "completed_fingerprint": "b3639ef4a581796d2a0c12702fa98353109a768dceb1c0363bfa6a4edee8129e",
+      "completed_spec_hash": "2e9ed215b9f4d047b8472cd762fd520085c9985fd5d123f18b17fe412dbcbb80",
+      "completed_output_hashes": {
+        ".agents/skills/lesson-authoring/SKILL.md": "dbc4e0f7c8d9999ccdabc9b54343d41ff8ab2eaa3bc73c01badb9bc139ea788e",
+        ".agents/skills/assessment-design/SKILL.md": "ee66e4d69b5e6ece4973291d2338e42357134169d607fa01bbd3a81010280d97",
+        ".agents/skills/pedagogical-review/SKILL.md": "8a615f9cfd1b8849d2fab87c352e008939b81e5c79f6d3651989d3dfaa068bf3",
+        ".agents/skills/task-intake/SKILL.md": "9a9aa248cbe76fc569031b52db84e36e0f851e8859f3a3fa72d9adb2ebeb1521",
+        ".codex/agents/lesson-author.toml": "90140baf8fc2eb92e167423dd5cde8d70d4a13366496beb2d3e8eaf825f33aee",
+        ".claude/agents/lesson-author.md": "246a14b4a25e3ad1a0edfb477e4a3bdce9fe387fc2e825849bdcfdbee3e90bbc",
+        ".codex/agents/pedagogy-reviewer.toml": "e285e5c3d4aca99b3e7ef3dfa0029421dc4f5de9e6d0c6e8390addd60d5e8f48",
+        ".claude/agents/pedagogy-reviewer.md": "3997de822fa3267dfcca2e1da803db73bdc7fe9c6531d04bb2c2840a9d94caa2"
+      },
+      "completed_at": "2026-11-09T16:10:26Z",
+      "completed_by": "lesson-author-and-reviewer",
+      "completed_commit": "aaaa0bffd0e8cbb6b95731ab2ca8b3e6b8b889dd"
     },
     {
       "step_id": "pipeline-cleanup",
