@@ -1,70 +1,55 @@
 # AI Content Workflow — Agent Runbook
 
 ## Goal
+Produce source-grounded draft lessons through specialist agents, preserve progress across provider changes, and prevent completed work from repeating. Never self-publish learner-facing content.
 
-Produce draft lessons from an approved curriculum and source registry, then create a reviewable Git change. The system must never self-publish a lesson to learners.
+## Durable records
+- Canonical task requirements: `.academy/specs/<TASK-ID>.json` (goal, scope, constraints, DoD, acceptance criteria).
+- Execution state: `.academy/state/tasks/<TASK-ID>.json` (owner, dependency graph, fingerprints, run metadata, output hashes).
+- Worklog: `.academy/state/worklog/<TASK-ID>.jsonl` (append-only event/checkpoint history).
+- GitHub Issue: owner, branch, dependencies, links, short coordination summary. It does not duplicate the spec.
+- Git commits and PR: durable outputs, audit history, and review surface.
 
-## Important operating model
+## Before starting or switching AI
+1. Read `AGENTS.md` and `.academy/state/README.md`.
+2. Open the Issue; verify task ID, owner, branch, dependencies, and linked PR.
+3. Read the canonical spec, task JSON, and worklog.
+4. Inspect Git status/branch/commits.
+5. Run `python scripts/taskctl.py status <TASK-ID>`.
+6. Do not repeat SKIP; resume unchanged RESUME; inspect STALE; do not start BLOCKED.
+7. Ensure spec has no placeholders and every DoD/acceptance criterion applies to its relevant step(s).
+8. Commit state/worklog after each state mutation; checkpoint and commit before handoff.
 
-ChatGPT Plus is the workspace/model subscription, not an unlimited autonomous workflow engine. Codex/Work can execute bounded tasks, but a durable unattended pipeline with scheduling, retries, state, API billing and automatic GitHub PR creation generally requires an external orchestrator and API access. For the first pilot, use a human-triggered Codex task with a fixed input/output contract. Do not claim background execution or unlimited usage.
+## Multi-agent workflow
+### Phase A — Research and curriculum (parallel)
+- Parent starts only READY research and curriculum steps.
+- Source researcher produces claim/source evidence and unresolved facts.
+- Curriculum designer maps prerequisites, outcomes, and sequencing.
+- Wait for both; parent reconciles shared files and evidence.
 
-## Inputs
+### Phase B — Author
+- Author one assigned lesson with unique output paths.
+- Use approved evidence and original prose/examples/exercises/quizzes.
+- Parent owns shared source registry, manifests, and task state.
 
-- `curriculum/database-module.md`
-- `sources/source-registry.csv`
-- `governance/content-guidelines.md`
-- `governance/attribution-policy.md`
-- `governance/qa-checklist.md`
-- lesson template / existing approved sample
+### Phase C — Independent review
+- Technical, pedagogical, and provenance reviewers each use their shared skill and write to distinct report files.
+- Parent consolidates findings; maximum two revision cycles.
 
-## Task loop
+### Phase D — Validate and hand off
+- Run `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate`.
+- Commit outputs, then use `taskctl complete`; commit state/worklog.
+- Report artifact paths, commits, sources, verdicts, structural validation, unresolved claims, and next action.
+- Stop at `automation_complete` / `ready_for_human_review`. Human approval, merge, and publication remain separate explicit gates.
 
-For each lesson ID:
+## Start and complete integrity
+- `start` requires Git-tracked, clean input/spec files. It records starting commit, input/spec hashes, and output hashes at start.
+- `complete` rechecks inputs/spec, verifies output files are tracked and clean, and requires new committed output changes.
+- If an unchanged artifact is intentionally reused, pass `--reuse-output PATH --reuse-reason "..."`; it is visible in state and worklog.
+- An output existing before a run is not proof it was produced by that run.
 
-1. **Plan:** list lesson outcomes and prerequisite dependencies.
-2. **Retrieve:** read the relevant Primer section and official source pages. Prefer exact official documentation sections rather than broad search snippets.
-3. **Research decision:**
-   - Standard lookup for bounded factual questions.
-   - Document analysis when the exact source is already known.
-   - Deep Research only when the problem requires synthesis across many independent sources or unresolved disagreements.
-4. **Draft:** write a new lesson; do not paraphrase the source paragraph-by-paragraph.
-5. **Diagram:** generate Mermaid source and explain each component/arrow.
-6. **Assess:** create questions and a worked solution/rubric mapped to outcomes.
-7. **Self-review:** run technical, citation, pedagogical and license checks.
-8. **Claim audit:** produce a table of high-impact claims and their direct supporting references. Any unsupported claim becomes `needs-human-verification`.
-9. **Publish draft:** write lesson to a branch or local working tree and report changed files. Do not merge/publish automatically.
-
-## Author prompt
-
-You are a technical curriculum author for backend engineers learning system design. Create exactly one lesson using the approved curriculum and lesson template. Use source material for factual grounding, not as text to translate or reproduce. Prefer official documentation and standards. Separate general principles from engine-specific behavior. Include assumptions, trade-offs, failure modes, one worked example, 5–8 assessment questions and detailed answers. Cite direct sources next to version-sensitive or important technical claims. Do not invent URLs, versions, measurements or guarantees. Add attribution and change notes if adapted expression is used. Set `status: draft` in front matter.
-
-## Reviewer prompt
-
-Act as an independent technical and pedagogical reviewer. Do not rewrite the lesson first. Produce:
-1. Critical factual errors, each with exact claim, why it is wrong/uncertain, and authoritative source.
-2. Unsupported claims or weak citations.
-3. Vendor/version conflations.
-4. Missing assumptions or trade-offs.
-5. Pedagogical gaps and learning outcomes not assessed.
-6. License/attribution issues.
-7. Verdict: `block`, `revise`, or `ready-for-human-review`.
-
-Do not approve a claim merely because it sounds plausible. If source access is unavailable, mark it unverified.
-
-## Output contract
-
-- `lessons/DB-xx-*.md`
-- `qa/DB-xx-review.md`
-- update source registry with exact source URLs, product/version, section, date checked, and relevant claim.
-- concise run report: generated files, claims needing human verification, unresolved questions, tests/checks run.
-
-## Retry policy
-
-- Retry only technical/tool failures, not disagreement with a reviewer.
-- Maximum two automated revision cycles per lesson.
-- If the same critical issue remains after two cycles, stop and request human judgment.
-- Keep previous drafts in Git history.
-
-## Publication gate
-
-Only a human can change status from `ready-for-human-review` to `approved` or `published` after completing the QA checklist. Legal review is required for any uncertain third-party asset or substantial adaptation.
+## Concurrency and permissions
+- One active writer per task/lesson; task state is not a distributed lock.
+- Reviewers may run concurrently only with different report paths.
+- Codex subagents inherit parent permissions; "do not edit" is not a hard read-only permission boundary.
+- Claude Code profiles and Codex profiles are adapters over shared skills in `.agents/skills/`.

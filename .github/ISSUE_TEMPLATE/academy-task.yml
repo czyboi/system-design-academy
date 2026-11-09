@@ -1,0 +1,64 @@
+name: Academy task
+description: Track an Academy task. GitHub Issue coordinates ownership and links; the versioned repository specification is canonical.
+title: "[Academy task] "
+labels: []
+body:
+  - type: input
+    id: task_id
+    attributes:
+      label: Task ID
+      description: Unique ID matching .academy/state/tasks/<TASK-ID>.json.
+      placeholder: SD-DB-INDEXES
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Task owner (GitHub username or team)
+      description: Required single-writer owner for execution.
+      placeholder: "@username"
+    validations:
+      required: true
+  - type: dropdown
+    id: task_type
+    attributes:
+      label: Task type
+      options:
+        - Module
+        - Lesson
+        - Source research
+        - Technical review
+        - Pedagogical review
+        - Provenance review
+        - Tooling / maintenance
+    validations:
+      required: true
+  - type: input
+    id: spec_file
+    attributes:
+      label: Canonical task specification
+      placeholder: .academy/specs/SD-DB-INDEXES.json
+    validations:
+      required: true
+  - type: input
+    id: state_file
+    attributes:
+      label: Repository task state
+      placeholder: .academy/state/tasks/SD-DB-INDEXES.json
+    validations:
+      required: true
+  - type: input
+    id: working_branch
+    attributes:
+      label: Working branch
+      description: One active writer per task.
+      placeholder: task/SD-DB-INDEXES
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Coordination summary (not canonical specification)
+      description: Link to the specification; do not duplicate scope or acceptance criteria here.
+    validations:
+      required: true
