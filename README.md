@@ -49,6 +49,6 @@ The Database pilot is informed by Donne Martin's [System Design Primer](https://
 3. Run the bounded Codex/Work tasks in `modules/database/workflow/run-database-pilot.md`.
 4. Review the output and QA report; do not mark it approved without a qualified human review.
 5. Read `AGENTS.md` before asking a coding agent to modify this repository.
-6. Run `python scripts/validate_content.py` locally; GitHub Actions runs the same structural checks on pull requests and pushes to `main`.
+6. Read `docs/agent-architecture.md` for the skills/roles/handoff model. Run `python scripts/validate_content.py`; GitHub Actions checks lesson structure, skills, agent profiles, TOML config, and relative links.
 
 See [`GITHUB_SETUP.md`](GITHUB_SETUP.md) for connecting this local starter to a new private GitHub repository.
