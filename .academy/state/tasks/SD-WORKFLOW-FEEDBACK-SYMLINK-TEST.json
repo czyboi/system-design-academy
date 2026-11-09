@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-WORKFLOW-FEEDBACK-SYMLINK-TEST",
   "module_id": "workflow",
-  "current_phase": "feedback",
+  "current_phase": "symlink-test",
   "created_at": "2026-11-09T14:52:47Z",
-  "updated_at": "2026-11-09T14:56:16Z",
+  "updated_at": "2026-11-09T14:56:56Z",
   "steps": [
     {
       "step_id": "feedback",
@@ -66,7 +66,7 @@
     {
       "step_id": "symlink-test",
       "title": "Make taskctl tests workspace-safe and privilege-independent",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -81,7 +81,21 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "a46431ab93ef2ba2e708b78f026ffca137ceb312",
+      "start_input_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/test_taskctl-original.py": "aed2aaf08ae953a9de9ed13878a5ac446c0d7edb6a5377337a0cbdbe552910a1",
+        "scripts/taskctl.py": "c6cca6f85f63703d78625e6d39639e7ef0124b7f1a4cfc1e1146d1d78bbbd734",
+        ".gitignore": "f565968ac1caa69446bb4ecee557a6bf6991b4b1aa6a6cf61a56816b83f905e2"
+      },
+      "start_output_hashes": {
+        "tests/test_taskctl.py": "aed2aaf08ae953a9de9ed13878a5ac446c0d7edb6a5377337a0cbdbe552910a1"
+      },
+      "started_at": "2026-11-09T14:56:56Z",
+      "active_spec_hash": "bfd8d3c3772f64fff43ff19c32b7fe280e6ae3af2658eeb3b52942642f193395",
+      "active_fingerprint": "dbd5832da9de62f00721a477e13082e734f78da4b8452166fed44bebb45635c9",
+      "run_id": "SD-WORKFLOW-FEEDBACK-SYMLINK-TEST-symlink-test-20261109T145656Z",
+      "agent": "test-maintainer"
     },
     {
       "step_id": "validation",
