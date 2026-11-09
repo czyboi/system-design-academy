@@ -1,29 +1,32 @@
 ---
 name: curriculum-design
-description: Map System Design topics into a sequenced curriculum with prerequisites, measurable outcomes, and separate assessments. Use when planning or revising modules and lesson order.
+description: Design a complete System Design curriculum from a pinned topic repository, with detailed teaching outlines and auditable topic coverage for experienced engineers.
 ---
 
 # Curriculum Design
 
 ## Inputs
 
-Read the canonical task specification, current user direction, relevant prior feedback, module plan, approved topic sources, and content guidelines. The Academy's current default audience is middle/senior engineers learning system design, and learner-facing content is English-only. Follow a newer explicit user decision if one is recorded.
+Read the canonical task specification, current user direction, relevant prior feedback, approved source repositories and their pinned revisions, and applicable Academy guidance. The default audience is middle/senior engineers learning System Design; learner-facing content is English-only. A newer explicit user decision takes precedence.
 
 ## Procedure
 
-1. State target learner, entry knowledge, target capability, language, scope, and non-goals. Do not silently downgrade the audience to beginner level.
-2. Pin the source repository revision and inventory its database-related headings and leaf topics. Treat the System Design Primer as a topic map, not as the sole technical authority or as a complete modern syllabus.
-3. Classify every source topic as core, merged, optional, deferred, or excluded. Give a short reason for every merged, deferred, or excluded topic; do not claim broad coverage from a rationale paragraph.
-4. Add prerequisites that support the target decisions. Mark material added from other sources as Academy additions rather than Primer-derived topics.
-5. Sequence each lesson around an engineering problem, the mechanism that changes the design, decision criteria, trade-offs, and failure modes. Assume common backend, SQL, and application fundamentals unless the task requires them to be taught.
-6. Define measurable learning outcomes with observable verbs such as compare, diagnose, choose, calculate, design, and defend.
-7. For every source topic, map the planned lesson and outcome that will teach it. Record expected teaching depth; a lesson title, reference, or assessment prompt does not establish planned teaching coverage.
-8. Map every outcome to a distinct companion assessment artifact. Keep assessment questions and answer keys out of the teaching lesson.
-9. Identify overlap, gaps, prerequisites, and cross-references. Prefer concise coverage of the decision over repeated introductory explanation.
-10. Estimate learner effort and mark estimates provisional.
+1. **Set the boundary.** State the audience's assumed experience, the capability the course should build, language, source revision, requested deliverables, and non-goals. Keep a plan-only request limited to curriculum artifacts; do not author lessons or assessments.
+2. **Inventory the full declared source scope before sequencing.** Traverse the pinned repository's relevant topic hierarchy down to meaningful leaf topics. Inspect its study guide, appendices, under-development entries, in-repository solution examples, and other explicitly in-scope topic collections such as OOD. Inventory linked catalogs, translations, flashcards, assets, and tools as source resources; do not silently treat every link or asset as a teaching topic. Record exact paths, headings/anchors, and revision. Never claim repository-wide coverage from a README summary or a Database-only inventory.
+3. **Give every source row a disposition.** Map it to an exact lesson and a specific outline item, or explicitly classify it as merged, optional, deferred, or outside the course with a short rationale. A topic name in a title, reference list, or general rationale is not coverage. For a merge, show where each constituent concept is taught. Flag incomplete or dated source topics for current technical research rather than omitting them.
+4. **Build the sequence from engineering decisions.** Order modules and lessons from shared foundations through mechanisms and trade-offs to larger system compositions. Make prerequisites visible. Assume common backend, SQL, and application fundamentals for the default audience; avoid beginner filler and repeated long definitions. Mark material added beyond the pinned repository as an Academy addition and identify its evidence needs.
+5. **Write a useful outline for every teaching lesson.** List the concepts in teaching order, the mechanism or design choice each explains, relevant decision criteria and trade-offs/failure modes, and the mapped source subtopics. Be specific enough that a later author can draft one lesson without guessing its scope. Keep the course itself teaching-focused; do not fill the outline with quizzes, exercises, answer keys, or assessment prompts unless explicitly requested.
+6. **Separate later delivery work from the course plan.** When a task requests an authoring backlog, create one module grouping (Epic) and one independently authorable lesson item (Story) per lesson. Split child work into small, reviewable tasks such as evidence gathering, drafting, technical review, coverage review, pedagogy review, and revision. Keep future quizzes/assessments as separate deferred work that depends on acceptance of the teaching lesson. Do not create a module-sized authoring task or create external tracker issues unless requested.
+7. **Require independent coverage review before authoring.** Provide the complete inventory, matrix, and proposed plan to a reviewer using `curriculum-coverage-review`. Ask the reviewer to independently re-enumerate the pinned source, not merely endorse the planner's matrix. Resolve material gaps, then obtain a fresh independent check of the revision. If a required final gate still finds a material gap or unresolved disagreement, record it and stop before claiming completeness.
+8. **Check plan quality and persist learning.** Review prerequisites, sequence, audience fit, scope consistency, outline depth, and overlap. Record each user correction and reviewer finding with its disposition in the task worklog or review artifact. Promote reusable workflow corrections into this skill or the relevant shared QA skill; keep one-off decisions in task records.
 
-## Output
+## Planning outputs
 
-Return module scope and non-goals, the pinned source revision, a topic-to-lesson/outcome matrix, lesson sequence and prerequisites, dependency map, separate assessment paths and outcome mapping, expected teaching depth, gaps and exclusions with reasons, overlap, learner assumptions, and provisional effort.
+Choose outputs that match the task, typically:
 
-Do not author full lessons, certify technical claims, or self-approve source coverage. A separate curriculum-coverage reviewer must audit the plan before authoring starts.
+- An ordered course plan with module purpose, lesson IDs, prerequisites, and detailed teaching outlines.
+- A pinned-source inventory and source-to-lesson matrix with exact locators, dispositions, and outline evidence.
+- A lesson-sized authoring backlog only when requested; assessments remain separate and deferred until their companion lessons are accepted.
+- Independent coverage and pedagogy review reports, including findings and their dispositions.
+
+Do not claim complete coverage while any in-scope topic has no explicit disposition, any mapped topic lacks a concrete outline location, or a required independent review has not passed. A coverage pass establishes mapping quality, not technical correctness, source rights, human approval, or publication readiness.
