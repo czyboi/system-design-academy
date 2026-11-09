@@ -8,6 +8,8 @@ on:
       - '**.json'
       - '**.toml'
       - '.agents/**'
+      - '.claude/**'
+      - 'requirements-dev.txt'
       - '.academy/**'
       - 'tests/**'
       - '.github/ISSUE_TEMPLATE/**'
