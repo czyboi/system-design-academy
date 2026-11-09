@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": "revision",
+  "current_phase": "validation",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:56:40Z",
+  "updated_at": "2026-11-09T13:58:11Z",
   "steps": [
     {
       "step_id": "research",
@@ -424,7 +424,7 @@
     {
       "step_id": "validation",
       "title": "Run structural validation and record the result",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "revision"
       ],
@@ -443,8 +443,24 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
-      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision."
+      "attempts": 1,
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "start_commit": "ed9b3e72ae3bc72c2d4ad1885d026363e22edd52",
+      "start_input_hashes": {
+        "scripts/validate_content.py": "518033554d7604cffb030f26bdef25340dce09a112606ebf5588536c8ebc33a4",
+        "scripts/taskctl.py": "c6cca6f85f63703d78625e6d39639e7ef0124b7f1a4cfc1e1146d1d78bbbd734",
+        ".agents/skills/module-pipeline/SKILL.md": "99032653affe971e2976ba56f10925159a083c0588b7218a8917e880c5208da1",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b",
+        "modules/database/lessons/DB-01-data-modeling.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/validation-report.md": null
+      },
+      "started_at": "2026-11-09T13:58:11Z",
+      "active_spec_hash": "f06c1e5032fac3aafbb02f438ff19ec5e2a04cf128d24618d084e132562dd6ab",
+      "active_fingerprint": "c1b48350f98b836bb23608e7dc8f26a4a3b7bebcfff3992a39c4d07ff5495d36",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-validation-20261109T135811Z",
+      "agent": "parent_orchestrator"
     }
   ],
   "notes": "Review this task's exact lesson scope and acceptance criteria before the first run.",
