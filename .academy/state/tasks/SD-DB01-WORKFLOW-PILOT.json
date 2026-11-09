@@ -4,12 +4,12 @@
   "module_id": "database",
   "current_phase": "curriculum",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:12:00Z",
+  "updated_at": "2026-11-09T13:14:55Z",
   "steps": [
     {
       "step_id": "research",
       "title": "Build claim-level source evidence",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -45,10 +45,16 @@
         "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": null
       },
       "started_at": "2026-11-09T13:07:45Z",
-      "active_spec_hash": "906600660ef8c383e63ae124006044a193fbbb53630284e763a1a170827ecabf",
-      "active_fingerprint": "ceb686b8833083a5cd8a00c85753a2debb439e7bee2c5654c2f14341a4d9bc7a",
       "run_id": "SD-DB01-WORKFLOW-PILOT-research-20261109T130745Z",
-      "agent": "source_researcher"
+      "agent": "source_researcher",
+      "completed_fingerprint": "ceb686b8833083a5cd8a00c85753a2debb439e7bee2c5654c2f14341a4d9bc7a",
+      "completed_spec_hash": "906600660ef8c383e63ae124006044a193fbbb53630284e763a1a170827ecabf",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": "316157517e556d756440c14a117df92d509533c65971728208eee32aa840ff98"
+      },
+      "completed_at": "2026-11-09T13:14:55Z",
+      "completed_by": "source_researcher",
+      "completed_commit": "c1277934acc0fcd8838259d01de616b4c7705a2a"
     },
     {
       "step_id": "curriculum",
