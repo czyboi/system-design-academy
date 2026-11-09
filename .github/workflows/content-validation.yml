@@ -6,6 +6,11 @@ on:
       - '**.md'
       - '**.csv'
       - '**.json'
+      - '**.toml'
+      - '.agents/**'
+      - '.codex/**'
+      - 'AGENTS.md'
+      - 'docs/**'
       - 'scripts/**'
       - '.github/workflows/content-validation.yml'
   push:
