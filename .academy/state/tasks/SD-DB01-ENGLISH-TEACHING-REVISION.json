@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "validation",
   "created_at": "2026-11-09T14:23:41Z",
-  "updated_at": "2026-11-09T14:41:51Z",
+  "updated_at": "2026-11-09T14:43:17Z",
   "steps": [
     {
       "step_id": "revision",
@@ -76,7 +76,7 @@
     {
       "step_id": "validation",
       "title": "Run required content and repository validation",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision"
       ],
@@ -106,14 +106,20 @@
         "modules/database/workflow/runs/SD-DB01-ENGLISH-TEACHING-REVISION/final/validation-report.md": null
       },
       "started_at": "2026-11-09T14:41:51Z",
-      "active_spec_hash": "d11f14db245a47b0f7dabbd346f7df27cc38306c47658aafc4c5f981bfddce22",
-      "active_fingerprint": "237913bdd0fd3ffe681d5108a7fa423fb327407e6365e0dd2e3e4f76796c6258",
       "run_id": "SD-DB01-ENGLISH-TEACHING-REVISION-validation-20261109T144151Z",
-      "agent": "validator"
+      "agent": "validator",
+      "completed_fingerprint": "237913bdd0fd3ffe681d5108a7fa423fb327407e6365e0dd2e3e4f76796c6258",
+      "completed_spec_hash": "d11f14db245a47b0f7dabbd346f7df27cc38306c47658aafc4c5f981bfddce22",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-ENGLISH-TEACHING-REVISION/final/validation-report.md": "270c3be26d3da551b99142150d349202d4b92decf2b80e1f13c1e4683bc4d3b3"
+      },
+      "completed_at": "2026-11-09T14:43:17Z",
+      "completed_by": "validator",
+      "completed_commit": "ccb0ce22072850660a8ce93837323b31590d2f4f"
     }
   ],
   "notes": "One active writer: @czyboi. Reuse the prior DB-01 evidence pack for unchanged technical claims; keep lesson in draft.",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-DB01-ENGLISH-TEACHING-REVISION.json",
-  "automation_status": "in_progress"
+  "automation_status": "automation_complete"
 }
