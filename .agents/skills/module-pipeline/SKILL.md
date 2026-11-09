@@ -19,14 +19,14 @@ Act as lead orchestrator. Delegate bounded tasks to specialist subagents; do not
 ## Workflow
 
 1. Read the target module curriculum, source registry, lesson template, content guidelines, attribution policy, QA checklist, and task acceptance criteria.
-2. Start each step with `python scripts/taskctl.py start TASK-ID STEP-ID --agent AGENT-NAME` before editing. Never execute a step marked `SKIP`.
+2. Start each step with `python scripts/taskctl.py start TASK-ID STEP-ID --agent AGENT-NAME` before editing; commit the updated task JSON/worklog before writing outputs. Never execute a step marked `SKIP`.
 3. Run source research and curriculum mapping in parallel when both are `READY`; wait for both before authoring.
 4. Reconcile their findings. Resolve conflicts or evidence gaps before writing.
 5. Delegate lesson files to `lesson_author`. Assign exactly one lesson file and unique output paths; the orchestrator owns shared files.
 6. After drafts exist, run independent parallel reviews: `technical_reviewer`, `pedagogy_reviewer`, and `provenance_reviewer`, each writing to its declared report path.
 7. Wait for all reviewers, consolidate actionable findings, and delegate corrections to the author. Maximum two revision cycles per lesson.
-8. Commit the step's declared outputs, then run `python scripts/taskctl.py complete TASK-ID STEP-ID --agent AGENT-NAME`. Do not edit completion fields manually.
-9. Before context handoff, save `taskctl checkpoint` with what is done, what remains, unresolved issues, and one concrete next action. Update the Issue with a short summary and state/PR links.
+8. Commit the step's declared outputs, then run `python scripts/taskctl.py complete TASK-ID STEP-ID --agent AGENT-NAME`; commit the updated task JSON/worklog afterward. Do not edit completion fields manually.
+9. Before context handoff, save `taskctl checkpoint` with what is done, what remains, unresolved issues, and one concrete next action; commit the updated state/worklog. Update the Issue with a short summary and state/PR links.
 10. Run `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate`.
 11. Produce a run report with step states, sources, verdicts, unresolved claims, and human actions.
 12. Create or update a focused draft PR. Never merge or publish learner-facing content.
