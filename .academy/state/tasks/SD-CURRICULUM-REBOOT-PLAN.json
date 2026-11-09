@@ -4,12 +4,12 @@
   "module_id": "curriculum",
   "current_phase": "curriculum-skill-update",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-09T16:47:46Z",
+  "updated_at": "2026-11-09T16:48:53Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
       "title": "Broaden curriculum design guidance to the full source repository",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -33,10 +33,16 @@
         ".agents/skills/curriculum-design/SKILL.md": "7b37217f21de33188853b2dd751ae0587fb495a64106ab033ba67b0c5c9556ab"
       },
       "started_at": "2026-11-09T16:47:46Z",
-      "active_spec_hash": "ecc489a8622d987f0af79b352f6390793335d2e03b56d510f13819ccec06edc6",
-      "active_fingerprint": "5d572ac04f6c9a2149f58184187e7299d787b281424ce602edbfd5f71f9478d1",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-skill-update-20261109T164746Z",
-      "agent": "curriculum_designer"
+      "agent": "curriculum_designer",
+      "completed_fingerprint": "5d572ac04f6c9a2149f58184187e7299d787b281424ce602edbfd5f71f9478d1",
+      "completed_spec_hash": "ecc489a8622d987f0af79b352f6390793335d2e03b56d510f13819ccec06edc6",
+      "completed_output_hashes": {
+        ".agents/skills/curriculum-design/SKILL.md": "ff36d841dac7cbdd11707c998a3aa6c0bf6084fe5a934eb5146badc7eeb7e7ba"
+      },
+      "completed_at": "2026-11-09T16:48:53Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "2d6bc4fc273be00069652bdd3857dfd2b94620c6"
     },
     {
       "step_id": "source-inventory",
