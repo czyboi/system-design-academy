@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "pipeline-cleanup",
   "created_at": "2026-11-09T15:54:44Z",
-  "updated_at": "2026-11-09T16:11:15Z",
+  "updated_at": "2026-11-09T16:13:16Z",
   "steps": [
     {
       "step_id": "coverage-agent",
@@ -160,8 +160,9 @@
         ".agents/skills/module-pipeline/SKILL.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Added plan and post-authoring coverage gates; deleted the 20 user-enumerated generated Database outputs. Validation and historical task-state checks remain.",
+        "next_action": "Run required validation, record exact results, check old task states are stale, then commit outputs and complete this step.",
+        "at": "2026-11-09T16:13:16Z"
       },
       "attempts": 1,
       "start_commit": "3f253433331613cd3d6603a9c46bea7dcdfe8cc2",
