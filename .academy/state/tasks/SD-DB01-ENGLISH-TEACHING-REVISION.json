@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "revision",
   "created_at": "2026-11-09T14:23:41Z",
-  "updated_at": "2026-11-09T14:26:53Z",
+  "updated_at": "2026-11-09T14:39:13Z",
   "steps": [
     {
       "step_id": "revision",
@@ -32,8 +32,9 @@
         "modules/database/workflow/runs/SD-DB01-ENGLISH-TEACHING-REVISION/review/language-and-teaching-audit.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Updated project and Database language policy; rewrote DB-01 as an English teach-first lesson; confirmed DB-02 through DB-08 and quiz/curriculum materials are already English; content validation passed.",
+        "next_action": "Commit revision outputs, then complete revision and start validation.",
+        "at": "2026-11-09T14:39:13Z"
       },
       "attempts": 1,
       "start_commit": "b7fa89832d23d3a66ac064a679a78b7b9a25f0c4",

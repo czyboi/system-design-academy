@@ -1,51 +1,77 @@
 ---
 id: DB-01
-title: Mô hình hóa dữ liệu và nền tảng quan hệ
+title: Data Modeling and Relational Foundations
 status: draft
 level: intermediate
-estimated_time: 90 phút (ước tính, chưa thử nghiệm với người học)
-prerequisites: [SQL cơ bản, đã biết khái niệm primary key và foreign key]
+estimated_time: 90 minutes (provisional; not yet tested with learners)
+prerequisites: [basic SQL, familiarity with tables, primary keys, and foreign keys]
 source_review_date: 2026-11-09
 reviewer: pending
 ---
 
-# DB-01 — Mô hình hóa dữ liệu và nền tảng quan hệ
+# DB-01 — Data Modeling and Relational Foundations
 
-## Learning outcomes / Kết quả học tập
+## Learning outcomes
 
-Sau bài này, bạn có thể:
+By the end of this lesson, you should be able to:
 
-1. Chuyển yêu cầu nghiệp vụ và các cách đọc/ghi dữ liệu thành entities, relationships và constraints; invariant là điều kiện nghiệp vụ cần luôn đúng.
-2. Chọn primary key, foreign key và unique key để biểu diễn các invariant đã nêu.
-3. Giải thích một update anomaly và cách mô hình hóa chuẩn hóa giảm việc lặp lại, cập nhật lệch một sự thật.
-4. Quyết định khi nào một read model (mô hình đọc dẫn xuất) có thể đáng cân nhắc, đồng thời nêu chi phí đồng bộ.
-5. Phân biệt invariant nào có thể được bảo vệ bằng constraint của cơ sở dữ liệu với kiểm tra thuộc luồng ứng dụng hoặc dịch vụ bên ngoài.
+1. Turn business requirements and read/write patterns into entities, relationships, and constraints.
+2. Choose primary, foreign, and unique keys to express stated business rules.
+3. Explain an update anomaly and how normalization reduces duplicated facts and inconsistent updates.
+4. Decide when a derived read model may be useful and explain its synchronization cost.
+5. Distinguish rules a database constraint can enforce from rules that belong to an application workflow.
 
-## Vì sao cần mô hình hóa trước khi tạo bảng?
+## The problem: one business fact, many copies
 
-Một dịch vụ bán hàng cần trả lời những câu hỏi như: khách hàng nào đặt đơn, mỗi đơn gồm sản phẩm nào, giá nào đã được chấp nhận, và một payment reference thuộc nhà cung cấp nào? Nếu mọi thứ được đặt trong một bảng rộng, thông tin khách hàng và sản phẩm có thể bị lặp lại ở nhiều hàng. Khi một sự thật thay đổi, các bản sao có thể không được cập nhật cùng nhau.
+Imagine an order service that must answer four questions:
 
-Mô hình hóa dữ liệu bắt đầu bằng việc nói rõ **sự thật nghiệp vụ nào cần lưu**, **điều gì phải luôn đúng**, và **ứng dụng cần đọc hoặc thay đổi dữ liệu theo cách nào**. Đây là cách tổ chức suy nghĩ cho bài toán này; nó không quy định một schema vật lý duy nhất cho mọi DBMS. Tài liệu MongoDB cũng khuyến nghị mô hình theo access pattern trong phạm vi thiết kế MongoDB, nhưng không nên biến khuyến nghị sản phẩm đó thành quy luật áp dụng nguyên xi cho mọi hệ quan hệ. [MongoDB Data Modeling — “Model Data for Access Patterns”](https://www.mongodb.com/docs/manual/data-modeling/)
+- Which customer placed an order?
+- Which products and quantities did the order contain?
+- What price did the customer agree to at checkout?
+- Which payment provider issued a given payment reference?
 
-## Bắt đầu từ yêu cầu, invariant và cách đọc/ghi
+A first attempt might put customer, order, and product details in one wide table. That feels simple because one query can return a lot of information. But a customer with three order lines may appear in three rows. If the customer's email changes and only two rows are updated, the database now contains two competing answers to the question “What is this customer's email?”
 
-Trước khi viết DDL, lập một danh sách ngắn:
+The design problem is therefore not “Which columns should go in the first table?” Start with three questions instead:
 
-| Câu hỏi | Ví dụ trong dịch vụ đơn hàng |
+1. What facts must the system remember?
+2. Which rules must remain true as data changes?
+3. How does the application read and write those facts?
+
+This lesson follows one order example from those questions to a relational schema. Read the walkthrough first; the meeting-scheduling exercise at the end asks you to transfer the same reasoning to a new domain.
+
+## Step 1: write down requirements and access patterns
+
+A requirement describes what the system must do. An access pattern describes a common way it needs to read or change data. Both help shape a model, but neither proves that a particular schema or index will be fast.
+
+| Question | Example requirement |
 |---|---|
-| Ta đang lưu những thực thể nào? | Customer, Product, Order, OrderItem, Payment |
-| Quan hệ giữa chúng là gì? | Một customer có thể có nhiều order; một order có thể có nhiều order item |
-| Điều gì phải luôn đúng? | Mỗi order thuộc một customer; quantity lớn hơn 0; item tham chiếu product có thật |
-| Ứng dụng cần đọc dữ liệu thế nào? | Tải order theo ID; liệt kê order của customer theo thời gian; tải các item của một order |
-| Sự thật nào có thể thay đổi? | Tên sản phẩm và giá niêm yết có thể đổi sau khi mua |
+| What facts are we storing? | Customer, product, order, order item, and payment |
+| What relationships exist? | A customer places many orders; each order has zero or more items |
+| What must remain true? | Every order belongs to a customer; quantity is positive; each item refers to an existing product |
+| How will the application read data? | Get an order by ID; list a customer's orders by time; get all items for one order |
+| Which facts can change later? | A product's display name and list price may change after purchase |
+| Which historical facts must remain fixed? | The agreed price for a confirmed order item |
 
-Access pattern giúp ta biết cần hỗ trợ những thao tác nào. Nó là đầu vào cho quyết định, không tự nó chứng minh một index hay cách lưu cụ thể sẽ nhanh hơn. Index được học riêng trong DB-02.
+A rule that must remain true is often called an invariant. For example, “quantity is greater than zero” is an invariant. An access pattern is an input to the decision, not evidence that an index will help; index selection and query plans belong to DB-02.
 
-## Worked example: dữ liệu cho đơn hàng
+**Pause and predict:** If a product's list price changes tomorrow, should yesterday's order total change too? The answer depends on the business rule. If an order must preserve the agreed price, the model needs to preserve that historical fact.
 
-Giả sử một yêu cầu nghiệp vụ nói: “Sau khi khách hàng đặt hàng, hệ thống phải giữ được số tiền đã thỏa thuận, kể cả khi giá niêm yết thay đổi.” Với invariant đó, một mô hình có thể lưu `unit_price_at_purchase` trên mỗi order item. Đây là một lựa chọn để bảo toàn lịch sử giao dịch, không phải yêu cầu phổ quát của mô hình quan hệ; hệ thống có price history hoặc catalog version bất biến có thể chọn cách khác.
+## Step 2: identify entities and relationships
 
-```mermaid
+An entity is a kind of thing the system needs to remember independently, such as a customer or product. A relationship connects entities. A relational model represents these facts with tables and references.
+
+The order requirements lead to five entities:
+
+- **Customer** stores facts about a buyer.
+- **Product** stores the current catalog identity and list price.
+- **Order** records that a customer placed an order.
+- **OrderItem** connects an order to a product and stores the purchased quantity and agreed price.
+- **Payment** records payment attempts or references associated with an order.
+
+Order and product have a many-to-many relationship: an order may contain multiple products, and a product may appear in many orders. The OrderItem entity represents that relationship and gives each line a place for its own facts, such as quantity and price at purchase.
+
+~~~mermaid
 erDiagram
     CUSTOMERS ||--o{ ORDERS : places
     ORDERS ||--o{ ORDER_ITEMS : contains
@@ -78,15 +104,31 @@ erDiagram
       text provider_code
       text provider_ref
     }
-```
+~~~
 
-Trong ERD này, uniqueness của payment reference là **khóa ghép** trên `(provider_code, provider_ref)`, không phải hai unique constraint riêng. Cách viết Mermaid trên không gắn ký hiệu UK cho từng thuộc tính để tránh hiểu sai.
+The crow's-foot symbol says an order may have zero or many order items while it is being created. A foreign key from OrderItem to Order proves that each item points to an existing order. It does **not** prove the reverse rule “every order has at least one item.” If the business requires an order to contain an item before confirmation, that rule needs enforcement in the confirmation workflow or another deliberately designed mechanism. The diagram should show what the model actually guarantees.
 
-Ký hiệu `o{` cho order items có nghĩa một order có thể đang có 0 hoặc nhiều item. Foreign key từ item sang order chỉ đảm bảo mỗi item tham chiếu một order hợp lệ; nó **không** bảo đảm mỗi order có ít nhất một item. Nếu nghiệp vụ yêu cầu order phải có item trước khi chuyển sang trạng thái `confirmed`, phải nêu rõ invariant đó và nơi thực thi, chẳng hạn trong luồng xác nhận có transaction phù hợp. Không nên vẽ `|{` nếu DDL và quy trình không bảo đảm điều đó.
+The payment reference is assumed to be unique only within one provider. That means the candidate key is the pair (provider_code, provider_ref), not two separate unique values.
 
-DDL dưới đây là ví dụ theo **PostgreSQL 18**, để nghĩa của constraint được cụ thể. Nó chưa được chạy trong môi trường khai báo, nên xem là minh họa chứ chưa phải mã đã kiểm thử. Các kiểu dữ liệu và chi tiết DDL cần được rà lại nếu chuyển sang engine khác.
+## Step 3: choose keys and constraints from the rules
 
-```sql
+A key gives a row an identity or expresses uniqueness. A constraint makes a rule explicit where data is stored.
+
+- A **primary key** identifies each row. The OrderItem key is (order_id, line_no): line number 1 can appear in many orders, but only once inside a particular order.
+- A **foreign key** requires a reference to match a row in another table. It protects the child-to-parent direction; it does not require every parent to have a child.
+- A **unique constraint** expresses uniqueness within a chosen scope. Payment references are unique within a provider, so use a composite unique constraint on (provider_code, provider_ref). A unique constraint alone does not require a value; PostgreSQL 18 allows multiple NULL values by default, so keep NOT NULL when the provider identity is required. [PostgreSQL 18 — Constraints, §5.5.3](https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS)
+- A **not-null constraint** says a value must be present. A foreign key alone allows a missing value unless the column is also NOT NULL.
+- A **check constraint** is useful for a condition on the same row, such as quantity greater than zero or an end time after a start time.
+
+A natural key, such as an email address or provider reference, comes from business data. A surrogate key, such as customer_id, is assigned for database identity. Choose based on stability and uniqueness scope: can the value change, can two tenants or providers use the same value, and how many references would need updating if it changed? Neither key style is best for every domain.
+
+The database is also the final guard for uniqueness when multiple writers can act at once. “Check whether the row exists, then insert” can race: two writers may both observe no row before either inserts. A unique constraint makes one write fail instead of storing a duplicate. The application must handle that conflict; the constraint does not replace user-friendly validation.
+
+## Step 4: translate the model into tables
+
+The DDL below is an illustrative example for **PostgreSQL 18**. It has not been executed in a declared environment, so treat it as teaching code rather than tested deployment SQL.
+
+~~~sql
 CREATE TABLE customers (
     customer_id BIGINT PRIMARY KEY,
     email       TEXT NOT NULL UNIQUE,
@@ -124,8 +166,8 @@ CREATE TABLE order_items (
 );
 
 CREATE TABLE payments (
-    payment_id   BIGINT PRIMARY KEY,
-    order_id     BIGINT NOT NULL,
+    payment_id    BIGINT PRIMARY KEY,
+    order_id      BIGINT NOT NULL,
     provider_code TEXT NOT NULL,
     provider_ref  TEXT NOT NULL,
     amount        NUMERIC(14, 2) NOT NULL CHECK (amount >= 0),
@@ -136,98 +178,118 @@ CREATE TABLE payments (
     CONSTRAINT payments_provider_reference_uq
         UNIQUE (provider_code, provider_ref)
 );
-```
+~~~
 
-Các giả định của ví dụ:
+Now connect the business rules to the DDL:
 
-- ID được cung cấp bởi ứng dụng hoặc cơ chế cấp ID được chọn riêng; ví dụ không dạy cơ chế sinh ID.
-- `NUMERIC(14,2)` giả định nghiệp vụ đang biểu diễn một loại tiền có hai chữ số thập phân và giới hạn số phù hợp. Chính sách tiền tệ, rounding và precision phải được xác định theo domain; không sao chép kiểu này máy móc cho mọi loại tiền.
-- Payment reference chỉ cần duy nhất **trong phạm vi một provider**. Nếu provider bảo đảm reference duy nhất toàn cục, hoặc domain có khóa khác, có thể chọn constraint khác.
-- Một đơn hàng có thể tạm thời chưa có item trong lúc tạo. Nếu order không được xác nhận khi chưa có item, quy tắc đó phải được kiểm tra trong luồng xác nhận; các foreign key ở trên không biểu diễn được yêu cầu “cha phải có ít nhất một con”.
+- **PRIMARY KEY** prevents two rows from sharing the chosen identity.
+- **FOREIGN KEY** on orders.customer_id prevents an order from naming a customer row that does not exist.
+- **CHECK (quantity > 0)** rejects a row with zero or negative quantity.
+- **NOT NULL** makes required values explicit; it is separate from referential integrity.
+- **UNIQUE (provider_code, provider_ref)** protects the provider-scoped payment reference.
 
-PostgreSQL 18 định nghĩa primary key là duy nhất và không null; foreign key bảo vệ tham chiếu tới hàng được tham chiếu; `CHECK` kiểm tra biểu thức trên hàng được chèn/cập nhật. `CHECK` không thay thế `NOT NULL` vì biểu thức null không đồng nghĩa false, và không dùng constraint này để kiểm tra invariant qua nhiều hàng hoặc bảng. [PostgreSQL 18 — Constraints, §§5.5.1–5.5.5](https://www.postgresql.org/docs/18/ddl-constraints.html)
+PostgreSQL 18 defines primary keys as unique and not null. Foreign keys protect references, and CHECK constraints test expressions on the row being inserted or updated. CHECK is not a substitute for NOT NULL: a null result is not the same as false. A row-level CHECK is also not a general way to enforce rules across other rows or tables. [PostgreSQL 18 — Constraints, §§5.5.1–5.5.5](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
-Không gọi ví dụ trên là SQL portable: MySQL 8.4 bỏ qua dạng column-level inline `REFERENCES`; MySQL cần foreign key được khai báo dưới dạng table-level `FOREIGN KEY`. Với bảng InnoDB trong MySQL 8.4, engine có thể tạo index phía tham chiếu nếu cần và chưa có index phù hợp; đây là semantics theo engine, không được khái quát sang mọi storage engine hoặc DBMS. [MySQL 8.4 — CREATE TABLE, §15.1.20](https://dev.mysql.com/doc/refman/8.4/en/create-table.html), [MySQL 8.4 — Foreign Key Constraints, §15.1.20.5](https://dev.mysql.com/doc/refman/8.4/en/create-table-foreign-keys.html)
+The numeric example assumes one currency with two decimal places and an appropriate range. A real domain must define supported currencies, precision, and rounding explicitly; do not copy NUMERIC(14, 2) blindly for every monetary value. [PostgreSQL 18 — Numeric Types, §§8.1.2–8.1.3](https://www.postgresql.org/docs/18/datatype-numeric.html)
 
-## Keys và constraints: chọn theo invariant
+The example uses table-level foreign-key declarations. Do not describe it as portable SQL: MySQL 8.4 parses and ignores column-level inline REFERENCES declarations, so foreign keys must be written in the supported table-level form. For InnoDB tables in MySQL 8.4, the engine can create a supporting index on the referencing columns when one is needed and absent. Those are product and engine-specific details, not universal relational-database rules. [MySQL 8.4 — CREATE TABLE, §15.1.20](https://dev.mysql.com/doc/refman/8.4/en/create-table.html), [MySQL 8.4 — Foreign Key Constraints, §15.1.20.5](https://dev.mysql.com/doc/refman/8.4/en/create-table-foreign-keys.html)
 
-- **Primary key** định danh một hàng; có thể gồm nhiều cột, ví dụ `(order_id, line_no)` để định danh một dòng trong order. PostgreSQL 18 mô tả primary key là duy nhất và không null. [PostgreSQL 18 — Constraints, §5.5.4](https://www.postgresql.org/docs/18/ddl-constraints.html)
-- **Foreign key** ngăn một giá trị tham chiếu tới hàng không tồn tại trong quan hệ đã khai báo. Nếu thiếu giá trị không hợp lệ, cần `NOT NULL` riêng; foreign key không tự loại bỏ null. [PostgreSQL 18 — Constraints, §§5.5.2, 5.5.5](https://www.postgresql.org/docs/18/ddl-constraints.html)
-- **Unique constraint** diễn đạt một khóa ứng viên phải duy nhất trong phạm vi đã chọn. Ví dụ `provider_ref` trong bài này duy nhất theo cặp `(provider_code, provider_ref)`, vì giả định mỗi nhà cung cấp chỉ cam kết duy nhất trong phạm vi của họ.
-- `UNIQUE` tự nó không buộc cột phải có giá trị. Nếu thiếu giá trị không hợp lệ, thêm `NOT NULL`; cách xử lý `NULL` trong unique constraint có thể khác theo DBMS. PostgreSQL 18 mặc định cho phép nhiều hàng có `NULL` trong cột unique. [PostgreSQL 18 — Constraints, §5.5.3](https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS)
-- **Check constraint** phù hợp cho điều kiện trên cùng hàng như `quantity > 0` hoặc `ends_at > starts_at`. Nó không diễn đạt được mọi quy tắc nghiệp vụ.
-- **Not-null constraint** thể hiện một cột bắt buộc có giá trị. Chọn `NOT NULL` chỉ khi domain không chấp nhận vắng mặt.
+PostgreSQL creates indexes for primary-key and unique constraints, but it does not automatically create an index on the referencing side of a foreign key. Whether to add one depends on the application's queries and on operations that need to find child rows, such as deleting or updating a parent. Use workload and query-plan evidence; DB-02 covers that decision. [PostgreSQL 18 — Constraints, §5.5.5](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
-Chọn natural key hay surrogate key là quyết định theo domain. Hãy hỏi: giá trị đó có ổn định không, có thể thay đổi không, phạm vi duy nhất là toàn hệ thống hay chỉ trong một provider/tenant, và thay đổi khóa sẽ ảnh hưởng bao nhiêu quan hệ? Không có câu trả lời chung rằng một loại khóa luôn nhỏ hơn, nhanh hơn hoặc an toàn hơn cho mọi schema.
+## Step 5: decide which facts to normalize
 
-Một constraint unique trong database cũng giúp bảo vệ invariant khi có nhiều writer hoặc nhiều đường ghi. Luồng “đọc xem đã tồn tại chưa, nếu chưa thì insert” có thể gặp race giữa lần đọc và ghi; database phải là điểm cuối cùng bảo vệ tính duy nhất, còn ứng dụng cần xử lý lỗi constraint một cách có chủ đích. Đây không có nghĩa database constraint thay thế validation thân thiện với người dùng.
+Normalization is a way to organize facts so that each fact has a clear home and changes do not require updating many accidental copies. It helps reduce redundancy and inconsistent dependencies; the example below illustrates an update anomaly rather than attempting to define every normal form. [Microsoft Learn — Database normalization basics, “Description of normalization” and “Second normal form”](https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description)
 
-Với PostgreSQL, primary key/unique của bảng được tham chiếu có index, nhưng foreign key **không tự tạo index trên phía tham chiếu**. Có nên thêm index ở đó phụ thuộc truy vấn và thao tác xóa/cập nhật ở bảng cha. DB-02 sẽ hướng dẫn cách cân nhắc index từ workload và query plan. [PostgreSQL 18 — Constraints, §5.5.5](https://www.postgresql.org/docs/18/ddl-constraints.html)
+Suppose customer email and product name are copied into every order-item row:
 
-## Chuẩn hóa, lặp dữ liệu và đồng bộ
+~~~text
+order_id | customer_email   | product_sku | product_name | quantity
+O-17     | sam@example.com  | MUG-1       | Blue mug     | 2
+O-17     | sam@example.com  | NOTE-2      | Notebook     | 1
+O-23     | sam@example.com  | MUG-1       | Blue mug     | 1
+~~~
 
-Chuẩn hóa giúp đặt mỗi sự thật vào vị trí phù hợp để giảm lặp dữ liệu và các lần cập nhật cần đồng bộ. Ví dụ nếu email hoặc địa chỉ customer bị sao chép vào nhiều order rows, đổi địa chỉ có thể chỉ cập nhật một phần các bản sao. Tài liệu nhập môn về normalization mô tả việc giảm redundancy và các phụ thuộc không nhất quán; các tình huống trong bài là ví dụ minh họa, không phải định nghĩa đầy đủ mọi anomaly. [Microsoft Learn — Database normalization basics, “Description of normalization” và “Second normal form”](https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description)
+If Sam changes email, every matching row must be found and updated. Missing one row creates two answers for the same fact. Separating Customer and Product from OrderItem gives the current email and product name a single home; foreign keys connect each order line back to those entities.
 
-Chuẩn hóa không phải mục tiêu tối đa bằng mọi giá. Giả sử một màn hình dashboard cần trả về danh sách meeting kèm số participant rất thường xuyên. Hệ thống có thể giữ số participant dẫn xuất để đọc đơn giản hơn, nhưng khi participant được thêm/xóa, bộ đếm cũng phải cập nhật đúng; lỗi giữa chừng, retry hoặc xóa trùng có thể làm số liệu lệch. Đây là một ứng viên để thử nghiệm nếu workload thật cho thấy cần thiết, không phải bảo đảm rằng denormalization sẽ làm hệ thống nhanh hơn.
+Historical facts are different from current facts. The product's current list price may change, but the agreed transaction price should remain attached to the order item when that is the business rule. Storing unit_price_at_purchase is not accidental duplication if it records a distinct historical fact. If an immutable catalog version already preserves the exact price, the order could reference that version instead. State the domain rule before choosing.
 
-Khi lưu giá đã chốt trên order item, lý do phải là invariant “giá giao dịch của order đã xác nhận không thay đổi theo catalog”. Nếu giá được truy xuất từ price history bất biến, snapshot có thể không cần thiết. Hãy nêu domain rule trước rồi mới chọn cách lưu.
+## Step 6: denormalize only for a measured read need
 
-Với một số domain, business rule nằm một phần ở database và một phần ở ứng dụng. Ví dụ `ends_at > starts_at` là điều kiện của cùng một meeting row và có thể đặt thành `CHECK`. Trái lại, “meeting phải có ít nhất hai participant trước khi gửi notification” liên quan tới nhiều hàng và một hành động bên ngoài; cần transaction/application workflow hoặc cơ chế khác được thiết kế rõ. Không giả định một `CHECK` trên một hàng sẽ bảo vệ được invariant xuyên nhiều bảng. [PostgreSQL 18 — Constraints, §5.5.1](https://www.postgresql.org/docs/18/ddl-constraints.html)
+Normalization is a useful starting point, not a goal to maximize regardless of workload. A derived read model stores or computes a representation for a particular read pattern from the system's underlying facts. A dashboard might repeatedly need the number of items on each order. The system could store an item_count on Order to make that read simpler, but now every insert or delete of an order item must keep the count correct.
 
-## Trade-offs và lỗi thường gặp
+That extra copy creates synchronization work. A retry, a duplicate event, or a partial failure can make the stored count drift from the actual rows. If a specific read path is frequent and measurement shows a real need, a derived read model may be reasonable. Plan how updates, retries, backfills, and reconciliation will repair it. Denormalization does not guarantee faster performance.
 
-| Quyết định | Khi hữu ích | Chi phí hoặc rủi ro |
+## Step 7: place each rule where it can be enforced
+
+A row-level rule such as quantity > 0 can be expressed with a CHECK. A rule such as “every confirmed order has at least one item” spans the order and its child rows. A CHECK on a single order row cannot count the related items. The confirmation workflow must enforce the transition with a suitable transaction or another mechanism designed for that invariant.
+
+This separation does not mean that the application should validate everything. The application can give a useful error before saving; the database constraint protects stored data across concurrent writers and every write path. For rules that depend on several rows or an external service, define the responsible transaction or workflow explicitly. [PostgreSQL 18 — Constraints, §5.5.1](https://www.postgresql.org/docs/18/ddl-constraints.html)
+
+## A decision checklist for this design
+
+Before calling the schema ready, ask:
+
+1. Does every requirement map to a stored fact, a relationship, or an explicit workflow rule?
+2. Is each key unique in the domain scope that actually matters?
+3. Which values are current facts, and which must preserve history?
+4. Which constraints can be checked on one row, and which require several rows or an application transition?
+5. What read and write patterns will the design support?
+6. If data is duplicated for reads, how will retries, backfills, and repair keep it consistent?
+
+| Modeling choice | When it helps | Cost or failure mode |
 |---|---|---|
-| Tách entities và tham chiếu bằng khóa | Sự thật được dùng ở nhiều nơi và cần giữ nhất quán | Đọc dữ liệu có thể cần join; migration và constraint rollout cần kế hoạch |
-| Dùng composite key cho row có phạm vi cục bộ | Ví dụ `line_no` chỉ có ý nghĩa trong một order | Quan hệ tham chiếu cần mang đủ các cột trong khóa |
-| Snapshot dữ liệu giao dịch | Domain cần giữ nguyên sự thật tại thời điểm giao dịch | Cần định nghĩa trường nào là snapshot và cách sửa sai/hoàn tiền |
-| Denormalize dữ liệu dẫn xuất | Có read path cụ thể cần đơn giản hóa và lợi ích được đo | Đồng bộ, retry, nạp bù dữ liệu cũ (backfill), đối soát/sửa sai (reconciliation) và xử lý lỗi một phần (partial failure) |
-| Đặt invariant ở database | Nhiều writer phải tuân cùng quy tắc | Writer phải xử lý constraint violation; thay đổi constraint có thể cần migration cẩn trọng |
+| Separate entities connected by keys | A fact is shared and should have one current home | Reads may need joins; migrations and constraint rollout need care |
+| Composite key for a locally scoped row | A line number is only meaningful within one order | References must carry all columns of the key |
+| Snapshot a transaction fact | The value must remain as agreed at transaction time | Define exactly what is frozen and how corrections or refunds work |
+| Store a derived read value | A measured read path justifies simpler retrieval | Adds synchronization, retry, backfill, reconciliation, and partial-failure work |
+| Enforce an invariant in the database | Multiple writers must obey the same rule | Writers must handle constraint violations; rollout may need a migration plan |
 
-Lỗi thường gặp là lấy display name hoặc email làm ID bất biến mà chưa xét việc đổi giá trị; dùng check-then-insert thay cho unique constraint khi invariant là tính duy nhất; nhầm FK với tự động tạo mọi index cần thiết; hoặc dùng kiểu tiền mà không ghi giả định về currency và rounding.
+Common mistakes include using a mutable display name or email as a permanent identifier without checking the domain; using check-then-insert instead of a unique constraint for uniqueness; assuming a foreign key creates every useful index; and choosing a monetary type without defining currency and rounding.
 
-## Practical exercise / Bài tập thực hành
+## Practical exercise: model a meeting scheduler
 
-Thiết kế schema cho ứng dụng đặt lịch họp. Yêu cầu:
+Design a relational model for a meeting-scheduling service.
 
-- Một user có thể tạo nhiều meeting; mỗi meeting có đúng một organizer.
-- Meeting có nhiều participant; mỗi user chỉ xuất hiện một lần trong cùng meeting.
-- Participant có thể `accepted`, `declined` hoặc `tentative`.
-- `ends_at` phải sau `starts_at`.
-- Các màn hình cần đọc: danh sách meeting sắp tới của một user; danh sách participant của một meeting.
-- Meeting nháp có thể chưa có participant. Organizer là bắt buộc cho mọi meeting trong mô hình này; hệ thống chưa định nghĩa yêu cầu số participant tối thiểu.
+Requirements:
 
-**Nộp:** ERD; DDL cho ít nhất ba bảng; chỉ rõ primary/foreign/unique/check constraints; liệt kê hai read pattern và chỉ ra dữ liệu nào mỗi thao tác cần. Không cần chọn hoặc biện minh index trong bài này; index mechanics thuộc DB-02.
+- A user can organize many meetings; every meeting has exactly one organizer.
+- A meeting may have many participants; a user can appear at most once in the same meeting.
+- Each participant response is accepted, declined, or tentative.
+- The meeting end time must be later than its start time.
+- The application must list upcoming meetings for a user and list participants for one meeting.
+- A draft meeting may have no participants. This exercise does not require a minimum participant count. As a hypothetical future rule, explain where the system should enforce a requirement of at least two participants before confirmation.
 
-**Yêu cầu đánh giá:** mô hình phải cho phép kiểm tra duplicate participant bằng khóa/unique constraint; điều kiện thời gian phải được thể hiện; giải thích một invariant có thể đặt trong database và một invariant thuộc trạng thái/luồng ứng dụng.
+Submit an ERD, DDL for at least three tables, the primary/foreign/unique/check constraints, and two read patterns that identify which data each operation needs. Do not select or justify indexes; index mechanics are taught in DB-02.
 
-ERD tham khảo cho lời giải: một user có thể tổ chức nhiều meeting; mỗi meeting có đúng một organizer; mỗi meeting có 0 hoặc nhiều participant; mỗi user có thể tham gia nhiều meeting. Composite key trên `(meeting_id, user_id)` ngăn lặp user trong cùng meeting.
+A good design must prevent duplicate participants with a key or unique constraint, represent the time rule, and explain one database-enforceable invariant and one workflow-level rule.
 
-```mermaid
+Expected relationships: one user can organize many meetings; every meeting has one organizer; one meeting can have zero or many participants; one user can participate in many meetings. The pair (meeting_id, user_id) identifies a participant row within a meeting.
+
+### Sample solution
+
+One reasonable design uses users, meetings, and meeting_participants. IDs are supplied by the application in this example.
+
+The following is illustrative PostgreSQL 18 syntax and has **not been executed**. If adapting it to MySQL 8.4, declare foreign keys in the supported table-level form and state the storage-engine assumptions.
+
+~~~mermaid
 erDiagram
     USERS ||--o{ MEETINGS : organizes
     MEETINGS ||--o{ MEETING_PARTICIPANTS : has
     USERS ||--o{ MEETING_PARTICIPANTS : joins
-```
+~~~
 
-### Sample solution / Một lời giải mẫu
-
-Một thiết kế hợp lý gồm `users`, `meetings`, `meeting_participants`. ID được ứng dụng cấp trong ví dụ này.
-
-Ví dụ DDL sau dùng cú pháp PostgreSQL 18, chỉ để minh họa và **chưa được chạy thử**. Nếu dùng MySQL 8.4, cần khai báo foreign key theo cú pháp table-level `FOREIGN KEY` và nêu storage engine; không sao chép nguyên block này.
-
-```sql
+~~~sql
 CREATE TABLE users (
     user_id BIGINT PRIMARY KEY,
     email   TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE meetings (
-    meeting_id  BIGINT PRIMARY KEY,
+    meeting_id   BIGINT PRIMARY KEY,
     organizer_id BIGINT NOT NULL REFERENCES users(user_id),
-    starts_at   TIMESTAMPTZ NOT NULL,
-    ends_at     TIMESTAMPTZ NOT NULL,
-    status      TEXT NOT NULL,
+    starts_at    TIMESTAMPTZ NOT NULL,
+    ends_at      TIMESTAMPTZ NOT NULL,
+    status       TEXT NOT NULL,
     CHECK (ends_at > starts_at)
 );
 
@@ -237,67 +299,65 @@ CREATE TABLE meeting_participants (
     response   TEXT NOT NULL CHECK (response IN ('accepted', 'declined', 'tentative')),
     PRIMARY KEY (meeting_id, user_id)
 );
-```
+~~~
 
-Khóa chính `(meeting_id, user_id)` ngăn user được thêm hai lần vào cùng meeting. Foreign key ngăn participant/organizer tham chiếu tới user không tồn tại. `CHECK (ends_at > starts_at)` kiểm tra hai giá trị cùng hàng. Trạng thái `confirmed` có organizer được đảm bảo bởi `organizer_id NOT NULL`; nếu quy tắc tương lai yêu cầu tối thiểu hai participant, kiểm tra đó phải được thiết kế trong transaction/workflow xác nhận vì nó đếm các hàng ở bảng khác.
+The composite primary key prevents the same user from being added twice to one meeting. The foreign keys require the organizer and participants to refer to existing users and meetings. The CHECK validates start and end times from the same meeting row. If a future requirement says that a meeting needs at least two participants before confirmation, that condition counts rows in another table and belongs in the confirmation transaction or another explicitly designed workflow.
 
-Rubric 100 điểm:
-
-| Tiêu chí | Điểm |
+| Rubric criterion | Points |
 |---|---:|
-| Entities và quan hệ organizer/participant được biểu diễn đúng | 20 |
-| PK/FK và tính duy nhất của participant được bảo vệ | 25 |
-| Invariant thời gian và response hợp lệ được nêu/biểu diễn | 20 |
-| Hai read pattern gắn với đúng dữ liệu và quan hệ | 15 |
-| Phân biệt một DB invariant với một quy tắc thuộc application workflow; nêu một trade-off hoặc giả định | 20 |
+| Entities and organizer/participant relationships are represented correctly | 20 |
+| Primary/foreign keys protect identity and participant uniqueness | 25 |
+| Time and response constraints are stated or enforced | 20 |
+| Two read patterns map to the required data and relationships | 15 |
+| One database invariant and one application-workflow rule are distinguished; one assumption or trade-off is explained | 20 |
 
-Các schema khác vẫn có thể đạt điểm tối đa nếu bảo vệ cùng invariant, nêu rõ giả định và giải thích trade-off. Index selection không được chấm ở bài này vì learner chưa học DB-02.
+The minimum-participant rule is hypothetical, not part of the current requirements; a strong answer explains that it counts rows across tables and should be checked in the confirmation workflow. Alternative schemas can earn full credit when they satisfy the stated requirements, make assumptions explicit, and explain their trade-offs. Index selection is not graded because it is covered in DB-02.
 
-## Knowledge check / Kiểm tra kiến thức
+## Knowledge check
 
-1. Với requirement lưu lại giá khách đã đồng ý lúc đặt hàng, bạn cần lưu sự thật nào trên order item? Nêu một domain thay thế có thể khiến snapshot không cần thiết.
-2. Foreign key từ `meeting_participants.user_id` sang `users.user_id` bảo vệ invariant gì? Nó có buộc mọi user phải là participant của ít nhất một meeting không?
-3. Một team lưu địa chỉ customer vào mỗi order row. Nêu một update anomaly và giải thích tách customer thành entity riêng giúp gì.
-4. Vì sao “query xem participant đã tồn tại chưa, rồi insert” không đủ để bảo đảm không trùng khi có nhiều writer? Constraint nào làm hàng rào cuối cùng?
-5. Dashboard cần hiển thị count participant cho từng meeting. Nêu điều kiện workload khiến bạn cân nhắc lưu count dẫn xuất, và hai việc phải làm để giữ nó đúng.
-6. Với PostgreSQL 18, khai báo foreign key có tự tạo index trên cột phía tham chiếu không? Trả lời kèm điều kiện khi nào cân nhắc index đó; không khái quát sang DBMS khác.
-7. Nên đặt `ends_at > starts_at` ở đâu? Quy tắc “phải có tối thiểu hai participant trước khi xác nhận meeting” khác gì về phạm vi dữ liệu?
-8. Nếu hai payment provider có thể cấp cùng một `provider_ref`, unique key nào phù hợp với giả định đó?
+Answer these after the walkthrough and exercise. Each explanation below connects the answer to a design rule from the lesson.
 
-### Answer key / Đáp án và giải thích
+1. The catalog price changes after an order is confirmed. What fact should the order item preserve, and what domain model could make a direct price snapshot unnecessary?
+2. What does a foreign key from meeting_participants.user_id to users.user_id guarantee? Does it require every user to attend a meeting?
+3. If customer email is copied to every order row, describe an update anomaly and how a separate Customer entity helps.
+4. Why can “look for a participant, then insert if missing” still create duplicates with concurrent writers? What database rule closes that race?
+5. When might you store a derived item count on an order? Name two synchronization or repair responsibilities that come with it.
+6. In PostgreSQL 18, does declaring a foreign key automatically create an index on the referencing columns? When might that index be useful?
+7. Which rule fits a row-level CHECK: end time later than start time, or at least two participants before confirmation? Explain the scope difference.
+8. If two payment providers may issue the same provider_ref, what uniqueness rule matches that assumption?
 
-1. Lưu `unit_price_at_purchase` nếu business invariant yêu cầu giữ nguyên giá đã chốt. Nếu mỗi catalog price được lưu trong một phiên bản bất biến và order giữ phiên bản đó, hệ thống có thể truy xuất giá theo phiên bản thay vì snapshot trực tiếp. Đây là lựa chọn domain, không phải quy luật của relational DB.
-2. FK đảm bảo giá trị `user_id` trong participant tham chiếu tới user có thật (nếu giá trị không null). Nó không buộc mọi user phải tham gia meeting; ràng buộc đó là chiều ngược lại và thường không phải requirement.
-3. Một địa chỉ đổi nhưng chỉ một số order row được cập nhật, khiến cùng một customer có nhiều địa chỉ được xem như hiện tại. Tách customer giúp lưu một bản sự thật hiện tại; nếu cần địa chỉ lịch sử tại thời điểm giao hàng thì đó là requirement khác và cần snapshot/version phù hợp.
-4. Hai writer có thể cùng đọc thấy “chưa tồn tại” trước khi một writer ghi. Unique/primary-key constraint là điểm thực thi tính duy nhất; ứng dụng cần xử lý conflict thay vì giả định insert luôn thành công.
-5. Cân nhắc khi một read path cụ thể lặp lại, lợi ích được đo và chấp nhận chi phí ghi. Phải cập nhật count trong cùng cơ chế nhất quán với thay đổi participant, và xử lý retry/backfill/reconciliation để khắc phục lỗi lệch.
-6. Không. PostgreSQL 18 không tự tạo index ở bảng tham chiếu khi khai báo FK. Cân nhắc index nếu workload truy vấn hoặc thao tác delete/update ở bảng cha cần tìm các hàng con; quyết định dựa vào pattern và query plan. MySQL có semantics khác.
-7. `ends_at > starts_at` chỉ dùng dữ liệu của cùng meeting row, nên là ứng viên cho `CHECK`. Điều kiện tối thiểu hai participant đếm các hàng khác trong bảng participant và thường phải được bảo vệ trong luồng xác nhận/transaction hoặc cơ chế khác.
-8. `UNIQUE (provider_code, provider_ref)` nếu reference chỉ duy nhất trong phạm vi provider. Nếu provider đảm bảo global uniqueness, domain có thể chọn khóa khác; phải ghi assumption trước.
+### Answer key and explanations
 
-## Outcome-to-assessment mapping / Mapping outcome sang assessment
+1. Preserve unit_price_at_purchase when the business rule says the agreed transaction price must not change with the catalog. An immutable catalog-price version that the order references could preserve the same history without copying the price directly.
+2. The foreign key requires the participant's user_id, when present, to reference an existing user. It does not require every user to participate in at least one meeting; that would be a different rule in the opposite direction.
+3. If only some copied rows are updated, one customer has conflicting email values. A separate Customer entity gives the current email one home. If the system needs a historical shipping address, that is a separate historical fact and needs its own model.
+4. Two writers can both observe that no row exists before either insert completes. A primary-key or unique constraint rejects one duplicate write; the application should handle that conflict.
+5. Consider it when a specific read path is frequent and measurement justifies keeping the derived value. Keep updates consistent with item changes, make retries safe, and provide backfill or reconciliation to repair drift.
+6. No. PostgreSQL 18 does not automatically index the referencing columns. Such an index may help queries that find child rows or parent deletes/updates that must locate them; decide from workload and query-plan evidence. Do not generalize this behavior to every DBMS.
+7. End time later than start time uses two values from the same meeting row and fits a CHECK. “At least two participants” counts rows in another table and must be enforced by the confirmation workflow or another mechanism designed for multirow state.
+8. Use UNIQUE (provider_code, provider_ref) when a reference is unique only within its provider. If the provider guarantees global uniqueness, a different key may fit; record that assumption explicitly.
 
-| Outcome | Assessment |
+## Outcome-to-assessment mapping
+
+| Learning outcome | Assessment |
 |---|---|
-| 1. Chuyển yêu cầu/access pattern thành entity, quan hệ, constraints | Exercise: liệt kê read patterns, dựng ERD/DDL; rubric tiêu chí 1 và 4; Q2 |
-| 2. Chọn PK/FK/unique key phù hợp invariant | Exercise rubric tiêu chí 2; Q2, Q8 |
-| 3. Giải thích normalization giảm update anomaly | Q3 |
-| 4. Quyết định khi nào cân nhắc denormalization và chi phí đồng bộ | Q5 |
-| 5. Phân biệt DB-enforceable invariant với application workflow | Exercise rubric tiêu chí 5; Q4, Q7 |
+| 1. Turn requirements and access patterns into entities, relationships, and constraints | Worked order model; meeting exercise ERD and read patterns; questions 1 and 2 |
+| 2. Choose primary, foreign, and unique keys for business rules | Worked DDL; exercise rubric criteria 1–2; questions 2, 4, and 8 |
+| 3. Explain how normalization reduces an update anomaly | Normalization walkthrough; question 3 |
+| 4. Decide when a derived read model may help and state its cost | Denormalization walkthrough; question 5 |
+| 5. Distinguish database constraints from workflow rules | Rule-placement walkthrough; exercise rubric criterion 5; question 7 |
 
-## References / Tài liệu tham khảo
+## References
 
-- PostgreSQL Global Development Group, [PostgreSQL 18 — Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html), §§5.5.1–5.5.5: `CHECK`, `NOT NULL`, `UNIQUE`, primary key, foreign key và index phía tham chiếu.
-- PostgreSQL Global Development Group, [PostgreSQL 18 — Numeric Types](https://www.postgresql.org/docs/18/datatype-numeric.html), §§8.1.2–8.1.3: exact `numeric`/`decimal` và floating-point; ví dụ tiền cần precision/rounding theo domain.
-- Oracle, [MySQL 8.4 — CREATE TABLE](https://dev.mysql.com/doc/refman/8.4/en/create-table.html), §15.1.20; [Foreign Key Constraints](https://dev.mysql.com/doc/refman/8.4/en/create-table-foreign-keys.html), §15.1.20.5: cú pháp và semantics riêng cho foreign key.
-- Microsoft Learn, [Database normalization basics](https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description), “Description of normalization” và “Second normal form”: tài liệu nhập môn về redundancy và dependencies; không dùng nó làm bằng chứng cho claim performance.
-- MongoDB, [Data Modeling](https://www.mongodb.com/docs/manual/data-modeling/), “Model Data for Access Patterns”: tham khảo theo sản phẩm, current manual; không dùng như quy luật chung cho relational schema.
-- Donne Martin, [System Design Primer — Database topic area at the reviewed commit](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/README.md#database): dùng làm bản đồ chủ đề, không phải nguồn duy nhất cho semantics kỹ thuật. Repo ghi tài nguyên do tác giả cung cấp theo [LICENSE.txt tại commit đã kiểm tra](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/LICENSE.txt) và [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); các asset bên thứ ba vẫn cần được kiểm tra riêng.
+- PostgreSQL Global Development Group, [PostgreSQL 18 — Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html), §§5.5.1–5.5.5: CHECK, NOT NULL, UNIQUE, primary-key, foreign-key, and referencing-side index behavior.
+- PostgreSQL Global Development Group, [PostgreSQL 18 — Numeric Types](https://www.postgresql.org/docs/18/datatype-numeric.html), §§8.1.2–8.1.3: exact numeric/decimal and floating-point types; currency precision and rounding depend on the domain.
+- Oracle, [MySQL 8.4 — CREATE TABLE](https://dev.mysql.com/doc/refman/8.4/en/create-table.html), §15.1.20; [Foreign Key Constraints](https://dev.mysql.com/doc/refman/8.4/en/create-table-foreign-keys.html), §15.1.20.5: product-specific syntax and foreign-key semantics.
+- Microsoft Learn, [Database normalization basics](https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description), “Description of normalization” and “Second normal form”: introductory context for redundancy and dependencies; not evidence for a performance claim.
+- MongoDB, [Data Modeling](https://www.mongodb.com/docs/manual/data-modeling/), “Model Data for Access Patterns”: product-specific reference from the current manual, not a universal rule for relational schemas.
+- Donne Martin, [System Design Primer — Database topic area at the reviewed commit](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/README.md#database): used as a topic map, not as the sole technical authority. The repository's [LICENSE.txt at the reviewed commit](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/LICENSE.txt) states CC BY 4.0 for author-provided material; [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) requires attribution and a change notice. Third-party assets remain subject to separate rights checks.
 
-## Scope and source notes / Ghi chú phạm vi và nguồn
+## Scope and source notes
 
-Các tài liệu PostgreSQL và MySQL được kiểm tra ngày 2026-11-09; semantics nêu ở trên giới hạn theo phiên bản ghi trong từng tham chiếu. Tài liệu MongoDB là current manual và chưa pin server version. DDL là ví dụ PostgreSQL 18 nhưng **chưa được chạy** trong môi trường khai báo. Chưa có lab kiểm thử SQL, timing với học viên, hoặc review pháp lý.
+PostgreSQL and MySQL references were checked on 2026-11-09; claims are limited to the product versions named. The MongoDB reference is the current manual and is not pinned to a server version. The SQL examples are illustrative PostgreSQL 18 and **have not been executed**. The Microsoft Learn normalization page showed an access-required banner during provenance review; confirm learner access or replace it before release. No learner timing study or legal review has been completed.
 
-Phạm vi và tổ chức chủ đề được **độc lập sắp xếp lại và bổ sung** dựa trên vùng Database của *The System Design Primer* của Donne Martin (bản được kiểm tra tại commit `ae9bbd7b02d90b9866215de185217d33f39ab733`, theo CC BY 4.0). Thay đổi gồm lesson flow, giải thích, ví dụ, diagram, bài tập và assessment mới. Bản nháp này không sao chép đoạn văn, hình ảnh, code hay flashcard của Primer và không hàm ý tác giả xác nhận hoặc bảo trợ khóa học. Nội dung/asset bên thứ ba trong repo Primer không được giả định là thuộc giấy phép CC BY 4.0.
-
-Microsoft Learn normalization reference showed an access-required banner during provenance review. Confirm learner access or replace that reference before release; the claims it supports are limited to introductory redundancy/maintenance context.
+The topic scope and sequence were independently reorganized and supplemented using the Database topic area of Donne Martin's The System Design Primer at commit ae9bbd7b02d90b9866215de185217d33f39ab733, licensed CC BY 4.0 for author-provided material. Changes include original lesson flow, explanations, example, diagrams, exercise, questions, and answers. No Primer paragraphs, figures, code, or flashcards were copied. Nothing here implies endorsement. Third-party material in the Primer repository is not assumed to be covered by its license.

@@ -3,7 +3,7 @@
 ## Audience and teaching stance
 
 - Audience: backend engineers who know basic SQL and application development but are learning system design.
-- Language: Vietnamese prose; keep standard English terms in parentheses on first use.
+- Language: English-only learner-facing prose, diagrams, exercises, quizzes, rubrics, and answer explanations. Keep source titles and quotations in their original language; do not use bilingual headings.
 - Start from a concrete engineering problem, then introduce the concept.
 - Explain mechanisms, constraints and trade-offs; avoid lists of definitions without causal explanation.
 - Distinguish general database principles from PostgreSQL, MySQL, MongoDB or DynamoDB-specific behavior.
