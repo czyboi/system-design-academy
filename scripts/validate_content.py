@@ -10,6 +10,7 @@ import csv
 import json
 import re
 import sys
+import tomllib
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -135,6 +136,60 @@ def main() -> int:
         except (OSError, json.JSONDecodeError) as exc:
             errors.append(f"Cannot parse pilot manifest: {exc}")
 
+
+    # Validate repo-local Agent Skills.
+    skills_root = ROOT / ".agents/skills"
+    skill_count = 0
+    if not skills_root.exists():
+        errors.append("Missing .agents/skills directory")
+    else:
+        for skill_file in sorted(skills_root.glob("*/SKILL.md")):
+            skill_text = skill_file.read_text(encoding="utf-8")
+            skill_front = parse_front_matter(skill_text)
+            rel_skill = skill_file.relative_to(ROOT)
+            for field in ("name", "description"):
+                if not skill_front.get(field):
+                    errors.append(f"{rel_skill}: missing skill field '{field}'")
+            if not skill_text.split("---", 2)[-1].strip():
+                errors.append(f"{rel_skill}: empty skill instructions")
+            skill_count += 1
+        if skill_count == 0:
+            errors.append("No SKILL.md files found under .agents/skills")
+
+    # Validate custom Codex agent profiles and project settings.
+    agents_root = ROOT / ".codex/agents"
+    agent_count = 0
+    if not agents_root.exists():
+        errors.append("Missing .codex/agents directory")
+    else:
+        for agent_file in sorted(agents_root.glob("*.toml")):
+            rel_agent = agent_file.relative_to(ROOT)
+            try:
+                agent_config = tomllib.loads(agent_file.read_text(encoding="utf-8"))
+            except (OSError, tomllib.TOMLDecodeError) as exc:
+                errors.append(f"{rel_agent}: invalid TOML: {exc}")
+                continue
+            for field in ("name", "description", "developer_instructions"):
+                if not isinstance(agent_config.get(field), str) or not agent_config[field].strip():
+                    errors.append(f"{rel_agent}: missing/empty '{field}'")
+            if agent_config.get("sandbox_mode") not in {"read-only", "workspace-write", "danger-full-access", None}:
+                errors.append(f"{rel_agent}: unsupported sandbox_mode")
+            agent_count += 1
+        if agent_count == 0:
+            errors.append("No custom agent TOML files found under .codex/agents")
+
+    config_path = ROOT / ".codex/config.toml"
+    if not config_path.exists():
+        errors.append("Missing .codex/config.toml")
+    else:
+        try:
+            codex_config = tomllib.loads(config_path.read_text(encoding="utf-8"))
+            max_threads = codex_config.get("agents", {}).get("max_concurrent_threads_per_session")
+            if not isinstance(max_threads, int) or not 1 <= max_threads <= 16:
+                errors.append(".codex/config.toml: max_concurrent_threads_per_session must be an integer from 1 to 16")
+        except (OSError, tomllib.TOMLDecodeError) as exc:
+            errors.append(f".codex/config.toml: invalid TOML: {exc}")
+
     checked_links = 0
     for path in ROOT.rglob("*.md"):
         if ".git" in path.parts:
@@ -158,6 +213,8 @@ def main() -> int:
     print(f"Lessons found: {len(lesson_ids)}")
     print(f"Source registry rows: {source_count}")
     print(f"Internal Markdown links checked: {checked_links}")
+    print(f"Skills found: {skill_count}")
+    print(f"Custom agents found: {agent_count}")
     print("Scope: structural checks only; not factual, legal, or pedagogical approval.")
 
     if errors:
