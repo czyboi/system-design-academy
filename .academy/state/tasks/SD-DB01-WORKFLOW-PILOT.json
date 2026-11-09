@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": "curriculum",
+  "current_phase": "author",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:14:55Z",
+  "updated_at": "2026-11-09T13:15:58Z",
   "steps": [
     {
       "step_id": "research",
@@ -109,7 +109,7 @@
     {
       "step_id": "author",
       "title": "Create the assigned draft lesson",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "research",
         "curriculum"
@@ -134,7 +134,28 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "7c0d58a55ba1c8ea414e1d13cb4b2cca6d1b1671",
+      "start_input_hashes": {
+        ".agents/skills/lesson-authoring/SKILL.md": "2d3ec97b0dbd6cca6a3251676292d3705e872537338970c4e2bc8c319e1cdd15",
+        ".agents/skills/assessment-design/SKILL.md": "b5223c59b341b14c2fdafee5b9387139b37f34fc91b91b7899ec2a9695a08df9",
+        ".codex/agents/lesson-author.toml": "1d050e910be957b16f9837048ff899562415e8cb66ec4fa452f7df200d3e3207",
+        "GOVERNANCE.md": "4a7daada28b9319c45fc11260ec8320a5b58c4a6b2ec3699144cfa04ee565aec",
+        ".claude/agents/lesson-author.md": "d84c32d7959ae493b3dd3bce96acf4c85785b643b2aa78897bab6ff58aaecf43",
+        "modules/database/governance/content-guidelines.md": "56cd86a0577c027fcb2e1fc0141bf4ef1b8a5841236cb4e95566cc880d4ef15d",
+        "modules/database/workflow/lesson-template.md": "1b1178e8978f25208670310ba0a5fcef7da04c5ed12356f3d4f878ab6703e6db",
+        "modules/database/lessons/DB-01-data-modeling.md": "a5b13497670f1a4ed33dac942d51580465cf45187c95b2d0ddc4aa25189c1a8b",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": "316157517e556d756440c14a117df92d509533c65971728208eee32aa840ff98",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": "f328481e997ffad5003d086eea44cd44ae4911b7f12eb5e38dbf0c89455612d2"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": null
+      },
+      "started_at": "2026-11-09T13:15:58Z",
+      "active_spec_hash": "e281c9191193e308c74d08fbf411dddc42848605022f717333ea3e34c73ef5fb",
+      "active_fingerprint": "bbf49e37a41471a34ed44503678b76599215697b82e2e10b8254255891461f8f",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-author-20261109T131558Z",
+      "agent": "lesson_author"
     },
     {
       "step_id": "technical-review",
