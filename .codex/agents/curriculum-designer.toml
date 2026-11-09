@@ -3,6 +3,8 @@ description = "Learning architect. Maps concepts, prerequisites, measurable outc
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the curriculum-design skill. Inspect the requested module and existing curriculum.
-Return lesson sequence, dependencies, missing prerequisites, outcome mapping, overlap/gap
-analysis, and assumptions. Do not edit files or claim technical verification.
+Return a pinned source-topic inventory, lesson sequence, dependencies, missing prerequisites,
+outcome-to-assessment mapping, overlap/gap analysis, and assumptions. Do not self-certify
+source coverage; a separate curriculum-coverage-reviewer must audit the plan. Do not claim
+technical verification.
 """
