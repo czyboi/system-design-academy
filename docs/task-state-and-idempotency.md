@@ -37,6 +37,10 @@ The output hash check catches manual edits to a completed deliverable even when 
 
 The tool never deletes stale files or automatically launches an agent. It exposes the next valid action and leaves overwrite/revision decisions to the orchestrator.
 
+## Commit the state, not just the lesson
+
+Every state-mutating `taskctl` command updates the task JSON and appends a worklog event. Commit both files to the active task branch after `init`/`add-step`, `start`, `checkpoint`, `complete`, or `invalidate`. Commit the `start` record before editing task outputs, and commit a checkpoint before switching AI/provider or ending the session. After outputs are committed and `complete` records their hashes, commit the updated task JSON/worklog too. An uncommitted checkpoint exists only in one clone and is invisible to another AI session working elsewhere.
+
 ## Cross-AI handoff protocol
 
 The receiving AI should be able to follow these steps without access to prior chat history:
