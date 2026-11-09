@@ -128,51 +128,82 @@ def log_event(task_id: str, event: str, **fields: Any) -> None:
         os.close(fd)
 
 
+
+def validate_json_schema(data: dict[str, Any], schema_path: Path, label: str) -> None:
+    try:
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise TaskError(f"Cannot load {label} schema {schema_path}: {exc}") from exc
+    errors = sorted(
+        Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(data),
+        key=lambda error: list(error.path),
+    )
+    if errors:
+        error = errors[0]
+        where = ".".join(str(part) for part in error.absolute_path) or "$"
+        raise TaskError(f"{label} violates {schema_path.relative_to(ROOT)} at {where}: {error.message}")
+
+
+def load_spec(data: dict[str, Any], execution_ready: bool = False) -> dict[str, Any]:
+    path = relpath(data["spec_path"])
+    try:
+        spec = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise TaskError(f"Cannot read task specification {path}: {exc}") from exc
+    validate_json_schema(spec, SPEC_SCHEMA, "Task specification")
+    if spec["task_id"] != data["task_id"]:
+        raise TaskError("Task specification task_id does not match task state")
+    step_ids = {step["step_id"] for step in data["steps"]}
+    for field in ("definition_of_done", "acceptance_criteria"):
+        seen: set[str] = set()
+        for item in spec[field]:
+            if item["id"] in seen:
+                raise TaskError(f"Duplicate {field} ID: {item['id']}")
+            seen.add(item["id"])
+            unknown = set(item["applies_to"]) - step_ids - {"*"}
+            if unknown:
+                raise TaskError(f"{field} item {item['id']} references unknown steps: {', '.join(sorted(unknown))}")
+            if execution_ready and re.search(r"\b(TODO|TBD|replace this|fill this)\b", item["text"], re.I):
+                raise TaskError(f"Specification item {item['id']} is still a placeholder")
+    if execution_ready:
+        if not spec["goal"].strip() or not spec["scope"]["in_scope"]:
+            raise TaskError("Specification must define a goal and at least one in-scope item")
+        if not spec["definition_of_done"] or not spec["acceptance_criteria"]:
+            raise TaskError("Specification must define Definition of Done and acceptance criteria")
+        for step in data["steps"]:
+            sid = step["step_id"]
+            for field in ("definition_of_done", "acceptance_criteria"):
+                if not any("*" in item["applies_to"] or sid in item["applies_to"] for item in spec[field]):
+                    raise TaskError(f"Step {sid} has no applicable {field} item")
+    return spec
+
+
 def validate_task(data: dict[str, Any]) -> None:
-    required = {"schema_version", "task_id", "module_id", "goal", "status", "steps"}
-    missing = required - set(data)
-    if missing:
-        raise TaskError(f"Task state missing fields: {', '.join(sorted(missing))}")
-    if data["schema_version"] != 1:
-        raise TaskError(f"Unsupported schema_version: {data['schema_version']!r}")
-    if not isinstance(data["task_id"], str) or not TASK_ID_RE.fullmatch(data["task_id"]):
+    validate_json_schema(data, TASK_SCHEMA, "Task state")
+    if not TASK_ID_RE.fullmatch(data["task_id"]):
         raise TaskError("Invalid task_id")
-    if data["status"] not in {"not_started", "in_progress", "blocked", "complete"}:
-        raise TaskError(f"Invalid task status: {data['status']!r}")
-    if not isinstance(data["steps"], list):
-        raise TaskError("steps must be an array")
-    ids: set[str] = set()
-    outputs: dict[str, str] = {}
+    if data["spec_path"] != f".academy/specs/{data['task_id']}.json":
+        raise TaskError("spec_path must be .academy/specs/<TASK-ID>.json")
+    if not data["owner"].strip():
+        raise TaskError("Task owner must be set before execution")
+    ids = {step["step_id"] for step in data["steps"]}
+    if len(ids) != len(data["steps"]):
+        raise TaskError("Duplicate step IDs")
+    output_owners: dict[str, str] = {}
+    by_id = {step["step_id"]: step for step in data["steps"]}
     for step in data["steps"]:
-        if not isinstance(step, dict):
-            raise TaskError("Each step must be an object")
-        for field in ("step_id", "title", "status", "depends_on", "definition_version", "input_paths", "output_paths"):
-            if field not in step:
-                raise TaskError(f"Step missing field {field!r}")
         sid = step["step_id"]
-        if not isinstance(sid, str) or not re.fullmatch(r"^[a-zA-Z0-9][a-zA-Z0-9._-]{0,63}$", sid):
-            raise TaskError(f"Invalid step_id: {sid!r}")
-        if sid in ids:
-            raise TaskError(f"Duplicate step_id: {sid}")
-        ids.add(sid)
-        if step["status"] not in {"pending", "running", "completed", "invalidated", "blocked"}:
-            raise TaskError(f"Invalid status for {sid}: {step['status']!r}")
-        if not isinstance(step["depends_on"], list) or not isinstance(step["input_paths"], list) or not isinstance(step["output_paths"], list):
-            raise TaskError(f"depends_on/input_paths/output_paths must be arrays for {sid}")
-        if not step["output_paths"]:
-            raise TaskError(f"Step {sid} must declare at least one output path")
         for value in step["input_paths"] + step["output_paths"]:
             relpath(value)
-        for output in step["output_paths"]:
-            if output in outputs:
-                raise TaskError(f"Output path {output!r} is owned by both {outputs[output]} and {sid}")
-            outputs[output] = sid
-    for step in data["steps"]:
-        for dep in step["depends_on"]:
-            if dep not in ids:
-                raise TaskError(f"Step {step['step_id']} depends on unknown step {dep!r}")
-    # Detect dependency cycles with depth-first traversal.
-    by_id = {s["step_id"]: s for s in data["steps"]}
+        if not step["output_paths"]:
+            raise TaskError(f"Step {sid} must declare at least one output path")
+        for path in step["output_paths"]:
+            if path in output_owners:
+                raise TaskError(f"Output path {path!r} is owned by both {output_owners[path]} and {sid}")
+            output_owners[path] = sid
+        unknown = set(step["depends_on"]) - ids
+        if unknown:
+            raise TaskError(f"Step {sid} has unknown dependencies: {', '.join(sorted(unknown))}")
     visiting: set[str] = set()
     visited: set[str] = set()
     def visit(sid: str) -> None:
@@ -187,7 +218,7 @@ def validate_task(data: dict[str, Any]) -> None:
         visited.add(sid)
     for sid in by_id:
         visit(sid)
-
+    load_spec(data)
 
 def step_map(data: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {step["step_id"]: step for step in data["steps"]}
@@ -197,12 +228,31 @@ def output_hashes(step: dict[str, Any]) -> dict[str, str | None]:
     return {p: sha256_file(relpath(p)) for p in step["output_paths"]}
 
 
+
+def step_spec_slice(spec: dict[str, Any], step_id: str) -> dict[str, Any]:
+    def relevant(field: str) -> list[dict[str, Any]]:
+        return sorted(
+            [item for item in spec[field] if "*" in item["applies_to"] or step_id in item["applies_to"]],
+            key=lambda item: item["id"],
+        )
+    return {
+        "goal": spec["goal"],
+        "scope": spec["scope"],
+        "constraints": spec["constraints"],
+        "definition_of_done": relevant("definition_of_done"),
+        "acceptance_criteria": relevant("acceptance_criteria"),
+    }
+
+
+def step_spec_hash(data: dict[str, Any], step_id: str) -> str:
+    return canonical_hash(step_spec_slice(load_spec(data), step_id))
+
+
 def step_fingerprint(data: dict[str, Any], step_id: str, memo: dict[str, str] | None = None) -> str:
     memo = memo if memo is not None else {}
     if step_id in memo:
         return memo[step_id]
     step = step_map(data)[step_id]
-    input_hashes = {p: sha256_file(relpath(p)) for p in step["input_paths"]}
     dependency_state = {}
     for dep_id in step["depends_on"]:
         dep = step_map(data)[dep_id]
@@ -213,12 +263,12 @@ def step_fingerprint(data: dict[str, Any], step_id: str, memo: dict[str, str] | 
     result = canonical_hash({
         "step_id": step_id,
         "definition_version": str(step["definition_version"]),
-        "input_hashes": input_hashes,
+        "task_spec_hash": step_spec_hash(data, step_id),
+        "input_hashes": {path: sha256_file(relpath(path)) for path in step["input_paths"]},
         "dependencies": dependency_state,
     })
     memo[step_id] = result
     return result
-
 
 def step_status(data: dict[str, Any], step: dict[str, Any], memo: dict[str, str] | None = None) -> tuple[str, str]:
     sid = step["step_id"]
@@ -245,18 +295,18 @@ def step_status(data: dict[str, Any], step: dict[str, Any], memo: dict[str, str]
     return "READY", "not completed"
 
 
-def refresh_task_status(data: dict[str, Any]) -> None:
-    if data["steps"] and all(step_status(data, s)[0] == "SKIP" for s in data["steps"]):
-        data["status"] = "complete"
-    elif any(s["status"] == "running" for s in data["steps"]):
-        data["status"] = "in_progress"
-    elif any(step_status(data, s)[0] == "BLOCKED" for s in data["steps"]):
-        data["status"] = "blocked"
-    elif any(s["status"] != "pending" for s in data["steps"]):
-        data["status"] = "in_progress"
-    else:
-        data["status"] = "not_started"
 
+def refresh_task_status(data: dict[str, Any]) -> None:
+    if data["steps"] and all(step_status(data, step)[0] == "SKIP" for step in data["steps"]):
+        data["automation_status"] = "automation_complete"
+    elif any(step["status"] == "running" for step in data["steps"]):
+        data["automation_status"] = "in_progress"
+    elif any(step_status(data, step)[0] == "BLOCKED" for step in data["steps"]):
+        data["automation_status"] = "blocked"
+    elif any(step["status"] != "pending" for step in data["steps"]):
+        data["automation_status"] = "in_progress"
+    else:
+        data["automation_status"] = "not_started"
 
 def git_output(args: list[str]) -> str:
     try:
