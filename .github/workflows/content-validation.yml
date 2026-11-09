@@ -8,6 +8,9 @@ on:
       - '**.json'
       - '**.toml'
       - '.agents/**'
+      - '.academy/**'
+      - 'tests/**'
+      - '.github/ISSUE_TEMPLATE/**'
       - '.codex/**'
       - 'AGENTS.md'
       - 'docs/**'
@@ -44,3 +47,7 @@ jobs:
           python-version: '3.12'
       - name: Validate Markdown lessons, source registry, manifest, and relative links
         run: python scripts/validate_content.py
+      - name: Validate persistent task state records
+        run: python scripts/taskctl.py validate
+      - name: Run task state integration tests
+        run: python -m unittest discover -s tests -v
