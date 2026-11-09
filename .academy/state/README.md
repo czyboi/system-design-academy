@@ -1,78 +1,96 @@
 # Persistent task state and idempotent execution
 
-This directory is the repository's durable execution memory. It is deliberately plain JSON/JSONL so that Codex, Claude Code, ChatGPT Work, and other agents can read it without a provider-specific memory feature or extra runtime dependency.
+## Canonical records
 
-## Source of truth
+Each task has three separate durable records:
 
-- **GitHub Issue:** task identity, goal, acceptance criteria, owner, high-level status, dependencies, and cross-agent handoff link.
-- **Task state JSON:** exact steps, dependencies, input fingerprints, output hashes, active run, and checkpoint. This is the execution source of truth for one task.
-- **Git commits:** durable artifacts. A step cannot be marked complete until all declared outputs are tracked and committed.
-- **Worklog JSONL:** append-only-by-convention event history. Never rewrite old events; add a new event instead.
-- **GitHub PR:** review and integration status. The Project board is a view over Issues/PRs, not a second task database.
+- **Task specification** — `.academy/specs/<TASK-ID>.json`. This is the only canonical source for goal, scope, constraints, Definition of Done, and acceptance criteria. It is versioned and committed with the work.
+- **Task execution state** — `.academy/state/tasks/<TASK-ID>.json`. This stores owner, step graph, execution lifecycle, fingerprints, run baseline, checkpoints, and artifact hashes. It references the specification but does not duplicate its requirements.
+- **Worklog** — `.academy/state/worklog/<TASK-ID>.jsonl`. Append-only event/checkpoint history.
 
-Do not copy the same detailed progress into several places. Put a short summary and links in the Issue; keep step-level execution state here.
+GitHub Issue is the coordination interface: task ID, owner, branch, links to the specification/state/PR, dependencies, and a short summary. It is not a second specification. When there is a conflict, the committed specification file wins; update the Issue summary/link to match.
+
+Git commits are the durable artifacts. The task state file is not a distributed lock. Use one active writer per task/lesson and coordinate ownership in the Issue.
 
 ## Create a task
+
+Install development dependencies once:
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+Create the state and specification templates:
 
 ```bash
 python scripts/taskctl.py init SD-DB-INDEXES \
   --module database \
   --goal "Create and review the indexes lesson" \
+  --owner "@username" \
   --template .academy/state/task.template.json
 ```
 
-The template is a starter pipeline. Adjust its `input_paths`, `output_paths`, and `definition_version` values for the exact module/lesson. Add or remove steps if the task is smaller/larger. Every output path must have exactly one owning step.
+This creates:
+- `.academy/state/tasks/SD-DB-INDEXES.json`
+- `.academy/specs/SD-DB-INDEXES.json`
 
-Without `--template`, `init` creates an empty task and `add-step` can define steps:
+Edit the specification before execution. Replace all TODO placeholders; specify the scope, constraints, DoD, and testable acceptance criteria. Every DoD and acceptance criterion must declare `applies_to`: a list of step IDs or `["*"]`. Use step-specific IDs to avoid invalidating unrelated work. Add/remove task steps and make every output path unique.
 
-```bash
-python scripts/taskctl.py add-step SD-DB-INDEXES research \
-  --title "Research primary sources" \
-  --definition-version v1 \
-  --input-paths .agents/skills/source-research/SKILL.md GOVERNANCE.md \
-  --output-paths modules/database/workflow/runs/SD-DB-INDEXES/evidence.md
-```
+Commit the specification, task state, and worklog before starting. The task owner is mandatory.
 
-## Normal agent protocol
+## Execution protocol
 
-1. Read root `AGENTS.md`, the linked GitHub Issue, task JSON, and this guide.
-2. Run `python scripts/taskctl.py status TASK-ID` before doing work.
-3. `SKIP` means **do not repeat**: the exact inputs and all outputs still match the completion record.
-4. `RESUME` means inspect the saved checkpoint and existing files, then run `start ... --resume`; do not start over.
-5. `STALE` means the input fingerprint or output has changed. Inspect the diff and decide which step(s) need to run again. Never overwrite artifacts blindly.
-6. `READY` means dependencies are fresh and the step may start. Start it before editing.
-7. After every state-mutating `taskctl` command, commit the task JSON and its JSONL worklog to the active branch. Commit the `start` state before editing files, and commit a checkpoint before switching context/provider.
-8. Commit the step's declared output files, then run `complete`. Commit the updated task JSON/worklog after completion too. If it rejects the completion, resolve the Git/output issue rather than editing state manually.
-9. Update the GitHub Issue with a brief summary, current state file path, branch/PR, and next action.
+1. Read `AGENTS.md`, the GitHub Issue, task specification, task state, and worklog.
+2. Inspect branch, `git status`, and recent commits.
+3. Run `python scripts/taskctl.py status TASK-ID`.
+4. Respect calculated results: `SKIP` = do not repeat; `RESUME` = continue from checkpoint; `READY` = eligible to start; `STALE` = inspect and selectively rerun; `BLOCKED` = resolve dependency first.
+5. Before editing, run `start`. It requires committed and clean inputs/specification, and records the starting commit plus SHA-256 input/output snapshots. Commit the updated task JSON/worklog before editing.
+6. Commit output files before `complete`. Completion verifies input/specification snapshots, dependency fingerprints, committed outputs, and output changes after the start commit.
+7. If an unchanged pre-existing artifact is intentionally reused, explicitly provide `--reuse-output PATH --reuse-reason "..." `. Reuse is recorded in the completion event. Do not use this to hide output edits.
+8. After every state mutation, commit task JSON and JSONL worklog. Checkpoint before a provider/context handoff and commit it.
+9. Update the GitHub Issue with short progress and links, never duplicate the canonical specification.
 
 Example:
 
 ```bash
 python scripts/taskctl.py status SD-DB-INDEXES
 python scripts/taskctl.py start SD-DB-INDEXES research --agent source_researcher
-git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl && git commit -m "Start source research step"
-# create and commit the declared output(s)
+git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl
+git commit -m "Start source research"
+
+# Produce and commit the declared output(s).
 python scripts/taskctl.py checkpoint SD-DB-INDEXES research \
-  --note "Verified the index behavior against the cited PostgreSQL docs; MySQL comparison remains open." \
-  --next-action "Finish the MySQL version check and update the evidence note."
-git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl && git commit -m "Checkpoint source research"
+  --note "Verified PostgreSQL behavior; MySQL comparison remains open." \
+  --next-action "Complete the MySQL check."
+git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl
+git commit -m "Checkpoint source research"
+
+# After committing outputs:
 python scripts/taskctl.py complete SD-DB-INDEXES research --agent source_researcher
-git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl && git commit -m "Record completed source research"
+git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl
+git commit -m "Record source research completion"
 ```
 
-## Fingerprint and skip rules
+## Fingerprints and selective invalidation
 
-A step fingerprint is SHA-256 over canonical JSON containing:
+Each step fingerprint includes:
+- the step ID and `definition_version`;
+- hashes of declared input files;
+- a hash of the relevant task-specification slice: goal, scope, constraints, and only DoD/acceptance criteria applying to this step (or `*`);
+- dependency fingerprints and output hashes.
 
-- its `step_id` and `definition_version`;
-- SHA-256 hashes (or explicit missing markers) of every declared `input_path`;
-- each dependency's current fingerprint and output hashes.
+Thus, changing a step-specific acceptance criterion invalidates that step and downstream dependents. Independent steps remain reusable. Changing global goal/scope/constraints intentionally invalidates all steps because those changes may alter the whole task.
 
-A step is reusable only when its stored completion fingerprint matches the newly calculated fingerprint, every declared output exists, and each current output hash matches the stored output hash. This protects against both changed inputs and someone editing a supposedly completed artifact.
+A completed step is `SKIP` only if its fingerprint matches, every output exists, output hashes match, and outputs remain Git-tracked and clean. The engine does not silently rewrite prior artifacts.
 
-When any upstream dependency changes, dependent fingerprints change automatically. The tool reports the dependent step as `BLOCKED` until upstream work is completed again; afterward it becomes `STALE`/`READY` as appropriate. It does not automatically delete or overwrite old work.
+## Automation versus human decisions
 
-Bump `definition_version` whenever the task-specific prompt, acceptance criteria, or procedure changes in a way that should force the step to run again. Prefer adding the relevant prompt/specification as an `input_path`, so edits invalidate the step automatically.
+The CLI manages **automation only**. Its final aggregate state is `automation_complete`, never `approved` or `published`.
+
+Human workflow is separate and explicit:
+`in_progress → automation_complete → ready_for_human_review → human_approved → published`.
+
+The latter three are controlled through human GitHub review/merge or the future publishing process, not taskctl. A passing CI check is structural validation, not human approval, technical truth, or legal clearance.
 
 ## Commands
 
@@ -82,16 +100,13 @@ python scripts/taskctl.py start TASK-ID STEP-ID --agent AGENT-NAME
 python scripts/taskctl.py start TASK-ID STEP-ID --agent AGENT-NAME --resume
 python scripts/taskctl.py checkpoint TASK-ID STEP-ID --note "..." --next-action "..."
 python scripts/taskctl.py complete TASK-ID STEP-ID --agent AGENT-NAME
+python scripts/taskctl.py complete TASK-ID STEP-ID --reuse-output path/to/file --reuse-reason "..."
 python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "..." --cascade
 python scripts/taskctl.py validate
 ```
 
-`invalidate --cascade` is for deliberate human decisions or an explicit workflow reset. Most source/template changes are detected from hashes without manual invalidation.
+## Portability and boundaries
 
-## Concurrency boundary
+Task specification/state/worklog are plain JSON/JSONL so every provider can read them. Provider-specific agent profiles are thin wrappers over the shared skills under `.agents/skills/`. The CLI requires Python, Git, and dependencies in `requirements-dev.txt`.
 
-Use one active writer per task/lesson. The GitHub Issue identifies the owner; the branch and output paths identify the write scope. Parallel reviewers may read the same draft and write distinct review reports. Do not run two authors against the same task or shared paths. The JSON task state is not a distributed lock service: separate clones can race, so resolve ownership in the Issue before starting a writer.
-
-## Limitations
-
-This is a lightweight file-based checkpoint system, not a hosted workflow engine. It does not provide atomic distributed leases, automatic retries, remote job execution, or guaranteed synchronization between two independent clones. GitHub's commit history and PR review remain the audit trail. A future orchestrator can consume this state format without replacing it.
+This is a lightweight repository-based checkpoint system, not a distributed lock or hosted workflow engine. It cannot prevent two independent clones from racing; coordinate one active writer in GitHub.
