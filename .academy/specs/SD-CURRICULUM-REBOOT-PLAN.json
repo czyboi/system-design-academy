@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-CURRICULUM-REBOOT-PLAN",
+  "revision": 1,
+  "goal": "Replace the initial curriculum with a complete, teaching-only System Design course mapped to a pinned original-repository inventory, independently reviewed in multiple rounds, and decomposed into small Jira-style lesson tasks.",
+  "scope": {
+    "in_scope": [
+      "Use Donne Martin System Design Primer commit ae9bbd7b02d90b9866215de185217d33f39ab733 as the fixed source snapshot; inventory the English README topic tree and all relevant in-repository system-design and object-oriented design solution examples, with explicit dispositions for appendices, under-development items, reference catalogs, translations, assets, and repository tooling.",
+      "Replace CURRICULUM_MASTER.md with the canonical full-course plan, including an ordered module sequence and a detailed knowledge outline for every proposed teaching lesson. The plan describes teaching content only.",
+      "Create a source inventory and source-to-lesson coverage matrix with exact Primer section anchors, repository paths, dispositions, mapped lesson IDs, and outline evidence.",
+      "Create a Jira-style machine-readable backlog with one epic per module, one story per teaching lesson, small child tasks with explicit dependencies and acceptance criteria, and future assessment tasks marked deferred/blocked until the teaching lesson is accepted.",
+      "Run three independent source-coverage review rounds with two revision cycles between them, plus an independent pedagogical sequence/audience review. Record each report and disposition.",
+      "Retire modules/database/curriculum/database-module.md as an active plan and update the Database README and old pilot runbook to point to the canonical curriculum and per-lesson task workflow.",
+      "Update the curriculum-design skill so future planning inventories the full in-scope source repository rather than only Database topics.",
+      "Run repository-required validation and record exact outcomes; do not author lessons, quizzes, exercises, assessments, or learner-facing course copy."
+    ],
+    "out_of_scope": [
+      "Writing or revising any learner-facing lesson, worked example, diagram, quiz, exercise, answer key, assessment, or case-study content.",
+      "Creating GitHub Issues for every future lesson/subtask or importing a Jira board. The committed backlog is the import-ready source; issues are created when each bounded task is claimed.",
+      "Treating every external link, translated README, binary diagram, Anki card, contribution guide, license file, or software utility as a separate course lesson. Each is still given a documented source-inventory disposition.",
+      "Publishing learner-facing content, approving course content, merging a pull request, or changing technical behavior of taskctl."
+    ]
+  },
+  "constraints": [
+    "Use @czyboi as the single writer/orchestrator and follow task protocol; GitHub Issue #6 and this canonical spec define the task.",
+    "Current course audience: middle/senior engineers learning system design. Learner-facing course language remains English-only.",
+    "The course plan contains teaching lesson outlines only. No quiz, assessment, exercise, or answer content is to be created in this task.",
+    "Use the pinned Primer revision as a topic map and source attribution boundary, not as the sole current technical authority or text to translate/copy.",
+    "Every source topic must map to a precise lesson and outline concept, be explicitly merged with rationale, or have a clear disposition. No generic rationale paragraph counts as coverage.",
+    "Use no more than two automated plan revision cycles. If the third coverage review or pedagogy review has a material unresolved blocker, stop before finalization and leave the task incomplete for human judgment.",
+    "Keep task rows small enough that one lesson can be authored and reviewed independently of other lessons after shared prerequisites are ready. Module epics group work but must not create module-sized authoring tasks.",
+    "Provider agent profiles remain thin wrappers; use shared curriculum-design and curriculum-coverage-review procedures."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-source-inventory",
+      "text": "A pinned-revision inventory enumerates every in-scope root topic heading and leaf topic, in-repository system-design solution, OOD example, under-development topic, and the source repository asset/reference categories with explicit inclusion or disposition.",
+      "applies_to": [
+        "source-inventory"
+      ]
+    },
+    {
+      "id": "dod-curriculum",
+      "text": "CURRICULUM_MASTER.md is a complete ordered course map of modules and lesson-by-lesson teaching outlines for the middle/senior audience. It replaces the initial generic plan and contains no quiz, exercise, assessment, answer, or learner-facing lesson text.",
+      "applies_to": [
+        "finalize-curriculum"
+      ]
+    },
+    {
+      "id": "dod-matrix",
+      "text": "The source coverage matrix maps every in-scope source topic to an exact lesson ID and matching outline item, records source URL/anchor or repository path and status, and has no unexplained omissions or mention-only mappings.",
+      "applies_to": [
+        "finalize-curriculum"
+      ]
+    },
+    {
+      "id": "dod-reviews",
+      "text": "Three independent coverage review reports and one independent pedagogical review are recorded. Two revision cycles address findings; final reviews report no material source gaps or sequencing/audience blockers.",
+      "applies_to": [
+        "coverage-round-1",
+        "revision-round-1",
+        "coverage-round-2",
+        "revision-round-2",
+        "coverage-round-3",
+        "pedagogy-review"
+      ]
+    },
+    {
+      "id": "dod-backlog",
+      "text": "The backlog contains module epics, one teaching-story per lesson, atomic child work items, stable keys, dependencies, statuses, and acceptance criteria. Future assessment tasks are separate and blocked/deferred; no module-wide authoring task exists.",
+      "applies_to": [
+        "finalize-curriculum"
+      ]
+    },
+    {
+      "id": "dod-retire-plan",
+      "text": "The old Database plan is removed from its active path, the Database README and pilot runbook point to the new canonical plan/backlog, and no learner-facing content is authored.",
+      "applies_to": [
+        "finalize-curriculum"
+      ]
+    },
+    {
+      "id": "dod-validation",
+      "text": "Dependency installation, content validator, full unit suite, task-state validator, backlog consistency checks, and final git diff checks are run and accurately recorded. Structural content-validator failures caused by the earlier user-directed deletion of all lesson files are reported without claiming course readiness.",
+      "applies_to": [
+        "validation"
+      ]
+    },
+    {
+      "id": "dod-task",
+      "text": "All declared outputs are committed, task automation reaches automation_complete only if all required review gates pass, and the worktree is clean.",
+      "applies_to": [
+        "*"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-primer-tree",
+      "text": "Coverage includes every topic and meaningful leaf in the pinned README tree: system-design study/approach, performance and scalability, latency and throughput, availability/consistency/CAP/CP/AP, weak/eventual/strong consistency, failover/replication/availability math, DNS, CDN push/pull, load-balancing modes and L4/L7/horizontal scaling, reverse proxies, application layer/microservices/service discovery, all RDBMS scaling topics, SQL tuning subtopics, NoSQL models and SQL-vs-NoSQL, caching locations/levels/update patterns, asynchronous/message/task queues/backpressure, HTTP/TCP/UDP/RPC/REST, and security basics.",
+      "applies_to": [
+        "source-inventory",
+        "curriculum-draft",
+        "coverage-round-1",
+        "revision-round-1",
+        "coverage-round-2",
+        "revision-round-2",
+        "coverage-round-3",
+        "finalize-curriculum"
+      ]
+    },
+    {
+      "id": "ac-source-extras",
+      "text": "Explicitly map or disposition the Primer study guide, eight system-design solutions, all listed additional design questions, OOD examples, Appendix power-of-two/latency reference, real-world architecture categories, company architecture/blog catalogs, and under-development MapReduce/consistent-hashing/scatter-gather entries. External link catalogs and assets are not misrepresented as independently authored Primer lessons.",
+      "applies_to": [
+        "source-inventory",
+        "coverage-round-1",
+        "coverage-round-2",
+        "coverage-round-3",
+        "finalize-curriculum"
+      ]
+    },
+    {
+      "id": "ac-outline-depth",
+      "text": "Each lesson outline states its specific knowledge sequence and source subtopics (not just a broad lesson title). Related topics may be merged only when the outline contains each mapped concept and the coverage matrix explains the merge.",
+      "applies_to": [
+        "curriculum-draft",
+        "coverage-round-1",
+        "revision-round-1",
+        "coverage-round-2",
+        "revision-round-2",
+        "coverage-round-3",
+        "finalize-curriculum"
+      ]
+    },
+    {
+      "id": "ac-rounds",
+      "text": "Round 1 reviews the first full course outline and complete source matrix; revision 1 resolves findings; Round 2 independently rechecks the revised plan without relying on Round 1 report; revision 2 resolves findings; Round 3 independently verifies the revised matrix and all high-risk topics. A pedagogy reviewer separately checks prerequisite order, middle/senior level, and teaching-only scope.",
+      "applies_to": [
+        "coverage-round-1",
+        "revision-round-1",
+        "coverage-round-2",
+        "revision-round-2",
+        "coverage-round-3",
+        "pedagogy-review"
+      ]
+    },
+    {
+      "id": "ac-small-tasks",
+      "text": "For each module, backlog has a parent Epic. For each teaching lesson, backlog has a separate Story and child tasks for source evidence, lesson outline/draft, technical review, source coverage review, pedagogical review, and revision/closure with dependencies. Assessment/quiz work is a separate deferred child task, blocked on acceptance of the teaching lesson.",
+      "applies_to": [
+        "finalize-curriculum"
+      ]
+    },
+    {
+      "id": "ac-scope",
+      "text": "Only CURRICULUM_MASTER.md, the new source inventory/coverage matrix/backlog, the curriculum-design skill, Database plan pointers/runbook, task records, and task-specific research/review artifacts change. No lesson or assessment files are created.",
+      "applies_to": [
+        "*"
+      ]
+    },
+    {
+      "id": "ac-validation",
+      "text": "Exact results are recorded for pip install -r requirements-dev.txt, python scripts/validate_content.py, python -m unittest discover -s tests -v, python scripts/taskctl.py validate, and backlog/matrix consistency checks.",
+      "applies_to": [
+        "validation"
+      ]
+    }
+  ]
+}

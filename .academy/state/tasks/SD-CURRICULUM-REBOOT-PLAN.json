@@ -1,0 +1,263 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-CURRICULUM-REBOOT-PLAN",
+  "module_id": "curriculum",
+  "current_phase": "curriculum-skill-update",
+  "created_at": "2026-11-09T16:41:43Z",
+  "updated_at": "2026-11-09T16:55:00Z",
+  "steps": [
+    {
+      "step_id": "curriculum-skill-update",
+      "title": "Broaden curriculum design guidance to the full source repository",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/inputs/curriculum-design.skill.original.md",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        ".agents/skills/curriculum-design/SKILL.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "source-inventory",
+      "title": "Inventory the pinned Primer repository topics and in-tree examples",
+      "status": "pending",
+      "depends_on": [
+        "curriculum-skill-update"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        "modules/database/sources/source-registry.csv",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "curriculum-draft",
+      "title": "Design the ordered modules and detailed teaching lesson outlines",
+      "status": "pending",
+      "depends_on": [
+        "source-inventory"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        ".agents/skills/curriculum-design/SKILL.md",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "coverage-round-1",
+      "title": "Independently audit first plan and full topic matrix",
+      "status": "pending",
+      "depends_on": [
+        "curriculum-draft"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "revision-round-1",
+      "title": "Resolve Round 1 curriculum coverage findings",
+      "status": "pending",
+      "depends_on": [
+        "coverage-round-1"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "coverage-round-2",
+      "title": "Fresh independent audit of revised plan",
+      "status": "pending",
+      "depends_on": [
+        "revision-round-1"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "revision-round-2",
+      "title": "Resolve Round 2 findings and record remaining dispositions",
+      "status": "pending",
+      "depends_on": [
+        "coverage-round-2"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "coverage-round-3",
+      "title": "Final independent verification of every source mapping",
+      "status": "pending",
+      "depends_on": [
+        "revision-round-2"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "pedagogy-review",
+      "title": "Review course sequence, audience, and teaching-only scope",
+      "status": "pending",
+      "depends_on": [
+        "revision-round-2"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "finalize-curriculum",
+      "title": "Publish canonical plan, coverage matrix, task backlog, and retire old plan",
+      "status": "pending",
+      "depends_on": [
+        "coverage-round-3",
+        "pedagogy-review"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md"
+      ],
+      "output_paths": [
+        "CURRICULUM_MASTER.md",
+        ".academy/curriculum/primer-source-inventory.md",
+        ".academy/curriculum/primer-coverage-matrix.csv",
+        ".academy/backlog/system-design-curriculum.json",
+        "modules/database/README.md",
+        "modules/database/workflow/run-database-pilot.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "validation",
+      "title": "Validate plan structure, backlog dependencies, and repository state",
+      "status": "pending",
+      "depends_on": [
+        "finalize-curriculum"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "CURRICULUM_MASTER.md",
+        ".academy/curriculum/primer-source-inventory.md",
+        ".academy/curriculum/primer-coverage-matrix.csv",
+        ".academy/backlog/system-design-curriculum.json",
+        "scripts/validate_content.py",
+        "scripts/taskctl.py"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/validation/validation-report.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    }
+  ],
+  "notes": "GitHub Issue #6. One active writer: @czyboi. Source revision pinned to ae9bbd7b02d90b9866215de185217d33f39ab733. Three coverage rounds and two revision cycles are required before canonical finalization; lessons and assessments are out of scope.",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-CURRICULUM-REBOOT-PLAN.json",
+  "automation_status": "not_started"
+}
