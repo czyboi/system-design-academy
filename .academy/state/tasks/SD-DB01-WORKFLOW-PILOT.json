@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": "provenance-review",
+  "current_phase": "revision",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:55:03Z",
+  "updated_at": "2026-11-09T13:56:10Z",
   "steps": [
     {
       "step_id": "research",
@@ -356,7 +356,7 @@
     {
       "step_id": "revision",
       "title": "Consolidate findings and produce the revised lesson",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "technical-review",
         "pedagogy-review",
@@ -381,8 +381,8 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 1,
-      "start_commit": "47a75c1567b461cf1c6d54978a0a8db3d383052c",
+      "attempts": 2,
+      "start_commit": "e572a8ce7cd7720c26f73c7b5e1681997a442e6f",
       "start_input_hashes": {
         ".agents/skills/lesson-authoring/SKILL.md": "2d3ec97b0dbd6cca6a3251676292d3705e872537338970c4e2bc8c319e1cdd15",
         ".agents/skills/module-pipeline/SKILL.md": "99032653affe971e2976ba56f10925159a083c0588b7218a8917e880c5208da1",
@@ -394,13 +394,15 @@
         "modules/database/workflow/lesson-template.md": "1b1178e8978f25208670310ba0a5fcef7da04c5ed12356f3d4f878ab6703e6db"
       },
       "start_output_hashes": {
-        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": null,
-        "modules/database/lessons/DB-01-data-modeling.md": "a5b13497670f1a4ed33dac942d51580465cf45187c95b2d0ddc4aa25189c1a8b"
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b",
+        "modules/database/lessons/DB-01-data-modeling.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b"
       },
-      "started_at": "2026-11-09T13:33:35Z",
-      "run_id": "SD-DB01-WORKFLOW-PILOT-revision-20261109T133334Z",
+      "started_at": "2026-11-09T13:56:10Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-revision-20261109T135610Z",
       "agent": "parent_orchestrator",
-      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision."
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "active_spec_hash": "bf17765893ff2f0a6b42f8fb9fa6ecfae18c91d8528d77f1619c4c6d51e06cd2",
+      "active_fingerprint": "9c93a66ea0de36bbd247e338eaaea285207a636d99b9903c47cc490f123bfe93"
     },
     {
       "step_id": "validation",
