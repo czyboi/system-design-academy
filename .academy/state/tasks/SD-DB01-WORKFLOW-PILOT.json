@@ -18,7 +18,8 @@
         "GOVERNANCE.md",
         "modules/database/README.md",
         ".claude/agents/source-researcher.md",
-        "modules/database/lessons/DB-01-data-modeling.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md",
         "modules/database/sources/source-registry.csv",
         "modules/database/governance/content-guidelines.md"
       ],
@@ -71,7 +72,8 @@
         ".claude/agents/curriculum-designer.md",
         "modules/database/curriculum/database-module.md",
         "modules/database/assessments/database-quiz.md",
-        "modules/database/lessons/DB-01-data-modeling.md"
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md"
       ],
       "output_paths": [
         "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md"
@@ -125,7 +127,8 @@
         ".claude/agents/lesson-author.md",
         "modules/database/governance/content-guidelines.md",
         "modules/database/workflow/lesson-template.md",
-        "modules/database/lessons/DB-01-data-modeling.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md",
         "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md",
         "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md"
       ],
