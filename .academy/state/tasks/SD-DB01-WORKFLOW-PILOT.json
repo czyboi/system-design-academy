@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "revision",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:56:10Z",
+  "updated_at": "2026-11-09T13:56:40Z",
   "steps": [
     {
       "step_id": "research",
@@ -356,7 +356,7 @@
     {
       "step_id": "revision",
       "title": "Consolidate findings and produce the revised lesson",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "technical-review",
         "pedagogy-review",
@@ -401,8 +401,25 @@
       "run_id": "SD-DB01-WORKFLOW-PILOT-revision-20261109T135610Z",
       "agent": "parent_orchestrator",
       "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
-      "active_spec_hash": "bf17765893ff2f0a6b42f8fb9fa6ecfae18c91d8528d77f1619c4c6d51e06cd2",
-      "active_fingerprint": "9c93a66ea0de36bbd247e338eaaea285207a636d99b9903c47cc490f123bfe93"
+      "completed_fingerprint": "9c93a66ea0de36bbd247e338eaaea285207a636d99b9903c47cc490f123bfe93",
+      "completed_spec_hash": "bf17765893ff2f0a6b42f8fb9fa6ecfae18c91d8528d77f1619c4c6d51e06cd2",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b",
+        "modules/database/lessons/DB-01-data-modeling.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b"
+      },
+      "completed_at": "2026-11-09T13:56:40Z",
+      "completed_by": "parent_orchestrator",
+      "completed_commit": "435e8b0a2196363db92637c87dd4ed7ccf74a711",
+      "reused_outputs": {
+        "modules/database/lessons/DB-01-data-modeling.md": {
+          "reason": "The reviewed final artifact and canonical lesson were already committed by the revision step. Recomputing this step against the frozen original input only reconciles task fingerprints; neither output changed, and reuse is recorded explicitly.",
+          "at": "2026-11-09T13:56:40Z"
+        },
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": {
+          "reason": "The reviewed final artifact and canonical lesson were already committed by the revision step. Recomputing this step against the frozen original input only reconciles task fingerprints; neither output changed, and reuse is recorded explicitly.",
+          "at": "2026-11-09T13:56:40Z"
+        }
+      }
     },
     {
       "step_id": "validation",
