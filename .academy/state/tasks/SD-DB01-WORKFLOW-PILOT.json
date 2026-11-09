@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": "provenance-review",
+  "current_phase": "revision",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:31:39Z",
+  "updated_at": "2026-11-09T13:33:35Z",
   "steps": [
     {
       "step_id": "research",
@@ -308,7 +308,7 @@
     {
       "step_id": "revision",
       "title": "Consolidate findings and produce the revised lesson",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "technical-review",
         "pedagogy-review",
@@ -333,7 +333,27 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "47a75c1567b461cf1c6d54978a0a8db3d383052c",
+      "start_input_hashes": {
+        ".agents/skills/lesson-authoring/SKILL.md": "2d3ec97b0dbd6cca6a3251676292d3705e872537338970c4e2bc8c319e1cdd15",
+        ".agents/skills/module-pipeline/SKILL.md": "99032653affe971e2976ba56f10925159a083c0588b7218a8917e880c5208da1",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md": "73e7a0b29abe9ca1bd6b3bcb2c5448f2f83b0cde1385a5e54fe5684c0e475bd8",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md": "5a2b430cbd380a8cac675b8e189657ed8d3ffd2dcc86b359c8755735f840d90a",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md": "4abef322a96fa1985fb199954021d03ddbcabce13764f6ff9aec6b140770adfc",
+        "modules/database/governance/content-guidelines.md": "56cd86a0577c027fcb2e1fc0141bf4ef1b8a5841236cb4e95566cc880d4ef15d",
+        "modules/database/workflow/lesson-template.md": "1b1178e8978f25208670310ba0a5fcef7da04c5ed12356f3d4f878ab6703e6db"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": null,
+        "modules/database/lessons/DB-01-data-modeling.md": "a5b13497670f1a4ed33dac942d51580465cf45187c95b2d0ddc4aa25189c1a8b"
+      },
+      "started_at": "2026-11-09T13:33:35Z",
+      "active_spec_hash": "bf17765893ff2f0a6b42f8fb9fa6ecfae18c91d8528d77f1619c4c6d51e06cd2",
+      "active_fingerprint": "d73c8d69096983bf944edc8d6c4675eea928126c370f80c34d26cc6ec3e21e7d",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-revision-20261109T133334Z",
+      "agent": "parent_orchestrator"
     },
     {
       "step_id": "validation",
