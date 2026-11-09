@@ -4,12 +4,12 @@
   "module_id": "database",
   "current_phase": "coverage-agent",
   "created_at": "2026-11-09T15:54:44Z",
-  "updated_at": "2026-11-09T16:02:00Z",
+  "updated_at": "2026-11-09T16:01:44Z",
   "steps": [
     {
       "step_id": "coverage-agent",
       "title": "Add independent source-to-curriculum and lesson coverage reviewer",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -31,7 +31,28 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "e3840c918e4b6955a5fa5156ca3129b16df424c8",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-design-skill.original.md": "a957198bd28963ae8611e0bf139c173024aa281abfa65037b849116953ce6244",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-designer.codex.original.toml": "fd1285717d12da5ec6c2c73436111c72d9a9059bff55812862fda4542263f67e",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-designer.claude.original.md": "44daa0b08094eec8f40b3c9faebd46911221083ae28ffe0ed8bfad4f35c7d44f",
+        "modules/database/curriculum/database-module.md": "a4a9b35a0a8c40215ec1269e24167154ea93beab745e2d0d4fad62fa43f8af6d",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f"
+      },
+      "start_output_hashes": {
+        ".agents/skills/curriculum-coverage-review/SKILL.md": null,
+        ".codex/agents/curriculum-coverage-reviewer.toml": null,
+        ".claude/agents/curriculum-coverage-reviewer.md": null,
+        ".agents/skills/curriculum-design/SKILL.md": "a957198bd28963ae8611e0bf139c173024aa281abfa65037b849116953ce6244",
+        ".codex/agents/curriculum-designer.toml": "fd1285717d12da5ec6c2c73436111c72d9a9059bff55812862fda4542263f67e",
+        ".claude/agents/curriculum-designer.md": "44daa0b08094eec8f40b3c9faebd46911221083ae28ffe0ed8bfad4f35c7d44f"
+      },
+      "started_at": "2026-11-09T16:01:44Z",
+      "active_spec_hash": "9fea1ded53c11136f71452372cd187c89b56b83e4dd6ec70721d110e3e6cd2dd",
+      "active_fingerprint": "96577d2cc71c1fd9500b7408b40a25dabedee3fd1e4ed62b2b7a841876da5a0d",
+      "run_id": "SD-WORKFLOW-COVERAGE-RESET-coverage-agent-20261109T160144Z",
+      "agent": "curriculum-coverage-reviewer"
     },
     {
       "step_id": "teaching-contract",
@@ -98,5 +119,5 @@
   "notes": "GitHub Issue #5. One active writer: @czyboi. User explicitly rejected prior generated Database outputs; delete only paths in the canonical spec. Preserve the curriculum plan and immutable inputs while encoding reusable feedback in skills/profiles.",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-WORKFLOW-COVERAGE-RESET.json",
-  "automation_status": "not_started"
+  "automation_status": "in_progress"
 }
