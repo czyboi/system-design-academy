@@ -450,7 +450,7 @@ def cmd_status(args: argparse.Namespace) -> None:
 
 
 def current_input_snapshot(data: dict[str, Any], step: dict[str, Any]) -> dict[str, str]:
-    paths = list(step["input_paths"]) + [data["spec_path"]]
+    paths = list(step["input_paths"])
     hashes: dict[str, str] = {}
     for value in paths:
         digest = sha256_file(relpath(value))
