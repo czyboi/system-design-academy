@@ -4,7 +4,7 @@
   "module_id": "workflow",
   "current_phase": "validation",
   "created_at": "2026-11-09T14:52:47Z",
-  "updated_at": "2026-11-09T15:00:59Z",
+  "updated_at": "2026-11-09T15:01:19Z",
   "steps": [
     {
       "step_id": "feedback",
@@ -107,7 +107,7 @@
     {
       "step_id": "validation",
       "title": "Run repository validation and record results",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "feedback",
         "symlink-test"
@@ -139,14 +139,20 @@
         ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/final/validation-report.md": null
       },
       "started_at": "2026-11-09T14:59:04Z",
-      "active_spec_hash": "39bb3d55f23d850f3c75e1e0f8e781bcb96d87883288c64e249c19ed625ea419",
-      "active_fingerprint": "6d5b695442e2272d39cbad2a3960cb580bdb5650e55fb8d42a8ed49b970c14ca",
       "run_id": "SD-WORKFLOW-FEEDBACK-SYMLINK-TEST-validation-20261109T145904Z",
-      "agent": "validator"
+      "agent": "validator",
+      "completed_fingerprint": "6d5b695442e2272d39cbad2a3960cb580bdb5650e55fb8d42a8ed49b970c14ca",
+      "completed_spec_hash": "39bb3d55f23d850f3c75e1e0f8e781bcb96d87883288c64e249c19ed625ea419",
+      "completed_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/final/validation-report.md": "bf46d922aaf4fe231a7eba2c285c800cd96c3f590356ae1fa9b33267603e3a4e"
+      },
+      "completed_at": "2026-11-09T15:01:19Z",
+      "completed_by": "validator",
+      "completed_commit": "4109b96052f6d2af2798fb983e44f13e54b55200"
     }
   ],
   "notes": "Single writer: @czyboi. Task-specific feedback belongs in this task's worklog/reports; reusable process changes belong in shared skills and regression checks.",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST.json",
-  "automation_status": "in_progress"
+  "automation_status": "automation_complete"
 }
