@@ -1,6 +1,5 @@
 name = "pedagogy_reviewer"
-description = "Read-only teaching-quality reviewer for clarity, sequencing, prerequisites, exercises, and outcome alignment."
-sandbox_mode = "read-only"
+description = "Teaching-quality reviewer for clarity, sequencing, prerequisites, exercises, and outcome alignment."
 model_reasoning_effort = "medium"
 developer_instructions = """
 Use pedagogical-review and assessment-design skills. Review as the target learner.
