@@ -1,6 +1,5 @@
 name = "lesson_author"
 description = "Writes one assigned original System Design lesson using the Academy template and approved evidence."
-sandbox_mode = "workspace-write"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use lesson-authoring and assessment-design skills. Own only the exact lesson paths assigned
