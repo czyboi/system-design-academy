@@ -15,12 +15,17 @@ import subprocess
 import sys
 import tempfile
 from datetime import datetime, timezone
-from pathlib import Path, PurePosixPath
+from pathlib import Path, PurePosixPath, PureWindowsPath
+from string import Template
+from jsonschema import Draft202012Validator, FormatChecker
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE_DIR = ROOT / ".academy" / "state"
 TASK_DIR = STATE_DIR / "tasks"
+SPEC_DIR = ROOT / ".academy" / "specs"
+TASK_SCHEMA = STATE_DIR / "schema" / "task.schema.json"
+SPEC_SCHEMA = STATE_DIR / "schema" / "spec.schema.json"
 LOG_DIR = STATE_DIR / "worklog"
 TASK_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$")
 
@@ -33,12 +38,33 @@ def now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
-def relpath(value: str) -> Path:
-    p = PurePosixPath(value)
-    if p.is_absolute() or ".." in p.parts or not p.parts:
-        raise TaskError(f"Unsafe repository-relative path: {value!r}")
-    return ROOT.joinpath(*p.parts)
 
+def relpath(value: str) -> Path:
+    if not isinstance(value, str) or not value or "\x00" in value:
+        raise TaskError(f"Invalid repository-relative path: {value!r}")
+    windows = PureWindowsPath(value)
+    normalized = value.replace("\\", "/")
+    posix = PurePosixPath(normalized)
+    if posix.is_absolute() or windows.is_absolute() or windows.drive or ".." in posix.parts or ".." in windows.parts:
+        raise TaskError(f"Unsafe repository-relative path: {value!r}")
+    if not posix.parts:
+        raise TaskError(f"Invalid repository-relative path: {value!r}")
+    cursor = ROOT
+    for part in posix.parts:
+        cursor = cursor / part
+        if cursor.is_symlink():
+            raise TaskError(f"Symlink path components are not allowed: {value!r}")
+    try:
+        cursor.resolve(strict=False).relative_to(ROOT.resolve())
+    except ValueError as exc:
+        raise TaskError(f"Path escapes repository: {value!r}") from exc
+    return cursor
+
+
+def spec_path_for(task_id: str) -> Path:
+    if not TASK_ID_RE.fullmatch(task_id):
+        raise TaskError(f"Invalid task ID: {task_id!r}")
+    return relpath(f".academy/specs/{task_id}.json")
 
 def task_path(task_id: str) -> Path:
     if not TASK_ID_RE.fullmatch(task_id):
