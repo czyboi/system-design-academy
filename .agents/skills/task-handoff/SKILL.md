@@ -25,9 +25,10 @@ description: Resume or hand off an existing Academy task across agents, model pr
 
 - Stay within the exact task and assigned output paths.
 - Do not edit files owned by another step/agent.
-- Save a checkpoint before context handoff or stopping. State what is done, what is not done, important evidence, open questions, and one concrete next action.
+- Save a checkpoint before context handoff or stopping. State what is done, what is not done, important evidence, open questions, and one concrete next action. Commit the updated task JSON and worklog to the active branch; an uncommitted checkpoint is invisible to another clone.
 - If the task-specific prompt, acceptance criteria, or method changes, bump `definition_version` or add the changed spec as an `input_path`.
-- Do not mark a step complete by editing JSON manually. Commit declared outputs and use `taskctl complete` so the tool records hashes and commit SHA.
+- Commit task JSON/worklog after every state mutation (`start`, `checkpoint`, `complete`, `invalidate`). Commit declared outputs before `taskctl complete`, then commit the updated state/worklog afterward.
+- Do not mark a step complete by editing JSON manually. Use `taskctl complete` so the tool records hashes and commit SHA.
 
 ## Handoff report
 
