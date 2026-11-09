@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": "pedagogy-review",
+  "current_phase": "provenance-review",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:53:28Z",
+  "updated_at": "2026-11-09T13:54:23Z",
   "steps": [
     {
       "step_id": "research",
@@ -299,7 +299,7 @@
     {
       "step_id": "provenance-review",
       "title": "Review citations, attribution, and asset rights",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "author"
       ],
@@ -320,8 +320,8 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 1,
-      "start_commit": "c797f04c9cb5dc81544159c00bec910ddbf7ebc4",
+      "attempts": 2,
+      "start_commit": "e2b02aec219de9b4939b1f87d78e05a0463ea47b",
       "start_input_hashes": {
         ".agents/skills/provenance-review/SKILL.md": "0bd91c067eaefcb2abae7ab0c77cca20ea5d9cd48a0d452bd0ab893175b387f8",
         ".codex/agents/provenance-reviewer.toml": "2befdbf5543dc3523255b8a00d180cebcaf44c4d0eadc53b55f446466b91b9d9",
@@ -332,10 +332,10 @@
         "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f"
       },
       "start_output_hashes": {
-        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md": null
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md": "4abef322a96fa1985fb199954021d03ddbcabce13764f6ff9aec6b140770adfc"
       },
-      "started_at": "2026-11-09T13:23:55Z",
-      "run_id": "SD-DB01-WORKFLOW-PILOT-provenance-review-20261109T132355Z",
+      "started_at": "2026-11-09T13:54:23Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-provenance-review-20261109T135423Z",
       "agent": "provenance_reviewer",
       "completed_fingerprint": "4f94343c0128d5a8b5b7b3a3f295e5632e59d5974426be7e531b61b36bdfe677",
       "completed_spec_hash": "6710049d1d19ac17f1b2d2548dabdee7e64dd93fbab8ef020f71fca708a5b120",
@@ -345,7 +345,9 @@
       "completed_at": "2026-11-09T13:31:39Z",
       "completed_by": "provenance_reviewer",
       "completed_commit": "81ec4484a9bccc494feaefa69afa9587b9d2f788",
-      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision."
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "active_spec_hash": "6710049d1d19ac17f1b2d2548dabdee7e64dd93fbab8ef020f71fca708a5b120",
+      "active_fingerprint": "1c90a3f218a63c495a81ebe524411635fa064d8c2f3ce48ebd97e3028ae969f9"
     },
     {
       "step_id": "revision",
