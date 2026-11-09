@@ -195,7 +195,10 @@ class TaskCtlV2Tests(unittest.TestCase):
                             "--output-paths", "outputs/a.md", expected=2)
         self.assertIn("Unsafe repository-relative path", absolute)
         link = self.root / "docs/link.md"
-        link.symlink_to(self.root / "docs/input.md")
+        try:
+            link.symlink_to(self.root / "docs/input.md")
+        except (OSError, NotImplementedError) as exc:
+            self.skipTest(f"symlink creation is unavailable on this host: {exc}")
         symlink = self.cli("add-step", "TEST-1", "symlink", "--title", "symlink",
                            "--definition-version", "v1", "--input-paths", "docs/link.md",
                            "--output-paths", "outputs/b.md", expected=2)
