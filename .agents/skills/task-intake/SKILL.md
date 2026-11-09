@@ -5,13 +5,14 @@ description: Create or claim a well-scoped Academy task and prevent duplicate or
 
 # Task Intake
 
-1. Search existing GitHub Issues and `.academy/state/tasks/` for the same lesson, module, goal, or output path before creating a task.
-2. Reuse the existing task/Issue when the goal and acceptance criteria are the same. Create a new task only for distinct work or a separately reviewable deliverable.
-3. Ensure the Issue states the goal, Definition of Done, dependencies, task ID, state-file path, owner, branch, and linked PR.
-4. Create the repository state with `python scripts/taskctl.py init <TASK-ID> --module <MODULE> --goal "..." --template .academy/state/task.template.json`.
-5. Adapt the template to the actual task: remove irrelevant stages; make every input and output path exact; ensure each output has one owner; ensure dependency links are accurate.
-6. Confirm one active writer for each task/lesson. Give parallel reviewers distinct report paths. The JSON state file is not a distributed lock.
-7. Commit the task state file and link it in the Issue before delegating work. After each state-mutating command, commit both task JSON and JSONL worklog; in particular, commit `start` before editing and commit each checkpoint before handoff.
-8. Before assigning any step, run `python scripts/taskctl.py status <TASK-ID>` and resolve `STALE`, `RESUME`, and `BLOCKED` states first.
+1. Search GitHub Issues and `.academy/state/tasks/` for matching task IDs, lessons, goals, and output paths. Reuse equivalent work.
+2. Confirm one active writer and a named owner before execution.
+3. Initialize with:
+   `python scripts/taskctl.py init <TASK-ID> --module <MODULE> --goal "..." --owner "@username" --template .academy/state/task.template.json`.
+4. Edit `.academy/specs/<TASK-ID>.json` as the canonical source for goal, scope, constraints, Definition of Done, and acceptance criteria. Every requirement must have an ID and `applies_to` list. Remove all placeholders before starting.
+5. Adjust state steps to exact inputs, outputs, definition versions, and dependencies. Each output path must have one owner.
+6. Put links, owner, branch, dependencies, and a short summary in the GitHub Issue. Do not duplicate detailed scope/acceptance criteria; link the committed specification.
+7. Commit specification, task state, and worklog before delegation.
+8. Run `python scripts/taskctl.py status <TASK-ID>`; resolve stale/resume/blocked steps before assigning work.
 
-Do not create placeholder completion records, infer completion from a chat summary, or mark work complete before output artifacts are committed. After `complete`, commit the new task JSON/worklog so another clone can see the completion.
+Never invent completion records or mark a step completed from chat narrative. Use `taskctl complete` after verifiable committed outputs.
