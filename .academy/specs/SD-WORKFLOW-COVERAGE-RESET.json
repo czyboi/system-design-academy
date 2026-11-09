@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-WORKFLOW-COVERAGE-RESET",
+  "revision": 1,
+  "goal": "Add an independent source-to-lesson coverage reviewer, correct shared agent guidance for concise mid/senior teaching with separate assessments, and remove the user-rejected Database result files.",
+  "scope": {
+    "in_scope": [
+      "Review modules/database/curriculum/database-module.md against the pinned Primer Database topic map and preserve the findings in this task worklog and reusable shared agent/skill procedures; do not edit the curriculum plan itself.",
+      "Create a shared curriculum-coverage-review skill and thin Codex and Claude coverage-reviewer profiles that independently compare planned topics and actual taught lesson content against the source repository.",
+      "Update curriculum-design, lesson-authoring, assessment-design, pedagogical-review, task-intake, and module-pipeline skills to preserve the user’s English-only, middle/senior, concise, teaching-first direction and require plan-stage and post-authoring coverage gates.",
+      "Update curriculum-designer, lesson-author, and pedagogy-reviewer provider profiles only to reference the shared procedures and clarify role boundaries.",
+      "Delete the exact user-rejected generated Database lessons, case study, assessment blueprint, QA report, and prior run result files listed in acceptance criterion ac-delete-results; preserve plan, source registry, governance, run inputs, task specs, states, and worklogs.",
+      "Run repository-required validation and record exact commands and outcomes in the task worklog; do not create another learner-facing or course-result artifact."
+    ],
+    "out_of_scope": [
+      "Editing the Database curriculum plan, README, source registry, governance, or any remaining learner-facing content.",
+      "Authoring replacement Database lessons, exercises, quizzes, QA reports, or review reports.",
+      "Changing taskctl production behavior or tests.",
+      "Merging, publishing, approving, or opening a pull request."
+    ]
+  },
+  "constraints": [
+    "Use @czyboi as the single writer and follow the persistent task protocol; Issue #5 is the coordination record and this file is canonical.",
+    "The current course target is middle/senior engineers learning system design; learner-facing course content is English-only. Follow newer explicit user direction if it changes either choice.",
+    "Teach in the lesson artifact; put the practical exercise, 5–8 knowledge checks, answers, rubric, and outcome mapping in a separate companion assessment artifact. The paired package collectively satisfies repository lesson requirements.",
+    "Keep prose concise and decision-focused for experienced learners; assume common backend, SQL, and application fundamentals unless the task spec says otherwise.",
+    "Treat the pinned System Design Primer commit ae9bbd7b02d90b9866215de185217d33f39ab733 as a topic map and licensed source, not as the sole technical authority.",
+    "Provider profiles must remain thin wrappers over shared skills. Do not duplicate shared procedures in profiles.",
+    "Delete only enumerated generated result files; preserve original inputs, plans, policies, task records, and workflow input snapshots.",
+    "Do not claim a course plan is complete or ready for authoring while material source-topic gaps remain unexplained. Keep generated lesson status draft and approval/publication human-controlled."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-coverage-agent",
+      "text": "A new shared coverage-review procedure and both provider profiles define independent plan-stage and actual-lesson audits, source-topic inventory, teaching-evidence classification, material-gap escalation, concise audience calibration, and a human-review-only verdict.",
+      "applies_to": [
+        "coverage-agent"
+      ]
+    },
+    {
+      "id": "dod-teaching-contract",
+      "text": "Shared planning, authoring, assessment, pedagogy, and intake procedures record English-only middle/senior direction; require concise teaching in the lesson artifact and separate outcome-aligned exercise/checks/answers in a companion artifact.",
+      "applies_to": [
+        "teaching-contract"
+      ]
+    },
+    {
+      "id": "dod-pipeline",
+      "text": "The pipeline blocks authoring on unresolved plan coverage gaps, requires a post-authoring coverage audit of actual teaching, and captures feedback/root cause/disposition in durable records.",
+      "applies_to": [
+        "pipeline-cleanup"
+      ]
+    },
+    {
+      "id": "dod-delete",
+      "text": "Every exact rejected generated result path in ac-delete-results is absent; curriculum plan, source material, governance, run inputs, and task records are present and unchanged.",
+      "applies_to": [
+        "pipeline-cleanup"
+      ]
+    },
+    {
+      "id": "dod-validation",
+      "text": "The required dependency installation, content validator, complete unittest suite, and taskctl validator are run and their exact outcomes are recorded without implying content approval.",
+      "applies_to": [
+        "pipeline-cleanup"
+      ]
+    },
+    {
+      "id": "dod-task",
+      "text": "All declared shared-skill/profile outputs and task records are committed, task automation reaches automation_complete, the worktree is clean, and no approval, merge, or publication state is inferred.",
+      "applies_to": [
+        "*"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-review-matrix",
+      "text": "The coverage-review skill requires a source-to-curriculum and source-to-actual-teaching matrix with exact source locator and lesson section, taught/merged/mention-only/assessment-only/planned-not-taught/omitted classification, explicit scope rationale, and severity. A title, reference, or quiz item alone never counts as teaching.",
+      "applies_to": [
+        "coverage-agent"
+      ]
+    },
+    {
+      "id": "ac-independent-gates",
+      "text": "The pipeline uses the reviewer before authoring to audit the plan and after authoring to audit actual lesson files; a material unexplained gap blocks the next stage and curriculum designer self-review cannot replace the independent reviewer.",
+      "applies_to": [
+        "coverage-agent",
+        "pipeline-cleanup"
+      ]
+    },
+    {
+      "id": "ac-known-plan-gaps",
+      "text": "The retained plan is reviewed and the worklog records: federation appears only in the curriculum rationale; DB-04 maps primary/replica but not multi-writer replication; DB-02 covers indexes/query plans but does not define the broader SQL-tuning scope. The skill must generalize this audit beyond these examples.",
+      "applies_to": [
+        "coverage-agent"
+      ]
+    },
+    {
+      "id": "ac-audience-teaching",
+      "text": "Shared skills and relevant profiles encode the current middle/senior audience, English-only learner-facing content, concise decision-focused teaching, and separation between lesson teaching and companion assessment artifacts.",
+      "applies_to": [
+        "teaching-contract"
+      ]
+    },
+    {
+      "id": "ac-cleanup-policy",
+      "text": "The shared pipeline procedure explains how to honor explicit rejection by deleting only enumerated generated outputs, preserving source/plan/task history and immutable inputs, and recording resulting stale task states rather than reusing rejected artifacts.",
+      "applies_to": [
+        "pipeline-cleanup"
+      ]
+    },
+    {
+      "id": "ac-delete-results",
+      "text": "Delete exactly these files: modules/database/lessons/DB-01-data-modeling.md; modules/database/lessons/DB-02-indexes-and-query-execution.md; modules/database/lessons/DB-03-transactions-and-concurrency.md; modules/database/lessons/DB-04-replication-and-consistency.md; modules/database/lessons/DB-05-partitioning-and-sharding.md; modules/database/lessons/DB-06-sql-vs-nosql.md; modules/database/lessons/DB-07-availability-backup-recovery.md; modules/database/case-studies/DB-08-order-management.md; modules/database/assessments/database-quiz.md; modules/database/qa/database-pilot-review.md; modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md; modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md; modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md; modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md; modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md; modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md; modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md; modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/validation-report.md; modules/database/workflow/runs/SD-DB01-ENGLISH-TEACHING-REVISION/review/language-and-teaching-audit.md; modules/database/workflow/runs/SD-DB01-ENGLISH-TEACHING-REVISION/final/validation-report.md. Preserve both runs’ inputs and README files.",
+      "applies_to": [
+        "pipeline-cleanup"
+      ]
+    },
+    {
+      "id": "ac-validation",
+      "text": "Record exact results for pip install -r requirements-dev.txt, python scripts/validate_content.py, python -m unittest discover -s tests -v, and python scripts/taskctl.py validate; report any failure accurately.",
+      "applies_to": [
+        "pipeline-cleanup"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-WORKFLOW-COVERAGE-RESET",
+  "module_id": "database",
+  "current_phase": "coverage-agent",
+  "created_at": "2026-11-09T15:54:44Z",
+  "updated_at": "2026-11-09T16:02:00Z",
+  "steps": [
+    {
+      "step_id": "coverage-agent",
+      "title": "Add independent source-to-curriculum and lesson coverage reviewer",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-design-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-designer.codex.original.toml",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-designer.claude.original.md",
+        "modules/database/curriculum/database-module.md",
+        "modules/database/sources/source-registry.csv"
+      ],
+      "output_paths": [
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".codex/agents/curriculum-coverage-reviewer.toml",
+        ".claude/agents/curriculum-coverage-reviewer.md",
+        ".agents/skills/curriculum-design/SKILL.md",
+        ".codex/agents/curriculum-designer.toml",
+        ".claude/agents/curriculum-designer.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "teaching-contract",
+      "title": "Encode audience, language, concise teaching, and separate assessment artifacts",
+      "status": "pending",
+      "depends_on": [
+        "coverage-agent"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-authoring-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/assessment-design-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogical-review-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/task-intake-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-author.codex.original.toml",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-author.claude.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogy-reviewer.codex.original.toml",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogy-reviewer.claude.original.md"
+      ],
+      "output_paths": [
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".agents/skills/task-intake/SKILL.md",
+        ".codex/agents/lesson-author.toml",
+        ".claude/agents/lesson-author.md",
+        ".codex/agents/pedagogy-reviewer.toml",
+        ".claude/agents/pedagogy-reviewer.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "pipeline-cleanup",
+      "title": "Require coverage gates, capture reusable feedback, and remove rejected outputs",
+      "status": "pending",
+      "depends_on": [
+        "coverage-agent",
+        "teaching-contract"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/module-pipeline-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/workflow-pilot.spec.original.json",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/workflow-pilot.worklog.snapshot.jsonl",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/english-teaching-revision.spec.original.json",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/english-teaching-revision.worklog.snapshot.jsonl",
+        "modules/database/curriculum/database-module.md",
+        "modules/database/sources/source-registry.csv"
+      ],
+      "output_paths": [
+        ".agents/skills/module-pipeline/SKILL.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    }
+  ],
+  "notes": "GitHub Issue #5. One active writer: @czyboi. User explicitly rejected prior generated Database outputs; delete only paths in the canonical spec. Preserve the curriculum plan and immutable inputs while encoding reusable feedback in skills/profiles.",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-WORKFLOW-COVERAGE-RESET.json",
+  "automation_status": "not_started"
+}
