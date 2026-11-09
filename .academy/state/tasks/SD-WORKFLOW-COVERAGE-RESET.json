@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-WORKFLOW-COVERAGE-RESET",
   "module_id": "database",
-  "current_phase": "teaching-contract",
+  "current_phase": "pipeline-cleanup",
   "created_at": "2026-11-09T15:54:44Z",
-  "updated_at": "2026-11-09T16:10:26Z",
+  "updated_at": "2026-11-09T16:11:15Z",
   "steps": [
     {
       "step_id": "coverage-agent",
@@ -141,7 +141,7 @@
     {
       "step_id": "pipeline-cleanup",
       "title": "Require coverage gates, capture reusable feedback, and remove rejected outputs",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "coverage-agent",
         "teaching-contract"
@@ -163,7 +163,25 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "3f253433331613cd3d6603a9c46bea7dcdfe8cc2",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/module-pipeline-skill.original.md": "229978580c63bac241f73d0bb8fb8276239048c33559f380bb9e69abaf808ab8",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/workflow-pilot.spec.original.json": "8322dfbffe5447cb4007676366c408248054f6d8fdc2023d2dfcd2661a168e4a",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/workflow-pilot.worklog.snapshot.jsonl": "cd4265be5d70933f07d1d5e00b3a3eacc39aac98503deaaa9f3eaba56ade99c2",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/english-teaching-revision.spec.original.json": "c81c84ea9abbd26a53ae5b1dfb529bc380d0d3405297910fdf706ccd29c806d0",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/english-teaching-revision.worklog.snapshot.jsonl": "a52c4ecd6ce8a2cf35522a3bdfbaaa7bb7a5f0dedbf3cb86abdcf2e7be55e6cd",
+        "modules/database/curriculum/database-module.md": "a4a9b35a0a8c40215ec1269e24167154ea93beab745e2d0d4fad62fa43f8af6d",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f"
+      },
+      "start_output_hashes": {
+        ".agents/skills/module-pipeline/SKILL.md": "229978580c63bac241f73d0bb8fb8276239048c33559f380bb9e69abaf808ab8"
+      },
+      "started_at": "2026-11-09T16:11:15Z",
+      "active_spec_hash": "33b5d61a5993550dad3dc7f3f829ada4aa71496455282957b0c325b5304b3a04",
+      "active_fingerprint": "bfb23b1da29de86ccb2c9bf776cb1f0b08de4e1b5a7e3600daf850c0533ae240",
+      "run_id": "SD-WORKFLOW-COVERAGE-RESET-pipeline-cleanup-20261109T161115Z",
+      "agent": "parent-orchestrator"
     }
   ],
   "notes": "GitHub Issue #5. One active writer: @czyboi. User explicitly rejected prior generated Database outputs; delete only paths in the canonical spec. Preserve the curriculum plan and immutable inputs while encoding reusable feedback in skills/profiles.",
