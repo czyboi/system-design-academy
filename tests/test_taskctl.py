@@ -34,7 +34,9 @@ class AggregateTaskStatusTests(unittest.TestCase):
 
 class TaskCtlV2Tests(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
+        temp_root = SOURCE_ROOT / ".tmp"
+        temp_root.mkdir(parents=True, exist_ok=True)
+        self.tmp = tempfile.TemporaryDirectory(prefix="academy-taskctl-", dir=temp_root)
         self.root = Path(self.tmp.name)
         for folder in ("scripts", ".academy/state/schema", ".academy/state", "docs", "outputs"):
             (self.root / folder).mkdir(parents=True, exist_ok=True)
@@ -209,20 +211,25 @@ class TaskCtlV2Tests(unittest.TestCase):
         self.cli("complete", "TEST-1", "research", "--agent", "tester")
         self.assertIn("SKIP", self.cli("status", "TEST-1"))
 
-    def test_path_validation_rejects_absolute_and_symlink_inputs(self):
+    def test_path_validation_rejects_absolute_inputs(self):
         absolute = self.cli("add-step", "TEST-1", "absolute", "--title", "absolute",
                             "--definition-version", "v1", "--input-paths", "/etc/passwd",
                             "--output-paths", "outputs/a.md", expected=2)
         self.assertIn("Unsafe repository-relative path", absolute)
+
+    def test_path_validation_rejects_symlink_components(self):
+        from scripts import taskctl
+
         link = self.root / "docs/link.md"
-        try:
-            link.symlink_to(self.root / "docs/input.md")
-        except (OSError, NotImplementedError) as exc:
-            self.skipTest(f"symlink creation is unavailable on this host: {exc}")
-        symlink = self.cli("add-step", "TEST-1", "symlink", "--title", "symlink",
-                           "--definition-version", "v1", "--input-paths", "docs/link.md",
-                           "--output-paths", "outputs/b.md", expected=2)
-        self.assertIn("Symlink path components are not allowed", symlink)
+
+        # Simulate the filesystem metadata result so this unit test exercises
+        # the guard without requiring the host to create an operating-system symlink.
+        with patch.object(taskctl, "ROOT", self.root):
+            with patch.object(taskctl.Path, "is_symlink", autospec=True) as is_symlink:
+                is_symlink.side_effect = lambda candidate: candidate == link
+                with self.assertRaisesRegex(taskctl.TaskError, "Symlink path components are not allowed"):
+                    taskctl.relpath("docs/link.md")
+                is_symlink.assert_any_call(link)
 
     def test_taskctl_does_not_offer_human_approval_or_publication_commands(self):
         result = subprocess.run(

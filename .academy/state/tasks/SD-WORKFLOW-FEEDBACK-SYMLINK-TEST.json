@@ -4,7 +4,7 @@
   "module_id": "workflow",
   "current_phase": "symlink-test",
   "created_at": "2026-11-09T14:52:47Z",
-  "updated_at": "2026-11-09T14:56:56Z",
+  "updated_at": "2026-11-09T14:57:58Z",
   "steps": [
     {
       "step_id": "feedback",
@@ -78,8 +78,9 @@
         "tests/test_taskctl.py"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "TaskCtl test fixtures now use ignored workspace .tmp; the symlink guard test simulates Path.is_symlink and passes without host privilege.",
+        "next_action": "Commit the test update and complete the step; then run the full suite and content/task validators.",
+        "at": "2026-11-09T14:57:58Z"
       },
       "attempts": 1,
       "start_commit": "a46431ab93ef2ba2e708b78f026ffca137ceb312",
