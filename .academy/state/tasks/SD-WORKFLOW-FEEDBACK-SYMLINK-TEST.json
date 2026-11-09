@@ -4,12 +4,12 @@
   "module_id": "workflow",
   "current_phase": "feedback",
   "created_at": "2026-11-09T14:52:47Z",
-  "updated_at": "2026-11-09T14:55:51Z",
+  "updated_at": "2026-11-09T14:56:16Z",
   "steps": [
     {
       "step_id": "feedback",
       "title": "Add the durable feedback and independent-review loop",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -48,10 +48,20 @@
         ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/review/feedback-retrospective.md": null
       },
       "started_at": "2026-11-09T14:53:42Z",
-      "active_spec_hash": "8ed6f9d9b8b12e88d19c948453c9b153ee798c4e5365f06929dcb2269aeb0cb0",
-      "active_fingerprint": "b709543d304c6765bea3370ea4711a0be27230537b2852baec35f821941ec7aa",
       "run_id": "SD-WORKFLOW-FEEDBACK-SYMLINK-TEST-feedback-20261109T145342Z",
-      "agent": "workflow-maintainer"
+      "agent": "workflow-maintainer",
+      "completed_fingerprint": "b709543d304c6765bea3370ea4711a0be27230537b2852baec35f821941ec7aa",
+      "completed_spec_hash": "8ed6f9d9b8b12e88d19c948453c9b153ee798c4e5365f06929dcb2269aeb0cb0",
+      "completed_output_hashes": {
+        "AGENTS.md": "1bc3b9c2daf072ad6c547abaad3956c18b3ec65f739770604afe64792799a052",
+        ".agents/skills/module-pipeline/SKILL.md": "229978580c63bac241f73d0bb8fb8276239048c33559f380bb9e69abaf808ab8",
+        ".agents/skills/task-handoff/SKILL.md": "b98390bf137e15778d34a11028e947b7e8918238461696973f302f466e6ae827",
+        ".agents/skills/lesson-authoring/SKILL.md": "e20e95a7b16e28d70142b01263b65ef40a02cfe273d57ccd5c30320ee3bfbb14",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/review/feedback-retrospective.md": "d221b1d37b68bd7f21fb17f022c6e560b2722633f505a0e64a0712f70cae0f5a"
+      },
+      "completed_at": "2026-11-09T14:56:16Z",
+      "completed_by": "workflow-maintainer",
+      "completed_commit": "7dd660af6e64a7236537ebc0df082a7d57832ccc"
     },
     {
       "step_id": "symlink-test",
