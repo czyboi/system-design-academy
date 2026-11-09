@@ -2,76 +2,56 @@
 
 An AI-assisted, source-grounded curriculum project for backend engineers learning system design.
 
-> **Project status:** Early development. The Database module is a pilot, not publication-ready courseware.
+> Project status: Early development. The Database module is a pilot, not publication-ready courseware.
 
-## Goals
+## Repository structure
 
-- Build a structured learning path from fundamentals to production-scale system design.
-- Treat source provenance, technical accuracy, and teaching quality as explicit quality gates.
-- Use AI to research, draft, diagram, and assess lessons while retaining human approval before publication.
-- Preserve task progress across AI models/providers and prevent completed work from being repeated.
-- Keep all authored content versioned in Markdown and diagrams-as-code where practical.
+- .agents/skills/: canonical shared procedures for all providers.
+- .codex/agents/: Codex-specific role adapters.
+- .claude/agents/: Claude Code role adapters referencing shared skills.
+- .academy/specs/: canonical, versioned task specifications.
+- .academy/state/: execution state, JSON Schema, templates, and append-only worklogs.
+- scripts/taskctl.py: spec-aware fingerprints and reproducible execution gates.
+- scripts/validate_content.py: structural course-content validation.
+- tests/: task engine and configuration integration tests.
+- modules/database/: Database pilot content and workflow.
 
-## Repository layout
+## Hybrid task state and anti-repeat protocol
 
-```text
-.
-├── PROJECT_SPEC.md             # Scope, principles, roles, and acceptance criteria
-├── CURRICULUM_MASTER.md        # Academy-wide curriculum map
-├── GOVERNANCE.md               # Source, license, QA, and publishing rules
-├── AGENTS.md                   # Repository-wide agent guardrails
-├── .agents/skills/             # Reusable specialist workflows, including intake/handoff
-├── .codex/agents/              # Custom Codex subagent role profiles
-├── .codex/config.toml          # Multi-agent concurrency settings
-├── .academy/state/             # Durable task JSON, schema, template, and worklog
-├── scripts/
-│   ├── taskctl.py              # Fingerprints, checkpoints, skip/resume, output hash checks
-│   └── validate_content.py     # Structural course-content validation
-├── tests/                      # Dependency-free task-state integration tests
-├── modules/
-│   └── database/               # Database pilot: lessons, case study, QA, sources, workflow
-├── docs/                       # Project decisions and operating notes
-└── .github/                    # Issue/PR templates and validation workflow
-```
+Each task has one canonical specification at .academy/specs/<TASK-ID>.json. It contains the goal, scope, constraints, Definition of Done, and acceptance criteria. The GitHub Issue coordinates ownership, branch, dependencies, and links; it must not duplicate detailed requirements.
 
-## Persistent task state (important)
+Execution state lives in .academy/state/tasks/<TASK-ID>.json; event/checkpoint history is appended to .academy/state/worklog/<TASK-ID>.jsonl. All AI providers use the same JSON/JSONL records and Git commits.
 
-For any multi-step task, create or reuse a GitHub Issue and a state file under `.academy/state/tasks/`. Run:
+Initialize a task with:
 
-```bash
-python scripts/taskctl.py status TASK-ID
-```
+    pip install -r requirements-dev.txt
+    python scripts/taskctl.py init TASK-ID --module MODULE --goal "..." --owner "@username" --template .academy/state/task.template.json
 
-The tool calculates whether each step is `SKIP`, `RESUME`, `READY`, `STALE`, or `BLOCKED`. A step is reusable only when its current input fingerprint and committed output hashes match its completion record. Checkpoints and event history live in `.academy/state/worklog/`. This lets a different AI/provider resume from repository state rather than replaying old chat work.
+Edit the generated task specification and remove all TODO placeholders before starting. Declare which steps each DoD/acceptance criterion governs.
 
-Start with `.academy/state/README.md` and `docs/task-state-and-idempotency.md`. Use the `task-intake` and `task-handoff` skills before handing tasks between agents.
+Run python scripts/taskctl.py status TASK-ID. The engine returns SKIP, RESUME, READY, STALE, or BLOCKED. A fingerprint includes the relevant specification slice, declared input hashes, definition version, and dependency fingerprints/output hashes. A step-specific criterion change invalidates only that step and its downstream dependencies; unrelated work remains reusable.
+
+Start requires committed, clean inputs/specification and records the starting commit plus input/output snapshots. Complete verifies the inputs/spec are unchanged and the outputs are committed/changed during the run. Intentional reuse of an unchanged artifact requires --reuse-output PATH --reuse-reason "...".
+
+See .academy/state/README.md and docs/task-state-and-idempotency.md for the full protocol.
+
+## Automation versus human approval
+
+The CLI can reach automation_complete only. Human review, approval, PR merge, and publication remain separate human-controlled gates. Passing CI is structural validation, not factual, legal, or pedagogical approval. Never auto-publish learner-facing content.
+
+## Agent architecture
+
+Shared procedures live in .agents/skills/. Codex profiles are in .codex/agents/; Claude Code project profiles are in .claude/agents/ and point to shared skills rather than copying instructions. The parent orchestrator owns dependencies, state transitions, shared files, and final synthesis.
 
 ## First pilot: Database
 
-Start with [`modules/database/README.md`](modules/database/README.md). It contains 7 lessons, one capstone case study, source registry, author/reviewer prompts, a lesson template, and a first-pass QA report.
+Start with modules/database/README.md. It contains seven lessons, one capstone case study, a source registry, templates, workflow, and a first-pass QA report.
 
-## Non-negotiable rules
+## Validation
 
-1. Do not invent citations, technical guarantees, product versions, benchmark numbers, or source licenses.
-2. Prefer standards and official technical documentation for version-specific claims.
-3. Distinguish general distributed-systems principles from vendor-specific behavior.
-4. Do not copy third-party diagrams, code, images, notebooks, or flashcards without verifying their individual rights.
-5. Keep AI-created lessons in `draft` until the QA gate and human review pass.
-6. Never auto-publish learner-facing content.
-7. A custom agent's role instructions do not enforce permissions; subagents inherit the parent session's permission mode.
+    pip install -r requirements-dev.txt
+    python scripts/validate_content.py
+    python -m unittest discover -s tests -v
+    python scripts/taskctl.py validate
 
-## Source attribution
-
-The Database pilot is informed by Donne Martin's [System Design Primer](https://github.com/donnemartin/system-design-primer), whose repository `LICENSE.txt` states CC BY 4.0 for the author's code and resources. This project does not assume that external links or third-party assets inside that repository share the same license. See [`GOVERNANCE.md`](GOVERNANCE.md) and [`modules/database/governance/attribution-policy.md`](modules/database/governance/attribution-policy.md).
-
-## Getting started
-
-1. Read [`PROJECT_SPEC.md`](PROJECT_SPEC.md) and [`GOVERNANCE.md`](GOVERNANCE.md).
-2. Inspect the Database pilot before using it as the standard for future modules.
-3. For a new task, create or reuse a GitHub Issue and initialize state with `python scripts/taskctl.py init TASK-ID --module MODULE --goal "..." --template .academy/state/task.template.json`.
-4. Adapt the generated task JSON to the exact module, files, inputs, outputs, and acceptance criteria; commit it before delegation.
-5. Run `python scripts/taskctl.py status TASK-ID` before work and follow the status it reports. Never repeat `SKIP` steps.
-6. Read `docs/agent-architecture.md` for the role map and `modules/database/workflow/agent-runbook.md` for the Database workflow.
-7. Run `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate` before creating/updating a draft PR.
-
-See `GITHUB_SETUP.md` for repository setup and connection details.
+Structural CI does not establish factual correctness, source availability, legal permission, executable lab correctness, or teaching quality. See GOVERNANCE.md and the Database attribution policy.
