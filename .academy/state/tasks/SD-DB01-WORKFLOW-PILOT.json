@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "provenance-review",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:23:55Z",
+  "updated_at": "2026-11-09T13:30:13Z",
   "steps": [
     {
       "step_id": "research",
@@ -166,7 +166,7 @@
     {
       "step_id": "technical-review",
       "title": "Review technical accuracy independently",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -198,10 +198,16 @@
         "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md": null
       },
       "started_at": "2026-11-09T13:22:35Z",
-      "active_spec_hash": "6710049d1d19ac17f1b2d2548dabdee7e64dd93fbab8ef020f71fca708a5b120",
-      "active_fingerprint": "d365b8d72c9c22f3473e8441e6ddbac74cb3e884f225bc5fb0239272c6da78a6",
       "run_id": "SD-DB01-WORKFLOW-PILOT-technical-review-20261109T132235Z",
-      "agent": "technical_reviewer"
+      "agent": "technical_reviewer",
+      "completed_fingerprint": "d365b8d72c9c22f3473e8441e6ddbac74cb3e884f225bc5fb0239272c6da78a6",
+      "completed_spec_hash": "6710049d1d19ac17f1b2d2548dabdee7e64dd93fbab8ef020f71fca708a5b120",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md": "73e7a0b29abe9ca1bd6b3bcb2c5448f2f83b0cde1385a5e54fe5684c0e475bd8"
+      },
+      "completed_at": "2026-11-09T13:30:13Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "1fdde82f186c4a710a616daf1adfc89acac6a529"
     },
     {
       "step_id": "pedagogy-review",
