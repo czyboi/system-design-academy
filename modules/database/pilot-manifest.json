@@ -1,0 +1,18 @@
+{
+  "project": "System Design Academy — Database Module Pilot",
+  "created_date": "2026-11-09",
+  "status": "draft",
+  "lessons": [
+    "DB-01",
+    "DB-02",
+    "DB-03",
+    "DB-04",
+    "DB-05",
+    "DB-06",
+    "DB-07",
+    "DB-08"
+  ],
+  "source_count": 20,
+  "deep_research_runs_required_for_pilot": 0,
+  "note": "The source set was built through targeted searches and direct official documentation access. Complex disputed research may require Deep Research later."
+}
