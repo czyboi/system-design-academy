@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "curriculum-skill-update",
+  "current_phase": "source-inventory",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-09T16:48:53Z",
+  "updated_at": "2026-11-09T16:49:09Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -47,7 +47,7 @@
     {
       "step_id": "source-inventory",
       "title": "Inventory the pinned Primer repository topics and in-tree examples",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "curriculum-skill-update"
       ],
@@ -64,7 +64,21 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "ef8e6d6d60072624d133add51a938351dd23bdcf",
+      "start_input_hashes": {
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": null
+      },
+      "started_at": "2026-11-09T16:49:09Z",
+      "active_spec_hash": "0162cade30bc2bfcdde915c2b3531d2ba253bf38098ab8175222818668a38f69",
+      "active_fingerprint": "c6bbc850a1b518a3a18bb668a1c17833844f6a76ea7431e7de2cf328a7de6950",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-source-inventory-20261109T164909Z",
+      "agent": "source_researcher"
     },
     {
       "step_id": "curriculum-draft",
