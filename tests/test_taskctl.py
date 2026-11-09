@@ -117,6 +117,27 @@ class TaskCtlV2Tests(unittest.TestCase):
         self.git("commit", "-qm", "change acceptance criteria")
         self.assertIn("STALE", self.cli("status", "TEST-1"))
 
+
+    def test_unrelated_spec_change_does_not_abort_running_step(self):
+        self.add_step("research", "outputs/research.md")
+        self.add_step("unrelated", "outputs/unrelated.md")
+        self.set_scoped_spec(["research", "unrelated"])
+        self.cli("start", "TEST-1", "research", "--agent", "tester")
+        self.git("add", ".academy/state/tasks", ".academy/state/worklog")
+        self.git("commit", "-qm", "persist research start")
+        path = self.root / ".academy/specs/TEST-1.json"
+        spec = json.loads(path.read_text(encoding="utf-8"))
+        spec["acceptance_criteria"][1]["text"] = "Updated criterion for unrelated step"
+        path.write_text(json.dumps(spec, indent=2), encoding="utf-8")
+        self.git("add", ".academy/specs/TEST-1.json")
+        self.git("commit", "-qm", "update unrelated criterion")
+        target = self.root / "outputs/research.md"
+        target.write_text("research output\n", encoding="utf-8")
+        self.git("add", "outputs/research.md")
+        self.git("commit", "-qm", "commit research output")
+        self.cli("complete", "TEST-1", "research", "--agent", "tester")
+        self.assertIn("- research: SKIP", self.cli("status", "TEST-1"))
+
     def test_start_rejects_untracked_and_dirty_inputs(self):
         self.add_step("research", "outputs/research.md", input_path="docs/input.md")
         (self.root / "docs/input.md").write_text("dirty input\n", encoding="utf-8")
