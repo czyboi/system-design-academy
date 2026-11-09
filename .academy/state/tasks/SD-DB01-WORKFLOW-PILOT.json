@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": "research",
+  "current_phase": "curriculum",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:47:54Z",
+  "updated_at": "2026-11-09T13:48:36Z",
   "steps": [
     {
       "step_id": "research",
@@ -68,7 +68,7 @@
     {
       "step_id": "curriculum",
       "title": "Map prerequisites, outcomes, and sequence",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -89,8 +89,8 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 1,
-      "start_commit": "fd9ad2acfe04044158d01241f418bc5fffba8d29",
+      "attempts": 2,
+      "start_commit": "f8701bea4466508a0a935ddb0377ac5ff49e26ae",
       "start_input_hashes": {
         ".agents/skills/curriculum-design/SKILL.md": "a957198bd28963ae8611e0bf139c173024aa281abfa65037b849116953ce6244",
         ".codex/agents/curriculum-designer.toml": "fd1285717d12da5ec6c2c73436111c72d9a9059bff55812862fda4542263f67e",
@@ -99,13 +99,14 @@
         ".claude/agents/curriculum-designer.md": "44daa0b08094eec8f40b3c9faebd46911221083ae28ffe0ed8bfad4f35c7d44f",
         "modules/database/curriculum/database-module.md": "a4a9b35a0a8c40215ec1269e24167154ea93beab745e2d0d4fad62fa43f8af6d",
         "modules/database/assessments/database-quiz.md": "ddbf0da2a36ae06e3b4df7918a8f6f5fc2a0d5157aaa581988c2e2b7e888ba9c",
-        "modules/database/lessons/DB-01-data-modeling.md": "a5b13497670f1a4ed33dac942d51580465cf45187c95b2d0ddc4aa25189c1a8b"
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md": "6d74a63299ca54f6da2591d19cdb7e85e3edf6e6180051df849861feed469801",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md": "95c6bff53c75da4d6fa9f3c0a31eb7814036683ee90ef06bc32baa55c2ef2ade"
       },
       "start_output_hashes": {
-        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": null
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": "f328481e997ffad5003d086eea44cd44ae4911b7f12eb5e38dbf0c89455612d2"
       },
-      "started_at": "2026-11-09T13:08:11Z",
-      "run_id": "SD-DB01-WORKFLOW-PILOT-curriculum-20261109T130811Z",
+      "started_at": "2026-11-09T13:48:36Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-curriculum-20261109T134836Z",
       "agent": "curriculum_designer",
       "completed_fingerprint": "96eb8e4d757a6dffc4bc5f1ee748fd041d7add10833ed4085cf7d3032113a7a4",
       "completed_spec_hash": "b3d41cb77cc524c81f7b952816332acb0bf9ba7efff6adc9f05890b240d605cb",
@@ -115,7 +116,9 @@
       "completed_at": "2026-11-09T13:12:00Z",
       "completed_by": "curriculum_designer",
       "completed_commit": "172f0a3ce8a86975e30724d427a9c23e65458d26",
-      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision."
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "active_spec_hash": "b3d41cb77cc524c81f7b952816332acb0bf9ba7efff6adc9f05890b240d605cb",
+      "active_fingerprint": "270fa7f41338f4e851299a2ffc9fb06a34ab88331674e56b2fb6cea321c7a419"
     },
     {
       "step_id": "author",
