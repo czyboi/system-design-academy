@@ -41,8 +41,8 @@ python scripts/taskctl.py add-step SD-DB-INDEXES research \
 4. `RESUME` means inspect the saved checkpoint and existing files, then run `start ... --resume`; do not start over.
 5. `STALE` means the input fingerprint or output has changed. Inspect the diff and decide which step(s) need to run again. Never overwrite artifacts blindly.
 6. `READY` means dependencies are fresh and the step may start. Start it before editing.
-7. Before handing off or ending a run, save a checkpoint with the current state and one concrete next action.
-8. Commit the step's declared output files, then run `complete`. If it rejects the completion, resolve the Git/output issue rather than editing the state file manually.
+7. After every state-mutating `taskctl` command, commit the task JSON and its JSONL worklog to the active branch. Commit the `start` state before editing files, and commit a checkpoint before switching context/provider.
+8. Commit the step's declared output files, then run `complete`. Commit the updated task JSON/worklog after completion too. If it rejects the completion, resolve the Git/output issue rather than editing state manually.
 9. Update the GitHub Issue with a brief summary, current state file path, branch/PR, and next action.
 
 Example:
@@ -50,11 +50,14 @@ Example:
 ```bash
 python scripts/taskctl.py status SD-DB-INDEXES
 python scripts/taskctl.py start SD-DB-INDEXES research --agent source_researcher
-# create the declared output(s), inspect them, then commit
+git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl && git commit -m "Start source research step"
+# create and commit the declared output(s)
 python scripts/taskctl.py checkpoint SD-DB-INDEXES research \
   --note "Verified the index behavior against the cited PostgreSQL docs; MySQL comparison remains open." \
   --next-action "Finish the MySQL version check and update the evidence note."
+git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl && git commit -m "Checkpoint source research"
 python scripts/taskctl.py complete SD-DB-INDEXES research --agent source_researcher
+git add .academy/state/tasks/SD-DB-INDEXES.json .academy/state/worklog/SD-DB-INDEXES.jsonl && git commit -m "Record completed source research"
 ```
 
 ## Fingerprint and skip rules
