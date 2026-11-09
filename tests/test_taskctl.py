@@ -1,6 +1,7 @@
-"""Integration tests for taskctl; uses only the Python standard library and Git."""
+"""Integration tests for task-spec fingerprinting and reproducible task execution."""
 from __future__ import annotations
 
+import json
 import os
 import shutil
 import subprocess
@@ -8,97 +9,158 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SOURCE_SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "taskctl.py"
+SOURCE_ROOT = Path(__file__).resolve().parents[1]
 
 
-class TaskCtlIntegrationTests(unittest.TestCase):
-    def setUp(self) -> None:
-        self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name)
-        (self.root / "scripts").mkdir()
-        shutil.copy2(SOURCE_SCRIPT, self.root / "scripts" / "taskctl.py")
-        (self.root / "docs").mkdir()
-        (self.root / "outputs").mkdir()
-        (self.root / "docs" / "input.md").write_text("source version 1\n", encoding="utf-8")
+class TaskCtlV2Tests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        for folder in ("scripts", ".academy/state/schema", ".academy/state", "docs", "outputs"):
+            (self.root / folder).mkdir(parents=True, exist_ok=True)
+        shutil.copy2(SOURCE_ROOT / "scripts/taskctl.py", self.root / "scripts/taskctl.py")
+        shutil.copy2(SOURCE_ROOT / ".academy/state/schema/task.schema.json", self.root / ".academy/state/schema/task.schema.json")
+        shutil.copy2(SOURCE_ROOT / ".academy/state/schema/spec.schema.json", self.root / ".academy/state/schema/spec.schema.json")
+        (self.root / "docs/input.md").write_text("input-v1\n", encoding="utf-8")
+        template = {
+            "schema_version": 1, "task_id": "${TASK_ID}", "revision": 1, "goal": "${GOAL}",
+            "scope": {"in_scope": ["A tested task"], "out_of_scope": []},
+            "constraints": ["Use committed source inputs"],
+            "definition_of_done": [{"id": "dod", "text": "Outputs are validated", "applies_to": ["*"]}],
+            "acceptance_criteria": [{"id": "ac", "text": "The task behaves deterministically", "applies_to": ["*"]}]
+        }
+        (self.root / ".academy/state/spec.template.json").write_text(json.dumps(template, indent=2), encoding="utf-8")
         self.git("init", "-q")
-        self.git("config", "user.email", "taskctl-test@example.com")
+        self.git("config", "user.email", "taskctl@example.com")
         self.git("config", "user.name", "TaskCtl Test")
-        self.git("add", "scripts/taskctl.py", "docs/input.md")
-        self.git("commit", "-qm", "fixture")
+        self.git("add", "scripts", ".academy/state/schema", ".academy/state/spec.template.json", "docs/input.md")
+        self.git("commit", "-qm", "test fixture")
+        self.cli("init", "TEST-1", "--module", "demo", "--goal", "A tested task", "--owner", "tester")
+        self.git("add", ".academy")
+        self.git("commit", "-qm", "create canonical task specification")
 
-    def tearDown(self) -> None:
-        self.temp.cleanup()
+    def tearDown(self):
+        self.tmp.cleanup()
 
-    def git(self, *args: str) -> str:
+    def git(self, *args):
         result = subprocess.run(["git", *args], cwd=self.root, text=True, capture_output=True)
-        if result.returncode:
-            raise AssertionError(result.stderr)
+        self.assertEqual(result.returncode, 0, result.stderr)
         return result.stdout.strip()
 
-    def cli(self, *args: str, expected: int = 0) -> str:
+    def cli(self, *args, expected=0):
         result = subprocess.run(
             [os.environ.get("PYTHON", "python"), "scripts/taskctl.py", *args],
-            cwd=self.root,
-            text=True,
-            capture_output=True,
+            cwd=self.root, text=True, capture_output=True
         )
         self.assertEqual(result.returncode, expected, result.stdout + result.stderr)
         return result.stdout + result.stderr
 
-    def create_task(self) -> None:
-        self.cli("init", "TEST-1", "--module", "demo", "--goal", "Test idempotency")
-        self.cli(
-            "add-step", "TEST-1", "research",
-            "--title", "Produce evidence",
-            "--definition-version", "v1",
-            "--input-paths", "docs/input.md",
-            "--output-paths", "outputs/evidence.md",
-        )
+    def add_step(self, name, output, depends=(), input_path="docs/input.md"):
+        self.cli("add-step", "TEST-1", name, "--title", name,
+                 "--definition-version", "v1", "--input-paths", input_path,
+                 "--output-paths", output, "--depends-on", *depends)
+        self.git("add", ".academy/state/tasks", ".academy/state/worklog")
+        self.git("commit", "-qm", "declare step " + name)
 
-    def test_completed_step_is_skipped_until_input_changes(self) -> None:
-        self.create_task()
-        self.cli("start", "TEST-1", "research", "--agent", "tester", "--run-id", "run-1")
-        (self.root / "outputs/evidence.md").write_text("evidence for source v1\n", encoding="utf-8")
-        self.git("add", "outputs/evidence.md")
-        self.git("commit", "-qm", "commit evidence")
-        self.cli("complete", "TEST-1", "research", "--agent", "tester")
-        self.assertIn("SKIP", self.cli("status", "TEST-1"))
-        self.assertIn("SKIP research", self.cli("start", "TEST-1", "research", "--agent", "tester", expected=0))
-        (self.root / "docs/input.md").write_text("source version 2\n", encoding="utf-8")
+    def set_scoped_spec(self, step_ids):
+        path = self.root / ".academy/specs/TEST-1.json"
+        spec = json.loads(path.read_text(encoding="utf-8"))
+        spec["definition_of_done"] = [
+            {"id": "dod-" + sid, "text": "Done condition for " + sid, "applies_to": [sid]}
+            for sid in step_ids
+        ]
+        spec["acceptance_criteria"] = [
+            {"id": "ac-" + sid, "text": "Acceptance condition for " + sid, "applies_to": [sid]}
+            for sid in step_ids
+        ]
+        path.write_text(json.dumps(spec, indent=2), encoding="utf-8")
+        self.git("add", ".academy/specs/TEST-1.json")
+        self.git("commit", "-qm", "scope task criteria")
+
+    def execute_step(self, name, output):
+        self.cli("start", "TEST-1", name, "--agent", "tester")
+        target = self.root / output
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text("generated by this run\n", encoding="utf-8")
+        self.git("add", output)
+        self.git("commit", "-qm", "produce " + name)
+        self.cli("complete", "TEST-1", name, "--agent", "tester")
+
+    def test_definition_of_done_change_invalidates_only_affected_step_and_downstream(self):
+        self.add_step("research", "outputs/research.md")
+        self.add_step("unrelated", "outputs/unrelated.md")
+        self.add_step("author", "outputs/author.md", depends=("research",))
+        self.set_scoped_spec(["research", "unrelated", "author"])
+        self.execute_step("research", "outputs/research.md")
+        self.execute_step("unrelated", "outputs/unrelated.md")
+        self.execute_step("author", "outputs/author.md")
+        path = self.root / ".academy/specs/TEST-1.json"
+        spec = json.loads(path.read_text(encoding="utf-8"))
+        spec["definition_of_done"][0]["text"] = "Changed DoD for research"
+        path.write_text(json.dumps(spec, indent=2), encoding="utf-8")
+        self.git("add", ".academy/specs/TEST-1.json")
+        self.git("commit", "-qm", "change research DoD")
+        output = self.cli("status", "TEST-1")
+        self.assertIn("- research: STALE", output)
+        self.assertIn("- author: BLOCKED", output)
+        self.assertIn("- unrelated: SKIP", output)
+
+    def test_acceptance_criteria_change_invalidates_completed_step(self):
+        self.add_step("research", "outputs/research.md")
+        self.set_scoped_spec(["research"])
+        self.execute_step("research", "outputs/research.md")
+        path = self.root / ".academy/specs/TEST-1.json"
+        spec = json.loads(path.read_text(encoding="utf-8"))
+        spec["acceptance_criteria"][0]["text"] = "Changed acceptance criterion"
+        path.write_text(json.dumps(spec, indent=2), encoding="utf-8")
+        self.git("add", ".academy/specs/TEST-1.json")
+        self.git("commit", "-qm", "change acceptance criteria")
+        self.assertIn("STALE", self.cli("status", "TEST-1"))
+
+    def test_start_rejects_untracked_and_dirty_inputs(self):
+        self.add_step("research", "outputs/research.md", input_path="docs/input.md")
+        (self.root / "docs/input.md").write_text("dirty input\n", encoding="utf-8")
+        self.assertIn("dirty or staged", self.cli("start", "TEST-1", "research", "--agent", "tester", expected=2))
+        self.git("checkout", "--", "docs/input.md")
+        self.add_step("other", "outputs/other.md", input_path="docs/untracked.md")
+        (self.root / "docs/untracked.md").write_text("not tracked\n", encoding="utf-8")
+        self.assertIn("not Git-tracked", self.cli("start", "TEST-1", "other", "--agent", "tester", expected=2))
+
+    def test_complete_rejects_input_change_during_run(self):
+        self.add_step("research", "outputs/research.md")
+        self.cli("start", "TEST-1", "research", "--agent", "tester")
+        (self.root / "docs/input.md").write_text("input-v2\n", encoding="utf-8")
         self.git("add", "docs/input.md")
-        self.git("commit", "-qm", "update source")
-        self.assertIn("STALE", self.cli("status", "TEST-1"))
+        self.git("commit", "-qm", "change input mid-run")
+        target = self.root / "outputs/research.md"
+        target.write_text("output\n", encoding="utf-8")
+        self.git("add", "outputs/research.md")
+        self.git("commit", "-qm", "commit output")
+        self.assertIn("changed during execution", self.cli("complete", "TEST-1", "research", expected=2))
 
-    def test_dependent_step_is_blocked_until_prerequisite_is_current(self) -> None:
-        self.create_task()
-        self.cli(
-            "add-step", "TEST-1", "author",
-            "--title", "Write lesson",
-            "--definition-version", "v1",
-            "--input-paths", "docs/input.md",
-            "--output-paths", "outputs/lesson.md",
-            "--depends-on", "research",
-        )
-        self.assertIn("BLOCKED", self.cli("status", "TEST-1"))
-
-    def test_complete_rejects_uncommitted_output(self) -> None:
-        self.create_task()
+    def test_unchanged_existing_output_requires_explicit_reuse(self):
+        self.add_step("research", "outputs/research.md")
+        target = self.root / "outputs/research.md"
+        target.write_text("pre-existing output\n", encoding="utf-8")
+        self.git("add", "outputs/research.md")
+        self.git("commit", "-qm", "commit pre-existing output")
         self.cli("start", "TEST-1", "research", "--agent", "tester")
-        (self.root / "outputs/evidence.md").write_text("not committed\n", encoding="utf-8")
         result = self.cli("complete", "TEST-1", "research", expected=2)
-        self.assertIn("not tracked by Git yet", result)
+        self.assertIn("not produced/updated", result)
+        self.cli("complete", "TEST-1", "research", "--reuse-output", "outputs/research.md",
+                 "--reuse-reason", "Verified existing output remains valid")
 
-    def test_output_edit_invalidates_completion(self) -> None:
-        self.create_task()
-        self.cli("start", "TEST-1", "research", "--agent", "tester")
-        (self.root / "outputs/evidence.md").write_text("original\n", encoding="utf-8")
-        self.git("add", "outputs/evidence.md")
-        self.git("commit", "-qm", "commit original")
-        self.cli("complete", "TEST-1", "research")
-        (self.root / "outputs/evidence.md").write_text("manual edit\n", encoding="utf-8")
-        self.git("add", "outputs/evidence.md")
-        self.git("commit", "-qm", "tamper completed output")
-        self.assertIn("STALE", self.cli("status", "TEST-1"))
+    def test_taskctl_does_not_offer_human_approval_or_publication_commands(self):
+        result = subprocess.run(
+            [os.environ.get("PYTHON", "python"), "scripts/taskctl.py", "approve", "TEST-1"],
+            cwd=self.root, text=True, capture_output=True
+        )
+        self.assertNotEqual(result.returncode, 0)
+        result = subprocess.run(
+            [os.environ.get("PYTHON", "python"), "scripts/taskctl.py", "publish", "TEST-1"],
+            cwd=self.root, text=True, capture_output=True
+        )
+        self.assertNotEqual(result.returncode, 0)
 
 
 if __name__ == "__main__":
