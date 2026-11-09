@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small, dependency-free task state manager for System Design Academy.
+"""Schema-validated task state manager for System Design Academy.
 
 A completed step is reusable only when its current input fingerprint and all
 committed output hashes match the values recorded at completion.
@@ -166,6 +166,9 @@ def load_spec(data: dict[str, Any], execution_ready: bool = False) -> dict[str, 
             if execution_ready and re.search(r"\b(TODO|TBD|replace this|fill this)\b", item["text"], re.I):
                 raise TaskError(f"Specification item {item['id']} is still a placeholder")
     if execution_ready:
+        searchable = [spec["goal"], *spec["scope"]["in_scope"], *spec["scope"]["out_of_scope"], *spec["constraints"]]
+        if any(re.search(r"\b(TODO|TBD|replace this|fill this)\b", value, re.I) for value in searchable):
+            raise TaskError("Task goal, scope, and constraints must not contain TODO/TBD placeholders")
         if not spec["goal"].strip() or not spec["scope"]["in_scope"]:
             raise TaskError("Specification must define a goal and at least one in-scope item")
         if not spec["definition_of_done"] or not spec["acceptance_criteria"]:
@@ -286,6 +289,10 @@ def step_status(data: dict[str, Any], step: dict[str, Any], memo: dict[str, str]
         return "STALE", "inputs changed while step was running; reconcile before resuming"
     if step["status"] == "completed":
         if step.get("completed_fingerprint") == current_fp and all(v is not None for v in current_outputs.values()) and step.get("completed_output_hashes") == current_outputs:
+            try:
+                require_tracked_clean(step["output_paths"], "Completed output")
+            except TaskError as exc:
+                return "STALE", str(exc)
             return "SKIP", "fingerprint and committed output hashes match"
         return "STALE", "input fingerprint or output artifact changed"
     if step["status"] == "invalidated":
@@ -547,6 +554,8 @@ def cmd_complete(args: argparse.Namespace) -> None:
     unknown = reused - set(step["output_paths"])
     if unknown:
         raise TaskError("Reuse path is not a declared output: " + ", ".join(sorted(unknown)))
+    if reused - unchanged:
+        raise TaskError("--reuse-output may only be used for outputs unchanged since start: " + ", ".join(sorted(reused - unchanged)))
     if unchanged - reused:
         raise TaskError("Output was not produced/updated in this run. Explicitly pass --reuse-output for intentional reuse: " + ", ".join(sorted(unchanged - reused)))
     if reused and not args.reuse_reason.strip():
@@ -595,6 +604,7 @@ def cmd_invalidate(args: argparse.Namespace) -> None:
         step["status"] = "invalidated"
         step["invalidation_reason"] = args.reason
         step.pop("active_fingerprint", None)
+        step.pop("active_spec_hash", None)
     data["updated_at"] = now()
     refresh_task_status(data)
     save_task(data)
