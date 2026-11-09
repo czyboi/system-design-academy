@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "author",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:49:48Z",
+  "updated_at": "2026-11-09T13:50:18Z",
   "steps": [
     {
       "step_id": "research",
@@ -127,7 +127,7 @@
     {
       "step_id": "author",
       "title": "Create the assigned draft lesson",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "research",
         "curriculum"
@@ -174,17 +174,21 @@
       "started_at": "2026-11-09T13:49:48Z",
       "run_id": "SD-DB01-WORKFLOW-PILOT-author-20261109T134948Z",
       "agent": "lesson_author",
-      "completed_fingerprint": "bbf49e37a41471a34ed44503678b76599215697b82e2e10b8254255891461f8f",
+      "completed_fingerprint": "9a34aa5c4dc0d40e864d5a6ddbeeb707d84ea2057ba8350eb91d4d217e44d69b",
       "completed_spec_hash": "e281c9191193e308c74d08fbf411dddc42848605022f717333ea3e34c73ef5fb",
       "completed_output_hashes": {
         "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7"
       },
-      "completed_at": "2026-11-09T13:21:38Z",
+      "completed_at": "2026-11-09T13:50:18Z",
       "completed_by": "lesson_author",
-      "completed_commit": "ec6d53d10948a3d30b50938922bf61ea02bec8e2",
+      "completed_commit": "82370fdcb8b004e7445a65f95b6450e28108f72c",
       "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
-      "active_spec_hash": "e281c9191193e308c74d08fbf411dddc42848605022f717333ea3e34c73ef5fb",
-      "active_fingerprint": "9a34aa5c4dc0d40e864d5a6ddbeeb707d84ea2057ba8350eb91d4d217e44d69b"
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": {
+          "reason": "The revised draft was authored from the exact DB-01 source snapshot and the committed research/curriculum outputs. Only the original source path was frozen, so the authored content remains unchanged and valid.",
+          "at": "2026-11-09T13:50:18Z"
+        }
+      }
     },
     {
       "step_id": "technical-review",
