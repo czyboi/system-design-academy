@@ -4,12 +4,12 @@
   "module_id": "database",
   "current_phase": "research",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:47:20Z",
+  "updated_at": "2026-11-09T13:47:54Z",
   "steps": [
     {
       "step_id": "research",
       "title": "Build claim-level source evidence",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -49,17 +49,21 @@
       "started_at": "2026-11-09T13:47:20Z",
       "run_id": "SD-DB01-WORKFLOW-PILOT-research-20261109T134720Z",
       "agent": "source_researcher",
-      "completed_fingerprint": "ceb686b8833083a5cd8a00c85753a2debb439e7bee2c5654c2f14341a4d9bc7a",
+      "completed_fingerprint": "35b8a785c0bab31dc087105843330a10b4ac5e71e61448e6967f8fbe86228b1d",
       "completed_spec_hash": "906600660ef8c383e63ae124006044a193fbbb53630284e763a1a170827ecabf",
       "completed_output_hashes": {
         "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": "316157517e556d756440c14a117df92d509533c65971728208eee32aa840ff98"
       },
-      "completed_at": "2026-11-09T13:14:55Z",
+      "completed_at": "2026-11-09T13:47:54Z",
       "completed_by": "source_researcher",
-      "completed_commit": "c1277934acc0fcd8838259d01de616b4c7705a2a",
+      "completed_commit": "2d2d44349c4de5e76c676ca6176a0c115a1a8f94",
       "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason.",
-      "active_spec_hash": "906600660ef8c383e63ae124006044a193fbbb53630284e763a1a170827ecabf",
-      "active_fingerprint": "35b8a785c0bab31dc087105843330a10b4ac5e71e61448e6967f8fbe86228b1d"
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": {
+          "reason": "The evidence pack was produced from the byte-identical DB-01 snapshot captured from the original research start commit; only the declared source path was frozen, so the checked claims and sources remain unchanged.",
+          "at": "2026-11-09T13:47:54Z"
+        }
+      }
     },
     {
       "step_id": "curriculum",
