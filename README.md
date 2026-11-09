@@ -19,6 +19,10 @@ An AI-assisted, source-grounded curriculum project for backend engineers learnin
 ├── CURRICULUM_MASTER.md        # Academy-wide curriculum map
 ├── GOVERNANCE.md               # Source, license, QA, and publishing rules
 ├── GITHUB_SETUP.md             # One-time remote repository setup
+├── AGENTS.md                   # Repository-wide agent guardrails
+├── .agents/skills/             # Reusable specialist workflows
+├── .codex/agents/              # Custom Codex subagent profiles
+├── .codex/config.toml          # Multi-agent concurrency settings
 ├── modules/
 │   └── database/               # Database pilot: lessons, case study, QA, sources, workflow
 ├── docs/                       # Project decisions and operating notes
