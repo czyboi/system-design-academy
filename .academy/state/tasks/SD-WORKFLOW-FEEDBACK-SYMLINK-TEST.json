@@ -2,14 +2,14 @@
   "schema_version": 2,
   "task_id": "SD-WORKFLOW-FEEDBACK-SYMLINK-TEST",
   "module_id": "workflow",
-  "current_phase": null,
+  "current_phase": "feedback",
   "created_at": "2026-11-09T14:52:47Z",
-  "updated_at": "2026-11-09T14:52:47Z",
+  "updated_at": "2026-11-09T14:53:42Z",
   "steps": [
     {
       "step_id": "feedback",
       "title": "Add the durable feedback and independent-review loop",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -30,7 +30,27 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "3656dd1cbf294cd080f1f54416766507b9b3eb5c",
+      "start_input_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/AGENTS-original.md": "c2090d282a550279f3eeb775265ccd615501916c2999a111755599a02bc26d17",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/module-pipeline-original.md": "99032653affe971e2976ba56f10925159a083c0588b7218a8917e880c5208da1",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/task-handoff-original.md": "e567036f15037a89e9e57af10991b1b89744d73a461bd2f834c080970269738d",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/lesson-authoring-original.md": "2d3ec97b0dbd6cca6a3251676292d3705e872537338970c4e2bc8c319e1cdd15",
+        ".academy/state/README.md": "00d5d3f012bba8fd368d1a9c1d7f374003dc57a2e724a6369f47b5542c715158"
+      },
+      "start_output_hashes": {
+        "AGENTS.md": "c2090d282a550279f3eeb775265ccd615501916c2999a111755599a02bc26d17",
+        ".agents/skills/module-pipeline/SKILL.md": "99032653affe971e2976ba56f10925159a083c0588b7218a8917e880c5208da1",
+        ".agents/skills/task-handoff/SKILL.md": "e567036f15037a89e9e57af10991b1b89744d73a461bd2f834c080970269738d",
+        ".agents/skills/lesson-authoring/SKILL.md": "2d3ec97b0dbd6cca6a3251676292d3705e872537338970c4e2bc8c319e1cdd15",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/review/feedback-retrospective.md": null
+      },
+      "started_at": "2026-11-09T14:53:42Z",
+      "active_spec_hash": "8ed6f9d9b8b12e88d19c948453c9b153ee798c4e5365f06929dcb2269aeb0cb0",
+      "active_fingerprint": "b709543d304c6765bea3370ea4711a0be27230537b2852baec35f821941ec7aa",
+      "run_id": "SD-WORKFLOW-FEEDBACK-SYMLINK-TEST-feedback-20261109T145342Z",
+      "agent": "workflow-maintainer"
     },
     {
       "step_id": "symlink-test",
@@ -80,5 +100,5 @@
   "notes": "Single writer: @czyboi. Task-specific feedback belongs in this task's worklog/reports; reusable process changes belong in shared skills and regression checks.",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST.json",
-  "automation_status": "not_started"
+  "automation_status": "in_progress"
 }
