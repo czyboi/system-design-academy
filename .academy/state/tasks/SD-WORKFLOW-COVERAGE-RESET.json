@@ -4,12 +4,12 @@
   "module_id": "database",
   "current_phase": "coverage-agent",
   "created_at": "2026-11-09T15:54:44Z",
-  "updated_at": "2026-11-09T16:01:44Z",
+  "updated_at": "2026-11-09T16:05:08Z",
   "steps": [
     {
       "step_id": "coverage-agent",
       "title": "Add independent source-to-curriculum and lesson coverage reviewer",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -49,10 +49,21 @@
         ".claude/agents/curriculum-designer.md": "44daa0b08094eec8f40b3c9faebd46911221083ae28ffe0ed8bfad4f35c7d44f"
       },
       "started_at": "2026-11-09T16:01:44Z",
-      "active_spec_hash": "9fea1ded53c11136f71452372cd187c89b56b83e4dd6ec70721d110e3e6cd2dd",
-      "active_fingerprint": "96577d2cc71c1fd9500b7408b40a25dabedee3fd1e4ed62b2b7a841876da5a0d",
       "run_id": "SD-WORKFLOW-COVERAGE-RESET-coverage-agent-20261109T160144Z",
-      "agent": "curriculum-coverage-reviewer"
+      "agent": "curriculum-coverage-reviewer",
+      "completed_fingerprint": "96577d2cc71c1fd9500b7408b40a25dabedee3fd1e4ed62b2b7a841876da5a0d",
+      "completed_spec_hash": "9fea1ded53c11136f71452372cd187c89b56b83e4dd6ec70721d110e3e6cd2dd",
+      "completed_output_hashes": {
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757",
+        ".codex/agents/curriculum-coverage-reviewer.toml": "bce6e412ce53e4998dbb8ff2ed22c67aeb7f38015509362726b11fade1ce09a2",
+        ".claude/agents/curriculum-coverage-reviewer.md": "3094e2b3143c473ae0fc9331d02b49ef761ebbf4f59bbe97faed799151eb67d0",
+        ".agents/skills/curriculum-design/SKILL.md": "7b37217f21de33188853b2dd751ae0587fb495a64106ab033ba67b0c5c9556ab",
+        ".codex/agents/curriculum-designer.toml": "33dbe099ed95d34464add4ec84c039355618153bcb0b8eb44c800292c46ab800",
+        ".claude/agents/curriculum-designer.md": "ae0f2e8b8e2fd55e3e2b32b8c61d6134600b0bc919b002f36d9b61bc36d20667"
+      },
+      "completed_at": "2026-11-09T16:05:08Z",
+      "completed_by": "curriculum-coverage-reviewer",
+      "completed_commit": "104b27ecf31654af4dcdfde91b479daab9ea263f"
     },
     {
       "step_id": "teaching-contract",
