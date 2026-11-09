@@ -14,7 +14,7 @@
 - Before starting a multi-step task, search for an existing GitHub Issue and `.academy/state/tasks/<TASK-ID>.json`. Reuse the existing task when the goal is the same; do not create duplicate work.
 - Read `.academy/state/README.md`, then run `python scripts/taskctl.py status <TASK-ID>` before doing task work.
 - Treat `SKIP` as completed and reusable: do not repeat it. Treat `RESUME` as an interrupted step: read its checkpoint and continue. Treat `STALE` as changed inputs/outputs: inspect the diff and explicitly invalidate/re-run only what is affected. Treat `BLOCKED` as a dependency that must be resolved first.
-- Call `taskctl start` before editing a step; checkpoint before handoff; commit declared outputs before `taskctl complete`.
+- After every state-mutating `taskctl` command, commit the task JSON and JSONL worklog to the active branch. Commit `start` before editing; commit each checkpoint before handoff; commit declared outputs before `taskctl complete`, then commit the updated state/worklog.
 - Never manually mark a step completed in JSON. `taskctl complete` verifies output files are tracked and clean, then records hashes and the commit SHA.
 - Keep detailed progress in task JSON/JSONL; put only the owner, high-level status, links, blocker, and next action in the GitHub Issue.
 - One active writer per task/lesson. Parallel reviewers must write to distinct report paths. The task state file is not a distributed lock.
