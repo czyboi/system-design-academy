@@ -4,12 +4,12 @@
   "module_id": "database",
   "current_phase": "revision",
   "created_at": "2026-11-09T14:23:41Z",
-  "updated_at": "2026-11-09T14:39:13Z",
+  "updated_at": "2026-11-09T14:39:45Z",
   "steps": [
     {
       "step_id": "revision",
       "title": "Set English language policy and revise DB-01 teaching",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -58,10 +58,20 @@
         "modules/database/workflow/runs/SD-DB01-ENGLISH-TEACHING-REVISION/review/language-and-teaching-audit.md": null
       },
       "started_at": "2026-11-09T14:26:53Z",
-      "active_spec_hash": "fa5296d60f64105b2fc53320726c345794695e356d07550c30e00433146d3313",
-      "active_fingerprint": "873b74cbf797c404078a543aff98d77312596af41f08521d5a95c991d3537a97",
       "run_id": "SD-DB01-ENGLISH-TEACHING-REVISION-revision-20261109T142653Z",
-      "agent": "lesson-author"
+      "agent": "lesson-author",
+      "completed_fingerprint": "873b74cbf797c404078a543aff98d77312596af41f08521d5a95c991d3537a97",
+      "completed_spec_hash": "fa5296d60f64105b2fc53320726c345794695e356d07550c30e00433146d3313",
+      "completed_output_hashes": {
+        "PROJECT_SPEC.md": "066724aef57b16ca8f8c68444c4ef31519277f30e1c20b24544ea3b51ae9b95f",
+        "modules/database/README.md": "f84f394985b866e55362c27d8310aa29642af283d31e615c0b06df3b10763a66",
+        "modules/database/governance/content-guidelines.md": "04bf8eba3cf8d995adeb2141ff1454fac547833a4ed8f2786001798714bbf5ad",
+        "modules/database/lessons/DB-01-data-modeling.md": "41a66089849b480bcc5238ba0ea05ed30f5b3b5c6916cd5129a4ce308b6a7fb9",
+        "modules/database/workflow/runs/SD-DB01-ENGLISH-TEACHING-REVISION/review/language-and-teaching-audit.md": "a5cdbacf1371adfc655e0db10bccf22f7439471314ad3e8622a99249ee372c7f"
+      },
+      "completed_at": "2026-11-09T14:39:45Z",
+      "completed_by": "lesson-author",
+      "completed_commit": "ca90254b82ebef8aedcc024dbaf5de8353a844bc"
     },
     {
       "step_id": "validation",
