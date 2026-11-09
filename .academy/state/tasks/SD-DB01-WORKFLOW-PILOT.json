@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "curriculum",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:48:36Z",
+  "updated_at": "2026-11-09T13:49:01Z",
   "steps": [
     {
       "step_id": "research",
@@ -68,7 +68,7 @@
     {
       "step_id": "curriculum",
       "title": "Map prerequisites, outcomes, and sequence",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -108,17 +108,21 @@
       "started_at": "2026-11-09T13:48:36Z",
       "run_id": "SD-DB01-WORKFLOW-PILOT-curriculum-20261109T134836Z",
       "agent": "curriculum_designer",
-      "completed_fingerprint": "96eb8e4d757a6dffc4bc5f1ee748fd041d7add10833ed4085cf7d3032113a7a4",
+      "completed_fingerprint": "270fa7f41338f4e851299a2ffc9fb06a34ab88331674e56b2fb6cea321c7a419",
       "completed_spec_hash": "b3d41cb77cc524c81f7b952816332acb0bf9ba7efff6adc9f05890b240d605cb",
       "completed_output_hashes": {
         "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": "f328481e997ffad5003d086eea44cd44ae4911b7f12eb5e38dbf0c89455612d2"
       },
-      "completed_at": "2026-11-09T13:12:00Z",
+      "completed_at": "2026-11-09T13:49:01Z",
       "completed_by": "curriculum_designer",
-      "completed_commit": "172f0a3ce8a86975e30724d427a9c23e65458d26",
+      "completed_commit": "db7a244c8f0e844b3166527660f4a5de262dc385",
       "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
-      "active_spec_hash": "b3d41cb77cc524c81f7b952816332acb0bf9ba7efff6adc9f05890b240d605cb",
-      "active_fingerprint": "270fa7f41338f4e851299a2ffc9fb06a34ab88331674e56b2fb6cea321c7a419"
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": {
+          "reason": "The curriculum map was produced from the byte-identical DB-01 snapshot captured from the original research start commit; freezing the declared source path does not change its mapping or findings.",
+          "at": "2026-11-09T13:49:01Z"
+        }
+      }
     },
     {
       "step_id": "author",
