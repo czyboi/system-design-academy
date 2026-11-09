@@ -316,52 +316,85 @@ def git_output(args: list[str]) -> str:
     return result.stdout.strip()
 
 
+
+def git_checked(args: list[str], check: bool = True) -> subprocess.CompletedProcess[str]:
+    try:
+        result = subprocess.run(["git", *args], cwd=ROOT, text=True, capture_output=True)
+    except OSError as exc:
+        raise TaskError(f"Cannot execute Git: {exc}") from exc
+    if check and result.returncode:
+        raise TaskError(f"Git command failed ({' '.join(args)}): {result.stderr.strip()}")
+    return result
+
+
+def require_tracked_clean(paths: list[str], purpose: str) -> None:
+    for value in paths:
+        relpath(value)
+        tracked = git_checked(["ls-files", "--error-unmatch", "--", value], check=False)
+        if tracked.returncode:
+            raise TaskError(f"{purpose} is not Git-tracked: {value}")
+        dirty = git_checked(["status", "--porcelain", "--untracked-files=all", "--", value]).stdout.strip()
+        if dirty:
+            raise TaskError(f"{purpose} is dirty or staged: {value}. Commit or discard changes first.")
+
+
 def require_committed_outputs(step: dict[str, Any]) -> str:
     for value in step["output_paths"]:
-        path = relpath(value)
-        if not path.is_file():
+        if not relpath(value).is_file():
             raise TaskError(f"Output not found: {value}")
-        tracked = subprocess.run(["git", "ls-files", "--error-unmatch", value], cwd=ROOT, text=True, capture_output=True)
-        if tracked.returncode != 0:
-            raise TaskError(f"Output is not tracked by Git yet: {value}. Commit it before marking the step complete.")
-        changed = subprocess.run(["git", "status", "--porcelain", "--", value], cwd=ROOT, text=True, capture_output=True, check=True).stdout.strip()
-        if changed:
-            raise TaskError(f"Output has uncommitted changes: {value}. Commit it before marking the step complete.")
+    require_tracked_clean(step["output_paths"], "Output")
     return git_output(["rev-parse", "HEAD"])
 
 
+def render_template(path: Path, values: dict[str, str]) -> dict[str, Any]:
+    # Parse JSON first, then render string values recursively. Never mutate raw JSON text.
+    data = json.loads(path.read_text(encoding="utf-8"))
+    def render(value: Any) -> Any:
+        if isinstance(value, str):
+            return Template(value).safe_substitute(values)
+        if isinstance(value, list):
+            return [render(item) for item in value]
+        if isinstance(value, dict):
+            return {key: render(item) for key, item in value.items()}
+        return value
+    return render(data)
+
+
+def save_json(path: Path, data: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def cmd_init(args: argparse.Namespace) -> None:
-    path = task_path(args.task_id)
-    if path.exists():
-        raise TaskError(f"Task already exists: {path.relative_to(ROOT)}")
+    state_path = task_path(args.task_id)
+    spec_path = spec_path_for(args.task_id)
+    if state_path.exists() or spec_path.exists():
+        raise TaskError(f"Task or task specification already exists for {args.task_id}")
+    values = {"TASK_ID": args.task_id, "MODULE_ID": args.module, "GOAL": args.goal, "OWNER": args.owner}
+    spec = render_template(relpath(args.spec_template), values)
+    spec.update({"schema_version": 1, "task_id": args.task_id, "revision": 1, "goal": args.goal})
     if args.template:
-        template_path = relpath(args.template)
-        try:
-            raw = template_path.read_text(encoding="utf-8")
-            rendered = raw.replace("{{TASK_ID}}", args.task_id).replace("{{MODULE_ID}}", args.module).replace("{{GOAL}}", args.goal)
-            data = json.loads(rendered)
-        except (OSError, json.JSONDecodeError) as exc:
-            raise TaskError(f"Cannot load task template {args.template}: {exc}") from exc
-        data["created_at"] = now()
-        data["updated_at"] = now()
+        data = render_template(relpath(args.template), values)
     else:
-        data = {
-            "schema_version": 1,
-            "task_id": args.task_id,
-            "module_id": args.module,
-            "goal": args.goal,
-            "status": "not_started",
-            "current_phase": None,
-            "created_at": now(),
-            "updated_at": now(),
-            "steps": [],
-            "notes": "",
-        }
+        data = {"steps": [], "notes": "", "current_phase": None}
+    data.update({
+        "schema_version": 2,
+        "task_id": args.task_id,
+        "module_id": args.module,
+        "owner": args.owner,
+        "spec_path": f".academy/specs/{args.task_id}.json",
+        "automation_status": "not_started",
+        "created_at": now(),
+        "updated_at": now(),
+    })
+    data.pop("goal", None)
+    data.pop("status", None)
+    validate_json_schema(spec, SPEC_SCHEMA, "Task specification")
+    save_json(spec_path, spec)
     validate_task(data)
     save_task(data)
-    log_event(args.task_id, "task_created", module_id=args.module, goal=args.goal)
-    print(f"Created {path.relative_to(ROOT)}. Add step definitions to its steps array, then run `status`.")
-
+    log_event(args.task_id, "task_created", module_id=args.module, owner=args.owner, spec_path=data["spec_path"])
+    print(f"Created {state_path.relative_to(ROOT)} and {spec_path.relative_to(ROOT)}. Complete the specification before execution.")
 
 def cmd_add_step(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
@@ -386,23 +419,44 @@ def cmd_add_step(args: argparse.Namespace) -> None:
     print(f"Added step {args.task_id}/{args.step_id}")
 
 
+
 def cmd_status(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
+    previous = data.get("automation_status")
     refresh_task_status(data)
-    print(f"{data['task_id']} | {data['module_id']} | {data['status']}")
-    print(data["goal"])
-    memo: dict[str, str] = {}
+    if previous != data["automation_status"]:
+        data["updated_at"] = now()
+        save_task(data)
+        log_event(args.task_id, "automation_status_reconciled", previous=previous, current=data["automation_status"])
+        print("Persisted status reconciliation; commit task JSON and worklog.")
+    spec = load_spec(data)
+    print(f"{data['task_id']} | {data['module_id']} | automation={data['automation_status']} | owner={data['owner']}")
+    print(f"Specification: {data['spec_path']} — {spec['goal']}")
     for step in data["steps"]:
-        state, reason = step_status(data, step, memo)
+        state, reason = step_status(data, step)
         print(f"- {step['step_id']}: {state} — {reason}")
         if step.get("checkpoint", {}).get("next_action"):
             print(f"  next: {step['checkpoint']['next_action']}")
     if not data["steps"]:
         print("No steps are defined yet.")
+    print("Human review, approval, and publication are separate human-controlled transitions.")
+
+
+def current_input_snapshot(data: dict[str, Any], step: dict[str, Any]) -> dict[str, str]:
+    paths = list(step["input_paths"]) + [data["spec_path"]]
+    hashes: dict[str, str] = {}
+    for value in paths:
+        digest = sha256_file(relpath(value))
+        if digest is None:
+            raise TaskError(f"Required input file is missing: {value}")
+        hashes[value] = digest
+    return hashes
 
 
 def cmd_start(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
+    if not data["owner"].strip():
+        raise TaskError("Set the task owner before execution")
     states = step_map(data)
     if args.step_id not in states:
         raise TaskError(f"Unknown step: {args.step_id}")
@@ -411,30 +465,43 @@ def cmd_start(args: argparse.Namespace) -> None:
     if state == "SKIP":
         print(f"SKIP {args.step_id}: {reason}. Do not repeat this step.")
         return
-    if state == "RESUME":
-        if not args.resume:
-            raise TaskError(f"Step is already running. Inspect its checkpoint and use --resume; {reason}.")
-    elif state != "READY":
+    if state == "RESUME" and not args.resume:
+        raise TaskError(f"Step is already running. Inspect its checkpoint and use --resume; {reason}")
+    if state not in {"READY", "RESUME"}:
         raise TaskError(f"Cannot start {args.step_id}: {state} — {reason}")
-    missing = [p for p in step["input_paths"] if not relpath(p).is_file()]
-    if missing:
-        raise TaskError("Required input file(s) missing: " + ", ".join(missing))
+    load_spec(data, execution_ready=True)
+    require_tracked_clean(list(step["input_paths"]) + [data["spec_path"]], "Input/specification")
+    snapshot = current_input_snapshot(data, step)
+    output_before = output_hashes(step)
     run_id = args.run_id or f"{args.task_id}-{args.step_id}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
+    if args.resume:
+        if step.get("start_commit") is None or step.get("start_input_hashes") != snapshot:
+            raise TaskError("Cannot resume: the starting commit or input snapshot is missing/changed; reconcile and restart.")
+        git_checked(["merge-base", "--is-ancestor", step["start_commit"], "HEAD"])
+        step["resume_count"] = step.get("resume_count", 0) + 1
+    else:
+        for path, digest in output_before.items():
+            if digest is not None:
+                require_tracked_clean([path], "Existing output")
+        step["start_commit"] = git_output(["rev-parse", "HEAD"])
+        step["start_input_hashes"] = snapshot
+        step["start_output_hashes"] = output_before
+        step["attempts"] = step.get("attempts", 0) + 1
+        step["started_at"] = now()
     step["status"] = "running"
+    step["active_spec_hash"] = step_spec_hash(data, args.step_id)
     step["active_fingerprint"] = step_fingerprint(data, args.step_id)
     step["run_id"] = run_id
     step["agent"] = args.agent
-    step["started_at"] = now()
-    step.setdefault("attempts", 0)
-    if not args.resume:
-        step["attempts"] += 1
     data["current_phase"] = args.step_id
     data["updated_at"] = now()
-    data["status"] = "in_progress"
+    data["automation_status"] = "in_progress"
     save_task(data)
-    log_event(args.task_id, "step_resumed" if args.resume else "step_started", step_id=args.step_id, agent=args.agent, run_id=run_id, fingerprint=step["active_fingerprint"])
-    print(f"{'Resumed' if args.resume else 'Started'} {args.task_id}/{args.step_id}; run_id={run_id}")
-
+    log_event(args.task_id, "step_resumed" if args.resume else "step_started",
+              step_id=args.step_id, agent=args.agent, run_id=run_id,
+              fingerprint=step["active_fingerprint"], start_commit=step["start_commit"],
+              input_hashes=snapshot)
+    print(f"{'Resumed' if args.resume else 'Started'} {args.task_id}/{args.step_id}; start_commit={step['start_commit'][:12]}")
 
 def cmd_checkpoint(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
@@ -450,6 +517,7 @@ def cmd_checkpoint(args: argparse.Namespace) -> None:
     print(f"Checkpoint saved for {args.task_id}/{args.step_id}")
 
 
+
 def cmd_complete(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
     step = step_map(data).get(args.step_id)
@@ -457,26 +525,56 @@ def cmd_complete(args: argparse.Namespace) -> None:
         raise TaskError(f"Unknown step: {args.step_id}")
     if step["status"] != "running":
         raise TaskError(f"Cannot complete {args.step_id}: status is {step['status']}, not running")
+    require_tracked_clean(list(step["input_paths"]) + [data["spec_path"]], "Input/specification")
+    current_snapshot = current_input_snapshot(data, step)
+    if current_snapshot != step.get("start_input_hashes"):
+        raise TaskError("Declared inputs or task specification changed during execution; reconcile and restart.")
+    current_spec_hash = step_spec_hash(data, args.step_id)
     current_fp = step_fingerprint(data, args.step_id)
-    if current_fp != step.get("active_fingerprint"):
-        raise TaskError("Inputs changed during execution. Do not mark complete; reconcile and re-run from the current fingerprint.")
+    if current_spec_hash != step.get("active_spec_hash") or current_fp != step.get("active_fingerprint"):
+        raise TaskError("Task specification, inputs, or dependencies changed during execution. Do not mark complete.")
+    start_commit = step.get("start_commit")
+    if not start_commit:
+        raise TaskError("Missing start_commit; refusing completion without a reproducible baseline")
+    git_checked(["merge-base", "--is-ancestor", start_commit, "HEAD"])
     commit_sha = require_committed_outputs(step)
     hashes = output_hashes(step)
-    if any(v is None for v in hashes.values()):
-        raise TaskError("One or more output hashes could not be calculated")
+    unchanged = {
+        path for path, digest in hashes.items()
+        if digest is None or digest == step.get("start_output_hashes", {}).get(path)
+    }
+    reused = set(args.reuse_output or [])
+    unknown = reused - set(step["output_paths"])
+    if unknown:
+        raise TaskError("Reuse path is not a declared output: " + ", ".join(sorted(unknown)))
+    if unchanged - reused:
+        raise TaskError("Output was not produced/updated in this run. Explicitly pass --reuse-output for intentional reuse: " + ", ".join(sorted(unchanged - reused)))
+    if reused and not args.reuse_reason.strip():
+        raise TaskError("--reuse-reason is required when reusing unchanged outputs")
+    for path in step["output_paths"]:
+        changed = git_checked(["diff", "--quiet", start_commit, "HEAD", "--", path], check=False).returncode != 0
+        if path not in reused and not changed:
+            raise TaskError(f"Output has no committed change after start: {path}")
     step["status"] = "completed"
     step["completed_fingerprint"] = current_fp
+    step["completed_spec_hash"] = current_spec_hash
     step["completed_output_hashes"] = hashes
     step["completed_at"] = now()
     step["completed_by"] = args.agent or step.get("agent", "unknown")
     step["completed_commit"] = commit_sha
+    if reused:
+        step["reused_outputs"] = {path: {"reason": args.reuse_reason, "at": now()} for path in sorted(reused)}
     step.pop("active_fingerprint", None)
+    step.pop("active_spec_hash", None)
     data["updated_at"] = now()
     refresh_task_status(data)
     save_task(data)
-    log_event(args.task_id, "step_completed", step_id=args.step_id, run_id=step.get("run_id"), fingerprint=current_fp, output_hashes=hashes, commit=commit_sha)
-    print(f"Completed {args.task_id}/{args.step_id} at {commit_sha[:12]}; outputs are fingerprinted.")
-
+    log_event(args.task_id, "step_completed", step_id=args.step_id, run_id=step.get("run_id"),
+              fingerprint=current_fp, spec_hash=current_spec_hash, output_hashes=hashes,
+              commit=commit_sha, reused_outputs=sorted(reused), reuse_reason=args.reuse_reason if reused else None)
+    print(f"Completed {args.task_id}/{args.step_id} at {commit_sha[:12]}; automation={data['automation_status']}.")
+    if data["automation_status"] == "automation_complete":
+        print("Automation complete; human review, approval, and publication remain manual gates.")
 
 def cmd_invalidate(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
@@ -529,7 +627,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("task_id")
     p.add_argument("--module", required=True)
     p.add_argument("--goal", required=True)
-    p.add_argument("--template", help="Repository-relative JSON task template")
+    p.add_argument("--owner", required=True, help="Responsible GitHub username/team; required for single-writer coordination")
+    p.add_argument("--template", help="Repository-relative JSON task-state template")
+    p.add_argument("--spec-template", default=".academy/state/spec.template.json", help="Repository-relative task specification template")
     p.set_defaults(func=cmd_init)
     p = sub.add_parser("add-step", help="Add a step and declare its inputs, outputs, and dependencies")
     p.add_argument("task_id")
@@ -560,6 +660,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("task_id")
     p.add_argument("step_id")
     p.add_argument("--agent")
+    p.add_argument("--reuse-output", action="append", default=[], help="Explicitly reuse an unchanged declared output; repeat per path")
+    p.add_argument("--reuse-reason", default="", help="Required reason for unchanged output reuse")
     p.set_defaults(func=cmd_complete)
     p = sub.add_parser("invalidate", help="Invalidate a step when a human decision requires it")
     p.add_argument("task_id")
