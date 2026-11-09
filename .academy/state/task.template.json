@@ -16,7 +16,8 @@
         ".agents/skills/source-research/SKILL.md",
         ".codex/agents/source-researcher.toml",
         "GOVERNANCE.md",
-        "modules/${MODULE_ID}/README.md"
+        "modules/${MODULE_ID}/README.md",
+        ".claude/agents/source-researcher.md"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/research/evidence.md"
@@ -37,7 +38,8 @@
         ".agents/skills/curriculum-design/SKILL.md",
         ".codex/agents/curriculum-designer.toml",
         "CURRICULUM_MASTER.md",
-        "modules/${MODULE_ID}/README.md"
+        "modules/${MODULE_ID}/README.md",
+        ".claude/agents/curriculum-designer.md"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/curriculum/map.md"
@@ -61,7 +63,8 @@
         ".agents/skills/lesson-authoring/SKILL.md",
         ".agents/skills/assessment-design/SKILL.md",
         ".codex/agents/lesson-author.toml",
-        "GOVERNANCE.md"
+        "GOVERNANCE.md",
+        ".claude/agents/lesson-author.md"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/draft.md"
@@ -82,7 +85,8 @@
       "definition_version": "v1",
       "input_paths": [
         ".agents/skills/technical-review/SKILL.md",
-        ".codex/agents/technical-reviewer.toml"
+        ".codex/agents/technical-reviewer.toml",
+        ".claude/agents/technical-reviewer.md"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/technical.md"
@@ -103,7 +107,8 @@
       "definition_version": "v1",
       "input_paths": [
         ".agents/skills/pedagogical-review/SKILL.md",
-        ".codex/agents/pedagogy-reviewer.toml"
+        ".codex/agents/pedagogy-reviewer.toml",
+        ".claude/agents/pedagogy-reviewer.md"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/pedagogy.md"
@@ -125,7 +130,8 @@
       "input_paths": [
         ".agents/skills/provenance-review/SKILL.md",
         ".codex/agents/provenance-reviewer.toml",
-        "GOVERNANCE.md"
+        "GOVERNANCE.md",
+        ".claude/agents/provenance-reviewer.md"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/provenance.md"
