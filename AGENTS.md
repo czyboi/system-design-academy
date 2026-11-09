@@ -20,6 +20,7 @@
 - Commit declared outputs before `complete`. Completion verifies input/spec stability and requires new committed output, unless intentional reuse is explicitly recorded with `--reuse-output PATH --reuse-reason "..."`.
 - Commit state/worklog after every mutation. Checkpoint and commit before handing off to another provider/session.
 - One active writer per task. The JSON state is not a distributed lock.
+- Record user corrections, reviewer findings, and validation failures in the task worklog or report with their source, disposition, and follow-up. Before reusing a workflow, read relevant prior feedback. Promote reusable process improvements into shared skills, QA checklists, or regression tests through a scoped task; keep one-off decisions in task artifacts and do not rely on chat memory.
 
 ## Skills and agents
 - Shared procedures live only in `.agents/skills/`. Codex profiles live in `.codex/agents/`; Claude Code project subagents live in `.claude/agents/`.

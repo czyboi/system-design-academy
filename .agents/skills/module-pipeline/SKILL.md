@@ -41,3 +41,11 @@ The CLI only reaches `automation_complete`. Human review, approval, PR merge, an
 
 ## Delegation
 Give each agent bounded inputs, output paths, and stop conditions. Shared instructions live in `.agents/skills/`; provider-specific profiles should reference those skills rather than duplicate them. Role instructions alone do not enforce permissions.
+
+## Feedback and reusable learning
+- At intake, read relevant prior task retrospectives, review reports, validation reports, and worklog entries. Carry forward applicable findings without reopening completed work outside the new task scope.
+- Record explicit user corrections, reviewer findings, and validation/test failures with their source, affected step or artifact, disposition, and reason in the current task worklog or report. Use clear dispositions such as applied, deferred, or task-specific.
+- Before completing a material task, write a short retrospective linking feedback to the root cause, change made, and verification performed.
+- Keep task-specific decisions in the task artifacts. Promote reusable process feedback into the shared skill, QA checklist, or regression test that governs future work; include a regression check when practical.
+- Keep provider profiles as role/configuration wrappers. Do not copy shared procedure into individual agent profiles, and do not claim that an agent has learned unless the repository change is committed.
+- For substantive lesson revisions that change explanations, examples, technical claims, assessments, or learning sequence, declare distinct independent review outputs for pedagogy and the relevant technical and provenance/language areas. The author must not label self-review as independent. If a reviewer is unavailable, record the gap and leave that gate unresolved.

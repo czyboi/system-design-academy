@@ -28,3 +28,8 @@ Require the module curriculum, lesson template, content guidelines, attribution 
 
 ## Output
 Write only assigned lesson paths. Report evidence gaps and unresolved claims separately.
+
+## Substantive revisions and feedback
+- For an existing lesson, map user and reviewer feedback to explicit task acceptance criteria and record each item as applied, deferred, or task-specific, with a reason.
+- A substantive revision changes explanations, examples, technical claims, assessments, or learning sequence. Declare separate independent review outputs for pedagogy and the relevant technical and provenance/language areas after authoring; the author cannot count self-review as independent.
+- If a required reviewer is unavailable, record the gap and leave that review gate unresolved. Do not describe the revised lesson as independently reviewed.

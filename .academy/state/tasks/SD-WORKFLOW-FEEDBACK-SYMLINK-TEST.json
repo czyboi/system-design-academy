@@ -4,7 +4,7 @@
   "module_id": "workflow",
   "current_phase": "feedback",
   "created_at": "2026-11-09T14:52:47Z",
-  "updated_at": "2026-11-09T14:53:42Z",
+  "updated_at": "2026-11-09T14:55:51Z",
   "steps": [
     {
       "step_id": "feedback",
@@ -27,8 +27,9 @@
         ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/review/feedback-retrospective.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Added durable feedback capture/disposition guidance to AGENTS.md and shared skills, required independent reviews for substantive lesson revisions, and wrote the user-feedback retrospective.",
+        "next_action": "Commit the feedback outputs, complete the feedback step, then start the symlink-test step.",
+        "at": "2026-11-09T14:55:51Z"
       },
       "attempts": 1,
       "start_commit": "3656dd1cbf294cd080f1f54416766507b9b3eb5c",
