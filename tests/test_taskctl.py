@@ -150,6 +150,36 @@ class TaskCtlV2Tests(unittest.TestCase):
         self.cli("complete", "TEST-1", "research", "--reuse-output", "outputs/research.md",
                  "--reuse-reason", "Verified existing output remains valid")
 
+
+    def test_interrupted_step_resumes_from_checkpoint_and_original_commit(self):
+        self.add_step("research", "outputs/research.md")
+        self.cli("start", "TEST-1", "research", "--agent", "tester", "--run-id", "run-resume")
+        self.git("add", ".academy/state/tasks", ".academy/state/worklog")
+        self.git("commit", "-qm", "persist initial run")
+        self.cli("checkpoint", "TEST-1", "research", "--note", "Source A verified", "--next-action", "Verify Source B")
+        self.git("add", ".academy/state/tasks", ".academy/state/worklog")
+        self.git("commit", "-qm", "persist checkpoint")
+        resumed = self.cli("start", "TEST-1", "research", "--agent", "tester", "--resume")
+        self.assertIn("Resumed", resumed)
+        output = self.root / "outputs/research.md"
+        output.write_text("resumed output\n", encoding="utf-8")
+        self.git("add", "outputs/research.md")
+        self.git("commit", "-qm", "finish resumed work")
+        self.cli("complete", "TEST-1", "research", "--agent", "tester")
+        self.assertIn("SKIP", self.cli("status", "TEST-1"))
+
+    def test_path_validation_rejects_absolute_and_symlink_inputs(self):
+        absolute = self.cli("add-step", "TEST-1", "absolute", "--title", "absolute",
+                            "--definition-version", "v1", "--input-paths", "/etc/passwd",
+                            "--output-paths", "outputs/a.md", expected=2)
+        self.assertIn("Unsafe repository-relative path", absolute)
+        link = self.root / "docs/link.md"
+        link.symlink_to(self.root / "docs/input.md")
+        symlink = self.cli("add-step", "TEST-1", "symlink", "--title", "symlink",
+                           "--definition-version", "v1", "--input-paths", "docs/link.md",
+                           "--output-paths", "outputs/b.md", expected=2)
+        self.assertIn("Symlink path components are not allowed", symlink)
+
     def test_taskctl_does_not_offer_human_approval_or_publication_commands(self):
         result = subprocess.run(
             [os.environ.get("PYTHON", "python"), "scripts/taskctl.py", "approve", "TEST-1"],
