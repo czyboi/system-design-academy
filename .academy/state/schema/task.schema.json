@@ -1,42 +1,123 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://system-design-academy.invalid/schemas/task.schema.json",
-  "title": "System Design Academy Task State",
+  "title": "System Design Academy Task State v2",
   "type": "object",
-  "required": ["schema_version", "task_id", "module_id", "goal", "status", "steps"],
+  "required": [
+    "schema_version",
+    "task_id",
+    "module_id",
+    "owner",
+    "spec_path",
+    "automation_status",
+    "steps"
+  ],
   "properties": {
-    "schema_version": {"const": 1},
-    "task_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"},
-    "module_id": {"type": "string", "minLength": 1},
-    "goal": {"type": "string", "minLength": 1},
-    "status": {"enum": ["not_started", "in_progress", "blocked", "complete"]},
-    "current_phase": {"type": ["string", "null"]},
-    "created_at": {"type": ["string", "null"], "format": "date-time"},
-    "updated_at": {"type": ["string", "null"], "format": "date-time"},
-    "notes": {"type": "string"},
+    "schema_version": {
+      "const": 2
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+    },
+    "module_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "spec_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "automation_status": {
+      "enum": [
+        "not_started",
+        "in_progress",
+        "blocked",
+        "automation_complete"
+      ]
+    },
+    "current_phase": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    },
     "steps": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["step_id", "title", "status", "depends_on", "definition_version", "input_paths", "output_paths"],
+        "required": [
+          "step_id",
+          "title",
+          "status",
+          "depends_on",
+          "definition_version",
+          "input_paths",
+          "output_paths"
+        ],
         "properties": {
-          "step_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"},
-          "title": {"type": "string", "minLength": 1},
-          "status": {"enum": ["pending", "running", "completed", "invalidated", "blocked"]},
-          "depends_on": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
-          "definition_version": {"type": "string", "minLength": 1},
-          "input_paths": {"type": "array", "items": {"type": "string"}},
-          "output_paths": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-          "checkpoint": {"type": "object"},
-          "attempts": {"type": "integer", "minimum": 0},
-          "active_fingerprint": {"type": "string"},
-          "completed_fingerprint": {"type": "string"},
-          "completed_output_hashes": {"type": "object", "additionalProperties": {"type": "string"}},
-          "completed_commit": {"type": "string"},
-          "completed_at": {"type": "string", "format": "date-time"},
-          "completed_by": {"type": "string"},
-          "run_id": {"type": "string"},
-          "agent": {"type": "string"}
+          "step_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "running",
+              "completed",
+              "invalidated",
+              "blocked"
+            ]
+          },
+          "depends_on": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "definition_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "output_paths": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
         },
         "additionalProperties": true
       }
