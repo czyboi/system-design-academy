@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-ENGLISH-TEACHING-REVISION",
   "module_id": "database",
-  "current_phase": "revision",
+  "current_phase": "validation",
   "created_at": "2026-11-09T14:23:41Z",
-  "updated_at": "2026-11-09T14:40:54.231975Z",
+  "updated_at": "2026-11-09T14:41:51Z",
   "steps": [
     {
       "step_id": "revision",
@@ -76,7 +76,7 @@
     {
       "step_id": "validation",
       "title": "Run required content and repository validation",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "revision"
       ],
@@ -94,7 +94,22 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "b490ce63581c9e03701d7836d8a395bfae09ffea",
+      "start_input_hashes": {
+        "scripts/validate_content.py": "518033554d7604cffb030f26bdef25340dce09a112606ebf5588536c8ebc33a4",
+        "scripts/taskctl.py": "c6cca6f85f63703d78625e6d39639e7ef0124b7f1a4cfc1e1146d1d78bbbd734",
+        "tests/test_taskctl.py": "aed2aaf08ae953a9de9ed13878a5ac446c0d7edb6a5377337a0cbdbe552910a1",
+        "tests/test_issue_form.py": "6d062e7c3ef2161cac4d9815ab7361952324e336a2131b08d28935c73e5731ff"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-ENGLISH-TEACHING-REVISION/final/validation-report.md": null
+      },
+      "started_at": "2026-11-09T14:41:51Z",
+      "active_spec_hash": "d11f14db245a47b0f7dabbd346f7df27cc38306c47658aafc4c5f981bfddce22",
+      "active_fingerprint": "237913bdd0fd3ffe681d5108a7fa423fb327407e6365e0dd2e3e4f76796c6258",
+      "run_id": "SD-DB01-ENGLISH-TEACHING-REVISION-validation-20261109T144151Z",
+      "agent": "validator"
     }
   ],
   "notes": "One active writer: @czyboi. Reuse the prior DB-01 evidence pack for unchanged technical claims; keep lesson in draft.",
