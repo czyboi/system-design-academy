@@ -1,5 +1,5 @@
 name: Academy task
-about: Track a module, lesson, research, review, or maintenance task with reusable execution state.
+description: Track an Academy task. GitHub Issue coordinates ownership and links; the versioned repository specification is canonical.
 title: "[Academy task] "
 labels: []
 body:
@@ -9,6 +9,14 @@ body:
       label: Task ID
       description: Unique ID matching .academy/state/tasks/<TASK-ID>.json.
       placeholder: SD-DB-INDEXES
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Task owner (GitHub username or team)
+      description: Required single-writer owner for execution.
+      placeholder: "@username"
     validations:
       required: true
   - type: dropdown
@@ -25,45 +33,32 @@ body:
         - Tooling / maintenance
     validations:
       required: true
-  - type: textarea
-    id: goal
+  - type: input
+    id: spec_file
     attributes:
-      label: Goal and Definition of Done
-      description: State the outcome and objective acceptance checks.
+      label: Canonical task specification
+      placeholder: .academy/specs/SD-DB-INDEXES.json
     validations:
       required: true
-  - type: textarea
-    id: dependencies
-    attributes:
-      label: Dependencies and constraints
-      description: Link prerequisite Issues, required sources, scope boundaries, and constraints.
-    validations:
-      required: false
   - type: input
     id: state_file
     attributes:
-      label: Repository state file
+      label: Repository task state
       placeholder: .academy/state/tasks/SD-DB-INDEXES.json
     validations:
       required: true
   - type: input
-    id: owner_branch
+    id: working_branch
     attributes:
-      label: Owner and working branch
-      description: One active writer per task/lesson; list the owner and branch here.
+      label: Working branch
+      description: One active writer per task.
+      placeholder: task/SD-DB-INDEXES
     validations:
-      required: false
+      required: true
   - type: textarea
-    id: checkpoint
+    id: summary
     attributes:
-      label: Latest checkpoint and next action
-      description: Keep this brief; detailed checkpoints belong in the task JSON and JSONL worklog.
+      label: Coordination summary (not canonical specification)
+      description: Link to the specification; do not duplicate scope or acceptance criteria here.
     validations:
-      required: false
-  - type: input
-    id: linked_pr
-    attributes:
-      label: Pull request
-      placeholder: https://github.com/owner/repo/pull/123
-    validations:
-      required: false
+      required: true
