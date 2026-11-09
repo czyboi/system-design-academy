@@ -4,7 +4,7 @@
   "module_id": "database",
   "current_phase": "pipeline-cleanup",
   "created_at": "2026-11-09T15:54:44Z",
-  "updated_at": "2026-11-09T16:15:29Z",
+  "updated_at": "2026-11-09T16:16:40Z",
   "steps": [
     {
       "step_id": "coverage-agent",
@@ -141,7 +141,7 @@
     {
       "step_id": "pipeline-cleanup",
       "title": "Require coverage gates, capture reusable feedback, and remove rejected outputs",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "coverage-agent",
         "teaching-contract"
@@ -179,14 +179,20 @@
         ".agents/skills/module-pipeline/SKILL.md": "229978580c63bac241f73d0bb8fb8276239048c33559f380bb9e69abaf808ab8"
       },
       "started_at": "2026-11-09T16:11:15Z",
-      "active_spec_hash": "33b5d61a5993550dad3dc7f3f829ada4aa71496455282957b0c325b5304b3a04",
-      "active_fingerprint": "bfb23b1da29de86ccb2c9bf776cb1f0b08de4e1b5a7e3600daf850c0533ae240",
       "run_id": "SD-WORKFLOW-COVERAGE-RESET-pipeline-cleanup-20261109T161115Z",
-      "agent": "parent-orchestrator"
+      "agent": "parent-orchestrator",
+      "completed_fingerprint": "bfb23b1da29de86ccb2c9bf776cb1f0b08de4e1b5a7e3600daf850c0533ae240",
+      "completed_spec_hash": "33b5d61a5993550dad3dc7f3f829ada4aa71496455282957b0c325b5304b3a04",
+      "completed_output_hashes": {
+        ".agents/skills/module-pipeline/SKILL.md": "a4fecb0535126a3308b36c030445c2d4bb1cc9b4d3a3ec67f7b6948deeeb8df4"
+      },
+      "completed_at": "2026-11-09T16:16:40Z",
+      "completed_by": "parent-orchestrator",
+      "completed_commit": "a645621ce97f73c86cb0827ce2b9fb804b08d294"
     }
   ],
   "notes": "GitHub Issue #5. One active writer: @czyboi. User explicitly rejected prior generated Database outputs; delete only paths in the canonical spec. Preserve the curriculum plan and immutable inputs while encoding reusable feedback in skills/profiles.",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-WORKFLOW-COVERAGE-RESET.json",
-  "automation_status": "in_progress"
+  "automation_status": "automation_complete"
 }
