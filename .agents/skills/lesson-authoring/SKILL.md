@@ -1,35 +1,42 @@
 ---
 name: lesson-authoring
-description: Write an original System Design lesson using the Academy Markdown format, approved curriculum, and evidence pack. Use when creating or revising an individual lesson.
+description: Write concise, original System Design teaching lessons for experienced engineers using the approved curriculum and evidence pack.
 ---
 
 # Lesson Authoring
 
 ## Inputs
-Require the module curriculum, lesson template, content guidelines, attribution policy, and relevant source-research evidence. Report missing inputs instead of inventing them.
+
+Require the canonical task specification, a coverage-reviewed curriculum map, lesson template, content guidelines, attribution policy, source-research evidence, and exact declared lesson output path. For Academy work, the current default learner is a middle/senior engineer studying system design, and learner-facing prose is English-only. Follow newer explicit user direction recorded in the task specification.
+
+Do not start if the plan-stage coverage review blocks authoring, the lesson/assessment output paths are not separate, or a required source/review artifact is missing. Report the missing gate to the parent.
 
 ## Procedure
-1. Confirm ID, level, prerequisites, status, estimated time, and outcomes.
-2. Explain the engineering problem first; introduce terms when needed.
-3. Explain mechanisms causally. Separate general principles from vendor-specific implementation.
-4. Use original examples and Mermaid diagrams; explain important nodes and arrows.
-5. Include trade-offs, bottlenecks, failure modes, operational effects, and when not to use the technique.
-6. Add a worked example and practical exercise with answer or rubric.
-7. Add 5–8 knowledge checks with detailed answer explanations.
-8. Map each outcome to assessments.
-9. Cite exact sources next to important/version-sensitive claims.
-10. Add front matter and adaptation/attribution notes. Keep status `draft`.
+
+1. Confirm lesson ID, audience, prerequisites, status, time estimate, scope, outcomes, and the exact lesson path.
+2. Teach the engineering problem and decision before adding terminology. Assume common backend, SQL, and application fundamentals; explain them only when they are essential to the design decision.
+3. Explain the mechanism causally: what changes in the system, why it changes, and which decision follows. Keep the exposition concise and remove repeated definitions, generic introductions, and material that does not support an outcome.
+4. Use original, realistic examples and diagrams. Explain the important nodes and flows.
+5. Teach relevant decision criteria, trade-offs, bottlenecks, failure modes, and operational effects. Distinguish general principles from version-specific vendor behavior.
+6. Include a worked example that demonstrates the design reasoning. Keep the lesson file instructional: do not embed a quiz, knowledge-check bank, answer key, or assessment rubric.
+7. Put the practical exercise, 5–8 knowledge checks, answers/explanations, rubric, and outcome-to-item map in the separately declared companion assessment artifact. Coordinate with assessment-design; do not use questions as a substitute for teaching.
+8. Cite exact sources next to important or version-sensitive claims. Mark unresolved claims instead of guessing.
+9. Add required front matter, attribution/adaptation notes, and `status: draft`.
 
 ## Prohibited
-- No paragraph-by-paragraph translation/paraphrase of the Primer.
+
+- No paragraph-by-paragraph translation or close paraphrase of the Primer.
 - No invented benchmarks, guarantees, product behavior, URLs, or version numbers.
 - No unlicensed third-party assets.
-- Do not call SQL/code tested unless it was executed in a declared environment.
+- Do not call SQL or code tested unless it was executed in a declared environment.
+- Do not pad a lesson with elementary material to meet a length target.
 
 ## Output
-Write only assigned lesson paths. Report evidence gaps and unresolved claims separately.
+
+Write only the assigned teaching lesson path. Write assessment content only when separately assigned that companion path. Report evidence gaps and unresolved claims separately.
 
 ## Substantive revisions and feedback
+
 - For an existing lesson, map user and reviewer feedback to explicit task acceptance criteria and record each item as applied, deferred, or task-specific, with a reason.
-- A substantive revision changes explanations, examples, technical claims, assessments, or learning sequence. Declare separate independent review outputs for pedagogy and the relevant technical and provenance/language areas after authoring; the author cannot count self-review as independent.
+- A substantive revision changes explanations, examples, technical claims, assessments, or learning sequence. Declare separate independent review outputs for pedagogy, source-topic coverage, and relevant technical/provenance/language areas after authoring; the author cannot count self-review as independent.
 - If a required reviewer is unavailable, record the gap and leave that review gate unresolved. Do not describe the revised lesson as independently reviewed.
