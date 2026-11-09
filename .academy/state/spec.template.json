@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "task_id": "${TASK_ID}",
+  "revision": 1,
+  "goal": "${GOAL}",
+  "scope": {
+    "in_scope": [
+      "TODO: define deliverables and exact scope"
+    ],
+    "out_of_scope": []
+  },
+  "constraints": [
+    "TODO: record technical, time, policy, and repository constraints"
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-1",
+      "text": "TODO: define observable completion conditions",
+      "applies_to": [
+        "*"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-1",
+      "text": "TODO: define testable acceptance criterion",
+      "applies_to": [
+        "*"
+      ]
+    }
+  ]
+}
