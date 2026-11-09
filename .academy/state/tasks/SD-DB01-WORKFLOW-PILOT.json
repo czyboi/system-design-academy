@@ -4,12 +4,12 @@
   "module_id": "database",
   "current_phase": "revision",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:33:35Z",
+  "updated_at": "2026-11-09T13:44:42Z",
   "steps": [
     {
       "step_id": "research",
       "title": "Build claim-level source evidence",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -54,7 +54,8 @@
       },
       "completed_at": "2026-11-09T13:14:55Z",
       "completed_by": "source_researcher",
-      "completed_commit": "c1277934acc0fcd8838259d01de616b4c7705a2a"
+      "completed_commit": "c1277934acc0fcd8838259d01de616b4c7705a2a",
+      "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason."
     },
     {
       "step_id": "curriculum",
@@ -109,7 +110,7 @@
     {
       "step_id": "author",
       "title": "Create the assigned draft lesson",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "research",
         "curriculum"
@@ -161,12 +162,13 @@
       },
       "completed_at": "2026-11-09T13:21:38Z",
       "completed_by": "lesson_author",
-      "completed_commit": "ec6d53d10948a3d30b50938922bf61ea02bec8e2"
+      "completed_commit": "ec6d53d10948a3d30b50938922bf61ea02bec8e2",
+      "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason."
     },
     {
       "step_id": "technical-review",
       "title": "Review technical accuracy independently",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "author"
       ],
@@ -207,12 +209,13 @@
       },
       "completed_at": "2026-11-09T13:30:13Z",
       "completed_by": "technical_reviewer",
-      "completed_commit": "1fdde82f186c4a710a616daf1adfc89acac6a529"
+      "completed_commit": "1fdde82f186c4a710a616daf1adfc89acac6a529",
+      "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason."
     },
     {
       "step_id": "pedagogy-review",
       "title": "Review learner experience and outcome alignment",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "author"
       ],
@@ -253,12 +256,13 @@
       },
       "completed_at": "2026-11-09T13:30:59Z",
       "completed_by": "pedagogy_reviewer",
-      "completed_commit": "3aedc2ffe56255bb35cc26e8c89bfd2d39c968a2"
+      "completed_commit": "3aedc2ffe56255bb35cc26e8c89bfd2d39c968a2",
+      "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason."
     },
     {
       "step_id": "provenance-review",
       "title": "Review citations, attribution, and asset rights",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "author"
       ],
@@ -303,12 +307,13 @@
       },
       "completed_at": "2026-11-09T13:31:39Z",
       "completed_by": "provenance_reviewer",
-      "completed_commit": "81ec4484a9bccc494feaefa69afa9587b9d2f788"
+      "completed_commit": "81ec4484a9bccc494feaefa69afa9587b9d2f788",
+      "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason."
     },
     {
       "step_id": "revision",
       "title": "Consolidate findings and produce the revised lesson",
-      "status": "running",
+      "status": "invalidated",
       "depends_on": [
         "technical-review",
         "pedagogy-review",
@@ -350,15 +355,14 @@
         "modules/database/lessons/DB-01-data-modeling.md": "a5b13497670f1a4ed33dac942d51580465cf45187c95b2d0ddc4aa25189c1a8b"
       },
       "started_at": "2026-11-09T13:33:35Z",
-      "active_spec_hash": "bf17765893ff2f0a6b42f8fb9fa6ecfae18c91d8528d77f1619c4c6d51e06cd2",
-      "active_fingerprint": "d73c8d69096983bf944edc8d6c4675eea928126c370f80c34d26cc6ec3e21e7d",
       "run_id": "SD-DB01-WORKFLOW-PILOT-revision-20261109T133334Z",
-      "agent": "parent_orchestrator"
+      "agent": "parent_orchestrator",
+      "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason."
     },
     {
       "step_id": "validation",
       "title": "Run structural validation and record the result",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "revision"
       ],
@@ -377,7 +381,8 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason."
     }
   ],
   "notes": "Review this task's exact lesson scope and acceptance criteria before the first run.",
