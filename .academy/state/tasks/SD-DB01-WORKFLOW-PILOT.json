@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": "research",
+  "current_phase": "curriculum",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:07:45Z",
+  "updated_at": "2026-11-09T13:08:11Z",
   "steps": [
     {
       "step_id": "research",
@@ -53,7 +53,7 @@
     {
       "step_id": "curriculum",
       "title": "Map prerequisites, outcomes, and sequence",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -73,7 +73,26 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "fd9ad2acfe04044158d01241f418bc5fffba8d29",
+      "start_input_hashes": {
+        ".agents/skills/curriculum-design/SKILL.md": "a957198bd28963ae8611e0bf139c173024aa281abfa65037b849116953ce6244",
+        ".codex/agents/curriculum-designer.toml": "fd1285717d12da5ec6c2c73436111c72d9a9059bff55812862fda4542263f67e",
+        "CURRICULUM_MASTER.md": "e03ad657674c412aa24ece40180aefb3bbf2d0641098a062f593c9241f8312f1",
+        "modules/database/README.md": "a86065df4582e8edeb39788077f741aae62e068bc4c721bf39aa15b999bf2e92",
+        ".claude/agents/curriculum-designer.md": "44daa0b08094eec8f40b3c9faebd46911221083ae28ffe0ed8bfad4f35c7d44f",
+        "modules/database/curriculum/database-module.md": "a4a9b35a0a8c40215ec1269e24167154ea93beab745e2d0d4fad62fa43f8af6d",
+        "modules/database/assessments/database-quiz.md": "ddbf0da2a36ae06e3b4df7918a8f6f5fc2a0d5157aaa581988c2e2b7e888ba9c",
+        "modules/database/lessons/DB-01-data-modeling.md": "a5b13497670f1a4ed33dac942d51580465cf45187c95b2d0ddc4aa25189c1a8b"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": null
+      },
+      "started_at": "2026-11-09T13:08:11Z",
+      "active_spec_hash": "b3d41cb77cc524c81f7b952816332acb0bf9ba7efff6adc9f05890b240d605cb",
+      "active_fingerprint": "96eb8e4d757a6dffc4bc5f1ee748fd041d7add10833ed4085cf7d3032113a7a4",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-curriculum-20261109T130811Z",
+      "agent": "curriculum_designer"
     },
     {
       "step_id": "author",
