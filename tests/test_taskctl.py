@@ -8,8 +8,28 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 SOURCE_ROOT = Path(__file__).resolve().parents[1]
+
+
+class AggregateTaskStatusTests(unittest.TestCase):
+    def test_default_task_dag_is_not_reported_blocked_while_a_phase_is_runnable(self):
+        from scripts import taskctl
+
+        template = json.loads((SOURCE_ROOT / ".academy/state/task.template.json").read_text(encoding="utf-8"))
+        data = {"steps": template["steps"]}
+        initial_states = {step["step_id"]: "BLOCKED" for step in data["steps"]}
+        initial_states.update({"research": "READY", "curriculum": "READY"})
+        with patch.object(taskctl, "step_status", side_effect=lambda _data, step: (initial_states[step["step_id"]], "fixture")):
+            taskctl.refresh_task_status(data)
+        self.assertEqual(data["automation_status"], "not_started")
+
+        phase_states = dict(initial_states, research="SKIP", curriculum="READY")
+        next(step for step in data["steps"] if step["step_id"] == "research")["status"] = "completed"
+        with patch.object(taskctl, "step_status", side_effect=lambda _data, step: (phase_states[step["step_id"]], "fixture")):
+            taskctl.refresh_task_status(data)
+        self.assertEqual(data["automation_status"], "in_progress")
 
 
 class TaskCtlV2Tests(unittest.TestCase):

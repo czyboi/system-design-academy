@@ -304,11 +304,19 @@ def step_status(data: dict[str, Any], step: dict[str, Any], memo: dict[str, str]
 
 
 def refresh_task_status(data: dict[str, Any]) -> None:
-    if data["steps"] and all(step_status(data, step)[0] == "SKIP" for step in data["steps"]):
+    statuses = [step_status(data, step)[0] for step in data["steps"]]
+    if statuses and all(status == "SKIP" for status in statuses):
         data["automation_status"] = "automation_complete"
+    elif any(status in {"READY", "RESUME", "STALE"} for status in statuses):
+        # A runnable or recoverable step means the task can still make progress.
+        # Dependency-blocked downstream steps are expected in a healthy DAG.
+        if any(step["status"] != "pending" for step in data["steps"]):
+            data["automation_status"] = "in_progress"
+        else:
+            data["automation_status"] = "not_started"
     elif any(step["status"] == "running" for step in data["steps"]):
         data["automation_status"] = "in_progress"
-    elif any(step_status(data, step)[0] == "BLOCKED" for step in data["steps"]):
+    elif statuses and all(status == "BLOCKED" for status in statuses):
         data["automation_status"] = "blocked"
     elif any(step["status"] != "pending" for step in data["steps"]):
         data["automation_status"] = "in_progress"
