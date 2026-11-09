@@ -1,0 +1,84 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-WORKFLOW-FEEDBACK-SYMLINK-TEST",
+  "module_id": "workflow",
+  "current_phase": null,
+  "created_at": "2026-11-09T14:52:47Z",
+  "updated_at": "2026-11-09T14:52:47Z",
+  "steps": [
+    {
+      "step_id": "feedback",
+      "title": "Add the durable feedback and independent-review loop",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/AGENTS-original.md",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/module-pipeline-original.md",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/task-handoff-original.md",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/lesson-authoring-original.md",
+        ".academy/state/README.md"
+      ],
+      "output_paths": [
+        "AGENTS.md",
+        ".agents/skills/module-pipeline/SKILL.md",
+        ".agents/skills/task-handoff/SKILL.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/review/feedback-retrospective.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "symlink-test",
+      "title": "Make taskctl tests workspace-safe and privilege-independent",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/inputs/test_taskctl-original.py",
+        "scripts/taskctl.py",
+        ".gitignore"
+      ],
+      "output_paths": [
+        "tests/test_taskctl.py"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "validation",
+      "title": "Run repository validation and record results",
+      "status": "pending",
+      "depends_on": [
+        "feedback",
+        "symlink-test"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "scripts/validate_content.py",
+        "scripts/taskctl.py",
+        "tests/test_taskctl.py",
+        "tests/test_issue_form.py"
+      ],
+      "output_paths": [
+        ".academy/task-runs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST/final/validation-report.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    }
+  ],
+  "notes": "Single writer: @czyboi. Task-specific feedback belongs in this task's worklog/reports; reusable process changes belong in shared skills and regression checks.",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-WORKFLOW-FEEDBACK-SYMLINK-TEST.json",
+  "automation_status": "not_started"
+}
