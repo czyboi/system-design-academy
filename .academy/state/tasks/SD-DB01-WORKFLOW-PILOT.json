@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": "technical-review",
+  "current_phase": "pedagogy-review",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:22:35Z",
+  "updated_at": "2026-11-09T13:23:16Z",
   "steps": [
     {
       "step_id": "research",
@@ -206,7 +206,7 @@
     {
       "step_id": "pedagogy-review",
       "title": "Review learner experience and outcome alignment",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "author"
       ],
@@ -225,7 +225,23 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "418f88b7bbf53b22051d6ba1a4ba391499c3423a",
+      "start_input_hashes": {
+        ".agents/skills/pedagogical-review/SKILL.md": "ba9dbf138adff94afaced6ca8639ef600cb140fb48a234387211e43d9467342f",
+        ".codex/agents/pedagogy-reviewer.toml": "e8c45e759722673d97812296b8d16bae8ec9c864211c193a931231e429608028",
+        ".claude/agents/pedagogy-reviewer.md": "b97ef59a093a5ac655eb7d934c3c92dd7fc0cc05263ebb5f1e3e1413874f9d0b",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": "f328481e997ffad5003d086eea44cd44ae4911b7f12eb5e38dbf0c89455612d2"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md": null
+      },
+      "started_at": "2026-11-09T13:23:16Z",
+      "active_spec_hash": "f4a9bb517bce997df1d25d5bc80bbf7b9b71fe7fe1e87bc480c777f0b6cd3b6f",
+      "active_fingerprint": "2ff151acc2ad82efc57cceef31968bd7d4941108b8498675a5e8e9f90bf1fe3b",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-pedagogy-review-20261109T132316Z",
+      "agent": "pedagogy_reviewer"
     },
     {
       "step_id": "provenance-review",
