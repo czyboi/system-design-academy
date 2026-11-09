@@ -2,14 +2,14 @@
   "schema_version": 2,
   "task_id": "SD-DB01-WORKFLOW-PILOT",
   "module_id": "database",
-  "current_phase": null,
+  "current_phase": "research",
   "created_at": "2026-11-09T13:04:26Z",
-  "updated_at": "2026-11-09T13:04:26Z",
+  "updated_at": "2026-11-09T13:07:45Z",
   "steps": [
     {
       "step_id": "research",
       "title": "Build claim-level source evidence",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -29,7 +29,26 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "3a9d960e0603d171fb66a20bfae048792726fe87",
+      "start_input_hashes": {
+        ".agents/skills/source-research/SKILL.md": "ecf1bae5892e35facd4a49edcfbde0181403bb678fe32b70b104a7de1f6b530d",
+        ".codex/agents/source-researcher.toml": "73c959fb095ae86cdc52b86dedde85acdd2d13b26e8d0e8bb18d963dc17e53db",
+        "GOVERNANCE.md": "4a7daada28b9319c45fc11260ec8320a5b58c4a6b2ec3699144cfa04ee565aec",
+        "modules/database/README.md": "a86065df4582e8edeb39788077f741aae62e068bc4c721bf39aa15b999bf2e92",
+        ".claude/agents/source-researcher.md": "fc9df7b1bd83420ecb50e0d5621df0cd2217a4cf0d1f4fb5693ca9b6cba839ca",
+        "modules/database/lessons/DB-01-data-modeling.md": "a5b13497670f1a4ed33dac942d51580465cf45187c95b2d0ddc4aa25189c1a8b",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f",
+        "modules/database/governance/content-guidelines.md": "56cd86a0577c027fcb2e1fc0141bf4ef1b8a5841236cb4e95566cc880d4ef15d"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": null
+      },
+      "started_at": "2026-11-09T13:07:45Z",
+      "active_spec_hash": "906600660ef8c383e63ae124006044a193fbbb53630284e763a1a170827ecabf",
+      "active_fingerprint": "ceb686b8833083a5cd8a00c85753a2debb439e7bee2c5654c2f14341a4d9bc7a",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-research-20261109T130745Z",
+      "agent": "source_researcher"
     },
     {
       "step_id": "curriculum",
@@ -218,5 +237,5 @@
   "notes": "Review this task's exact lesson scope and acceptance criteria before the first run.",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-DB01-WORKFLOW-PILOT.json",
-  "automation_status": "not_started"
+  "automation_status": "in_progress"
 }
