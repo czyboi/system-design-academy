@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "pedagogy-review",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:10:37Z",
+  "updated_at": "2026-11-10T03:12:34Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -362,8 +362,9 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Independent pedagogy review verdict: revise. Material finding: SD-07-03 combines crawler ingestion and search indexing/query serving without a clear boundary or teaching progression; split or explicitly bound the subsystems before finalization. Low-risk suggestion: move the optional OOD appendix to the end. Overall middle/senior sequence and teaching-only boundary otherwise fit.",
+        "next_action": "Commit pedagogy report and complete the review step; do not finalize until the material scope finding receives human judgment because both allowed revision cycles are exhausted.",
+        "at": "2026-11-10T03:12:34Z"
       },
       "attempts": 1,
       "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
