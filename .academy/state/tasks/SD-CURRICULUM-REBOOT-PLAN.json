@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "pedagogy-recheck",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:58:41Z",
+  "updated_at": "2026-11-10T03:58:55Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -644,7 +644,7 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md"
       ],
-      "status": "running",
+      "status": "completed",
       "definition_version": "v1",
       "checkpoint": {
         "note": "Independent pedagogy recheck verdict: revise. SD-07-06 still mentions a search feature using a key-value index, overlapping the new SD-07-09 index-construction and SD-07-10 query-serving lessons. Crawler scope and 07-09→07-10 progression otherwise pass; audience, teaching-only boundary and Twitter handoff are appropriate. Report saved at review/pedagogy-recheck.md. No further revision without user authorization.",
@@ -664,10 +664,16 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md": null
       },
       "started_at": "2026-11-10T03:55:55Z",
-      "active_spec_hash": "ce40d73c5d28d2c2b771caaf12dc66362937d4fe8127f514da69cc9708a7a032",
-      "active_fingerprint": "1bd35f6f3b6eb415f05fe36b50a6102f4158487e47050113caa7beb971689196",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-pedagogy-recheck-20261110T035554Z",
-      "agent": "pedagogy_reviewer"
+      "agent": "pedagogy_reviewer",
+      "completed_fingerprint": "1bd35f6f3b6eb415f05fe36b50a6102f4158487e47050113caa7beb971689196",
+      "completed_spec_hash": "ce40d73c5d28d2c2b771caaf12dc66362937d4fe8127f514da69cc9708a7a032",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md": "4347e4d29607c3e421fd1693d42795db26f68ef0d6aa11c508774a1cd000d11f"
+      },
+      "completed_at": "2026-11-10T03:58:55Z",
+      "completed_by": "pedagogy_reviewer",
+      "completed_commit": "67f0ee79b077e61b6f191a524798c1766ac98636"
     },
     {
       "step_id": "finalize-curriculum",
