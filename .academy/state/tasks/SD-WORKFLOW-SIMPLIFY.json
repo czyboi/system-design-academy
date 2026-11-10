@@ -4,12 +4,12 @@
   "module_id": "workflow",
   "current_phase": "verification",
   "created_at": "2026-11-10T04:28:34Z",
-  "updated_at": "2026-11-10T08:17:38Z",
+  "updated_at": "2026-11-10T08:21:04Z",
   "steps": [
     {
       "step_id": "implementation",
       "title": "implementation",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [],
@@ -129,12 +129,13 @@
           "reason": "Restored unchanged to honor user clarification: workflow-only scope.",
           "at": "2026-11-10T08:17:00Z"
         }
-      }
+      },
+      "invalidation_reason": "Independent review found coverage checker false positives; user requested fix before merge"
     },
     {
       "step_id": "verification",
       "title": "verification",
-      "status": "running",
+      "status": "invalidated",
       "depends_on": [
         "implementation"
       ],
@@ -157,14 +158,13 @@
         ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/report.md": null
       },
       "started_at": "2026-11-10T08:17:23Z",
-      "active_spec_hash": "28a3722a03dd85ea5f2253bc4e3cdce3867f029637e10ed2c6230a29f00d0cd1",
-      "active_fingerprint": "a5432fedffce854aa853b5a21b52522fa162760af2d7276941579fb74741a190",
       "run_id": "SD-WORKFLOW-SIMPLIFY-verification-20261110T081723Z",
       "agent": "workflow_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "invalidation_reason": "Independent review found coverage checker false positives; user requested fix before merge"
     }
   ],
   "notes": "One lesson package per task. Replace module-specific input paths at intake. Plan revisions use unique outputs and a new review gate. At most two automated revision cycles; see docs/workflow-contract.md. Final artifacts remain draft.",
