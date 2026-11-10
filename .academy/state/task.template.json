@@ -51,132 +51,364 @@
       "attempts": 0
     },
     {
-      "step_id": "author",
-      "title": "Create the assigned draft lesson",
+      "step_id": "plan-coverage",
+      "title": "Plan coverage",
       "status": "pending",
       "depends_on": [
-        "research",
         "curriculum"
       ],
-      "definition_version": "v1",
+      "definition_version": "v2",
       "input_paths": [
-        ".agents/skills/lesson-authoring/SKILL.md",
-        ".agents/skills/assessment-design/SKILL.md",
-        ".codex/agents/lesson-author.toml",
-        "GOVERNANCE.md",
-        ".claude/agents/lesson-author.md"
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/curriculum/map.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".codex/agents/curriculum-coverage-reviewer.toml",
+        ".claude/agents/curriculum-coverage-reviewer.md"
       ],
       "output_paths": [
-        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/draft.md"
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/plan-coverage.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/plan-coverage.json"
       ],
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/curriculum/map.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/plan-coverage.json"
+      }
+    },
+    {
+      "step_id": "author",
+      "title": "Author",
+      "status": "pending",
+      "depends_on": [
+        "research",
+        "curriculum",
+        "plan-coverage"
+      ],
+      "definition_version": "v2",
+      "input_paths": [
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "modules/database/workflow/lesson-template.md",
+        "modules/database/workflow/assessment-template.md",
+        ".codex/agents/lesson-author.toml",
+        ".claude/agents/lesson-author.md"
+      ],
+      "output_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "requires_reviews": [
+        "plan-coverage"
+      ]
     },
     {
       "step_id": "technical-review",
-      "title": "Review technical accuracy independently",
+      "title": "Technical review",
       "status": "pending",
       "depends_on": [
         "author"
       ],
-      "definition_version": "v1",
+      "definition_version": "v2",
       "input_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md",
         ".agents/skills/technical-review/SKILL.md",
         ".codex/agents/technical-reviewer.toml",
         ".claude/agents/technical-reviewer.md"
       ],
       "output_paths": [
-        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/technical.md"
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/technical-review.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/technical-review.json"
       ],
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/technical-review.json"
+      }
     },
     {
-      "step_id": "pedagogy-review",
-      "title": "Review learner experience and outcome alignment",
+      "step_id": "coverage-review",
+      "title": "Coverage review",
       "status": "pending",
       "depends_on": [
         "author"
       ],
-      "definition_version": "v1",
+      "definition_version": "v2",
       "input_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".codex/agents/curriculum-coverage-reviewer.toml",
+        ".claude/agents/curriculum-coverage-reviewer.md"
+      ],
+      "output_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/coverage-review.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/coverage-review.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/coverage-review.json"
+      }
+    },
+    {
+      "step_id": "provenance-review",
+      "title": "Provenance review",
+      "status": "pending",
+      "depends_on": [
+        "author"
+      ],
+      "definition_version": "v2",
+      "input_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md",
+        ".agents/skills/provenance-review/SKILL.md",
+        ".codex/agents/provenance-reviewer.toml",
+        ".claude/agents/provenance-reviewer.md"
+      ],
+      "output_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/provenance-review.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/provenance-review.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/provenance-review.json"
+      }
+    },
+    {
+      "step_id": "pedagogy-review",
+      "title": "Pedagogy review",
+      "status": "pending",
+      "depends_on": [
+        "author",
+        "coverage-review"
+      ],
+      "definition_version": "v2",
+      "input_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md",
         ".agents/skills/pedagogical-review/SKILL.md",
         ".codex/agents/pedagogy-reviewer.toml",
         ".claude/agents/pedagogy-reviewer.md"
       ],
       "output_paths": [
-        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/pedagogy.md"
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/pedagogy-review.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/pedagogy-review.json"
       ],
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
-    },
-    {
-      "step_id": "provenance-review",
-      "title": "Review citations, attribution, and asset rights",
-      "status": "pending",
-      "depends_on": [
-        "author"
-      ],
-      "definition_version": "v1",
-      "input_paths": [
-        ".agents/skills/provenance-review/SKILL.md",
-        ".codex/agents/provenance-reviewer.toml",
-        "GOVERNANCE.md",
-        ".claude/agents/provenance-reviewer.md"
-      ],
-      "output_paths": [
-        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/provenance.md"
-      ],
-      "checkpoint": {
-        "note": "",
-        "next_action": ""
-      },
-      "attempts": 0
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/lesson.md",
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/author/assessment.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/pedagogy-review.json"
+      }
     },
     {
       "step_id": "revision",
-      "title": "Consolidate findings and produce the revised lesson",
+      "title": "Revision",
       "status": "pending",
       "depends_on": [
         "technical-review",
-        "pedagogy-review",
-        "provenance-review"
+        "coverage-review",
+        "provenance-review",
+        "pedagogy-review"
       ],
-      "definition_version": "v1",
+      "definition_version": "v2",
       "input_paths": [
         ".agents/skills/lesson-authoring/SKILL.md",
-        ".agents/skills/module-pipeline/SKILL.md"
+        ".agents/skills/assessment-design/SKILL.md"
       ],
       "output_paths": [
-        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md"
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md"
       ],
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "revision_cycle": 1
     },
     {
-      "step_id": "validation",
-      "title": "Run structural validation and record the result",
+      "step_id": "technical-recheck",
+      "title": "Technical recheck",
       "status": "pending",
       "depends_on": [
         "revision"
       ],
-      "definition_version": "v1",
+      "definition_version": "v2",
+      "input_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md",
+        ".agents/skills/technical-review/SKILL.md",
+        ".codex/agents/technical-reviewer.toml",
+        ".claude/agents/technical-reviewer.md"
+      ],
+      "output_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/technical-recheck.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/technical-recheck.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/technical-recheck.json"
+      }
+    },
+    {
+      "step_id": "coverage-recheck",
+      "title": "Coverage recheck",
+      "status": "pending",
+      "depends_on": [
+        "revision"
+      ],
+      "definition_version": "v2",
+      "input_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".codex/agents/curriculum-coverage-reviewer.toml",
+        ".claude/agents/curriculum-coverage-reviewer.md"
+      ],
+      "output_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/coverage-recheck.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/coverage-recheck.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/coverage-recheck.json"
+      }
+    },
+    {
+      "step_id": "provenance-recheck",
+      "title": "Provenance recheck",
+      "status": "pending",
+      "depends_on": [
+        "revision"
+      ],
+      "definition_version": "v2",
+      "input_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md",
+        ".agents/skills/provenance-review/SKILL.md",
+        ".codex/agents/provenance-reviewer.toml",
+        ".claude/agents/provenance-reviewer.md"
+      ],
+      "output_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/provenance-recheck.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/provenance-recheck.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/provenance-recheck.json"
+      }
+    },
+    {
+      "step_id": "pedagogy-recheck",
+      "title": "Pedagogy recheck",
+      "status": "pending",
+      "depends_on": [
+        "revision",
+        "coverage-recheck"
+      ],
+      "definition_version": "v2",
+      "input_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".codex/agents/pedagogy-reviewer.toml",
+        ".claude/agents/pedagogy-reviewer.md"
+      ],
+      "output_paths": [
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/pedagogy-recheck.md",
+        "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/pedagogy-recheck.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/lesson.md",
+          "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/assessment.md"
+        ],
+        "verdict_path": "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/review/pedagogy-recheck.json"
+      }
+    },
+    {
+      "step_id": "validation",
+      "title": "Validation",
+      "status": "pending",
+      "depends_on": [
+        "technical-recheck",
+        "coverage-recheck",
+        "provenance-recheck",
+        "pedagogy-recheck"
+      ],
+      "definition_version": "v2",
       "input_paths": [
         "scripts/validate_content.py",
-        "scripts/taskctl.py",
-        ".agents/skills/module-pipeline/SKILL.md"
+        "scripts/taskctl.py"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/workflow/runs/${TASK_ID}/final/validation-report.md"
@@ -185,11 +417,18 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "requires_reviews": [
+        "technical-recheck",
+        "coverage-recheck",
+        "provenance-recheck",
+        "pedagogy-recheck"
+      ]
     }
   ],
-  "notes": "Review this task's exact lesson scope and acceptance criteria before the first run.",
+  "notes": "One lesson package per task. Replace module-specific input paths at intake. Plan revisions use unique outputs and a new review gate. At most two automated revision cycles; see docs/workflow-contract.md. Final artifacts remain draft.",
   "owner": "${OWNER}",
   "spec_path": ".academy/specs/${TASK_ID}.json",
-  "automation_status": "not_started"
+  "automation_status": "not_started",
+  "execution_control": "active"
 }

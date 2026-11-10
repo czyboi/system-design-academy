@@ -24,3 +24,7 @@ Review first; do not rewrite.
 
 ## Output
 Findings first, each with exact quote/location, severity, explanation, evidence URL/section, and suggested correction. End with `block`, `revise`, or `ready-for-human-review`. Never approve publication.
+
+## Machine-readable gate output
+
+When the task step declares `review`, write both assigned outputs: the explanatory Markdown report and verdict JSON following `docs/workflow-contract.md`. Record exact SHA-256 hashes for every declared reviewed artifact, verdict, and finding IDs with severity/status. An open blocker or major finding forbids `ready-for-human-review`. Do not infer a pass from another review. Rechecks inspect changed sections and their dependencies and bind the result to the complete current artifact set.

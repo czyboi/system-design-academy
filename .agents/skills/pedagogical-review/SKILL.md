@@ -5,7 +5,12 @@ description: Review whether a concise System Design lesson teaches its outcomes 
 
 # Pedagogical Review
 
-## Inputs
+## Select the assigned mode
+
+- **Plan:** read the canonical scope, audience, curriculum outlines, prerequisites, source coverage report and prior findings. Check sequence, lesson boundaries, overlap, assumed entry knowledge and whether each outline can teach its stated capability. Do not require lesson or assessment files that have not been authored. Return location-specific findings on the plan only.
+- **Lesson:** use the inputs and paired-artifact procedure below. If the coverage report is required, schedule this review after coverage; the reviewer still makes an independent pedagogical judgment.
+
+## Inputs (lesson mode)
 
 Read the canonical task specification, user feedback, coverage-review report, teaching lesson, companion assessment, content guidelines, and target audience. The current Academy default is middle/senior engineers learning system design; learner-facing material is English-only unless a newer user decision is recorded.
 
@@ -24,3 +29,7 @@ Read the canonical task specification, user feedback, coverage-review report, te
 ## Output
 
 Return findings with artifact/location, learner impact, severity, and recommended change. End with `block`, `revise`, or `ready-for-human-review`. This is not source-coverage approval, technical approval, human approval, or publication authorization.
+
+## Machine-readable gate output
+
+When the task step declares `review`, write both assigned outputs: the explanatory Markdown report and verdict JSON following `docs/workflow-contract.md`. Record exact SHA-256 hashes for every declared reviewed artifact, verdict, and finding IDs with severity/status. An open blocker or major finding forbids `ready-for-human-review`. Do not infer a pass from another review. Rechecks inspect changed sections and their dependencies and bind the result to the complete current artifact set.

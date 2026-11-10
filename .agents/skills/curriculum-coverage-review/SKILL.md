@@ -52,3 +52,7 @@ For the current Database plan, do not credit federation because it appears only 
 ## Independence and output
 
 Work only on the declared report path. Review the plan independently from the curriculum designer and review actual lesson text independently from the lesson author. If the report path, source revision, or required input is missing, report the gap and do not infer a pass.
+
+## Machine-readable gate output
+
+When the task step declares `review`, write both assigned outputs: the explanatory Markdown report and verdict JSON following `docs/workflow-contract.md`. Record exact SHA-256 hashes for every declared reviewed artifact, verdict, and finding IDs with severity/status. An open blocker or major finding forbids `ready-for-human-review`. Do not infer a pass from another review. Rechecks inspect changed sections and their dependencies and bind the result to the complete current artifact set.

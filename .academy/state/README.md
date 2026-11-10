@@ -110,3 +110,13 @@ python scripts/taskctl.py validate
 Task specification/state/worklog are plain JSON/JSONL so every provider can read them. Provider-specific agent profiles are thin wrappers over the shared skills under `.agents/skills/`. The CLI requires Python, Git, and dependencies in `requirements-dev.txt`.
 
 This is a lightweight repository-based checkpoint system, not a distributed lock or hosted workflow engine. It cannot prevent two independent clones from racing; coordinate one active writer in GitHub.
+
+## Review gates, task controls and scoped checks
+
+`status` now computes its display without writing files. Use `reconcile TASK-ID` explicitly to save aggregate status. A historical task becoming stale does not authorize rerunning it.
+
+`hold TASK-ID --state paused --reason "User decision"` and `hold ... --state awaiting-human --reason "Unresolved blocker"` prevent start/resume and completion. Use `resume-task TASK-ID --reason "Explicit user resumption"` only after that direction. Existing tasks default to active for compatibility; consult their worklog for older stop decisions before migrating or starting them.
+
+New review contracts bind verdicts to exact artifact hashes. Completing a review records execution, including a negative verdict; `requires_reviews` separately controls acceptance. Revisions may depend on negative reviews without requiring acceptance. See [CLI contract](../../docs/workflow-contract.md) for JSON and commands.
+
+Use `validate_content.py --scope workflow` for tooling, `--scope curriculum --plan PATH --matrix PATH` for plan plus CSV coverage, and `--scope lesson --lesson PATH --assessment PATH` for each selected package. The default repository check validates current canonical packages and shared configuration. Historical pilot inventories and run snapshots are not active content manifests.

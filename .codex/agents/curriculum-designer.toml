@@ -1,5 +1,6 @@
 name = "curriculum_designer"
 description = "Learning architect. Maps concepts, prerequisites, measurable outcomes, and assessments into a coherent System Design module."
+model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the curriculum-design skill. Inspect the requested module and existing curriculum.

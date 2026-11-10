@@ -7,53 +7,165 @@ or pedagogical quality. Those require separate review gates.
 from __future__ import annotations
 
 import csv
+import argparse
 import json
 import re
 import sys
 import tomllib
 from pathlib import Path
 from urllib.parse import urlparse
+import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSONS_DIR = ROOT / "modules/database/lessons"
-SOURCE_CSV = ROOT / "modules/database/sources/source-registry.csv"
-MANIFEST = ROOT / "modules/database/pilot-manifest.json"
 
 REQUIRED_FRONT_MATTER = (
     "id", "title", "status", "level", "estimated_time", "source_review_date"
 )
 REQUIRED_SECTIONS = {
     "learning outcomes": re.compile(r"^##\s+(?:\d+\.\s*)?Learning outcomes\b", re.I | re.M),
-    "exercise": re.compile(r"^##\s+(?:(?:\d+\.\s*)?Practical )?Exercise\b", re.I | re.M),
-    "knowledge check": re.compile(r"^##\s+(?:\d+\.\s*)?Knowledge check\b", re.I | re.M),
-    "answer key": re.compile(r"^#{2,3}\s+(?:\d+\.\s*)?(?:Answer key|Answer guide)\b", re.I | re.M),
+    "motivation": re.compile(r"^##\s+Problem and motivation", re.I | re.M),
+    "mechanism": re.compile(r"^##\s+Core concepts and mechanisms", re.I | re.M),
+    "worked example": re.compile(r"^##\s+Worked example", re.I | re.M),
+    "trade-offs": re.compile(r"^##\s+Trade-offs and failure modes", re.I | re.M),
     "references": re.compile(r"^##\s+(?:\d+\.\s*)?References\b", re.I | re.M),
 }
 
 
-def parse_front_matter(text: str) -> dict[str, str]:
+def parse_front_matter(text: str) -> dict:
     if not text.startswith("---\n"):
         return {}
     end = text.find("\n---", 4)
     if end < 0:
         return {}
-    fields: dict[str, str] = {}
-    for line in text[4:end].splitlines():
-        match = re.match(r"^([A-Za-z0-9_-]+):\s*(.*?)\s*$", line)
-        if match:
-            fields[match.group(1)] = match.group(2).strip().strip("\"'")
-    return fields
+    try:
+        fields = yaml.safe_load(text[4:end])
+        return fields if isinstance(fields, dict) else {}
+    except yaml.YAMLError:
+        return {}
 
 
-def main() -> int:
+def local_path(value):
+    path = ROOT / value
+    if Path(value).is_absolute() or '..' in Path(value).parts:
+        raise ValueError(f'Expected repository-relative artifact path: {value}')
+    path.resolve().relative_to(ROOT.resolve())
+    return path
+
+
+def validate_pair(lesson, assessment):
+    errors = []
+    if lesson.resolve() == assessment.resolve():
+        return ['Lesson and assessment must have distinct paths']
+    try:
+        text = lesson.read_text(encoding='utf-8')
+        quiz = assessment.read_text(encoding='utf-8')
+    except OSError as exc:
+        return [str(exc)]
+    front, companion = parse_front_matter(text), parse_front_matter(quiz)
+    if front.get('status') != 'draft' or companion.get('status') != 'draft':
+        errors.append('Lesson and assessment must remain draft')
+    try:
+        if local_path(companion.get('lesson', '')).resolve() != lesson.resolve():
+            errors.append('Assessment must reference its companion lesson')
+    except (ValueError, TypeError):
+        errors.append('Invalid companion lesson reference')
+    if re.search(r'^#{2,3}\s+(?:Practical exercise|Exercise|Knowledge checks?|Answer key|Answer guide|Rubric)\b', text, re.I | re.M):
+        errors.append(f'{lesson}: assessment content belongs in the companion artifact')
+    for heading in ('Practical exercise', 'Knowledge checks', 'Answer key / rubric'):
+        if not re.search(r'^##\s+'+re.escape(heading)+r'\s*$', quiz, re.I | re.M):
+            errors.append(f'{assessment}: missing {heading}')
+    matches = list(re.finditer(r'^###\s+(Q\d+)\b[^\n]*', quiz, re.M))
+    ids = [m[1] for m in matches]
+    if not 5 <= len(ids) <= 8 or len(set(ids)) != len(ids):
+        errors.append('Assessment needs 5–8 uniquely identified knowledge checks')
+    for i, match in enumerate(matches):
+        block = quiz[match.end():matches[i+1].start() if i+1 < len(matches) else len(quiz)]
+        if not re.search(r'\bAnswer\s*:', block) or not re.search(r'\bExplanation\s*:', block):
+            errors.append(f'{match[1]} needs Answer: and Explanation:')
+    outcomes = front.get('outcomes')
+    mapping = companion.get('outcome_map')
+    headings = {h.strip().lower() for h in re.findall(r'^##\s+(.+)$', text, re.M)}
+    if not isinstance(front.get('prerequisites'), list):
+        errors.append('Lesson prerequisites must be a list')
+    if not isinstance(outcomes, list) or not outcomes or not all(isinstance(x, str) and x for x in outcomes):
+        errors.append('Lesson outcomes must be a nonempty list of IDs')
+    elif len(set(outcomes)) != len(outcomes):
+        errors.append('Outcome IDs must be unique')
+    elif not isinstance(mapping, dict) or set(mapping) != set(outcomes):
+        errors.append('Assessment outcome_map must cover every lesson outcome exactly')
+    else:
+        for outcome, entry in mapping.items():
+            if not isinstance(entry, dict):
+                errors.append(f'Invalid mapping for {outcome}')
+                continue
+            section, items = entry.get('taught_in'), entry.get('items')
+            if not isinstance(section, str) or section.lower() not in headings:
+                errors.append(f'{outcome} needs an existing teaching section')
+            if not isinstance(items, list) or not items or any(not isinstance(x,str) or x not in set(ids)|{'EX-1'} for x in items):
+                errors.append(f'{outcome} needs existing assessment items')
+    return errors
+
+
+def validate_plan(plan, matrix):
+    errors = []
+    try:
+        text = plan.read_text(encoding='utf-8')
+        with matrix.open(encoding='utf-8-sig', newline='') as handle:
+            rows = list(csv.DictReader(handle))
+        if not rows or not re.search(r'^##\s+', text, re.M):
+            errors.append('Plan needs outlines and a nonempty coverage matrix')
+        for row in rows:
+            if any(not row.get(k) for k in ('topic','locator','disposition')):
+                errors.append('Coverage rows need topic, pinned source locator and disposition')
+            if row.get('disposition') in ('mapped','merged'):
+                if not row.get('lesson') or not row.get('outline') or row['lesson'] not in text or row['outline'] not in text:
+                    errors.append('Mapped topics must identify an existing lesson and outline')
+            elif row.get('disposition') not in ('optional','deferred','outside-scope') or not row.get('rationale'):
+                errors.append('Excluded topics need a recognized disposition and rationale')
+    except (OSError, ValueError) as exc:
+        errors.append(str(exc))
+    return errors
+
+
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--scope', choices=['repo','workflow','curriculum','lesson'], default='repo')
+    for name in ('lesson','assessment','plan','matrix'):
+        parser.add_argument('--'+name, help='Repository-relative artifact path')
+    args = parser.parse_args(argv)
     errors: list[str] = []
     lesson_ids: list[str] = []
 
-    lesson_files = sorted(LESSONS_DIR.glob("*.md")) if LESSONS_DIR.exists() else []
-    if not lesson_files:
-        errors.append("No lesson Markdown files found")
+    lesson_files = sorted((ROOT/'modules').glob('*/lessons/*.md')) if args.scope == 'repo' else []
+    pairs = {}
+    try:
+        if args.scope == 'lesson':
+            if not args.lesson or not args.assessment:
+                parser.error('lesson scope requires --lesson and --assessment')
+            lesson_files = [local_path(args.lesson)]
+            pairs[lesson_files[0]] = local_path(args.assessment)
+        elif args.scope == 'curriculum':
+            if not args.plan or not args.matrix:
+                parser.error('curriculum scope requires --plan and --matrix (CSV)')
+            errors.extend(validate_plan(local_path(args.plan), local_path(args.matrix)))
+        if args.scope == 'repo':
+            for manifest in (ROOT/'modules').glob('*/content-manifest.json'):
+                value = json.loads(manifest.read_text(encoding='utf-8'))
+                if value.get('status') != 'draft' or not isinstance(value.get('packages'),list):
+                    errors.append(f'{manifest}: expected a draft packages manifest')
+                    continue
+                for item in value['packages']:
+                    lesson = local_path(item['lesson'])
+                    pairs[lesson] = local_path(item['assessment'])
+                    if lesson not in lesson_files:
+                        lesson_files.append(lesson)
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        errors.append(str(exc))
 
     for path in lesson_files:
+        if not path.is_file():
+            errors.append(f'Missing selected lesson: {path}')
+            continue
         text = path.read_text(encoding="utf-8")
         rel = path.relative_to(ROOT)
         front = parse_front_matter(text)
@@ -67,18 +179,26 @@ def main() -> int:
                 errors.append(f"{rel}: missing front-matter field '{field}'")
 
         lesson_id = front.get("id", "")
-        if lesson_id:
+        if isinstance(lesson_id, str) and lesson_id:
             lesson_ids.append(lesson_id)
             if not path.name.startswith(lesson_id):
                 errors.append(f"{rel}: filename should begin with lesson ID {lesson_id}")
+        else:
+            errors.append(f'{rel}: lesson id must be a nonempty string')
 
-        status = front.get("status", "").lower()
-        if status not in {"draft", "ready-for-human-review"}:
+        status = str(front.get("status", "")).lower()
+        if status != "draft":
             errors.append(f"{rel}: invalid status '{status}'; generated content must not be approved/published")
 
         for section, pattern in REQUIRED_SECTIONS.items():
             if not pattern.search(text):
                 errors.append(f"{rel}: missing required section '{section}'")
+        try:
+            assessment = pairs.get(path) or local_path(front['assessment'])
+            pairs[path] = assessment
+            errors.extend(validate_pair(path, assessment))
+        except (ValueError, KeyError, TypeError) as exc:
+            errors.append(f'{rel}: missing/invalid assessment path: {exc}')
 
         urls = set(re.findall(r"https?://[^\s)\]>]+", text))
         if len(urls) < 2:
@@ -88,18 +208,16 @@ def main() -> int:
         errors.append("Duplicate lesson IDs found in lesson front matter")
 
     source_count = 0
-    if not SOURCE_CSV.exists():
-        errors.append("Missing source registry CSV")
-    else:
+    for registry in sorted((ROOT/'modules').glob('*/sources/source-registry.csv')):
         try:
-            with SOURCE_CSV.open(encoding="utf-8-sig", newline="") as handle:
+            with registry.open(encoding="utf-8-sig", newline="") as handle:
                 reader = csv.DictReader(handle)
                 required = {"id", "title", "url", "publisher_or_author", "checked_date"}
                 missing = required - set(reader.fieldnames or [])
                 if missing:
                     errors.append(f"Source registry missing columns: {', '.join(sorted(missing))}")
                 rows = list(reader)
-                source_count = len(rows)
+                source_count += len(rows)
                 source_ids: list[str] = []
                 for row_number, row in enumerate(rows, start=2):
                     source_id = (row.get("id") or "").strip()
@@ -117,24 +235,8 @@ def main() -> int:
         except (OSError, csv.Error) as exc:
             errors.append(f"Cannot parse source registry: {exc}")
 
-    if not MANIFEST.exists():
-        errors.append("Missing pilot manifest JSON")
-    else:
-        try:
-            manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
-            if manifest.get("status") != "draft":
-                errors.append("Pilot manifest status must remain 'draft'")
-            listed = manifest.get("lessons")
-            if not isinstance(listed, list):
-                errors.append("Manifest 'lessons' must be an array")
-            else:
-                case_ids = {item for item in listed if item not in lesson_ids}
-                case_dir = ROOT / "modules/database/case-studies"
-                for case_id in case_ids:
-                    if not any(case_dir.glob(f"{case_id}*.md")):
-                        errors.append(f"Manifest case study has no matching file: {case_id}")
-        except (OSError, json.JSONDecodeError) as exc:
-            errors.append(f"Cannot parse pilot manifest: {exc}")
+    # The retired pilot-manifest.json is historical planning data. Active
+    # manifests use content-manifest.json and explicit package artifact paths.
 
 
     # Validate repo-local Agent Skills.
@@ -169,7 +271,7 @@ def main() -> int:
             except (OSError, tomllib.TOMLDecodeError) as exc:
                 errors.append(f"{rel_agent}: invalid TOML: {exc}")
                 continue
-            for field in ("name", "description", "developer_instructions"):
+            for field in ("name", "description", "developer_instructions", "model", "model_reasoning_effort"):
                 if not isinstance(agent_config.get(field), str) or not agent_config[field].strip():
                     errors.append(f"{rel_agent}: missing/empty '{field}'")
             if "sandbox_mode" in agent_config:
@@ -187,12 +289,22 @@ def main() -> int:
             max_threads = codex_config.get("agents", {}).get("max_concurrent_threads_per_session")
             if not isinstance(max_threads, int) or not 1 <= max_threads <= 16:
                 errors.append(".codex/config.toml: max_concurrent_threads_per_session must be an integer from 1 to 16")
+            if not codex_config.get('agents', {}).get('default_subagent_model'):
+                errors.append('Missing default subagent model')
         except (OSError, tomllib.TOMLDecodeError) as exc:
             errors.append(f".codex/config.toml: invalid TOML: {exc}")
 
     checked_links = 0
+    selected = set(lesson_files) | set(pairs.values())
+    if args.scope == 'curriculum' and args.plan:
+        try:
+            selected.add(local_path(args.plan))
+        except (ValueError, TypeError):
+            pass
     for path in ROOT.rglob("*.md"):
-        if ".git" in path.parts:
+        if args.scope != 'repo' and path not in selected and path.relative_to(ROOT).parts[0] == 'modules':
+            continue
+        if path not in selected and any(part in path.relative_to(ROOT).parts for part in ('.git','.tmp','inputs','runs','task-runs')):
             continue
         text = path.read_text(encoding="utf-8")
         for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", text):
@@ -215,7 +327,7 @@ def main() -> int:
     print(f"Internal Markdown links checked: {checked_links}")
     print(f"Skills found: {skill_count}")
     print(f"Custom agents found: {agent_count}")
-    print("Scope: structural checks only; not factual, legal, or pedagogical approval.")
+    print(f"Scope: {args.scope}; structural checks only; not factual, legal, or pedagogical approval.")
 
     if errors:
         print(f"\nFAILED: {len(errors)} issue(s)")

@@ -30,8 +30,11 @@
 - Do not have multiple agents edit the same output. Maximum two automated revision cycles; stop for human judgment if a critical disagreement remains.
 
 ## Content and approval gates
-- Every lesson needs outcomes, prerequisites, motivating problem, mechanism, worked example, trade-offs/failure modes, exercise, 5–8 knowledge checks with explanations, and direct references.
+- Every lesson teaches outcomes, prerequisites, motivating problem, mechanism, worked example, trade-offs/failure modes, and direct references. Its separate companion assessment contains an exercise, 5–8 checks with explanations, rubric and outcome map. The paired package satisfies lesson requirements.
 - Map every learning outcome to an assessment. Distinguish general principles from vendor-specific semantics.
 - Run `pip install -r requirements-dev.txt`, `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate`.
 - CI structural validation does not establish factual correctness, legal rights, source reachability, or pedagogical quality.
 - Automation completion is not human approval. Keep the PR draft until reviewers explicitly approve; never auto-publish learner-facing content.
+
+- `taskctl status` is read-only. Use `reconcile` explicitly to persist aggregate changes. Respect task execution_control holds; only resume-task after explicit user direction.
+- New review gates use artifact-bound verdict JSON; a completed review with block/revise cannot satisfy an acceptance gate. See docs/workflow-contract.md for the CLI contract.

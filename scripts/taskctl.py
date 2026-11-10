@@ -196,6 +196,17 @@ def validate_task(data: dict[str, Any]) -> None:
     by_id = {step["step_id"]: step for step in data["steps"]}
     for step in data["steps"]:
         sid = step["step_id"]
+        if set(step["input_paths"]) & set(step["output_paths"]):
+            raise TaskError(f"Step {sid} cannot own an input as an output")
+        for gate in step.get("requires_reviews", []):
+            if gate not in step["depends_on"] or not by_id.get(gate, {}).get("review"):
+                raise TaskError(f"Step {sid} requires a direct review dependency: {gate}")
+        review = step.get("review")
+        if review:
+            if review["verdict_path"] not in step["output_paths"]:
+                raise TaskError(f"Review {sid} must own its verdict output")
+            if not set(review["artifact_paths"]).issubset(step["input_paths"]):
+                raise TaskError(f"Review {sid} must declare reviewed artifacts as inputs")
         for value in step["input_paths"] + step["output_paths"]:
             relpath(value)
         if not step["output_paths"]:
@@ -263,15 +274,52 @@ def step_fingerprint(data: dict[str, Any], step_id: str, memo: dict[str, str] | 
             "fingerprint": step_fingerprint(data, dep_id, memo),
             "outputs": output_hashes(dep),
         }
-    result = canonical_hash({
+    payload = {
         "step_id": step_id,
         "definition_version": str(step["definition_version"]),
         "task_spec_hash": step_spec_hash(data, step_id),
         "input_hashes": {path: sha256_file(relpath(path)) for path in step["input_paths"]},
         "dependencies": dependency_state,
-    })
+    }
+    # Preserve fingerprints for historical tasks without the new contract.
+    for field in ("review", "requires_reviews", "revision_cycle"):
+        if field in step:
+            payload[field] = step[field]
+    result = canonical_hash(payload)
     memo[step_id] = result
     return result
+
+def review_result(step: dict[str, Any]) -> dict[str, Any]:
+    contract = step["review"]
+    try:
+        result = json.loads(relpath(contract["verdict_path"]).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise TaskError(f"Missing or invalid review verdict for {step['step_id']}: {exc}") from exc
+    if not isinstance(result, dict) or result.get("verdict") not in {"block", "revise", "ready-for-human-review"}:
+        raise TaskError("Review verdict must be block, revise, or ready-for-human-review")
+    hashes = {p: sha256_file(relpath(p)) for p in contract["artifact_paths"]}
+    if any(v is None for v in hashes.values()) or result.get("artifact_hashes") != hashes:
+        raise TaskError(f"Review {step['step_id']} does not match the current artifact hashes")
+    findings = result.get("findings")
+    if not isinstance(findings, list):
+        raise TaskError("Review findings must be a list (empty when none)")
+    for finding in findings:
+        if (not isinstance(finding, dict) or not isinstance(finding.get("id"), str)
+                or not finding["id"].strip() or finding.get("severity") not in {"blocker", "major", "minor", "note"}
+                or finding.get("status") not in {"open", "resolved"}):
+            raise TaskError("Each finding needs id, severity and open/resolved status")
+    if len({f["id"] for f in findings}) != len(findings):
+        raise TaskError("Review finding IDs must be unique")
+    if result["verdict"] == "ready-for-human-review" and any(
+            f["status"] == "open" and f["severity"] in {"blocker", "major"} for f in findings):
+        raise TaskError("A clear review cannot contain unresolved material findings")
+    return result
+
+
+def require_active(data: dict[str, Any]) -> None:
+    if data.get("execution_control", "active") != "active":
+        raise TaskError(f"Task is {data['execution_control']}; explicit resume-task with a user decision is required")
+
 
 def step_status(data: dict[str, Any], step: dict[str, Any], memo: dict[str, str] | None = None) -> tuple[str, str]:
     sid = step["step_id"]
@@ -281,9 +329,18 @@ def step_status(data: dict[str, Any], step: dict[str, Any], memo: dict[str, str]
         dep_state, _ = step_status(data, dep, memo)
         if dep_state != "SKIP":
             return "BLOCKED", f"dependency {dep_id} is {dep_state.lower()}"
+    for gate in step.get("requires_reviews", []):
+        try:
+            verdict = review_result(states[gate])["verdict"]
+        except TaskError as exc:
+            return "BLOCKED", str(exc)
+        if verdict != "ready-for-human-review":
+            return "BLOCKED", f"review {gate} verdict is {verdict}"
     current_fp = step_fingerprint(data, sid, memo)
     current_outputs = output_hashes(step)
     if step["status"] == "running":
+        if data.get("execution_control", "active") != "active":
+            return "BLOCKED", f"task is {data['execution_control']}"
         if step.get("active_fingerprint") == current_fp:
             return "RESUME", "step was in progress; inspect checkpoint and existing files"
         return "STALE", "inputs changed while step was running; reconcile before resuming"
@@ -291,10 +348,14 @@ def step_status(data: dict[str, Any], step: dict[str, Any], memo: dict[str, str]
         if step.get("completed_fingerprint") == current_fp and all(v is not None for v in current_outputs.values()) and step.get("completed_output_hashes") == current_outputs:
             try:
                 require_tracked_clean(step["output_paths"], "Completed output")
+                if step.get("review"):
+                    review_result(step)
             except TaskError as exc:
                 return "STALE", str(exc)
             return "SKIP", "fingerprint and committed output hashes match"
         return "STALE", "input fingerprint or output artifact changed"
+    if data.get("execution_control", "active") != "active":
+        return "BLOCKED", f"task is {data['execution_control']}"
     if step["status"] == "invalidated":
         return "READY", step.get("invalidation_reason", "manually invalidated")
     if step["status"] == "blocked":
@@ -304,6 +365,9 @@ def step_status(data: dict[str, Any], step: dict[str, Any], memo: dict[str, str]
 
 
 def refresh_task_status(data: dict[str, Any]) -> None:
+    if data.get("execution_control", "active") != "active":
+        data["automation_status"] = "blocked"
+        return
     statuses = [step_status(data, step)[0] for step in data["steps"]]
     if statuses and all(status == "SKIP" for status in statuses):
         data["automation_status"] = "automation_complete"
@@ -316,7 +380,7 @@ def refresh_task_status(data: dict[str, Any]) -> None:
             data["automation_status"] = "not_started"
     elif any(step["status"] == "running" for step in data["steps"]):
         data["automation_status"] = "in_progress"
-    elif statuses and all(status == "BLOCKED" for status in statuses):
+    elif any(status == "BLOCKED" for status in statuses):
         data["automation_status"] = "blocked"
     elif any(step["status"] != "pending" for step in data["steps"]):
         data["automation_status"] = "in_progress"
@@ -437,13 +501,7 @@ def cmd_add_step(args: argparse.Namespace) -> None:
 
 def cmd_status(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
-    previous = data.get("automation_status")
     refresh_task_status(data)
-    if previous != data["automation_status"]:
-        data["updated_at"] = now()
-        save_task(data)
-        log_event(args.task_id, "automation_status_reconciled", previous=previous, current=data["automation_status"])
-        print("Persisted status reconciliation; commit task JSON and worklog.")
     spec = load_spec(data)
     print(f"{data['task_id']} | {data['module_id']} | automation={data['automation_status']} | owner={data['owner']}")
     print(f"Specification: {data['spec_path']} — {spec['goal']}")
@@ -455,6 +513,30 @@ def cmd_status(args: argparse.Namespace) -> None:
     if not data["steps"]:
         print("No steps are defined yet.")
     print("Human review, approval, and publication are separate human-controlled transitions.")
+
+
+def cmd_reconcile(args: argparse.Namespace) -> None:
+    data = load_task(args.task_id)
+    previous = data.get("automation_status")
+    refresh_task_status(data)
+    if previous != data["automation_status"]:
+        data["updated_at"] = now()
+        save_task(data)
+        log_event(args.task_id, "automation_status_reconciled", previous=previous, current=data["automation_status"])
+    print(f"Reconciled: {data['automation_status']}")
+
+
+def cmd_control(args: argparse.Namespace) -> None:
+    if not args.reason.strip():
+        raise TaskError("A user decision or blocking reason is required")
+    data = load_task(args.task_id)
+    data["execution_control"] = "active" if args.command == "resume-task" else args.state
+    data["control_reason"] = args.reason
+    data["updated_at"] = now()
+    refresh_task_status(data)
+    save_task(data)
+    log_event(args.task_id, "task_control_changed", control=data["execution_control"], reason=args.reason)
+    print(f"Task control: {data['execution_control']}")
 
 
 def current_input_snapshot(data: dict[str, Any], step: dict[str, Any]) -> dict[str, str]:
@@ -470,6 +552,7 @@ def current_input_snapshot(data: dict[str, Any], step: dict[str, Any]) -> dict[s
 
 def cmd_start(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
+    require_active(data)
     if not data["owner"].strip():
         raise TaskError("Set the task owner before execution")
     states = step_map(data)
@@ -488,13 +571,15 @@ def cmd_start(args: argparse.Namespace) -> None:
     require_tracked_clean(list(step["input_paths"]) + [data["spec_path"]], "Input/specification")
     snapshot = current_input_snapshot(data, step)
     output_before = output_hashes(step)
-    run_id = args.run_id or f"{args.task_id}-{args.step_id}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
+    run_id = args.run_id or (step.get("run_id") if args.resume else None) or f"{args.task_id}-{args.step_id}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}"
     if args.resume:
         if step.get("start_commit") is None or step.get("start_input_hashes") != snapshot:
             raise TaskError("Cannot resume: the starting commit or input snapshot is missing/changed; reconcile and restart.")
         git_checked(["merge-base", "--is-ancestor", step["start_commit"], "HEAD"])
         step["resume_count"] = step.get("resume_count", 0) + 1
     else:
+        if step.get("revision_cycle") and sum(s.get("attempts", 0) for s in data["steps"] if s.get("revision_cycle")) >= 2:
+            raise TaskError("Two automated revision runs have been used; hold awaiting-human before further work")
         for path, digest in output_before.items():
             if digest is not None:
                 require_tracked_clean([path], "Existing output")
@@ -508,6 +593,9 @@ def cmd_start(args: argparse.Namespace) -> None:
     step["active_fingerprint"] = step_fingerprint(data, args.step_id)
     step["run_id"] = run_id
     step["agent"] = args.agent
+    previous_runtime = step.get("runtime", {}) if args.resume else {}
+    step["runtime"] = {"model": args.model or previous_runtime.get("model"),
+                       "reasoning_effort": args.reasoning_effort or previous_runtime.get("reasoning_effort")}
     data["current_phase"] = args.step_id
     data["updated_at"] = now()
     data["automation_status"] = "in_progress"
@@ -515,7 +603,7 @@ def cmd_start(args: argparse.Namespace) -> None:
     log_event(args.task_id, "step_resumed" if args.resume else "step_started",
               step_id=args.step_id, agent=args.agent, run_id=run_id,
               fingerprint=step["active_fingerprint"], start_commit=step["start_commit"],
-              input_hashes=snapshot)
+              input_hashes=snapshot, runtime=step["runtime"])
     print(f"{'Resumed' if args.resume else 'Started'} {args.task_id}/{args.step_id}; start_commit={step['start_commit'][:12]}")
 
 def cmd_checkpoint(args: argparse.Namespace) -> None:
@@ -535,11 +623,24 @@ def cmd_checkpoint(args: argparse.Namespace) -> None:
 
 def cmd_complete(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
+    require_active(data)
     step = step_map(data).get(args.step_id)
     if step is None:
         raise TaskError(f"Unknown step: {args.step_id}")
     if step["status"] != "running":
         raise TaskError(f"Cannot complete {args.step_id}: status is {step['status']}, not running")
+    if step.get("review"):
+        review_result(step)
+    usage = None
+    if args.usage_file:
+        try:
+            usage = json.loads(relpath(args.usage_file).read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            raise TaskError(f"Invalid usage file: {exc}") from exc
+        allowed = {"input_tokens", "output_tokens", "cached_input_tokens", "reasoning_tokens", "elapsed_seconds"}
+        if not isinstance(usage, dict) or not usage or set(usage) - allowed or any(
+                isinstance(v, bool) or not isinstance(v, (int, float)) or not 0 <= v < float('inf') for v in usage.values()):
+            raise TaskError("Usage must contain nonnegative finite runtime counters only")
     require_tracked_clean(list(step["input_paths"]) + [data["spec_path"]], "Input/specification")
     current_snapshot = current_input_snapshot(data, step)
     if current_snapshot != step.get("start_input_hashes"):
@@ -548,6 +649,9 @@ def cmd_complete(args: argparse.Namespace) -> None:
     current_fp = step_fingerprint(data, args.step_id)
     if current_spec_hash != step.get("active_spec_hash") or current_fp != step.get("active_fingerprint"):
         raise TaskError("Task specification, inputs, or dependencies changed during execution. Do not mark complete.")
+    state, reason = step_status(data, step)
+    if state != "RESUME":
+        raise TaskError(f"Cannot complete {args.step_id}: {state}: {reason}")
     start_commit = step.get("start_commit")
     if not start_commit:
         raise TaskError("Missing start_commit; refusing completion without a reproducible baseline")
@@ -588,7 +692,8 @@ def cmd_complete(args: argparse.Namespace) -> None:
     save_task(data)
     log_event(args.task_id, "step_completed", step_id=args.step_id, run_id=step.get("run_id"),
               fingerprint=current_fp, spec_hash=current_spec_hash, output_hashes=hashes,
-              commit=commit_sha, reused_outputs=sorted(reused), reuse_reason=args.reuse_reason if reused else None)
+              commit=commit_sha, reused_outputs=sorted(reused), reuse_reason=args.reuse_reason if reused else None,
+              runtime=step.get("runtime"), usage=usage)
     print(f"Completed {args.task_id}/{args.step_id} at {commit_sha[:12]}; automation={data['automation_status']}.")
     if data["automation_status"] == "automation_complete":
         print("Automation complete; human review, approval, and publication remain manual gates.")
@@ -661,11 +766,23 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("status", help="Show task state and which steps can be skipped")
     p.add_argument("task_id")
     p.set_defaults(func=cmd_status)
+    p = sub.add_parser("reconcile", help="Explicitly persist computed aggregate status")
+    p.add_argument("task_id")
+    p.set_defaults(func=cmd_reconcile)
+    for command in ("hold", "resume-task"):
+        p = sub.add_parser(command, help="Record a task hold or explicit user resumption")
+        p.add_argument("task_id")
+        p.add_argument("--reason", required=True)
+        if command == "hold":
+            p.add_argument("--state", choices=["paused", "awaiting-human"], default="paused")
+        p.set_defaults(func=cmd_control)
     p = sub.add_parser("start", help="Claim a ready step or resume an interrupted one")
     p.add_argument("task_id")
     p.add_argument("step_id")
     p.add_argument("--agent", required=True)
     p.add_argument("--run-id")
+    p.add_argument("--model", help="Observed runtime model, if available; do not guess")
+    p.add_argument("--reasoning-effort", help="Observed runtime reasoning effort, if available")
     p.add_argument("--resume", action="store_true")
     p.set_defaults(func=cmd_start)
     p = sub.add_parser("checkpoint", help="Persist a handoff checkpoint")
@@ -678,6 +795,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("task_id")
     p.add_argument("step_id")
     p.add_argument("--agent")
+    p.add_argument("--usage-file", help="Repository-relative JSON containing observed runtime usage counters")
     p.add_argument("--reuse-output", action="append", default=[], help="Explicitly reuse an unchanged declared output; repeat per path")
     p.add_argument("--reuse-reason", default="", help="Required reason for unchanged output reuse")
     p.set_defaults(func=cmd_complete)

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 import shutil
 import subprocess
@@ -204,6 +205,8 @@ class TaskCtlV2Tests(unittest.TestCase):
         self.git("commit", "-qm", "persist checkpoint")
         resumed = self.cli("start", "TEST-1", "research", "--agent", "tester", "--resume")
         self.assertIn("Resumed", resumed)
+        resumed_state = json.loads((self.root/'.academy/state/tasks/TEST-1.json').read_text(encoding='utf-8'))
+        self.assertEqual(resumed_state['steps'][0]['run_id'], 'run-resume')
         output = self.root / "outputs/research.md"
         output.write_text("resumed output\n", encoding="utf-8")
         self.git("add", "outputs/research.md")
@@ -242,6 +245,99 @@ class TaskCtlV2Tests(unittest.TestCase):
             cwd=self.root, text=True, capture_output=True
         )
         self.assertNotEqual(result.returncode, 0)
+
+    def edit_state(self, edit):
+        path = self.root / '.academy/state/tasks/TEST-1.json'
+        data = json.loads(path.read_text(encoding='utf-8'))
+        edit(data)
+        path.write_text(json.dumps(data, indent=2), encoding='utf-8')
+        self.git('add', '.academy')
+        self.git('commit', '-qm', 'update task contract')
+
+    def test_status_is_read_only_and_reconcile_is_explicit(self):
+        self.add_step('research', 'outputs/research.md')
+        self.execute_step('research', 'outputs/research.md')
+        (self.root / 'docs/input.md').write_text('changed\n', encoding='utf-8')
+        paths = [self.root / '.academy/state/tasks/TEST-1.json', self.root / '.academy/state/worklog/TEST-1.jsonl']
+        before = [p.read_bytes() for p in paths]
+        self.assertIn('STALE', self.cli('status', 'TEST-1'))
+        self.assertEqual(before, [p.read_bytes() for p in paths])
+        self.cli('reconcile', 'TEST-1')
+        self.assertNotEqual(before, [p.read_bytes() for p in paths])
+
+    def test_task_hold_blocks_start_resume_and_complete(self):
+        self.add_step('research', 'outputs/research.md')
+        self.cli('hold', 'TEST-1', '--reason', 'User stopped work')
+        self.assertIn('paused', self.cli('start', 'TEST-1', 'research', '--agent', 'tester', expected=2))
+        self.cli('resume-task', 'TEST-1', '--reason', 'User explicitly resumed')
+        self.cli('start', 'TEST-1', 'research', '--agent', 'tester')
+        self.cli('hold', 'TEST-1', '--state', 'awaiting-human', '--reason', 'Revision limit reached')
+        self.assertIn('awaiting-human', self.cli('start', 'TEST-1', 'research', '--agent', 'tester', '--resume', expected=2))
+        self.assertIn('awaiting-human', self.cli('complete', 'TEST-1', 'research', expected=2))
+
+    def make_review_graph(self):
+        self.add_step('review', 'outputs/verdict.json')
+        self.add_step('revision', 'outputs/revised.md', depends=('review',))
+        self.add_step('author', 'outputs/lesson.md', depends=('review',))
+        def edit(data):
+            data['steps'][0]['review'] = {'artifact_paths': ['docs/input.md'], 'verdict_path': 'outputs/verdict.json'}
+            data['steps'][2]['requires_reviews'] = ['review']
+        self.edit_state(edit)
+
+    def write_verdict(self, verdict='ready-for-human-review', findings=None, digest=None):
+        result = {'verdict': verdict, 'artifact_hashes': {'docs/input.md': digest or hashlib.sha256((self.root/'docs/input.md').read_bytes()).hexdigest()}, 'findings': findings or []}
+        (self.root/'outputs/verdict.json').write_text(json.dumps(result), encoding='utf-8')
+        self.git('add', 'outputs/verdict.json')
+        self.git('commit', '-qm', 'review result')
+
+    def test_negative_review_completes_but_only_revision_is_ready(self):
+        self.make_review_graph()
+        self.cli('start', 'TEST-1', 'review', '--agent', 'tester')
+        self.write_verdict('block', [{'id':'T1','severity':'blocker','status':'open'}])
+        self.cli('complete', 'TEST-1', 'review')
+        output = self.cli('status', 'TEST-1')
+        self.assertIn('- review: SKIP', output)
+        self.assertIn('- revision: READY', output)
+        self.assertIn('- author: BLOCKED', output)
+        self.assertIn('verdict is block', self.cli('start', 'TEST-1', 'author', '--agent', 'tester', expected=2))
+
+    def test_clear_review_unlocks_gate_and_content_change_invalidates_it(self):
+        self.make_review_graph()
+        self.cli('start', 'TEST-1', 'review', '--agent', 'tester')
+        self.write_verdict()
+        self.cli('complete', 'TEST-1', 'review')
+        self.assertIn('- author: READY', self.cli('status', 'TEST-1'))
+        (self.root/'docs/input.md').write_text('new content\n', encoding='utf-8')
+        self.git('add', 'docs/input.md')
+        self.git('commit', '-qm', 'change reviewed content')
+        self.assertIn('- author: BLOCKED', self.cli('status', 'TEST-1'))
+
+    def test_review_rejects_wrong_hash_and_false_clear_verdict(self):
+        self.make_review_graph()
+        self.cli('start', 'TEST-1', 'review', '--agent', 'tester')
+        self.write_verdict(digest='0'*64)
+        self.assertIn('artifact hashes', self.cli('complete', 'TEST-1', 'review', expected=2))
+        self.write_verdict(findings=[{'id':'T1','severity':'major','status':'open'}])
+        self.assertIn('unresolved material', self.cli('complete', 'TEST-1', 'review', expected=2))
+
+    def test_runtime_metadata_and_usage_are_recorded_without_inference(self):
+        self.add_step('research', 'outputs/research.md')
+        self.cli('start', 'TEST-1', 'research', '--agent', 'tester', '--model', 'fixture-model', '--reasoning-effort', 'medium')
+        (self.root/'outputs/research.md').write_text('result\n', encoding='utf-8')
+        self.git('add', 'outputs/research.md')
+        self.git('commit', '-qm', 'produce result')
+        (self.root/'outputs/usage.json').write_text('{"input_tokens": 100, "output_tokens": 10}', encoding='utf-8')
+        self.cli('complete', 'TEST-1', 'research', '--usage-file', 'outputs/usage.json')
+        event=json.loads((self.root/'.academy/state/worklog/TEST-1.jsonl').read_text(encoding='utf-8').splitlines()[-1])
+        self.assertEqual(event['runtime']['model'], 'fixture-model')
+        self.assertEqual(event['usage'], {'input_tokens':100,'output_tokens':10})
+
+    def test_revision_budget_blocks_third_automated_run(self):
+        self.add_step('revision', 'outputs/revision.md')
+        def edit(data):
+            data['steps'][0].update(revision_cycle=1, attempts=2)
+        self.edit_state(edit)
+        self.assertIn('Two automated revision', self.cli('start', 'TEST-1', 'revision', '--agent', 'tester', expected=2))
 
 
 if __name__ == "__main__":

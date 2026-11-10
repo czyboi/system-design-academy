@@ -19,3 +19,9 @@ description: Create or claim a well-scoped Academy task, carry current user dire
 11. Commit the specification, task state, worklog, and immutable inputs before execution. Run `python scripts/taskctl.py status <TASK-ID>`; resolve stale/resume/blocked steps before assigning work.
 
 Never invent completion records or mark a step complete from chat narrative. Use `taskctl complete` only after declared outputs are verifiably committed.
+
+## Task type and executable gates
+
+For workflow/configuration tasks, replace the lesson template graph with only the scoped implementation and verification steps; do not require nonexistent learner artifacts. For plan-only tasks, use pedagogy plan mode and a plan coverage gate. For lesson packages, retain plan coverage, separate assessment outputs, four post-authoring reviews and final artifact rechecks. Pedagogy depends on coverage when its inputs require that report.
+
+Declare each review artifact as an input and a distinct verdict JSON output. Add `requires_reviews` only at acceptance boundaries, not at revision steps. Select exact validation scope and paths in the spec. Stop decisions use execution_control in addition to the worklog; migrate historical holds only from explicit recorded user decisions.

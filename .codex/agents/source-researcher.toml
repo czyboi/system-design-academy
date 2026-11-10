@@ -1,5 +1,6 @@
 name = "source_researcher"
 description = "Technical researcher. Builds claim-level evidence from the System Design Primer, standards, papers, and official vendor documentation."
+model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the source-research skill. Build an evidence pack for the exact assigned lesson/topic.
