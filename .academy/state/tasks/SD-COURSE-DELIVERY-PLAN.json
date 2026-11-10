@@ -4,17 +4,17 @@
   "module_id": "curriculum-delivery",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-DELIVERY-PLAN.json",
-  "automation_status": "not_started",
-  "current_phase": null,
+  "automation_status": "in_progress",
+  "current_phase": "implementation",
   "created_at": "2026-11-10T10:24:56Z",
-  "updated_at": "2026-11-10T10:24:56Z",
+  "updated_at": "2026-11-10T10:25:30Z",
   "execution_control": "active",
   "notes": "Content delivery planning and approval record only; no workflow changes or lesson execution.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Record approval and create course delivery backlog",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -34,7 +34,30 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "571d8ec5aa3f37fed91e703f454adcd30d1bf35a",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "curriculum/revision-1/review.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287"
+      },
+      "start_output_hashes": {
+        "curriculum/approved-baseline.json": null,
+        "curriculum/README.md": null,
+        "delivery/backlog.json": null,
+        "delivery/PLAN.md": null,
+        "README.md": "30674e7bd915ddb194db3e4c6bd5bfa9ce87a20f6b0dc5b03e2d4071c15f9d29"
+      },
+      "started_at": "2026-11-10T10:25:30Z",
+      "active_spec_hash": "146043a98015dab6224af01cdd0dd719c4c80082a40f1e3e3044521ee604e4bb",
+      "active_fingerprint": "bfda0cbd0b79304beaff9011a6693c593905b62ede61f9d7a5c468b21c1e7bb3",
+      "run_id": "SD-COURSE-DELIVERY-PLAN-implementation-20261110T102530Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "verification",
