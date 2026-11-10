@@ -4,17 +4,17 @@
   "module_id": "workflow",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-AGENT-MODEL-ROUTING.json",
-  "automation_status": "not_started",
-  "current_phase": null,
+  "automation_status": "in_progress",
+  "current_phase": "implementation",
   "created_at": "2026-11-10T08:54:49Z",
-  "updated_at": "2026-11-10T08:54:49Z",
+  "updated_at": "2026-11-10T08:55:15Z",
   "execution_control": "active",
   "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Implement scoped tooling changes",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [],
@@ -34,7 +34,30 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "c12c2373ff3c1711e08e010e2df2322c6e9e972b",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        ".codex/config.toml": "ac4006d27063422c30789248a3d27f025c5f1526ea01bab7516afdabf8bf5075",
+        ".codex/agents/lesson-author.toml": "42cec74086b67839bc636d6032eb54a968f49c06003fe4a704fc9bf9036c9390",
+        ".codex/agents/technical-reviewer.toml": "8c0c143dced692ac6bf77d487a441ed2dd5e0a20942133c499ddacfff412a0dc",
+        ".codex/agents/workflow-architect.toml": null,
+        ".codex/agents/pr-reviewer.toml": null,
+        ".codex/agents/spec-implementer.toml": null,
+        ".agents/skills/module-pipeline/SKILL.md": "c7dc4ef2a4f08e5b5f36188baa781d838f740834a069eab7abef002b0d91e1d9",
+        "docs/workflow-contract.md": "f5d6bed6054d9f182488a3440f7bcaefa291f6cf80ad30bf9a47ac63b3d94ef5",
+        "docs/agent-architecture.md": "2a1acfa6a4d1dfb1cf2c87e005d18d36bfbd3f0bfd13c6f8a5017ef341c95ce9",
+        "tests/test_content_validation.py": "6075f956e903aee03713b3999be1880e595eab1aab7d450943346755aa976c63"
+      },
+      "started_at": "2026-11-10T08:55:15Z",
+      "active_spec_hash": "a1df99ec2ad99699175951a02389b738f3cfcb1b0b347bf3e4d5dd235368a7d0",
+      "active_fingerprint": "6e136587816474c33e327bcc715313d6b92b0438bfbb8d784d836a2030c47070",
+      "run_id": "SD-AGENT-MODEL-ROUTING-implementation-20261110T085514Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "verification",
