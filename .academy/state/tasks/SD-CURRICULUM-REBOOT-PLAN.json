@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "coverage-round-1",
+  "current_phase": "revision-round-1",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T02:42:17Z",
+  "updated_at": "2026-11-10T02:42:42Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -178,7 +178,7 @@
     {
       "step_id": "revision-round-1",
       "title": "Resolve Round 1 curriculum coverage findings",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "coverage-round-1"
       ],
@@ -195,8 +195,22 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
+      "attempts": 1,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "start_commit": "997cd45dd2cce0cef9b308a75248a572dabba7f0",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": "ed9d4400e7316851aab4b72bd16e323871cafb69f93c829a9047f0ecbceaf8b2",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md": "5533592fac0c00a75969897d4994a14451cf538920d858454d08e6f7064f99be"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md": null
+      },
+      "started_at": "2026-11-10T02:42:42Z",
+      "active_spec_hash": "77c2a33b9dc56ee15bc59aa8cc054e7eb782300edf673009c38685dec319ad06",
+      "active_fingerprint": "0d3f190792c6c8a0e2798c148b4be7b8b0b1b137fde0ad59f81eae0738ddac82",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-revision-round-1-20261110T024242Z",
+      "agent": "curriculum_designer"
     },
     {
       "step_id": "coverage-round-2",
