@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "source-inventory",
+  "current_phase": "curriculum-draft",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T02:37:03Z",
+  "updated_at": "2026-11-10T02:37:30Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -91,7 +91,7 @@
     {
       "step_id": "curriculum-draft",
       "title": "Design the ordered modules and detailed teaching lesson outlines",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "source-inventory"
       ],
@@ -108,20 +108,22 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 1,
-      "start_commit": "d5bb77a6b9e5f04593d58711b1240a822dc19ba7",
+      "attempts": 2,
+      "start_commit": "a34a8506117667b4b8659d77a5e2482fde40e2b1",
       "start_input_hashes": {
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "f78ccaddce934f8157398ae9b6de6a60c28e547ea9196a9a763100630cb7feec",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
         ".agents/skills/curriculum-design/SKILL.md": "ff36d841dac7cbdd11707c998a3aa6c0bf6084fe5a934eb5146badc7eeb7e7ba",
         ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
       },
       "start_output_hashes": {
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": null
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": "e4351abe70e5e14dadb686617acdba0169ce1586d746d79087c20e24454e7e4f"
       },
-      "started_at": "2026-11-10T02:28:22Z",
-      "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-draft-20261110T022822Z",
+      "started_at": "2026-11-10T02:37:30Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-draft-20261110T023730Z",
       "agent": "curriculum_designer",
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "active_spec_hash": "db8069fce8b3c5a5a3ae749aaa78c5a066e2886510dc82f89d071a0524a0e547",
+      "active_fingerprint": "a59bb170837a2df646973a3bec38923fb04a98d8445cb735357fc0fd3ea9ca75"
     },
     {
       "step_id": "coverage-round-1",
