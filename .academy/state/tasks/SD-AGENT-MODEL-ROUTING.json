@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-AGENT-MODEL-ROUTING.json",
   "automation_status": "in_progress",
-  "current_phase": "implementation",
+  "current_phase": "verification",
   "created_at": "2026-11-10T08:54:49Z",
-  "updated_at": "2026-11-10T08:56:34Z",
+  "updated_at": "2026-11-10T08:56:39Z",
   "execution_control": "active",
   "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
   "steps": [
@@ -77,7 +77,7 @@
     {
       "step_id": "verification",
       "title": "Verify scoped changes",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "implementation"
       ],
@@ -90,7 +90,21 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "b9ca5a01ff5cdcaaf411813fafcb6b3b5bb8f542",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        ".academy/task-runs/SD-AGENT-MODEL-ROUTING/report.md": null
+      },
+      "started_at": "2026-11-10T08:56:39Z",
+      "active_spec_hash": "bd1185573c8b4020d6952901bc0d76e1ad0c817cc38a1737412590d6b81c5428",
+      "active_fingerprint": "e892e67e378535262582585dbc90d4fa8769d7c6b1d0d173d2653614376b88a6",
+      "run_id": "SD-AGENT-MODEL-ROUTING-verification-20261110T085639Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ]
 }
