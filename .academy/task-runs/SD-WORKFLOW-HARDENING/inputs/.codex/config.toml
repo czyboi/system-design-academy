@@ -1,6 +1,0 @@
-# Project settings for System Design Academy.
-# Skills: .agents/skills/ ; custom subagents: .codex/agents/
-
-[agents]
-enabled = true
-max_concurrent_threads_per_session = 4
