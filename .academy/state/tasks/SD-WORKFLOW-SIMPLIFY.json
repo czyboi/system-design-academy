@@ -4,12 +4,12 @@
   "module_id": "workflow",
   "current_phase": "implementation",
   "created_at": "2026-11-10T04:28:34Z",
-  "updated_at": "2026-11-10T08:21:10Z",
+  "updated_at": "2026-11-10T08:22:07Z",
   "steps": [
     {
       "step_id": "implementation",
       "title": "implementation",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [],
@@ -87,8 +87,8 @@
         ".academy/state/task.template.json": "31ba6268b98f7b824ca81be0cc398cef6b3e88594bfee93378fda3c130135242",
         ".academy/state/course.template.json": "e3ab5ba360c3a94772b89b70ad6a235aa0afe21083147e1bd820bad329545599",
         ".academy/state/workflow.template.json": "9fbb04e0aff3c2091b5f2a03249cc07a88617b946d71304a13c3dd727cb72777",
-        "scripts/check_course_coverage.py": "8c099eab357f34cae113f6eb2f884e4e519d404a62e9d8f2e02bbd8d3267ae67",
-        "tests/test_course_coverage.py": "eabcb16adf17dd78cec92a7bdf150b1790148536d9ccb7acd7d05aafe2bb2068",
+        "scripts/check_course_coverage.py": "061969675bcbcd83bbac7b5e16444bbbb69eb2dee249914d8eeafe077a35b225",
+        "tests/test_course_coverage.py": "c252fd2f8181fdfdcc0d2a138eeb72cab7107692881bf006044bc2b7bd3efd35",
         "tests/test_content_validation.py": "dcd9ff7d00a26d60369dec52ad97632f3419729a54e401170a254bde6bdc9fc3",
         "README.md": "f584242a825570a89718e815817ed9e27db3f6482547d3e22789cbdadbb1518b",
         "docs/workflow-contract.md": "f5d6bed6054d9f182488a3440f7bcaefa291f6cf80ad30bf9a47ac63b3d94ef5",
@@ -109,30 +109,100 @@
         ".agents/skills/lesson-authoring/SKILL.md": "076d9b410da019a6457e88d13c21e18afba22555d3e59cc3395d15b2e0bf3a3c",
         "tests/test_taskctl.py": "563872c0b6bed106ee693cfa9bbc57a7219d7a9b87a567260da5fa3deb3583a7"
       },
-      "completed_at": "2026-11-10T08:17:00Z",
+      "completed_at": "2026-11-10T08:22:07Z",
       "completed_by": "workflow_orchestrator",
-      "completed_commit": "ede99e2e1f6c81f35eb3bbaab5a49a4860f11cac",
+      "completed_commit": "2ede57dfd0b0e4163c1b23c4f512cdb8cf0c957a",
       "reused_outputs": {
+        ".academy/state/README.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".academy/state/course.template.json": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".academy/state/task.template.json": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".academy/state/workflow.template.json": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/curriculum-coverage-review/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/curriculum-design/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/lesson-authoring/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/module-pipeline/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/pedagogical-review/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/provenance-review/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/task-intake/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/technical-review/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "AGENTS.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "README.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "docs/agent-architecture.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "docs/workflow-contract.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
         "modules/database/README.md": {
-          "reason": "Restored unchanged to honor user clarification: workflow-only scope.",
-          "at": "2026-11-10T08:17:00Z"
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
         },
         "modules/database/governance/qa-checklist.md": {
-          "reason": "Restored unchanged to honor user clarification: workflow-only scope.",
-          "at": "2026-11-10T08:17:00Z"
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
         },
         "modules/database/workflow/agent-runbook.md": {
-          "reason": "Restored unchanged to honor user clarification: workflow-only scope.",
-          "at": "2026-11-10T08:17:00Z"
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
         },
         "modules/database/workflow/run-database-pilot.md": {
-          "reason": "Restored unchanged to honor user clarification: workflow-only scope.",
-          "at": "2026-11-10T08:17:00Z"
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "tests/test_content_validation.py": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "tests/test_taskctl.py": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
         }
       },
-      "invalidation_reason": "Independent review found coverage checker false positives; user requested fix before merge",
-      "active_spec_hash": "847722e9c432432e17d94f223b03e8bad16d743538154349519a1cfe2d149b47",
-      "active_fingerprint": "716db1cdd237d61facd4efb9ffd4aee2a7f46cdf556e7be7766c63af16765917"
+      "invalidation_reason": "Independent review found coverage checker false positives; user requested fix before merge"
     },
     {
       "step_id": "verification",
