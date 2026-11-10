@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "source-evidence-refresh",
+  "current_phase": "source-inventory-final",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:43:47Z",
+  "updated_at": "2026-11-10T03:44:45Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -509,14 +509,28 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md"
       ],
-      "status": "invalidated",
+      "status": "running",
       "definition_version": "v1",
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
-      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
+      "attempts": 1,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "6f4159e1cf423f1a4d5e3aa72ba22304b70de49f",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": "a94aab050caf1eac40687f0977233a55b52b1039dbb41a8c9572cfefcc7d43e8",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md": "f11f4f49853486acde1c51f16925495a6315be15a432c05b8bbe176cbbdb7002"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md": null
+      },
+      "started_at": "2026-11-10T03:44:45Z",
+      "active_spec_hash": "5b872b60de9b3a4b8da679b80a125f74a24d664f1c8a0bcf315ffa1cedfb1ce1",
+      "active_fingerprint": "e1dd08a5f17485269699788a14b8aa22f46f91e75703c473c1b100ff0b0f55fe",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-source-inventory-final-20261110T034445Z",
+      "agent": "curriculum_designer"
     },
     {
       "step_id": "revision-round-3",
