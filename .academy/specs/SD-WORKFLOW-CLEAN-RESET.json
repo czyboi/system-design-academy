@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-WORKFLOW-CLEAN-RESET",
+  "revision": 1,
+  "goal": "Remove old tasks and course artifacts while preserving working workflow",
+  "scope": {
+    "in_scope": [
+      "Delete prior task specs, task state, worklogs and run artifacts; remove historical curriculum, pilot course content, prior plans and source inventories. Keep workflow tooling, configurations, skills, review rules, templates, tests, and only this task records.",
+      "Update workflow entry points so they describe a fresh empty course and do not direct agents to removed historical artifacts."
+    ],
+    "out_of_scope": [
+      "No new curriculum or lessons, no publication or merge without user approval. Preserve existing unrelated local changes in original worktree."
+    ]
+  },
+  "constraints": [
+    "Explicit user instruction: remove old specs and outputs, retain workflow only. Git history remains available.",
+    "Use only exact enumerated workspace paths. Preserve workflow quality, independent review and full Primer coverage requirements."
+  ],
+  "definition_of_done": [
+    {
+      "id": "done",
+      "text": "Old task records and course output artifacts removed, workflow dependencies and current task records retained, docs aligned.",
+      "applies_to": [
+        "*"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac",
+      "text": "Run required validation and verify new task can be initialized and no prior records or generated course content remain.",
+      "applies_to": [
+        "*"
+      ]
+    }
+  ]
+}
