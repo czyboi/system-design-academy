@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-OUTLINE.json",
   "automation_status": "in_progress",
-  "current_phase": "course-recheck-1",
+  "current_phase": "validation",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:33:31Z",
+  "updated_at": "2026-11-10T09:33:54Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
@@ -243,7 +243,7 @@
     {
       "step_id": "validation",
       "title": "Validate full course map and record acceptance evidence",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "course-recheck-1"
       ],
@@ -262,10 +262,30 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "requires_reviews": [
         "course-recheck-1"
-      ]
+      ],
+      "start_commit": "366d4af327609538d79b7ab4e30ff32ce67a9d12",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "scripts/check_course_coverage.py": "b4978b632c22108fc03a1724c34c49c5d260e37a1634cdf68799d87e1f26eb41",
+        "curriculum/revision-1/review.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287"
+      },
+      "start_output_hashes": {
+        ".academy/task-runs/SD-COURSE-OUTLINE/report.md": null
+      },
+      "started_at": "2026-11-10T09:33:54Z",
+      "active_spec_hash": "8931c5969212d57cfc9688fd0946531cbe54959a9b912a8987ccaef87866477d",
+      "active_fingerprint": "b7f9982fbb3dbbb56f40abaa77e2eae15a5b8100c476cbfc6d6660876f13a57a",
+      "run_id": "SD-COURSE-OUTLINE-validation-20261110T093354Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ]
 }
