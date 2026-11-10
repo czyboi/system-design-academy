@@ -7,14 +7,14 @@
   "automation_status": "in_progress",
   "current_phase": "implementation",
   "created_at": "2026-11-10T08:54:49Z",
-  "updated_at": "2026-11-10T08:55:15Z",
+  "updated_at": "2026-11-10T08:56:34Z",
   "execution_control": "active",
   "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Implement scoped tooling changes",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [],
@@ -50,14 +50,29 @@
         "tests/test_content_validation.py": "6075f956e903aee03713b3999be1880e595eab1aab7d450943346755aa976c63"
       },
       "started_at": "2026-11-10T08:55:15Z",
-      "active_spec_hash": "a1df99ec2ad99699175951a02389b738f3cfcb1b0b347bf3e4d5dd235368a7d0",
-      "active_fingerprint": "6e136587816474c33e327bcc715313d6b92b0438bfbb8d784d836a2030c47070",
       "run_id": "SD-AGENT-MODEL-ROUTING-implementation-20261110T085514Z",
       "agent": "workflow_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "6e136587816474c33e327bcc715313d6b92b0438bfbb8d784d836a2030c47070",
+      "completed_spec_hash": "a1df99ec2ad99699175951a02389b738f3cfcb1b0b347bf3e4d5dd235368a7d0",
+      "completed_output_hashes": {
+        ".codex/config.toml": "6313c65a1ec9d4a7b8090d6d393babfa3b3590006e84230e2475bc55fa76a90f",
+        ".codex/agents/lesson-author.toml": "82164a1e40f0a1c8cfece1950908bd15f6ab7e496ac7462763d581279e2c310c",
+        ".codex/agents/technical-reviewer.toml": "b68d88f857805eed50fa718560fc168b18f255475959d2c1bf2f34e05e90da2a",
+        ".codex/agents/workflow-architect.toml": "3aec7c997e8182992bc954f550baaa332d633d6e280957938a3523694da09651",
+        ".codex/agents/pr-reviewer.toml": "377aa32a784ee7f1c53c1cb29afeb5b506819a42f25d9545c4e68f04fefb4b23",
+        ".codex/agents/spec-implementer.toml": "c4ddb8b894b7fd8f513d8245ab21a791a78e42149677a87a78870b19d2e8d190",
+        ".agents/skills/module-pipeline/SKILL.md": "2a1d8bc829c8eb583c8a87e53b3c0ba4297c7814f3e8e70aea084f8f324ebd71",
+        "docs/workflow-contract.md": "faf1066c8eb2eca643ef3eb9cd0e638705ec3003b36e07206c9720da6134856d",
+        "docs/agent-architecture.md": "5d1e75dde8e3f7129e133edacdeddf6d0f9078e6036ca56325214b4ed5017bd7",
+        "tests/test_content_validation.py": "f85a99ce3c0d35082857aa9f58a1a23633813cbe9ff2bc82d10af8f44b1866fb"
+      },
+      "completed_at": "2026-11-10T08:56:34Z",
+      "completed_by": "workflow_orchestrator",
+      "completed_commit": "5f6ea137736ee24934c0970e7c26828b151fff3d"
     },
     {
       "step_id": "verification",
