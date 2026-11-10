@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "plan",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:03:23Z",
+  "updated_at": "2026-11-10T09:07:26Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
@@ -26,8 +26,9 @@
         "curriculum/coverage.csv"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "User requested a fresh course outline with full Primer coverage and explicit human confirmation before Jira-style delivery planning. Previous generated content was removed by SD-WORKFLOW-CLEAN-RESET; retain historical records and do not resume historical held work.",
+        "next_action": "Produce full pinned-source plan, inventory and matrix; obtain independent coverage and pedagogy review.",
+        "at": "2026-11-10T09:07:26Z"
       },
       "attempts": 1,
       "start_commit": "92f2e88fefc24da8b4d3d604d2d4c3368a53d53b",
