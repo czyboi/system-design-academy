@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "revision-round-3",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:48:44Z",
+  "updated_at": "2026-11-10T03:54:51Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -560,8 +560,9 @@
       "status": "running",
       "definition_version": "v1",
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Created revision-3 curriculum candidate: cache level and file-cache caveat; Pastebin code uniqueness/hash/Base 62 and monthly log-to-MapReduce flow; explicit coding-resource disposition; crawler/index/query lesson boundaries. Added independent search units SD-07-09 and SD-07-10, mapped Google Search and Twitter keyword search to their outlines, and linked all 14 pinned body observations. Structural audit found 62 unique lesson IDs, all present in the source matrix, with no unresolved matrix lesson references.",
+        "next_action": "Commit the candidate and checkpoint; complete revision-round-3; start independent coverage and pedagogy rechecks.",
+        "at": "2026-11-10T03:54:51Z"
       },
       "attempts": 1,
       "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
