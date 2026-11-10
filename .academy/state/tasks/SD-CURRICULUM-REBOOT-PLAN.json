@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "source-inventory",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T02:36:37Z",
+  "updated_at": "2026-11-10T02:37:03Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -62,7 +62,7 @@
       ],
       "checkpoint": {
         "note": "Normalized inferred anchors: ACID/BASE and consistent hashing are section content, not heading anchors; nines figures are located under #availability-in-numbers; repeated failover/load-balancer subsections use parent-section locators.",
-        "next_action": "Commit corrected inventory and complete the step.",
+        "next_action": "",
         "at": "2026-11-10T02:36:37Z"
       },
       "attempts": 2,
