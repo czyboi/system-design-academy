@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "revision-round-2",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:09:07Z",
+  "updated_at": "2026-11-10T03:09:33Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -267,7 +267,7 @@
     {
       "step_id": "revision-round-2",
       "title": "Resolve Round 2 findings and record remaining dispositions",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "coverage-round-2"
       ],
@@ -297,10 +297,16 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": null
       },
       "started_at": "2026-11-10T03:00:02Z",
-      "active_spec_hash": "77c2a33b9dc56ee15bc59aa8cc054e7eb782300edf673009c38685dec319ad06",
-      "active_fingerprint": "e864ca494cdf9a4ca1f52749c493e3ec22f007a00805c9571909036ccac5f0ea",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-revision-round-2-20261110T030002Z",
-      "agent": "curriculum_designer"
+      "agent": "curriculum_designer",
+      "completed_fingerprint": "e864ca494cdf9a4ca1f52749c493e3ec22f007a00805c9571909036ccac5f0ea",
+      "completed_spec_hash": "77c2a33b9dc56ee15bc59aa8cc054e7eb782300edf673009c38685dec319ad06",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11"
+      },
+      "completed_at": "2026-11-10T03:09:33Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "415bb803283c20829f6a185b30e9ce01ccdabbe5"
     },
     {
       "step_id": "coverage-round-3",
