@@ -4,10 +4,10 @@
   "module_id": "curriculum",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-OUTLINE.json",
-  "automation_status": "in_progress",
+  "automation_status": "blocked",
   "current_phase": "course-review",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:16:13Z",
+  "updated_at": "2026-11-10T09:19:01Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
@@ -61,7 +61,7 @@
     {
       "step_id": "course-review",
       "title": "Independent full-source coverage and plan pedagogy",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "plan"
       ],
@@ -103,14 +103,21 @@
         "curriculum/review.json": null
       },
       "started_at": "2026-11-10T09:16:13Z",
-      "active_spec_hash": "45ccdad92158083cda6da378ec86f7018bac74fd3091caf895b1a38b0bc6230b",
-      "active_fingerprint": "d0465136e9b66441daa4bd207716219b2013e12aa0b58e89c69f00cb00888cc5",
       "run_id": "SD-COURSE-OUTLINE-course-review-20261110T091613Z",
       "agent": "curriculum_coverage_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "d0465136e9b66441daa4bd207716219b2013e12aa0b58e89c69f00cb00888cc5",
+      "completed_spec_hash": "45ccdad92158083cda6da378ec86f7018bac74fd3091caf895b1a38b0bc6230b",
+      "completed_output_hashes": {
+        "curriculum/review.md": "d3d0a321fb76b2cd5adde708d57e074a5220a3f9af209bfc08732e45c0881d29",
+        "curriculum/review.json": "b81674a359ba5fd28dc84bc62c2f38daef784243d66a7844add52ecba140b198"
+      },
+      "completed_at": "2026-11-10T09:19:01Z",
+      "completed_by": "curriculum_coverage_reviewer",
+      "completed_commit": "6a6d333e94072ddef20910c654be28bc84d286da"
     },
     {
       "step_id": "validation",
