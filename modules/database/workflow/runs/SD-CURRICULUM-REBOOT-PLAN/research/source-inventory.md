@@ -20,7 +20,7 @@ README anchors below are relative to the pinned README URL. A source mention or 
 | `#latency-vs-throughput` | Latency and throughput as distinct performance measures. |
 | `#availability-vs-consistency` | `#cap-theorem`; `#cp---consistency-and-partition-tolerance`; `#ap---availability-and-partition-tolerance`; behavior during network partition. |
 | `#consistency-patterns` | `#weak-consistency`, `#eventual-consistency`, `#strong-consistency`; visibility of writes and replicated data. |
-| `#availability-patterns` | `#fail-over`; `#active-passive`; `#active-active`; failover drawbacks; `#replication`; `#master-slave-and-master-master`; `#availability-in-numbers`; three nines and four nines; `#availability-in-parallel-vs-in-sequence`; serial and parallel availability calculations. |
+| `#availability-patterns` | `#fail-over` (including the Active-passive and Active-active subsections); failover drawbacks; `#replication` (including master-slave and master-master replication); `#availability-in-numbers` (the “99.9% availability - three 9s” and “99.99% availability - four 9s” subsections); `#availability-in-parallel-vs-in-sequence` (In sequence and In parallel subsections). |
 | `#domain-name-system` | Name-resolution hierarchy and caches; TTL; NS, MX, A and CNAME records; weighted, latency-based and geolocation routing; delay, stale answers and DNS attacks. |
 | `#content-delivery-network` | Edge delivery and origin offload; `#push-cdns`; `#pull-cdns`; cost and stale content. |
 | `#load-balancer` | Health and failure handling; capacity; TLS termination and session persistence; random, least-loaded, session-based and round-robin routing; active-passive and active-active; `#layer-4-load-balancing`; `#layer-7-load-balancing`; `#horizontal-scaling`; vertical scaling; scaling and load-balancer drawbacks. |
@@ -38,14 +38,14 @@ README anchors below are relative to the pinned README URL. A source mention or 
 
 | Source anchor | Meaningful topics and leaves |
 |---|---|
-| `#relational-database-management-system-rdbms` | Relational tables and transactions; ACID properties. |
+| `#relational-database-management-system-rdbms` | Relational tables and transactions; ACID properties described within the section. |
 | `#master-slave-replication` | Primary/replica roles, read/write routing, promotion and failover. |
 | `#master-master-replication` | Multi-writer reads/writes, write routing, synchronization and conflict handling; shared replication issues include lag, lost recent writes, replay load and operational cost. |
 | `#federation` | Functional partitioning, routing, cross-database joins and operational cost. |
 | `#sharding` | Partitioning data across databases; shard key; skew; rebalancing; cross-shard joins; consistent-hashing reference. |
 | `#denormalization` | Read/write trade-offs, duplicated data, materialized views and keeping copies synchronized. |
 | `#sql-tuning` | Benchmarking/profiling; `#tighten-up-the-schema`; `#use-good-indices`; `#avoid-expensive-joins`; `#partition-tables`; `#tune-the-query-cache`. |
-| `#nosql` | BASE terminology and non-relational models; `#key-value-store`; `#document-store`; `#wide-column-store`; `#graph-database`. |
+| `#nosql` | BASE terminology described within the section and non-relational models; `#key-value-store`; `#document-store`; `#wide-column-store`; `#graph-database`. |
 | `#sql-or-nosql` | Schema and relationship needs, joins, transaction needs, workload, throughput and example access patterns. |
 
 ### Cache topic leaves
