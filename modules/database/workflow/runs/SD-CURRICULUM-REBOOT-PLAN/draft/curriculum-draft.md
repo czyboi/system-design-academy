@@ -54,7 +54,7 @@ Every lesson below is a separately authorable unit. Its outline names concepts t
 
 - **Prerequisites:** SD-01-04, SD-01-05.
 - **Teaching outline:** compare failover with replication and clarify their different roles; explain active-passive and active-active behavior, health detection, promotion and split-brain/coordination risks; account for failover delay and lost in-flight or recently acknowledged work; calculate serial dependency availability versus parallel redundancy; interpret three and four nines over an explicit time period; identify when redundant components do not remove shared failure modes.
-- **Source map:** `#availability-patterns`; `#fail-over`; `#active-passive`; `#active-active`; `#replication`; `#availability-in-numbers`; `#availability-in-parallel-vs-in-sequence`; `#three-9s`; `#four-9s`; `#in-sequence`; `#in-parallel`.
+- **Source map:** `#availability-patterns` > Fail-over (Active-passive/Active-active subsections), Replication, Availability in numbers (99.9%/99.99% subsections), and Availability in parallel vs in sequence (In sequence/In parallel subsections). The inventory records the stable parent anchors and exact subsection titles.
 
 ### Module 02 — Network request paths and service topology
 
@@ -116,7 +116,7 @@ Every lesson below is a separately authorable unit. Its outline names concepts t
 
 - **Prerequisites:** SD-01-05.
 - **Teaching outline:** represent related records with tables, keys and constraints; explain atomicity, consistency, isolation and durability as correctness properties; show transaction boundaries around a multi-record business change; distinguish guarantees from performance/availability costs; identify why a database choice must follow access and correctness needs.
-- **Source map:** `#relational-database-management-system-rdbms`; `#acid` concepts under `#database`.
+- **Source map:** `#relational-database-management-system-rdbms`; ACID concepts described within the `#database` section.
 
 #### SD-03-02 — Primary/replica and multi-writer replication
 
@@ -134,7 +134,7 @@ Every lesson below is a separately authorable unit. Its outline names concepts t
 
 - **Prerequisites:** SD-03-02, SD-03-03.
 - **Teaching outline:** distinguish table partitioning within a database from distributing shards across database nodes; select a key from access patterns and write distribution; reason about hot keys, skew, fan-out queries and rebalancing; explain consistent hashing as a placement/remapping technique and where virtual nodes help; surface migration and cross-shard transaction costs.
-- **Source map:** `#sharding`; `#partition-tables`; `#consistent-hashing` under `#under-development`.
+- **Source map:** `#sharding`; `#sql-tuning` subsection “Partition tables”; the “Consistent hashing” list item under `#under-development`.
 
 #### SD-03-05 — Denormalization and read models
 
@@ -152,7 +152,7 @@ Every lesson below is a separately authorable unit. Its outline names concepts t
 
 - **Prerequisites:** SD-03-01, SD-03-04.
 - **Teaching outline:** compare key-value lookup, document retrieval, wide-column access and graph traversal; show how each model represents relationships and query paths; relate partitioning and consistency behavior to the chosen model; explain BASE as a source term that requires careful current definitions; identify when model flexibility moves complexity into application code.
-- **Source map:** `#nosql`; `#key-value-store`; `#document-store`; `#wide-column-store`; `#graph-database`; `#base`.
+- **Source map:** `#nosql`; `#key-value-store`; `#document-store`; `#wide-column-store`; `#graph-database`; BASE terminology described within `#nosql`.
 
 #### SD-03-08 — Choosing SQL or NoSQL from workload
 
@@ -186,7 +186,7 @@ Every lesson below is a separately authorable unit. Its outline names concepts t
 
 - **Prerequisites:** SD-04-03.
 - **Teaching outline:** choose TTL and invalidation behavior; compare eviction policies including LRU; reason about stampede/miss pressure, stale reads, unavailable or empty replacement nodes; explain cache distribution and key remapping under membership changes; weigh hit ratio against memory and recovery cost.
-- **Source map:** remaining trade-offs under `#cache`; disadvantages under the cache strategy subsections; `solutions/system_design/query_cache/README.md`; additional prompt “Design a cache system like Memcached.”
+- **Source map:** remaining trade-offs under `#cache`; disadvantages under the cache strategy subsections; `solutions/system_design/query_cache/README.md`; additional prompt “Design a cache system like Memcached.” Cache-stampede handling is an Academy addition requiring evidence.
 
 ### Module 05 — Asynchronous work and distributed data processing
 
@@ -270,13 +270,13 @@ Every lesson below is a separately authorable unit. Its outline names concepts t
 
 - **Prerequisites:** SD-03-07, SD-03-08, SD-05-03.
 - **Teaching outline:** model users and relationships as graph data; compare adjacency and index access patterns; explain shortest-path search and bounded traversal; distribute graph partitions and account for cross-partition hops; connect graph search to ranking and freshness; compare exact search with product-appropriate approximations only after research.
-- **Source map:** `solutions/system_design/social_graph/README.md`; Facebook graph-search prompt; `#graph-database`.
+- **Source map:** `solutions/system_design/social_graph/README.md`; “Design the data structures for a social network” solution entry; Facebook graph-search prompt under `#additional-system-design-interview-questions`; `#graph-database`.
 
 #### SD-07-06 — Query cache and key-value search store
 
 - **Prerequisites:** SD-03-07, SD-04-02, SD-04-04.
 - **Teaching outline:** distinguish caching a database result from a key-value data store; trace cache hits, misses, fills and invalidation; choose key shape and placement; shard cache/store nodes and account for remapping; reason about hot keys and stale results; explain how a search feature can use a key-value index without conflating it with a general search engine.
-- **Source map:** `solutions/system_design/query_cache/README.md`; “Design the data structures for a social network” / search-engine key-value case at `#system-design-interview-questions-with-solutions`; `#key-value-store`.
+- **Source map:** `solutions/system_design/query_cache/README.md`; “Design a key-value store for a search engine” solution entry under `#system-design-interview-questions-with-solutions`; Redis prompt under `#additional-system-design-interview-questions`; `#key-value-store`.
 
 #### SD-07-07 — Sales ranking by category
 
@@ -384,7 +384,7 @@ Every lesson below is a separately authorable unit. Its outline names concepts t
 
 - **Prerequisites:** experienced programmer.
 - **Teaching outline:** map key equality and hashing to lookup; compare collision strategies and load-factor trade-offs; explain the hash-map plus linked-list structure for LRU order; connect eviction to the system-level cache policy in SD-04-04; mark notebook gaps instead of treating pseudocode as production behavior.
-- **Source map:** `solutions/object_oriented_design/hash_table/hash_map.ipynb`; `solutions/object_oriented_design/lru_cache/lru_cache.ipynb`; `#lru` cache reference.
+- **Source map:** `solutions/object_oriented_design/hash_table/hash_map.ipynb`; `solutions/object_oriented_design/lru_cache/lru_cache.ipynb`; eviction by LRU in the cache topic and SD-04-04.
 
 #### SD-10-02 — Modeling workflow and physical-resource domains
 
