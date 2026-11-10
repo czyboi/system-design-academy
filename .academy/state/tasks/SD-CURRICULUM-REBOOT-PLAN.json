@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "pedagogy-review",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:12:51Z",
+  "updated_at": "2026-11-10T03:19:05Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -325,8 +325,9 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Independent round-three verdict: revise. Findings: cache outline/matrix omits row-level, serialized-object and rendered-HTML levels plus file-cache scaling caveat; Pastebin mapping omits unique hash/Base62 short-code flow and monthly web-log MapReduce aggregation; candidate matrix omits the coding-resource repository/deck disposition. Reviewer independently inspected pinned README, Pastebin, Twitter and crawler, but exact-SHA access failed for five solution bodies and all six OOD notebooks; current-master results were excluded. Pedagogy review also has a material SD-07-03 scope finding. Both allowed revision cycles are exhausted, so finalization must stop for human judgment.",
+        "next_action": "Commit the independent report and complete coverage-round-3. Leave finalization unstarted until the user decides whether to authorize a third targeted revision and how to handle pinned source-body access limits.",
+        "at": "2026-11-10T03:19:05Z"
       },
       "attempts": 1,
       "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
