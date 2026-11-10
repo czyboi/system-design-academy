@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "source-inventory",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T02:27:46Z",
+  "updated_at": "2026-11-10T02:28:12Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -62,7 +62,7 @@
       ],
       "checkpoint": {
         "note": "First research agent reached a usage limit; retry researcher could not edit files under its role. Parent synthesized the pinned README and solution inventory from the agent's source notes and pinned GitHub API reads; exact scope and limitations are documented.",
-        "next_action": "Commit the inventory report, then complete source-inventory.",
+        "next_action": "",
         "at": "2026-11-10T02:27:35Z"
       },
       "attempts": 1,
