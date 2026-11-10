@@ -20,7 +20,7 @@
       "id": "done",
       "text": "Enumerated generated candidates removed and cleanup recorded; no source evidence or task history removed.",
       "applies_to": [
-        "implementation"
+        "*"
       ]
     }
   ],
@@ -29,7 +29,7 @@
       "id": "ac-check",
       "text": "Run validation and confirm exact deletions, retained source evidence, and no new course output.",
       "applies_to": [
-        "verification"
+        "*"
       ]
     }
   ]
