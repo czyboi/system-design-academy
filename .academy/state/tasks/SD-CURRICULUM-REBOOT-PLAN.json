@@ -134,7 +134,7 @@
     {
       "step_id": "coverage-round-1",
       "title": "Independently audit first plan and full topic matrix",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "curriculum-draft"
       ],
@@ -164,10 +164,16 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md": null
       },
       "started_at": "2026-11-10T02:38:43Z",
-      "active_spec_hash": "a8508140a4e04dd11b075883cc186be18fbc24e099772b8e41716e4bc0f62d05",
-      "active_fingerprint": "67ca402ba0e039b60aa55976229cb51f871388aef79f30002109f259502eb125",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-1-20261110T023843Z",
-      "agent": "curriculum-coverage-reviewer"
+      "agent": "curriculum-coverage-reviewer",
+      "completed_fingerprint": "67ca402ba0e039b60aa55976229cb51f871388aef79f30002109f259502eb125",
+      "completed_spec_hash": "a8508140a4e04dd11b075883cc186be18fbc24e099772b8e41716e4bc0f62d05",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md": "5533592fac0c00a75969897d4994a14451cf538920d858454d08e6f7064f99be"
+      },
+      "completed_at": "2026-11-10T02:42:17Z",
+      "completed_by": "curriculum-coverage-reviewer",
+      "completed_commit": "a427b8b0b2e0964b7c3413f39ef1e26957e587da"
     },
     {
       "step_id": "revision-round-1",
