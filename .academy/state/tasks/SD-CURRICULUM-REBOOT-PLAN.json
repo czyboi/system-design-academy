@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "revision-round-3",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:54:51Z",
+  "updated_at": "2026-11-10T03:55:04Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -557,7 +557,7 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md"
       ],
-      "status": "running",
+      "status": "completed",
       "definition_version": "v1",
       "checkpoint": {
         "note": "Created revision-3 curriculum candidate: cache level and file-cache caveat; Pastebin code uniqueness/hash/Base 62 and monthly log-to-MapReduce flow; explicit coding-resource disposition; crawler/index/query lesson boundaries. Added independent search units SD-07-09 and SD-07-10, mapped Google Search and Twitter keyword search to their outlines, and linked all 14 pinned body observations. Structural audit found 62 unique lesson IDs, all present in the source matrix, with no unresolved matrix lesson references.",
@@ -579,10 +579,16 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md": null
       },
       "started_at": "2026-11-10T03:48:44Z",
-      "active_spec_hash": "b63300fe4117032a01308d7d4b00bd924604e680cb1d156173a21c1a3e495a46",
-      "active_fingerprint": "365d7f1914204c536ddc0e5d4641cd5e2a67174150ecd28882ab72fcd4c1c45c",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-revision-round-3-20261110T034844Z",
-      "agent": "curriculum_designer"
+      "agent": "curriculum_designer",
+      "completed_fingerprint": "365d7f1914204c536ddc0e5d4641cd5e2a67174150ecd28882ab72fcd4c1c45c",
+      "completed_spec_hash": "b63300fe4117032a01308d7d4b00bd924604e680cb1d156173a21c1a3e495a46",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md": "d3938a5aa8bb8e85e3a7a87dad815b308d6c6e7df918ce5b5a7c3109273f7902"
+      },
+      "completed_at": "2026-11-10T03:55:04Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "4be88366cd60ffdf6ede80ecb6be997b851933a7"
     },
     {
       "step_id": "coverage-recheck",
