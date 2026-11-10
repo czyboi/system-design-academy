@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-COURSE-OUTLINE",
+  "module_id": "curriculum",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-COURSE-OUTLINE.json",
+  "automation_status": "not_started",
+  "current_phase": null,
+  "created_at": "2026-11-10T09:02:49Z",
+  "updated_at": "2026-11-10T09:02:49Z",
+  "execution_control": "active",
+  "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
+  "steps": [
+    {
+      "step_id": "plan",
+      "title": "Inventory full pinned Primer and map every knowledge topic",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [
+        ".agents/skills/curriculum-design/SKILL.md"
+      ],
+      "output_paths": [
+        "CURRICULUM_MASTER.md",
+        "curriculum/source-inventory.json",
+        "curriculum/coverage.csv"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "course-review",
+      "title": "Independent full-source coverage and plan pedagogy",
+      "status": "pending",
+      "depends_on": [
+        "plan"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "CURRICULUM_MASTER.md",
+        "curriculum/source-inventory.json",
+        "curriculum/coverage.csv",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md"
+      ],
+      "output_paths": [
+        "curriculum/review.md",
+        "curriculum/review.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "CURRICULUM_MASTER.md",
+          "curriculum/source-inventory.json",
+          "curriculum/coverage.csv"
+        ],
+        "verdict_path": "curriculum/review.json"
+      }
+    },
+    {
+      "step_id": "validation",
+      "title": "Validate full course map and record acceptance evidence",
+      "status": "pending",
+      "depends_on": [
+        "course-review"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "CURRICULUM_MASTER.md",
+        "curriculum/source-inventory.json",
+        "curriculum/coverage.csv",
+        "scripts/check_course_coverage.py",
+        "curriculum/review.json"
+      ],
+      "output_paths": [
+        ".academy/task-runs/SD-COURSE-OUTLINE/report.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "requires_reviews": [
+        "course-review"
+      ]
+    }
+  ]
+}

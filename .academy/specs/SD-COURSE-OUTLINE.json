@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-COURSE-OUTLINE",
+  "revision": 1,
+  "goal": "Create a complete Primer-mapped course outline for human review",
+  "scope": {
+    "in_scope": [
+      "Full course outline, pinned Primer inventory and source-to-lesson matrix; learning guide and prerequisites; module problems, outcomes, lesson outlines, integrated exercises, reference solution and self-evaluation criteria, decision summaries and cross-module capstone as planned components.",
+      "Independent coverage and pedagogical review and structural validation."
+    ],
+    "out_of_scope": [
+      "Actual lessons, assessments, and learner publication.",
+      "Jira-style delivery planning and task breakdown until explicit user confirmation of the outline.",
+      "Workflow changes and resumption of historical held tasks."
+    ]
+  },
+  "constraints": [
+    "Audience: middle/senior engineers; learner-facing language English, per repository defaults.",
+    "Use System Design Primer revision ae9bbd7b02d90b9866215de185217d33f39ab733 as pinned topic map; inventory every knowledge topic including solution and OOD bodies and optional topics.",
+    "Keep draft; independent review and explicit human confirmation required; no merge or publication.",
+    "Retain prior feedback, including the overlapping search lesson scope and stale reference findings, without resuming the historical held task."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-plan",
+      "text": "Produce complete lesson-level outline, inventory and matrix representing the requested course structure.",
+      "applies_to": [
+        "plan"
+      ]
+    },
+    {
+      "id": "dod-review",
+      "text": "Independent reviewer checks full pinned-source enumeration and plan pedagogy; findings resolved within permitted revision cycles.",
+      "applies_to": [
+        "course-review"
+      ]
+    },
+    {
+      "id": "dod-validate",
+      "text": "Run strict course review gate and required repository validation; document results and hand off for human confirmation.",
+      "applies_to": [
+        "validation"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-plan",
+      "text": "Every Primer knowledge topic maps to a concrete lesson outline; resource classifications have reasons; course and module components match the user structure.",
+      "applies_to": [
+        "plan"
+      ]
+    },
+    {
+      "id": "ac-review",
+      "text": "Artifact-bound coverage and pedagogy verdict passes with no material unresolved findings.",
+      "applies_to": [
+        "course-review"
+      ]
+    },
+    {
+      "id": "ac-gate",
+      "text": "Strict course check passes; user approval remains separate from automation.",
+      "applies_to": [
+        "validation"
+      ]
+    }
+  ]
+}
