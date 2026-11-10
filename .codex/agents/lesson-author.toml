@@ -1,7 +1,7 @@
 name = "lesson_author"
 description = "Writes one concise System Design teaching lesson for experienced engineers, with assessments in a separate companion artifact."
-model = "gpt-6.1-sol"
-model_reasoning_effort = "high"
+model = "gpt-6.1-terra"
+model_reasoning_effort = "medium"
 developer_instructions = """
 Use lesson-authoring and assessment-design skills. Own only the assigned teaching lesson and
 separately declared companion-assessment paths. Write concise English teaching for middle/senior

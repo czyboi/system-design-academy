@@ -91,6 +91,6 @@ Curriculum matrices are CSV with topic, locator, disposition, lesson, outline an
 
 ## Model configuration
 
-Project and default subagent: GPT-6.1 Sol/high. Technical reviewer: GPT-6 Astra/high. Pedagogy: GPT-6.1 Terra/medium. Provenance: Sol/medium. Other named roles: Sol/high. Four concurrent subagents, excluding the parent. Custom profile settings take precedence over spawn defaults; inspect actual runtime metadata when evaluating cost. Claude profiles keep model: inherit because OpenAI model IDs do not configure Claude.
+Project parent: GPT-6.1 Sol/high. Default bounded subagent: GPT-6.1 Terra/medium. Workflow/architecture designer and PR reviewer: Sol/high. Spec implementer and lesson author: Terra/medium. Technical reviewer: Sol/high. Pedagogy: Terra/medium. Provenance: Sol/medium. Curriculum designer, coverage reviewer and source researcher: Sol/high. Four concurrent subagents, excluding the parent. Host-provided or explicitly selected role settings may override repository profiles; inspect actual runtime metadata rather than assuming the configured model was used. Claude profiles keep model: inherit because OpenAI model IDs do not configure Claude.
 
 Configuration was checked against [official subagent documentation](https://learn.chatgpt.com/docs/agent-configuration/subagents) and the [model catalog](https://developers.openai.com/api/docs/models) on 2026-11-10. Availability is host/account-dependent. These are workload-based starting choices, not benchmark results; new sessions may be needed to reload profiles.

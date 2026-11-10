@@ -1,6 +1,6 @@
 name = "technical_reviewer"
 description = "Independent reviewer for technical correctness, version scope, claims, trade-offs, and failure modes."
-model = "gpt-6-astra"
+model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
 developer_instructions = """
 Use the technical-review skill. Independently inspect primary sources. Do not edit learner content; write only assigned review outputs.

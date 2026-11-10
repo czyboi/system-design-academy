@@ -145,6 +145,18 @@ class WorkflowTemplateTests(unittest.TestCase):
             self.assertIn(profile['model'],{'gpt-6.1-sol','gpt-6-astra','gpt-6.1-terra'})
             self.assertIn(profile['model_reasoning_effort'],{'medium','high'})
 
+    def test_requested_role_model_routing(self):
+        import tomllib
+        config=tomllib.loads((ROOT/'.codex/config.toml').read_text())
+        self.assertEqual(config['model'], 'gpt-6.1-sol')
+        self.assertEqual(config['agents']['default_subagent_model'], 'gpt-6.1-terra')
+        for name, model in (('workflow-architect','gpt-6.1-sol'), ('pr-reviewer','gpt-6.1-sol'),
+                            ('technical-reviewer','gpt-6.1-sol'), ('spec-implementer','gpt-6.1-terra'),
+                            ('lesson-author','gpt-6.1-terra'), ('curriculum-designer','gpt-6.1-sol')):
+            profile=tomllib.loads((ROOT/f'.codex/agents/{name}.toml').read_text())
+            self.assertEqual(profile['model'], model, name)
+        self.assertIn('ambiguous', (ROOT/'.codex/agents/spec-implementer.toml').read_text())
+
     def test_repository_and_workflow_accept_empty_authoring_inventory(self):
         for scope in ('repo','workflow'):
             with contextlib.redirect_stdout(io.StringIO()):
