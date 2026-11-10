@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "revision-round-2",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:00:02Z",
+  "updated_at": "2026-11-10T03:09:07Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -281,8 +281,9 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Resolved the round-two findings in revision-2: corrected availability/load-balancer locators; aligned REST statelessness, Mint and sales-rank outlines/matrix with pinned source evidence; added a dedicated key-value store design lesson; corrected VIP and hash-map assumptions; gave prompts/catalog/notebook rows exact locators. Structural audit found 60 unique lessons, each with a teaching outline and at least one matrix mapping, 147 coverage rows, no undefined lesson IDs, and explicit mappings for all three under-development topics.",
+        "next_action": "Commit revision-2 and complete this step, then run independent coverage round 3 and separate pedagogy review.",
+        "at": "2026-11-10T03:09:07Z"
       },
       "attempts": 1,
       "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
