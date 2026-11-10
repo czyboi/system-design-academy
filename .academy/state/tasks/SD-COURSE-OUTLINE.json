@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "revision-1",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:20:19Z",
+  "updated_at": "2026-11-10T09:20:41Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
@@ -141,8 +141,9 @@
         "curriculum/revision-1/coverage.csv"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "First revision start was rejected because new steps lacked step-specific spec criteria. Added revision-specific criteria and validated; retry succeeded. Review findings C1/C2/P1/P2 are being addressed.",
+        "next_action": "Commit revised artifacts and obtain fresh independent combined review.",
+        "at": "2026-11-10T09:20:41Z"
       },
       "attempts": 1,
       "start_commit": "e8d314d562590af369df8651d9f89e0140beaa5d",
