@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "pedagogy-review",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:12:34Z",
+  "updated_at": "2026-11-10T03:12:51Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -348,7 +348,7 @@
     {
       "step_id": "pedagogy-review",
       "title": "Review course sequence, audience, and teaching-only scope",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision-round-2"
       ],
@@ -378,10 +378,16 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": null
       },
       "started_at": "2026-11-10T03:10:37Z",
-      "active_spec_hash": "3143ad3e576da3afbad2c3bbe25b95c797bb33df18f0f8703ef3721b3355436b",
-      "active_fingerprint": "5d22a50db992deb4a7e52a8ac9563cf0809ecb873613ef0363825afdc4a24e0e",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-pedagogy-review-20261110T031037Z",
-      "agent": "independent-pedagogy-reviewer"
+      "agent": "independent-pedagogy-reviewer",
+      "completed_fingerprint": "5d22a50db992deb4a7e52a8ac9563cf0809ecb873613ef0363825afdc4a24e0e",
+      "completed_spec_hash": "3143ad3e576da3afbad2c3bbe25b95c797bb33df18f0f8703ef3721b3355436b",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": "7ec3ddb04d5504b410dd8f0c78904dbfb958b2c52a92e658e0aa550dfa3dabf3"
+      },
+      "completed_at": "2026-11-10T03:12:51Z",
+      "completed_by": "independent-pedagogy-reviewer",
+      "completed_commit": "0d170ddb3cb7c23f422d8435bc8b3e8b3579aa84"
     },
     {
       "step_id": "finalize-curriculum",
