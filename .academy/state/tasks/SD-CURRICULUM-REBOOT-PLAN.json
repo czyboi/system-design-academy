@@ -2,14 +2,14 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "spec-extension-approved",
+  "current_phase": "curriculum-skill-update",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:38:06Z",
+  "updated_at": "2026-11-10T03:38:45Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
       "title": "Broaden curriculum design guidance to the full source repository",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -23,18 +23,18 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 1,
-      "start_commit": "e2079ccf9280f163db34ab3537aba619c182467a",
+      "attempts": 2,
+      "start_commit": "4bb36cadb29a6bf07b59e7e9037eeb891e14aff6",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/inputs/curriculum-design.skill.original.md": "7b37217f21de33188853b2dd751ae0587fb495a64106ab033ba67b0c5c9556ab",
         ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
       },
       "start_output_hashes": {
-        ".agents/skills/curriculum-design/SKILL.md": "7b37217f21de33188853b2dd751ae0587fb495a64106ab033ba67b0c5c9556ab"
+        ".agents/skills/curriculum-design/SKILL.md": "ff36d841dac7cbdd11707c998a3aa6c0bf6084fe5a934eb5146badc7eeb7e7ba"
       },
-      "started_at": "2026-11-09T16:47:46Z",
-      "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-skill-update-20261109T164746Z",
-      "agent": "curriculum_designer",
+      "started_at": "2026-11-10T03:38:45Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-skill-update-20261110T033845Z",
+      "agent": "task-reuse-reconciliation",
       "completed_fingerprint": "5d572ac04f6c9a2149f58184187e7299d787b281424ce602edbfd5f71f9478d1",
       "completed_spec_hash": "ecc489a8622d987f0af79b352f6390793335d2e03b56d510f13819ccec06edc6",
       "completed_output_hashes": {
@@ -43,7 +43,9 @@
       "completed_at": "2026-11-09T16:48:53Z",
       "completed_by": "curriculum_designer",
       "completed_commit": "2d6bc4fc273be00069652bdd3857dfd2b94620c6",
-      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "active_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "active_fingerprint": "38de475e3fc5d09744256576c680af50024a470189f525db6eda11c0f22353fe"
     },
     {
       "step_id": "source-inventory",
