@@ -101,19 +101,39 @@ EX-1: Solve this problem.
 
 
 class WorkflowTemplateTests(unittest.TestCase):
-    def test_template_has_both_coverage_gates_and_final_pair_reviews(self):
+    def test_six_step_template_preserves_gates_without_forced_revisions(self):
         template=json.loads((ROOT/'.academy/state/task.template.json').read_text())
         steps={s['step_id']:s for s in template['steps']}
-        self.assertIn('plan-coverage',steps['author']['requires_reviews'])
+        self.assertEqual(len(steps), 6)
+        self.assertIn('plan-gate',steps['author']['requires_reviews'])
         self.assertEqual(len(steps['author']['output_paths']),2)
-        self.assertEqual(len(steps['revision']['output_paths']),2)
-        for label in ('technical','coverage','pedagogy','provenance'):
-            gate=label+'-recheck'
+        self.assertNotIn('revision', steps)
+        self.assertFalse(any('recheck' in sid for sid in steps))
+        for gate in ('technical-review', 'teaching-review'):
             self.assertIn(gate,steps['validation']['requires_reviews'])
-            self.assertEqual(steps[gate]['review']['artifact_paths'],steps['revision']['output_paths'])
-        self.assertIn('coverage-review',steps['pedagogy-review']['depends_on'])
-        self.assertIn('coverage-recheck',steps['pedagogy-recheck']['depends_on'])
-        self.assertNotIn('requires_reviews',steps['revision'])
+            self.assertTrue(set(steps['author']['output_paths']).issubset(steps[gate]['review']['artifact_paths']))
+            self.assertTrue(set(steps['plan-gate']['review']['artifact_paths']).issubset(steps[gate]['review']['artifact_paths']))
+        self.assertIn('.agents/skills/provenance-review/SKILL.md',steps['technical-review']['input_paths'])
+        self.assertIn('.agents/skills/curriculum-coverage-review/SKILL.md',steps['teaching-review']['input_paths'])
+        self.assertIn('.agents/skills/pedagogical-review/SKILL.md',steps['teaching-review']['input_paths'])
+        self.assertEqual(steps['technical-review']['depends_on'], ['author'])
+        self.assertEqual(steps['teaching-review']['depends_on'], ['author'])
+        self.assertIn('curriculum/review.json', steps['plan-gate']['input_paths'])
+
+    def test_compact_templates_have_unique_owners_and_bound_review_inputs(self):
+        for name, count in (('task', 6), ('course', 3), ('workflow', 2)):
+            data=json.loads((ROOT/f'.academy/state/{name}.template.json').read_text())
+            data['task_id']='TEST-TEMPLATE'
+            taskctl.validate_json_schema(data,ROOT/'.academy/state/schema/task.schema.json','Template')
+            self.assertEqual(len(data['steps']), count)
+            outputs=[]
+            for step in data['steps']:
+                outputs.extend(step['output_paths'])
+                self.assertFalse(set(step['input_paths']) & set(step['output_paths']))
+                if step.get('review'):
+                    self.assertTrue(set(step['review']['artifact_paths']).issubset(step['input_paths']))
+                    self.assertIn(step['review']['verdict_path'],step['output_paths'])
+            self.assertEqual(len(outputs),len(set(outputs)))
 
     def test_template_schema_and_role_models(self):
         import tomllib

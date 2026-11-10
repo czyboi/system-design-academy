@@ -56,3 +56,9 @@ Work only on the declared report path. Review the plan independently from the cu
 ## Machine-readable gate output
 
 When the task step declares `review`, write both assigned outputs: the explanatory Markdown report and verdict JSON following `docs/workflow-contract.md`. Record exact SHA-256 hashes for every declared reviewed artifact, verdict, and finding IDs with severity/status. An open blocker or major finding forbids `ready-for-human-review`. Do not infer a pass from another review. Rechecks inspect changed sections and their dependencies and bind the result to the complete current artifact set.
+
+## Combined review assignment and whole-course coverage
+
+The compact pipeline may explicitly assign the same independent reviewer pedagogical-review as well. In that case, read and execute both skills, report separate coverage and pedagogy findings in one report, and issue one overall verdict that blocks on either material failure. Independence is from the planner/author; combining these dimensions does not waive either procedure. In course mode include JSON checks for coverage and pedagogy, both pass only when established. In lesson mode review only its assigned source rows; reuse the accepted global inventory instead of re-enumerating the whole repo per lesson.
+
+Under a full-Primer requirement, an explicit disposition alone is insufficient: every knowledge topic, including optional-track material, needs planned and ultimately taught coverage. Deferred/excluded knowledge blocks completeness; non-knowledge resources need justified classification. Independently re-enumerate the full source during the shared course audit to detect omitted inventory entries and knowledge mislabeled as resources. At final course handoff audit actual explanations across all topics and bind the verdict to current files; the strict checker provides structural assistance, not proof of teaching depth.

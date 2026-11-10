@@ -40,3 +40,7 @@ Write only the assigned teaching lesson path. Write assessment content only when
 - For an existing lesson, map user and reviewer feedback to explicit task acceptance criteria and record each item as applied, deferred, or task-specific, with a reason.
 - A substantive revision changes explanations, examples, technical claims, assessments, or learning sequence. Declare separate independent review outputs for pedagogy, source-topic coverage, and relevant technical/provenance/language areas after authoring; the author cannot count self-review as independent.
 - If a required reviewer is unavailable, record the gap and leave that review gate unresolved. Do not describe the revised lesson as independently reviewed.
+
+## Compact package handoff
+
+Follow module-pipeline for the default two combined independent reviews: technical+provenance and actual coverage+pedagogy/language. Each dimension remains required, with distinct findings in its combined report. Write directly to the declared lesson/assessment paths; a passing candidate is handed off at those same paths. Do not create a second final copy or mandatory revision. Actual failed reviews require unique revised paths and fresh reviews under the two-cycle limit. This combined assignment satisfies the separate review-dimension requirement above without four separate reports.

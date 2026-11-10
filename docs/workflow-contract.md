@@ -1,5 +1,45 @@
 # Workflow CLI contract
 
+## Compact defaults and reusable course gate
+
+The procedure is defined only in the shared [module-pipeline skill](../.agents/skills/module-pipeline/SKILL.md). Templates now contain three course-planning steps, six lesson-package steps or two tooling steps. The six-step lesson path is research, plan-gate, author, technical-review, teaching-review, validation. Existing historical task graphs are not changed automatically.
+
+The technical review also executes provenance-review; the teaching review also executes pedagogical-review and language checks. Reports distinguish each assigned dimension, and a material failure in either makes the combined verdict negative. Reviewers are independent from the author and each other. Both lesson reviews bind the exact teaching file, assessment, evidence, course plan, inventory and matrix. A clear first pass ends at the same paths: no automatic revision, final-copy or recheck stage.
+
+The course review binds plan, inventory and matrix, independently checks full-source enumeration and plan pedagogy, and includes `checks: {"coverage": "pass", "pedagogy": "pass"}` only when both pass. A legacy coverage-only report cannot be imported as this acceptance gate.
+
+Before starting a lesson's plan-gate, verify the declared shared inputs with:
+
+```text
+python scripts/check_course_coverage.py --inventory curriculum/source-inventory.json --matrix curriculum/coverage.csv --plan CURRICULUM_MASTER.md --stage plan --review curriculum/review.json
+```
+
+These are future canonical paths selected at intake, not a claim that accepted artifacts already exist. Failure blocks authoring. On success, verify the selected lesson ID exists in the plan and matches the task scope, copy only the unchanged accepted verdict JSON to the task plan-gate output, and record its source path/hash and reuse reason in the worklog. Commit that output, complete plan-gate, then commit state/worklog. No independent reviewer rerun is required for an unchanged accepted course gate. This does not reuse a lesson review or waive actual-teaching review.
+
+The checker is read-only; it neither creates content nor produces an approval. Do not author missing curriculum during a lesson or workflow task. Resolve a separately authorized course task first. The current historical revision-3 candidate still has a pedagogy blocker and is not an accepted gate.
+
+## Full Primer coverage data contract
+
+The strict checker complements the older, looser `validate_content.py --scope curriculum` mapping check. Full-Primer claims must use the strict checker; a loose check cannot substitute for it.
+
+Inventory JSON has `repository` equal to `https://github.com/donnemartin/system-design-primer`, a full 40-character `revision` SHA, and nonempty `entries`. Each entry has a stable unique `id`, `kind` (`topic` or `resource`), and `locator` (repository path plus heading/anchor at that revision). Resource entries also need a rationale. Knowledge entries include meaningful leaf topics, example bodies, appendices, substantive additional prompts, OOD and under-development concepts. A contribution placeholder without teaching material can be a resource with an explicit reason. Reviewers independently check the actual pinned source; an author cannot hide a missing topic by omitting its inventory row or calling it a resource.
+
+The CSV matrix has exactly one row per knowledge-topic ID and columns `topic_id,lesson,outline,disposition`. Only `mapped` and `merged` dispositions satisfy full coverage. The plan uses a heading containing each lesson ID and an outline beneath that heading. The checker verifies an outline belongs to its own lesson, rather than finding the same text anywhere in the file. Resources remain in the inventory and do not inflate the covered-topic count. Optional tracks still map every topic; deferred/outside-scope knowledge blocks completeness.
+
+For actual course coverage, the same matrix adds `lesson_path,section,lesson_sha256` columns. Every topic needs a matching draft teaching file, an exact explanatory heading, and its current SHA-256. The checker rejects missing artifacts, stale hashes, empty headings and assessment/reference-only locations. It cannot decide whether prose really explains a mechanism: independent teaching review is mandatory.
+
+```text
+python scripts/check_course_coverage.py --inventory curriculum/source-inventory.json --matrix curriculum/coverage.csv --plan CURRICULUM_MASTER.md --stage taught
+```
+
+A final independent course coverage/pedagogy verdict must bind the inventory, matrix, plan and all teaching files referenced by the matrix. Run the same command with `--review PATH` to verify that accepted verdict. All lesson packages additionally need current accepted technical/provenance and teaching reviews. Course completion is still not human approval or publication.
+
+Updating a taught-evidence matrix changes its hash, so preserve the earlier accepted plan matrix for in-flight tasks and create a new versioned matrix/verdict when adding teaching evidence. Select exact versioned paths at intake. Never silently rewrite shared inputs of a running task or relabel a plan-stage verdict as a taught-stage verdict.
+
+## Conditional revisions
+
+On a negative lesson review, declare a revision step with unique new pair paths, `revision_cycle: 1`, and completed review dependencies without `requires_reviews`. Add two combined rechecks bound to the revised pair plus its evidence and course inputs; repoint validation to those accepted gates. Preserve the original pair and verdicts. A necessary second revision uses new paths and cycle 2. No third automated revision is allowed without separate user-authorized work. Rechecks inspect changed content and affected dependencies and verify all current artifact hashes. Passing content is not copied merely to produce a file named final.
+
 ## Review results
 
 A review step declares `review.artifact_paths` (also explicit input_paths) and `review.verdict_path` (one of its owned outputs). It produces an explanatory Markdown report plus JSON:

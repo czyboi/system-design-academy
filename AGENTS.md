@@ -38,3 +38,10 @@
 
 - `taskctl status` is read-only. Use `reconcile` explicitly to persist aggregate changes. Respect task execution_control holds; only resume-task after explicit user direction.
 - New review gates use artifact-bound verdict JSON; a completed review with block/revise cannot satisfy an acceptance gate. See docs/workflow-contract.md for the CLI contract.
+
+## Compact workflow defaults
+- Use the shared module-pipeline skill: three steps for course planning, six for a lesson package, two for workflow/code. One Issue/spec/state/worklog per bounded task; internal research/review steps do not need separate Issues.
+- Reuse an accepted, unchanged full-course plan/inventory/matrix gate. Do not regenerate course planning per lesson. Full Primer coverage includes every knowledge topic, even optional tracks; exclusions/deferments cannot count as complete coverage.
+- Default lesson reviews are two independent combined assignments: technical + provenance, and actual source coverage + pedagogy/language. Preserve every review dimension and exact artifact hashes. Add specialists only for unresolved risks.
+- No mandatory revision, final copy or duplicate recheck when the first pass is accepted. Revisions require fresh gates on the actual new artifacts, with at most two automated cycles.
+- Workflow-only changes never imply permission to generate curriculum/lessons or resume historical held work.

@@ -1,57 +1,48 @@
 # System Design Academy
 
-An AI-assisted, source-grounded curriculum project for backend engineers learning system design.
+Source-grounded System Design course development for middle/senior engineers. Learner-facing content is English and remains draft until human approval.
 
-> Project status: Early development. The Database module is a pilot, not publication-ready courseware.
+## Current state
 
-## Repository structure
+The previous learner outputs were removed at the user's request. No completed course is currently claimed. `CURRICULUM_MASTER.md` is the old proposed map; the newer revision-3 candidate and pinned source evidence remain historical inputs. Its source-coverage recheck passed, but its pedagogy recheck requested revision and the user stopped finalization. Do not resume it implicitly.
 
-- .agents/skills/: canonical shared procedures for all providers.
-- .codex/agents/: Codex-specific role adapters.
-- .claude/agents/: Claude Code role adapters referencing shared skills.
-- .academy/specs/: canonical, versioned task specifications.
-- .academy/state/: execution state, JSON Schema, templates, and append-only worklogs.
-- scripts/taskctl.py: spec-aware fingerprints and reproducible execution gates.
-- scripts/validate_content.py: structural course-content validation.
-- tests/: task engine and configuration integration tests.
-- modules/database/: Database pilot content and workflow.
+This repository now defaults to a compact workflow. The workflow change does not regenerate curriculum, lessons, assessments or backlog.
 
-## Hybrid task state and anti-repeat protocol
+## Start here
 
-Each task has one canonical specification at .academy/specs/<TASK-ID>.json. It contains the goal, scope, constraints, Definition of Done, and acceptance criteria. The GitHub Issue coordinates ownership, branch, dependencies, and links; it must not duplicate detailed requirements.
+The shared [module-pipeline skill](.agents/skills/module-pipeline/SKILL.md) defines the process; [task-intake](.agents/skills/task-intake/SKILL.md) selects a bounded task.
 
-Execution state lives in .academy/state/tasks/<TASK-ID>.json; event/checkpoint history is appended to .academy/state/worklog/<TASK-ID>.jsonl. All AI providers use the same JSON/JSONL records and Git commits.
+| Work | Default steps | Template |
+| --- | --- | --- |
+| Course plan | Plan + full source inventory/matrix → independent coverage/pedagogy → validation | `.academy/state/course.template.json` |
+| One lesson package | Research → reuse accepted plan gate → author → technical/source review + teaching/coverage review → validation | `.academy/state/task.template.json` |
+| Workflow/code change | Implementation → verification | `.academy/state/workflow.template.json` |
 
-Initialize a task with:
+Reviews are independent of the author. Revisions and rechecks happen only when needed, with at most two automated revision cycles. A passing first draft goes directly to handoff at the same reviewed paths. No mandatory final-copy stage.
 
-    pip install -r requirements-dev.txt
-    python scripts/taskctl.py init TASK-ID --module MODULE --goal "..." --owner "@username" --template .academy/state/task.template.json
+## Full Primer coverage
 
-Edit the generated task specification and remove all TODO placeholders before starting. Declare which steps each DoD/acceptance criterion governs.
+One pinned course inventory and one topic-to-lesson matrix cover the full System Design Primer knowledge scope. Every topic needs a specific teaching location; optional tracks still count toward this requirement. Resource catalogs/translations/assets are classified separately with reasons. Missing or deferred knowledge blocks a claim of full coverage.
 
-Run python scripts/taskctl.py status TASK-ID. The engine returns SKIP, RESUME, READY, STALE, or BLOCKED. A fingerprint includes the relevant specification slice, declared input hashes, definition version, and dependency fingerprints/output hashes. A step-specific criterion change invalidates only that step and its downstream dependencies; unrelated work remains reusable.
+Plan coverage is distinct from actual teaching. The strict checker rejects omitted topic IDs, invalid mappings, missing lessons and stale teaching hashes. Independent reviewers verify that the inventory is complete and the explanations actually teach each topic. See [workflow contract](docs/workflow-contract.md) for commands and formats.
 
-Start requires committed, clean inputs/specification and records the starting commit plus input/output snapshots. Complete verifies the inputs/spec are unchanged and the outputs are committed/changed during the run. Intentional reuse of an unchanged artifact requires --reuse-output PATH --reuse-reason "...".
+## Records and repository structure
 
-See .academy/state/README.md and docs/task-state-and-idempotency.md for the full protocol.
+- `.agents/skills/`: shared procedures; `.codex/agents/` and `.claude/agents/`: provider adapters.
+- `.academy/specs/`: canonical task requirements; `.academy/state/`: task checkpoints, worklogs and templates.
+- `.academy/task-runs/`: task evidence, reviews and one final report.
+- `modules/`: draft teaching/assessment pairs and source references. Database pilot history is retained for reuse, not an active lesson inventory.
+- `scripts/`: lifecycle, structural content and strict coverage checks; `tests/`: regression tests.
 
-## Automation versus human approval
-
-The CLI can reach automation_complete only. Human review, approval, PR merge, and publication remain separate human-controlled gates. Passing CI is structural validation, not factual, legal, or pedagogical approval. Never auto-publish learner-facing content.
-
-## Agent architecture
-
-Shared procedures live in .agents/skills/. Codex profiles are in .codex/agents/; Claude Code project profiles are in .claude/agents/ and point to shared skills rather than copying instructions. The parent orchestrator owns dependencies, state transitions, shared files, and final synthesis.
-
-## First pilot: Database
-
-Start with modules/database/README.md. It contains seven lessons, one capstone case study, a source registry, templates, workflow, and a first-pass QA report.
+One Issue/spec/state/worklog per bounded task, not one per internal step. Fingerprints, artifact-bound review gates and holds remain in place to avoid repeating valid work. [Task protocol](.academy/state/README.md).
 
 ## Validation
 
-    pip install -r requirements-dev.txt
-    python scripts/validate_content.py
-    python -m unittest discover -s tests -v
-    python scripts/taskctl.py validate
+```text
+pip install -r requirements-dev.txt
+python scripts/validate_content.py
+python -m unittest discover -s tests -v
+python scripts/taskctl.py validate
+```
 
-Structural CI does not establish factual correctness, source availability, legal permission, executable lab correctness, or teaching quality. See GOVERNANCE.md and the Database attribution policy.
+Run the selected lesson-pair or course-coverage checks as applicable. A workflow-only validation can pass with zero lessons; that is not proof of course completion. Automation never approves, merges or publishes learner content.

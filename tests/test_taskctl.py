@@ -21,12 +21,12 @@ class AggregateTaskStatusTests(unittest.TestCase):
         template = json.loads((SOURCE_ROOT / ".academy/state/task.template.json").read_text(encoding="utf-8"))
         data = {"steps": template["steps"]}
         initial_states = {step["step_id"]: "BLOCKED" for step in data["steps"]}
-        initial_states.update({"research": "READY", "curriculum": "READY"})
+        initial_states.update({"research": "READY", "plan-gate": "READY"})
         with patch.object(taskctl, "step_status", side_effect=lambda _data, step: (initial_states[step["step_id"]], "fixture")):
             taskctl.refresh_task_status(data)
         self.assertEqual(data["automation_status"], "not_started")
 
-        phase_states = dict(initial_states, research="SKIP", curriculum="READY")
+        phase_states = dict(initial_states, research="SKIP", **{"plan-gate": "READY"})
         next(step for step in data["steps"] if step["step_id"] == "research")["status"] = "completed"
         with patch.object(taskctl, "step_status", side_effect=lambda _data, step: (phase_states[step["step_id"]], "fixture")):
             taskctl.refresh_task_status(data)

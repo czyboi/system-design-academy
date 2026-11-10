@@ -1,75 +1,45 @@
 ---
 name: module-pipeline
-description: Orchestrate Academy module creation with persistent task state, independent source-coverage gates, specialist reviews, and draft-only outputs.
+description: Run a compact Academy workflow with reusable course coverage, two independent combined reviews, and draft-only outputs.
 ---
 
 # Module Pipeline
 
-The parent orchestrates. Repository task state is durable memory; chat history is not.
+## Intake and task size
 
-## Mandatory intake and resume
+Use task-intake. Read the canonical spec, state, worklog, issue, prior feedback and Git status; run taskctl status. Respect SKIP, STALE and execution holds. One Issue/spec/state/worklog per course-planning task, independently authorable lesson package, or scoped tooling change. Research and reviews are steps inside that task, not separate Issues. Parent owns task state and shared files. Commit before start, after state mutations, and before complete.
 
-1. Find or reuse the GitHub Issue and task ID.
-2. Read the canonical `.academy/specs/<TASK-ID>.json`, state JSON, JSONL worklog, `.academy/state/README.md`, target-module governance, and relevant prior feedback.
-3. Inspect branch, status, commits, and PR.
-4. Run `python scripts/taskctl.py status <TASK-ID>`.
-5. Respect statuses. Never repeat `SKIP`; resume unchanged `RESUME`; inspect `STALE`; wait on `BLOCKED`; start only `READY`.
-6. If new, use task-intake. Complete the spec, freeze required inputs, and commit them before execution.
+Use `.academy/state/course.template.json` for course planning (three steps), `task.template.json` for a lesson package (six steps), and `workflow.template.json` for tooling (two steps). Replace example paths with the exact assigned artifacts before starting. Do not reopen historical tasks just because shared skills changed.
 
-## Audience and deliverable contract
+## Course planning: plan → independent course review → validation
 
-1. Record the target learner, entry knowledge, language, scope, learning outcomes, source revision, and current user direction in the canonical task spec. Current Academy defaults are middle/senior engineers learning system design and English-only learner-facing content; newer explicit user direction takes precedence over older documents.
-2. Keep the teaching lesson concise and instructional: motivating engineering problem, relevant mechanisms, worked example, trade-offs/failure modes, outcomes, prerequisites, and direct references.
-3. Put the practical exercise, 5–8 knowledge checks, answer explanations, rubric, and outcome mapping in a separately declared companion assessment artifact. A lesson title, citation, mention, or assessment question does not count as teaching.
-4. Declare unique paths for lesson, companion assessment, evidence, curriculum map, every independent review, final artifacts, and validation records as applicable. Do not start authoring if the teaching and assessment paths are not separate.
+1. Reuse valid pinned-source evidence; inventory the entire System Design Primer at one full commit SHA. Include meaningful README leaves, study/approach material, appendices, under-development topics, system-design solution bodies, OOD examples and substantive additional prompts. Linked catalogs, translations, binary assets and tooling are inventoried as resources, not automatically crawled into unbounded scope.
+2. Produce one plan, one inventory and one source-to-lesson matrix for the whole course. Give every knowledge topic an exact lesson and outline. Optional tracks still need teaching coverage; deferred/outside-scope knowledge cannot satisfy a full-Primer requirement. A resource classification needs a rationale and independent scrutiny. Do not regenerate the inventory for every lesson.
+3. Assign an independent reviewer (not the planner) both curriculum-coverage-review and pedagogical-review in plan mode. Re-enumerate the pinned source to catch missing or misclassified inventory topics. Check sequencing and lesson boundaries. Write one report and one artifact-bound verdict; separately record `checks: {coverage: pass, pedagogy: pass}` only if both pass. Either material failure makes the overall verdict block/revise.
+4. Run the strict coverage command documented in docs/workflow-contract.md with `--stage plan --review`. Only its accepted, unchanged plan/inventory/matrix/review can be reused at lesson intake. A historical prose-only pass or a coverage pass with unresolved pedagogy is not an accepted course gate.
 
-## Workflow and mandatory coverage gates
+## Lesson package: six normal steps
 
-1. Confirm the canonical scope, constraints, Definition of Done, and acceptance criteria are complete and mapped to task steps.
-2. Start each step before editing; commit task JSON/worklog after state mutations. Run source research and curriculum mapping in parallel only when both are independent and READY.
-3. **Plan coverage gate, before authoring:** assign the independent `curriculum-coverage-reviewer` to compare a pinned source repository's leaf topics with the curriculum map, lesson IDs, outcomes, prerequisites, and expected teaching depth. Require a disposition for every topic. The curriculum designer cannot self-approve this gate. If the reviewer reports `block` or `revise`, resolve material gaps or exclusions in the curriculum plan and repeat the audit before any author writes a lesson.
-4. Author only after research, curriculum mapping, and the plan coverage gate are fresh and clear. Assign one author per lesson; keep the lesson teaching-only and assessments separate.
-5. Run technical, provenance and source-coverage reviews independently with distinct report paths; run pedagogy afterward when it consumes the coverage report. Assign language checks explicitly to pedagogy. The post-authoring coverage review must inspect actual lesson teaching sections, not just the plan, and map every in-scope source topic to evidence. A quiz/check, reference, heading, or passing plan audit cannot establish that a topic was taught.
-6. Consolidate findings and allow at most two automated revision cycles. Any material coverage gap or unsupported core outcome blocks completion; if a critical disagreement remains, stop for human judgment.
-7. Commit declared outputs before `taskctl complete`. Checkpoint and commit before provider/context handoff.
-8. Run `pip install -r requirements-dev.txt`, `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate`. Record exact outcomes and distinguish structural checks from technical, legal, source-reachability, pedagogical, and human approval.
-9. Prepare the run report, coverage matrix, unresolved claims, and draft PR only after gates are complete. Keep learner-facing content at `status: draft`.
+1. **research:** collect current primary-source evidence only for assigned lesson claims, with product/version, exact source section, date and unresolved claims. Reuse already valid evidence rather than re-searching unchanged general facts.
+2. **plan-gate:** run the strict course check with the accepted shared verdict. Verify the lesson exists in that exact plan and all its assigned topics are in scope. When all hashes and both course checks pass, copy only the accepted verdict JSON to the task's plan-gate output; record provenance and explicit reuse in the worklog. This is gate reuse, not a new independent audit. No full planning/review agent run is needed. If missing, changed, negative or legacy-only, block authoring and resolve a bounded course-plan task first. Research and this read-only gate verification may run independently.
+3. **author:** write the assigned draft teaching lesson and separate companion assessment directly to their declared paths. Include prerequisites, outcomes, problem, mechanism, worked example, decisions, trade-offs/failures and direct references. Companion contains an exercise, 5–8 checks with explanations, solution/rubric and outcome map. No learner output is authored in a workflow-only task.
+4. **technical-review:** an independent reviewer uses technical-review plus provenance-review to check correctness, assumptions, sources, adaptations and asset rights. One report has separate technical and provenance findings; the overall artifact-bound verdict passes only when both dimensions pass.
+5. **teaching-review:** a second independent reviewer uses curriculum-coverage-review plus pedagogical-review. Inspect every topic assigned to this lesson in the shared matrix against actual explanatory sections, then check learning sequence, assessment alignment, language and audience. One report records both coverage and pedagogy findings. Questions, titles and citations do not establish teaching. This reviewer is distinct from the author and technical reviewer; no wait for the technical report is necessary.
+6. **validation:** require both accepted reviews bound to the exact lesson, assessment, evidence, plan, inventory and matrix. Run selected pair validation and required repository checks. Record results, unresolved minor findings and feedback disposition in one short report. Hand off the same reviewed paths; do not create a redundant final copy, duplicate coverage spreadsheet or separate retrospective file. Keep `status: draft` and human approval separate.
 
-A coverage report verdict of `ready-for-human-review` means only that the reviewer found no unresolved material source-to-course gaps for that review mode. It is not factual, legal, human, or publication approval.
+Combined reviews reduce handoffs, not checks. Add a separate specialist only for unresolved technical disputes, ambiguous asset rights, unusually complex assessment or evidence outside the assigned reviewers' competence. A missing required review dimension blocks acceptance.
 
-## Explicit rejection and cleanup
+## Conditional revisions, never a mandatory loop
 
-- Record the user's rejection and its reason in the active task worklog with a disposition and follow-up. Promote reusable causes into the governing shared skill/checklist, not just the task record.
-- When the user explicitly rejects generated outputs and directs deletion, enumerate exact generated files first, verify each target is inside the workspace and is an output rather than a source/policy/input, then delete only those exact files. Do not use broad recursive deletion.
-- Preserve source material, curriculum plans needed for review, governance, immutable workflow inputs, task specifications/state/worklogs, and unrelated outputs unless the user explicitly includes them.
-- After deletion, check the historical task states. Record them as stale/historical when their output hashes no longer match, and do not restart or reuse rejected artifacts as completed work.
+If both reviews pass, finish without a revision or recheck. If either fails, preserve both reports and candidate; add a revision step with `revision_cycle: 1`, unique new pair paths, and direct dependencies on the reviews (not requires_reviews). Declare two new combined rechecks bound to the complete revised artifact set, including unchanged shared inputs, and repoint validation to those gates. Rechecks focus on changed claims and affected dependencies but verify the entire current hash set. No author self-approval or stale verdict reuse. A second necessary revision uses cycle 2 and new paths; after two unsuccessful cycles, hold awaiting-human. Never overwrite old reviewed artifacts or reset counters to bypass the limit. No copy of accepted content is required merely to call it final.
 
-## Idempotency rules
+## Full-course completion
 
-- Every step fingerprint includes input hashes, definition version, dependency fingerprints/output hashes, and its task-specification slice.
-- DoD/acceptance criteria declare which step(s) they govern. A criterion change invalidates only affected steps and downstream dependents; global goal/scope/constraints change invalidates all steps.
-- Start requires committed clean inputs/spec and records a start commit and input/output snapshots.
-- Complete requires unchanged inputs/spec and verifiable committed output changes, unless explicit documented output reuse is requested.
-- Do not overwrite stale work without inspecting it. Parent owns shared files and task-state transitions. One active writer per task/lesson; task JSON is not a distributed lock.
+A lesson gate checks its assigned topics; it does not establish whole-course completion. Before claiming full Primer coverage, reconcile the one course matrix with real lesson paths, teaching headings and current SHA-256 values for every topic; run `check_course_coverage.py --stage taught`. Have an independent reviewer audit actual teaching depth across all topics, using fresh package reviews where valid and inspecting cross-lesson gaps. Bind a final course verdict to the complete artifact set and run again with `--review`. Missing, deferred, assessment-only, mention-only or stale evidence blocks full coverage. Also require current accepted technical/provenance and teaching reviews for every package. Structural success never replaces those judgments or human approval.
 
-## Feedback and reusable learning
+## Persistence, cleanup and cost
 
-- At intake, read relevant prior task retrospectives, review reports, validation reports, and worklog entries. Carry forward applicable findings without reopening completed work outside the new task scope.
-- Record explicit user corrections, reviewer findings, and validation/test failures with their source, affected step or artifact, disposition, and reason in the current task worklog or report.
-- Before completing a material task, write a short retrospective linking feedback to the root cause, change made, and verification performed.
-- Keep task-specific decisions in task artifacts. Promote reusable process feedback into the shared skill, QA checklist, or regression test that governs future work; include a regression check when practical.
-- Keep provider profiles as role/configuration wrappers. Do not copy shared procedure into individual profiles, and do not claim an agent has learned unless the repository change is committed.
-
-## Approval boundary and delegation
-
-The CLI only reaches `automation_complete`. Human review, approval, PR merge, and publication are separate human-controlled gates. Never merge or publish. Give each agent bounded inputs, output paths, and stop conditions. Role instructions alone do not enforce permissions.
-
-## Enforced gates and final revisions
-
-Use the updated task template and the artifact-bound verdict format in `docs/workflow-contract.md`. An executed review can be completed with block/revise; authoring and final validation require clear designated reviews. Never relabel a negative review as accepted to unblock execution. Each revision writes new artifact paths so prior review evidence remains immutable. Recheck the final pair before validation. If no change is needed, the parent may copy the accepted candidate to final paths; record reuse/equivalence explicitly and verify the final hashes.
-
-The template provides one revision and final rechecks. If a second revision is necessary, declare unique round-2 outputs and rechecks and repoint the final gate before starting; record revision_cycle 2. After two automated revisions, hold awaiting-human. Do not create further automated rounds by resetting cycle numbers. A user-authorized extra round requires a separately scoped task and preserved prior findings.
-
-## Context and cost discipline
-
-Parent owns state, Git commits and shared files. Dispatch only distinct outputs with a compact brief: task/step, relevant spec criteria, input paths, output paths and stop conditions. Prefer fresh bounded context for independent reviewers when the host supports it; do not copy the complete parent transcript by default. Keep the concurrency limit at four. Reuse immutable source snapshots with version checks; rechecks target changed claims plus affected dependencies. Record observed model/effort with start and runtime usage with complete when available; leave unavailable counters unknown, never estimate them as measured. Model settings in profiles are defaults, not evidence of the actual runtime used. Escalate only unresolved difficult claims to stronger review, preserving the initial findings.
+- Read relevant feedback before reuse; record user corrections and review/test failures with source, disposition and follow-up in the existing worklog/report. Promote reusable fixes into shared skills/tests through a scoped task.
+- Delegate compact briefs and distinct outputs, not full transcripts. Parent owns Git/state; never have two writers for one artifact. Provider profiles remain thin role/configuration adapters. Use observed runtime/cost data only; no estimated savings presented as measured.
+- User-requested resets affect only enumerated generated outputs. Verify exact paths stay inside the workspace, preserve pinned evidence, useful review history, task records and immutable inputs, and record deletions as historical/stale. Prefer retiring misleading entry points when deleting evidence would force expensive regeneration.
+- Tooling changes do not trigger lesson creation, curriculum completion, historical-task resumption, a mass re-review, approval, merging or publication.

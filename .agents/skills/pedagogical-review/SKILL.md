@@ -33,3 +33,7 @@ Return findings with artifact/location, learner impact, severity, and recommende
 ## Machine-readable gate output
 
 When the task step declares `review`, write both assigned outputs: the explanatory Markdown report and verdict JSON following `docs/workflow-contract.md`. Record exact SHA-256 hashes for every declared reviewed artifact, verdict, and finding IDs with severity/status. An open blocker or major finding forbids `ready-for-human-review`. Do not infer a pass from another review. Rechecks inspect changed sections and their dependencies and bind the result to the complete current artifact set.
+
+## Combined review assignment
+
+When module-pipeline explicitly assigns a combined teaching or course review, the same independent reviewer must also execute curriculum-coverage-review. Read actual source mappings and perform coverage first within that review; a separate coverage report is not required in this mode. Record distinct coverage and pedagogy findings in one report with one overall blocking verdict. This mode supersedes the separate-report input requirement above only for an explicit combined assignment; never infer coverage from pedagogical clarity. Check language here. The reviewer remains independent from the author and technical reviewer.

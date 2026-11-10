@@ -30,3 +30,9 @@ Choose outputs that match the task, typically:
 - Independent coverage and pedagogy review reports, including findings and their dispositions.
 
 Do not claim complete coverage while any in-scope topic has no explicit disposition, any mapped topic lacks a concrete outline location, or a required independent review has not passed. A coverage pass establishes mapping quality, not technical correctness, source rights, human approval, or publication readiness.
+
+## Compact full-course workflow
+
+Use the three-step course template and module-pipeline. Produce one shared full-source inventory and matrix; do not regenerate them per lesson. Under a full-Primer requirement, every knowledge topic must map to a lesson/outline, including optional tracks. Deferred/outside-scope knowledge is an unresolved gap, not coverage. Distinguish non-teaching resources with justified classifications. Use the strict inventory and matrix formats in docs/workflow-contract.md. Existing evidence can be reused after checking revision and relevance; do not treat a historical coverage-only pass as course acceptance when pedagogy remains unresolved.
+
+One independent combined course review performs both complete source enumeration and plan pedagogy, with explicit results for each. Do not pre-schedule multiple review rounds or a revision when the first review passes. Add bounded revisions only for actual findings. No learner content or external per-lesson Issue creation in a plan-only task.

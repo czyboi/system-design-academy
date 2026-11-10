@@ -120,3 +120,11 @@ This is a lightweight repository-based checkpoint system, not a distributed lock
 New review contracts bind verdicts to exact artifact hashes. Completing a review records execution, including a negative verdict; `requires_reviews` separately controls acceptance. Revisions may depend on negative reviews without requiring acceptance. See [CLI contract](../../docs/workflow-contract.md) for JSON and commands.
 
 Use `validate_content.py --scope workflow` for tooling, `--scope curriculum --plan PATH --matrix PATH` for plan plus CSV coverage, and `--scope lesson --lesson PATH --assessment PATH` for each selected package. The default repository check validates current canonical packages and shared configuration. Historical pilot inventories and run snapshots are not active content manifests.
+
+## Compact template selection
+
+Use `course.template.json` for course planning (3 steps), `task.template.json` for one lesson package (6), or `workflow.template.json` for tooling (2). Select the template with `init --template PATH`; replace sample paths and filenames before start. One task owns the package; do not create a separate Issue for each internal step. Full orchestration lives only in `.agents/skills/module-pipeline/SKILL.md`.
+
+The lesson plan-gate reuses the exact accepted shared course verdict after the strict coverage check, rather than commissioning another course plan or review. Two independent combined reviews cover the authored pair and its evidence. No revision/final-copy/recheck is mandatory on the passing path. Negative findings trigger bounded revision steps and new gates on new paths; the lifecycle engine and two-cycle guard are unchanged.
+
+Existing task graphs are not migrated or resumed automatically. Retain their historical decisions and outputs; changing a shared skill may make their fingerprints stale without authorizing a rerun.
