@@ -4,10 +4,10 @@
   "module_id": "workflow",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-WORKFLOW-CLEAN-RESET.json",
-  "automation_status": "in_progress",
+  "automation_status": "automation_complete",
   "current_phase": "verification",
   "created_at": "2026-11-10T08:32:16Z",
-  "updated_at": "2026-11-10T08:33:59Z",
+  "updated_at": "2026-11-10T08:34:25Z",
   "execution_control": "active",
   "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
   "steps": [
@@ -59,7 +59,7 @@
     {
       "step_id": "verification",
       "title": "Verify scoped changes",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "implementation"
       ],
@@ -79,14 +79,20 @@
         ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/verification.md": null
       },
       "started_at": "2026-11-10T08:33:59Z",
-      "active_spec_hash": "b150c8bb651efe1d614e8e6ed09de07788e9961dc67ce58f61534e28cc7c95d1",
-      "active_fingerprint": "8379462c86f942c16282fa41542da17caeda17f0556d6a3154b79488502a3a98",
       "run_id": "SD-WORKFLOW-CLEAN-RESET-verification-20261110T083359Z",
       "agent": "workflow_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "8379462c86f942c16282fa41542da17caeda17f0556d6a3154b79488502a3a98",
+      "completed_spec_hash": "b150c8bb651efe1d614e8e6ed09de07788e9961dc67ce58f61534e28cc7c95d1",
+      "completed_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/verification.md": "bde60014ee7f6b7b57ff0557c477e95a67470f660a6f7988ad9170b46101b9b9"
+      },
+      "completed_at": "2026-11-10T08:34:25Z",
+      "completed_by": "workflow_orchestrator",
+      "completed_commit": "574539e6f5ef5e00d4c1a4992d1ce769e857d30b"
     }
   ]
 }
