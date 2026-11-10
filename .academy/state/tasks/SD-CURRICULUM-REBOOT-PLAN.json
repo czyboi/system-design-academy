@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "source-evidence-refresh",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:42:03Z",
+  "updated_at": "2026-11-10T03:43:30Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -468,8 +468,9 @@
       "status": "running",
       "definition_version": "v1",
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Fetched all eight System Design solution READMEs and all six OOD notebooks through GitHub Contents API at the pinned SHA ae9bbd7b02d90b9866215de185217d33f39ab733. Recorded scope/implementation observations and exact pinned paths, including Pastebin Base62 uniqueness and monthly MapReduce analytics; crawler/search boundary; cache sublevels; integer-only/no-load-factor hash map; and call-center VIP=no. Also added exact README cache and coding-resource locators. Notebook cells were inspected, not executed.",
+        "next_action": "Commit pinned-example-evidence-2026-11-10.md and checkpoint, then complete source-evidence-refresh.",
+        "at": "2026-11-10T03:43:30Z"
       },
       "attempts": 1,
       "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
