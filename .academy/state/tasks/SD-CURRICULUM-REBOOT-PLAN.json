@@ -4,12 +4,12 @@
   "module_id": "curriculum",
   "current_phase": "spec-extension-approved",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:34:53Z",
+  "updated_at": "2026-11-10T03:38:06Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
       "title": "Broaden curriculum design guidance to the full source repository",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -42,12 +42,13 @@
       },
       "completed_at": "2026-11-09T16:48:53Z",
       "completed_by": "curriculum_designer",
-      "completed_commit": "2d6bc4fc273be00069652bdd3857dfd2b94620c6"
+      "completed_commit": "2d6bc4fc273be00069652bdd3857dfd2b94620c6",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     },
     {
       "step_id": "source-inventory",
       "title": "Inventory the pinned Primer repository topics and in-tree examples",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "curriculum-skill-update"
       ],
@@ -86,12 +87,12 @@
       "completed_at": "2026-11-10T02:36:37Z",
       "completed_by": "source_researcher",
       "completed_commit": "368250279708939a3c237d4e6af46588ded8190b",
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     },
     {
       "step_id": "curriculum-draft",
       "title": "Design the ordered modules and detailed teaching lesson outlines",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "source-inventory"
       ],
@@ -121,7 +122,7 @@
       "started_at": "2026-11-10T02:37:30Z",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-draft-20261110T023730Z",
       "agent": "curriculum_designer",
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
       "completed_fingerprint": "a59bb170837a2df646973a3bec38923fb04a98d8445cb735357fc0fd3ea9ca75",
       "completed_spec_hash": "db8069fce8b3c5a5a3ae749aaa78c5a066e2886510dc82f89d071a0524a0e547",
       "completed_output_hashes": {
@@ -134,7 +135,7 @@
     {
       "step_id": "coverage-round-1",
       "title": "Independently audit first plan and full topic matrix",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "curriculum-draft"
       ],
@@ -153,7 +154,7 @@
         "at": "2026-11-10T02:42:17Z"
       },
       "attempts": 1,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
       "start_commit": "10020ec9f8cec35e95c218d949325196bffa9a5f",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
@@ -178,7 +179,7 @@
     {
       "step_id": "revision-round-1",
       "title": "Resolve Round 1 curriculum coverage findings",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "coverage-round-1"
       ],
@@ -197,7 +198,7 @@
         "at": "2026-11-10T02:54:45Z"
       },
       "attempts": 1,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
       "start_commit": "997cd45dd2cce0cef9b308a75248a572dabba7f0",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
@@ -223,7 +224,7 @@
     {
       "step_id": "coverage-round-2",
       "title": "Fresh independent audit of revised plan",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "revision-round-1"
       ],
@@ -242,7 +243,7 @@
         "at": "2026-11-10T02:59:04Z"
       },
       "attempts": 1,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
       "start_commit": "a28bf81b517e00ae6b1e7233e88fbc0e2e285353",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
@@ -267,7 +268,7 @@
     {
       "step_id": "revision-round-2",
       "title": "Resolve Round 2 findings and record remaining dispositions",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "coverage-round-2"
       ],
@@ -286,7 +287,7 @@
         "at": "2026-11-10T03:09:07Z"
       },
       "attempts": 1,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
       "start_commit": "a782bb87b7294b8ffe4719a1b3c7283bcb701c03",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
@@ -311,7 +312,7 @@
     {
       "step_id": "coverage-round-3",
       "title": "Final independent verification of every source mapping",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "revision-round-2"
       ],
@@ -330,7 +331,7 @@
         "at": "2026-11-10T03:19:05Z"
       },
       "attempts": 1,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
       "start_commit": "4be39bea8c7f1b10127f35d54ab14bb7a7b3600d",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
@@ -355,7 +356,7 @@
     {
       "step_id": "pedagogy-review",
       "title": "Review course sequence, audience, and teaching-only scope",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "revision-round-2"
       ],
@@ -374,7 +375,7 @@
         "at": "2026-11-10T03:12:34Z"
       },
       "attempts": 1,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
       "start_commit": "934bb79aef4592b06ed969b12c41a5e53b9b5310",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11",
@@ -410,13 +411,14 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md"
       ],
-      "status": "pending",
+      "status": "invalidated",
       "definition_version": "v1",
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     },
     {
       "step_id": "source-inventory-final",
@@ -432,13 +434,14 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md"
       ],
-      "status": "pending",
+      "status": "invalidated",
       "definition_version": "v1",
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     },
     {
       "step_id": "revision-round-3",
@@ -458,13 +461,14 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md"
       ],
-      "status": "pending",
+      "status": "invalidated",
       "definition_version": "v1",
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     },
     {
       "step_id": "coverage-recheck",
@@ -481,13 +485,14 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md"
       ],
-      "status": "pending",
+      "status": "invalidated",
       "definition_version": "v1",
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     },
     {
       "step_id": "pedagogy-recheck",
@@ -504,13 +509,14 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md"
       ],
-      "status": "pending",
+      "status": "invalidated",
       "definition_version": "v1",
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     },
     {
       "step_id": "finalize-curriculum",
@@ -541,7 +547,7 @@
         "next_action": ""
       },
       "attempts": 0,
-      "invalidation_reason": "User authorized one targeted third revision and independent rechecks; finalization remains gated on both final review passes."
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     },
     {
       "step_id": "validation",
@@ -567,7 +573,7 @@
         "next_action": ""
       },
       "attempts": 0,
-      "invalidation_reason": "Re-run only after revised plan and final independent rechecks pass."
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
     }
   ],
   "notes": "GitHub Issue #6. One active writer: @czyboi. User explicitly authorized one targeted third revision and independent recheck on 2026-11-10. Source revision pinned to ae9bbd7b02d90b9866215de185217d33f39ab733. Preserve all prior reports; target only round-three coverage and pedagogy findings. No further automated revision cycle without new user approval. Lessons and assessments remain out of scope.",
