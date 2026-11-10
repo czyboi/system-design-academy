@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-COURSE-OUTPUT-CLEANUP",
+  "revision": 1,
+  "goal": "Remove generated curriculum draft outputs for an authorized clean restart",
+  "scope": {
+    "in_scope": [
+      "Remove exactly the generated curriculum draft and revision candidate files from the earlier stopped run. Retain inventory, evidence, reviews, snapshots, task history and source material. Confirm existing lesson, quiz, case study and QA files removed in the branch relative to main. Update project README to explain restart."
+    ],
+    "out_of_scope": [
+      "No curriculum, lesson, assessment or other learner content regeneration. No publication."
+    ]
+  },
+  "constraints": [
+    "User explicitly requested cleaning old outputs on main for a fresh start. Preserve source evidence and historical records; no recursive deletion.",
+    "Owner @czyboi; Issue #9."
+  ],
+  "definition_of_done": [
+    {
+      "id": "done",
+      "text": "Enumerated generated candidates removed and cleanup recorded; no source evidence or task history removed.",
+      "applies_to": [
+        "implementation"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-check",
+      "text": "Run validation and confirm exact deletions, retained source evidence, and no new course output.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}
