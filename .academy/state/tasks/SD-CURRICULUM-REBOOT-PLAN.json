@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "curriculum-draft",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T02:37:30Z",
+  "updated_at": "2026-11-10T02:38:19Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -91,7 +91,7 @@
     {
       "step_id": "curriculum-draft",
       "title": "Design the ordered modules and detailed teaching lesson outlines",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "source-inventory"
       ],
@@ -122,8 +122,14 @@
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-draft-20261110T023730Z",
       "agent": "curriculum_designer",
       "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
-      "active_spec_hash": "db8069fce8b3c5a5a3ae749aaa78c5a066e2886510dc82f89d071a0524a0e547",
-      "active_fingerprint": "a59bb170837a2df646973a3bec38923fb04a98d8445cb735357fc0fd3ea9ca75"
+      "completed_fingerprint": "a59bb170837a2df646973a3bec38923fb04a98d8445cb735357fc0fd3ea9ca75",
+      "completed_spec_hash": "db8069fce8b3c5a5a3ae749aaa78c5a066e2886510dc82f89d071a0524a0e547",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": "ed9d4400e7316851aab4b72bd16e323871cafb69f93c829a9047f0ecbceaf8b2"
+      },
+      "completed_at": "2026-11-10T02:38:19Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "6dadb2b2f7928592baa64646b4133746fd0841fd"
     },
     {
       "step_id": "coverage-round-1",
