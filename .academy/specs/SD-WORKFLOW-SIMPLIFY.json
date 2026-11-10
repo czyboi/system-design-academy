@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-WORKFLOW-SIMPLIFY",
+  "revision": 1,
+  "goal": "Simplify workflow without regenerating content; preserve independent quality gates and full pinned Primer knowledge coverage",
+  "scope": {
+    "in_scope": [
+      "Replace mandatory 14-step lesson graph with six steps: research, reusable plan gate, author, two combined independent reviews, validation. Add compact course and workflow templates.",
+      "Keep independent plan and actual-teaching coverage, technical correctness, pedagogy, provenance, draft status, negative-verdict blocking, task holds and two-revision limit.",
+      "Add strict full-Primer inventory/coverage validation, distinguishing knowledge topics from resources and planned mappings from actual teaching evidence. Reuse only exact accepted shared course artifacts; fail on missing/deferred knowledge coverage.",
+      "Align shared skills and entry-point docs; mark old pilot outputs/plans historical without rerunning or deleting valuable pinned evidence and review history."
+    ],
+    "out_of_scope": [
+      "No curriculum, lesson, assessment, diagram or backlog generation; no resumption of held SD-CURRICULUM-REBOOT-PLAN.",
+      "No changes to existing taskctl lifecycle/gate engine or unrelated working-tree changes. No merge, publication or new model configuration."
+    ]
+  },
+  "constraints": [
+    "User instruction 2026-11-10: simplify moderately, retain output quality and full knowledge coverage of System Design Primer, do not spend time regenerating outputs.",
+    "One writer @czyboi, Issue #8; retain the current pinned Primer revision ae9bbd7b02d90b9866215de185217d33f39ab733 for later course work.",
+    "The historical course coverage pass is not an accepted course: pedagogy recheck remains revise. Preserve this decision and all historical artifacts.",
+    "Preserve pre-existing modified hardening state/worklogs; commit only this task outputs."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-implementation",
+      "text": "Executable templates and shared instructions agree on six default lesson steps, three course steps and two tooling steps; no automatic revision/copy/recheck loop. Full coverage validator and regressions reject omissions and false taught claims.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "dod-verification",
+      "text": "Independent bounded workflow/code review, required repository checks, exact validation results and feedback/cleanup disposition recorded. No learner outputs regenerated.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-gates",
+      "text": "Author requires an accepted plan review binding plan+inventory+matrix; validation requires both combined reviews of the exact pair, evidence and coverage inputs. Each combined review explicitly covers all assigned dimensions.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-coverage",
+      "text": "Machine checks require unique inventory topic IDs, a pinned SHA, complete source-to-lesson mapping with no silent omission/defer, and actual lesson paths/sections/hashes in taught mode. Independent review still verifies inventory completeness and teaching depth.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-no-work",
+      "text": "No lesson, assessment, curriculum or historical run artifact is created, regenerated, deleted or resumed. Superseded entry points route to the new workflow and explain pending course acceptance.",
+      "applies_to": [
+        "implementation",
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-checks",
+      "text": "Run pip install -r requirements-dev.txt, python scripts/validate_content.py, python -m unittest discover -s tests -v, python scripts/taskctl.py validate and git diff --check; record outcomes truthfully.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}
