@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-OUTLINE.json",
   "automation_status": "in_progress",
-  "current_phase": "plan",
+  "current_phase": "course-review",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:15:59Z",
+  "updated_at": "2026-11-10T09:16:13Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
@@ -61,7 +61,7 @@
     {
       "step_id": "course-review",
       "title": "Independent full-source coverage and plan pedagogy",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "plan"
       ],
@@ -81,7 +81,7 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "review": {
         "artifact_paths": [
           "CURRICULUM_MASTER.md",
@@ -89,6 +89,27 @@
           "curriculum/coverage.csv"
         ],
         "verdict_path": "curriculum/review.json"
+      },
+      "start_commit": "04d42a6f6d06ffb82324fcc2f1b5be2a098de9d7",
+      "start_input_hashes": {
+        "CURRICULUM_MASTER.md": "2224c4794d967fd527d68b63a4f3aab2ffb755f3a0e3fd88c6577300ab080e4c",
+        "curriculum/source-inventory.json": "4c649be24624e6f86c8e76663a499877678c0fc028a9e25173765539f117eb1f",
+        "curriculum/coverage.csv": "9ba5b6cb37b6f77ca9c0a3cf8f9214c076fa4741f89f7f3ed0de70cd4a07cdad",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "aea2576491b4de38c1ed92ab01904548a43f71c0031bbb641ab356bed7b05654",
+        ".agents/skills/pedagogical-review/SKILL.md": "ba49779754723f92a0ded1788f1487bf6c38bc1bf1d96f6a314349da52fcd993"
+      },
+      "start_output_hashes": {
+        "curriculum/review.md": null,
+        "curriculum/review.json": null
+      },
+      "started_at": "2026-11-10T09:16:13Z",
+      "active_spec_hash": "45ccdad92158083cda6da378ec86f7018bac74fd3091caf895b1a38b0bc6230b",
+      "active_fingerprint": "d0465136e9b66441daa4bd207716219b2013e12aa0b58e89c69f00cb00888cc5",
+      "run_id": "SD-COURSE-OUTLINE-course-review-20261110T091613Z",
+      "agent": "curriculum_coverage_reviewer",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
       }
     },
     {
