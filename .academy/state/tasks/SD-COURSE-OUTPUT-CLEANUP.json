@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-OUTPUT-CLEANUP.json",
   "automation_status": "in_progress",
-  "current_phase": "implementation",
+  "current_phase": "verification",
   "created_at": "2026-11-10T08:25:18Z",
-  "updated_at": "2026-11-10T08:26:27Z",
+  "updated_at": "2026-11-10T08:26:39Z",
   "execution_control": "active",
   "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
   "steps": [
@@ -53,7 +53,7 @@
     {
       "step_id": "verification",
       "title": "Verify scoped changes",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "implementation"
       ],
@@ -66,7 +66,21 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "b8c2b34f72ca91df6c81f350a9aae506f9e84725",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        ".academy/task-runs/SD-COURSE-OUTPUT-CLEANUP/verification.md": null
+      },
+      "started_at": "2026-11-10T08:26:39Z",
+      "active_spec_hash": "5f18958630f272f2e14b35b664512e18aed1d42a3b9f8c5b0bf7a2b8e71ecbd5",
+      "active_fingerprint": "50245f2c65b636421208aa2cd5f5b2c9074bf0f4b2ffb1446474989abdef9ef0",
+      "run_id": "SD-COURSE-OUTPUT-CLEANUP-verification-20261110T082639Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ]
 }
