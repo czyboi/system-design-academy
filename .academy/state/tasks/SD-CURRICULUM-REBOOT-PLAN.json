@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "coverage-round-3",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:40:37Z",
+  "updated_at": "2026-11-10T03:40:41Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -354,7 +354,7 @@
     {
       "step_id": "coverage-round-3",
       "title": "Final independent verification of every source mapping",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision-round-2"
       ],
@@ -386,16 +386,20 @@
       "started_at": "2026-11-10T03:40:37Z",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-3-20261110T034037Z",
       "agent": "task-reuse-reconciliation",
-      "completed_fingerprint": "0c2680257ae3a7c43a46e0aecb8ad67b2f9f22985a038bf944cde877fe888c2c",
-      "completed_spec_hash": "a8508140a4e04dd11b075883cc186be18fbc24e099772b8e41716e4bc0f62d05",
+      "completed_fingerprint": "817af103849d8d07f290b9dd713756fe996805617de4adb6191dd6938d081142",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
       "completed_output_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": "a94aab050caf1eac40687f0977233a55b52b1039dbb41a8c9572cfefcc7d43e8"
       },
-      "completed_at": "2026-11-10T03:19:24Z",
-      "completed_by": "independent-curriculum-coverage-reviewer",
-      "completed_commit": "8178f9cdccdb5a9dbf82fb1ae934b028720e38da",
-      "active_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
-      "active_fingerprint": "817af103849d8d07f290b9dd713756fe996805617de4adb6191dd6938d081142"
+      "completed_at": "2026-11-10T03:40:41Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "c15b4fab7f3dd04f484d0afc49a666abe49c1e12",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:40:41Z"
+        }
+      }
     },
     {
       "step_id": "pedagogy-review",
