@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "pedagogy-recheck",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T04:02:49Z",
+  "updated_at": "2026-11-10T04:03:02Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -605,7 +605,7 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md"
       ],
-      "status": "running",
+      "status": "completed",
       "definition_version": "v1",
       "checkpoint": {
         "note": "Independent coverage recheck verdict: pass; no material source omissions. It confirms cache levels/file caveat, Pastebin flow, coding-resource disposition, search-system boundaries, and all 14 examples against pinned inventory/evidence. Nonblocking note: two candidate prose references to research/source-inventory.md are stale relative paths; record for canonical-plan preparation. Report saved at review/coverage-recheck.md. Pedagogy gate separately remains revise.",
@@ -625,10 +625,16 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md": null
       },
       "started_at": "2026-11-10T03:55:41Z",
-      "active_spec_hash": "520996fbcedbd1d6d6bfee2f97ee5e4532ec7927917c0ebdd83593a6c42d3320",
-      "active_fingerprint": "1ada27bb9b58a8ad96067eca39cef2ed0257b4798b2aa7bf4cf7d2d914e00ac3",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-recheck-20261110T035541Z",
-      "agent": "curriculum_coverage_reviewer"
+      "agent": "curriculum_coverage_reviewer",
+      "completed_fingerprint": "1ada27bb9b58a8ad96067eca39cef2ed0257b4798b2aa7bf4cf7d2d914e00ac3",
+      "completed_spec_hash": "520996fbcedbd1d6d6bfee2f97ee5e4532ec7927917c0ebdd83593a6c42d3320",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md": "0bc5d9f9d520c2a6b04c8eef1ad2aa20dc9547d0facd31b187025c4c6ed2044c"
+      },
+      "completed_at": "2026-11-10T04:03:02Z",
+      "completed_by": "curriculum_coverage_reviewer",
+      "completed_commit": "fe809e15897ee74f29840a6668d66794a1dc2f68"
     },
     {
       "step_id": "pedagogy-recheck",
