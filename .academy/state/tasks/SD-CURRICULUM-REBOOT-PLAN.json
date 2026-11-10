@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "source-inventory-final",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:45:49Z",
+  "updated_at": "2026-11-10T03:46:08Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -509,7 +509,7 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md"
       ],
-      "status": "running",
+      "status": "completed",
       "definition_version": "v1",
       "checkpoint": {
         "note": "Reconciled the pinned inventory using the round-three report and source evidence pack: added all four cache granularity leaves and the file-cache cloning/autoscaling caveat; strengthened Pastebin body coverage for unique code/hash/Base62 and monthly log-to-MapReduce analytics; preserved the explicit coding-resource disposition; documented all 14 exact-SHA body observations and evidence-pack link.",
@@ -528,10 +528,16 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md": null
       },
       "started_at": "2026-11-10T03:44:45Z",
-      "active_spec_hash": "5b872b60de9b3a4b8da679b80a125f74a24d664f1c8a0bcf315ffa1cedfb1ce1",
-      "active_fingerprint": "e1dd08a5f17485269699788a14b8aa22f46f91e75703c473c1b100ff0b0f55fe",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-source-inventory-final-20261110T034445Z",
-      "agent": "curriculum_designer"
+      "agent": "curriculum_designer",
+      "completed_fingerprint": "e1dd08a5f17485269699788a14b8aa22f46f91e75703c473c1b100ff0b0f55fe",
+      "completed_spec_hash": "5b872b60de9b3a4b8da679b80a125f74a24d664f1c8a0bcf315ffa1cedfb1ce1",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md": "6d24d5e7c86b40158c3402263b5724a7f42dd206be5dee677341757b157881da"
+      },
+      "completed_at": "2026-11-10T03:46:08Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "b0d0eddeb759b31f8e51227586f918d141ff2fe3"
     },
     {
       "step_id": "revision-round-3",
