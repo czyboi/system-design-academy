@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "coverage-round-3",
+  "current_phase": "pedagogy-review",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:40:41Z",
+  "updated_at": "2026-11-10T03:40:53Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -404,7 +404,7 @@
     {
       "step_id": "pedagogy-review",
       "title": "Review course sequence, audience, and teaching-only scope",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "revision-round-2"
       ],
@@ -422,20 +422,20 @@
         "next_action": "Commit pedagogy report and complete the review step; do not finalize until the material scope finding receives human judgment because both allowed revision cycles are exhausted.",
         "at": "2026-11-10T03:12:34Z"
       },
-      "attempts": 1,
+      "attempts": 2,
       "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
-      "start_commit": "934bb79aef4592b06ed969b12c41a5e53b9b5310",
+      "start_commit": "8162530dacd6fa060b827f4ccf1ac917ae095dcf",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11",
         ".agents/skills/pedagogical-review/SKILL.md": "8a615f9cfd1b8849d2fab87c352e008939b81e5c79f6d3651989d3dfaa068bf3",
         ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
       },
       "start_output_hashes": {
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": null
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": "7ec3ddb04d5504b410dd8f0c78904dbfb958b2c52a92e658e0aa550dfa3dabf3"
       },
-      "started_at": "2026-11-10T03:10:37Z",
-      "run_id": "SD-CURRICULUM-REBOOT-PLAN-pedagogy-review-20261110T031037Z",
-      "agent": "independent-pedagogy-reviewer",
+      "started_at": "2026-11-10T03:40:53Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-pedagogy-review-20261110T034053Z",
+      "agent": "task-reuse-reconciliation",
       "completed_fingerprint": "5d22a50db992deb4a7e52a8ac9563cf0809ecb873613ef0363825afdc4a24e0e",
       "completed_spec_hash": "3143ad3e576da3afbad2c3bbe25b95c797bb33df18f0f8703ef3721b3355436b",
       "completed_output_hashes": {
@@ -443,7 +443,9 @@
       },
       "completed_at": "2026-11-10T03:12:51Z",
       "completed_by": "independent-pedagogy-reviewer",
-      "completed_commit": "0d170ddb3cb7c23f422d8435bc8b3e8b3579aa84"
+      "completed_commit": "0d170ddb3cb7c23f422d8435bc8b3e8b3579aa84",
+      "active_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "active_fingerprint": "d539fc33dec83e429100e5623938389472727cc5bc0ec353796f086965b2f334"
     },
     {
       "step_id": "source-evidence-refresh",
