@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "revision-round-2",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:40:23Z",
+  "updated_at": "2026-11-10T03:40:27Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -304,7 +304,7 @@
     {
       "step_id": "revision-round-2",
       "title": "Resolve Round 2 findings and record remaining dispositions",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "coverage-round-2"
       ],
@@ -336,16 +336,20 @@
       "started_at": "2026-11-10T03:40:23Z",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-revision-round-2-20261110T034023Z",
       "agent": "task-reuse-reconciliation",
-      "completed_fingerprint": "e864ca494cdf9a4ca1f52749c493e3ec22f007a00805c9571909036ccac5f0ea",
-      "completed_spec_hash": "77c2a33b9dc56ee15bc59aa8cc054e7eb782300edf673009c38685dec319ad06",
+      "completed_fingerprint": "82ae06a961a1f1945625e63b7a3ca6d84ed6d910b25c2256d7f3f82dd970a626",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
       "completed_output_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11"
       },
-      "completed_at": "2026-11-10T03:09:33Z",
-      "completed_by": "curriculum_designer",
-      "completed_commit": "415bb803283c20829f6a185b30e9ce01ccdabbe5",
-      "active_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
-      "active_fingerprint": "82ae06a961a1f1945625e63b7a3ca6d84ed6d910b25c2256d7f3f82dd970a626"
+      "completed_at": "2026-11-10T03:40:27Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "fc9b00a7118ecc1f5600c996b24130686222ecc4",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:40:27Z"
+        }
+      }
     },
     {
       "step_id": "coverage-round-3",
