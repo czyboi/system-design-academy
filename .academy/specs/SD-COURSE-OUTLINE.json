@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-COURSE-OUTLINE",
-  "revision": 1,
+  "revision": 2,
   "goal": "Create a complete Primer-mapped course outline for human review",
   "scope": {
     "in_scope": [
@@ -41,6 +41,20 @@
       "applies_to": [
         "validation"
       ]
+    },
+    {
+      "id": "dod-revision-1",
+      "text": "Resolve C1, C2, P1, and P2 with versioned plan and coverage artifacts.",
+      "applies_to": [
+        "revision-1"
+      ]
+    },
+    {
+      "id": "dod-recheck-1",
+      "text": "Independently review revised plan for complete source coverage and pedagogical quality.",
+      "applies_to": [
+        "course-recheck-1"
+      ]
     }
   ],
   "acceptance_criteria": [
@@ -63,6 +77,20 @@
       "text": "Strict course check passes; user approval remains separate from automation.",
       "applies_to": [
         "validation"
+      ]
+    },
+    {
+      "id": "ac-revision-1",
+      "text": "Source locators and mappings are accurate; missing leaves are explicit; assessment and lesson boundaries address review findings.",
+      "applies_to": [
+        "revision-1"
+      ]
+    },
+    {
+      "id": "ac-recheck-1",
+      "text": "A fresh artifact-bound independent verdict passes coverage and pedagogy without open material findings.",
+      "applies_to": [
+        "course-recheck-1"
       ]
     }
   ]
