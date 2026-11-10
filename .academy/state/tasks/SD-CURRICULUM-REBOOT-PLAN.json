@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "coverage-recheck",
+  "current_phase": "pedagogy-recheck",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:55:41Z",
+  "updated_at": "2026-11-10T03:55:55Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -644,14 +644,29 @@
       "output_paths": [
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md"
       ],
-      "status": "invalidated",
+      "status": "running",
       "definition_version": "v1",
       "checkpoint": {
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
-      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
+      "attempts": 1,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "d95d3c27ca95447d659c5152ebe70630ad401cfc",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md": "d3938a5aa8bb8e85e3a7a87dad815b308d6c6e7df918ce5b5a7c3109273f7902",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": "7ec3ddb04d5504b410dd8f0c78904dbfb958b2c52a92e658e0aa550dfa3dabf3",
+        ".agents/skills/pedagogical-review/SKILL.md": "8a615f9cfd1b8849d2fab87c352e008939b81e5c79f6d3651989d3dfaa068bf3",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md": null
+      },
+      "started_at": "2026-11-10T03:55:55Z",
+      "active_spec_hash": "ce40d73c5d28d2c2b771caaf12dc66362937d4fe8127f514da69cc9708a7a032",
+      "active_fingerprint": "1bd35f6f3b6eb415f05fe36b50a6102f4158487e47050113caa7beb971689196",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-pedagogy-recheck-20261110T035554Z",
+      "agent": "pedagogy_reviewer"
     },
     {
       "step_id": "finalize-curriculum",
