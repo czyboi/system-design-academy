@@ -7,14 +7,14 @@
   "automation_status": "in_progress",
   "current_phase": "implementation",
   "created_at": "2026-11-10T08:32:16Z",
-  "updated_at": "2026-11-10T08:32:44Z",
+  "updated_at": "2026-11-10T08:33:55Z",
   "execution_control": "active",
   "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Implement scoped tooling changes",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [],
@@ -38,14 +38,23 @@
         ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/cleanup.md": null
       },
       "started_at": "2026-11-10T08:32:44Z",
-      "active_spec_hash": "b150c8bb651efe1d614e8e6ed09de07788e9961dc67ce58f61534e28cc7c95d1",
-      "active_fingerprint": "e6e177d0a6afbdfd1dcbefaab01d56ffd1fae36eb065140431ae62c31518476d",
       "run_id": "SD-WORKFLOW-CLEAN-RESET-implementation-20261110T083244Z",
       "agent": "workflow_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "e6e177d0a6afbdfd1dcbefaab01d56ffd1fae36eb065140431ae62c31518476d",
+      "completed_spec_hash": "b150c8bb651efe1d614e8e6ed09de07788e9961dc67ce58f61534e28cc7c95d1",
+      "completed_output_hashes": {
+        "README.md": "30674e7bd915ddb194db3e4c6bd5bfa9ce87a20f6b0dc5b03e2d4071c15f9d29",
+        "modules/database/README.md": "b3a180e089905d218642ac4d7c9871c4a65f3d5ffce2f7ae3f12a9b8d98fb6a5",
+        "modules/database/workflow/run-database-pilot.md": "5aa555ab7c8787f319d48a34ac2f312eef0775d365993fad138653fdf1d9873e",
+        ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/cleanup.md": "5ec2eea995a17998f2e8937d599ad8681a0d4df74b2db75b185d0a35f3d72b5e"
+      },
+      "completed_at": "2026-11-10T08:33:55Z",
+      "completed_by": "workflow_orchestrator",
+      "completed_commit": "e9dbfa656b07a300344ae620a415f41652969b61"
     },
     {
       "step_id": "verification",
