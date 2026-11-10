@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "pedagogy-review",
+  "current_phase": "spec-extension-approved",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:19:24Z",
+  "updated_at": "2026-11-10T03:34:53Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -397,19 +397,136 @@
       "completed_commit": "0d170ddb3cb7c23f422d8435bc8b3e8b3579aa84"
     },
     {
+      "step_id": "source-evidence-refresh",
+      "title": "Capture pinned-SHA evidence for solution and OOD bodies",
+      "depends_on": [
+        "coverage-round-3"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md"
+      ],
+      "status": "pending",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "source-inventory-final",
+      "title": "Reconcile the final inventory with coverage findings and pinned evidence",
+      "depends_on": [
+        "source-evidence-refresh"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md"
+      ],
+      "status": "pending",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "revision-round-3",
+      "title": "Apply the user-authorized targeted third revision",
+      "depends_on": [
+        "source-inventory-final",
+        "pedagogy-review"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md",
+        ".agents/skills/curriculum-design/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md"
+      ],
+      "status": "pending",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "coverage-recheck",
+      "title": "Independently recheck targeted coverage fixes against pinned evidence",
+      "depends_on": [
+        "revision-round-3"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md"
+      ],
+      "status": "pending",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "pedagogy-recheck",
+      "title": "Independently recheck sequence and lesson scope after revision 3",
+      "depends_on": [
+        "revision-round-3"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md"
+      ],
+      "status": "pending",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
       "step_id": "finalize-curriculum",
       "title": "Publish canonical plan, coverage matrix, task backlog, and retire old plan",
       "status": "invalidated",
       "depends_on": [
-        "coverage-round-3",
-        "pedagogy-review"
+        "coverage-recheck",
+        "pedagogy-recheck"
       ],
       "definition_version": "v1",
       "input_paths": [
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md",
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md",
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md"
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md"
       ],
       "output_paths": [
         "CURRICULUM_MASTER.md",
@@ -424,7 +541,7 @@
         "next_action": ""
       },
       "attempts": 0,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
+      "invalidation_reason": "User authorized one targeted third revision and independent rechecks; finalization remains gated on both final review passes."
     },
     {
       "step_id": "validation",
@@ -450,10 +567,10 @@
         "next_action": ""
       },
       "attempts": 0,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
+      "invalidation_reason": "Re-run only after revised plan and final independent rechecks pass."
     }
   ],
-  "notes": "GitHub Issue #6. One active writer: @czyboi. Source revision pinned to ae9bbd7b02d90b9866215de185217d33f39ab733. Three coverage rounds and two revision cycles are required before canonical finalization; lessons and assessments are out of scope.",
+  "notes": "GitHub Issue #6. One active writer: @czyboi. User explicitly authorized one targeted third revision and independent recheck on 2026-11-10. Source revision pinned to ae9bbd7b02d90b9866215de185217d33f39ab733. Preserve all prior reports; target only round-three coverage and pedagogy findings. No further automated revision cycle without new user approval. Lessons and assessments remain out of scope.",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-CURRICULUM-REBOOT-PLAN.json",
   "automation_status": "in_progress"
