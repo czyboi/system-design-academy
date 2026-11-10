@@ -4,17 +4,17 @@
   "module_id": "workflow",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-OUTPUT-CLEANUP.json",
-  "automation_status": "not_started",
-  "current_phase": null,
+  "automation_status": "in_progress",
+  "current_phase": "implementation",
   "created_at": "2026-11-10T08:25:18Z",
-  "updated_at": "2026-11-10T08:25:18Z",
+  "updated_at": "2026-11-10T08:25:55Z",
   "execution_control": "active",
   "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Implement scoped tooling changes",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [],
@@ -26,7 +26,22 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "209181dc69f624dad428ca68fb75edbf74c9ac04",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        "README.md": "f584242a825570a89718e815817ed9e27db3f6482547d3e22789cbdadbb1518b",
+        ".academy/task-runs/SD-COURSE-OUTPUT-CLEANUP/cleanup.md": null
+      },
+      "started_at": "2026-11-10T08:25:55Z",
+      "active_spec_hash": "5f18958630f272f2e14b35b664512e18aed1d42a3b9f8c5b0bf7a2b8e71ecbd5",
+      "active_fingerprint": "0561ec554e9928124d00c1d1a808f01802fbc75ca1714a5c7e3428de5575141e",
+      "run_id": "SD-COURSE-OUTPUT-CLEANUP-implementation-20261110T082555Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "verification",
