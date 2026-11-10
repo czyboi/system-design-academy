@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-DELIVERY-PLAN.json",
   "automation_status": "in_progress",
-  "current_phase": "implementation",
+  "current_phase": "verification",
   "created_at": "2026-11-10T10:24:56Z",
-  "updated_at": "2026-11-10T10:28:12Z",
+  "updated_at": "2026-11-10T10:28:29Z",
   "execution_control": "active",
   "notes": "Content delivery planning and approval record only; no workflow changes or lesson execution.",
   "steps": [
@@ -72,7 +72,7 @@
     {
       "step_id": "verification",
       "title": "Verify approved baseline and delivery graph",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "implementation"
       ],
@@ -91,7 +91,27 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "5157a2384bff545c232522a8cfd82b5db16dfa8b",
+      "start_input_hashes": {
+        "curriculum/approved-baseline.json": "40f41aca40164a4ac72f119fa7ac9d8885762bb3f649d9d77fe28583bf7ae6ea",
+        "curriculum/README.md": "b745eee2b5052b72e5b4a3d64e712ffd6b834d0b5400f5bb956e0b06eed102a6",
+        "delivery/backlog.json": "659ec752f0975d95cedbacc1dd9e45052851ecc0a72fe0338bc4d327caeaf2f2",
+        "delivery/PLAN.md": "eb8516bc40a007b69ed0bffeb29f43bb459976a3b04847afa36fcdb4382cefde",
+        "README.md": "65858779ccc8fe282605795d0760c358ce02735cb81e446feaed3af5e18d9868"
+      },
+      "start_output_hashes": {
+        ".academy/task-runs/SD-COURSE-DELIVERY-PLAN/report.md": null
+      },
+      "started_at": "2026-11-10T10:28:29Z",
+      "active_spec_hash": "03f8d2067d2e7a5a98baa5b044c690c5e7b766b1777e223d5f555baf6331e358",
+      "active_fingerprint": "2c4b51c37206ad4989534a6587912ef1c026121e6815ef7b50fd78d7bcae6bc0",
+      "run_id": "SD-COURSE-DELIVERY-PLAN-verification-20261110T102829Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ]
 }
