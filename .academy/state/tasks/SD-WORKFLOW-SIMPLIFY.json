@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-WORKFLOW-SIMPLIFY",
   "module_id": "workflow",
-  "current_phase": "implementation",
+  "current_phase": "verification",
   "created_at": "2026-11-10T04:28:34Z",
-  "updated_at": "2026-11-10T08:17:00Z",
+  "updated_at": "2026-11-10T08:17:23Z",
   "steps": [
     {
       "step_id": "implementation",
@@ -134,7 +134,7 @@
     {
       "step_id": "verification",
       "title": "verification",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "implementation"
       ],
@@ -148,7 +148,22 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "6c0fb70091a77ca3527f62191d660f987f2ef80b",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/review.md": null,
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/report.md": null
+      },
+      "started_at": "2026-11-10T08:17:23Z",
+      "active_spec_hash": "28a3722a03dd85ea5f2253bc4e3cdce3867f029637e10ed2c6230a29f00d0cd1",
+      "active_fingerprint": "a5432fedffce854aa853b5a21b52522fa162760af2d7276941579fb74741a190",
+      "run_id": "SD-WORKFLOW-SIMPLIFY-verification-20261110T081723Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ],
   "notes": "One lesson package per task. Replace module-specific input paths at intake. Plan revisions use unique outputs and a new review gate. At most two automated revision cycles; see docs/workflow-contract.md. Final artifacts remain draft.",
