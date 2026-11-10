@@ -1,0 +1,4172 @@
+{
+  "repository": "https://github.com/donnemartin/system-design-primer",
+  "revision": "ae9bbd7b02d90b9866215de185217d33f39ab733",
+  "checked_on": "2026-11-10",
+  "status": "draft",
+  "scope": "All tracked files classified; English README knowledge, solution prose/code and OOD notebook/export bodies enumerated. Linked catalogs are bounded resources; no recursive web crawl.",
+  "entries": [
+    {
+      "id": "PR-H001",
+      "kind": "resource",
+      "locator": "README.md#L5",
+      "title": "The System Design Primer",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H002",
+      "kind": "resource",
+      "locator": "README.md#L12",
+      "title": "Motivation",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H003",
+      "kind": "resource",
+      "locator": "README.md#L18",
+      "title": "Learn how to design large-scale systems",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H004",
+      "kind": "resource",
+      "locator": "README.md#L26",
+      "title": "Learn from the open source community",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H005",
+      "kind": "resource",
+      "locator": "README.md#L32",
+      "title": "Prep for the system design interview",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H006",
+      "kind": "resource",
+      "locator": "README.md#L46",
+      "title": "Anki flashcards",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H007",
+      "kind": "resource",
+      "locator": "README.md#L61",
+      "title": "Coding Resource: Interactive Coding Challenges",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H008",
+      "kind": "resource",
+      "locator": "README.md#L74",
+      "title": "Contributing",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H009",
+      "kind": "resource",
+      "locator": "README.md#L89",
+      "title": "Index of system design topics",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H010",
+      "kind": "topic",
+      "locator": "README.md#L182",
+      "title": "Study guide"
+    },
+    {
+      "id": "PR-H011",
+      "kind": "topic",
+      "locator": "README.md#L218",
+      "title": "How to approach a system design interview question"
+    },
+    {
+      "id": "PR-H012",
+      "kind": "topic",
+      "locator": "README.md#L226",
+      "title": "Step 1: Outline use cases, constraints, and assumptions"
+    },
+    {
+      "id": "PR-H013",
+      "kind": "topic",
+      "locator": "README.md#L239",
+      "title": "Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-H014",
+      "kind": "topic",
+      "locator": "README.md#L246",
+      "title": "Step 3: Design core components"
+    },
+    {
+      "id": "PR-H015",
+      "kind": "topic",
+      "locator": "README.md#L259",
+      "title": "Step 4: Scale the design"
+    },
+    {
+      "id": "PR-H016",
+      "kind": "topic",
+      "locator": "README.md#L270",
+      "title": "Back-of-the-envelope calculations"
+    },
+    {
+      "id": "PR-H017",
+      "kind": "resource",
+      "locator": "README.md#L278",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H018",
+      "kind": "resource",
+      "locator": "README.md#L287",
+      "title": "System design interview questions with solutions",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H019",
+      "kind": "resource",
+      "locator": "README.md#L305",
+      "title": "Design Pastebin.com (or Bit.ly)",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H020",
+      "kind": "resource",
+      "locator": "README.md#L311",
+      "title": "Design the Twitter timeline and search (or Facebook feed and search)",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H021",
+      "kind": "resource",
+      "locator": "README.md#L317",
+      "title": "Design a web crawler",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H022",
+      "kind": "resource",
+      "locator": "README.md#L323",
+      "title": "Design Mint.com",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H023",
+      "kind": "resource",
+      "locator": "README.md#L329",
+      "title": "Design the data structures for a social network",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H024",
+      "kind": "resource",
+      "locator": "README.md#L335",
+      "title": "Design a key-value store for a search engine",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H025",
+      "kind": "resource",
+      "locator": "README.md#L341",
+      "title": "Design Amazon's sales ranking by category feature",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H026",
+      "kind": "resource",
+      "locator": "README.md#L347",
+      "title": "Design a system that scales to millions of users on AWS",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H027",
+      "kind": "resource",
+      "locator": "README.md#L353",
+      "title": "Object-oriented design interview questions with solutions",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H028",
+      "kind": "topic",
+      "locator": "README.md#L372",
+      "title": "System design topics: start here"
+    },
+    {
+      "id": "PR-H029",
+      "kind": "topic",
+      "locator": "README.md#L378",
+      "title": "Step 1: Review the scalability video lecture"
+    },
+    {
+      "id": "PR-H030",
+      "kind": "topic",
+      "locator": "README.md#L390",
+      "title": "Step 2: Review the scalability article"
+    },
+    {
+      "id": "PR-H031",
+      "kind": "topic",
+      "locator": "README.md#L400",
+      "title": "Next steps"
+    },
+    {
+      "id": "PR-H032",
+      "kind": "topic",
+      "locator": "README.md#L412",
+      "title": "Performance vs scalability"
+    },
+    {
+      "id": "PR-H033",
+      "kind": "resource",
+      "locator": "README.md#L421",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H034",
+      "kind": "topic",
+      "locator": "README.md#L426",
+      "title": "Latency vs throughput"
+    },
+    {
+      "id": "PR-H035",
+      "kind": "resource",
+      "locator": "README.md#L434",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H036",
+      "kind": "topic",
+      "locator": "README.md#L438",
+      "title": "Availability vs consistency"
+    },
+    {
+      "id": "PR-H037",
+      "kind": "topic",
+      "locator": "README.md#L440",
+      "title": "CAP theorem"
+    },
+    {
+      "id": "PR-H038",
+      "kind": "topic",
+      "locator": "README.md#L456",
+      "title": "CP - consistency and partition tolerance"
+    },
+    {
+      "id": "PR-H039",
+      "kind": "topic",
+      "locator": "README.md#L460",
+      "title": "AP - availability and partition tolerance"
+    },
+    {
+      "id": "PR-H040",
+      "kind": "resource",
+      "locator": "README.md#L466",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H041",
+      "kind": "topic",
+      "locator": "README.md#L473",
+      "title": "Consistency patterns"
+    },
+    {
+      "id": "PR-H042",
+      "kind": "topic",
+      "locator": "README.md#L477",
+      "title": "Weak consistency"
+    },
+    {
+      "id": "PR-H043",
+      "kind": "topic",
+      "locator": "README.md#L483",
+      "title": "Eventual consistency"
+    },
+    {
+      "id": "PR-H044",
+      "kind": "topic",
+      "locator": "README.md#L489",
+      "title": "Strong consistency"
+    },
+    {
+      "id": "PR-H045",
+      "kind": "resource",
+      "locator": "README.md#L495",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H046",
+      "kind": "topic",
+      "locator": "README.md#L499",
+      "title": "Availability patterns"
+    },
+    {
+      "id": "PR-H047",
+      "kind": "topic",
+      "locator": "README.md#L503",
+      "title": "Fail-over"
+    },
+    {
+      "id": "PR-H048",
+      "kind": "topic",
+      "locator": "README.md#L505",
+      "title": "Active-passive"
+    },
+    {
+      "id": "PR-H049",
+      "kind": "topic",
+      "locator": "README.md#L513",
+      "title": "Active-active"
+    },
+    {
+      "id": "PR-H050",
+      "kind": "topic",
+      "locator": "README.md#L521",
+      "title": "Disadvantage(s): failover"
+    },
+    {
+      "id": "PR-H051",
+      "kind": "topic",
+      "locator": "README.md#L526",
+      "title": "Replication"
+    },
+    {
+      "id": "PR-H052",
+      "kind": "topic",
+      "locator": "README.md#L528",
+      "title": "Master-slave and master-master"
+    },
+    {
+      "id": "PR-H053",
+      "kind": "topic",
+      "locator": "README.md#L535",
+      "title": "Availability in numbers"
+    },
+    {
+      "id": "PR-H054",
+      "kind": "topic",
+      "locator": "README.md#L539",
+      "title": "99.9% availability - three 9s"
+    },
+    {
+      "id": "PR-H055",
+      "kind": "topic",
+      "locator": "README.md#L548",
+      "title": "99.99% availability - four 9s"
+    },
+    {
+      "id": "PR-H056",
+      "kind": "topic",
+      "locator": "README.md#L557",
+      "title": "Availability in parallel vs in sequence"
+    },
+    {
+      "id": "PR-H057",
+      "kind": "topic",
+      "locator": "README.md#L561",
+      "title": "In sequence"
+    },
+    {
+      "id": "PR-H058",
+      "kind": "topic",
+      "locator": "README.md#L571",
+      "title": "In parallel"
+    },
+    {
+      "id": "PR-H059",
+      "kind": "topic",
+      "locator": "README.md#L581",
+      "title": "Domain name system"
+    },
+    {
+      "id": "PR-H060",
+      "kind": "topic",
+      "locator": "README.md#L607",
+      "title": "Disadvantage(s): DNS"
+    },
+    {
+      "id": "PR-H061",
+      "kind": "resource",
+      "locator": "README.md#L613",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H062",
+      "kind": "topic",
+      "locator": "README.md#L619",
+      "title": "Content delivery network"
+    },
+    {
+      "id": "PR-H063",
+      "kind": "topic",
+      "locator": "README.md#L634",
+      "title": "Push CDNs"
+    },
+    {
+      "id": "PR-H064",
+      "kind": "topic",
+      "locator": "README.md#L640",
+      "title": "Pull CDNs"
+    },
+    {
+      "id": "PR-H065",
+      "kind": "topic",
+      "locator": "README.md#L648",
+      "title": "Disadvantage(s): CDN"
+    },
+    {
+      "id": "PR-H066",
+      "kind": "resource",
+      "locator": "README.md#L654",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H067",
+      "kind": "topic",
+      "locator": "README.md#L660",
+      "title": "Load balancer"
+    },
+    {
+      "id": "PR-H068",
+      "kind": "topic",
+      "locator": "README.md#L693",
+      "title": "Layer 4 load balancing"
+    },
+    {
+      "id": "PR-H069",
+      "kind": "topic",
+      "locator": "README.md#L697",
+      "title": "Layer 7 load balancing"
+    },
+    {
+      "id": "PR-H070",
+      "kind": "topic",
+      "locator": "README.md#L703",
+      "title": "Horizontal scaling"
+    },
+    {
+      "id": "PR-H071",
+      "kind": "topic",
+      "locator": "README.md#L707",
+      "title": "Disadvantage(s): horizontal scaling"
+    },
+    {
+      "id": "PR-H072",
+      "kind": "topic",
+      "locator": "README.md#L714",
+      "title": "Disadvantage(s): load balancer"
+    },
+    {
+      "id": "PR-H073",
+      "kind": "resource",
+      "locator": "README.md#L720",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H074",
+      "kind": "topic",
+      "locator": "README.md#L730",
+      "title": "Reverse proxy (web server)"
+    },
+    {
+      "id": "PR-H075",
+      "kind": "topic",
+      "locator": "README.md#L755",
+      "title": "Load balancer vs reverse proxy"
+    },
+    {
+      "id": "PR-H076",
+      "kind": "topic",
+      "locator": "README.md#L761",
+      "title": "Disadvantage(s): reverse proxy"
+    },
+    {
+      "id": "PR-H077",
+      "kind": "resource",
+      "locator": "README.md#L766",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H078",
+      "kind": "topic",
+      "locator": "README.md#L773",
+      "title": "Application layer"
+    },
+    {
+      "id": "PR-H079",
+      "kind": "topic",
+      "locator": "README.md#L785",
+      "title": "Microservices"
+    },
+    {
+      "id": "PR-H080",
+      "kind": "topic",
+      "locator": "README.md#L791",
+      "title": "Service Discovery"
+    },
+    {
+      "id": "PR-H081",
+      "kind": "topic",
+      "locator": "README.md#L795",
+      "title": "Disadvantage(s): application layer"
+    },
+    {
+      "id": "PR-H082",
+      "kind": "resource",
+      "locator": "README.md#L800",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H083",
+      "kind": "topic",
+      "locator": "README.md#L808",
+      "title": "Database"
+    },
+    {
+      "id": "PR-H084",
+      "kind": "topic",
+      "locator": "README.md#L816",
+      "title": "Relational database management system (RDBMS)"
+    },
+    {
+      "id": "PR-H085",
+      "kind": "topic",
+      "locator": "README.md#L829",
+      "title": "Master-slave replication"
+    },
+    {
+      "id": "PR-H086",
+      "kind": "topic",
+      "locator": "README.md#L839",
+      "title": "Disadvantage(s): master-slave replication"
+    },
+    {
+      "id": "PR-H087",
+      "kind": "topic",
+      "locator": "README.md#L844",
+      "title": "Master-master replication"
+    },
+    {
+      "id": "PR-H088",
+      "kind": "topic",
+      "locator": "README.md#L854",
+      "title": "Disadvantage(s): master-master replication"
+    },
+    {
+      "id": "PR-H089",
+      "kind": "topic",
+      "locator": "README.md#L861",
+      "title": "Disadvantage(s): replication"
+    },
+    {
+      "id": "PR-H090",
+      "kind": "resource",
+      "locator": "README.md#L869",
+      "title": "Source(s) and further reading: replication",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H091",
+      "kind": "topic",
+      "locator": "README.md#L874",
+      "title": "Federation"
+    },
+    {
+      "id": "PR-H092",
+      "kind": "topic",
+      "locator": "README.md#L884",
+      "title": "Disadvantage(s): federation"
+    },
+    {
+      "id": "PR-H093",
+      "kind": "resource",
+      "locator": "README.md#L891",
+      "title": "Source(s) and further reading: federation",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H094",
+      "kind": "topic",
+      "locator": "README.md#L895",
+      "title": "Sharding"
+    },
+    {
+      "id": "PR-H095",
+      "kind": "topic",
+      "locator": "README.md#L909",
+      "title": "Disadvantage(s): sharding"
+    },
+    {
+      "id": "PR-H096",
+      "kind": "resource",
+      "locator": "README.md#L917",
+      "title": "Source(s) and further reading: sharding",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H097",
+      "kind": "topic",
+      "locator": "README.md#L923",
+      "title": "Denormalization"
+    },
+    {
+      "id": "PR-H098",
+      "kind": "topic",
+      "locator": "README.md#L931",
+      "title": "Disadvantage(s): denormalization"
+    },
+    {
+      "id": "PR-H099",
+      "kind": "resource",
+      "locator": "README.md#L937",
+      "title": "Source(s) and further reading: denormalization",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H100",
+      "kind": "topic",
+      "locator": "README.md#L941",
+      "title": "SQL tuning"
+    },
+    {
+      "id": "PR-H101",
+      "kind": "topic",
+      "locator": "README.md#L952",
+      "title": "Tighten up the schema"
+    },
+    {
+      "id": "PR-H102",
+      "kind": "topic",
+      "locator": "README.md#L964",
+      "title": "Use good indices"
+    },
+    {
+      "id": "PR-H103",
+      "kind": "topic",
+      "locator": "README.md#L972",
+      "title": "Avoid expensive joins"
+    },
+    {
+      "id": "PR-H104",
+      "kind": "topic",
+      "locator": "README.md#L976",
+      "title": "Partition tables"
+    },
+    {
+      "id": "PR-H105",
+      "kind": "topic",
+      "locator": "README.md#L980",
+      "title": "Tune the query cache"
+    },
+    {
+      "id": "PR-H106",
+      "kind": "resource",
+      "locator": "README.md#L984",
+      "title": "Source(s) and further reading: SQL tuning",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H107",
+      "kind": "topic",
+      "locator": "README.md#L991",
+      "title": "NoSQL"
+    },
+    {
+      "id": "PR-H108",
+      "kind": "topic",
+      "locator": "README.md#L1003",
+      "title": "Key-value store"
+    },
+    {
+      "id": "PR-H109",
+      "kind": "resource",
+      "locator": "README.md#L1013",
+      "title": "Source(s) and further reading: key-value store",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H110",
+      "kind": "topic",
+      "locator": "README.md#L1020",
+      "title": "Document store"
+    },
+    {
+      "id": "PR-H111",
+      "kind": "resource",
+      "locator": "README.md#L1032",
+      "title": "Source(s) and further reading: document store",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H112",
+      "kind": "topic",
+      "locator": "README.md#L1039",
+      "title": "Wide column store"
+    },
+    {
+      "id": "PR-H113",
+      "kind": "resource",
+      "locator": "README.md#L1055",
+      "title": "Source(s) and further reading: wide column store",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H114",
+      "kind": "topic",
+      "locator": "README.md#L1062",
+      "title": "Graph database"
+    },
+    {
+      "id": "PR-H115",
+      "kind": "resource",
+      "locator": "README.md#L1076",
+      "title": "Source(s) and further reading: graph",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H116",
+      "kind": "resource",
+      "locator": "README.md#L1082",
+      "title": "Source(s) and further reading: NoSQL",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H117",
+      "kind": "topic",
+      "locator": "README.md#L1090",
+      "title": "SQL or NoSQL"
+    },
+    {
+      "id": "PR-H118",
+      "kind": "resource",
+      "locator": "README.md#L1127",
+      "title": "Source(s) and further reading: SQL or NoSQL",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H119",
+      "kind": "topic",
+      "locator": "README.md#L1132",
+      "title": "Cache"
+    },
+    {
+      "id": "PR-H120",
+      "kind": "topic",
+      "locator": "README.md#L1144",
+      "title": "Client caching"
+    },
+    {
+      "id": "PR-H121",
+      "kind": "topic",
+      "locator": "README.md#L1148",
+      "title": "CDN caching"
+    },
+    {
+      "id": "PR-H122",
+      "kind": "topic",
+      "locator": "README.md#L1152",
+      "title": "Web server caching"
+    },
+    {
+      "id": "PR-H123",
+      "kind": "topic",
+      "locator": "README.md#L1156",
+      "title": "Database caching"
+    },
+    {
+      "id": "PR-H124",
+      "kind": "topic",
+      "locator": "README.md#L1160",
+      "title": "Application caching"
+    },
+    {
+      "id": "PR-H125",
+      "kind": "topic",
+      "locator": "README.md#L1178",
+      "title": "Caching at the database query level"
+    },
+    {
+      "id": "PR-H126",
+      "kind": "topic",
+      "locator": "README.md#L1185",
+      "title": "Caching at the object level"
+    },
+    {
+      "id": "PR-H127",
+      "kind": "topic",
+      "locator": "README.md#L1199",
+      "title": "When to update the cache"
+    },
+    {
+      "id": "PR-H128",
+      "kind": "topic",
+      "locator": "README.md#L1203",
+      "title": "Cache-aside"
+    },
+    {
+      "id": "PR-H129",
+      "kind": "topic",
+      "locator": "README.md#L1233",
+      "title": "Disadvantage(s): cache-aside"
+    },
+    {
+      "id": "PR-H130",
+      "kind": "topic",
+      "locator": "README.md#L1239",
+      "title": "Write-through"
+    },
+    {
+      "id": "PR-H131",
+      "kind": "topic",
+      "locator": "README.md#L1269",
+      "title": "Disadvantage(s): write through"
+    },
+    {
+      "id": "PR-H132",
+      "kind": "topic",
+      "locator": "README.md#L1274",
+      "title": "Write-behind (write-back)"
+    },
+    {
+      "id": "PR-H133",
+      "kind": "topic",
+      "locator": "README.md#L1287",
+      "title": "Disadvantage(s): write-behind"
+    },
+    {
+      "id": "PR-H134",
+      "kind": "topic",
+      "locator": "README.md#L1292",
+      "title": "Refresh-ahead"
+    },
+    {
+      "id": "PR-H135",
+      "kind": "topic",
+      "locator": "README.md#L1304",
+      "title": "Disadvantage(s): refresh-ahead"
+    },
+    {
+      "id": "PR-H136",
+      "kind": "topic",
+      "locator": "README.md#L1308",
+      "title": "Disadvantage(s): cache"
+    },
+    {
+      "id": "PR-H137",
+      "kind": "resource",
+      "locator": "README.md#L1314",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H138",
+      "kind": "topic",
+      "locator": "README.md#L1324",
+      "title": "Asynchronism"
+    },
+    {
+      "id": "PR-H139",
+      "kind": "topic",
+      "locator": "README.md#L1334",
+      "title": "Message queues"
+    },
+    {
+      "id": "PR-H140",
+      "kind": "topic",
+      "locator": "README.md#L1349",
+      "title": "Task queues"
+    },
+    {
+      "id": "PR-H141",
+      "kind": "topic",
+      "locator": "README.md#L1355",
+      "title": "Back pressure"
+    },
+    {
+      "id": "PR-H142",
+      "kind": "topic",
+      "locator": "README.md#L1359",
+      "title": "Disadvantage(s): asynchronism"
+    },
+    {
+      "id": "PR-H143",
+      "kind": "resource",
+      "locator": "README.md#L1363",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H144",
+      "kind": "topic",
+      "locator": "README.md#L1370",
+      "title": "Communication"
+    },
+    {
+      "id": "PR-H145",
+      "kind": "topic",
+      "locator": "README.md#L1378",
+      "title": "Hypertext transfer protocol (HTTP)"
+    },
+    {
+      "id": "PR-H146",
+      "kind": "resource",
+      "locator": "README.md#L1396",
+      "title": "Source(s) and further reading: HTTP",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H147",
+      "kind": "topic",
+      "locator": "README.md#L1402",
+      "title": "Transmission control protocol (TCP)"
+    },
+    {
+      "id": "PR-H148",
+      "kind": "topic",
+      "locator": "README.md#L1426",
+      "title": "User datagram protocol (UDP)"
+    },
+    {
+      "id": "PR-H149",
+      "kind": "resource",
+      "locator": "README.md#L1446",
+      "title": "Source(s) and further reading: TCP and UDP",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H150",
+      "kind": "topic",
+      "locator": "README.md#L1455",
+      "title": "Remote procedure call (RPC)"
+    },
+    {
+      "id": "PR-H151",
+      "kind": "topic",
+      "locator": "README.md#L1497",
+      "title": "Disadvantage(s): RPC"
+    },
+    {
+      "id": "PR-H152",
+      "kind": "topic",
+      "locator": "README.md#L1504",
+      "title": "Representational state transfer (REST)"
+    },
+    {
+      "id": "PR-H153",
+      "kind": "topic",
+      "locator": "README.md#L1526",
+      "title": "Disadvantage(s): REST"
+    },
+    {
+      "id": "PR-H154",
+      "kind": "topic",
+      "locator": "README.md#L1533",
+      "title": "RPC and REST calls comparison"
+    },
+    {
+      "id": "PR-H155",
+      "kind": "resource",
+      "locator": "README.md#L1549",
+      "title": "Source(s) and further reading: REST and RPC",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H156",
+      "kind": "topic",
+      "locator": "README.md#L1560",
+      "title": "Security"
+    },
+    {
+      "id": "PR-H157",
+      "kind": "resource",
+      "locator": "README.md#L1571",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H158",
+      "kind": "topic",
+      "locator": "README.md#L1577",
+      "title": "Appendix"
+    },
+    {
+      "id": "PR-H159",
+      "kind": "topic",
+      "locator": "README.md#L1581",
+      "title": "Powers of two table"
+    },
+    {
+      "id": "PR-H160",
+      "kind": "resource",
+      "locator": "README.md#L1596",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H161",
+      "kind": "topic",
+      "locator": "README.md#L1600",
+      "title": "Latency numbers every programmer should know"
+    },
+    {
+      "id": "PR-H162",
+      "kind": "topic",
+      "locator": "README.md#L1637",
+      "title": "Latency numbers visualized"
+    },
+    {
+      "id": "PR-H163",
+      "kind": "resource",
+      "locator": "README.md#L1641",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H164",
+      "kind": "resource",
+      "locator": "README.md#L1648",
+      "title": "Additional system design interview questions",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H165",
+      "kind": "resource",
+      "locator": "README.md#L1679",
+      "title": "Real world architectures",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H166",
+      "kind": "resource",
+      "locator": "README.md#L1719",
+      "title": "Company architectures",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H167",
+      "kind": "resource",
+      "locator": "README.md#L1747",
+      "title": "Company engineering blogs",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H168",
+      "kind": "resource",
+      "locator": "README.md#L1794",
+      "title": "Source(s) and further reading",
+      "rationale": "Further-reading links support source discovery; linked works are not recursively imported as a course syllabus."
+    },
+    {
+      "id": "PR-H169",
+      "kind": "resource",
+      "locator": "README.md#L1800",
+      "title": "Under development",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H170",
+      "kind": "resource",
+      "locator": "README.md#L1809",
+      "title": "Credits",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H171",
+      "kind": "resource",
+      "locator": "README.md#L1825",
+      "title": "Contact info",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-H172",
+      "kind": "resource",
+      "locator": "README.md#L1831",
+      "title": "License",
+      "rationale": "Navigation, reference catalog, duplicate example entry point, attribution or repository metadata; concrete knowledge bodies and substantive prompts are inventoried separately."
+    },
+    {
+      "id": "PR-B001",
+      "kind": "topic",
+      "locator": "README.md#L591",
+      "title": "DNS resolution chain and source NS/MX/A/CNAME records"
+    },
+    {
+      "id": "PR-B002",
+      "kind": "topic",
+      "locator": "README.md#L684",
+      "title": "Random, least-loaded, session and round-robin/weighted routing algorithms"
+    },
+    {
+      "id": "PR-B003",
+      "kind": "topic",
+      "locator": "README.md#L820",
+      "title": "ACID and relational integrity"
+    },
+    {
+      "id": "PR-B004",
+      "kind": "topic",
+      "locator": "README.md#L995",
+      "title": "BASE terms and limits of categorical guarantees"
+    },
+    {
+      "id": "PR-B005",
+      "kind": "topic",
+      "locator": "README.md#L1566",
+      "title": "Encryption, SQL injection, XSS and least privilege (CSRF/access-control extensions are Academy additions)"
+    },
+    {
+      "id": "PR-B006",
+      "kind": "topic",
+      "locator": "README.md#L1804",
+      "title": "Distributed computing with MapReduce"
+    },
+    {
+      "id": "PR-B007",
+      "kind": "topic",
+      "locator": "README.md#L1805",
+      "title": "Consistent hashing"
+    },
+    {
+      "id": "PR-B008",
+      "kind": "topic",
+      "locator": "README.md#L1806",
+      "title": "Scatter gather"
+    },
+    {
+      "id": "PR-PASTEBIN-H001",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/README.md#L1",
+      "title": "Design Pastebin.com (or Bit.ly)",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-PASTEBIN-H002",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L7",
+      "title": "pastebin: Step 1: Outline use cases and constraints"
+    },
+    {
+      "id": "PR-PASTEBIN-H003",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L15",
+      "title": "pastebin: Use cases"
+    },
+    {
+      "id": "PR-PASTEBIN-H004",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L17",
+      "title": "pastebin: We'll scope the problem to handle only the following use cases"
+    },
+    {
+      "id": "PR-PASTEBIN-H005",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/README.md#L30",
+      "title": "Out of scope",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-PASTEBIN-H006",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L39",
+      "title": "pastebin: Constraints and assumptions"
+    },
+    {
+      "id": "PR-PASTEBIN-H007",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L41",
+      "title": "pastebin: State assumptions"
+    },
+    {
+      "id": "PR-PASTEBIN-H008",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L52",
+      "title": "pastebin: Calculate usage"
+    },
+    {
+      "id": "PR-PASTEBIN-H009",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L78",
+      "title": "pastebin: Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-PASTEBIN-H010",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L84",
+      "title": "pastebin: Step 3: Design core components"
+    },
+    {
+      "id": "PR-PASTEBIN-H011",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L88",
+      "title": "pastebin: Use case: User enters a block of text and gets a randomly generated link"
+    },
+    {
+      "id": "PR-PASTEBIN-H012",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L166",
+      "title": "pastebin: Use case: User enters a paste's url and views the contents"
+    },
+    {
+      "id": "PR-PASTEBIN-H013",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L191",
+      "title": "pastebin: Use case: Service tracks analytics of pages"
+    },
+    {
+      "id": "PR-PASTEBIN-H014",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L230",
+      "title": "pastebin: Use case: Service deletes expired pastes"
+    },
+    {
+      "id": "PR-PASTEBIN-H015",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L234",
+      "title": "pastebin: Step 4: Scale the design"
+    },
+    {
+      "id": "PR-PASTEBIN-H016",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/README.md#L278",
+      "title": "Additional talking points",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-PASTEBIN-H017",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L282",
+      "title": "pastebin: NoSQL"
+    },
+    {
+      "id": "PR-PASTEBIN-H018",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L290",
+      "title": "pastebin: Caching"
+    },
+    {
+      "id": "PR-PASTEBIN-H019",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L307",
+      "title": "pastebin: Asynchronism and microservices"
+    },
+    {
+      "id": "PR-PASTEBIN-H020",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L314",
+      "title": "pastebin: Communications"
+    },
+    {
+      "id": "PR-PASTEBIN-H021",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L321",
+      "title": "pastebin: Security"
+    },
+    {
+      "id": "PR-PASTEBIN-H022",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L325",
+      "title": "pastebin: Latency numbers"
+    },
+    {
+      "id": "PR-PASTEBIN-H023",
+      "kind": "topic",
+      "locator": "solutions/system_design/pastebin/README.md#L329",
+      "title": "pastebin: Ongoing"
+    },
+    {
+      "id": "PR-TWITTER-H001",
+      "kind": "resource",
+      "locator": "solutions/system_design/twitter/README.md#L1",
+      "title": "Design the Twitter timeline and search",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-TWITTER-H002",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L7",
+      "title": "twitter: Step 1: Outline use cases and constraints"
+    },
+    {
+      "id": "PR-TWITTER-H003",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L15",
+      "title": "twitter: Use cases"
+    },
+    {
+      "id": "PR-TWITTER-H004",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L17",
+      "title": "twitter: We'll scope the problem to handle only the following use cases"
+    },
+    {
+      "id": "PR-TWITTER-H005",
+      "kind": "resource",
+      "locator": "solutions/system_design/twitter/README.md#L26",
+      "title": "Out of scope",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-TWITTER-H006",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L34",
+      "title": "twitter: Constraints and assumptions"
+    },
+    {
+      "id": "PR-TWITTER-H007",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L36",
+      "title": "twitter: State assumptions"
+    },
+    {
+      "id": "PR-TWITTER-H008",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L63",
+      "title": "twitter: Calculate usage"
+    },
+    {
+      "id": "PR-TWITTER-H009",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L92",
+      "title": "twitter: Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-TWITTER-H010",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L98",
+      "title": "twitter: Step 3: Design core components"
+    },
+    {
+      "id": "PR-TWITTER-H011",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L102",
+      "title": "twitter: Use case: User posts a tweet"
+    },
+    {
+      "id": "PR-TWITTER-H012",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L156",
+      "title": "twitter: Use case: User views the home timeline"
+    },
+    {
+      "id": "PR-TWITTER-H013",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L191",
+      "title": "twitter: Use case: User views the user timeline"
+    },
+    {
+      "id": "PR-TWITTER-H014",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L199",
+      "title": "twitter: Use case: User searches keywords"
+    },
+    {
+      "id": "PR-TWITTER-H015",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L222",
+      "title": "twitter: Step 4: Scale the design"
+    },
+    {
+      "id": "PR-TWITTER-H016",
+      "kind": "resource",
+      "locator": "solutions/system_design/twitter/README.md#L279",
+      "title": "Additional talking points",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-TWITTER-H017",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L283",
+      "title": "twitter: NoSQL"
+    },
+    {
+      "id": "PR-TWITTER-H018",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L291",
+      "title": "twitter: Caching"
+    },
+    {
+      "id": "PR-TWITTER-H019",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L308",
+      "title": "twitter: Asynchronism and microservices"
+    },
+    {
+      "id": "PR-TWITTER-H020",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L315",
+      "title": "twitter: Communications"
+    },
+    {
+      "id": "PR-TWITTER-H021",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L322",
+      "title": "twitter: Security"
+    },
+    {
+      "id": "PR-TWITTER-H022",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L326",
+      "title": "twitter: Latency numbers"
+    },
+    {
+      "id": "PR-TWITTER-H023",
+      "kind": "topic",
+      "locator": "solutions/system_design/twitter/README.md#L330",
+      "title": "twitter: Ongoing"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H001",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/README.md#L1",
+      "title": "Design a web crawler",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H002",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L5",
+      "title": "web_crawler: Step 1: Outline use cases and constraints"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H003",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L13",
+      "title": "web_crawler: Use cases"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H004",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L15",
+      "title": "web_crawler: We'll scope the problem to handle only the following use cases"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H005",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/README.md#L25",
+      "title": "Out of scope",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H006",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L31",
+      "title": "web_crawler: Constraints and assumptions"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H007",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L33",
+      "title": "web_crawler: State assumptions"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H008",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L51",
+      "title": "web_crawler: Calculate usage"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H009",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L68",
+      "title": "web_crawler: Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H010",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L74",
+      "title": "web_crawler: Step 3: Design core components"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H011",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L78",
+      "title": "web_crawler: Use case: Service crawls a list of urls"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H012",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L179",
+      "title": "web_crawler: Handling duplicates"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H013",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L204",
+      "title": "web_crawler: Determining when to update the crawl results"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H014",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L212",
+      "title": "web_crawler: Use case: User inputs a search term and sees a list of relevant pages with titles and snippets"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H015",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L255",
+      "title": "web_crawler: Step 4: Scale the design"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H016",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/README.md#L291",
+      "title": "Additional talking points",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H017",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L295",
+      "title": "web_crawler: SQL scaling patterns"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H018",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L303",
+      "title": "web_crawler: NoSQL"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H019",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L311",
+      "title": "web_crawler: Caching"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H020",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L328",
+      "title": "web_crawler: Asynchronism and microservices"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H021",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L335",
+      "title": "web_crawler: Communications"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H022",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L342",
+      "title": "web_crawler: Security"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H023",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L346",
+      "title": "web_crawler: Latency numbers"
+    },
+    {
+      "id": "PR-WEB_CRAWLER-H024",
+      "kind": "topic",
+      "locator": "solutions/system_design/web_crawler/README.md#L350",
+      "title": "web_crawler: Ongoing"
+    },
+    {
+      "id": "PR-MINT-H001",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/README.md#L1",
+      "title": "Design Mint.com",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-MINT-H002",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L5",
+      "title": "mint: Step 1: Outline use cases and constraints"
+    },
+    {
+      "id": "PR-MINT-H003",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L13",
+      "title": "mint: Use cases"
+    },
+    {
+      "id": "PR-MINT-H004",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L15",
+      "title": "mint: We'll scope the problem to handle only the following use cases"
+    },
+    {
+      "id": "PR-MINT-H005",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/README.md#L29",
+      "title": "Out of scope",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-MINT-H006",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L33",
+      "title": "mint: Constraints and assumptions"
+    },
+    {
+      "id": "PR-MINT-H007",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L35",
+      "title": "mint: State assumptions"
+    },
+    {
+      "id": "PR-MINT-H008",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L55",
+      "title": "mint: Calculate usage"
+    },
+    {
+      "id": "PR-MINT-H009",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L79",
+      "title": "mint: Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-MINT-H010",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L85",
+      "title": "mint: Step 3: Design core components"
+    },
+    {
+      "id": "PR-MINT-H011",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L89",
+      "title": "mint: Use case: User connects to a financial account"
+    },
+    {
+      "id": "PR-MINT-H012",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L127",
+      "title": "mint: Use case: Service extracts transactions from the account"
+    },
+    {
+      "id": "PR-MINT-H013",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L179",
+      "title": "mint: Category service"
+    },
+    {
+      "id": "PR-MINT-H014",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L231",
+      "title": "mint: Use case: Service recommends a budget"
+    },
+    {
+      "id": "PR-MINT-H015",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L326",
+      "title": "mint: Step 4: Scale the design"
+    },
+    {
+      "id": "PR-MINT-H016",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/README.md#L387",
+      "title": "Additional talking points",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-MINT-H017",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L391",
+      "title": "mint: NoSQL"
+    },
+    {
+      "id": "PR-MINT-H018",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L399",
+      "title": "mint: Caching"
+    },
+    {
+      "id": "PR-MINT-H019",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L416",
+      "title": "mint: Asynchronism and microservices"
+    },
+    {
+      "id": "PR-MINT-H020",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L423",
+      "title": "mint: Communications"
+    },
+    {
+      "id": "PR-MINT-H021",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L430",
+      "title": "mint: Security"
+    },
+    {
+      "id": "PR-MINT-H022",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L434",
+      "title": "mint: Latency numbers"
+    },
+    {
+      "id": "PR-MINT-H023",
+      "kind": "topic",
+      "locator": "solutions/system_design/mint/README.md#L438",
+      "title": "mint: Ongoing"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H001",
+      "kind": "resource",
+      "locator": "solutions/system_design/social_graph/README.md#L1",
+      "title": "Design the data structures for a social network",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H002",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L5",
+      "title": "social_graph: Step 1: Outline use cases and constraints"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H003",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L13",
+      "title": "social_graph: Use cases"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H004",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L15",
+      "title": "social_graph: We'll scope the problem to handle only the following use cases"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H005",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L20",
+      "title": "social_graph: Constraints and assumptions"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H006",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L22",
+      "title": "social_graph: State assumptions"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H007",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L34",
+      "title": "social_graph: Calculate usage"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H008",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L49",
+      "title": "social_graph: Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H009",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L55",
+      "title": "social_graph: Step 3: Design core components"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H010",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L59",
+      "title": "social_graph: Use case: User searches for someone and sees the shortest path to the searched person"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H011",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L249",
+      "title": "social_graph: Step 4: Scale the design"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H012",
+      "kind": "resource",
+      "locator": "solutions/system_design/social_graph/README.md#L287",
+      "title": "Additional talking points",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H013",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L291",
+      "title": "social_graph: SQL scaling patterns"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H014",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L299",
+      "title": "social_graph: NoSQL"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H015",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L307",
+      "title": "social_graph: Caching"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H016",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L324",
+      "title": "social_graph: Asynchronism and microservices"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H017",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L331",
+      "title": "social_graph: Communications"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H018",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L338",
+      "title": "social_graph: Security"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H019",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L342",
+      "title": "social_graph: Latency numbers"
+    },
+    {
+      "id": "PR-SOCIAL_GRAPH-H020",
+      "kind": "topic",
+      "locator": "solutions/system_design/social_graph/README.md#L346",
+      "title": "social_graph: Ongoing"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H001",
+      "kind": "resource",
+      "locator": "solutions/system_design/query_cache/README.md#L1",
+      "title": "Design a key-value cache to save the results of the most recent web server queries",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-QUERY_CACHE-H002",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L5",
+      "title": "query_cache: Step 1: Outline use cases and constraints"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H003",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L13",
+      "title": "query_cache: Use cases"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H004",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L15",
+      "title": "query_cache: We'll scope the problem to handle only the following use cases"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H005",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L21",
+      "title": "query_cache: Constraints and assumptions"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H006",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L23",
+      "title": "query_cache: State assumptions"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H007",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L36",
+      "title": "query_cache: Calculate usage"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H008",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L57",
+      "title": "query_cache: Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H009",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L63",
+      "title": "query_cache: Step 3: Design core components"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H010",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L67",
+      "title": "query_cache: Use case: User sends a request resulting in a cache hit"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H011",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L92",
+      "title": "query_cache: Cache implementation"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H012",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L199",
+      "title": "query_cache: When to update the cache"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H013",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L211",
+      "title": "query_cache: Step 4: Scale the design"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H014",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L236",
+      "title": "query_cache: Expanding the Memory Cache to many machines"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H015",
+      "kind": "resource",
+      "locator": "solutions/system_design/query_cache/README.md#L244",
+      "title": "Additional talking points",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-QUERY_CACHE-H016",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L248",
+      "title": "query_cache: SQL scaling patterns"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H017",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L256",
+      "title": "query_cache: NoSQL"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H018",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L264",
+      "title": "query_cache: Caching"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H019",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L281",
+      "title": "query_cache: Asynchronism and microservices"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H020",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L288",
+      "title": "query_cache: Communications"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H021",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L295",
+      "title": "query_cache: Security"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H022",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L299",
+      "title": "query_cache: Latency numbers"
+    },
+    {
+      "id": "PR-QUERY_CACHE-H023",
+      "kind": "topic",
+      "locator": "solutions/system_design/query_cache/README.md#L303",
+      "title": "query_cache: Ongoing"
+    },
+    {
+      "id": "PR-SALES_RANK-H001",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/README.md#L1",
+      "title": "Design Amazon's sales rank by category feature",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-SALES_RANK-H002",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L5",
+      "title": "sales_rank: Step 1: Outline use cases and constraints"
+    },
+    {
+      "id": "PR-SALES_RANK-H003",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L13",
+      "title": "sales_rank: Use cases"
+    },
+    {
+      "id": "PR-SALES_RANK-H004",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L15",
+      "title": "sales_rank: We'll scope the problem to handle only the following use case"
+    },
+    {
+      "id": "PR-SALES_RANK-H005",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/README.md#L21",
+      "title": "Out of scope",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-SALES_RANK-H006",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L26",
+      "title": "sales_rank: Constraints and assumptions"
+    },
+    {
+      "id": "PR-SALES_RANK-H007",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L28",
+      "title": "sales_rank: State assumptions"
+    },
+    {
+      "id": "PR-SALES_RANK-H008",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L42",
+      "title": "sales_rank: Calculate usage"
+    },
+    {
+      "id": "PR-SALES_RANK-H009",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L69",
+      "title": "sales_rank: Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-SALES_RANK-H010",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L75",
+      "title": "sales_rank: Step 3: Design core components"
+    },
+    {
+      "id": "PR-SALES_RANK-H011",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L79",
+      "title": "sales_rank: Use case: Service calculates the past week's most popular products by category"
+    },
+    {
+      "id": "PR-SALES_RANK-H012",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L201",
+      "title": "sales_rank: Use case: User views the past week's most popular products by category"
+    },
+    {
+      "id": "PR-SALES_RANK-H013",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L238",
+      "title": "sales_rank: Step 4: Scale the design"
+    },
+    {
+      "id": "PR-SALES_RANK-H014",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/README.md#L284",
+      "title": "Additional talking points",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-SALES_RANK-H015",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L288",
+      "title": "sales_rank: NoSQL"
+    },
+    {
+      "id": "PR-SALES_RANK-H016",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L296",
+      "title": "sales_rank: Caching"
+    },
+    {
+      "id": "PR-SALES_RANK-H017",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L313",
+      "title": "sales_rank: Asynchronism and microservices"
+    },
+    {
+      "id": "PR-SALES_RANK-H018",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L320",
+      "title": "sales_rank: Communications"
+    },
+    {
+      "id": "PR-SALES_RANK-H019",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L327",
+      "title": "sales_rank: Security"
+    },
+    {
+      "id": "PR-SALES_RANK-H020",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L331",
+      "title": "sales_rank: Latency numbers"
+    },
+    {
+      "id": "PR-SALES_RANK-H021",
+      "kind": "topic",
+      "locator": "solutions/system_design/sales_rank/README.md#L335",
+      "title": "sales_rank: Ongoing"
+    },
+    {
+      "id": "PR-SCALING_AWS-H001",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/README.md#L1",
+      "title": "Design a system that scales to millions of users on AWS",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-SCALING_AWS-H002",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L5",
+      "title": "scaling_aws: Step 1: Outline use cases and constraints"
+    },
+    {
+      "id": "PR-SCALING_AWS-H003",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L13",
+      "title": "scaling_aws: Use cases"
+    },
+    {
+      "id": "PR-SCALING_AWS-H004",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L19",
+      "title": "scaling_aws: We'll scope the problem to handle only the following use cases"
+    },
+    {
+      "id": "PR-SCALING_AWS-H005",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L27",
+      "title": "scaling_aws: Constraints and assumptions"
+    },
+    {
+      "id": "PR-SCALING_AWS-H006",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L29",
+      "title": "scaling_aws: State assumptions"
+    },
+    {
+      "id": "PR-SCALING_AWS-H007",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L45",
+      "title": "scaling_aws: Calculate usage"
+    },
+    {
+      "id": "PR-SCALING_AWS-H008",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L63",
+      "title": "scaling_aws: Step 2: Create a high level design"
+    },
+    {
+      "id": "PR-SCALING_AWS-H009",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L69",
+      "title": "scaling_aws: Step 3: Design core components"
+    },
+    {
+      "id": "PR-SCALING_AWS-H010",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L73",
+      "title": "scaling_aws: Use case: User makes a read or write request"
+    },
+    {
+      "id": "PR-SCALING_AWS-H011",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L75",
+      "title": "scaling_aws: Goals"
+    },
+    {
+      "id": "PR-SCALING_AWS-H012",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L82",
+      "title": "scaling_aws: Start with a single box"
+    },
+    {
+      "id": "PR-SCALING_AWS-H013",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L101",
+      "title": "scaling_aws: Start with SQL, consider NoSQL"
+    },
+    {
+      "id": "PR-SCALING_AWS-H014",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L110",
+      "title": "scaling_aws: Assign a public static IP"
+    },
+    {
+      "id": "PR-SCALING_AWS-H015",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L115",
+      "title": "scaling_aws: Use a DNS"
+    },
+    {
+      "id": "PR-SCALING_AWS-H016",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L123",
+      "title": "scaling_aws: Secure the web server"
+    },
+    {
+      "id": "PR-SCALING_AWS-H017",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L136",
+      "title": "scaling_aws: Step 4: Scale the design"
+    },
+    {
+      "id": "PR-SCALING_AWS-H018",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L140",
+      "title": "scaling_aws: Users+"
+    },
+    {
+      "id": "PR-SCALING_AWS-H019",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L144",
+      "title": "scaling_aws: Assumptions"
+    },
+    {
+      "id": "PR-SCALING_AWS-H020",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L150",
+      "title": "scaling_aws: Goals"
+    },
+    {
+      "id": "PR-SCALING_AWS-H021",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L160",
+      "title": "scaling_aws: Store static content separately"
+    },
+    {
+      "id": "PR-SCALING_AWS-H022",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L172",
+      "title": "scaling_aws: Move the MySQL database to a separate box"
+    },
+    {
+      "id": "PR-SCALING_AWS-H023",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L179",
+      "title": "scaling_aws: Secure the system"
+    },
+    {
+      "id": "PR-SCALING_AWS-H024",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L192",
+      "title": "scaling_aws: Users++"
+    },
+    {
+      "id": "PR-SCALING_AWS-H025",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L196",
+      "title": "scaling_aws: Assumptions"
+    },
+    {
+      "id": "PR-SCALING_AWS-H026",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L200",
+      "title": "scaling_aws: Goals"
+    },
+    {
+      "id": "PR-SCALING_AWS-H027",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L221",
+      "title": "scaling_aws: Users+++"
+    },
+    {
+      "id": "PR-SCALING_AWS-H028",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L227",
+      "title": "scaling_aws: Assumptions"
+    },
+    {
+      "id": "PR-SCALING_AWS-H029",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L231",
+      "title": "scaling_aws: Goals"
+    },
+    {
+      "id": "PR-SCALING_AWS-H030",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L248",
+      "title": "scaling_aws: Add MySQL read replicas"
+    },
+    {
+      "id": "PR-SCALING_AWS-H031",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L259",
+      "title": "scaling_aws: Users++++"
+    },
+    {
+      "id": "PR-SCALING_AWS-H032",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L263",
+      "title": "scaling_aws: Assumptions"
+    },
+    {
+      "id": "PR-SCALING_AWS-H033",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L267",
+      "title": "scaling_aws: Goals"
+    },
+    {
+      "id": "PR-SCALING_AWS-H034",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L282",
+      "title": "scaling_aws: Add autoscaling"
+    },
+    {
+      "id": "PR-SCALING_AWS-H035",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L298",
+      "title": "scaling_aws: Users+++++"
+    },
+    {
+      "id": "PR-SCALING_AWS-H036",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L304",
+      "title": "scaling_aws: Assumptions"
+    },
+    {
+      "id": "PR-SCALING_AWS-H037",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L308",
+      "title": "scaling_aws: Goals"
+    },
+    {
+      "id": "PR-SCALING_AWS-H038",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/README.md#L341",
+      "title": "Additional talking points",
+      "rationale": "Example title/navigation or declared non-goals; the substantive requirements, mechanisms and scaling decisions are inventoried below."
+    },
+    {
+      "id": "PR-SCALING_AWS-H039",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L345",
+      "title": "scaling_aws: SQL scaling patterns"
+    },
+    {
+      "id": "PR-SCALING_AWS-H040",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L353",
+      "title": "scaling_aws: NoSQL"
+    },
+    {
+      "id": "PR-SCALING_AWS-H041",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L361",
+      "title": "scaling_aws: Caching"
+    },
+    {
+      "id": "PR-SCALING_AWS-H042",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L378",
+      "title": "scaling_aws: Asynchronism and microservices"
+    },
+    {
+      "id": "PR-SCALING_AWS-H043",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L385",
+      "title": "scaling_aws: Communications"
+    },
+    {
+      "id": "PR-SCALING_AWS-H044",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L392",
+      "title": "scaling_aws: Security"
+    },
+    {
+      "id": "PR-SCALING_AWS-H045",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L396",
+      "title": "scaling_aws: Latency numbers"
+    },
+    {
+      "id": "PR-SCALING_AWS-H046",
+      "kind": "topic",
+      "locator": "solutions/system_design/scaling_aws/README.md#L400",
+      "title": "scaling_aws: Ongoing"
+    },
+    {
+      "id": "PR-PROMPT-01",
+      "kind": "topic",
+      "locator": "README.md#L1654",
+      "title": "Design a file sync service like Dropbox"
+    },
+    {
+      "id": "PR-PROMPT-02",
+      "kind": "topic",
+      "locator": "README.md#L1655",
+      "title": "Design a search engine like Google"
+    },
+    {
+      "id": "PR-PROMPT-03",
+      "kind": "topic",
+      "locator": "README.md#L1656",
+      "title": "Design a scalable web crawler like Google"
+    },
+    {
+      "id": "PR-PROMPT-04",
+      "kind": "topic",
+      "locator": "README.md#L1657",
+      "title": "Design Google docs"
+    },
+    {
+      "id": "PR-PROMPT-05",
+      "kind": "topic",
+      "locator": "README.md#L1658",
+      "title": "Design a key-value store like Redis"
+    },
+    {
+      "id": "PR-PROMPT-06",
+      "kind": "topic",
+      "locator": "README.md#L1659",
+      "title": "Design a cache system like Memcached"
+    },
+    {
+      "id": "PR-PROMPT-07",
+      "kind": "topic",
+      "locator": "README.md#L1660",
+      "title": "Design a recommendation system like Amazon's"
+    },
+    {
+      "id": "PR-PROMPT-08",
+      "kind": "topic",
+      "locator": "README.md#L1661",
+      "title": "Design a tinyurl system like Bitly"
+    },
+    {
+      "id": "PR-PROMPT-09",
+      "kind": "topic",
+      "locator": "README.md#L1662",
+      "title": "Design a chat app like WhatsApp"
+    },
+    {
+      "id": "PR-PROMPT-10",
+      "kind": "topic",
+      "locator": "README.md#L1663",
+      "title": "Design a picture sharing system like Instagram"
+    },
+    {
+      "id": "PR-PROMPT-11",
+      "kind": "topic",
+      "locator": "README.md#L1664",
+      "title": "Design the Facebook news feed function"
+    },
+    {
+      "id": "PR-PROMPT-12",
+      "kind": "topic",
+      "locator": "README.md#L1665",
+      "title": "Design the Facebook timeline function"
+    },
+    {
+      "id": "PR-PROMPT-13",
+      "kind": "topic",
+      "locator": "README.md#L1666",
+      "title": "Design the Facebook chat function"
+    },
+    {
+      "id": "PR-PROMPT-14",
+      "kind": "topic",
+      "locator": "README.md#L1667",
+      "title": "Design a graph search function like Facebook's"
+    },
+    {
+      "id": "PR-PROMPT-15",
+      "kind": "topic",
+      "locator": "README.md#L1668",
+      "title": "Design a content delivery network like CloudFlare"
+    },
+    {
+      "id": "PR-PROMPT-16",
+      "kind": "topic",
+      "locator": "README.md#L1669",
+      "title": "Design a trending topic system like Twitter's"
+    },
+    {
+      "id": "PR-PROMPT-17",
+      "kind": "topic",
+      "locator": "README.md#L1670",
+      "title": "Design a random ID generation system"
+    },
+    {
+      "id": "PR-PROMPT-18",
+      "kind": "topic",
+      "locator": "README.md#L1671",
+      "title": "Return the top k requests during a time interval"
+    },
+    {
+      "id": "PR-PROMPT-19",
+      "kind": "topic",
+      "locator": "README.md#L1672",
+      "title": "Design a system that serves data from multiple data centers"
+    },
+    {
+      "id": "PR-PROMPT-20",
+      "kind": "topic",
+      "locator": "README.md#L1673",
+      "title": "Design an online multiplayer card game"
+    },
+    {
+      "id": "PR-PROMPT-21",
+      "kind": "topic",
+      "locator": "README.md#L1674",
+      "title": "Design a garbage collection system"
+    },
+    {
+      "id": "PR-PROMPT-22",
+      "kind": "topic",
+      "locator": "README.md#L1675",
+      "title": "Design an API rate limiter"
+    },
+    {
+      "id": "PR-PROMPT-23",
+      "kind": "topic",
+      "locator": "README.md#L1676",
+      "title": "Design a Stock Exchange (like NASDAQ or Binance)"
+    },
+    {
+      "id": "PR-PROMPT-24",
+      "kind": "resource",
+      "locator": "README.md#L1677",
+      "title": "Add a system design question",
+      "rationale": "Contribution placeholder, not a substantive design prompt."
+    },
+    {
+      "id": "PR-ARCH-MAPREDUCE",
+      "kind": "topic",
+      "locator": "README.md#L1697",
+      "title": "MapReduce architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-SPARK",
+      "kind": "topic",
+      "locator": "README.md#L1698",
+      "title": "Spark architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-STORM",
+      "kind": "topic",
+      "locator": "README.md#L1699",
+      "title": "Storm architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-BIGTABLE",
+      "kind": "topic",
+      "locator": "README.md#L1701",
+      "title": "Bigtable architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-HBASE",
+      "kind": "topic",
+      "locator": "README.md#L1702",
+      "title": "HBase architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-CASSANDRA",
+      "kind": "topic",
+      "locator": "README.md#L1703",
+      "title": "Cassandra architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-DYNAMODB",
+      "kind": "topic",
+      "locator": "README.md#L1704",
+      "title": "DynamoDB architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-MONGODB",
+      "kind": "topic",
+      "locator": "README.md#L1705",
+      "title": "MongoDB architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-SPANNER",
+      "kind": "topic",
+      "locator": "README.md#L1706",
+      "title": "Spanner architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-MEMCACHED",
+      "kind": "topic",
+      "locator": "README.md#L1707",
+      "title": "Memcached architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-REDIS",
+      "kind": "topic",
+      "locator": "README.md#L1708",
+      "title": "Redis architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-GOOGLE-FILE-SYSTEM",
+      "kind": "topic",
+      "locator": "README.md#L1710",
+      "title": "Google File System architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-HADOOP-FILE-SYSTEM",
+      "kind": "topic",
+      "locator": "README.md#L1711",
+      "title": "Hadoop File System architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-CHUBBY",
+      "kind": "topic",
+      "locator": "README.md#L1713",
+      "title": "Chubby architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-DAPPER",
+      "kind": "topic",
+      "locator": "README.md#L1714",
+      "title": "Dapper architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-KAFKA",
+      "kind": "topic",
+      "locator": "README.md#L1715",
+      "title": "Kafka architecture mechanism"
+    },
+    {
+      "id": "PR-ARCH-ZOOKEEPER",
+      "kind": "topic",
+      "locator": "README.md#L1716",
+      "title": "Zookeeper architecture mechanism"
+    },
+    {
+      "id": "PR-OOD-HASH_TABLE-IPYNB-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/hash_table/hash_map.ipynb#L59",
+      "title": "Item key/value representation for chained buckets"
+    },
+    {
+      "id": "PR-OOD-HASH_TABLE-IPYNB-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/hash_table/hash_map.ipynb#L75",
+      "title": "Collision-chain set/update/get/remove contracts"
+    },
+    {
+      "id": "PR-OOD-HASH_TABLE-PY-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/hash_table/hash_map.py#L1",
+      "title": "Item key/value representation for chained buckets"
+    },
+    {
+      "id": "PR-OOD-HASH_TABLE-PY-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/hash_table/hash_map.py#L17",
+      "title": "Collision-chain set/update/get/remove contracts"
+    },
+    {
+      "id": "PR-OOD-LRU_CACHE-IPYNB-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/lru_cache/lru_cache.ipynb#L55",
+      "title": "Node/list/cache ownership and get/set recency"
+    },
+    {
+      "id": "PR-OOD-LRU_CACHE-IPYNB-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/lru_cache/lru_cache.ipynb#L93",
+      "title": "Existing-key updates and bounded-capacity LRU eviction"
+    },
+    {
+      "id": "PR-OOD-LRU_CACHE-PY-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/lru_cache/lru_cache.py#L1",
+      "title": "Node/list/cache ownership and get/set recency"
+    },
+    {
+      "id": "PR-OOD-LRU_CACHE-PY-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/lru_cache/lru_cache.py#L43",
+      "title": "Existing-key updates and bounded-capacity LRU eviction"
+    },
+    {
+      "id": "PR-OOD-PARKING_LOT-IPYNB-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/parking_lot/parking_lot.ipynb#L69",
+      "title": "Vehicle size and fit specialisation"
+    },
+    {
+      "id": "PR-OOD-PARKING_LOT-IPYNB-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/parking_lot/parking_lot.ipynb#L151",
+      "title": "Search for a contiguous compatible spot allocation"
+    },
+    {
+      "id": "PR-OOD-PARKING_LOT-PY-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/parking_lot/parking_lot.py#L12",
+      "title": "Vehicle size and fit specialisation"
+    },
+    {
+      "id": "PR-OOD-PARKING_LOT-PY-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/parking_lot/parking_lot.py#L94",
+      "title": "Search for a contiguous compatible spot allocation"
+    },
+    {
+      "id": "PR-OOD-CALL_CENTER-IPYNB-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/call_center/call_center.ipynb#L70",
+      "title": "Rank and call-state dispatch contracts"
+    },
+    {
+      "id": "PR-OOD-CALL_CENTER-IPYNB-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/call_center/call_center.ipynb#L100",
+      "title": "Employee escalation resets call ownership and notifies dispatcher"
+    },
+    {
+      "id": "PR-OOD-CALL_CENTER-PY-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/call_center/call_center.py#L6",
+      "title": "Rank and call-state dispatch contracts"
+    },
+    {
+      "id": "PR-OOD-CALL_CENTER-PY-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/call_center/call_center.py#L36",
+      "title": "Employee escalation resets call ownership and notifies dispatcher"
+    },
+    {
+      "id": "PR-OOD-DECK_OF_CARDS-IPYNB-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.ipynb#L60",
+      "title": "Suit/card abstraction and generic-to-blackjack extension"
+    },
+    {
+      "id": "PR-OOD-DECK_OF_CARDS-IPYNB-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.ipynb#L147",
+      "title": "Blackjack ace totals and score selection"
+    },
+    {
+      "id": "PR-OOD-DECK_OF_CARDS-PY-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.py#L6",
+      "title": "Suit/card abstraction and generic-to-blackjack extension"
+    },
+    {
+      "id": "PR-OOD-DECK_OF_CARDS-PY-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.py#L93",
+      "title": "Blackjack ace totals and score selection"
+    },
+    {
+      "id": "PR-OOD-ONLINE_CHAT-IPYNB-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.ipynb#L70",
+      "title": "User-service create/remove-user and friend-request API contracts"
+    },
+    {
+      "id": "PR-OOD-ONLINE_CHAT-IPYNB-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.ipynb#L141",
+      "title": "Friend-request pending/approved/rejected state enum and invitation transitions"
+    },
+    {
+      "id": "PR-OOD-ONLINE_CHAT-PY-1",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.py#L5",
+      "title": "User-service create/remove-user and friend-request API contracts"
+    },
+    {
+      "id": "PR-OOD-ONLINE_CHAT-PY-2",
+      "kind": "topic",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.py#L99",
+      "title": "Friend-request pending/approved/rejected state enum and invitation transitions"
+    },
+    {
+      "id": "PR-FILE-001",
+      "kind": "resource",
+      "locator": ".gitattributes",
+      "title": ".gitattributes",
+      "rationale": "Repository metadata, contribution/translation guide, license or supporting resource; does not introduce a separate system-design mechanism."
+    },
+    {
+      "id": "PR-FILE-002",
+      "kind": "resource",
+      "locator": ".github/PULL_REQUEST_TEMPLATE.md",
+      "title": ".github/PULL_REQUEST_TEMPLATE.md",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-003",
+      "kind": "resource",
+      "locator": ".gitignore",
+      "title": ".gitignore",
+      "rationale": "Repository metadata, contribution/translation guide, license or supporting resource; does not introduce a separate system-design mechanism."
+    },
+    {
+      "id": "PR-FILE-004",
+      "kind": "resource",
+      "locator": "CONTRIBUTING.md",
+      "title": "CONTRIBUTING.md",
+      "rationale": "Repository metadata, contribution/translation guide, license or supporting resource; does not introduce a separate system-design mechanism."
+    },
+    {
+      "id": "PR-FILE-005",
+      "kind": "resource",
+      "locator": "LICENSE.txt",
+      "title": "LICENSE.txt",
+      "rationale": "Repository metadata, contribution/translation guide, license or supporting resource; does not introduce a separate system-design mechanism."
+    },
+    {
+      "id": "PR-FILE-006",
+      "kind": "resource",
+      "locator": "README-ja.md",
+      "title": "README-ja.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-007",
+      "kind": "resource",
+      "locator": "README-zh-Hans.md",
+      "title": "README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-008",
+      "kind": "resource",
+      "locator": "README-zh-TW.md",
+      "title": "README-zh-TW.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-010",
+      "kind": "resource",
+      "locator": "TRANSLATIONS.md",
+      "title": "TRANSLATIONS.md",
+      "rationale": "Repository metadata, contribution/translation guide, license or supporting resource; does not introduce a separate system-design mechanism."
+    },
+    {
+      "id": "PR-FILE-011",
+      "kind": "resource",
+      "locator": "epub-metadata.yaml",
+      "title": "epub-metadata.yaml",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-012",
+      "kind": "resource",
+      "locator": "generate-epub.sh",
+      "title": "generate-epub.sh",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-013",
+      "kind": "resource",
+      "locator": "images/0vBc0hN.png",
+      "title": "images/0vBc0hN.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-014",
+      "kind": "resource",
+      "locator": "images/4edXG0T.png",
+      "title": "images/4edXG0T.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-015",
+      "kind": "resource",
+      "locator": "images/4j99mhe.png",
+      "title": "images/4j99mhe.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-016",
+      "kind": "resource",
+      "locator": "images/54GYsSx.png",
+      "title": "images/54GYsSx.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-017",
+      "kind": "resource",
+      "locator": "images/5KeocQs.jpg",
+      "title": "images/5KeocQs.jpg",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-018",
+      "kind": "resource",
+      "locator": "images/C9ioGtn.png",
+      "title": "images/C9ioGtn.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-019",
+      "kind": "resource",
+      "locator": "images/IOyLj4i.jpg",
+      "title": "images/IOyLj4i.jpg",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-020",
+      "kind": "resource",
+      "locator": "images/JdAsdvG.jpg",
+      "title": "images/JdAsdvG.jpg",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-021",
+      "kind": "resource",
+      "locator": "images/MzExP06.png",
+      "title": "images/MzExP06.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-022",
+      "kind": "resource",
+      "locator": "images/ONjORqk.png",
+      "title": "images/ONjORqk.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-023",
+      "kind": "resource",
+      "locator": "images/OfVllex.png",
+      "title": "images/OfVllex.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-024",
+      "kind": "resource",
+      "locator": "images/Q6z24La.png",
+      "title": "images/Q6z24La.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-025",
+      "kind": "resource",
+      "locator": "images/TcUo2fw.png",
+      "title": "images/TcUo2fw.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-026",
+      "kind": "resource",
+      "locator": "images/U3qV33e.png",
+      "title": "images/U3qV33e.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-027",
+      "kind": "resource",
+      "locator": "images/V5q57vU.png",
+      "title": "images/V5q57vU.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-028",
+      "kind": "resource",
+      "locator": "images/Xkm5CXz.png",
+      "title": "images/Xkm5CXz.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-029",
+      "kind": "resource",
+      "locator": "images/b4YtAEN.png",
+      "title": "images/b4YtAEN.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-030",
+      "kind": "resource",
+      "locator": "images/bWxPtQA.png",
+      "title": "images/bWxPtQA.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-031",
+      "kind": "resource",
+      "locator": "images/bgLMI2u.png",
+      "title": "images/bgLMI2u.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-032",
+      "kind": "resource",
+      "locator": "images/cdCv5g7.png",
+      "title": "images/cdCv5g7.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-033",
+      "kind": "resource",
+      "locator": "images/fNcl65g.png",
+      "title": "images/fNcl65g.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-034",
+      "kind": "resource",
+      "locator": "images/h81n9iK.png",
+      "title": "images/h81n9iK.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-035",
+      "kind": "resource",
+      "locator": "images/h9TAuGI.jpg",
+      "title": "images/h9TAuGI.jpg",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-036",
+      "kind": "resource",
+      "locator": "images/iF4Mkb5.png",
+      "title": "images/iF4Mkb5.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-037",
+      "kind": "resource",
+      "locator": "images/jj3A5N8.png",
+      "title": "images/jj3A5N8.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-038",
+      "kind": "resource",
+      "locator": "images/jrUBAF7.png",
+      "title": "images/jrUBAF7.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-039",
+      "kind": "resource",
+      "locator": "images/krAHLGg.png",
+      "title": "images/krAHLGg.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-040",
+      "kind": "resource",
+      "locator": "images/kxtjqgE.png",
+      "title": "images/kxtjqgE.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-041",
+      "kind": "resource",
+      "locator": "images/n16iOGk.png",
+      "title": "images/n16iOGk.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-042",
+      "kind": "resource",
+      "locator": "images/n41Azff.png",
+      "title": "images/n41Azff.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-043",
+      "kind": "resource",
+      "locator": "images/rgSrvjG.png",
+      "title": "images/rgSrvjG.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-044",
+      "kind": "resource",
+      "locator": "images/wU8x5Id.png",
+      "title": "images/wU8x5Id.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-045",
+      "kind": "resource",
+      "locator": "images/wXGqG5f.png",
+      "title": "images/wXGqG5f.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-046",
+      "kind": "resource",
+      "locator": "images/yB5SYwm.png",
+      "title": "images/yB5SYwm.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-047",
+      "kind": "resource",
+      "locator": "images/yzDrJtA.jpg",
+      "title": "images/yzDrJtA.jpg",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-048",
+      "kind": "resource",
+      "locator": "images/zdCAkB3.png",
+      "title": "images/zdCAkB3.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-049",
+      "kind": "resource",
+      "locator": "resources/flash_cards/OO Design.apkg",
+      "title": "resources/flash_cards/OO Design.apkg",
+      "rationale": "Spaced-retrieval flashcard package, classified as a study resource rather than independent teaching authority; concepts are mapped from readable source bodies."
+    },
+    {
+      "id": "PR-FILE-050",
+      "kind": "resource",
+      "locator": "resources/flash_cards/System Design Exercises.apkg",
+      "title": "resources/flash_cards/System Design Exercises.apkg",
+      "rationale": "Spaced-retrieval flashcard package, classified as a study resource rather than independent teaching authority; concepts are mapped from readable source bodies."
+    },
+    {
+      "id": "PR-FILE-051",
+      "kind": "resource",
+      "locator": "resources/flash_cards/System Design.apkg",
+      "title": "resources/flash_cards/System Design.apkg",
+      "rationale": "Spaced-retrieval flashcard package, classified as a study resource rather than independent teaching authority; concepts are mapped from readable source bodies."
+    },
+    {
+      "id": "PR-FILE-052",
+      "kind": "resource",
+      "locator": "resources/study_guide.graffle",
+      "title": "resources/study_guide.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-053",
+      "kind": "resource",
+      "locator": "resources/study_guide.png",
+      "title": "resources/study_guide.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-054",
+      "kind": "resource",
+      "locator": "solutions/object_oriented_design/call_center/__init__.py",
+      "title": "solutions/object_oriented_design/call_center/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-057",
+      "kind": "resource",
+      "locator": "solutions/object_oriented_design/deck_of_cards/__init__.py",
+      "title": "solutions/object_oriented_design/deck_of_cards/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-060",
+      "kind": "resource",
+      "locator": "solutions/object_oriented_design/hash_table/__init__.py",
+      "title": "solutions/object_oriented_design/hash_table/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-063",
+      "kind": "resource",
+      "locator": "solutions/object_oriented_design/lru_cache/__init__.py",
+      "title": "solutions/object_oriented_design/lru_cache/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-066",
+      "kind": "resource",
+      "locator": "solutions/object_oriented_design/online_chat/__init__.py",
+      "title": "solutions/object_oriented_design/online_chat/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-069",
+      "kind": "resource",
+      "locator": "solutions/object_oriented_design/parking_lot/__init__.py",
+      "title": "solutions/object_oriented_design/parking_lot/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-072",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/README-zh-Hans.md",
+      "title": "solutions/system_design/mint/README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-074",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/__init__.py",
+      "title": "solutions/system_design/mint/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-075",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/mint.graffle",
+      "title": "solutions/system_design/mint/mint.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-076",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/mint.png",
+      "title": "solutions/system_design/mint/mint.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-077",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/mint_basic.graffle",
+      "title": "solutions/system_design/mint/mint_basic.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-078",
+      "kind": "resource",
+      "locator": "solutions/system_design/mint/mint_basic.png",
+      "title": "solutions/system_design/mint/mint_basic.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-081",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/README-zh-Hans.md",
+      "title": "solutions/system_design/pastebin/README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-083",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/__init__.py",
+      "title": "solutions/system_design/pastebin/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-084",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/pastebin.graffle",
+      "title": "solutions/system_design/pastebin/pastebin.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-085",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/pastebin.png",
+      "title": "solutions/system_design/pastebin/pastebin.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-087",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/pastebin_basic.graffle",
+      "title": "solutions/system_design/pastebin/pastebin_basic.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-088",
+      "kind": "resource",
+      "locator": "solutions/system_design/pastebin/pastebin_basic.png",
+      "title": "solutions/system_design/pastebin/pastebin_basic.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-089",
+      "kind": "resource",
+      "locator": "solutions/system_design/query_cache/README-zh-Hans.md",
+      "title": "solutions/system_design/query_cache/README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-091",
+      "kind": "resource",
+      "locator": "solutions/system_design/query_cache/__init__.py",
+      "title": "solutions/system_design/query_cache/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-092",
+      "kind": "resource",
+      "locator": "solutions/system_design/query_cache/query_cache.graffle",
+      "title": "solutions/system_design/query_cache/query_cache.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-093",
+      "kind": "resource",
+      "locator": "solutions/system_design/query_cache/query_cache.png",
+      "title": "solutions/system_design/query_cache/query_cache.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-094",
+      "kind": "resource",
+      "locator": "solutions/system_design/query_cache/query_cache_basic.graffle",
+      "title": "solutions/system_design/query_cache/query_cache_basic.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-095",
+      "kind": "resource",
+      "locator": "solutions/system_design/query_cache/query_cache_basic.png",
+      "title": "solutions/system_design/query_cache/query_cache_basic.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-097",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/README-zh-Hans.md",
+      "title": "solutions/system_design/sales_rank/README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-099",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/__init__.py",
+      "title": "solutions/system_design/sales_rank/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-100",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/sales_rank.graffle",
+      "title": "solutions/system_design/sales_rank/sales_rank.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-101",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/sales_rank.png",
+      "title": "solutions/system_design/sales_rank/sales_rank.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-102",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/sales_rank_basic.graffle",
+      "title": "solutions/system_design/sales_rank/sales_rank_basic.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-103",
+      "kind": "resource",
+      "locator": "solutions/system_design/sales_rank/sales_rank_basic.png",
+      "title": "solutions/system_design/sales_rank/sales_rank_basic.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-105",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/README-zh-Hans.md",
+      "title": "solutions/system_design/scaling_aws/README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-107",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws.graffle",
+      "title": "solutions/system_design/scaling_aws/scaling_aws.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-108",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws.png",
+      "title": "solutions/system_design/scaling_aws/scaling_aws.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-109",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws_1.png",
+      "title": "solutions/system_design/scaling_aws/scaling_aws_1.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-110",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws_2.png",
+      "title": "solutions/system_design/scaling_aws/scaling_aws_2.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-111",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws_3.png",
+      "title": "solutions/system_design/scaling_aws/scaling_aws_3.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-112",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws_4.png",
+      "title": "solutions/system_design/scaling_aws/scaling_aws_4.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-113",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws_5.png",
+      "title": "solutions/system_design/scaling_aws/scaling_aws_5.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-114",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws_6.png",
+      "title": "solutions/system_design/scaling_aws/scaling_aws_6.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-115",
+      "kind": "resource",
+      "locator": "solutions/system_design/scaling_aws/scaling_aws_7.png",
+      "title": "solutions/system_design/scaling_aws/scaling_aws_7.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-116",
+      "kind": "resource",
+      "locator": "solutions/system_design/social_graph/README-zh-Hans.md",
+      "title": "solutions/system_design/social_graph/README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-118",
+      "kind": "resource",
+      "locator": "solutions/system_design/social_graph/__init__.py",
+      "title": "solutions/system_design/social_graph/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-119",
+      "kind": "resource",
+      "locator": "solutions/system_design/social_graph/social_graph.graffle",
+      "title": "solutions/system_design/social_graph/social_graph.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-120",
+      "kind": "resource",
+      "locator": "solutions/system_design/social_graph/social_graph.png",
+      "title": "solutions/system_design/social_graph/social_graph.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-121",
+      "kind": "resource",
+      "locator": "solutions/system_design/social_graph/social_graph_basic.graffle",
+      "title": "solutions/system_design/social_graph/social_graph_basic.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-122",
+      "kind": "resource",
+      "locator": "solutions/system_design/social_graph/social_graph_basic.png",
+      "title": "solutions/system_design/social_graph/social_graph_basic.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-124",
+      "kind": "resource",
+      "locator": "solutions/system_design/template/template.graffle",
+      "title": "solutions/system_design/template/template.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-125",
+      "kind": "resource",
+      "locator": "solutions/system_design/twitter/README-zh-Hans.md",
+      "title": "solutions/system_design/twitter/README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-127",
+      "kind": "resource",
+      "locator": "solutions/system_design/twitter/twitter.graffle",
+      "title": "solutions/system_design/twitter/twitter.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-128",
+      "kind": "resource",
+      "locator": "solutions/system_design/twitter/twitter.png",
+      "title": "solutions/system_design/twitter/twitter.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-129",
+      "kind": "resource",
+      "locator": "solutions/system_design/twitter/twitter_basic.graffle",
+      "title": "solutions/system_design/twitter/twitter_basic.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-130",
+      "kind": "resource",
+      "locator": "solutions/system_design/twitter/twitter_basic.png",
+      "title": "solutions/system_design/twitter/twitter_basic.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-131",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/README-zh-Hans.md",
+      "title": "solutions/system_design/web_crawler/README-zh-Hans.md",
+      "rationale": "Translation of an inventoried English source body; no additional teaching scope is inferred from a duplicate translation."
+    },
+    {
+      "id": "PR-FILE-133",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/__init__.py",
+      "title": "solutions/system_design/web_crawler/__init__.py",
+      "rationale": "Repository/tooling or import marker without independent system-design teaching content."
+    },
+    {
+      "id": "PR-FILE-134",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/web_crawler.graffle",
+      "title": "solutions/system_design/web_crawler/web_crawler.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-135",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/web_crawler.png",
+      "title": "solutions/system_design/web_crawler/web_crawler.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-136",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/web_crawler_basic.graffle",
+      "title": "solutions/system_design/web_crawler/web_crawler_basic.graffle",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-FILE-137",
+      "kind": "resource",
+      "locator": "solutions/system_design/web_crawler/web_crawler_basic.png",
+      "title": "solutions/system_design/web_crawler/web_crawler_basic.png",
+      "rationale": "Third-party visual or editable diagram resource; no asset copied. Teaching concepts are covered by associated prose/code; separate rights review required before any reuse."
+    },
+    {
+      "id": "PR-CODE-R1-HITS",
+      "kind": "topic",
+      "title": "Monthly URL-hit mapper/reducer and period extraction",
+      "locator": "solutions/system_design/pastebin/pastebin.py#L6"
+    },
+    {
+      "id": "PR-CODE-R1-CRAWL-FRONTIER",
+      "kind": "topic",
+      "title": "Frontier add/remove/priority and crawled-signature data-store contracts",
+      "locator": "solutions/system_design/web_crawler/web_crawler_snippets.py#L4"
+    },
+    {
+      "id": "PR-CODE-R1-CRAWL-PAGE",
+      "kind": "topic",
+      "title": "Page URL/content/child links and content-signature contract",
+      "locator": "solutions/system_design/web_crawler/web_crawler_snippets.py#L35"
+    },
+    {
+      "id": "PR-CODE-R1-CRAWL-LOOP",
+      "kind": "topic",
+      "title": "Crawl loop, duplicate-priority handling, index/document queues and visited lifecycle",
+      "locator": "solutions/system_design/web_crawler/web_crawler_snippets.py#L48"
+    },
+    {
+      "id": "PR-CODE-R1-CRAWL-REDUCE",
+      "kind": "topic",
+      "title": "URL-frequency MapReduce unique-only filter: repeated URLs disappear rather than emit once",
+      "locator": "solutions/system_design/web_crawler/web_crawler_mapreduce.py#L6"
+    },
+    {
+      "id": "PR-CODE-R1-MINT-CATEGORIES",
+      "kind": "topic",
+      "title": "Seeded seller categories and manual override lookup (including stub/name defects)",
+      "locator": "solutions/system_design/mint/mint_snippets.py#L20"
+    },
+    {
+      "id": "PR-CODE-R1-MINT-TRANSACTION",
+      "kind": "topic",
+      "title": "Transaction timestamp/seller/amount representation",
+      "locator": "solutions/system_design/mint/mint_snippets.py#L36"
+    },
+    {
+      "id": "PR-CODE-R1-MINT-BUDGET",
+      "kind": "topic",
+      "title": "Budget category map and per-category override",
+      "locator": "solutions/system_design/mint/mint_snippets.py#L44"
+    },
+    {
+      "id": "PR-CODE-R1-MINT-REDUCE",
+      "kind": "topic",
+      "title": "Monthly category-spending map/reduce and notification side effects",
+      "locator": "solutions/system_design/mint/mint_mapreduce.py#L6"
+    },
+    {
+      "id": "PR-CODE-R1-GRAPH-BFS",
+      "kind": "topic",
+      "title": "Local BFS visited/frontier and boolean reachability result",
+      "locator": "solutions/system_design/social_graph/social_graph_snippets.py#L11"
+    },
+    {
+      "id": "PR-CODE-R1-GRAPH-PERSON",
+      "kind": "topic",
+      "title": "Person identifiers and friend-ID adjacency representation",
+      "locator": "solutions/system_design/social_graph/social_graph_snippets.py#L31"
+    },
+    {
+      "id": "PR-CODE-R1-GRAPH-LOOKUP",
+      "kind": "topic",
+      "title": "Person-ID to partition/server lookup",
+      "locator": "solutions/system_design/social_graph/social_graph_snippets.py#L39"
+    },
+    {
+      "id": "PR-CODE-R1-GRAPH-SERVER",
+      "kind": "topic",
+      "title": "Batch person retrieval from a person-server partition",
+      "locator": "solutions/system_design/social_graph/social_graph_snippets.py#L49"
+    },
+    {
+      "id": "PR-CODE-R1-GRAPH-DISTRIBUTED",
+      "kind": "topic",
+      "title": "Incomplete distributed BFS interface and object-held visited state",
+      "locator": "solutions/system_design/social_graph/social_graph_snippets.py#L62"
+    },
+    {
+      "id": "PR-CODE-R1-QUERY-API",
+      "kind": "topic",
+      "title": "Parse query, check cache, call index on miss and fill cache",
+      "locator": "solutions/system_design/query_cache/query_cache_snippets.py#L4"
+    },
+    {
+      "id": "PR-CODE-R1-QUERY-NODE",
+      "kind": "topic",
+      "title": "Query/result node and incomplete recency-list operations",
+      "locator": "solutions/system_design/query_cache/query_cache_snippets.py#L25"
+    },
+    {
+      "id": "PR-CODE-R1-QUERY-CACHE",
+      "kind": "topic",
+      "title": "LRU cache get/set/capacity flow and incomplete/wrong map attributes",
+      "locator": "solutions/system_design/query_cache/query_cache_snippets.py#L48"
+    },
+    {
+      "id": "PR-CODE-R1-RANK-FILTER",
+      "kind": "topic",
+      "title": "Weekly filter and category/product quantity reduction",
+      "locator": "solutions/system_design/sales_rank/sales_rank_mapreduce.py#L6"
+    },
+    {
+      "id": "PR-CODE-R1-RANK-SORT",
+      "kind": "topic",
+      "title": "Secondary category/quantity sort and identity reducer",
+      "locator": "solutions/system_design/sales_rank/sales_rank_mapreduce.py#L39"
+    },
+    {
+      "id": "PR-OOD-HASH_TABLE-CONTRACT",
+      "kind": "topic",
+      "title": "Material notebook constraints and workflow contract for hash_table",
+      "locator": "solutions/object_oriented_design/hash_table/hash_map.ipynb#L21"
+    },
+    {
+      "id": "PR-OOD-LRU_CACHE-CONTRACT",
+      "kind": "topic",
+      "title": "Material notebook constraints and workflow contract for lru_cache",
+      "locator": "solutions/object_oriented_design/lru_cache/lru_cache.ipynb#L21"
+    },
+    {
+      "id": "PR-OOD-PARKING_LOT-CONTRACT",
+      "kind": "topic",
+      "title": "Material notebook constraints and workflow contract for parking_lot",
+      "locator": "solutions/object_oriented_design/parking_lot/parking_lot.ipynb#L21"
+    },
+    {
+      "id": "PR-OOD-CALL_CENTER-CONTRACT",
+      "kind": "topic",
+      "title": "Material notebook constraints and workflow contract for call_center",
+      "locator": "solutions/object_oriented_design/call_center/call_center.ipynb#L21"
+    },
+    {
+      "id": "PR-OOD-DECK_OF_CARDS-CONTRACT",
+      "kind": "topic",
+      "title": "Material notebook constraints and workflow contract for deck_of_cards",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.ipynb#L21"
+    },
+    {
+      "id": "PR-OOD-ONLINE_CHAT-CONTRACT",
+      "kind": "topic",
+      "title": "Material notebook constraints and workflow contract for online_chat",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.ipynb#L21"
+    },
+    {
+      "id": "PR-OOD-R1-HASH-FUNCTION-PY",
+      "kind": "topic",
+      "title": "Fixed-size hash-index and bucket-table construction",
+      "locator": "solutions/object_oriented_design/hash_table/hash_map.py#L8"
+    },
+    {
+      "id": "PR-OOD-R1-HASH-FUNCTION-IPYNB",
+      "kind": "topic",
+      "title": "Fixed-size hash-index and bucket-table construction",
+      "locator": "solutions/object_oriented_design/hash_table/hash_map.ipynb#L66"
+    },
+    {
+      "id": "PR-OOD-R1-LRU-REPAIR-PY",
+      "kind": "topic",
+      "title": "Incomplete list operations and invalid/missing node/cache attributes require explicit repair",
+      "locator": "solutions/object_oriented_design/lru_cache/lru_cache.py#L8"
+    },
+    {
+      "id": "PR-OOD-R1-LRU-REPAIR-IPYNB",
+      "kind": "topic",
+      "title": "Incomplete list operations and invalid/missing node/cache attributes require explicit repair",
+      "locator": "solutions/object_oriented_design/lru_cache/lru_cache.ipynb#L63"
+    },
+    {
+      "id": "PR-OOD-R1-PARK-RELEASE-PY",
+      "kind": "topic",
+      "title": "Vehicle-wide spot release and availability accounting",
+      "locator": "solutions/object_oriented_design/parking_lot/parking_lot.py#L20"
+    },
+    {
+      "id": "PR-OOD-R1-PARK-RELEASE-IPYNB",
+      "kind": "topic",
+      "title": "Vehicle-wide spot release and availability accounting",
+      "locator": "solutions/object_oriented_design/parking_lot/parking_lot.ipynb#L77"
+    },
+    {
+      "id": "PR-OOD-R1-CALL-COMPLETE-PY",
+      "kind": "topic",
+      "title": "Call completion state and notification to dispatcher",
+      "locator": "solutions/object_oriented_design/call_center/call_center.py#L28"
+    },
+    {
+      "id": "PR-OOD-R1-CALL-COMPLETE-IPYNB",
+      "kind": "topic",
+      "title": "Call completion state and notification to dispatcher",
+      "locator": "solutions/object_oriented_design/call_center/call_center.ipynb#L92"
+    },
+    {
+      "id": "PR-OOD-R1-CALL-DISPATCH-PY",
+      "kind": "topic",
+      "title": "Rank-aware dispatch, waiting queue and completion/escalation callback stubs",
+      "locator": "solutions/object_oriented_design/call_center/call_center.py#L87"
+    },
+    {
+      "id": "PR-OOD-R1-CALL-DISPATCH-IPYNB",
+      "kind": "topic",
+      "title": "Rank-aware dispatch, waiting queue and completion/escalation callback stubs",
+      "locator": "solutions/object_oriented_design/call_center/call_center.ipynb#L151"
+    },
+    {
+      "id": "PR-OOD-R1-CARD-DECK-PY",
+      "kind": "topic",
+      "title": "Remaining-card count, shuffle and dealing contracts",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.py#L98"
+    },
+    {
+      "id": "PR-OOD-R1-CARD-DECK-IPYNB",
+      "kind": "topic",
+      "title": "Remaining-card count, shuffle and dealing contracts",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.ipynb#L152"
+    },
+    {
+      "id": "PR-OOD-R1-CARD-HAND-PY",
+      "kind": "topic",
+      "title": "Hand aggregation and game-specific score override",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.py#L61"
+    },
+    {
+      "id": "PR-OOD-R1-CARD-HAND-IPYNB",
+      "kind": "topic",
+      "title": "Hand aggregation and game-specific score override",
+      "locator": "solutions/object_oriented_design/deck_of_cards/deck_of_cards.ipynb#L115"
+    },
+    {
+      "id": "PR-OOD-R1-CHAT-GROUP-PY",
+      "kind": "topic",
+      "title": "Group membership add/remove contracts",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.py#L73"
+    },
+    {
+      "id": "PR-OOD-R1-CHAT-GROUP-IPYNB",
+      "kind": "topic",
+      "title": "Group membership add/remove contracts",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.ipynb#L118"
+    },
+    {
+      "id": "PR-OOD-R1-CHAT-MESSAGE-PY",
+      "kind": "topic",
+      "title": "Message identity, content and timestamp representation",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.py#L82"
+    },
+    {
+      "id": "PR-OOD-R1-CHAT-MESSAGE-IPYNB",
+      "kind": "topic",
+      "title": "Message identity, content and timestamp representation",
+      "locator": "solutions/object_oriented_design/online_chat/online_chat.ipynb#L124"
+    },
+    {
+      "id": "PR-BODY-R1-DNS-NS",
+      "kind": "topic",
+      "title": "NS record identifies authoritative nameservers",
+      "locator": "README.md#L593"
+    },
+    {
+      "id": "PR-BODY-R1-DNS-MX",
+      "kind": "topic",
+      "title": "MX record identifies mail servers",
+      "locator": "README.md#L594"
+    },
+    {
+      "id": "PR-BODY-R1-DNS-A",
+      "kind": "topic",
+      "title": "A record maps a name to an address",
+      "locator": "README.md#L595"
+    },
+    {
+      "id": "PR-BODY-R1-DNS-CNAME",
+      "kind": "topic",
+      "title": "CNAME alias and resolution chain",
+      "locator": "README.md#L596"
+    },
+    {
+      "id": "PR-BODY-R1-DNS-WEIGHT",
+      "kind": "topic",
+      "title": "Weighted DNS traffic allocation for maintenance, cluster sizes and A/B tests",
+      "locator": "README.md#L600"
+    },
+    {
+      "id": "PR-BODY-R1-DNS-LATENCY",
+      "kind": "topic",
+      "title": "Latency-based DNS routing",
+      "locator": "README.md#L604"
+    },
+    {
+      "id": "PR-BODY-R1-DNS-GEO",
+      "kind": "topic",
+      "title": "Geolocation-based DNS routing",
+      "locator": "README.md#L605"
+    },
+    {
+      "id": "PR-BODY-R1-PROXY-COMPRESS",
+      "kind": "topic",
+      "title": "Reverse-proxy response compression",
+      "locator": "README.md#L747"
+    },
+    {
+      "id": "PR-BODY-R1-PROXY-STATIC",
+      "kind": "topic",
+      "title": "Reverse-proxy direct static-content service",
+      "locator": "README.md#L749"
+    },
+    {
+      "id": "PR-BODY-R1-LB-ALGORITHMS",
+      "kind": "topic",
+      "title": "Random/least-loaded/session/round-robin routing choices",
+      "locator": "README.md#L684"
+    },
+    {
+      "id": "PR-BODY-R1-LB-L4",
+      "kind": "topic",
+      "title": "Transport header decisions and NAT forwarding",
+      "locator": "README.md#L695"
+    },
+    {
+      "id": "PR-BODY-R1-LB-L7",
+      "kind": "topic",
+      "title": "Application inspection, termination and backend connections",
+      "locator": "README.md#L699"
+    },
+    {
+      "id": "PR-BODY-R1-SCALE-STATE",
+      "kind": "topic",
+      "title": "Stateless clones, central session state and downstream connection growth",
+      "locator": "README.md#L709"
+    },
+    {
+      "id": "PR-BODY-R1-CACHE-ROW",
+      "kind": "topic",
+      "title": "Row-level cache granularity",
+      "locator": "README.md#L1171"
+    },
+    {
+      "id": "PR-BODY-R1-CACHE-QUERY",
+      "kind": "topic",
+      "title": "Query-level cache granularity",
+      "locator": "README.md#L1172"
+    },
+    {
+      "id": "PR-BODY-R1-CACHE-OBJECT",
+      "kind": "topic",
+      "title": "Serializable-object cache granularity",
+      "locator": "README.md#L1173"
+    },
+    {
+      "id": "PR-BODY-R1-CACHE-HTML",
+      "kind": "topic",
+      "title": "Rendered-HTML cache granularity",
+      "locator": "README.md#L1174"
+    },
+    {
+      "id": "PR-BODY-R1-CACHE-FILE",
+      "kind": "topic",
+      "title": "File-local cache state versus cloning/autoscaling",
+      "locator": "README.md#L1176"
+    },
+    {
+      "id": "PR-BODY-R1-CACHE-QUERY-DEPS",
+      "kind": "topic",
+      "title": "Hash a query into a key; invalidate every dependent cached query",
+      "locator": "README.md#L1180"
+    },
+    {
+      "id": "PR-BODY-R1-CACHE-OBJECT-ASM",
+      "kind": "topic",
+      "title": "Assemble/cache objects and invalidate when underlying data changes",
+      "locator": "README.md#L1187"
+    },
+    {
+      "id": "PR-BODY-R1-CACHE-EXAMPLES",
+      "kind": "topic",
+      "title": "Session, rendered-page, activity-stream and user-graph cached objects",
+      "locator": "README.md#L1194"
+    },
+    {
+      "id": "PR-BODY-R1-TCP-FLOW",
+      "kind": "topic",
+      "title": "TCP flow and congestion control distinguish receiver/network limits",
+      "locator": "README.md#L1415"
+    },
+    {
+      "id": "PR-BODY-R1-TCP-POOL",
+      "kind": "topic",
+      "title": "Open-connection memory cost and connection pooling",
+      "locator": "README.md#L1417"
+    },
+    {
+      "id": "PR-BODY-R1-TCP-CHECK",
+      "kind": "topic",
+      "title": "TCP sequence/checksum/acknowledgement/retransmission limits",
+      "locator": "README.md#L1412"
+    },
+    {
+      "id": "PR-BODY-R1-UDP-BROADCAST",
+      "kind": "topic",
+      "title": "UDP broadcast/DHCP and absent built-in ordering/reliability/congestion policy",
+      "locator": "README.md#L1436"
+    },
+    {
+      "id": "PR-BODY-R1-HTTP-METHODS",
+      "kind": "topic",
+      "title": "HTTP method safety, idempotence and cacheability table to verify",
+      "locator": "README.md#L1386"
+    },
+    {
+      "id": "PR-BODY-R1-RPC-PATH",
+      "kind": "topic",
+      "title": "RPC marshal/transport/unmarshal/dispatch and reverse response path",
+      "locator": "README.md#L1468"
+    },
+    {
+      "id": "PR-BODY-R1-RPC-SDK",
+      "kind": "topic",
+      "title": "SDK selection by known platform, controlled logic/errors and experience needs",
+      "locator": "README.md#L1488"
+    },
+    {
+      "id": "PR-BODY-R1-REST-IDENTITY",
+      "kind": "topic",
+      "title": "REST resource identity and representation manipulation",
+      "locator": "README.md#L1510"
+    },
+    {
+      "id": "PR-BODY-R1-REST-SELF",
+      "kind": "topic",
+      "title": "REST self-descriptive messages beyond a source-era status-code shortcut",
+      "locator": "README.md#L1512"
+    },
+    {
+      "id": "PR-BODY-R1-REST-HYPERMEDIA",
+      "kind": "topic",
+      "title": "REST hypermedia constraint beyond a source-era browser shortcut",
+      "locator": "README.md#L1513"
+    },
+    {
+      "id": "PR-BODY-R1-REST-COSTS",
+      "kind": "topic",
+      "title": "Nested-resource round trips and response-field/payload growth",
+      "locator": "README.md#L1530"
+    },
+    {
+      "id": "PR-BODY-R1-WIDE-VERSIONS",
+      "kind": "topic",
+      "title": "Wide-column timestamped values/version and range-locality scope",
+      "locator": "README.md#L1047"
+    },
+    {
+      "id": "PR-BODY-R1-SQL-NOSQL-CRITERIA",
+      "kind": "topic",
+      "title": "SQL/NoSQL schema, joins, transactions, throughput and ecosystem criteria",
+      "locator": "README.md#L1098"
+    },
+    {
+      "id": "PR-BODY-R1-SQL-NOSQL-WORKLOADS",
+      "kind": "topic",
+      "title": "Clickstream, leaderboard, cart, hot-table and metadata workloads",
+      "locator": "README.md#L1119"
+    },
+    {
+      "id": "PR-BODY-R1-SEC-ENCRYPT",
+      "kind": "topic",
+      "title": "Encrypt in transit and at rest",
+      "locator": "README.md#L1566"
+    },
+    {
+      "id": "PR-BODY-R1-SEC-INPUT",
+      "kind": "topic",
+      "title": "Input validation and XSS/SQL-injection threats",
+      "locator": "README.md#L1567"
+    },
+    {
+      "id": "PR-BODY-R1-SEC-QUERY",
+      "kind": "topic",
+      "title": "Parameterized SQL queries",
+      "locator": "README.md#L1568"
+    },
+    {
+      "id": "PR-BODY-R1-SEC-LEAST",
+      "kind": "topic",
+      "title": "Least-privilege principle",
+      "locator": "README.md#L1569"
+    },
+    {
+      "id": "PR-BODY-R1-PASTE-HASH",
+      "kind": "topic",
+      "title": "Hash-input selection/truncation and omitted collision-risk reasoning to critique",
+      "locator": "solutions/system_design/pastebin/README.md#L123"
+    },
+    {
+      "id": "PR-BODY-R1-PASTE-ENCODE",
+      "kind": "topic",
+      "title": "Base62 versus standard Base64 URL characters and deterministic encoding",
+      "locator": "solutions/system_design/pastebin/README.md#L127"
+    },
+    {
+      "id": "PR-BODY-R1-PASTE-ANALYTICS",
+      "kind": "topic",
+      "title": "Monthly URL hit-count MapReduce",
+      "locator": "solutions/system_design/pastebin/README.md#L198"
+    },
+    {
+      "id": "PR-BODY-R1-CRAWL-SIMILAR",
+      "kind": "topic",
+      "title": "Content signatures and Jaccard/cosine similarity",
+      "locator": "solutions/system_design/web_crawler/README.md#L202"
+    },
+    {
+      "id": "PR-BODY-R1-CRAWL-ROBOTS",
+      "kind": "topic",
+      "title": "Robots controls and recrawl-policy assumptions to verify",
+      "locator": "solutions/system_design/web_crawler/README.md#L210"
+    },
+    {
+      "id": "PR-BODY-R1-CRAWL-DNS",
+      "kind": "topic",
+      "title": "Crawler DNS cache and refresh",
+      "locator": "solutions/system_design/web_crawler/README.md#L286"
+    },
+    {
+      "id": "PR-BODY-R1-CRAWL-POOL",
+      "kind": "topic",
+      "title": "Crawler pooled connections and unsupported direct UDP substitution to critique",
+      "locator": "solutions/system_design/web_crawler/README.md#L287"
+    },
+    {
+      "id": "PR-BODY-R1-CRAWL-BANDWIDTH",
+      "kind": "topic",
+      "title": "Crawler bandwidth capacity budget",
+      "locator": "solutions/system_design/web_crawler/README.md#L289"
+    },
+    {
+      "id": "PR-BODY-R1-MINT-SELLER",
+      "kind": "topic",
+      "title": "Seller dictionary seeded with popular sellers",
+      "locator": "solutions/system_design/mint/README.md#L181"
+    },
+    {
+      "id": "PR-BODY-R1-MINT-CROWD",
+      "kind": "topic",
+      "title": "Rank/select crowd manual category overrides for unseen sellers",
+      "locator": "solutions/system_design/mint/README.md#L200"
+    },
+    {
+      "id": "PR-BODY-R1-MINT-TEMPLATE",
+      "kind": "topic",
+      "title": "Income-tier budget template and sparse user overrides",
+      "locator": "solutions/system_design/mint/README.md#L233"
+    },
+    {
+      "id": "PR-BODY-R1-MINT-RECOMPUTE",
+      "kind": "topic",
+      "title": "Rerun budget aggregation after category update",
+      "locator": "solutions/system_design/mint/README.md#L264"
+    },
+    {
+      "id": "PR-BODY-R1-MINT-WAREHOUSE",
+      "kind": "topic",
+      "title": "Monthly aggregate data warehouse versus OLTP",
+      "locator": "solutions/system_design/mint/README.md#L372"
+    },
+    {
+      "id": "PR-BODY-R1-MINT-RETENTION",
+      "kind": "topic",
+      "title": "Recent transaction database versus archive warehouse/object store",
+      "locator": "solutions/system_design/mint/README.md#L374"
+    },
+    {
+      "id": "PR-BODY-R1-DISCOVERY-CONFIG",
+      "kind": "topic",
+      "title": "Service address/port registration, HTTP health checks and Consul/etcd configuration KV",
+      "locator": "README.md#L793"
+    },
+    {
+      "id": "PR-BODY-R1-GRAPH-CACHE",
+      "kind": "topic",
+      "title": "Cache or offline-precompute complete/partial BFS traversals",
+      "locator": "solutions/system_design/social_graph/README.md#L278"
+    },
+    {
+      "id": "PR-BODY-R1-GRAPH-PLACE",
+      "kind": "topic",
+      "title": "Batch person-server fetches and location-aware partition placement",
+      "locator": "solutions/system_design/social_graph/README.md#L280"
+    },
+    {
+      "id": "PR-BODY-R1-GRAPH-BIDIRECTIONAL",
+      "kind": "topic",
+      "title": "Bidirectional BFS merges source/destination frontiers",
+      "locator": "solutions/system_design/social_graph/README.md#L282"
+    },
+    {
+      "id": "PR-BODY-R1-GRAPH-LIMIT",
+      "kind": "topic",
+      "title": "Time/hop limits and high-degree exploration heuristic",
+      "locator": "solutions/system_design/social_graph/README.md#L283"
+    },
+    {
+      "id": "PR-BODY-R1-GRAPH-ALTERNATIVES",
+      "kind": "topic",
+      "title": "Graph DB alternative and mistaken GraphQL graph-query analogy to correct",
+      "locator": "solutions/system_design/social_graph/README.md#L285"
+    },
+    {
+      "id": "PR-BODY-R1-PASTE-WAREHOUSE",
+      "kind": "topic",
+      "title": "Analytics warehouse and content object-store roles",
+      "locator": "solutions/system_design/pastebin/README.md#L263"
+    },
+    {
+      "id": "PR-BODY-R1-MINT-EXTRACTION",
+      "kind": "topic",
+      "title": "Account refresh triggers, raw logs, category/aggregate updates and notifications",
+      "locator": "solutions/system_design/mint/README.md#L141"
+    }
+  ],
+  "revision_candidate": 1,
+  "semantic_audit": "Revision-1 rebuilds inaccurate code attribution, corrects instructional associations, enumerates additional body leaves and material notebook constraints. Counts include repeated representations; independent reviewer acceptance remains required."
+}
