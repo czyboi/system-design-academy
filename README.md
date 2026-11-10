@@ -4,9 +4,7 @@ Source-grounded System Design course development for middle/senior engineers. Le
 
 ## Current state
 
-The previous learner outputs were removed at the user's request. No completed course is currently claimed. `CURRICULUM_MASTER.md` is the old proposed map; the earlier curriculum candidates have been removed; pinned source evidence remains as a historical input. The historical source-coverage recheck passed, but the pedagogy recheck requested revision and the user stopped finalization. Do not resume it implicitly.
-
-This repository now defaults to a compact workflow. The workflow change does not regenerate curriculum, lessons, assessments or backlog.
+Fresh start: no course plan, lesson or assessment has been authored. Historical task records and generated artifacts were removed from the working tree; Git history retains previous commits. Workflow skills, templates, validation and review gates remain. Create a new scoped task before producing any course content.
 
 ## Start here
 

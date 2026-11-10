@@ -1,0 +1,98 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-WORKFLOW-CLEAN-RESET",
+  "module_id": "workflow",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-WORKFLOW-CLEAN-RESET.json",
+  "automation_status": "automation_complete",
+  "current_phase": "verification",
+  "created_at": "2026-11-10T08:32:16Z",
+  "updated_at": "2026-11-10T08:34:25Z",
+  "execution_control": "active",
+  "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
+  "steps": [
+    {
+      "step_id": "implementation",
+      "title": "Implement scoped tooling changes",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [],
+      "output_paths": [
+        "README.md",
+        "modules/database/README.md",
+        "modules/database/workflow/run-database-pilot.md",
+        ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/cleanup.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "start_commit": "6066e1ab2cfe206bd1cf47ef3d50afda3ada43d1",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        "README.md": "189993e2e441187df17858e765d16fae7622b78b980a5d991082920aa8a6ae9b",
+        "modules/database/README.md": "f84f394985b866e55362c27d8310aa29642af283d31e615c0b06df3b10763a66",
+        "modules/database/workflow/run-database-pilot.md": "a55dc9897fbbc1a0a7bba5652f967bc045cd2522799e14d3869370802e01cc6b",
+        ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/cleanup.md": null
+      },
+      "started_at": "2026-11-10T08:32:44Z",
+      "run_id": "SD-WORKFLOW-CLEAN-RESET-implementation-20261110T083244Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_fingerprint": "e6e177d0a6afbdfd1dcbefaab01d56ffd1fae36eb065140431ae62c31518476d",
+      "completed_spec_hash": "b150c8bb651efe1d614e8e6ed09de07788e9961dc67ce58f61534e28cc7c95d1",
+      "completed_output_hashes": {
+        "README.md": "30674e7bd915ddb194db3e4c6bd5bfa9ce87a20f6b0dc5b03e2d4071c15f9d29",
+        "modules/database/README.md": "b3a180e089905d218642ac4d7c9871c4a65f3d5ffce2f7ae3f12a9b8d98fb6a5",
+        "modules/database/workflow/run-database-pilot.md": "5aa555ab7c8787f319d48a34ac2f312eef0775d365993fad138653fdf1d9873e",
+        ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/cleanup.md": "5ec2eea995a17998f2e8937d599ad8681a0d4df74b2db75b185d0a35f3d72b5e"
+      },
+      "completed_at": "2026-11-10T08:33:55Z",
+      "completed_by": "workflow_orchestrator",
+      "completed_commit": "e9dbfa656b07a300344ae620a415f41652969b61"
+    },
+    {
+      "step_id": "verification",
+      "title": "Verify scoped changes",
+      "status": "completed",
+      "depends_on": [
+        "implementation"
+      ],
+      "definition_version": "v3",
+      "input_paths": [],
+      "output_paths": [
+        ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/verification.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "start_commit": "96400c22506a0c86dd4169447567c9fe38d9907e",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/verification.md": null
+      },
+      "started_at": "2026-11-10T08:33:59Z",
+      "run_id": "SD-WORKFLOW-CLEAN-RESET-verification-20261110T083359Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_fingerprint": "8379462c86f942c16282fa41542da17caeda17f0556d6a3154b79488502a3a98",
+      "completed_spec_hash": "b150c8bb651efe1d614e8e6ed09de07788e9961dc67ce58f61534e28cc7c95d1",
+      "completed_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-CLEAN-RESET/verification.md": "bde60014ee7f6b7b57ff0557c477e95a67470f660a6f7988ad9170b46101b9b9"
+      },
+      "completed_at": "2026-11-10T08:34:25Z",
+      "completed_by": "workflow_orchestrator",
+      "completed_commit": "574539e6f5ef5e00d4c1a4992d1ce769e857d30b"
+    }
+  ]
+}
