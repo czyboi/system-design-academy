@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "curriculum-draft",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T02:28:22Z",
+  "updated_at": "2026-11-10T02:35:30Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -47,7 +47,7 @@
     {
       "step_id": "source-inventory",
       "title": "Inventory the pinned Primer repository topics and in-tree examples",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "curriculum-skill-update"
       ],
@@ -85,12 +85,13 @@
       },
       "completed_at": "2026-11-10T02:27:46Z",
       "completed_by": "source_researcher",
-      "completed_commit": "3328bff5a42b1f935edf2bd8cbc8490e578e2e2c"
+      "completed_commit": "3328bff5a42b1f935edf2bd8cbc8490e578e2e2c",
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "curriculum-draft",
       "title": "Design the ordered modules and detailed teaching lesson outlines",
-      "status": "running",
+      "status": "invalidated",
       "depends_on": [
         "source-inventory"
       ],
@@ -118,15 +119,14 @@
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": null
       },
       "started_at": "2026-11-10T02:28:22Z",
-      "active_spec_hash": "db8069fce8b3c5a5a3ae749aaa78c5a066e2886510dc82f89d071a0524a0e547",
-      "active_fingerprint": "80f39bff75bfdf6f238c7a4e83e6772bd85bc68d2c4a948492198179421c68ea",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-draft-20261110T022822Z",
-      "agent": "curriculum_designer"
+      "agent": "curriculum_designer",
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "coverage-round-1",
       "title": "Independently audit first plan and full topic matrix",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "curriculum-draft"
       ],
@@ -143,12 +143,13 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "revision-round-1",
       "title": "Resolve Round 1 curriculum coverage findings",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "coverage-round-1"
       ],
@@ -165,12 +166,13 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "coverage-round-2",
       "title": "Fresh independent audit of revised plan",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "revision-round-1"
       ],
@@ -187,12 +189,13 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "revision-round-2",
       "title": "Resolve Round 2 findings and record remaining dispositions",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "coverage-round-2"
       ],
@@ -209,12 +212,13 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "coverage-round-3",
       "title": "Final independent verification of every source mapping",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "revision-round-2"
       ],
@@ -231,12 +235,13 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "pedagogy-review",
       "title": "Review course sequence, audience, and teaching-only scope",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "revision-round-2"
       ],
@@ -253,12 +258,13 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "finalize-curriculum",
       "title": "Publish canonical plan, coverage matrix, task backlog, and retire old plan",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "coverage-round-3",
         "pedagogy-review"
@@ -282,12 +288,13 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "validation",
       "title": "Validate plan structure, backlog dependencies, and repository state",
-      "status": "pending",
+      "status": "invalidated",
       "depends_on": [
         "finalize-curriculum"
       ],
@@ -307,7 +314,8 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 0,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     }
   ],
   "notes": "GitHub Issue #6. One active writer: @czyboi. Source revision pinned to ae9bbd7b02d90b9866215de185217d33f39ab733. Three coverage rounds and two revision cycles are required before canonical finalization; lessons and assessments are out of scope.",
