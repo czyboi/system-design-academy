@@ -120,19 +120,80 @@
       "completed_commit": "6a6d333e94072ddef20910c654be28bc84d286da"
     },
     {
-      "step_id": "validation",
-      "title": "Validate full course map and record acceptance evidence",
+      "step_id": "revision-1",
+      "title": "Resolve first independent review findings",
       "status": "pending",
       "depends_on": [
         "course-review"
       ],
-      "definition_version": "v3",
+      "definition_version": "v1",
+      "revision_cycle": 1,
       "input_paths": [
         "CURRICULUM_MASTER.md",
         "curriculum/source-inventory.json",
         "curriculum/coverage.csv",
-        "scripts/check_course_coverage.py",
+        "curriculum/review.md",
         "curriculum/review.json"
+      ],
+      "output_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "course-recheck-1",
+      "title": "Independent review of revised course plan",
+      "status": "pending",
+      "depends_on": [
+        "revision-1"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        "curriculum/review.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md"
+      ],
+      "output_paths": [
+        "curriculum/revision-1/review.md",
+        "curriculum/revision-1/review.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "curriculum/revision-1/review.json"
+      }
+    },
+    {
+      "step_id": "validation",
+      "title": "Validate full course map and record acceptance evidence",
+      "status": "pending",
+      "depends_on": [
+        "course-recheck-1"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        "scripts/check_course_coverage.py",
+        "curriculum/revision-1/review.json"
       ],
       "output_paths": [
         ".academy/task-runs/SD-COURSE-OUTLINE/report.md"
@@ -143,7 +204,7 @@
       },
       "attempts": 0,
       "requires_reviews": [
-        "course-review"
+        "course-recheck-1"
       ]
     }
   ]
