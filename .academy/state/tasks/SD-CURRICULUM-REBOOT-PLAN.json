@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "pedagogy-review",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:40:53Z",
+  "updated_at": "2026-11-10T03:40:57Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -404,7 +404,7 @@
     {
       "step_id": "pedagogy-review",
       "title": "Review course sequence, audience, and teaching-only scope",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision-round-2"
       ],
@@ -436,16 +436,20 @@
       "started_at": "2026-11-10T03:40:53Z",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-pedagogy-review-20261110T034053Z",
       "agent": "task-reuse-reconciliation",
-      "completed_fingerprint": "5d22a50db992deb4a7e52a8ac9563cf0809ecb873613ef0363825afdc4a24e0e",
-      "completed_spec_hash": "3143ad3e576da3afbad2c3bbe25b95c797bb33df18f0f8703ef3721b3355436b",
+      "completed_fingerprint": "d539fc33dec83e429100e5623938389472727cc5bc0ec353796f086965b2f334",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
       "completed_output_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": "7ec3ddb04d5504b410dd8f0c78904dbfb958b2c52a92e658e0aa550dfa3dabf3"
       },
-      "completed_at": "2026-11-10T03:12:51Z",
-      "completed_by": "independent-pedagogy-reviewer",
-      "completed_commit": "0d170ddb3cb7c23f422d8435bc8b3e8b3579aa84",
-      "active_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
-      "active_fingerprint": "d539fc33dec83e429100e5623938389472727cc5bc0ec353796f086965b2f334"
+      "completed_at": "2026-11-10T03:40:57Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "79676475768fc8f13b6ed030ac02b4f52af0c244",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:40:57Z"
+        }
+      }
     },
     {
       "step_id": "source-evidence-refresh",
