@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "coverage-round-2",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:39:58Z",
+  "updated_at": "2026-11-10T03:40:01Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -254,7 +254,7 @@
     {
       "step_id": "coverage-round-2",
       "title": "Fresh independent audit of revised plan",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision-round-1"
       ],
@@ -286,16 +286,20 @@
       "started_at": "2026-11-10T03:39:58Z",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-2-20261110T033958Z",
       "agent": "task-reuse-reconciliation",
-      "completed_fingerprint": "0169e3fb0d9abf046a51db25ad24740d9adadfb6239bfbb3732472f9f8d7b20f",
-      "completed_spec_hash": "a8508140a4e04dd11b075883cc186be18fbc24e099772b8e41716e4bc0f62d05",
+      "completed_fingerprint": "76535abd353b4003162ce4a154541b9209bab38b2d4371538277394c84541309",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
       "completed_output_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md": "e64b29851b2917589dd980d37b095be521d7ac4c06f17704858e0f9f9e451496"
       },
-      "completed_at": "2026-11-10T02:59:05Z",
-      "completed_by": "curriculum-coverage-reviewer",
-      "completed_commit": "20c7b2a1a37b33ecb0a951ff701ed95984bf24b2",
-      "active_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
-      "active_fingerprint": "76535abd353b4003162ce4a154541b9209bab38b2d4371538277394c84541309"
+      "completed_at": "2026-11-10T03:40:01Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "46e83db9556929cd4c12dcae4c4a65e3d3862b74",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:40:01Z"
+        }
+      }
     },
     {
       "step_id": "revision-round-2",
