@@ -4,7 +4,7 @@
   "module_id": "curriculum",
   "current_phase": "source-inventory",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:38:58Z",
+  "updated_at": "2026-11-10T03:39:02Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -54,7 +54,7 @@
     {
       "step_id": "source-inventory",
       "title": "Inventory the pinned Primer repository topics and in-tree examples",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "curriculum-skill-update"
       ],
@@ -85,17 +85,21 @@
       "started_at": "2026-11-10T03:38:58Z",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-source-inventory-20261110T033858Z",
       "agent": "task-reuse-reconciliation",
-      "completed_fingerprint": "c6bbc850a1b518a3a18bb668a1c17833844f6a76ea7431e7de2cf328a7de6950",
-      "completed_spec_hash": "0162cade30bc2bfcdde915c2b3531d2ba253bf38098ab8175222818668a38f69",
+      "completed_fingerprint": "bb87629f29e4cbfe402d4ee17e9caeda355b525fe99424553cfbcfa5ce87ca1b",
+      "completed_spec_hash": "291c0f0d1472beab7d4d21ee773814fdbd0e42d0da18c833bcb451a4fa00006e",
       "completed_output_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37"
       },
-      "completed_at": "2026-11-10T02:36:37Z",
-      "completed_by": "source_researcher",
-      "completed_commit": "368250279708939a3c237d4e6af46588ded8190b",
+      "completed_at": "2026-11-10T03:39:02Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "ca30e916e5e10d9396a6326b4c2348cbf17b7097",
       "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
-      "active_spec_hash": "291c0f0d1472beab7d4d21ee773814fdbd0e42d0da18c833bcb451a4fa00006e",
-      "active_fingerprint": "bb87629f29e4cbfe402d4ee17e9caeda355b525fe99424553cfbcfa5ce87ca1b"
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:39:02Z"
+        }
+      }
     },
     {
       "step_id": "curriculum-draft",
