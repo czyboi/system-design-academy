@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-WORKFLOW-SIMPLIFY",
   "module_id": "workflow",
-  "current_phase": "implementation",
+  "current_phase": "verification",
   "created_at": "2026-11-10T04:28:34Z",
-  "updated_at": "2026-11-10T08:22:07Z",
+  "updated_at": "2026-11-10T08:22:24Z",
   "steps": [
     {
       "step_id": "implementation",
@@ -207,7 +207,7 @@
     {
       "step_id": "verification",
       "title": "verification",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "implementation"
       ],
@@ -222,21 +222,23 @@
         "next_action": "Fix checker and tests, recheck independently, rerun validation; no content generation.",
         "at": "2026-11-10T08:17:38Z"
       },
-      "attempts": 1,
-      "start_commit": "6c0fb70091a77ca3527f62191d660f987f2ef80b",
+      "attempts": 2,
+      "start_commit": "0c7f27eae6d2515ec8443754f9fa826670532377",
       "start_input_hashes": {},
       "start_output_hashes": {
-        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/review.md": null,
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/review.md": "718810b7876e9620b7cbc20ba0fbc6a7c08da840aa6a5890ee267addb71a1f3c",
         ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/report.md": null
       },
-      "started_at": "2026-11-10T08:17:23Z",
-      "run_id": "SD-WORKFLOW-SIMPLIFY-verification-20261110T081723Z",
+      "started_at": "2026-11-10T08:22:24Z",
+      "run_id": "SD-WORKFLOW-SIMPLIFY-verification-20261110T082224Z",
       "agent": "workflow_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "invalidation_reason": "Independent review found coverage checker false positives; user requested fix before merge"
+      "invalidation_reason": "Independent review found coverage checker false positives; user requested fix before merge",
+      "active_spec_hash": "28a3722a03dd85ea5f2253bc4e3cdce3867f029637e10ed2c6230a29f00d0cd1",
+      "active_fingerprint": "5686aca55a37b494853aefbafabd63edfa4c5e062bd3cfe8502e0b11d1bd85a1"
     }
   ],
   "notes": "One lesson package per task. Replace module-specific input paths at intake. Plan revisions use unique outputs and a new review gate. At most two automated revision cycles; see docs/workflow-contract.md. Final artifacts remain draft.",
