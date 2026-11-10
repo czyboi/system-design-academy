@@ -4,12 +4,12 @@
   "module_id": "curriculum",
   "current_phase": "curriculum-skill-update",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:38:45Z",
+  "updated_at": "2026-11-10T03:38:49Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
       "title": "Broaden curriculum design guidance to the full source repository",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v1",
       "input_paths": [
@@ -35,17 +35,21 @@
       "started_at": "2026-11-10T03:38:45Z",
       "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-skill-update-20261110T033845Z",
       "agent": "task-reuse-reconciliation",
-      "completed_fingerprint": "5d572ac04f6c9a2149f58184187e7299d787b281424ce602edbfd5f71f9478d1",
-      "completed_spec_hash": "ecc489a8622d987f0af79b352f6390793335d2e03b56d510f13819ccec06edc6",
+      "completed_fingerprint": "38de475e3fc5d09744256576c680af50024a470189f525db6eda11c0f22353fe",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
       "completed_output_hashes": {
         ".agents/skills/curriculum-design/SKILL.md": "ff36d841dac7cbdd11707c998a3aa6c0bf6084fe5a934eb5146badc7eeb7e7ba"
       },
-      "completed_at": "2026-11-09T16:48:53Z",
-      "completed_by": "curriculum_designer",
-      "completed_commit": "2d6bc4fc273be00069652bdd3857dfd2b94620c6",
+      "completed_at": "2026-11-10T03:38:49Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "2178c2b634e57e53d1a5832765457eea16448db4",
       "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
-      "active_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
-      "active_fingerprint": "38de475e3fc5d09744256576c680af50024a470189f525db6eda11c0f22353fe"
+      "reused_outputs": {
+        ".agents/skills/curriculum-design/SKILL.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:38:49Z"
+        }
+      }
     },
     {
       "step_id": "source-inventory",
