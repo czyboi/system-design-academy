@@ -19,6 +19,15 @@ ROOT = Path(__file__).resolve().parents[1]
 PRIMER = "https://github.com/donnemartin/system-design-primer"
 
 
+def excluded_heading(title: str) -> bool:
+    """Identify non-teaching sections without excluding real concepts like reference architecture."""
+    return bool(re.fullmatch(
+        r"(?:references?|attribution(?: and change notes)?|knowledge checks?|quiz|"
+        r"answer key(?:\s*/\s*rubric)?|rubric|(?:practical )?exercise|learning outcomes)",
+        title.strip(), re.I,
+    ))
+
+
 def artifact(value: str) -> Path:
     if not isinstance(value, str) or not value or Path(value).is_absolute() or ".." in Path(value).parts:
         raise ValueError(f"Expected repository-relative path: {value!r}")
@@ -46,9 +55,12 @@ def section(text: str, title: str, *, lesson_id: bool = False) -> str:
             if not lesson_id and len(heading[1]) == 1:
                 raise ValueError("Document title is not a teaching section")
             end = next((h.start() for h in headings[i + 1:] if len(h[1]) <= len(heading[1])), len(text))
-            body = text[heading.end():end]
             if not lesson_id:
-                body = re.split(r"(?im)^#{2,6}[ \t]+(?:references?|attribution|knowledge checks?|quiz|answer key|rubric|exercise|learning outcomes)[ \t]*$", body)[0]
+                if excluded_heading(heading[2]):
+                    raise ValueError("A title, reference or assessment section is not teaching evidence")
+                end = next((h.start() for h in headings[i + 1:]
+                            if h.start() < end and excluded_heading(h[2])), end)
+            body = text[heading.end():end]
             matches.append(body.strip())
     if len(matches) != 1:
         raise ValueError(f"Expected one heading for {title!r}, found {len(matches)}")
@@ -142,7 +154,7 @@ def validate(inventory_path: str, matrix_path: str, plan_path: str,
                     if metadata.get("lesson") or "outcome_map" in metadata:
                         raise ValueError("An assessment cannot count as a teaching lesson")
                     heading = row.get("section", "")
-                    if not heading or re.fullmatch(r"references?|attribution|knowledge checks?|quiz|answer key|rubric|(?:practical )?exercise|learning outcomes", heading, re.I):
+                    if not heading or excluded_heading(heading):
                         raise ValueError("A title, reference or assessment section is not teaching evidence")
                     body = section(text, heading)
                     body = re.sub(r"<!--.*?-->", "", body, flags=re.S)

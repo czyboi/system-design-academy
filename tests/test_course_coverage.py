@@ -184,6 +184,21 @@ class FullCoverageTests(unittest.TestCase):
         self.write_matrix()
         self.assertEqual(self.errors('taught'), [])
 
+    def test_assessment_and_attribution_headings_cannot_be_taught(self):
+        self.add_teaching()
+        path = self.root / self.rows[0]['lesson_path']
+        prefix = '---\nid: SD-01\nstatus: draft\n---\n# Lesson\n'
+        for heading in ('Attribution and change notes', 'Answer key / rubric', 'Practical exercise'):
+            for nested in (False, True):
+                with self.subTest(heading=heading, nested=nested):
+                    body = (f'## Mechanism\n### {heading}\nOnly excluded content.\n' if nested
+                            else f'## {heading}\nOnly excluded content.\n')
+                    path.write_text(prefix + body, encoding='utf-8')
+                    self.rows[0].update(section='Mechanism' if nested else heading,
+                                        lesson_sha256=checker.digest(path))
+                    self.write_matrix()
+                    self.assertTrue(self.errors('taught'))
+
 
 if __name__ == '__main__':
     unittest.main()
