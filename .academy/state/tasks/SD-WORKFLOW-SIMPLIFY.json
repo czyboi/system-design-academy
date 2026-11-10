@@ -4,7 +4,7 @@
   "module_id": "workflow",
   "current_phase": "implementation",
   "created_at": "2026-11-10T04:28:34Z",
-  "updated_at": "2026-11-10T08:09:47Z",
+  "updated_at": "2026-11-10T08:15:57Z",
   "steps": [
     {
       "step_id": "implementation",
@@ -36,11 +36,13 @@
         ".agents/skills/pedagogical-review/SKILL.md",
         ".agents/skills/technical-review/SKILL.md",
         ".agents/skills/provenance-review/SKILL.md",
-        ".agents/skills/lesson-authoring/SKILL.md"
+        ".agents/skills/lesson-authoring/SKILL.md",
+        "tests/test_taskctl.py"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "User clarified workflow-only scope; restored module files and fixed reviewer findings in the checker and test fixtures.",
+        "next_action": "Complete verification and record independent recheck.",
+        "at": "2026-11-10T08:15:57Z"
       },
       "attempts": 1,
       "start_commit": "ef9147d8da920a6667e3636dfc941c5412b48a24",
@@ -68,7 +70,8 @@
         ".agents/skills/pedagogical-review/SKILL.md": "d3fa61e3d880834162db1c259b6220e6da392090adf518fe5e18e316301fd20a",
         ".agents/skills/technical-review/SKILL.md": "f865f065d3ac9cb277fc1a19fc1f29e766e7ce58b2b3ef27ba58c4e2fc0c9841",
         ".agents/skills/provenance-review/SKILL.md": "57bf6bc37ba364a716b9a7e600a76ee3bd2c174811d541d6a050b0eb65dd2a6d",
-        ".agents/skills/lesson-authoring/SKILL.md": "dbc4e0f7c8d9999ccdabc9b54343d41ff8ab2eaa3bc73c01badb9bc139ea788e"
+        ".agents/skills/lesson-authoring/SKILL.md": "dbc4e0f7c8d9999ccdabc9b54343d41ff8ab2eaa3bc73c01badb9bc139ea788e",
+        "tests/test_taskctl.py": "d5681348837b76cdd7486eb535dcdcd5f7c3df9222d8ab168178023e045ef983"
       },
       "started_at": "2026-11-10T04:29:31Z",
       "active_spec_hash": "847722e9c432432e17d94f223b03e8bad16d743538154349519a1cfe2d149b47",
