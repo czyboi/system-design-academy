@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "revision-1",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:20:41Z",
+  "updated_at": "2026-11-10T09:28:56Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
@@ -122,7 +122,7 @@
     {
       "step_id": "revision-1",
       "title": "Resolve first independent review findings",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "course-review"
       ],
@@ -160,14 +160,22 @@
         "curriculum/revision-1/coverage.csv": null
       },
       "started_at": "2026-11-10T09:20:19Z",
-      "active_spec_hash": "7e60c5e4454f15b6cd5eb4a3be1b3a4dad637e56c9a44378dfaad2d050b31a26",
-      "active_fingerprint": "7ff9eb95c5dfeaaa99bf07fee6f214a6eb3eb3001946e83eade153e77b8e3653",
       "run_id": "SD-COURSE-OUTLINE-revision-1-20261110T092019Z",
       "agent": "curriculum_designer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "7ff9eb95c5dfeaaa99bf07fee6f214a6eb3eb3001946e83eade153e77b8e3653",
+      "completed_spec_hash": "7e60c5e4454f15b6cd5eb4a3be1b3a4dad637e56c9a44378dfaad2d050b31a26",
+      "completed_output_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+      },
+      "completed_at": "2026-11-10T09:28:56Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "ba83abefd9e4abf9f1d03f51565ce993dd9a5833"
     },
     {
       "step_id": "course-recheck-1",
