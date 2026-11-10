@@ -1,0 +1,105 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-WORKFLOW-HARDENING",
+  "module_id": "workflow",
+  "current_phase": null,
+  "created_at": "2026-11-10T04:12:39Z",
+  "updated_at": "2026-11-10T04:12:39Z",
+  "steps": [
+    {
+      "step_id": "implementation",
+      "title": "implementation",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/scripts/taskctl.py",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/scripts/validate_content.py",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/tests/test_taskctl.py",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.academy/state/schema/task.schema.json",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.academy/state/task.template.json",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.academy/state/README.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/AGENTS.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/modules/database/workflow/lesson-template.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/modules/database/governance/content-guidelines.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.github/workflows/content-validation.yml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.codex/config.toml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.codex/agents/curriculum-coverage-reviewer.toml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.codex/agents/curriculum-designer.toml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.codex/agents/lesson-author.toml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.codex/agents/pedagogy-reviewer.toml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.codex/agents/provenance-reviewer.toml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.codex/agents/source-researcher.toml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.codex/agents/technical-reviewer.toml",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.claude/agents/pedagogy-reviewer.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.agents/skills/task-intake/SKILL.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.agents/skills/task-handoff/SKILL.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.agents/skills/module-pipeline/SKILL.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.agents/skills/pedagogical-review/SKILL.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.agents/skills/technical-review/SKILL.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.agents/skills/provenance-review/SKILL.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.agents/skills/curriculum-coverage-review/SKILL.md",
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/inputs/.agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "scripts/taskctl.py",
+        "scripts/validate_content.py",
+        "tests/test_taskctl.py",
+        "tests/test_content_validation.py",
+        ".academy/state/schema/task.schema.json",
+        ".academy/state/task.template.json",
+        ".academy/state/README.md",
+        "AGENTS.md",
+        "modules/database/workflow/lesson-template.md",
+        "modules/database/workflow/assessment-template.md",
+        "modules/database/governance/content-guidelines.md",
+        ".github/workflows/content-validation.yml",
+        ".codex/config.toml",
+        "docs/workflow-contract.md",
+        ".codex/agents/curriculum-coverage-reviewer.toml",
+        ".codex/agents/curriculum-designer.toml",
+        ".codex/agents/lesson-author.toml",
+        ".codex/agents/pedagogy-reviewer.toml",
+        ".codex/agents/provenance-reviewer.toml",
+        ".codex/agents/source-researcher.toml",
+        ".codex/agents/technical-reviewer.toml",
+        ".claude/agents/pedagogy-reviewer.md",
+        ".agents/skills/task-intake/SKILL.md",
+        ".agents/skills/task-handoff/SKILL.md",
+        ".agents/skills/module-pipeline/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".agents/skills/technical-review/SKILL.md",
+        ".agents/skills/provenance-review/SKILL.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "verification",
+      "title": "verification",
+      "status": "pending",
+      "depends_on": [
+        "implementation"
+      ],
+      "definition_version": "v1",
+      "input_paths": [],
+      "output_paths": [
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/final/report.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    }
+  ],
+  "notes": "Issue #7. Single writer @czyboi. Workflow changes only; do not resume curriculum or author lessons.",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-WORKFLOW-HARDENING.json",
+  "automation_status": "not_started"
+}

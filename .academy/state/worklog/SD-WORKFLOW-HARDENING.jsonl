@@ -1,0 +1,2 @@
+{"at": "2026-11-10T04:12:39Z", "event": "task_created", "module_id": "workflow", "owner": "@czyboi", "spec_path": ".academy/specs/SD-WORKFLOW-HARDENING.json", "task_id": "SD-WORKFLOW-HARDENING"}
+{"event": "user_feedback_disposition", "task_id": "SD-WORKFLOW-HARDENING", "source": "User authorized fixing the preceding workflow audit", "disposition": "Implement the reviewed issues in workflow tooling and shared guidance; preserve stopped curriculum work", "issue": 7}
