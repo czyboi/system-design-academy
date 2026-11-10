@@ -4,10 +4,10 @@
   "module_id": "curriculum",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-OUTLINE.json",
-  "automation_status": "in_progress",
+  "automation_status": "automation_complete",
   "current_phase": "validation",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:33:54Z",
+  "updated_at": "2026-11-10T09:35:29Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
@@ -243,7 +243,7 @@
     {
       "step_id": "validation",
       "title": "Validate full course map and record acceptance evidence",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "course-recheck-1"
       ],
@@ -278,14 +278,20 @@
         ".academy/task-runs/SD-COURSE-OUTLINE/report.md": null
       },
       "started_at": "2026-11-10T09:33:54Z",
-      "active_spec_hash": "8931c5969212d57cfc9688fd0946531cbe54959a9b912a8987ccaef87866477d",
-      "active_fingerprint": "b7f9982fbb3dbbb56f40abaa77e2eae15a5b8100c476cbfc6d6660876f13a57a",
       "run_id": "SD-COURSE-OUTLINE-validation-20261110T093354Z",
       "agent": "curriculum_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "b7f9982fbb3dbbb56f40abaa77e2eae15a5b8100c476cbfc6d6660876f13a57a",
+      "completed_spec_hash": "8931c5969212d57cfc9688fd0946531cbe54959a9b912a8987ccaef87866477d",
+      "completed_output_hashes": {
+        ".academy/task-runs/SD-COURSE-OUTLINE/report.md": "546511a395120db70489addf911f661109c281072c9e82701d997fbe52e36c19"
+      },
+      "completed_at": "2026-11-10T09:35:29Z",
+      "completed_by": "curriculum_orchestrator",
+      "completed_commit": "175e2e983b1078ab0f6b5a9a134686826d998bea"
     }
   ]
 }
