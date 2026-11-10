@@ -1,0 +1,198 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-WORKFLOW-COVERAGE-RESET",
+  "module_id": "database",
+  "current_phase": "pipeline-cleanup",
+  "created_at": "2026-11-09T15:54:44Z",
+  "updated_at": "2026-11-09T16:20:00Z",
+  "steps": [
+    {
+      "step_id": "coverage-agent",
+      "title": "Add independent source-to-curriculum and lesson coverage reviewer",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-design-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-designer.codex.original.toml",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-designer.claude.original.md",
+        "modules/database/curriculum/database-module.md",
+        "modules/database/sources/source-registry.csv"
+      ],
+      "output_paths": [
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".codex/agents/curriculum-coverage-reviewer.toml",
+        ".claude/agents/curriculum-coverage-reviewer.md",
+        ".agents/skills/curriculum-design/SKILL.md",
+        ".codex/agents/curriculum-designer.toml",
+        ".claude/agents/curriculum-designer.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "start_commit": "e3840c918e4b6955a5fa5156ca3129b16df424c8",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-design-skill.original.md": "a957198bd28963ae8611e0bf139c173024aa281abfa65037b849116953ce6244",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-designer.codex.original.toml": "fd1285717d12da5ec6c2c73436111c72d9a9059bff55812862fda4542263f67e",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/curriculum-designer.claude.original.md": "44daa0b08094eec8f40b3c9faebd46911221083ae28ffe0ed8bfad4f35c7d44f",
+        "modules/database/curriculum/database-module.md": "a4a9b35a0a8c40215ec1269e24167154ea93beab745e2d0d4fad62fa43f8af6d",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f"
+      },
+      "start_output_hashes": {
+        ".agents/skills/curriculum-coverage-review/SKILL.md": null,
+        ".codex/agents/curriculum-coverage-reviewer.toml": null,
+        ".claude/agents/curriculum-coverage-reviewer.md": null,
+        ".agents/skills/curriculum-design/SKILL.md": "a957198bd28963ae8611e0bf139c173024aa281abfa65037b849116953ce6244",
+        ".codex/agents/curriculum-designer.toml": "fd1285717d12da5ec6c2c73436111c72d9a9059bff55812862fda4542263f67e",
+        ".claude/agents/curriculum-designer.md": "44daa0b08094eec8f40b3c9faebd46911221083ae28ffe0ed8bfad4f35c7d44f"
+      },
+      "started_at": "2026-11-09T16:01:44Z",
+      "run_id": "SD-WORKFLOW-COVERAGE-RESET-coverage-agent-20261109T160144Z",
+      "agent": "curriculum-coverage-reviewer",
+      "completed_fingerprint": "96577d2cc71c1fd9500b7408b40a25dabedee3fd1e4ed62b2b7a841876da5a0d",
+      "completed_spec_hash": "9fea1ded53c11136f71452372cd187c89b56b83e4dd6ec70721d110e3e6cd2dd",
+      "completed_output_hashes": {
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757",
+        ".codex/agents/curriculum-coverage-reviewer.toml": "bce6e412ce53e4998dbb8ff2ed22c67aeb7f38015509362726b11fade1ce09a2",
+        ".claude/agents/curriculum-coverage-reviewer.md": "3094e2b3143c473ae0fc9331d02b49ef761ebbf4f59bbe97faed799151eb67d0",
+        ".agents/skills/curriculum-design/SKILL.md": "7b37217f21de33188853b2dd751ae0587fb495a64106ab033ba67b0c5c9556ab",
+        ".codex/agents/curriculum-designer.toml": "33dbe099ed95d34464add4ec84c039355618153bcb0b8eb44c800292c46ab800",
+        ".claude/agents/curriculum-designer.md": "ae0f2e8b8e2fd55e3e2b32b8c61d6134600b0bc919b002f36d9b61bc36d20667"
+      },
+      "completed_at": "2026-11-09T16:05:08Z",
+      "completed_by": "curriculum-coverage-reviewer",
+      "completed_commit": "104b27ecf31654af4dcdfde91b479daab9ea263f"
+    },
+    {
+      "step_id": "teaching-contract",
+      "title": "Encode audience, language, concise teaching, and separate assessment artifacts",
+      "status": "completed",
+      "depends_on": [
+        "coverage-agent"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-authoring-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/assessment-design-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogical-review-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/task-intake-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-author.codex.original.toml",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-author.claude.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogy-reviewer.codex.original.toml",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogy-reviewer.claude.original.md"
+      ],
+      "output_paths": [
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".agents/skills/task-intake/SKILL.md",
+        ".codex/agents/lesson-author.toml",
+        ".claude/agents/lesson-author.md",
+        ".codex/agents/pedagogy-reviewer.toml",
+        ".claude/agents/pedagogy-reviewer.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "start_commit": "5e3defa217ea600c0e64f5feaa5a9b96d0819a11",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-authoring-skill.original.md": "e20e95a7b16e28d70142b01263b65ef40a02cfe273d57ccd5c30320ee3bfbb14",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/assessment-design-skill.original.md": "b5223c59b341b14c2fdafee5b9387139b37f34fc91b91b7899ec2a9695a08df9",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogical-review-skill.original.md": "ba9dbf138adff94afaced6ca8639ef600cb140fb48a234387211e43d9467342f",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/task-intake-skill.original.md": "f5ba890ae52de086ad2c697f8aa8b96dc97c595e1f0e38de51b14c6158e72a4b",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-author.codex.original.toml": "1d050e910be957b16f9837048ff899562415e8cb66ec4fa452f7df200d3e3207",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/lesson-author.claude.original.md": "d84c32d7959ae493b3dd3bce96acf4c85785b643b2aa78897bab6ff58aaecf43",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogy-reviewer.codex.original.toml": "e8c45e759722673d97812296b8d16bae8ec9c864211c193a931231e429608028",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/pedagogy-reviewer.claude.original.md": "b97ef59a093a5ac655eb7d934c3c92dd7fc0cc05263ebb5f1e3e1413874f9d0b"
+      },
+      "start_output_hashes": {
+        ".agents/skills/lesson-authoring/SKILL.md": "e20e95a7b16e28d70142b01263b65ef40a02cfe273d57ccd5c30320ee3bfbb14",
+        ".agents/skills/assessment-design/SKILL.md": "b5223c59b341b14c2fdafee5b9387139b37f34fc91b91b7899ec2a9695a08df9",
+        ".agents/skills/pedagogical-review/SKILL.md": "ba9dbf138adff94afaced6ca8639ef600cb140fb48a234387211e43d9467342f",
+        ".agents/skills/task-intake/SKILL.md": "f5ba890ae52de086ad2c697f8aa8b96dc97c595e1f0e38de51b14c6158e72a4b",
+        ".codex/agents/lesson-author.toml": "1d050e910be957b16f9837048ff899562415e8cb66ec4fa452f7df200d3e3207",
+        ".claude/agents/lesson-author.md": "d84c32d7959ae493b3dd3bce96acf4c85785b643b2aa78897bab6ff58aaecf43",
+        ".codex/agents/pedagogy-reviewer.toml": "e8c45e759722673d97812296b8d16bae8ec9c864211c193a931231e429608028",
+        ".claude/agents/pedagogy-reviewer.md": "b97ef59a093a5ac655eb7d934c3c92dd7fc0cc05263ebb5f1e3e1413874f9d0b"
+      },
+      "started_at": "2026-11-09T16:05:37Z",
+      "run_id": "SD-WORKFLOW-COVERAGE-RESET-teaching-contract-20261109T160536Z",
+      "agent": "lesson-author-and-reviewer",
+      "completed_fingerprint": "b3639ef4a581796d2a0c12702fa98353109a768dceb1c0363bfa6a4edee8129e",
+      "completed_spec_hash": "2e9ed215b9f4d047b8472cd762fd520085c9985fd5d123f18b17fe412dbcbb80",
+      "completed_output_hashes": {
+        ".agents/skills/lesson-authoring/SKILL.md": "dbc4e0f7c8d9999ccdabc9b54343d41ff8ab2eaa3bc73c01badb9bc139ea788e",
+        ".agents/skills/assessment-design/SKILL.md": "ee66e4d69b5e6ece4973291d2338e42357134169d607fa01bbd3a81010280d97",
+        ".agents/skills/pedagogical-review/SKILL.md": "8a615f9cfd1b8849d2fab87c352e008939b81e5c79f6d3651989d3dfaa068bf3",
+        ".agents/skills/task-intake/SKILL.md": "9a9aa248cbe76fc569031b52db84e36e0f851e8859f3a3fa72d9adb2ebeb1521",
+        ".codex/agents/lesson-author.toml": "90140baf8fc2eb92e167423dd5cde8d70d4a13366496beb2d3e8eaf825f33aee",
+        ".claude/agents/lesson-author.md": "246a14b4a25e3ad1a0edfb477e4a3bdce9fe387fc2e825849bdcfdbee3e90bbc",
+        ".codex/agents/pedagogy-reviewer.toml": "e285e5c3d4aca99b3e7ef3dfa0029421dc4f5de9e6d0c6e8390addd60d5e8f48",
+        ".claude/agents/pedagogy-reviewer.md": "3997de822fa3267dfcca2e1da803db73bdc7fe9c6531d04bb2c2840a9d94caa2"
+      },
+      "completed_at": "2026-11-09T16:10:26Z",
+      "completed_by": "lesson-author-and-reviewer",
+      "completed_commit": "aaaa0bffd0e8cbb6b95731ab2ca8b3e6b8b889dd"
+    },
+    {
+      "step_id": "pipeline-cleanup",
+      "title": "Require coverage gates, capture reusable feedback, and remove rejected outputs",
+      "status": "completed",
+      "depends_on": [
+        "coverage-agent",
+        "teaching-contract"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/module-pipeline-skill.original.md",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/workflow-pilot.spec.original.json",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/workflow-pilot.worklog.snapshot.jsonl",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/english-teaching-revision.spec.original.json",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/english-teaching-revision.worklog.snapshot.jsonl",
+        "modules/database/curriculum/database-module.md",
+        "modules/database/sources/source-registry.csv"
+      ],
+      "output_paths": [
+        ".agents/skills/module-pipeline/SKILL.md"
+      ],
+      "checkpoint": {
+        "note": "Pipeline workflow committed, exact output cleanup completed, required validation outcomes recorded, and historical task states checked.",
+        "next_action": "Task complete; no further automated action.",
+        "at": "2026-11-09T16:15:29Z"
+      },
+      "attempts": 1,
+      "start_commit": "3f253433331613cd3d6603a9c46bea7dcdfe8cc2",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/module-pipeline-skill.original.md": "229978580c63bac241f73d0bb8fb8276239048c33559f380bb9e69abaf808ab8",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/workflow-pilot.spec.original.json": "8322dfbffe5447cb4007676366c408248054f6d8fdc2023d2dfcd2661a168e4a",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/workflow-pilot.worklog.snapshot.jsonl": "cd4265be5d70933f07d1d5e00b3a3eacc39aac98503deaaa9f3eaba56ade99c2",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/english-teaching-revision.spec.original.json": "c81c84ea9abbd26a53ae5b1dfb529bc380d0d3405297910fdf706ccd29c806d0",
+        "modules/database/workflow/runs/SD-WORKFLOW-COVERAGE-RESET/inputs/english-teaching-revision.worklog.snapshot.jsonl": "a52c4ecd6ce8a2cf35522a3bdfbaaa7bb7a5f0dedbf3cb86abdcf2e7be55e6cd",
+        "modules/database/curriculum/database-module.md": "a4a9b35a0a8c40215ec1269e24167154ea93beab745e2d0d4fad62fa43f8af6d",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f"
+      },
+      "start_output_hashes": {
+        ".agents/skills/module-pipeline/SKILL.md": "229978580c63bac241f73d0bb8fb8276239048c33559f380bb9e69abaf808ab8"
+      },
+      "started_at": "2026-11-09T16:11:15Z",
+      "run_id": "SD-WORKFLOW-COVERAGE-RESET-pipeline-cleanup-20261109T161115Z",
+      "agent": "parent-orchestrator",
+      "completed_fingerprint": "bfb23b1da29de86ccb2c9bf776cb1f0b08de4e1b5a7e3600daf850c0533ae240",
+      "completed_spec_hash": "33b5d61a5993550dad3dc7f3f829ada4aa71496455282957b0c325b5304b3a04",
+      "completed_output_hashes": {
+        ".agents/skills/module-pipeline/SKILL.md": "a4fecb0535126a3308b36c030445c2d4bb1cc9b4d3a3ec67f7b6948deeeb8df4"
+      },
+      "completed_at": "2026-11-09T16:16:40Z",
+      "completed_by": "parent-orchestrator",
+      "completed_commit": "a645621ce97f73c86cb0827ce2b9fb804b08d294"
+    }
+  ],
+  "notes": "GitHub Issue #5. One active writer: @czyboi. User explicitly rejected prior generated Database outputs; delete only paths in the canonical spec. Preserve the curriculum plan and immutable inputs while encoding reusable feedback in skills/profiles.",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-WORKFLOW-COVERAGE-RESET.json",
+  "automation_status": "automation_complete"
+}

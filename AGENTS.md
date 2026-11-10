@@ -20,6 +20,7 @@
 - Commit declared outputs before `complete`. Completion verifies input/spec stability and requires new committed output, unless intentional reuse is explicitly recorded with `--reuse-output PATH --reuse-reason "..."`.
 - Commit state/worklog after every mutation. Checkpoint and commit before handing off to another provider/session.
 - One active writer per task. The JSON state is not a distributed lock.
+- Record user corrections, reviewer findings, and validation failures in the task worklog or report with their source, disposition, and follow-up. Before reusing a workflow, read relevant prior feedback. Promote reusable process improvements into shared skills, QA checklists, or regression tests through a scoped task; keep one-off decisions in task artifacts and do not rely on chat memory.
 
 ## Skills and agents
 - Shared procedures live only in `.agents/skills/`. Codex profiles live in `.codex/agents/`; Claude Code project subagents live in `.claude/agents/`.
@@ -29,8 +30,18 @@
 - Do not have multiple agents edit the same output. Maximum two automated revision cycles; stop for human judgment if a critical disagreement remains.
 
 ## Content and approval gates
-- Every lesson needs outcomes, prerequisites, motivating problem, mechanism, worked example, trade-offs/failure modes, exercise, 5–8 knowledge checks with explanations, and direct references.
+- Every lesson teaches outcomes, prerequisites, motivating problem, mechanism, worked example, trade-offs/failure modes, and direct references. Its separate companion assessment contains an exercise, 5–8 checks with explanations, rubric and outcome map. The paired package satisfies lesson requirements.
 - Map every learning outcome to an assessment. Distinguish general principles from vendor-specific semantics.
 - Run `pip install -r requirements-dev.txt`, `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate`.
 - CI structural validation does not establish factual correctness, legal rights, source reachability, or pedagogical quality.
 - Automation completion is not human approval. Keep the PR draft until reviewers explicitly approve; never auto-publish learner-facing content.
+
+- `taskctl status` is read-only. Use `reconcile` explicitly to persist aggregate changes. Respect task execution_control holds; only resume-task after explicit user direction.
+- New review gates use artifact-bound verdict JSON; a completed review with block/revise cannot satisfy an acceptance gate. See docs/workflow-contract.md for the CLI contract.
+
+## Compact workflow defaults
+- Use the shared module-pipeline skill: three steps for course planning, six for a lesson package, two for workflow/code. One Issue/spec/state/worklog per bounded task; internal research/review steps do not need separate Issues.
+- Reuse an accepted, unchanged full-course plan/inventory/matrix gate. Do not regenerate course planning per lesson. Full Primer coverage includes every knowledge topic, even optional tracks; exclusions/deferments cannot count as complete coverage.
+- Default lesson reviews are two independent combined assignments: technical + provenance, and actual source coverage + pedagogy/language. Preserve every review dimension and exact artifact hashes. Add specialists only for unresolved risks.
+- No mandatory revision, final copy or duplicate recheck when the first pass is accepted. Revisions require fresh gates on the actual new artifacts, with at most two automated cycles.
+- Workflow-only changes never imply permission to generate curriculum/lessons or resume historical held work.

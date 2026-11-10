@@ -1,9 +1,9 @@
 # Project Specification — System Design Academy
 
-**Status:** Draft 0.1  
-**Owner:** Project owner  
-**Primary language:** Vietnamese, retaining standard English technical terminology  
-**Initial audience:** Backend engineers with programming and basic database experience  
+**Status:** Draft 0.1
+**Owner:** Project owner
+**Primary language:** English for all learner-facing content; source titles and quotations retain their original language
+**Initial audience:** Backend engineers with programming and basic database experience
 **Initial content source:** System Design Primer plus official documentation, standards, papers, and engineering case studies
 
 ## 1. Product goal

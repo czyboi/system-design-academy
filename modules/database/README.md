@@ -1,8 +1,8 @@
 # System Design Academy — Database Module Pilot
 
-**Status:** Draft V1 / human review required  
-**Language:** Vietnamese, with standard English technical terms  
-**Track:** System Design for backend engineers  
+**Status:** Draft V1 / human review required
+**Language:** English for all learner-facing prose, diagrams, exercises, and answer explanations
+**Track:** System Design for backend engineers
 **Primary source:** Donne Martin, *The System Design Primer* (CC BY 4.0), supplemented by official vendor documentation.
 
 ## Purpose

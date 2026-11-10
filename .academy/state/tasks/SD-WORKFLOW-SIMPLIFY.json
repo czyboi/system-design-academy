@@ -1,0 +1,256 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-WORKFLOW-SIMPLIFY",
+  "module_id": "workflow",
+  "current_phase": "verification",
+  "created_at": "2026-11-10T04:28:34Z",
+  "updated_at": "2026-11-10T08:23:11Z",
+  "steps": [
+    {
+      "step_id": "implementation",
+      "title": "implementation",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [],
+      "output_paths": [
+        ".academy/state/task.template.json",
+        ".academy/state/course.template.json",
+        ".academy/state/workflow.template.json",
+        "scripts/check_course_coverage.py",
+        "tests/test_course_coverage.py",
+        "tests/test_content_validation.py",
+        "README.md",
+        "docs/workflow-contract.md",
+        "docs/agent-architecture.md",
+        ".academy/state/README.md",
+        "AGENTS.md",
+        "modules/database/README.md",
+        "modules/database/workflow/agent-runbook.md",
+        "modules/database/workflow/run-database-pilot.md",
+        "modules/database/governance/qa-checklist.md",
+        ".agents/skills/module-pipeline/SKILL.md",
+        ".agents/skills/task-intake/SKILL.md",
+        ".agents/skills/curriculum-design/SKILL.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".agents/skills/technical-review/SKILL.md",
+        ".agents/skills/provenance-review/SKILL.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        "tests/test_taskctl.py"
+      ],
+      "checkpoint": {
+        "note": "User clarified workflow-only scope; restored module files and fixed reviewer findings in the checker and test fixtures.",
+        "next_action": "Complete verification and record independent recheck.",
+        "at": "2026-11-10T08:15:57Z"
+      },
+      "attempts": 2,
+      "start_commit": "956faa0b63952a8a9f88b0d9b852d03853a78ceb",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        ".academy/state/task.template.json": "31ba6268b98f7b824ca81be0cc398cef6b3e88594bfee93378fda3c130135242",
+        ".academy/state/course.template.json": "e3ab5ba360c3a94772b89b70ad6a235aa0afe21083147e1bd820bad329545599",
+        ".academy/state/workflow.template.json": "9fbb04e0aff3c2091b5f2a03249cc07a88617b946d71304a13c3dd727cb72777",
+        "scripts/check_course_coverage.py": "8c099eab357f34cae113f6eb2f884e4e519d404a62e9d8f2e02bbd8d3267ae67",
+        "tests/test_course_coverage.py": "eabcb16adf17dd78cec92a7bdf150b1790148536d9ccb7acd7d05aafe2bb2068",
+        "tests/test_content_validation.py": "dcd9ff7d00a26d60369dec52ad97632f3419729a54e401170a254bde6bdc9fc3",
+        "README.md": "f584242a825570a89718e815817ed9e27db3f6482547d3e22789cbdadbb1518b",
+        "docs/workflow-contract.md": "f5d6bed6054d9f182488a3440f7bcaefa291f6cf80ad30bf9a47ac63b3d94ef5",
+        "docs/agent-architecture.md": "2a1acfa6a4d1dfb1cf2c87e005d18d36bfbd3f0bfd13c6f8a5017ef341c95ce9",
+        ".academy/state/README.md": "a83a1908ce7f8b69957dc71bd119291b1c40679858abecfe5ed002f61c8de56f",
+        "AGENTS.md": "0f22178d8e9b9cf13697521835135386534a760730ec4c16c6640f5da96361c5",
+        "modules/database/README.md": "f84f394985b866e55362c27d8310aa29642af283d31e615c0b06df3b10763a66",
+        "modules/database/workflow/agent-runbook.md": "282f7ec3e71ddfe7f08c255ac70cf4139d82d43e672ad7c15a7d8fae80ecddd3",
+        "modules/database/workflow/run-database-pilot.md": "a55dc9897fbbc1a0a7bba5652f967bc045cd2522799e14d3869370802e01cc6b",
+        "modules/database/governance/qa-checklist.md": "096f84c03b9fbd2c6767cd2061d7ff2bf4dc6e93ea4459a52de10a71132fd327",
+        ".agents/skills/module-pipeline/SKILL.md": "c7dc4ef2a4f08e5b5f36188baa781d838f740834a069eab7abef002b0d91e1d9",
+        ".agents/skills/task-intake/SKILL.md": "f18d970822de570183a293e4af0fd4b5743c735bbc523aa21fd96f6bd946ee8a",
+        ".agents/skills/curriculum-design/SKILL.md": "8913bb0fa09bd31e6ce35c1f7a8ed663a419c6c74bec66acca0fcdd2de975ab3",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "aea2576491b4de38c1ed92ab01904548a43f71c0031bbb641ab356bed7b05654",
+        ".agents/skills/pedagogical-review/SKILL.md": "ba49779754723f92a0ded1788f1487bf6c38bc1bf1d96f6a314349da52fcd993",
+        ".agents/skills/technical-review/SKILL.md": "8e5155b15e10c8a259d80e10b0da185621f5673cf7ef9fdd5a9e247e47b9b502",
+        ".agents/skills/provenance-review/SKILL.md": "314fe9ff25f14be180d26f430be9e5388a3d2de18a4e2a29798139160a2bae61",
+        ".agents/skills/lesson-authoring/SKILL.md": "076d9b410da019a6457e88d13c21e18afba22555d3e59cc3395d15b2e0bf3a3c",
+        "tests/test_taskctl.py": "563872c0b6bed106ee693cfa9bbc57a7219d7a9b87a567260da5fa3deb3583a7"
+      },
+      "started_at": "2026-11-10T08:21:10Z",
+      "run_id": "SD-WORKFLOW-SIMPLIFY-implementation-20261110T082108Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "resume_count": 1,
+      "completed_fingerprint": "716db1cdd237d61facd4efb9ffd4aee2a7f46cdf556e7be7766c63af16765917",
+      "completed_spec_hash": "847722e9c432432e17d94f223b03e8bad16d743538154349519a1cfe2d149b47",
+      "completed_output_hashes": {
+        ".academy/state/task.template.json": "31ba6268b98f7b824ca81be0cc398cef6b3e88594bfee93378fda3c130135242",
+        ".academy/state/course.template.json": "e3ab5ba360c3a94772b89b70ad6a235aa0afe21083147e1bd820bad329545599",
+        ".academy/state/workflow.template.json": "9fbb04e0aff3c2091b5f2a03249cc07a88617b946d71304a13c3dd727cb72777",
+        "scripts/check_course_coverage.py": "061969675bcbcd83bbac7b5e16444bbbb69eb2dee249914d8eeafe077a35b225",
+        "tests/test_course_coverage.py": "c252fd2f8181fdfdcc0d2a138eeb72cab7107692881bf006044bc2b7bd3efd35",
+        "tests/test_content_validation.py": "dcd9ff7d00a26d60369dec52ad97632f3419729a54e401170a254bde6bdc9fc3",
+        "README.md": "f584242a825570a89718e815817ed9e27db3f6482547d3e22789cbdadbb1518b",
+        "docs/workflow-contract.md": "f5d6bed6054d9f182488a3440f7bcaefa291f6cf80ad30bf9a47ac63b3d94ef5",
+        "docs/agent-architecture.md": "2a1acfa6a4d1dfb1cf2c87e005d18d36bfbd3f0bfd13c6f8a5017ef341c95ce9",
+        ".academy/state/README.md": "a83a1908ce7f8b69957dc71bd119291b1c40679858abecfe5ed002f61c8de56f",
+        "AGENTS.md": "0f22178d8e9b9cf13697521835135386534a760730ec4c16c6640f5da96361c5",
+        "modules/database/README.md": "f84f394985b866e55362c27d8310aa29642af283d31e615c0b06df3b10763a66",
+        "modules/database/workflow/agent-runbook.md": "282f7ec3e71ddfe7f08c255ac70cf4139d82d43e672ad7c15a7d8fae80ecddd3",
+        "modules/database/workflow/run-database-pilot.md": "a55dc9897fbbc1a0a7bba5652f967bc045cd2522799e14d3869370802e01cc6b",
+        "modules/database/governance/qa-checklist.md": "096f84c03b9fbd2c6767cd2061d7ff2bf4dc6e93ea4459a52de10a71132fd327",
+        ".agents/skills/module-pipeline/SKILL.md": "c7dc4ef2a4f08e5b5f36188baa781d838f740834a069eab7abef002b0d91e1d9",
+        ".agents/skills/task-intake/SKILL.md": "f18d970822de570183a293e4af0fd4b5743c735bbc523aa21fd96f6bd946ee8a",
+        ".agents/skills/curriculum-design/SKILL.md": "8913bb0fa09bd31e6ce35c1f7a8ed663a419c6c74bec66acca0fcdd2de975ab3",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "aea2576491b4de38c1ed92ab01904548a43f71c0031bbb641ab356bed7b05654",
+        ".agents/skills/pedagogical-review/SKILL.md": "ba49779754723f92a0ded1788f1487bf6c38bc1bf1d96f6a314349da52fcd993",
+        ".agents/skills/technical-review/SKILL.md": "8e5155b15e10c8a259d80e10b0da185621f5673cf7ef9fdd5a9e247e47b9b502",
+        ".agents/skills/provenance-review/SKILL.md": "314fe9ff25f14be180d26f430be9e5388a3d2de18a4e2a29798139160a2bae61",
+        ".agents/skills/lesson-authoring/SKILL.md": "076d9b410da019a6457e88d13c21e18afba22555d3e59cc3395d15b2e0bf3a3c",
+        "tests/test_taskctl.py": "563872c0b6bed106ee693cfa9bbc57a7219d7a9b87a567260da5fa3deb3583a7"
+      },
+      "completed_at": "2026-11-10T08:22:07Z",
+      "completed_by": "workflow_orchestrator",
+      "completed_commit": "2ede57dfd0b0e4163c1b23c4f512cdb8cf0c957a",
+      "reused_outputs": {
+        ".academy/state/README.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".academy/state/course.template.json": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".academy/state/task.template.json": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".academy/state/workflow.template.json": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/curriculum-coverage-review/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/curriculum-design/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/lesson-authoring/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/module-pipeline/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/pedagogical-review/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/provenance-review/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/task-intake/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        ".agents/skills/technical-review/SKILL.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "AGENTS.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "README.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "docs/agent-architecture.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "docs/workflow-contract.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "modules/database/README.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "modules/database/governance/qa-checklist.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "modules/database/workflow/agent-runbook.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "modules/database/workflow/run-database-pilot.md": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "tests/test_content_validation.py": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        },
+        "tests/test_taskctl.py": {
+          "reason": "Unchanged workflow artifacts intentionally retained after targeted reviewer fix.",
+          "at": "2026-11-10T08:22:07Z"
+        }
+      },
+      "invalidation_reason": "Independent review found coverage checker false positives; user requested fix before merge"
+    },
+    {
+      "step_id": "verification",
+      "title": "verification",
+      "status": "completed",
+      "depends_on": [
+        "implementation"
+      ],
+      "definition_version": "v1",
+      "input_paths": [],
+      "output_paths": [
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/review.md",
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/report.md"
+      ],
+      "checkpoint": {
+        "note": "Independent review requires revision: excluded attribution, answer key and nested exercise headings can count as taught evidence. User clarified workflow-only scope; all module files restored.",
+        "next_action": "Fix checker and tests, recheck independently, rerun validation; no content generation.",
+        "at": "2026-11-10T08:17:38Z"
+      },
+      "attempts": 2,
+      "start_commit": "0c7f27eae6d2515ec8443754f9fa826670532377",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/review.md": "718810b7876e9620b7cbc20ba0fbc6a7c08da840aa6a5890ee267addb71a1f3c",
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/report.md": null
+      },
+      "started_at": "2026-11-10T08:22:24Z",
+      "run_id": "SD-WORKFLOW-SIMPLIFY-verification-20261110T082224Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "invalidation_reason": "Independent review found coverage checker false positives; user requested fix before merge",
+      "completed_fingerprint": "5686aca55a37b494853aefbafabd63edfa4c5e062bd3cfe8502e0b11d1bd85a1",
+      "completed_spec_hash": "28a3722a03dd85ea5f2253bc4e3cdce3867f029637e10ed2c6230a29f00d0cd1",
+      "completed_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/review.md": "1f7c14c9c4c6740b7d4b94185a89488d0d83195a67c92a452cabe6ad923c5545",
+        ".academy/task-runs/SD-WORKFLOW-SIMPLIFY/report.md": "be707a7f2bb6e6a44c1efd076b6959e9f0772428c21f0f280ad6ddac4e332044"
+      },
+      "completed_at": "2026-11-10T08:23:11Z",
+      "completed_by": "workflow_orchestrator",
+      "completed_commit": "8f7136f768004f325c369b0f74620cd1c46e90ef"
+    }
+  ],
+  "notes": "One lesson package per task. Replace module-specific input paths at intake. Plan revisions use unique outputs and a new review gate. At most two automated revision cycles; see docs/workflow-contract.md. Final artifacts remain draft.",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-WORKFLOW-SIMPLIFY.json",
+  "automation_status": "automation_complete",
+  "execution_control": "active"
+}

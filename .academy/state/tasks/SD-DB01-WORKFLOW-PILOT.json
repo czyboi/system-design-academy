@@ -1,0 +1,476 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-DB01-WORKFLOW-PILOT",
+  "module_id": "database",
+  "current_phase": "validation",
+  "created_at": "2026-11-09T13:04:26Z",
+  "updated_at": "2026-11-09T15:50:29Z",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Build claim-level source evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/source-research/SKILL.md",
+        ".codex/agents/source-researcher.toml",
+        "GOVERNANCE.md",
+        "modules/database/README.md",
+        ".claude/agents/source-researcher.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md",
+        "modules/database/sources/source-registry.csv",
+        "modules/database/governance/content-guidelines.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 2,
+      "start_commit": "b399cbf7c2cea3f99b2a98684af2ee75d9891d49",
+      "start_input_hashes": {
+        ".agents/skills/source-research/SKILL.md": "ecf1bae5892e35facd4a49edcfbde0181403bb678fe32b70b104a7de1f6b530d",
+        ".codex/agents/source-researcher.toml": "73c959fb095ae86cdc52b86dedde85acdd2d13b26e8d0e8bb18d963dc17e53db",
+        "GOVERNANCE.md": "4a7daada28b9319c45fc11260ec8320a5b58c4a6b2ec3699144cfa04ee565aec",
+        "modules/database/README.md": "a86065df4582e8edeb39788077f741aae62e068bc4c721bf39aa15b999bf2e92",
+        ".claude/agents/source-researcher.md": "fc9df7b1bd83420ecb50e0d5621df0cd2217a4cf0d1f4fb5693ca9b6cba839ca",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md": "6d74a63299ca54f6da2591d19cdb7e85e3edf6e6180051df849861feed469801",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md": "95c6bff53c75da4d6fa9f3c0a31eb7814036683ee90ef06bc32baa55c2ef2ade",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f",
+        "modules/database/governance/content-guidelines.md": "56cd86a0577c027fcb2e1fc0141bf4ef1b8a5841236cb4e95566cc880d4ef15d"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": "316157517e556d756440c14a117df92d509533c65971728208eee32aa840ff98"
+      },
+      "started_at": "2026-11-09T13:47:20Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-research-20261109T134720Z",
+      "agent": "source_researcher",
+      "completed_fingerprint": "35b8a785c0bab31dc087105843330a10b4ac5e71e61448e6967f8fbe86228b1d",
+      "completed_spec_hash": "906600660ef8c383e63ae124006044a193fbbb53630284e763a1a170827ecabf",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": "316157517e556d756440c14a117df92d509533c65971728208eee32aa840ff98"
+      },
+      "completed_at": "2026-11-09T13:47:54Z",
+      "completed_by": "source_researcher",
+      "completed_commit": "2d2d44349c4de5e76c676ca6176a0c115a1a8f94",
+      "invalidation_reason": "Canonical DB-01 is updated by revision and cannot remain a mutable upstream input; freeze the exact original lesson from the research start commit, then reuse unchanged research output with an explicit reason.",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": {
+          "reason": "The evidence pack was produced from the byte-identical DB-01 snapshot captured from the original research start commit; only the declared source path was frozen, so the checked claims and sources remain unchanged.",
+          "at": "2026-11-09T13:47:54Z"
+        }
+      }
+    },
+    {
+      "step_id": "curriculum",
+      "title": "Map prerequisites, outcomes, and sequence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/curriculum-design/SKILL.md",
+        ".codex/agents/curriculum-designer.toml",
+        "CURRICULUM_MASTER.md",
+        "modules/database/README.md",
+        ".claude/agents/curriculum-designer.md",
+        "modules/database/curriculum/database-module.md",
+        "modules/database/assessments/database-quiz.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 2,
+      "start_commit": "f8701bea4466508a0a935ddb0377ac5ff49e26ae",
+      "start_input_hashes": {
+        ".agents/skills/curriculum-design/SKILL.md": "a957198bd28963ae8611e0bf139c173024aa281abfa65037b849116953ce6244",
+        ".codex/agents/curriculum-designer.toml": "fd1285717d12da5ec6c2c73436111c72d9a9059bff55812862fda4542263f67e",
+        "CURRICULUM_MASTER.md": "e03ad657674c412aa24ece40180aefb3bbf2d0641098a062f593c9241f8312f1",
+        "modules/database/README.md": "a86065df4582e8edeb39788077f741aae62e068bc4c721bf39aa15b999bf2e92",
+        ".claude/agents/curriculum-designer.md": "44daa0b08094eec8f40b3c9faebd46911221083ae28ffe0ed8bfad4f35c7d44f",
+        "modules/database/curriculum/database-module.md": "a4a9b35a0a8c40215ec1269e24167154ea93beab745e2d0d4fad62fa43f8af6d",
+        "modules/database/assessments/database-quiz.md": "ddbf0da2a36ae06e3b4df7918a8f6f5fc2a0d5157aaa581988c2e2b7e888ba9c",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md": "6d74a63299ca54f6da2591d19cdb7e85e3edf6e6180051df849861feed469801",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md": "95c6bff53c75da4d6fa9f3c0a31eb7814036683ee90ef06bc32baa55c2ef2ade"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": "f328481e997ffad5003d086eea44cd44ae4911b7f12eb5e38dbf0c89455612d2"
+      },
+      "started_at": "2026-11-09T13:48:36Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-curriculum-20261109T134836Z",
+      "agent": "curriculum_designer",
+      "completed_fingerprint": "270fa7f41338f4e851299a2ffc9fb06a34ab88331674e56b2fb6cea321c7a419",
+      "completed_spec_hash": "b3d41cb77cc524c81f7b952816332acb0bf9ba7efff6adc9f05890b240d605cb",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": "f328481e997ffad5003d086eea44cd44ae4911b7f12eb5e38dbf0c89455612d2"
+      },
+      "completed_at": "2026-11-09T13:49:01Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "db7a244c8f0e844b3166527660f4a5de262dc385",
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": {
+          "reason": "The curriculum map was produced from the byte-identical DB-01 snapshot captured from the original research start commit; freezing the declared source path does not change its mapping or findings.",
+          "at": "2026-11-09T13:49:01Z"
+        }
+      }
+    },
+    {
+      "step_id": "author",
+      "title": "Create the assigned draft lesson",
+      "status": "completed",
+      "depends_on": [
+        "research",
+        "curriculum"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        ".codex/agents/lesson-author.toml",
+        "GOVERNANCE.md",
+        ".claude/agents/lesson-author.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/workflow/lesson-template.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 2,
+      "start_commit": "a94275e0981612c3aa72e4d55050663dd1d63bef",
+      "start_input_hashes": {
+        ".agents/skills/lesson-authoring/SKILL.md": "2d3ec97b0dbd6cca6a3251676292d3705e872537338970c4e2bc8c319e1cdd15",
+        ".agents/skills/assessment-design/SKILL.md": "b5223c59b341b14c2fdafee5b9387139b37f34fc91b91b7899ec2a9695a08df9",
+        ".codex/agents/lesson-author.toml": "1d050e910be957b16f9837048ff899562415e8cb66ec4fa452f7df200d3e3207",
+        "GOVERNANCE.md": "4a7daada28b9319c45fc11260ec8320a5b58c4a6b2ec3699144cfa04ee565aec",
+        ".claude/agents/lesson-author.md": "d84c32d7959ae493b3dd3bce96acf4c85785b643b2aa78897bab6ff58aaecf43",
+        "modules/database/governance/content-guidelines.md": "56cd86a0577c027fcb2e1fc0141bf4ef1b8a5841236cb4e95566cc880d4ef15d",
+        "modules/database/workflow/lesson-template.md": "1b1178e8978f25208670310ba0a5fcef7da04c5ed12356f3d4f878ab6703e6db",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/DB-01-original.md": "6d74a63299ca54f6da2591d19cdb7e85e3edf6e6180051df849861feed469801",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/inputs/README.md": "95c6bff53c75da4d6fa9f3c0a31eb7814036683ee90ef06bc32baa55c2ef2ade",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": "316157517e556d756440c14a117df92d509533c65971728208eee32aa840ff98",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": "f328481e997ffad5003d086eea44cd44ae4911b7f12eb5e38dbf0c89455612d2"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7"
+      },
+      "started_at": "2026-11-09T13:49:48Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-author-20261109T134948Z",
+      "agent": "lesson_author",
+      "completed_fingerprint": "9a34aa5c4dc0d40e864d5a6ddbeeb707d84ea2057ba8350eb91d4d217e44d69b",
+      "completed_spec_hash": "e281c9191193e308c74d08fbf411dddc42848605022f717333ea3e34c73ef5fb",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7"
+      },
+      "completed_at": "2026-11-09T13:50:18Z",
+      "completed_by": "lesson_author",
+      "completed_commit": "82370fdcb8b004e7445a65f95b6450e28108f72c",
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": {
+          "reason": "The revised draft was authored from the exact DB-01 source snapshot and the committed research/curriculum outputs. Only the original source path was frozen, so the authored content remains unchanged and valid.",
+          "at": "2026-11-09T13:50:18Z"
+        }
+      }
+    },
+    {
+      "step_id": "technical-review",
+      "title": "Review technical accuracy independently",
+      "status": "completed",
+      "depends_on": [
+        "author"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/technical-review/SKILL.md",
+        ".codex/agents/technical-reviewer.toml",
+        ".claude/agents/technical-reviewer.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 2,
+      "start_commit": "cda7f4d6144820f01f000b6e77920bddc6a0db61",
+      "start_input_hashes": {
+        ".agents/skills/technical-review/SKILL.md": "2ff66038ec08de7b112c9ef740e2571e6230e0430b3d88f773c164cf0442fed6",
+        ".codex/agents/technical-reviewer.toml": "947f2ffcce577e6854df5106a28b443565cccc9bbd9d9485c4133d6339d1e567",
+        ".claude/agents/technical-reviewer.md": "095ea7e6ba859092fbbe5a37b542339ff7664aded75e789b7ab5283a278a7d6e",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": "316157517e556d756440c14a117df92d509533c65971728208eee32aa840ff98"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md": "73e7a0b29abe9ca1bd6b3bcb2c5448f2f83b0cde1385a5e54fe5684c0e475bd8"
+      },
+      "started_at": "2026-11-09T13:51:16Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-technical-review-20261109T135116Z",
+      "agent": "technical_reviewer",
+      "completed_fingerprint": "6d41d3e9e7b1ac645e8e3a644e04a843c91fd28f268deb1d2940d1d75369b93f",
+      "completed_spec_hash": "6710049d1d19ac17f1b2d2548dabdee7e64dd93fbab8ef020f71fca708a5b120",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md": "73e7a0b29abe9ca1bd6b3bcb2c5448f2f83b0cde1385a5e54fe5684c0e475bd8"
+      },
+      "completed_at": "2026-11-09T13:52:00Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "31c8bb3af42ec8c797d8d1f15d96244b34832278",
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md": {
+          "reason": "The technical review evaluates the byte-identical, committed author draft; changing upstream task fingerprints only reflects freezing the original source path and does not change the reviewed artifact.",
+          "at": "2026-11-09T13:52:00Z"
+        }
+      }
+    },
+    {
+      "step_id": "pedagogy-review",
+      "title": "Review learner experience and outcome alignment",
+      "status": "completed",
+      "depends_on": [
+        "author"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".codex/agents/pedagogy-reviewer.toml",
+        ".claude/agents/pedagogy-reviewer.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 2,
+      "start_commit": "57a485a88790fa50dc7282e28e6b1b6fe8c6261a",
+      "start_input_hashes": {
+        ".agents/skills/pedagogical-review/SKILL.md": "ba9dbf138adff94afaced6ca8639ef600cb140fb48a234387211e43d9467342f",
+        ".codex/agents/pedagogy-reviewer.toml": "e8c45e759722673d97812296b8d16bae8ec9c864211c193a931231e429608028",
+        ".claude/agents/pedagogy-reviewer.md": "b97ef59a093a5ac655eb7d934c3c92dd7fc0cc05263ebb5f1e3e1413874f9d0b",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/curriculum/map.md": "f328481e997ffad5003d086eea44cd44ae4911b7f12eb5e38dbf0c89455612d2"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md": "5a2b430cbd380a8cac675b8e189657ed8d3ffd2dcc86b359c8755735f840d90a"
+      },
+      "started_at": "2026-11-09T13:52:50Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-pedagogy-review-20261109T135249Z",
+      "agent": "pedagogy_reviewer",
+      "completed_fingerprint": "f5087d24122d690f6beecd8f292ab28ac5bb2b6c44347964e4e2b1641f1cd3b9",
+      "completed_spec_hash": "f4a9bb517bce997df1d25d5bc80bbf7b9b71fe7fe1e87bc480c777f0b6cd3b6f",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md": "5a2b430cbd380a8cac675b8e189657ed8d3ffd2dcc86b359c8755735f840d90a"
+      },
+      "completed_at": "2026-11-09T13:53:28Z",
+      "completed_by": "pedagogy_reviewer",
+      "completed_commit": "11a2c0afd0f73a8989f7b5de147f3666f12d7b0d",
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md": {
+          "reason": "The pedagogical review evaluates the byte-identical, committed author draft and curriculum map; upstream fingerprints changed only because the original lesson input is now frozen.",
+          "at": "2026-11-09T13:53:28Z"
+        }
+      }
+    },
+    {
+      "step_id": "provenance-review",
+      "title": "Review citations, attribution, and asset rights",
+      "status": "completed",
+      "depends_on": [
+        "author"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/provenance-review/SKILL.md",
+        ".codex/agents/provenance-reviewer.toml",
+        "GOVERNANCE.md",
+        ".claude/agents/provenance-reviewer.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md",
+        "modules/database/sources/source-registry.csv"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 2,
+      "start_commit": "e2b02aec219de9b4939b1f87d78e05a0463ea47b",
+      "start_input_hashes": {
+        ".agents/skills/provenance-review/SKILL.md": "0bd91c067eaefcb2abae7ab0c77cca20ea5d9cd48a0d452bd0ab893175b387f8",
+        ".codex/agents/provenance-reviewer.toml": "2befdbf5543dc3523255b8a00d180cebcaf44c4d0eadc53b55f446466b91b9d9",
+        "GOVERNANCE.md": "4a7daada28b9319c45fc11260ec8320a5b58c4a6b2ec3699144cfa04ee565aec",
+        ".claude/agents/provenance-reviewer.md": "b492f6dfabddb2a37fa82b4ecedded8f105e15ef31c4a09f6d3ad775d0e3ced5",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/research/evidence.md": "316157517e556d756440c14a117df92d509533c65971728208eee32aa840ff98",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md": "4abef322a96fa1985fb199954021d03ddbcabce13764f6ff9aec6b140770adfc"
+      },
+      "started_at": "2026-11-09T13:54:23Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-provenance-review-20261109T135423Z",
+      "agent": "provenance_reviewer",
+      "completed_fingerprint": "1c90a3f218a63c495a81ebe524411635fa064d8c2f3ce48ebd97e3028ae969f9",
+      "completed_spec_hash": "6710049d1d19ac17f1b2d2548dabdee7e64dd93fbab8ef020f71fca708a5b120",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md": "4abef322a96fa1985fb199954021d03ddbcabce13764f6ff9aec6b140770adfc"
+      },
+      "completed_at": "2026-11-09T13:55:03Z",
+      "completed_by": "provenance_reviewer",
+      "completed_commit": "c7b7bd448dc5d967ebf6cac1751e4eee3df1f793",
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md": {
+          "reason": "The provenance review evaluates the byte-identical, committed author draft and source evidence. The task now freezes the original lesson input; no provenance finding changed.",
+          "at": "2026-11-09T13:55:03Z"
+        }
+      }
+    },
+    {
+      "step_id": "revision",
+      "title": "Consolidate findings and produce the revised lesson",
+      "status": "completed",
+      "depends_on": [
+        "technical-review",
+        "pedagogy-review",
+        "provenance-review"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/module-pipeline/SKILL.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/workflow/lesson-template.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md",
+        "modules/database/lessons/DB-01-data-modeling.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 2,
+      "start_commit": "e572a8ce7cd7720c26f73c7b5e1681997a442e6f",
+      "start_input_hashes": {
+        ".agents/skills/lesson-authoring/SKILL.md": "2d3ec97b0dbd6cca6a3251676292d3705e872537338970c4e2bc8c319e1cdd15",
+        ".agents/skills/module-pipeline/SKILL.md": "99032653affe971e2976ba56f10925159a083c0588b7218a8917e880c5208da1",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/author/draft.md": "f68583523bf4741e0f749071009872e765751b5aeb391f6cd576d652033b69e7",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/technical.md": "73e7a0b29abe9ca1bd6b3bcb2c5448f2f83b0cde1385a5e54fe5684c0e475bd8",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/pedagogy.md": "5a2b430cbd380a8cac675b8e189657ed8d3ffd2dcc86b359c8755735f840d90a",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/review/provenance.md": "4abef322a96fa1985fb199954021d03ddbcabce13764f6ff9aec6b140770adfc",
+        "modules/database/governance/content-guidelines.md": "56cd86a0577c027fcb2e1fc0141bf4ef1b8a5841236cb4e95566cc880d4ef15d",
+        "modules/database/workflow/lesson-template.md": "1b1178e8978f25208670310ba0a5fcef7da04c5ed12356f3d4f878ab6703e6db"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b",
+        "modules/database/lessons/DB-01-data-modeling.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b"
+      },
+      "started_at": "2026-11-09T13:56:10Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-revision-20261109T135610Z",
+      "agent": "parent_orchestrator",
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "completed_fingerprint": "9c93a66ea0de36bbd247e338eaaea285207a636d99b9903c47cc490f123bfe93",
+      "completed_spec_hash": "bf17765893ff2f0a6b42f8fb9fa6ecfae18c91d8528d77f1619c4c6d51e06cd2",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b",
+        "modules/database/lessons/DB-01-data-modeling.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b"
+      },
+      "completed_at": "2026-11-09T13:56:40Z",
+      "completed_by": "parent_orchestrator",
+      "completed_commit": "435e8b0a2196363db92637c87dd4ed7ccf74a711",
+      "reused_outputs": {
+        "modules/database/lessons/DB-01-data-modeling.md": {
+          "reason": "The reviewed final artifact and canonical lesson were already committed by the revision step. Recomputing this step against the frozen original input only reconciles task fingerprints; neither output changed, and reuse is recorded explicitly.",
+          "at": "2026-11-09T13:56:40Z"
+        },
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": {
+          "reason": "The reviewed final artifact and canonical lesson were already committed by the revision step. Recomputing this step against the frozen original input only reconciles task fingerprints; neither output changed, and reuse is recorded explicitly.",
+          "at": "2026-11-09T13:56:40Z"
+        }
+      }
+    },
+    {
+      "step_id": "validation",
+      "title": "Run structural validation and record the result",
+      "status": "completed",
+      "depends_on": [
+        "revision"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "scripts/validate_content.py",
+        "scripts/taskctl.py",
+        ".agents/skills/module-pipeline/SKILL.md",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md",
+        "modules/database/lessons/DB-01-data-modeling.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/validation-report.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "invalidation_reason": "Replace the mutable canonical DB-01 input with the exact immutable source snapshot so curriculum evidence remains reproducible after revision.",
+      "start_commit": "ed9b3e72ae3bc72c2d4ad1885d026363e22edd52",
+      "start_input_hashes": {
+        "scripts/validate_content.py": "518033554d7604cffb030f26bdef25340dce09a112606ebf5588536c8ebc33a4",
+        "scripts/taskctl.py": "c6cca6f85f63703d78625e6d39639e7ef0124b7f1a4cfc1e1146d1d78bbbd734",
+        ".agents/skills/module-pipeline/SKILL.md": "99032653affe971e2976ba56f10925159a083c0588b7218a8917e880c5208da1",
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/lesson.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b",
+        "modules/database/lessons/DB-01-data-modeling.md": "55c624bbcfcbcb59e9bc86689db5231eb16cabdecab27ae7282dcdadcc16821b"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/validation-report.md": null
+      },
+      "started_at": "2026-11-09T13:58:11Z",
+      "run_id": "SD-DB01-WORKFLOW-PILOT-validation-20261109T135811Z",
+      "agent": "parent_orchestrator",
+      "completed_fingerprint": "c1b48350f98b836bb23608e7dc8f26a4a3b7bebcfff3992a39c4d07ff5495d36",
+      "completed_spec_hash": "f06c1e5032fac3aafbb02f438ff19ec5e2a04cf128d24618d084e132562dd6ab",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-DB01-WORKFLOW-PILOT/final/validation-report.md": "e665eacd6195901d3eee8ba5ef23d5ae76f02bef0162e4d7fad1c036bdd31fec"
+      },
+      "completed_at": "2026-11-09T14:03:16Z",
+      "completed_by": "parent_orchestrator",
+      "completed_commit": "a1bf2be8dbf08edd29da54a912255f365d0c50cd"
+    }
+  ],
+  "notes": "Review this task's exact lesson scope and acceptance criteria before the first run.",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-DB01-WORKFLOW-PILOT.json",
+  "automation_status": "in_progress"
+}

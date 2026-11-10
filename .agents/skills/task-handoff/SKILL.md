@@ -29,3 +29,12 @@ description: Resume an existing Academy task across agents, model providers, and
 
 ## Handoff report
 Update the Issue with task/spec/state paths, branch/PR, last completed step, current step, blockers, and next action. Keep detailed progress in repository state and append-only worklog.
+
+## Feedback continuity
+- At intake, read relevant prior task retrospectives, review reports, validation reports, and worklog feedback for this module or workflow. Apply only findings that fit the current task scope.
+- Record new user corrections, reviewer findings, and validation failures in the worklog or report with a disposition and reason. Route reusable process improvements to shared skills, checklists, or tests through a scoped task.
+- Include unresolved feedback in the handoff report. In the task retrospective, identify the shared skill or regression check that carries each reusable lesson forward.
+
+## Holds and review freshness
+
+Inspect execution_control and historical user stop decisions before considering READY/RESUME. Status is read-only; reconciliation is an explicit parent-owned mutation. Do not resume a held task without user direction. Read the artifact-bound review verdicts as well as execution states; a completed negative review is not a passed gate.

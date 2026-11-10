@@ -68,3 +68,7 @@ Other providers / ChatGPT Work: do not assume they load Codex or Claude-specific
 ## Limits
 
 This is a repository-based checkpoint system, not a remote job runner or distributed lock service. It supports provider handoff through committed files; separate clones must still coordinate writer ownership through GitHub.
+
+## Compact default assignments
+
+Use module-pipeline as the sole orchestration procedure. At course level, one independent reviewer executes coverage plus plan pedagogy. At lesson level, technical-reviewer executes technical-review plus provenance-review; curriculum-coverage-reviewer executes coverage plus pedagogical-review/language. These are two independent reviewer runs, both distinct from the author. Existing specialist profiles remain available for escalation; no provider-specific duplicate workflow is introduced. Review dimensions remain separate in findings, while reports and handoffs are combined. Do not spawn every available profile by default.

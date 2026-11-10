@@ -1,18 +1,39 @@
 ---
 name: pedagogical-review
-description: Review whether a System Design lesson teaches clearly and assesses intended outcomes, prerequisites, sequencing, examples, exercises, and learner workload.
+description: Review whether a concise System Design lesson teaches its outcomes to experienced learners and whether a separate companion assessment measures them.
 ---
 
 # Pedagogical Review
 
-1. Identify the target learner and declared outcomes.
-2. Check that prerequisites are taught earlier or briefly introduced.
-3. Follow the learner path: problem → concepts → mechanism → worked example → trade-offs → practice.
-4. Flag unexplained jargon, reasoning jumps, unclear diagrams, and repetition.
-5. Check example consistency and concreteness.
-6. Verify each outcome is assessed and the answer key explains reasoning.
-7. Check exercise scope, estimated time, rubric clarity, and multiple valid answers.
-8. Suggest specific edits; do not rewrite the whole lesson unless asked.
+## Select the assigned mode
+
+- **Plan:** read the canonical scope, audience, curriculum outlines, prerequisites, source coverage report and prior findings. Check sequence, lesson boundaries, overlap, assumed entry knowledge and whether each outline can teach its stated capability. Do not require lesson or assessment files that have not been authored. Return location-specific findings on the plan only.
+- **Lesson:** use the inputs and paired-artifact procedure below. If the coverage report is required, schedule this review after coverage; the reviewer still makes an independent pedagogical judgment.
+
+## Inputs (lesson mode)
+
+Read the canonical task specification, user feedback, coverage-review report, teaching lesson, companion assessment, content guidelines, and target audience. The current Academy default is middle/senior engineers learning system design; learner-facing material is English-only unless a newer user decision is recorded.
+
+## Procedure
+
+1. Review the teaching lesson and companion assessment as a pair, while checking that they have distinct purposes and paths.
+2. Trace the learner path in the lesson: motivating system problem → mechanism and decision criteria → worked example → trade-offs and failure modes.
+3. Verify that each outcome is actually taught in the lesson and assessed in the companion artifact. Questions, answer keys, citations, and lesson titles do not count as instruction.
+4. For middle/senior learners, flag elementary filler, repeated definitions, avoidable background, and long exposition that does not help the design decision. Do not penalize concise explanations that assume common backend and SQL fundamentals.
+5. Flag unexplained jargon, reasoning jumps, missing prerequisite support, unclear diagrams, inconsistent examples, or material that is too dense to follow.
+6. Check exercise scope, estimate, rubric clarity, multiple valid answers, and whether every question can be answered from taught content.
+7. Flag quizzes, knowledge-check banks, answer keys, and assessment rubrics embedded in the teaching lesson. Confirm that the companion artifact contains the practical exercise and 5–8 checks with explanations.
+8. Do not replace the independent curriculum-coverage review or technical/provenance review. Report only pedagogical evidence.
+9. Suggest specific edits with locations; do not rewrite the whole lesson unless asked.
 
 ## Output
-Return findings with location, learner impact, severity, and recommended change. End with `block`, `revise`, or `ready-for-human-review`. This is not technical approval.
+
+Return findings with artifact/location, learner impact, severity, and recommended change. End with `block`, `revise`, or `ready-for-human-review`. This is not source-coverage approval, technical approval, human approval, or publication authorization.
+
+## Machine-readable gate output
+
+When the task step declares `review`, write both assigned outputs: the explanatory Markdown report and verdict JSON following `docs/workflow-contract.md`. Record exact SHA-256 hashes for every declared reviewed artifact, verdict, and finding IDs with severity/status. An open blocker or major finding forbids `ready-for-human-review`. Do not infer a pass from another review. Rechecks inspect changed sections and their dependencies and bind the result to the complete current artifact set.
+
+## Combined review assignment
+
+When module-pipeline explicitly assigns a combined teaching or course review, the same independent reviewer must also execute curriculum-coverage-review. Read actual source mappings and perform coverage first within that review; a separate coverage report is not required in this mode. Record distinct coverage and pedagogy findings in one report with one overall blocking verdict. This mode supersedes the separate-report input requirement above only for an explicit combined assignment; never infer coverage from pedagogical clarity. Check language here. The reviewer remains independent from the author and technical reviewer.

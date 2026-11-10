@@ -1,18 +1,26 @@
 ---
 name: assessment-design
-description: Create and audit System Design quizzes, worked exercises, answer explanations, and rubrics aligned to lesson outcomes.
+description: Create separate System Design assessment artifacts aligned to outcomes that are explicitly taught in companion lessons.
 ---
 
 # Assessment Design
 
-1. Read learning outcomes and the lesson before writing questions.
-2. Map every outcome to at least one assessment item.
-3. Mix explanation, diagnosis, calculation, design choice, and trade-off questions; use recall only where useful.
-4. Avoid ambiguity. State assumptions and units.
-5. Provide a correct answer and reasoning for every question.
-6. For design exercises, specify requirements, constraints, deliverables, rubric dimensions, and one defensible sample solution.
-7. Accept multiple valid architectures when justified. Grade reasoning, not memorization of one diagram.
-8. Ensure answers do not require concepts never taught or marked as extension material.
+## Inputs
+
+Read the canonical task specification, coverage-reviewed curriculum, final teaching lesson, outcomes, audience, and separately declared assessment output path. The current Academy default is middle/senior engineers learning system design; learner-facing assessment content is English-only unless newer user direction says otherwise.
+
+If the lesson does not teach an outcome or a question would require untaught concepts, report the gap to the parent and stop. Do not insert a tutorial into the assessment to hide a lesson gap.
+
+## Procedure
+
+1. Keep the assessment in its own companion artifact; do not edit the teaching lesson or turn it into a question bank.
+2. Map every outcome to at least one assessment item and identify the exact lesson section that teaches it.
+3. Provide one practical exercise with requirements, constraints, deliverables, time estimate, solution or rubric, and a defensible sample answer.
+4. Provide 5–8 knowledge checks with correct answers and concise reasoning. Mix explanation, diagnosis, calculation, design choice, and trade-off questions; use recall only where useful.
+5. State assumptions and units. Avoid ambiguous wording and unstated vendor/version assumptions.
+6. Ensure every item is answerable from taught material. Label optional extension items and identify any prerequisite they assume.
+7. Accept multiple valid architectures when justified. Grade reasoning, not recall of one prescribed diagram.
 
 ## Output
-Provide assessment, answer key, outcome mapping, and rubric. Flag product/version-dependent questions with unstated assumptions.
+
+Write only the declared assessment artifact path. Include the practical exercise, checks and answer explanations, rubric, and outcome-to-item-to-lesson-section map. Do not add long-form teaching content. Flag product/version-dependent questions with unstated assumptions.

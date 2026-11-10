@@ -20,3 +20,7 @@ Build an auditable evidence pack, not a generic essay.
 Return a claim/source matrix with claim ID, exact proposed claim, source title/publisher/URL/section, version and date checked, scope supported/not supported, confidence (`verified`, `partial`, `unresolved`), and follow-up needed.
 
 Do not write the lesson, invent citations, or claim a URL was checked if it was not opened.
+
+## Reuse and bounded research
+
+Reuse a pinned evidence snapshot when its revision, product/version and claimed scope still match. Preserve URL/section and date checked; re-open sources for new or changed claims and volatile behavior. Share a compact claim matrix and source locations, not an entire chat transcript. Technical reviewers independently inspect primary evidence even when using the same snapshot.

@@ -16,3 +16,11 @@ description: Audit source traceability, citations, attribution, adaptations, and
 
 ## Output
 Return an asset/source ledger and findings with severity blocker / major / minor / note. End with `block`, `revise`, or `ready-for-human-review`; never declare legal approval.
+
+## Machine-readable gate output
+
+When the task step declares `review`, write both assigned outputs: the explanatory Markdown report and verdict JSON following `docs/workflow-contract.md`. Record exact SHA-256 hashes for every declared reviewed artifact, verdict, and finding IDs with severity/status. An open blocker or major finding forbids `ready-for-human-review`. Do not infer a pass from another review. Rechecks inspect changed sections and their dependencies and bind the result to the complete current artifact set.
+
+## Combined review assignment
+
+When assigned alongside technical-review, contribute the source/asset ledger and distinct provenance findings to the same review report and overall verdict. Do not require a duplicate ledger when the existing evidence already records the relevant sources/assets. Any unresolved material rights or attribution issue blocks acceptance or requires a scoped specialist; combining roles is not legal approval.

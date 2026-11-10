@@ -1,0 +1,747 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-CURRICULUM-REBOOT-PLAN",
+  "module_id": "curriculum",
+  "current_phase": "pedagogy-recheck",
+  "created_at": "2026-11-09T16:41:43Z",
+  "updated_at": "2026-11-10T04:03:02Z",
+  "steps": [
+    {
+      "step_id": "curriculum-skill-update",
+      "title": "Broaden curriculum design guidance to the full source repository",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/inputs/curriculum-design.skill.original.md",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        ".agents/skills/curriculum-design/SKILL.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 2,
+      "start_commit": "4bb36cadb29a6bf07b59e7e9037eeb891e14aff6",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/inputs/curriculum-design.skill.original.md": "7b37217f21de33188853b2dd751ae0587fb495a64106ab033ba67b0c5c9556ab",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
+      },
+      "start_output_hashes": {
+        ".agents/skills/curriculum-design/SKILL.md": "ff36d841dac7cbdd11707c998a3aa6c0bf6084fe5a934eb5146badc7eeb7e7ba"
+      },
+      "started_at": "2026-11-10T03:38:45Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-skill-update-20261110T033845Z",
+      "agent": "task-reuse-reconciliation",
+      "completed_fingerprint": "38de475e3fc5d09744256576c680af50024a470189f525db6eda11c0f22353fe",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "completed_output_hashes": {
+        ".agents/skills/curriculum-design/SKILL.md": "ff36d841dac7cbdd11707c998a3aa6c0bf6084fe5a934eb5146badc7eeb7e7ba"
+      },
+      "completed_at": "2026-11-10T03:38:49Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "2178c2b634e57e53d1a5832765457eea16448db4",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "reused_outputs": {
+        ".agents/skills/curriculum-design/SKILL.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:38:49Z"
+        }
+      }
+    },
+    {
+      "step_id": "source-inventory",
+      "title": "Inventory the pinned Primer repository topics and in-tree examples",
+      "status": "completed",
+      "depends_on": [
+        "curriculum-skill-update"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        "modules/database/sources/source-registry.csv",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md"
+      ],
+      "checkpoint": {
+        "note": "Normalized inferred anchors: ACID/BASE and consistent hashing are section content, not heading anchors; nines figures are located under #availability-in-numbers; repeated failover/load-balancer subsections use parent-section locators.",
+        "next_action": "",
+        "at": "2026-11-10T02:36:37Z"
+      },
+      "attempts": 3,
+      "start_commit": "af17285b4a0e2fdc6f113f0d36c2d5007a407671",
+      "start_input_hashes": {
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757",
+        "modules/database/sources/source-registry.csv": "41a2dd3a53ebaa323fca6c73bc1a73079d9edbe4486ffcb996ad7fe6f9f4cd4f",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37"
+      },
+      "started_at": "2026-11-10T03:38:58Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-source-inventory-20261110T033858Z",
+      "agent": "task-reuse-reconciliation",
+      "completed_fingerprint": "bb87629f29e4cbfe402d4ee17e9caeda355b525fe99424553cfbcfa5ce87ca1b",
+      "completed_spec_hash": "291c0f0d1472beab7d4d21ee773814fdbd0e42d0da18c833bcb451a4fa00006e",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37"
+      },
+      "completed_at": "2026-11-10T03:39:02Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "ca30e916e5e10d9396a6326b4c2348cbf17b7097",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:39:02Z"
+        }
+      }
+    },
+    {
+      "step_id": "curriculum-draft",
+      "title": "Design the ordered modules and detailed teaching lesson outlines",
+      "status": "completed",
+      "depends_on": [
+        "source-inventory"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        ".agents/skills/curriculum-design/SKILL.md",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 3,
+      "start_commit": "8cbbc0f9381c6c7505da8820e9140f96a887632b",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        ".agents/skills/curriculum-design/SKILL.md": "ff36d841dac7cbdd11707c998a3aa6c0bf6084fe5a934eb5146badc7eeb7e7ba",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": "ed9d4400e7316851aab4b72bd16e323871cafb69f93c829a9047f0ecbceaf8b2"
+      },
+      "started_at": "2026-11-10T03:39:07Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-curriculum-draft-20261110T033907Z",
+      "agent": "task-reuse-reconciliation",
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "completed_fingerprint": "ed75cc5fdad2b47309845e0971e8ac34e993e0ededab44b77342e8ecab060e91",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": "ed9d4400e7316851aab4b72bd16e323871cafb69f93c829a9047f0ecbceaf8b2"
+      },
+      "completed_at": "2026-11-10T03:39:13Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "d0de8adf68324e413e46ba1be3843173943020b0",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:39:13Z"
+        }
+      }
+    },
+    {
+      "step_id": "coverage-round-1",
+      "title": "Independently audit first plan and full topic matrix",
+      "status": "completed",
+      "depends_on": [
+        "curriculum-draft"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md"
+      ],
+      "checkpoint": {
+        "note": "Independent reviewer verdict: revise. Findings: dedicated complete matrix missing at review gate; map each real-world data-store example; correct duplicate load-balancer anchors; add REST hypermedia and Pastebin content/blob flow; distinguish Google search from crawler; decide circular-array disposition; inspect remaining pinned solution/notebook bodies.",
+        "next_action": "Commit round-1 report, then revise candidate and add a complete source-to-outline matrix.",
+        "at": "2026-11-10T02:42:17Z"
+      },
+      "attempts": 2,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "b7b90e8116a1e70b049dff751dfe32773d92095e",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": "ed9d4400e7316851aab4b72bd16e323871cafb69f93c829a9047f0ecbceaf8b2",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md": "5533592fac0c00a75969897d4994a14451cf538920d858454d08e6f7064f99be"
+      },
+      "started_at": "2026-11-10T03:39:34Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-1-20261110T033934Z",
+      "agent": "task-reuse-reconciliation",
+      "completed_fingerprint": "acbfc8aae79f5f48e61afb333f9cdb5e86663d68bd5b7c16ffec64dc1dc135f7",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md": "5533592fac0c00a75969897d4994a14451cf538920d858454d08e6f7064f99be"
+      },
+      "completed_at": "2026-11-10T03:39:38Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "60b9a27db3632a207bb500895fa9abbf78e0fa2e",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:39:38Z"
+        }
+      }
+    },
+    {
+      "step_id": "revision-round-1",
+      "title": "Resolve Round 1 curriculum coverage findings",
+      "status": "completed",
+      "depends_on": [
+        "coverage-round-1"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md"
+      ],
+      "checkpoint": {
+        "note": "Resolved round-one findings in the candidate: added a full source-to-outline matrix, explicit data-store example lesson/mappings, duplicate LB anchors, REST hypermedia, separate Pastebin body/redirect flows, and search retrieval/ranking boundary; circular array explicitly excluded because only a contribution placeholder exists. Parent also fetched all five previously unavailable solution README bodies and all six OOD notebook markdown/code structures at the pinned commit and recorded case-level evidence.",
+        "next_action": "Commit the revision-1 candidate and complete revision-round-1.",
+        "at": "2026-11-10T02:54:45Z"
+      },
+      "attempts": 2,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "c5f413d9b7275958084a296be428335c0a719d23",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": "ed9d4400e7316851aab4b72bd16e323871cafb69f93c829a9047f0ecbceaf8b2",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md": "5533592fac0c00a75969897d4994a14451cf538920d858454d08e6f7064f99be"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md": "a979f3c7471b5b5968a7742994ce0e55c3da133b6726bb1932481cc0405b450b"
+      },
+      "started_at": "2026-11-10T03:39:46Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-revision-round-1-20261110T033946Z",
+      "agent": "task-reuse-reconciliation",
+      "resume_count": 1,
+      "completed_fingerprint": "19cfbb8e9afbcc5f2705fcfa3a3337853da2f973e53b1dc020c5ad4082a0fde7",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md": "a979f3c7471b5b5968a7742994ce0e55c3da133b6726bb1932481cc0405b450b"
+      },
+      "completed_at": "2026-11-10T03:39:49Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "886eb9fed183beb52fb060019b3646280e75e221",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:39:49Z"
+        }
+      }
+    },
+    {
+      "step_id": "coverage-round-2",
+      "title": "Fresh independent audit of revised plan",
+      "status": "completed",
+      "depends_on": [
+        "revision-round-1"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md"
+      ],
+      "checkpoint": {
+        "note": "Independent round-two verdict: revise. Findings: nonexistent load-balancer duplicate anchors; source contradictions on VIP and load-factor assumptions; missing REST statelessness; Mint recommendation/high availability and sales-rank window/update evidence misaligned; Redis prompt lacks store-design scope; prompt/catalog rows need exact locators.",
+        "next_action": "Commit report, then apply the second and final curriculum revision.",
+        "at": "2026-11-10T02:59:04Z"
+      },
+      "attempts": 2,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "e517a61d20baf76e7b9fdfc904c57a6b418f39f8",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md": "a979f3c7471b5b5968a7742994ce0e55c3da133b6726bb1932481cc0405b450b",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md": "e64b29851b2917589dd980d37b095be521d7ac4c06f17704858e0f9f9e451496"
+      },
+      "started_at": "2026-11-10T03:39:58Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-2-20261110T033958Z",
+      "agent": "task-reuse-reconciliation",
+      "completed_fingerprint": "76535abd353b4003162ce4a154541b9209bab38b2d4371538277394c84541309",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md": "e64b29851b2917589dd980d37b095be521d7ac4c06f17704858e0f9f9e451496"
+      },
+      "completed_at": "2026-11-10T03:40:01Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "46e83db9556929cd4c12dcae4c4a65e3d3862b74",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:40:01Z"
+        }
+      }
+    },
+    {
+      "step_id": "revision-round-2",
+      "title": "Resolve Round 2 findings and record remaining dispositions",
+      "status": "completed",
+      "depends_on": [
+        "coverage-round-2"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md"
+      ],
+      "checkpoint": {
+        "note": "Resolved the round-two findings in revision-2: corrected availability/load-balancer locators; aligned REST statelessness, Mint and sales-rank outlines/matrix with pinned source evidence; added a dedicated key-value store design lesson; corrected VIP and hash-map assumptions; gave prompts/catalog/notebook rows exact locators. Structural audit found 60 unique lessons, each with a teaching outline and at least one matrix mapping, 147 coverage rows, no undefined lesson IDs, and explicit mappings for all three under-development topics.",
+        "next_action": "Commit revision-2 and complete this step, then run independent coverage round 3 and separate pedagogy review.",
+        "at": "2026-11-10T03:09:07Z"
+      },
+      "attempts": 2,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "dc3fa7c3294eac16006f157530eabf20b8ec6acb",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md": "a979f3c7471b5b5968a7742994ce0e55c3da133b6726bb1932481cc0405b450b",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md": "e64b29851b2917589dd980d37b095be521d7ac4c06f17704858e0f9f9e451496"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11"
+      },
+      "started_at": "2026-11-10T03:40:23Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-revision-round-2-20261110T034023Z",
+      "agent": "task-reuse-reconciliation",
+      "completed_fingerprint": "82ae06a961a1f1945625e63b7a3ca6d84ed6d910b25c2256d7f3f82dd970a626",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11"
+      },
+      "completed_at": "2026-11-10T03:40:27Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "fc9b00a7118ecc1f5600c996b24130686222ecc4",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:40:27Z"
+        }
+      }
+    },
+    {
+      "step_id": "coverage-round-3",
+      "title": "Final independent verification of every source mapping",
+      "status": "completed",
+      "depends_on": [
+        "revision-round-2"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md"
+      ],
+      "checkpoint": {
+        "note": "Independent round-three verdict: revise. Findings: cache outline/matrix omits row-level, serialized-object and rendered-HTML levels plus file-cache scaling caveat; Pastebin mapping omits unique hash/Base62 short-code flow and monthly web-log MapReduce aggregation; candidate matrix omits the coding-resource repository/deck disposition. Reviewer independently inspected pinned README, Pastebin, Twitter and crawler, but exact-SHA access failed for five solution bodies and all six OOD notebooks; current-master results were excluded. Pedagogy review also has a material SD-07-03 scope finding. Both allowed revision cycles are exhausted, so finalization must stop for human judgment.",
+        "next_action": "Commit the independent report and complete coverage-round-3. Leave finalization unstarted until the user decides whether to authorize a third targeted revision and how to handle pinned source-body access limits.",
+        "at": "2026-11-10T03:19:05Z"
+      },
+      "attempts": 2,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "cc1abde6bdbf609d8676e3b39532f3c3cd91d05d",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": "a94aab050caf1eac40687f0977233a55b52b1039dbb41a8c9572cfefcc7d43e8"
+      },
+      "started_at": "2026-11-10T03:40:37Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-3-20261110T034037Z",
+      "agent": "task-reuse-reconciliation",
+      "completed_fingerprint": "817af103849d8d07f290b9dd713756fe996805617de4adb6191dd6938d081142",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": "a94aab050caf1eac40687f0977233a55b52b1039dbb41a8c9572cfefcc7d43e8"
+      },
+      "completed_at": "2026-11-10T03:40:41Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "c15b4fab7f3dd04f484d0afc49a666abe49c1e12",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:40:41Z"
+        }
+      }
+    },
+    {
+      "step_id": "pedagogy-review",
+      "title": "Review course sequence, audience, and teaching-only scope",
+      "status": "completed",
+      "depends_on": [
+        "revision-round-2"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md"
+      ],
+      "checkpoint": {
+        "note": "Independent pedagogy review verdict: revise. Material finding: SD-07-03 combines crawler ingestion and search indexing/query serving without a clear boundary or teaching progression; split or explicitly bound the subsystems before finalization. Low-risk suggestion: move the optional OOD appendix to the end. Overall middle/senior sequence and teaching-only boundary otherwise fit.",
+        "next_action": "Commit pedagogy report and complete the review step; do not finalize until the material scope finding receives human judgment because both allowed revision cycles are exhausted.",
+        "at": "2026-11-10T03:12:34Z"
+      },
+      "attempts": 2,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "8162530dacd6fa060b827f4ccf1ac917ae095dcf",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11",
+        ".agents/skills/pedagogical-review/SKILL.md": "8a615f9cfd1b8849d2fab87c352e008939b81e5c79f6d3651989d3dfaa068bf3",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": "7ec3ddb04d5504b410dd8f0c78904dbfb958b2c52a92e658e0aa550dfa3dabf3"
+      },
+      "started_at": "2026-11-10T03:40:53Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-pedagogy-review-20261110T034053Z",
+      "agent": "task-reuse-reconciliation",
+      "completed_fingerprint": "d539fc33dec83e429100e5623938389472727cc5bc0ec353796f086965b2f334",
+      "completed_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": "7ec3ddb04d5504b410dd8f0c78904dbfb958b2c52a92e658e0aa550dfa3dabf3"
+      },
+      "completed_at": "2026-11-10T03:40:57Z",
+      "completed_by": "task-reuse-reconciliation",
+      "completed_commit": "79676475768fc8f13b6ed030ac02b4f52af0c244",
+      "reused_outputs": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": {
+          "reason": "Spec revision 2 authorizes a targeted third cycle; this unchanged artifact remains a valid historical baseline and is preserved without rerunning its original work.",
+          "at": "2026-11-10T03:40:57Z"
+        }
+      }
+    },
+    {
+      "step_id": "source-evidence-refresh",
+      "title": "Capture pinned-SHA evidence for solution and OOD bodies",
+      "depends_on": [
+        "coverage-round-3"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md"
+      ],
+      "status": "completed",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "Fetched all eight System Design solution READMEs and all six OOD notebooks through GitHub Contents API at the pinned SHA ae9bbd7b02d90b9866215de185217d33f39ab733. Recorded scope/implementation observations and exact pinned paths, including Pastebin Base62 uniqueness and monthly MapReduce analytics; crawler/search boundary; cache sublevels; integer-only/no-load-factor hash map; and call-center VIP=no. Also added exact README cache and coding-resource locators. Notebook cells were inspected, not executed.",
+        "next_action": "Commit pinned-example-evidence-2026-11-10.md and checkpoint, then complete source-evidence-refresh.",
+        "at": "2026-11-10T03:43:30Z"
+      },
+      "attempts": 1,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "ec3395f187182685e0c21baa95037fbc56cba0c4",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": "a94aab050caf1eac40687f0977233a55b52b1039dbb41a8c9572cfefcc7d43e8",
+        ".agents/skills/source-research/SKILL.md": "ecf1bae5892e35facd4a49edcfbde0181403bb678fe32b70b104a7de1f6b530d"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md": null
+      },
+      "started_at": "2026-11-10T03:42:03Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-source-evidence-refresh-20261110T034203Z",
+      "agent": "source_researcher",
+      "completed_fingerprint": "70134c535208167e373ab3934e2c996cb37e1d1e67b138a7dddc44d803811d21",
+      "completed_spec_hash": "c85e17845fff5714a9c5405d0ec789cb97801d5be035ac30cbebe78e5749e710",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md": "f11f4f49853486acde1c51f16925495a6315be15a432c05b8bbe176cbbdb7002"
+      },
+      "completed_at": "2026-11-10T03:43:47Z",
+      "completed_by": "source_researcher",
+      "completed_commit": "685a1848d856c18d2bb98c8c8b9fb2fb006977a5"
+    },
+    {
+      "step_id": "source-inventory-final",
+      "title": "Reconcile the final inventory with coverage findings and pinned evidence",
+      "depends_on": [
+        "source-evidence-refresh"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md"
+      ],
+      "status": "completed",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "Reconciled the pinned inventory using the round-three report and source evidence pack: added all four cache granularity leaves and the file-cache cloning/autoscaling caveat; strengthened Pastebin body coverage for unique code/hash/Base62 and monthly log-to-MapReduce analytics; preserved the explicit coding-resource disposition; documented all 14 exact-SHA body observations and evidence-pack link.",
+        "next_action": "Commit revision-3/source-inventory.md and this checkpoint, then complete source-inventory-final before editing the curriculum candidate.",
+        "at": "2026-11-10T03:45:49Z"
+      },
+      "attempts": 1,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "6f4159e1cf423f1a4d5e3aa72ba22304b70de49f",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": "a94aab050caf1eac40687f0977233a55b52b1039dbb41a8c9572cfefcc7d43e8",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md": "f11f4f49853486acde1c51f16925495a6315be15a432c05b8bbe176cbbdb7002"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md": null
+      },
+      "started_at": "2026-11-10T03:44:45Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-source-inventory-final-20261110T034445Z",
+      "agent": "curriculum_designer",
+      "completed_fingerprint": "e1dd08a5f17485269699788a14b8aa22f46f91e75703c473c1b100ff0b0f55fe",
+      "completed_spec_hash": "5b872b60de9b3a4b8da679b80a125f74a24d664f1c8a0bcf315ffa1cedfb1ce1",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md": "6d24d5e7c86b40158c3402263b5724a7f42dd206be5dee677341757b157881da"
+      },
+      "completed_at": "2026-11-10T03:46:08Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "b0d0eddeb759b31f8e51227586f918d141ff2fe3"
+    },
+    {
+      "step_id": "revision-round-3",
+      "title": "Apply the user-authorized targeted third revision",
+      "depends_on": [
+        "source-inventory-final",
+        "pedagogy-review"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md",
+        ".agents/skills/curriculum-design/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md"
+      ],
+      "status": "completed",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "Created revision-3 curriculum candidate: cache level and file-cache caveat; Pastebin code uniqueness/hash/Base 62 and monthly log-to-MapReduce flow; explicit coding-resource disposition; crawler/index/query lesson boundaries. Added independent search units SD-07-09 and SD-07-10, mapped Google Search and Twitter keyword search to their outlines, and linked all 14 pinned body observations. Structural audit found 62 unique lesson IDs, all present in the source matrix, with no unresolved matrix lesson references.",
+        "next_action": "Commit the candidate and checkpoint; complete revision-round-3; start independent coverage and pedagogy rechecks.",
+        "at": "2026-11-10T03:54:51Z"
+      },
+      "attempts": 1,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "203063a03203e431e0140e14e444858dbaba1523",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-2/curriculum-candidate.md": "d602bb5efc594b42e33921ee1f198a0ffedbe15d3aabe708e90f2fbbfc143f11",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md": "6d24d5e7c86b40158c3402263b5724a7f42dd206be5dee677341757b157881da",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-3.md": "a94aab050caf1eac40687f0977233a55b52b1039dbb41a8c9572cfefcc7d43e8",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": "7ec3ddb04d5504b410dd8f0c78904dbfb958b2c52a92e658e0aa550dfa3dabf3",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md": "f11f4f49853486acde1c51f16925495a6315be15a432c05b8bbe176cbbdb7002",
+        ".agents/skills/curriculum-design/SKILL.md": "ff36d841dac7cbdd11707c998a3aa6c0bf6084fe5a934eb5146badc7eeb7e7ba"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md": null
+      },
+      "started_at": "2026-11-10T03:48:44Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-revision-round-3-20261110T034844Z",
+      "agent": "curriculum_designer",
+      "completed_fingerprint": "365d7f1914204c536ddc0e5d4641cd5e2a67174150ecd28882ab72fcd4c1c45c",
+      "completed_spec_hash": "b63300fe4117032a01308d7d4b00bd924604e680cb1d156173a21c1a3e495a46",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md": "d3938a5aa8bb8e85e3a7a87dad815b308d6c6e7df918ce5b5a7c3109273f7902"
+      },
+      "completed_at": "2026-11-10T03:55:04Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "4be88366cd60ffdf6ede80ecb6be997b851933a7"
+    },
+    {
+      "step_id": "coverage-recheck",
+      "title": "Independently recheck targeted coverage fixes against pinned evidence",
+      "depends_on": [
+        "revision-round-3"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md",
+        ".agents/skills/curriculum-coverage-review/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md"
+      ],
+      "status": "completed",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "Independent coverage recheck verdict: pass; no material source omissions. It confirms cache levels/file caveat, Pastebin flow, coding-resource disposition, search-system boundaries, and all 14 examples against pinned inventory/evidence. Nonblocking note: two candidate prose references to research/source-inventory.md are stale relative paths; record for canonical-plan preparation. Report saved at review/coverage-recheck.md. Pedagogy gate separately remains revise.",
+        "next_action": "Commit the recheck report and checkpoint, complete coverage-recheck, then hold finalization because pedagogy-recheck has a material scope blocker; request user judgment before any further revision.",
+        "at": "2026-11-10T04:02:49Z"
+      },
+      "attempts": 1,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "4c88598cda26ccf1febfe56fced37abe0905733a",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md": "6d24d5e7c86b40158c3402263b5724a7f42dd206be5dee677341757b157881da",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md": "d3938a5aa8bb8e85e3a7a87dad815b308d6c6e7df918ce5b5a7c3109273f7902",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md": "f11f4f49853486acde1c51f16925495a6315be15a432c05b8bbe176cbbdb7002",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md": null
+      },
+      "started_at": "2026-11-10T03:55:41Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-recheck-20261110T035541Z",
+      "agent": "curriculum_coverage_reviewer",
+      "completed_fingerprint": "1ada27bb9b58a8ad96067eca39cef2ed0257b4798b2aa7bf4cf7d2d914e00ac3",
+      "completed_spec_hash": "520996fbcedbd1d6d6bfee2f97ee5e4532ec7927917c0ebdd83593a6c42d3320",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md": "0bc5d9f9d520c2a6b04c8eef1ad2aa20dc9547d0facd31b187025c4c6ed2044c"
+      },
+      "completed_at": "2026-11-10T04:03:02Z",
+      "completed_by": "curriculum_coverage_reviewer",
+      "completed_commit": "fe809e15897ee74f29840a6668d66794a1dc2f68"
+    },
+    {
+      "step_id": "pedagogy-recheck",
+      "title": "Independently recheck sequence and lesson scope after revision 3",
+      "depends_on": [
+        "revision-round-3"
+      ],
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md"
+      ],
+      "status": "completed",
+      "definition_version": "v1",
+      "checkpoint": {
+        "note": "Independent pedagogy recheck verdict: revise. SD-07-06 still mentions a search feature using a key-value index, overlapping the new SD-07-09 index-construction and SD-07-10 query-serving lessons. Crawler scope and 07-09→07-10 progression otherwise pass; audience, teaching-only boundary and Twitter handoff are appropriate. Report saved at review/pedagogy-recheck.md. No further revision without user authorization.",
+        "next_action": "Commit the recheck report and checkpoint, complete pedagogy-recheck, then finish the independent coverage gate; hold finalization if either gate has a material blocker.",
+        "at": "2026-11-10T03:58:41Z"
+      },
+      "attempts": 1,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
+      "start_commit": "d95d3c27ca95447d659c5152ebe70630ad401cfc",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md": "d3938a5aa8bb8e85e3a7a87dad815b308d6c6e7df918ce5b5a7c3109273f7902",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy.md": "7ec3ddb04d5504b410dd8f0c78904dbfb958b2c52a92e658e0aa550dfa3dabf3",
+        ".agents/skills/pedagogical-review/SKILL.md": "8a615f9cfd1b8849d2fab87c352e008939b81e5c79f6d3651989d3dfaa068bf3",
+        ".academy/state/worklog/SD-WORKFLOW-COVERAGE-RESET.jsonl": "208fdae37c88b9dbf61e2579d14a70313f119e04ae79505233f63e2ac5632a81"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md": null
+      },
+      "started_at": "2026-11-10T03:55:55Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-pedagogy-recheck-20261110T035554Z",
+      "agent": "pedagogy_reviewer",
+      "completed_fingerprint": "1bd35f6f3b6eb415f05fe36b50a6102f4158487e47050113caa7beb971689196",
+      "completed_spec_hash": "ce40d73c5d28d2c2b771caaf12dc66362937d4fe8127f514da69cc9708a7a032",
+      "completed_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md": "4347e4d29607c3e421fd1693d42795db26f68ef0d6aa11c508774a1cd000d11f"
+      },
+      "completed_at": "2026-11-10T03:58:55Z",
+      "completed_by": "pedagogy_reviewer",
+      "completed_commit": "67f0ee79b077e61b6f191a524798c1766ac98636"
+    },
+    {
+      "step_id": "finalize-curriculum",
+      "title": "Publish canonical plan, coverage matrix, task backlog, and retire old plan",
+      "status": "invalidated",
+      "depends_on": [
+        "coverage-recheck",
+        "pedagogy-recheck"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/source-inventory.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-3/curriculum-candidate.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/pinned-example-evidence-2026-11-10.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-recheck.md",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/pedagogy-recheck.md"
+      ],
+      "output_paths": [
+        "CURRICULUM_MASTER.md",
+        ".academy/curriculum/primer-source-inventory.md",
+        ".academy/curriculum/primer-coverage-matrix.csv",
+        ".academy/backlog/system-design-curriculum.json",
+        "modules/database/README.md",
+        "modules/database/workflow/run-database-pilot.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
+    },
+    {
+      "step_id": "validation",
+      "title": "Validate plan structure, backlog dependencies, and repository state",
+      "status": "invalidated",
+      "depends_on": [
+        "finalize-curriculum"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "CURRICULUM_MASTER.md",
+        ".academy/curriculum/primer-source-inventory.md",
+        ".academy/curriculum/primer-coverage-matrix.csv",
+        ".academy/backlog/system-design-curriculum.json",
+        "scripts/validate_content.py",
+        "scripts/taskctl.py"
+      ],
+      "output_paths": [
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/validation/validation-report.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs."
+    }
+  ],
+  "notes": "GitHub Issue #6. One active writer: @czyboi. User explicitly authorized one targeted third revision and independent recheck on 2026-11-10. Source revision pinned to ae9bbd7b02d90b9866215de185217d33f39ab733. Preserve all prior reports; target only round-three coverage and pedagogy findings. No further automated revision cycle without new user approval. Lessons and assessments remain out of scope.",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-CURRICULUM-REBOOT-PLAN.json",
+  "automation_status": "in_progress"
+}

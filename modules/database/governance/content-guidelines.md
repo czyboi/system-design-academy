@@ -2,8 +2,8 @@
 
 ## Audience and teaching stance
 
-- Audience: backend engineers who know basic SQL and application development but are learning system design.
-- Language: Vietnamese prose; keep standard English terms in parentheses on first use.
+- Audience: middle/senior engineers who know backend development and SQL fundamentals. Teach engineering decisions concisely.
+- Language: English-only learner-facing prose, diagrams, exercises, quizzes, rubrics, and answer explanations. Keep source titles and quotations in their original language; do not use bilingual headings.
 - Start from a concrete engineering problem, then introduce the concept.
 - Explain mechanisms, constraints and trade-offs; avoid lists of definitions without causal explanation.
 - Distinguish general database principles from PostgreSQL, MySQL, MongoDB or DynamoDB-specific behavior.
@@ -19,9 +19,9 @@
 6. Worked example with explicit assumptions.
 7. Trade-offs and failure modes.
 8. Practical decision framework.
-9. Knowledge check (5–8 questions; varied difficulty).
-10. Hands-on exercise with acceptance criteria.
-11. Worked solution or rubric.
+9. A separate companion assessment linked from lesson metadata.
+10. In that companion: one practical exercise, 5–8 checks with answers/explanations, and a worked solution or rubric.
+11. Companion outcome_map associates every lesson outcome ID with an exact teaching heading and assessment items.
 12. References: source, section, version/date checked, claim supported.
 13. Attribution and change notes if adapting CC-licensed expression.
 
