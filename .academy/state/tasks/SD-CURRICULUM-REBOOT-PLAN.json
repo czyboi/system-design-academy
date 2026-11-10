@@ -47,7 +47,7 @@
     {
       "step_id": "source-inventory",
       "title": "Inventory the pinned Primer repository topics and in-tree examples",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "curriculum-skill-update"
       ],
@@ -81,14 +81,12 @@
       "completed_fingerprint": "c6bbc850a1b518a3a18bb668a1c17833844f6a76ea7431e7de2cf328a7de6950",
       "completed_spec_hash": "0162cade30bc2bfcdde915c2b3531d2ba253bf38098ab8175222818668a38f69",
       "completed_output_hashes": {
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "f78ccaddce934f8157398ae9b6de6a60c28e547ea9196a9a763100630cb7feec"
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37"
       },
-      "completed_at": "2026-11-10T02:27:46Z",
+      "completed_at": "2026-11-10T02:36:37Z",
       "completed_by": "source_researcher",
-      "completed_commit": "3328bff5a42b1f935edf2bd8cbc8490e578e2e2c",
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
-      "active_spec_hash": "0162cade30bc2bfcdde915c2b3531d2ba253bf38098ab8175222818668a38f69",
-      "active_fingerprint": "c6bbc850a1b518a3a18bb668a1c17833844f6a76ea7431e7de2cf328a7de6950"
+      "completed_commit": "368250279708939a3c237d4e6af46588ded8190b",
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
     },
     {
       "step_id": "curriculum-draft",
