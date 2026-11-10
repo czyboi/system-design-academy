@@ -1,0 +1,34 @@
+{
+  "verdict": "revise",
+  "checks": {
+    "coverage": "revise",
+    "pedagogy": "revise"
+  },
+  "artifact_hashes": {
+    "CURRICULUM_MASTER.md": "2224c4794d967fd527d68b63a4f3aab2ffb755f3a0e3fd88c6577300ab080e4c",
+    "curriculum/source-inventory.json": "4c649be24624e6f86c8e76663a499877678c0fc028a9e25173765539f117eb1f",
+    "curriculum/coverage.csv": "9ba5b6cb37b6f77ca9c0a3cf8f9214c076fa4741f89f7f3ed0de70cd4a07cdad"
+  },
+  "findings": [
+    {
+      "id": "C1",
+      "severity": "major",
+      "status": "open"
+    },
+    {
+      "id": "C2",
+      "severity": "major",
+      "status": "open"
+    },
+    {
+      "id": "P1",
+      "severity": "major",
+      "status": "open"
+    },
+    {
+      "id": "P2",
+      "severity": "major",
+      "status": "open"
+    }
+  ]
+}
