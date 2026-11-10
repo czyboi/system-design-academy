@@ -7,14 +7,14 @@
   "automation_status": "in_progress",
   "current_phase": "plan",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:08:50Z",
+  "updated_at": "2026-11-10T09:15:59Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
     {
       "step_id": "plan",
       "title": "Inventory full pinned Primer and map every knowledge topic",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -41,14 +41,22 @@
         "curriculum/coverage.csv": null
       },
       "started_at": "2026-11-10T09:03:23Z",
-      "active_spec_hash": "9e77d4ff85cbcf796501ec5c5554c12f8abdef017358edb4ac8e9165117586db",
-      "active_fingerprint": "878ec07e2b1bb44542399382b3668ff8268f2adbbe5b58590bd4fc6294864e9f",
       "run_id": "SD-COURSE-OUTLINE-plan-20261110T090323Z",
       "agent": "curriculum_designer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "878ec07e2b1bb44542399382b3668ff8268f2adbbe5b58590bd4fc6294864e9f",
+      "completed_spec_hash": "9e77d4ff85cbcf796501ec5c5554c12f8abdef017358edb4ac8e9165117586db",
+      "completed_output_hashes": {
+        "CURRICULUM_MASTER.md": "2224c4794d967fd527d68b63a4f3aab2ffb755f3a0e3fd88c6577300ab080e4c",
+        "curriculum/source-inventory.json": "4c649be24624e6f86c8e76663a499877678c0fc028a9e25173765539f117eb1f",
+        "curriculum/coverage.csv": "9ba5b6cb37b6f77ca9c0a3cf8f9214c076fa4741f89f7f3ed0de70cd4a07cdad"
+      },
+      "completed_at": "2026-11-10T09:15:59Z",
+      "completed_by": "curriculum_designer",
+      "completed_commit": "cc593d5b6c901c70a1fe629fc47c4f765f7fd531"
     },
     {
       "step_id": "course-review",
