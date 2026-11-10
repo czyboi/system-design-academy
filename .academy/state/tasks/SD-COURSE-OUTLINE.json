@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-COURSE-OUTLINE.json",
   "automation_status": "in_progress",
-  "current_phase": "revision-1",
+  "current_phase": "course-recheck-1",
   "created_at": "2026-11-10T09:02:49Z",
-  "updated_at": "2026-11-10T09:28:56Z",
+  "updated_at": "2026-11-10T09:29:22Z",
   "execution_control": "active",
   "notes": "Course planning only: three steps. Reuse existing pinned evidence when valid. No lesson or assessment generation. Do not overwrite held historical course work.",
   "steps": [
@@ -180,7 +180,7 @@
     {
       "step_id": "course-recheck-1",
       "title": "Independent review of revised course plan",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "revision-1"
       ],
@@ -201,7 +201,7 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "review": {
         "artifact_paths": [
           "curriculum/revision-1/CURRICULUM_MASTER.md",
@@ -209,6 +209,28 @@
           "curriculum/revision-1/coverage.csv"
         ],
         "verdict_path": "curriculum/revision-1/review.json"
+      },
+      "start_commit": "1e76c5dbed1df22c8d93410404cb5e6acf375c2e",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "curriculum/review.md": "d3d0a321fb76b2cd5adde708d57e074a5220a3f9af209bfc08732e45c0881d29",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "aea2576491b4de38c1ed92ab01904548a43f71c0031bbb641ab356bed7b05654",
+        ".agents/skills/pedagogical-review/SKILL.md": "ba49779754723f92a0ded1788f1487bf6c38bc1bf1d96f6a314349da52fcd993"
+      },
+      "start_output_hashes": {
+        "curriculum/revision-1/review.md": null,
+        "curriculum/revision-1/review.json": null
+      },
+      "started_at": "2026-11-10T09:29:22Z",
+      "active_spec_hash": "b8c83dae0b5c9e0b6c7521242b239138a52ecd47bb17fc3807d623d7355fe4c8",
+      "active_fingerprint": "06e56c923b6a24c55ed6e9c1383ccf037ffa02e6ce0528a8dc1fb5bed47972b5",
+      "run_id": "SD-COURSE-OUTLINE-course-recheck-1-20261110T092922Z",
+      "agent": "curriculum_coverage_reviewer",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
       }
     },
     {
