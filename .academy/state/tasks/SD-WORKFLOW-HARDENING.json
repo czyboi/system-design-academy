@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-WORKFLOW-HARDENING",
   "module_id": "workflow",
-  "current_phase": "implementation",
+  "current_phase": "verification",
   "created_at": "2026-11-10T04:12:39Z",
-  "updated_at": "2026-11-10T04:23:26Z",
+  "updated_at": "2026-11-10T04:23:46Z",
   "steps": [
     {
       "step_id": "implementation",
@@ -184,7 +184,7 @@
     {
       "step_id": "verification",
       "title": "verification",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "implementation"
       ],
@@ -197,7 +197,21 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "e27c11aca0d11c9b80c980e0b27a31af7f28ac28",
+      "start_input_hashes": {},
+      "start_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-HARDENING/final/report.md": null
+      },
+      "started_at": "2026-11-10T04:23:46Z",
+      "active_spec_hash": "27a53b8dc2e262bdb13ff3470a50302ec9eb83a63e649906508bb50c0aa884e0",
+      "active_fingerprint": "c0d81acf715d30cecacba0a8fcc224da5f4f76eeff446ed42125f5d1cf03aae4",
+      "run_id": "SD-WORKFLOW-HARDENING-verification-20261110T042346Z",
+      "agent": "workflow_orchestrator",
+      "runtime": {
+        "model": "gpt-6-astra",
+        "reasoning_effort": null
+      }
     }
   ],
   "notes": "Issue #7. Single writer @czyboi. Workflow changes only; do not resume curriculum or author lessons.",
