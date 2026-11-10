@@ -1,3 +1,5 @@
 # Independent workflow review
 
-Review of implementation ede99e2: revise. Independent reviewer confirmed module/database files unchanged and the original title/fenced-heading false positives were fixed. Remaining material issue: the coverage checker accepts headings `Attribution and change notes` and `Answer key / rubric`, and nested `Practical exercise`, as teaching evidence. Use one exclusion classifier for selected and nested headings, add regression tests, then rerun independent review. Structural validation cannot establish full source enumeration or teaching depth.
+Initial reviewer verdict: revise. The checker could treat attribution and assessment headings as taught content. The user requested a targeted correction before merge. The independent reviewer rechecked commit 2ede57d and returned pass for the bounded fix: a shared exclusion classifier rejects direct and nested attribution/assessment sections, with eleven independent in-memory checks. Legitimate reference headings and previous code/title/comment cases were checked. No module files were changed by this task.
+
+Limits: structural tests and review do not establish actual Primer inventory completeness or teaching quality. Those require future independent source and content reviews.
