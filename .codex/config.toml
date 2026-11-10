@@ -5,5 +5,5 @@ model_reasoning_effort = "high"
 [agents]
 enabled = true
 max_concurrent_threads_per_session = 4
-default_subagent_model = "gpt-6.1-sol"
-default_subagent_reasoning_effort = "high"
+default_subagent_model = "gpt-6.1-terra"
+default_subagent_reasoning_effort = "medium"
