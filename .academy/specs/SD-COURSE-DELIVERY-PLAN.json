@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-COURSE-DELIVERY-PLAN",
+  "revision": 1,
+  "goal": "Record user-approved outline baseline and create a Jira-style content delivery plan",
+  "scope": {
+    "in_scope": [
+      "Record explicit user outline approval with exact reviewed artifact hashes and discoverable official entry points.",
+      "Plan all 57 lessons, 14 module packages, capstone and final course audit with stable Epic/Story/Subtask IDs, scope, outputs, acceptance criteria and acyclic dependencies."
+    ],
+    "out_of_scope": [
+      "Author lessons or assessments, publish or merge content.",
+      "Workflow/tooling changes or historical task resumption.",
+      "Create hundreds of external tracker issues; backlog lives in repository until individually claimed."
+    ]
+  },
+  "constraints": [
+    "Use unchanged approved revision-1 course gate.",
+    "User approved outline on 2026-11-10 in this chat; approval is for outline only.",
+    "Keep content work separate from workflow tasks. No fabricated deadlines, estimates or assignments."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-plan",
+      "text": "Record official approved baseline and complete actionable content backlog.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "dod-validation",
+      "text": "Verify baseline hashes, lesson/topic coverage, task graph, output ownership and repository checks.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-plan",
+      "text": "All outlined packages have stable hierarchy, scope, deliverables, acceptance criteria, review and approval gates; N1 carried into affected stories.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-check",
+      "text": "Strict approved gate and backlog integrity checks pass; required repository checks recorded.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}
