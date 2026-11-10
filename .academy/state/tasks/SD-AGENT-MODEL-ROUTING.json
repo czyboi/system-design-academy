@@ -4,10 +4,10 @@
   "module_id": "workflow",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-AGENT-MODEL-ROUTING.json",
-  "automation_status": "in_progress",
+  "automation_status": "automation_complete",
   "current_phase": "verification",
   "created_at": "2026-11-10T08:54:49Z",
-  "updated_at": "2026-11-10T08:56:39Z",
+  "updated_at": "2026-11-10T08:57:12Z",
   "execution_control": "active",
   "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
   "steps": [
@@ -77,7 +77,7 @@
     {
       "step_id": "verification",
       "title": "Verify scoped changes",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "implementation"
       ],
@@ -97,14 +97,20 @@
         ".academy/task-runs/SD-AGENT-MODEL-ROUTING/report.md": null
       },
       "started_at": "2026-11-10T08:56:39Z",
-      "active_spec_hash": "bd1185573c8b4020d6952901bc0d76e1ad0c817cc38a1737412590d6b81c5428",
-      "active_fingerprint": "e892e67e378535262582585dbc90d4fa8769d7c6b1d0d173d2653614376b88a6",
       "run_id": "SD-AGENT-MODEL-ROUTING-verification-20261110T085639Z",
       "agent": "workflow_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "e892e67e378535262582585dbc90d4fa8769d7c6b1d0d173d2653614376b88a6",
+      "completed_spec_hash": "bd1185573c8b4020d6952901bc0d76e1ad0c817cc38a1737412590d6b81c5428",
+      "completed_output_hashes": {
+        ".academy/task-runs/SD-AGENT-MODEL-ROUTING/report.md": "5da8386e71911b91f0b99462dc4cbc0130e3adc3a58834949259f0298518e024"
+      },
+      "completed_at": "2026-11-10T08:57:12Z",
+      "completed_by": "workflow_orchestrator",
+      "completed_commit": "7eee57b064e222261649ccb59838c431a7d04cce"
     }
   ]
 }
