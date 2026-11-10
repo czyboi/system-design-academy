@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "revision-round-1",
+  "current_phase": "coverage-round-2",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T03:39:49Z",
+  "updated_at": "2026-11-10T03:39:58Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -254,7 +254,7 @@
     {
       "step_id": "coverage-round-2",
       "title": "Fresh independent audit of revised plan",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "revision-round-1"
       ],
@@ -272,20 +272,20 @@
         "next_action": "Commit report, then apply the second and final curriculum revision.",
         "at": "2026-11-10T02:59:04Z"
       },
-      "attempts": 1,
+      "attempts": 2,
       "invalidation_reason": "User-approved spec revision 2 changed the global revision allowance and added targeted final gates; preserve prior committed artifacts by explicitly reusing unchanged outputs.",
-      "start_commit": "a28bf81b517e00ae6b1e7233e88fbc0e2e285353",
+      "start_commit": "e517a61d20baf76e7b9fdfc904c57a6b418f39f8",
       "start_input_hashes": {
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
         "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/revision-1/curriculum-candidate.md": "a979f3c7471b5b5968a7742994ce0e55c3da133b6726bb1932481cc0405b450b",
         ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757"
       },
       "start_output_hashes": {
-        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md": null
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-2.md": "e64b29851b2917589dd980d37b095be521d7ac4c06f17704858e0f9f9e451496"
       },
-      "started_at": "2026-11-10T02:55:19Z",
-      "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-2-20261110T025519Z",
-      "agent": "curriculum-coverage-reviewer",
+      "started_at": "2026-11-10T03:39:58Z",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-2-20261110T033958Z",
+      "agent": "task-reuse-reconciliation",
       "completed_fingerprint": "0169e3fb0d9abf046a51db25ad24740d9adadfb6239bfbb3732472f9f8d7b20f",
       "completed_spec_hash": "a8508140a4e04dd11b075883cc186be18fbc24e099772b8e41716e4bc0f62d05",
       "completed_output_hashes": {
@@ -293,7 +293,9 @@
       },
       "completed_at": "2026-11-10T02:59:05Z",
       "completed_by": "curriculum-coverage-reviewer",
-      "completed_commit": "20c7b2a1a37b33ecb0a951ff701ed95984bf24b2"
+      "completed_commit": "20c7b2a1a37b33ecb0a951ff701ed95984bf24b2",
+      "active_spec_hash": "276db60790245d7b3650a612ec262099c63adeec80a47205b7c8b7ea0288466a",
+      "active_fingerprint": "76535abd353b4003162ce4a154541b9209bab38b2d4371538277394c84541309"
     },
     {
       "step_id": "revision-round-2",
