@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-AGENT-MODEL-ROUTING",
+  "revision": 1,
+  "goal": "Configure Sol for design architecture and PR review and Terra for implementation of clear specifications",
+  "scope": {
+    "in_scope": [
+      "Set project parent Sol for design and orchestration; default bounded implementation subagents Terra. Add explicit Sol workflow/architecture designer and PR reviewer profiles and a Terra specification implementer profile.",
+      "Set lesson author to Terra, technical reviewer to Sol; retain appropriate other named review/research models and record role-based routing and runtime limits.",
+      "Add configuration regression coverage and update workflow documentation."
+    ],
+    "out_of_scope": [
+      "No lesson or curriculum work, no changes to the current course-outline task, no publication or merge."
+    ]
+  },
+  "constraints": [
+    "User request: Sol for workflow design, architecture and PR review; Terra for implementation when specification is clear.",
+    "Preserve review gates, source coverage, provider-specific profile boundaries, and ongoing task files.",
+    "No claim of measured token or cost savings; actual session settings and host role overrides may prevail."
+  ],
+  "definition_of_done": [
+    {
+      "id": "d1",
+      "text": "Profiles, routing guidance and regression tests implement requested assignments without changing task gates.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "d2",
+      "text": "Required checks run and exact results recorded.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "a1",
+      "text": "Sol design, architecture and PR reviewer; Terra clear-spec implementer and lesson author; parent Sol; default subagent Terra; technical reviewer Sol.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "a2",
+      "text": "Independent checks validate TOML, role assignments, full tests, content and task state; no ongoing course files altered.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}
