@@ -2,9 +2,9 @@
   "schema_version": 2,
   "task_id": "SD-CURRICULUM-REBOOT-PLAN",
   "module_id": "curriculum",
-  "current_phase": "curriculum-draft",
+  "current_phase": "coverage-round-1",
   "created_at": "2026-11-09T16:41:43Z",
-  "updated_at": "2026-11-10T02:38:19Z",
+  "updated_at": "2026-11-10T02:38:43Z",
   "steps": [
     {
       "step_id": "curriculum-skill-update",
@@ -134,7 +134,7 @@
     {
       "step_id": "coverage-round-1",
       "title": "Independently audit first plan and full topic matrix",
-      "status": "invalidated",
+      "status": "running",
       "depends_on": [
         "curriculum-draft"
       ],
@@ -151,8 +151,22 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
-      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review."
+      "attempts": 1,
+      "invalidation_reason": "Review preparation found invalid inferred README anchors for BASE/ACID/consistent hashing and the 3/4 nines headings; normalize locator precision before curriculum review.",
+      "start_commit": "10020ec9f8cec35e95c218d949325196bffa9a5f",
+      "start_input_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/research/source-inventory.md": "b883f07012b9c4de687ac73a73ec8a62dd6e5519e37edd061bd5dcca0fccfc37",
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/draft/curriculum-draft.md": "ed9d4400e7316851aab4b72bd16e323871cafb69f93c829a9047f0ecbceaf8b2",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "c20c82321ced3310b0c64b901ad2115e379ad3138a9c08b72491f9c5215c0757"
+      },
+      "start_output_hashes": {
+        "modules/database/workflow/runs/SD-CURRICULUM-REBOOT-PLAN/review/coverage-round-1.md": null
+      },
+      "started_at": "2026-11-10T02:38:43Z",
+      "active_spec_hash": "a8508140a4e04dd11b075883cc186be18fbc24e099772b8e41716e4bc0f62d05",
+      "active_fingerprint": "67ca402ba0e039b60aa55976229cb51f871388aef79f30002109f259502eb125",
+      "run_id": "SD-CURRICULUM-REBOOT-PLAN-coverage-round-1-20261110T023843Z",
+      "agent": "curriculum-coverage-reviewer"
     },
     {
       "step_id": "revision-round-1",
