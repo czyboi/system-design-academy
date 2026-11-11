@@ -7,14 +7,14 @@
   "automation_status": "in_progress",
   "current_phase": "plan-gate",
   "created_at": "2026-11-11T08:03:02Z",
-  "updated_at": "2026-11-11T08:05:44Z",
+  "updated_at": "2026-11-11T08:10:39Z",
   "execution_control": "active",
   "notes": "GitHub #20; milestone SDA-MS01, Story SDA-M00-L01; branch codex/SDA-MS01.",
   "steps": [
     {
       "step_id": "research",
       "title": "Research only the assigned lesson and record claim evidence",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -44,14 +44,20 @@
         "modules/m00/evidence/M00-L01.md": null
       },
       "started_at": "2026-11-11T08:04:19Z",
-      "active_spec_hash": "957b7b6ef92cdd95179e1d172bbd16df4dc83caa100367ee1c5c2280b82c266c",
-      "active_fingerprint": "7580637837ae69eb1515f1eb02c2b2e06e63c8e1179a9ef77683ef4027236b61",
       "run_id": "SD-M00-L01-research-20261111T080419Z",
       "agent": "source_researcher",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "7580637837ae69eb1515f1eb02c2b2e06e63c8e1179a9ef77683ef4027236b61",
+      "completed_spec_hash": "957b7b6ef92cdd95179e1d172bbd16df4dc83caa100367ee1c5c2280b82c266c",
+      "completed_output_hashes": {
+        "modules/m00/evidence/M00-L01.md": "97712c6b3ab61185d810c3b98017d49d829a7b6393af670ced96ed3c2f333160"
+      },
+      "completed_at": "2026-11-11T08:10:39Z",
+      "completed_by": "source_researcher",
+      "completed_commit": "64111810f78429026084c3d8912dff8c86f41461"
     },
     {
       "step_id": "plan-gate",
