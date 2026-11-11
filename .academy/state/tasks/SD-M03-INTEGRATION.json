@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "teaching-review-r1",
   "created_at": "2026-11-11T12:45:21Z",
-  "updated_at": "2026-11-11T13:02:43Z",
+  "updated_at": "2026-11-11T13:04:24Z",
   "execution_control": "active",
   "notes": "GitHub #37; milestone SDA-MS02, Story SDA-M03-INT; branch codex/SDA-MS02.",
   "steps": [
@@ -416,7 +416,7 @@
     {
       "step_id": "technical-review-r1",
       "title": "Independent module synthesis technical correctness and source/rights review after revision",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision-1"
       ],
@@ -482,19 +482,26 @@
         "modules/m03/integrated/reviews/technical-r1.json": null
       },
       "started_at": "2026-11-11T13:02:41Z",
-      "active_spec_hash": "bc85d4f3d1aee9ea108d0bdd6cdfd97b961f4fe7d8365b253107f8e8c46bb45c",
-      "active_fingerprint": "9a157daea24222f85f2fb0db41fea90f182ab537e0a0389bfabe01c1a0870709",
       "run_id": "SD-M03-INTEGRATION-technical-review-r1-20261111T130241Z",
       "agent": "technical_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "9a157daea24222f85f2fb0db41fea90f182ab537e0a0389bfabe01c1a0870709",
+      "completed_spec_hash": "bc85d4f3d1aee9ea108d0bdd6cdfd97b961f4fe7d8365b253107f8e8c46bb45c",
+      "completed_output_hashes": {
+        "modules/m03/integrated/reviews/technical-r1.md": "fd0d5296687ca3054b9b1f5fb6b2eb882b31920c1e1ba5b39e6c216a8b37b4c8",
+        "modules/m03/integrated/reviews/technical-r1.json": "81fbb3bec975345dad353bf9c89a49a59147703ec9d4a49729a5544bd9453e54"
+      },
+      "completed_at": "2026-11-11T13:04:15Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "d4eb8a44eff069ddfb05d6ed35c79b6040e12c17"
     },
     {
       "step_id": "teaching-review-r1",
       "title": "Independent module synthesis actual coverage, pedagogy, assessment and language review after revision",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision-1"
       ],
@@ -560,14 +567,21 @@
         "modules/m03/integrated/reviews/teaching-r1.json": null
       },
       "started_at": "2026-11-11T13:02:43Z",
-      "active_spec_hash": "82a2a72227f2bb384cf3d544725508a7988895e1d5d041a7387ec3be81ff6a9f",
-      "active_fingerprint": "0e035bba80568f8ce7b63382f362b37a412e4e5ada5adec2032f2a41c7908032",
       "run_id": "SD-M03-INTEGRATION-teaching-review-r1-20261111T130243Z",
       "agent": "teaching_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "0e035bba80568f8ce7b63382f362b37a412e4e5ada5adec2032f2a41c7908032",
+      "completed_spec_hash": "82a2a72227f2bb384cf3d544725508a7988895e1d5d041a7387ec3be81ff6a9f",
+      "completed_output_hashes": {
+        "modules/m03/integrated/reviews/teaching-r1.md": "2e841993be5e2e961043becebbc470e0729f5d4c63fbb15d063de7154eec7cbc",
+        "modules/m03/integrated/reviews/teaching-r1.json": "4a92be98338238913c320e781d7700a3857637c63d38744e4e884d92a16a8c2d"
+      },
+      "completed_at": "2026-11-11T13:04:24Z",
+      "completed_by": "teaching_reviewer",
+      "completed_commit": "d4eb8a44eff069ddfb05d6ed35c79b6040e12c17"
     },
     {
       "step_id": "validation",
