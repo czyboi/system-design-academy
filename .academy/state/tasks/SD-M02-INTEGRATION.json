@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M02-INTEGRATION.json",
   "automation_status": "in_progress",
-  "current_phase": "plan-gate",
+  "current_phase": "author",
   "created_at": "2026-11-11T12:45:20Z",
-  "updated_at": "2026-11-11T12:49:26Z",
+  "updated_at": "2026-11-11T12:55:45Z",
   "execution_control": "active",
   "notes": "GitHub #33; milestone SDA-MS02, Story SDA-M02-INT; branch codex/SDA-MS02.",
   "steps": [
@@ -123,7 +123,7 @@
     {
       "step_id": "author",
       "title": "Draft the module exercise, reference solution and decision summary",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "research",
         "plan-gate"
@@ -152,10 +152,39 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "requires_reviews": [
         "plan-gate"
-      ]
+      ],
+      "start_commit": "ccec43f690a4b38a113c1351691162dec3f638c6",
+      "start_input_hashes": {
+        "modules/m02/integrated/evidence.md": "338fa79120308d33451efc3d7fd7f78e00fff41801b6d0e45ca35faa32c393e3",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        ".agents/skills/lesson-authoring/SKILL.md": "ebf392ae7ed43459982ada6afca1409211f48c87202129fb7f7c4248d49dfdc5",
+        ".agents/skills/assessment-design/SKILL.md": "9706b86ae149ee11af45d8af92bf74459ac0ff649cbd1d22a6cccff30b173703",
+        "modules/database/governance/content-guidelines.md": "a2d64051359490a1b1202fc52710c230d9823d17a0d7dda040af4fd750983fd7",
+        "modules/database/governance/attribution-policy.md": "3125886ef90770acebf9c054e183ddf80f53f8fdad2e59d5867041623c44de75",
+        "modules/m02/lessons/M02-L01.md": "ee243ab6789cac863bdf7da72d9e7fc0beb0598fcca50d4f1330acdae90a947b",
+        "modules/m02/lessons/M02-L02.md": "8484c8ebf86cb618ece79dfdb544505bb9efdae1329782d270037f86e2ac50d9",
+        "modules/m02/lessons/M02-L03.md": "698499e9f43ce500597ae6e210a1bbf740d6669345f4c1391547d5ebb251699d",
+        "modules/m02/lessons/M02-L04.md": "323119e1d4086effe418eb6d942f1f4f2b37bc5eff6f8071ff8991b9618f3d69"
+      },
+      "start_output_hashes": {
+        "modules/m02/integrated/brief.md": null,
+        "modules/m02/integrated/solution-rubric.md": null,
+        "modules/m02/integrated/decision-summary.md": null
+      },
+      "started_at": "2026-11-11T12:55:45Z",
+      "active_spec_hash": "98d478112acc062d3683bdb572e5ab5465d39223f8fa6c71efb209f7ee6e7050",
+      "active_fingerprint": "2b2a1e74a104cc75d553280b3d7eba2621f93eacf5ee0979748ecf081a3cd93f",
+      "run_id": "SD-M02-INTEGRATION-author-20261111T125545Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "technical-review",
