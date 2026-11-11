@@ -4,17 +4,17 @@
   "module_id": "m01",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M01-L01.json",
-  "automation_status": "not_started",
-  "current_phase": null,
+  "automation_status": "in_progress",
+  "current_phase": "plan-gate",
   "created_at": "2026-11-11T08:03:03Z",
-  "updated_at": "2026-11-11T08:03:03Z",
+  "updated_at": "2026-11-11T08:04:24Z",
   "execution_control": "active",
   "notes": "GitHub #23; milestone SDA-MS01, Story SDA-M01-L01; branch codex/SDA-MS01.",
   "steps": [
     {
       "step_id": "research",
       "title": "Research only the assigned lesson and record claim evidence",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -31,12 +31,32 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "5838b0f56d6fbe4117e358109a5c5702c3291733",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        ".agents/skills/source-research/SKILL.md": "53f32f946ba59056e4e7404f5a3202d06c7ac5e89912cb6a255786e355f4efa5",
+        "delivery/backlog.json": "61a46e214f9f0c4016ab856316dee96655f32b45fc0eca9353ac080f016ac442"
+      },
+      "start_output_hashes": {
+        "modules/m01/evidence/M01-L01.md": null
+      },
+      "started_at": "2026-11-11T08:04:24Z",
+      "active_spec_hash": "3257718101acf04e636ac30e8ebc885a10965265220b5aaa0a0566f3190fcac7",
+      "active_fingerprint": "c01663ba6727efec140173e2908217794e975cabe5e8aa32207aa24f56f3aa93",
+      "run_id": "SD-M01-L01-research-20261111T080424Z",
+      "agent": "source_researcher",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "plan-gate",
       "title": "Verify and reuse the accepted course gate; do not re-plan",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -55,7 +75,7 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "review": {
         "artifact_paths": [
           "curriculum/revision-1/CURRICULUM_MASTER.md",
@@ -63,6 +83,28 @@
           "curriculum/revision-1/coverage.csv"
         ],
         "verdict_path": "modules/m01/reviews/M01-L01/plan-gate.json"
+      },
+      "start_commit": "5838b0f56d6fbe4117e358109a5c5702c3291733",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "curriculum/revision-1/review.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287",
+        "scripts/check_course_coverage.py": "b4978b632c22108fc03a1724c34c49c5d260e37a1634cdf68799d87e1f26eb41",
+        "curriculum/approved-baseline.json": "40f41aca40164a4ac72f119fa7ac9d8885762bb3f649d9d77fe28583bf7ae6ea",
+        "delivery/backlog.json": "61a46e214f9f0c4016ab856316dee96655f32b45fc0eca9353ac080f016ac442"
+      },
+      "start_output_hashes": {
+        "modules/m01/reviews/M01-L01/plan-gate.json": null
+      },
+      "started_at": "2026-11-11T08:04:24Z",
+      "active_spec_hash": "d669f84b526f3e9c4406e34ba163e7213e25ee3c721193d0d68209734743a60a",
+      "active_fingerprint": "c56f59e1f26da5022d55476154fc802379a414812bfa646a91f21f46a534ff70",
+      "run_id": "SD-M01-L01-plan-gate-20261111T080424Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
       }
     },
     {

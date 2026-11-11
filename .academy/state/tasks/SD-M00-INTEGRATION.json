@@ -4,17 +4,17 @@
   "module_id": "m00",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M00-INTEGRATION.json",
-  "automation_status": "not_started",
-  "current_phase": null,
+  "automation_status": "in_progress",
+  "current_phase": "plan-gate",
   "created_at": "2026-11-11T08:03:03Z",
-  "updated_at": "2026-11-11T08:03:03Z",
+  "updated_at": "2026-11-11T08:04:18Z",
   "execution_control": "active",
   "notes": "GitHub #22; milestone SDA-MS01, Story SDA-M00-INT; branch codex/SDA-MS01.",
   "steps": [
     {
       "step_id": "research",
       "title": "Research only the assigned lesson and record claim evidence",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -31,12 +31,32 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "5838b0f56d6fbe4117e358109a5c5702c3291733",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        ".agents/skills/source-research/SKILL.md": "53f32f946ba59056e4e7404f5a3202d06c7ac5e89912cb6a255786e355f4efa5",
+        "delivery/backlog.json": "61a46e214f9f0c4016ab856316dee96655f32b45fc0eca9353ac080f016ac442"
+      },
+      "start_output_hashes": {
+        "modules/m00/integrated/evidence.md": null
+      },
+      "started_at": "2026-11-11T08:04:17Z",
+      "active_spec_hash": "212e0f45f93ce6eadcfb7101b2fc29c5c484b0eb42f2d96546f8badeb18fc670",
+      "active_fingerprint": "305e6312ea789e6220aa7ed1be8ffe11c578eef5dde7d0b73d24eaf11e54b46f",
+      "run_id": "SD-M00-INTEGRATION-research-20261111T080417Z",
+      "agent": "source_researcher",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "plan-gate",
       "title": "Verify and reuse the accepted course gate; do not re-plan",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -55,7 +75,7 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "review": {
         "artifact_paths": [
           "curriculum/revision-1/CURRICULUM_MASTER.md",
@@ -63,6 +83,28 @@
           "curriculum/revision-1/coverage.csv"
         ],
         "verdict_path": "modules/m00/integrated/reviews/plan-gate.json"
+      },
+      "start_commit": "5838b0f56d6fbe4117e358109a5c5702c3291733",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "curriculum/revision-1/review.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287",
+        "scripts/check_course_coverage.py": "b4978b632c22108fc03a1724c34c49c5d260e37a1634cdf68799d87e1f26eb41",
+        "curriculum/approved-baseline.json": "40f41aca40164a4ac72f119fa7ac9d8885762bb3f649d9d77fe28583bf7ae6ea",
+        "delivery/backlog.json": "61a46e214f9f0c4016ab856316dee96655f32b45fc0eca9353ac080f016ac442"
+      },
+      "start_output_hashes": {
+        "modules/m00/integrated/reviews/plan-gate.json": null
+      },
+      "started_at": "2026-11-11T08:04:18Z",
+      "active_spec_hash": "79399a5bb139f69ac3df393b2608e144e6be497e8119a60bbed99a39477c5339",
+      "active_fingerprint": "36c36d1161a316ab7eb96c41de40c0d4fc361ef2820b3b65c6cca54f4450adf3",
+      "run_id": "SD-M00-INTEGRATION-plan-gate-20261111T080418Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
       }
     },
     {
