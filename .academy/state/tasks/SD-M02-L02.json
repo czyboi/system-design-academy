@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "teaching-review-r1",
   "created_at": "2026-11-11T12:45:19Z",
-  "updated_at": "2026-11-11T13:00:07Z",
+  "updated_at": "2026-11-11T13:02:54Z",
   "execution_control": "active",
   "notes": "GitHub #30; milestone SDA-MS02, Story SDA-M02-L02; branch codex/SDA-MS02.",
   "steps": [
@@ -403,7 +403,7 @@
     {
       "step_id": "technical-review-r1",
       "title": "Independent technical correctness and source/rights review after revision",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision-1"
       ],
@@ -466,19 +466,26 @@
         "modules/m02/reviews/M02-L02/technical-r1.json": null
       },
       "started_at": "2026-11-11T13:00:05Z",
-      "active_spec_hash": "eff65919119325208e5a13dc4505da05be1aa11ba203840f37d7e0e655b71f7e",
-      "active_fingerprint": "08f83cafefc6aae18672a6873dbc94e45f9b3412680d5a74910cb073f5184812",
       "run_id": "SD-M02-L02-technical-review-r1-20261111T130005Z",
       "agent": "technical_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "08f83cafefc6aae18672a6873dbc94e45f9b3412680d5a74910cb073f5184812",
+      "completed_spec_hash": "eff65919119325208e5a13dc4505da05be1aa11ba203840f37d7e0e655b71f7e",
+      "completed_output_hashes": {
+        "modules/m02/reviews/M02-L02/technical-r1.md": "25d1a148d506e2b9c000dcdf8c072b4805010e665b5237a2b18ba33ec05f06e3",
+        "modules/m02/reviews/M02-L02/technical-r1.json": "9b8d0173c51afa4a4b1a27f645b4710de4ea5c5abd755ea1505da37202a1a7b6"
+      },
+      "completed_at": "2026-11-11T13:02:46Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "b0d172654fc1f0aeee4e52b1d0c63ebe34974633"
     },
     {
       "step_id": "teaching-review-r1",
       "title": "Independent actual coverage, pedagogy, assessment and language review after revision",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "revision-1"
       ],
@@ -541,14 +548,21 @@
         "modules/m02/reviews/M02-L02/teaching-r1.json": null
       },
       "started_at": "2026-11-11T13:00:06Z",
-      "active_spec_hash": "1c7e30373340e56cd1c4f21a79448e146b9d75eba7515c43c62793c0fcad60b0",
-      "active_fingerprint": "bfe71c2e74e27b0217df3c02b91d76312637630514dc9ff8a2f7cb02823115a2",
       "run_id": "SD-M02-L02-teaching-review-r1-20261111T130006Z",
       "agent": "teaching_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "bfe71c2e74e27b0217df3c02b91d76312637630514dc9ff8a2f7cb02823115a2",
+      "completed_spec_hash": "1c7e30373340e56cd1c4f21a79448e146b9d75eba7515c43c62793c0fcad60b0",
+      "completed_output_hashes": {
+        "modules/m02/reviews/M02-L02/teaching-r1.md": "72b19bd1ca6656250f10ab4e286357dc9673e125efe75da5c83b7e19d0d8ab66",
+        "modules/m02/reviews/M02-L02/teaching-r1.json": "3c42c91b8178f10ae51e9087ddcc9d29290550f0892e021db7ea872f9f6d6bfd"
+      },
+      "completed_at": "2026-11-11T13:02:54Z",
+      "completed_by": "teaching_reviewer",
+      "completed_commit": "b0d172654fc1f0aeee4e52b1d0c63ebe34974633"
     },
     {
       "step_id": "validation",
