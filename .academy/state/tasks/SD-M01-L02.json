@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "revision-1",
   "created_at": "2026-11-11T08:03:03Z",
-  "updated_at": "2026-11-11T08:24:36Z",
+  "updated_at": "2026-11-11T08:26:55Z",
   "execution_control": "active",
   "notes": "GitHub #24; milestone SDA-MS01, Story SDA-M01-L02; branch codex/SDA-MS01.",
   "steps": [
@@ -337,7 +337,7 @@
     {
       "step_id": "revision-1",
       "title": "Revise the first reviewed candidate",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "technical-review",
         "teaching-review"
@@ -383,14 +383,21 @@
         "modules/m01/assessments/revision-1/M01-L02.md": null
       },
       "started_at": "2026-11-11T08:24:36Z",
-      "active_spec_hash": "d9df3dd1652abbeb0af82371bd3b9113fdc59a3f756152f13139b3daf0ddf733",
-      "active_fingerprint": "0a6d47d8419e381bbd8dcf104ca442e7d0bc62c1c85f255d88adbef7509f0c2d",
       "run_id": "SD-M01-L02-revision-1-20261111T082436Z",
       "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "0a6d47d8419e381bbd8dcf104ca442e7d0bc62c1c85f255d88adbef7509f0c2d",
+      "completed_spec_hash": "d9df3dd1652abbeb0af82371bd3b9113fdc59a3f756152f13139b3daf0ddf733",
+      "completed_output_hashes": {
+        "modules/m01/lessons/revision-1/M01-L02.md": "e37b571f4f290c1f3083d141d4dbb96175ec48b25d27027454a1553c6b307adb",
+        "modules/m01/assessments/revision-1/M01-L02.md": "8665a703257b92326f479a9b75b934803538e2f82e218ed6bdc87ad7b2e9dd90"
+      },
+      "completed_at": "2026-11-11T08:26:55Z",
+      "completed_by": "lesson_author",
+      "completed_commit": "24d61706012d6fc3444b82e9eebdc3b13e8c25c1"
     },
     {
       "step_id": "technical-review-r1",

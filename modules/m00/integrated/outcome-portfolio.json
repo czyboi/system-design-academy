@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M00",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M00-L01-LO1",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L01.md",
+        "section": "Core concepts and mechanisms",
+        "sha256": "06dc7f1163d182db55b511ddd6c825f1c151d7f8fc23dbb10dda9aa5fc3e6fb1"
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "sha256": "80fb80a0896f29a7b8c5827ffb1190cc402f13064161e913b9e2db861cc51837"
+      },
+      "teaching_review": "modules/m00/reviews/M00-L01/teaching.json"
+    },
+    {
+      "outcome_id": "M00-L01-LO2",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L01.md",
+        "section": "Choose a study route",
+        "sha256": "06dc7f1163d182db55b511ddd6c825f1c151d7f8fc23dbb10dda9aa5fc3e6fb1"
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ],
+        "sha256": "80fb80a0896f29a7b8c5827ffb1190cc402f13064161e913b9e2db861cc51837"
+      },
+      "teaching_review": "modules/m00/reviews/M00-L01/teaching.json"
+    },
+    {
+      "outcome_id": "M00-L02-LO1",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L02.md",
+        "section": "Core concepts and mechanisms",
+        "sha256": "73a4ff810c40917bb6890cb70d314faddfcefb0538035c7d0e8edaef64527e88"
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "sha256": "3a91e8662e9e9dcb553a68c651852295334634f3277fa7daca764ca5818e70cd"
+      },
+      "teaching_review": "modules/m00/reviews/M00-L02/teaching.json"
+    },
+    {
+      "outcome_id": "M00-L02-LO2",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L02.md",
+        "section": "Worked example",
+        "sha256": "73a4ff810c40917bb6890cb70d314faddfcefb0538035c7d0e8edaef64527e88"
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ],
+        "sha256": "3a91e8662e9e9dcb553a68c651852295334634f3277fa7daca764ca5818e70cd"
+      },
+      "teaching_review": "modules/m00/reviews/M00-L02/teaching.json"
+    },
+    {
+      "outcome_id": "M00-S1",
+      "source_lesson_outcomes": [
+        "M00-L02-LO1",
+        "M00-L02-LO2"
+      ],
+      "assessment": {
+        "path": "modules/m00/integrated/brief.md",
+        "items": [
+          "M00-EX1"
+        ],
+        "sha256": "f0d6f451bb3ba81bf8e7dfbad4065dfe4545e12b7dc4b83ce12e12f0090d1d79"
+      },
+      "rubric": {
+        "path": "modules/m00/integrated/solution-rubric.md",
+        "section": "Self-evaluation",
+        "sha256": "d0abd36c83b9992a19ca7f655020633dd52a72ef1a7a784b9b7d94f7396d6512"
+      },
+      "teaching_review": "modules/m00/integrated/reviews/teaching.json"
+    }
+  ]
+}
