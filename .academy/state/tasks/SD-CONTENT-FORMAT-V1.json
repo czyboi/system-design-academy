@@ -9,7 +9,7 @@
   "created_at": "2026-11-11T17:35:35Z",
   "updated_at": "2026-11-11T17:35:35Z",
   "execution_control": "active",
-  "notes": "Step-1 documentation PR drafted using GitHub connector. State initialized as pending; taskctl start/complete and repository test execution have NOT been performed in a checked-out working tree. Reconcile via taskctl before recording automation completion. No learner artifact gates.",
+  "notes": "Scope adjusted after user review: candidate docs plus future-only format-agent wiring. No original content or old author/assessment skills changed. Formal taskctl start/complete and local test execution have not been performed; keep not_started pending reconciliation.",
   "steps": [
     {
       "step_id": "implementation",
@@ -27,10 +27,13 @@
       ],
       "output_paths": [
         "docs/authoring-format-contract-v1.md",
-        "docs/content-format-audit-ms01-ms02.md"
+        "docs/content-format-audit-ms01-ms02.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/module-pipeline/SKILL.md",
+        ".academy/state/task.template.json"
       ],
       "checkpoint": {
-        "note": "Draft files prepared in PR for human review; formal taskctl lifecycle not executed.",
+        "note": "Draft candidate and future-only agent routing committed for PR review; formal taskctl lifecycle has not been executed.",
         "next_action": "Review candidate, then reconcile workflow task in a local checkout."
       },
       "attempts": 0

@@ -1,16 +1,17 @@
 {
   "schema_version": 1,
   "task_id": "SD-CONTENT-FORMAT-V1",
-  "revision": 1,
+  "revision": 2,
   "goal": "Audit the MS01/MS02 authoring formats and propose a non-invasive, backward-compatible Authoring Format Contract v1 for future website consumption.",
   "scope": {
     "in_scope": [
       "Inventory 13 selected lesson/companion pairs across pinned MS01/MS02 branch commits and review-backed revision paths.",
       "Document a candidate v1 content format covering YAML, Markdown, examples, diagrams, assessment variants, asset safety and backward compatibility.",
-      "Record identified limitations and a staged follow-on plan for parser validation, loader, approval and web rendering."
+      "Record identified limitations and a staged follow-on plan for parser validation, loader, approval and web rendering.",
+      "Wire the candidate contract into future authoring through a compact shared content-format skill, module-pipeline handoff and new task template declared inputs, without modifying existing lesson/assessment authoring skills."
     ],
     "out_of_scope": [
-      "Change or regenerate any lesson, assessment, source evidence, review verdict, agent profile or existing content validator.",
+      "Change or regenerate any lesson, assessment, source evidence, review verdict, existing lesson-authoring/assessment-design skills, provider-specific agent profiles or existing content validator.",
       "Execute new format validation, build a loader, add a publication gate, merge milestone branches, deploy a website or approve content.",
       "Introduce any additional LLM step/token usage in future milestone content generation."
     ]
@@ -19,7 +20,8 @@
     "Keep SDA-v1 approved curriculum and MS01/MS02 artifact bytes unchanged.",
     "Documentation is a candidate, not an enforced authoring standard; human review required before activation.",
     "Use exact inspected branch snapshots; distinguish raw observations from runtime test claims.",
-    "Follow the existing issue/spec/state/worklog convention; do not claim taskctl verification unless executed."
+    "Follow the existing issue/spec/state/worklog convention; do not claim taskctl verification unless executed.",
+    "Avoid editing existing lesson-authoring and assessment-design skills because their hashes are declared inputs of completed MS01/MS02 author steps; new authoring tasks must explicitly reference the compact format skill instead."
   ],
   "definition_of_done": [
     {
@@ -41,6 +43,13 @@
       "text": "Verify documentation and repository checks where executable, recording checks not run rather than inventing results.",
       "applies_to": [
         "verification"
+      ]
+    },
+    {
+      "id": "dod-agent-wiring",
+      "text": "New author tasks are given a short content-format skill and authoritative contract path without an additional agent or rewrite of older lesson artifacts.",
+      "applies_to": [
+        "implementation"
       ]
     }
   ],
@@ -71,6 +80,21 @@
       "id": "ac-status",
       "text": "Do not mark automation complete or claim CLI tests pass without taskctl/test execution.",
       "applies_to": [
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-quality-priority",
+      "text": "Explicitly prioritize learning outcomes, truth and pedagogy over format and flag missing presentation capabilities instead of reducing lesson content.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-fingerprint",
+      "text": "Existing tracked authoring skills are untouched; new author task inputs bind the format skill and contract for future fingerprinting.",
+      "applies_to": [
+        "implementation",
         "verification"
       ]
     }

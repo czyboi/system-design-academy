@@ -2,6 +2,16 @@
 
 > Status: **proposed for human review**. This document does not add new authoring gates or alter accepted lesson artifacts. Its first implementation target is backward-compatible ingestion of SDA-MS01 and SDA-MS02.
 
+## Adoption, quality guardrails and agent delivery
+
+This is a **draft PR**: its rules are not active on `main` until merged. After adoption, **newly claimed content tasks** include both this document and the compact shared agent instruction `.agents/skills/content-format/SKILL.md` as declared author inputs; `.agents/skills/module-pipeline/SKILL.md` passes that instruction to the agent. Existing completed authoring tasks and their hash-bound artifacts are left alone.
+
+**Precedence:** approved syllabus/outcomes → technical truth and complete mechanisms → pedagogy (worked examples, helpful visuals and reasoning) → format convenience. A required mathematical expression, architecture diagram or technical illustration must never be omitted or made less accurate just to fit a supported renderer. Flag a missing capability and extend the renderer/format by a separate reviewed task. No syntax quota, section length limit or diagram quota is imposed.
+
+Before accepting newly generated output, the existing technical and teaching reviews still assess completeness, correctness and pedagogy. **These are qualitative review responsibilities, not machine-proof of no regression.** The deterministic format validator is a separate Step 2 and is not yet enforced by this PR.
+
+This integration does not add an LLM step. Reading a compact formatting skill **does consume a small amount of input tokens** in future authoring; the later deterministic loader/validator has no LLM token cost. Avoid passing the entire specification in every agent brief when the compact instruction is sufficient.
+
 ## 1. Scope and authority
 
 - This contract governs **representation and safe consumption**, not what to teach. Course depth, learning outcomes, technical accuracy, source provenance, exercises, and teaching quality remain governed by the approved curriculum, `modules/database/governance/content-guidelines.md`, `.agents/skills/lesson-authoring/SKILL.md`, and existing review gates.
@@ -70,7 +80,7 @@ Lesson YAML front matter already carries `id`, `title`, `status`, `level`, `prer
 3. Add a separate publication gate for human-approved hashes.
 4. Integrate the website renderer and perform visual QA on tables, code, diagrams, and long lessons.
 
-None of the above adds an AI agent or token-consuming LLM call to the milestone authoring workflow. This **candidate** does not activate these steps until implemented and reviewed.
+No additional AI agent or LLM call is needed for deterministic build-time checks. The small format skill becomes a required authoring input for **new tasks after merge**, while deterministic renderer checks are still pending Step 2.
 
 ## Reference specifications
 
