@@ -8,6 +8,24 @@ The approved SDA-v1 baseline defines the teaching scope and learner prerequisite
 
 One Epic covers each module, with a final-course Epic for the capstone and audit. R/G/D/A/T/P/V/H mean research, approved gate, teaching draft, companion assessment, technical/provenance review, teaching review, validation and human acceptance. D and A share the author step. The two reviews are independent and can run in parallel. Revisions are conditional, up to two cycles. H tracks a separate human decision and can be batched after the drafts pass validation.
 
+## Delivery milestones
+
+Each milestone groups existing Stories into one reviewable handoff. The backlog owns the Story membership. The [execution plan](EXECUTION_PLAN.md) specifies the recommended batches, first delivery scope and readiness checks. See [Issue 18](https://github.com/czyboi/system-design-academy/issues/18).
+
+| Milestone | Scope | Handoff result |
+|---|---|---|
+| SDA-MS01 Design method and foundations | M00–M01 (6 lessons) | A document-sharing design brief and an order-status service workload model comparing two failure policies. |
+| SDA-MS02 Request paths and service boundaries | M02–M03 (7 lessons) | A global image catalogue request path and a justified service split with APIs and failure handling. |
+| SDA-MS03 Data storage and scaling | M04–M05 (8 lessons) | An order database evolution under read growth, write growth and a hot tenant, plus storage choices for distinct access patterns. |
+| SDA-MS04 Caching and asynchronous work | M06–M07 (6 lessons) | A query-result cache under a hot query and node loss, plus a media processing pipeline with status, retries and overload control. |
+| SDA-MS05 Processing, retrieval and operations | M08–M09 (6 lessons) | A ranking and sharded search exercise with a slow shard, plus a security, correlated-failure and diagnostic review. |
+| SDA-MS06 Complete system designs | M10 (8 lessons) | Eight worked designs and a comparison of two content-platform designs after a dominant constraint changes. |
+| SDA-MS07 Specialised design domains | M11 (9 lessons) | Nine domain lessons and an exercise comparing unique-ID and distributed rate-limit invariants and failure policies. |
+| SDA-MS08 Object design and architecture synthesis | M12–M13 (7 lessons) | An OOD portfolio with a parking allocation extension, plus a comparison of two historical architecture families for a new workload. |
+| SDA-MS09 Capstone and whole-course audit | CP-01 and course audit | A multi-region marketplace capstone with a six-outcome rubric and a whole-course audit of all 473 topic mappings and learning outcomes. |
+
+The first eight handoffs include the validated lesson and assessment drafts, integrated module packages, and current teaching and assessment evidence. The final handoff includes the capstone and independent course audit. Record human approval separately.
+
 ## Draft readiness and dependency changes
 
 The outline's learning prerequisites apply to learners. The backlog records production inputs separately. Independent parts of a package can proceed within the authorized scope. When a section consumes a specific example, diagram or assumption, integrate that section once the upstream draft is available. A module can complete integration and coverage reconciliation once its lesson drafts pass validation. The final audit consumes all module evidence and the validated capstone draft.
