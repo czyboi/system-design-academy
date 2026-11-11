@@ -76,6 +76,27 @@
       "applies_to": [
         "validation"
       ]
+    },
+    {
+      "id": "ac-research",
+      "text": "Every external claim in the package has a dated, exact primary source and scoped confidence, or a recorded unresolved disposition.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-plan",
+      "text": "Verify the approved baseline hashes and the current independent plan verdict and reconcile exact topic or synthesis assignment.",
+      "applies_to": [
+        "plan-gate"
+      ]
+    },
+    {
+      "id": "ac-technical",
+      "text": "Record independent technical and provenance findings and a verdict bound to all declared artifact hashes.",
+      "applies_to": [
+        "technical-review"
+      ]
     }
   ]
 }
