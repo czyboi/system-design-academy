@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "author",
   "created_at": "2026-11-11T12:45:21Z",
-  "updated_at": "2026-11-11T12:55:46Z",
+  "updated_at": "2026-11-11T12:57:48Z",
   "execution_control": "active",
   "notes": "GitHub #37; milestone SDA-MS02, Story SDA-M03-INT; branch codex/SDA-MS02.",
   "steps": [
@@ -123,7 +123,7 @@
     {
       "step_id": "author",
       "title": "Draft the module exercise, reference solution and decision summary",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "research",
         "plan-gate"
@@ -175,14 +175,22 @@
         "modules/m03/integrated/decision-summary.md": null
       },
       "started_at": "2026-11-11T12:55:46Z",
-      "active_spec_hash": "e3f9bc580ec067bd8b59557a2054e55f1609852001778be01298ffbaa34da6c4",
-      "active_fingerprint": "e2522e45a796f32d1c3a56e5b33b00c81ed0f6ab2aa06727b9756ea7dde58ae6",
       "run_id": "SD-M03-INTEGRATION-author-20261111T125546Z",
       "agent": "curriculum_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "e2522e45a796f32d1c3a56e5b33b00c81ed0f6ab2aa06727b9756ea7dde58ae6",
+      "completed_spec_hash": "e3f9bc580ec067bd8b59557a2054e55f1609852001778be01298ffbaa34da6c4",
+      "completed_output_hashes": {
+        "modules/m03/integrated/brief.md": "1ef4efe2f1e8aecefb95c62bc6626ebf2846a767625f93a2467aa5dd72334e4d",
+        "modules/m03/integrated/solution-rubric.md": "7d4a17595ece715cec6ff0202b0d496a06a4f981fd56cdb51f3c4a58339fafa0",
+        "modules/m03/integrated/decision-summary.md": "aed09f8640dfde53bfbb4f3b7f5358ffaf0f78dc4250d87836b808d26867c371"
+      },
+      "completed_at": "2026-11-11T12:57:48Z",
+      "completed_by": "curriculum_orchestrator",
+      "completed_commit": "294c6ae5eadf0eb0fe4a9f0fd4a8ff4dd07a8dfd"
     },
     {
       "step_id": "technical-review",
