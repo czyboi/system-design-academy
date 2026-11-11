@@ -10,7 +10,7 @@ One Epic covers each module, with a final-course Epic for the capstone and audit
 
 ## Delivery milestones
 
-Each milestone groups existing Stories into one reviewable handoff. The backlog owns the Story membership. The [execution plan](EXECUTION_PLAN.md) specifies the recommended batches, first delivery scope and readiness checks. See [Issue 18](https://github.com/czyboi/system-design-academy/issues/18).
+Each milestone groups existing Stories into one reviewable handoff. The backlog owns the Story membership. Select one, several or all nine milestones for a run. The [execution plan](EXECUTION_PLAN.md) describes readiness and handoff checks for the selected scope. See [Issue 18](https://github.com/czyboi/system-design-academy/issues/18).
 
 | Milestone | Scope | Handoff result |
 |---|---|---|
@@ -24,7 +24,7 @@ Each milestone groups existing Stories into one reviewable handoff. The backlog 
 | SDA-MS08 Object design and architecture synthesis | M12–M13 (7 lessons) | An OOD portfolio with a parking allocation extension, plus a comparison of two historical architecture families for a new workload. |
 | SDA-MS09 Capstone and whole-course audit | CP-01 and course audit | A multi-region marketplace capstone with a six-outcome rubric and a whole-course audit of all 473 topic mappings and learning outcomes. |
 
-The first eight handoffs include the validated lesson and assessment drafts, integrated module packages, and current teaching and assessment evidence. The final handoff includes the capstone and independent course audit. Record human approval separately.
+The lesson and module handoffs include the validated lesson and assessment drafts, integrated module packages, and current teaching and assessment evidence. The capstone and audit handoff includes the marketplace package and independent course audit. Record human approval separately.
 
 ## Draft readiness and dependency changes
 
