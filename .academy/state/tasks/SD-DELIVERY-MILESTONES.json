@@ -7,14 +7,14 @@
   "automation_status": "in_progress",
   "current_phase": "implementation",
   "created_at": "2026-11-11T07:20:34Z",
-  "updated_at": "2026-11-11T07:26:47Z",
+  "updated_at": "2026-11-11T07:27:40Z",
   "execution_control": "active",
   "notes": "GitHub #18. Approved milestone grouping and execution planning only.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Record milestones and write execution plan",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -54,19 +54,23 @@
         "model": null,
         "reasoning_effort": null
       },
-      "completed_fingerprint": "a761f00054c304e420927b5be9a1a4a010201927d9c8995237f42d029227839f",
-      "completed_spec_hash": "3d5cdc2f1b30acb82801277eda1e73ec440092666edba2aea7e79963bff3ffa7",
+      "completed_fingerprint": "45c97f9c0b5435104f84b357c0f238235b13a8df8bb7e002e8cb4b84923b21d5",
+      "completed_spec_hash": "5e3ee6a84c82b29eb9ccbbbbd2bce327f51c74fd609ee6b5730aab57bc809fe2",
       "completed_output_hashes": {
-        "delivery/PLAN.md": "8964b259cc9f7fb48f936daf9603a5acfedf888aa9c78fc27792ae91ef65c872",
+        "delivery/PLAN.md": "d761c3f549f23b9c619c2505e0d080935c9a08278cf4a33c85765c23d0b76cf8",
         "delivery/backlog.json": "61a46e214f9f0c4016ab856316dee96655f32b45fc0eca9353ac080f016ac442",
-        "delivery/EXECUTION_PLAN.md": "36689a379a649133667baeadcf519e090979fd58dfd906d15bce39938ffe8b5f"
+        "delivery/EXECUTION_PLAN.md": "b3b86bbb5bbb6a58d927f81b4b2fb0a22b5c72c617ebcf3555e13f9b4695bc0a"
       },
-      "completed_at": "2026-11-11T07:22:35Z",
+      "completed_at": "2026-11-11T07:27:40Z",
       "completed_by": "curriculum_orchestrator",
-      "completed_commit": "852570638ffbf50c7e989e1a760008c562c5bd2b",
+      "completed_commit": "09e5d93f9864ff527be94d1fa39fb6a92d5b4b18",
       "invalidation_reason": "User correction in Codex chat: select the first delivery scope later and allow all nine milestones in one run. Remove the preselected first scope and resolve readiness by actual draft inputs. Retain milestone membership.",
-      "active_spec_hash": "5e3ee6a84c82b29eb9ccbbbbd2bce327f51c74fd609ee6b5730aab57bc809fe2",
-      "active_fingerprint": "45c97f9c0b5435104f84b357c0f238235b13a8df8bb7e002e8cb4b84923b21d5"
+      "reused_outputs": {
+        "delivery/backlog.json": {
+          "reason": "The user changed run scope selection. Milestone membership and all Story records remain valid.",
+          "at": "2026-11-11T07:27:40Z"
+        }
+      }
     },
     {
       "step_id": "verification",
