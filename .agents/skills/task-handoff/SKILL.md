@@ -1,40 +1,21 @@
 ---
 name: task-handoff
-description: Resume an existing Academy task across agents, model providers, and sessions without repeating completed work.
+description: Resume explicit task state across AI agents, sessions and providers without repeating completed work.
 ---
 
-# Task Handoff
+# Task handoff
 
-## Intake
-1. Read `AGENTS.md` and `.academy/state/README.md`.
-2. Open the linked GitHub Issue; verify task ID, owner, branch, dependencies, and PR.
-3. Read `.academy/specs/<TASK-ID>.json`, task state JSON, and JSONL worklog.
-4. Inspect Git status, branch, recent commits, and PR.
-5. Run `python scripts/taskctl.py status <TASK-ID>`.
+Read `AGENTS.md`, the selected Issue/PR, canonical spec, task JSON, JSONL worklog, relevant feedback, current branch/commits and Git status. Run `python scripts/taskctl.py status TASK-ID`.
 
-## Decide whether to work
-- `SKIP`: never repeat. Current spec slice, input fingerprint, output hashes, and Git integrity match.
-- `RESUME`: inspect checkpoint and output state; use `start ... --resume` only if the spec/input snapshot is unchanged.
-- `READY`: verify task owner and start the step before changing files.
-- `STALE`: inspect differences and selectively rerun only the affected step/dependents.
-- `BLOCKED`: resolve the prerequisite first.
+- **SKIP:** completed by explicit action. Never rerun solely because files, spec, shared skills or dependencies changed.
+- **RESUME:** interrupted work; use its checkpoint. `start ... --resume` does not inspect hashes.
+- **READY:** pending or explicitly reopened and prerequisites completed; start only authorized scope.
+- **BLOCKED:** a hold, manually blocked step, incomplete prerequisite or explicitly configured optional review gate.
 
-## During work
-- Follow the canonical specification; do not reinterpret Issue prose as acceptance criteria.
-- Stay within assigned input/output paths; do not edit files owned by another agent.
-- Commit start state before editing. Checkpoint and commit before provider/context handoff.
-- Commit outputs before `complete`. For unchanged pre-existing artifacts, use explicit `--reuse-output PATH --reuse-reason "..."`; reuse is recorded.
-- Never edit completion fields manually. Commit task JSON and worklog after each state transition.
-- `automation_complete` is not approval. Do not mark work human-approved or published.
+No `STALE` state is computed. Never automatically invalidate completed steps; only use `invalidate` after an explicit instruction, with `--cascade` if expressly wanted.
 
-## Handoff report
-Update the Issue with task/spec/state paths, branch/PR, last completed step, current step, blockers, and next action. Keep detailed progress in repository state and append-only worklog.
+Parent orchestrator owns task state and shared files. Subagents edit non-overlapping outputs only. Record checkpoints for long work, and commit artifacts/state/worklog together at task completion or provider handoff. Do not require a separate start-state commit, matched input snapshot or output checksum. Git and Issue ownership coordinate writers; task state is not a distributed lock.
 
-## Feedback continuity
-- At intake, read relevant prior task retrospectives, review reports, validation reports, and worklog feedback for this module or workflow. Apply only findings that fit the current task scope.
-- Record new user corrections, reviewer findings, and validation failures in the worklog or report with a disposition and reason. Route reusable process improvements to shared skills, checklists, or tests through a scoped task.
-- Include unresolved feedback in the handoff report. In the task retrospective, identify the shared skill or regression check that carries each reusable lesson forward.
+Content-review status is independent: `not_reviewed`, `in_review`, `reviewed`, `needs_review`. A substantive edit to reviewed work must be flagged manually; cosmetic edits need not reset it. Never equate review status, a draft completion or a passing checker with approval to publish.
 
-## Holds and review freshness
-
-Inspect execution_control and historical user stop decisions before considering READY/RESUME. Status is read-only; reconciliation is an explicit parent-owned mutation. Do not resume a held task without user direction. Read the artifact-bound review verdicts as well as execution states; a completed negative review is not a passed gate.
+In the handoff report include task/spec/state paths, branch/PR, completed steps, current step, blockers, user-requested next action and unresolved feedback. Promote only genuinely reusable process lessons into shared skills. Never invent validations/reviews that were not run.

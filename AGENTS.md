@@ -1,47 +1,34 @@
-# System Design Academy — Repository Instructions
+# System Design Academy — Agent Instructions
 
-## Project guardrails
-- Work only on the explicitly requested module and lesson IDs.
-- Prefer standards/RFCs and official vendor documentation. Record exact URL/section, product/version, and date checked.
-- Treat System Design Primer as topic map and licensed source material, not sole technical authority. Do not translate it paragraph-by-paragraph or copy third-party assets without separate rights checks.
-- Create original explanations, examples, diagrams, exercises, quizzes, and answer explanations.
-- Keep generated lessons at `status: draft`. Never merge a PR or publish learner-facing content without explicit human approval.
-- Never invent citations, benchmarks, guarantees, versions, licenses, or test results. Mark unresolved claims.
-- Never commit credentials, API keys, tokens, learner data, or secrets.
+## Boundaries
+- Work only on the user-authorized task, module and lesson IDs. Never expand scope or generate other lessons implicitly.
+- The official SDA-v1 plan is in `curriculum/revision-1/`; root-level course files are historical candidates. Use the chosen approved version at intake.
+- Original English teaching content for middle/senior engineers; keep learner-facing lessons `status: draft`.
+- Use exact primary-source references when making technical claims. Primer is a licensed topic map, not the sole factual authority; create original teaching, examples, diagrams and exercises.
+- Do not fabricate citations, legal permissions, benchmarks or test results. Do not commit credentials or private learner data.
+- Never publish, merge or claim human approval without an explicit user decision.
 
-## Persistent task protocol
-- For every multi-step task, find or create the matching GitHub Issue and task ID. Reuse equivalent work; do not create duplicates.
-- The canonical requirements are in `.academy/specs/<TASK-ID>.json`. Do not treat Issue prose as a second specification.
-- The task execution state is `.academy/state/tasks/<TASK-ID>.json`; event history is `.academy/state/worklog/<TASK-ID>.jsonl`.
-- Read `.academy/state/README.md`, the Issue, spec, state, and worklog before acting. Inspect branch, commits, and `git status`.
-- Run `python scripts/taskctl.py status <TASK-ID>`. Never repeat `SKIP`; inspect and selectively handle `STALE`; resume only unchanged `RESUME`; start only `READY`; do not run `BLOCKED`.
-- Initialize with `python scripts/taskctl.py init TASK-ID --module MODULE --goal "..." --owner "@username" --template .academy/state/task.template.json`. Complete the spec and remove placeholders before execution.
-- `start` records clean tracked input/spec hashes and a starting commit. Commit the task state/worklog before editing.
-- Commit declared outputs before `complete`. Completion verifies input/spec stability and requires new committed output, unless intentional reuse is explicitly recorded with `--reuse-output PATH --reuse-reason "..."`.
-- Commit state/worklog after every mutation. Checkpoint and commit before handing off to another provider/session.
-- One active writer per task. The JSON state is not a distributed lock.
-- Record user corrections, reviewer findings, and validation failures in the task worklog or report with their source, disposition, and follow-up. Before reusing a workflow, read relevant prior feedback. Promote reusable process improvements into shared skills, QA checklists, or regression tests through a scoped task; keep one-off decisions in task artifacts and do not rely on chat memory.
+## Task memory and explicit state
+- For a meaningful multi-step task, reuse or create a GitHub Issue, `.academy/specs/<TASK-ID>.json`, `.academy/state/tasks/<TASK-ID>.json`, and `.academy/state/worklog/<TASK-ID>.jsonl`.
+- Read spec, state, worklog, relevant feedback and Git history before working. One active writer per task. The Issue coordinates ownership; the spec is authoritative.
+- `python scripts/taskctl.py status TASK-ID` reads only recorded states. `SKIP` means explicitly completed, `READY` means eligible, `RESUME` means in progress, and `BLOCKED` means a dependency, hold or manual review gate requires attention.
+- No automatic `STALE`, checksums, fingerprints or dependency invalidation. Editing files/specs never changes a completed step's status.
+- Start only authorized pending/reopened work; `taskctl start` and `complete` record progress. Only `taskctl invalidate TASK-ID STEP-ID --reason "..."` reopens completed work. `--cascade` must be specifically requested; do not infer cascades.
+- Explicitly mark meaningful changes to previously reviewed content with `taskctl review-status TASK-ID --state needs_review --reason "..."`. Harmless formatting may keep the current review status. Review status is not publication approval.
+- Preserve the old task/worklog files and previous reports as history; legacy hash fields are inert. Use Git to persist artifacts and state together at a meaningful checkpoint or handoff. Never repeat already completed work just because a shared skill changed.
 
-## Skills and agents
-- Shared procedures live only in `.agents/skills/`. Codex profiles live in `.codex/agents/`; Claude Code project subagents live in `.claude/agents/`.
-- Provider-specific files must reference the shared skill and define only role/configuration; do not fork the procedure into provider profiles.
-- Parent/orchestrator owns task state, shared files, final synthesis, and PR preparation. Use specialist agents only on bounded, distinct outputs.
-- A "do not edit" instruction is not an enforced permission boundary. Codex subagents inherit parent permissions. Configure actual host/session permissions where read-only behavior is required.
-- Do not have multiple agents edit the same output. Maximum two automated revision cycles; stop for human judgment if a critical disagreement remains.
+## Default workflow
+- `.academy/state/task.template.json`: research → author draft lesson + companion assessment.
+- `.academy/state/course.template.json`: draft a new versioned plan/inventory/matrix.
+- `.academy/state/workflow.template.json`: implementation.
+- After producing the requested draft, record completion and **stop**. Do not autonomously run AI reviewers, Python validation, tests, CI or a revision loop.
+- On an explicit **review** request, invoke only the requested reviewer(s): technical/source rights, teaching/coverage/pedagogy, or comprehensive. Reviewer findings must be attributable to content locations; unresolved blocker/major findings cannot be declared clear.
+- On an explicit **validation** request, run only the selected CLI checks. A review request is not implied permission to run validators, and a validation request is not implied permission to spawn AI reviewers.
+- Keep teaching and assessment separate; outcomes must be taught and assessed. Read `.agents/skills/module-pipeline/SKILL.md` for details.
+- User approval is required before publication, including when a draft has passed optional review and structural checks.
 
-## Content and approval gates
-- Every lesson teaches outcomes, prerequisites, motivating problem, mechanism, worked example, trade-offs/failure modes, and direct references. Its separate companion assessment contains an exercise, 5–8 checks with explanations, rubric and outcome map. The paired package satisfies lesson requirements.
-- Map every learning outcome to an assessment. Distinguish general principles from vendor-specific semantics.
-- Run `pip install -r requirements-dev.txt`, `python scripts/validate_content.py`, `python -m unittest discover -s tests -v`, and `python scripts/taskctl.py validate`.
-- CI structural validation does not establish factual correctness, legal rights, source reachability, or pedagogical quality.
-- Automation completion is not human approval. Keep the PR draft until reviewers explicitly approve; never auto-publish learner-facing content.
-
-- `taskctl status` is read-only. Use `reconcile` explicitly to persist aggregate changes. Respect task execution_control holds; only resume-task after explicit user direction.
-- New review gates use artifact-bound verdict JSON; a completed review with block/revise cannot satisfy an acceptance gate. See docs/workflow-contract.md for the CLI contract.
-
-## Compact workflow defaults
-- Use the shared module-pipeline skill: three steps for course planning, six for a lesson package, two for workflow/code. One Issue/spec/state/worklog per bounded task; internal research/review steps do not need separate Issues.
-- Reuse an accepted, unchanged full-course plan/inventory/matrix gate. Do not regenerate course planning per lesson. Full Primer coverage includes every knowledge topic, even optional tracks; exclusions/deferments cannot count as complete coverage.
-- Default lesson reviews are two independent combined assignments: technical + provenance, and actual source coverage + pedagogy/language. Preserve every review dimension and exact artifact hashes. Add specialists only for unresolved risks.
-- No mandatory revision, final copy or duplicate recheck when the first pass is accepted. Revisions require fresh gates on the actual new artifacts, with at most two automated cycles.
-- Workflow-only changes never imply permission to generate curriculum/lessons or resume historical held work.
+## Parallelism and permissions
+- The parent orchestrator owns shared files and task state; delegate only bounded, non-overlapping outputs.
+- One active writer per task. The task JSON is not a distributed lock.
+- Agent instructions are not an access-control mechanism. Codex subagents inherit parent permissions; enforce boundaries in the actual host/sandbox.
+- Stop at unresolved evidence or user-controlled decisions. Never spawn additional tasks to satisfy optional gates without authorization.
