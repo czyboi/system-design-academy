@@ -4,10 +4,10 @@
   "module_id": "m03",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M03-INTEGRATION.json",
-  "automation_status": "blocked",
-  "current_phase": "teaching-review",
+  "automation_status": "in_progress",
+  "current_phase": "revision-1",
   "created_at": "2026-11-11T12:45:21Z",
-  "updated_at": "2026-11-11T13:00:42Z",
+  "updated_at": "2026-11-11T13:00:45Z",
   "execution_control": "active",
   "notes": "GitHub #37; milestone SDA-MS02, Story SDA-M03-INT; branch codex/SDA-MS02.",
   "steps": [
@@ -349,7 +349,7 @@
     {
       "step_id": "revision-1",
       "title": "Revise the first reviewed candidate",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "technical-review",
         "teaching-review"
@@ -376,8 +376,35 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
-      "revision_cycle": 1
+      "attempts": 1,
+      "revision_cycle": 1,
+      "start_commit": "180cdaaf539e2954e3b99002a9bdc27af5dfd769",
+      "start_input_hashes": {
+        "modules/m03/integrated/brief.md": "1ef4efe2f1e8aecefb95c62bc6626ebf2846a767625f93a2467aa5dd72334e4d",
+        "modules/m03/integrated/solution-rubric.md": "7d4a17595ece715cec6ff0202b0d496a06a4f981fd56cdb51f3c4a58339fafa0",
+        "modules/m03/integrated/decision-summary.md": "aed09f8640dfde53bfbb4f3b7f5358ffaf0f78dc4250d87836b808d26867c371",
+        "modules/m03/integrated/evidence.md": "06c75f0365ab24401154cde9fc3df07a8a2f8f0faeefe2fa66c72ef4f32ea080",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "modules/m03/integrated/reviews/technical.md": "c79fbcdff397ce8620ed5f6aedfe3c62064a7aa79b5fb6200ed76285b05a07be",
+        "modules/m03/integrated/reviews/technical.json": "7f29970103e4b840302a151acd8d84602fd69eac07f9eca2d3ebc0a0af1e0ac4",
+        "modules/m03/integrated/reviews/teaching.md": "7d86c62dedc0719e5bb6fc27c4e69a5d39196ec52745d5b43786a198a1d2e7ec",
+        "modules/m03/integrated/reviews/teaching.json": "4bf0586293de9b327a744856fb9c6f7bf648160b14c8abd1ba21efd8183e7dad"
+      },
+      "start_output_hashes": {
+        "modules/m03/integrated/solution-rubric-r1.md": null,
+        "modules/m03/integrated/decision-summary-r1.md": null
+      },
+      "started_at": "2026-11-11T13:00:45Z",
+      "active_spec_hash": "e8de0dbdf1598d1045500614518f9396dd5de97b20bc4fbe4a8ce65da0a10639",
+      "active_fingerprint": "dd089e7ea1afe645c3767e73f290bc408458fb85149e0af0516af9657f96e5a4",
+      "run_id": "SD-M03-INTEGRATION-revision-1-20261111T130045Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "technical-review-r1",
