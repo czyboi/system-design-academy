@@ -19,7 +19,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_FRONT_MATTER = (
-    "id", "title", "status", "level", "estimated_time", "source_review_date"
+    "id", "title", "status", "level", "source_review_date"
 )
 REQUIRED_SECTIONS = {
     "learning outcomes": re.compile(r"^##\s+(?:\d+\.\s*)?Learning outcomes\b", re.I | re.M),

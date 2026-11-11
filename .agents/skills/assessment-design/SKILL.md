@@ -15,7 +15,7 @@ If the lesson does not teach an outcome or a question would require untaught con
 
 1. Keep the assessment in its own companion artifact; do not edit the teaching lesson or turn it into a question bank.
 2. Map every outcome to at least one assessment item and identify the exact lesson section that teaches it.
-3. Provide one practical exercise with requirements, constraints, deliverables, time estimate, solution or rubric, and a defensible sample answer.
+3. Provide one practical exercise with requirements, constraints, deliverables, solution or rubric, and a defensible sample answer.
 4. Provide 5–8 knowledge checks with correct answers and concise reasoning. Mix explanation, diagnosis, calculation, design choice, and trade-off questions; use recall only where useful.
 5. State assumptions and units. Avoid ambiguous wording and unstated vendor/version assumptions.
 6. Ensure every item is answerable from taught material. Label optional extension items and identify any prerequisite they assume.

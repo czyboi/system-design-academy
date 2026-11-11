@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-DELIVERY-MILESTONES",
+  "revision": 2,
+  "goal": "Record course milestones and prepare the execution plan",
+  "scope": {
+    "in_scope": [
+      "Record the approved nine milestone groups and their concrete deliverables in the delivery plan and backlog.",
+      "Define work groups and handoff criteria for all milestones, including module integration and final audit inputs. The user selects any milestone scope at execution."
+    ],
+    "out_of_scope": [
+      "Claim or start any content Story, author content, change the approved baseline, merge or publish.",
+      "Add a checkpoint policy, effort or time forecasts, or a scheduling engine."
+    ]
+  },
+  "constraints": [
+    "Use the approved SDA-v1 outline unchanged and retain all existing backlog IDs, Story scopes, dependencies and Planned statuses.",
+    "Retain draft-only authoring, both independent reviews, per-module coverage and explicit human approval.",
+    "The user can select one, several or all nine milestones in the same run. Use concrete draft artifact dependencies for readiness across the selection. Milestone IDs identify deliverables."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-plan",
+      "text": "Record nine milestones and an actionable execution plan with user-selected run scope and all handoff conditions.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "dod-verify",
+      "text": "Verify complete and unique milestone assignment, dependency-aware work, and an unchanged approved baseline.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-membership",
+      "text": "Assign every Story to exactly one milestone, preserving all existing content packages and mapped topics.",
+      "applies_to": [
+        "implementation",
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-execution",
+      "text": "Execution plan allows any subset of milestones or the whole backlog in one run, identifies concrete inputs and preserves module validation and audit gates.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-checks",
+      "text": "Pass required repository checks, strict baseline coverage, and milestone and backlog integrity verification.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@
 
 ## Required lesson structure
 
-1. Title, status, level, prerequisites, estimated learner time.
+1. Title, status, level and prerequisites.
 2. Learning outcomes (observable, assessable verbs).
 3. Problem and motivating scenario.
 4. Core concepts and mechanism.

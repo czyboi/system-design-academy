@@ -11,7 +11,7 @@ outcome_map:
 # Companion assessment
 
 ## Practical exercise
-EX-1: Provide requirements, constraints, deliverables and time estimate.
+EX-1: Provide requirements, constraints and deliverables.
 
 ## Knowledge checks
 ### Q1

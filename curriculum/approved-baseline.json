@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "course_id": "SDA",
+  "baseline_id": "SDA-v1",
+  "status": "human_approved",
+  "approved_on": "2026-11-10",
+  "approval_source": "Explicit user approval in this Codex chat",
+  "approval_statement": "mình đồng ý với outline này, làm nó thành offical đi, sau đấy lập kế hoạch và chia task kiểu Jira.",
+  "scope": "Outline, source inventory and coverage mapping only; future teaching packages require their own review and human approval.",
+  "artifact_hashes": {
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  },
+  "review_path": "curriculum/revision-1/review.json",
+  "review_sha256": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287",
+  "supersedes": "Initial candidate at repository root is historical, not the official baseline."
+}

@@ -4,7 +4,9 @@ Source-grounded System Design course development for middle/senior engineers. Le
 
 ## Current state
 
-Fresh start: no course plan, lesson or assessment has been authored. Historical task records and generated artifacts were removed from the working tree; Git history retains previous commits. Workflow skills, templates, validation and review gates remain. Create a new scoped task before producing any course content.
+The course outline is officially approved by the user as **SDA-v1** (2026-11-10): 14 modules, 57 lessons and a cross-module capstone. Start with the [official curriculum entry point](curriculum/README.md) and its hash-bound approval record.
+
+The [content delivery plan](delivery/PLAN.md) and [structured Jira-style backlog](delivery/backlog.json) define the future packages and dependencies. They are separate from workflow tasks. Teaching and assessment authoring has not started.
 
 ## Start here
 

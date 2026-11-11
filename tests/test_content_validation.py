@@ -5,7 +5,6 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
 from scripts import validate_content as validator
 from scripts import taskctl
@@ -19,23 +18,36 @@ class ContentContractTests(unittest.TestCase):
         base.mkdir(exist_ok=True)
         self.temp = tempfile.TemporaryDirectory(dir=base)
         self.root = Path(self.temp.name)
-        self.lesson = self.root/'lesson.md'
+        self.lesson = self.root/'TEST-1.md'
         self.assessment = self.root/'assessment.md'
         self.lesson.write_text('''---
 id: TEST-1
+title: Test lesson
 status: draft
+level: intermediate
+source_review_date: 2026-11-11
 prerequisites: []
 outcomes: [LO-1]
 ---
 # Test lesson
 ## Learning outcomes
 LO-1: Make a decision.
+## Problem and motivation
+Choose a representation for this workload.
 ## Core concepts and mechanisms
 Explanation.
+## Worked example
+Apply the decision criteria to one request.
+## Trade-offs and failure modes
+Discuss what happens when the input changes.
+## References
+- https://example.com/reference-a
+- https://example.com/reference-b
 ''', encoding='utf-8')
-        self.assessment.write_text('''---
+        lesson_path = self.lesson.relative_to(ROOT).as_posix()
+        self.assessment.write_text(f'''---
 status: draft
-lesson: lesson.md
+lesson: {lesson_path}
 outcome_map:
   LO-1:
     taught_in: Core concepts and mechanisms
@@ -46,11 +58,8 @@ outcome_map:
 EX-1: Solve this problem.
 ## Knowledge checks
 '''+''.join(f'### Q{i}\nQuestion.\nAnswer: Yes.\nExplanation: Reason.\n' for i in range(1,6))+'## Answer key / rubric\nSolution.\n', encoding='utf-8')
-        self.root_patch = patch.object(validator, 'ROOT', self.root)
-        self.root_patch.start()
 
     def tearDown(self):
-        self.root_patch.stop()
         self.temp.cleanup()
 
     def pair_errors(self):
@@ -58,6 +67,15 @@ EX-1: Solve this problem.
 
     def test_separate_pair_maps_every_outcome(self):
         self.assertEqual(self.pair_errors(), [])
+
+    def test_lesson_scope_accepts_a_complete_pair_without_a_duration(self):
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            result = validator.main([
+                '--scope', 'lesson', '--lesson', self.lesson.relative_to(ROOT).as_posix(),
+                '--assessment', self.assessment.relative_to(ROOT).as_posix(),
+            ])
+        self.assertEqual(result, 0, output.getvalue())
 
     def test_assessment_leakage_is_rejected(self):
         with self.lesson.open('a',encoding='utf-8') as f:
