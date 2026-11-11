@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-M01-L02",
-  "revision": 1,
+  "revision": 2,
   "goal": "Draft and verify Performance versus scalability for SDA-M01-L02",
   "scope": {
     "in_scope": [
@@ -48,6 +48,27 @@
       "text": "Pass the applicable package checks and the repository checks, and record results and feedback disposition in the declared report.",
       "applies_to": [
         "validation"
+      ]
+    },
+    {
+      "id": "dod-revision-1",
+      "text": "Commit the revised draft paths and resolve material review findings.",
+      "applies_to": [
+        "revision-1"
+      ]
+    },
+    {
+      "id": "dod-technical-review-r1",
+      "text": "Record a fresh independent combined review bound to the complete revised package.",
+      "applies_to": [
+        "technical-review-r1"
+      ]
+    },
+    {
+      "id": "dod-teaching-review-r1",
+      "text": "Record a fresh independent combined review bound to the complete revised package.",
+      "applies_to": [
+        "teaching-review-r1"
       ]
     }
   ],
@@ -107,6 +128,27 @@
       "text": "The independent review records separate correctness and source or rights findings and binds its verdict to the declared artifact hashes.",
       "applies_to": [
         "technical-review"
+      ]
+    },
+    {
+      "id": "ac-revision-1",
+      "text": "Use fresh exercise and Q2–Q3 inputs so learners transfer the method, recompute the key and rubric, and address technical precision findings L02-T1 and L02-T2.",
+      "applies_to": [
+        "revision-1"
+      ]
+    },
+    {
+      "id": "ac-technical-review-r1",
+      "text": "Inspect the changes and affected dependencies and verify every declared artifact hash before issuing the gate verdict.",
+      "applies_to": [
+        "technical-review-r1"
+      ]
+    },
+    {
+      "id": "ac-teaching-review-r1",
+      "text": "Inspect the changes and affected dependencies and verify every declared artifact hash before issuing the gate verdict.",
+      "applies_to": [
+        "teaching-review-r1"
       ]
     }
   ]
