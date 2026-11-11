@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-WORKFLOW-DELIVERY-COVERAGE",
+  "revision": 1,
+  "goal": "Apply delivery and lesson authoring rules",
+  "scope": {
+    "in_scope": [
+      "Revise delivery plan and backlog to use concrete draft artifacts as dependencies and separate human approval from readiness.",
+      "Track cross-package references and handle affected revisions; reconcile actual coverage and outcomes per module; correct capstone acceptance.",
+      "Remove delivery estimates and learner time estimates from active guidance, templates and validator."
+    ],
+    "out_of_scope": [
+      "Select delivery order or checkpoint policy; author or execute any content package.",
+      "Change the approved outline, source inventory, coverage matrix or approval artifact; publish or merge."
+    ]
+  },
+  "constraints": [
+    "Preserve stable backlog IDs, topic ownership, source revision and both independent review dimensions.",
+    "All generated content remains draft pending explicit human approval. Approval can be batched.",
+    "Use the exact approved SDA-v1 baseline, for middle/senior engineers and English learner artifacts.",
+    "User authorized applying these changes on 2026-11-11 after deferring scheduling and checkpoint decisions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-delivery",
+      "text": "Publish the agreed workflow and checks in the delivery plan and backlog, and align active authoring guidance and metadata rules.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "dod-verify",
+      "text": "Record structural and regression verification with the approved baseline unchanged.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-dependencies",
+      "text": "Use only concrete draft inputs for readiness, document impact tracking and keep human approval separate. Preserve learner prerequisites and defer execution order and checkpoints.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-coverage",
+      "text": "Each module owns teaching and outcome evidence; final audit reconciles all 473 source topics and Academy outcomes; capstone uses six transfer outcomes.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-time",
+      "text": "No delivery forecast or required learning/exercise time metadata in the active authoring contract; lesson validator accepts a complete pair without a duration.",
+      "applies_to": [
+        "implementation",
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-checks",
+      "text": "Required repository checks, strict approved course coverage, and backlog identity and dependency integrity pass.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}
