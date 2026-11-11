@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M01-L02",
+  "revision": 1,
+  "goal": "Draft and verify Performance versus scalability for SDA-M01-L02",
+  "scope": {
+    "in_scope": [
+      "Implement only Story SDA-M01-L02 from milestone SDA-MS01 at the declared output paths.",
+      "**Prerequisites:** M01-L01\n\n**Outcomes:** M01-L02-LO1: trace/model the mechanisms below in the worked scenario. M01-L02-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Performance versus scalability and latency versus throughput.\n2. Vertical and horizontal scaling, state placement and limiting resources.\n3. Queueing, saturation, tail latency and benchmark/profile feedback.\n\n**Worked-example plan:** Compare a faster server with two slower servers under a bursty workload.\n\n**Trade-offs and when to use/avoid:** Scale the constrained resource; reject claims that more nodes automatically reduce request latency.\n\n**Quick-check focus:** Explain why throughput rises while tail latency worsens near saturation. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Teach the assigned Primer topic IDs: PR-H032, PR-H034."
+    ],
+    "out_of_scope": [
+      "Other milestones and changes to the approved course baseline.",
+      "Human approval, merge and learner-facing publication."
+    ]
+  },
+  "constraints": [
+    "Use English and write for middle and senior engineers with the approved entry prerequisites. Keep all learner-facing artifacts at draft status.",
+    "Use the approved SDA-v1 plan, inventory, matrix and verdict; the Primer topic map is pinned at ae9bbd7b02d90b9866215de185217d33f39ab733. Cite exact primary-source sections for technical claims and use original examples.",
+    "Two independent reviewers cover technical correctness and provenance, and actual coverage, pedagogy and language. Keep reviews bound to the exact current artifacts."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record exact primary-source evidence, limits and check dates, and reuse the exact approved course verdict after strict plan validation.",
+      "applies_to": [
+        "research",
+        "plan-gate"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Commit the draft teaching and separate assessment outputs defined by the Story.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "dod-review",
+      "text": "Commit both independent findings reports and matching verdicts for the current drafts.",
+      "applies_to": [
+        "technical-review",
+        "teaching-review"
+      ]
+    },
+    {
+      "id": "dod-validation",
+      "text": "Pass the applicable package checks and the repository checks, and record results and feedback disposition in the declared report.",
+      "applies_to": [
+        "validation"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-story-1",
+      "text": "Teach every numbered outline item at M01-L02 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-story-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-story-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-companion",
+      "text": "Include one practical exercise, six checks with answers and explanations, a worked answer and rubric, and an exact outcome-to-heading-and-item map.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    }
+  ]
+}
