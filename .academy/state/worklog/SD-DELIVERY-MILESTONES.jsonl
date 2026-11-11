@@ -1,0 +1,2 @@
+{"at": "2026-11-11T07:20:34Z", "event": "task_created", "module_id": "curriculum-delivery", "owner": "@czyboi", "spec_path": ".academy/specs/SD-DELIVERY-MILESTONES.json", "task_id": "SD-DELIVERY-MILESTONES"}
+{"at": "2026-11-11T07:20:34.604975+00:00", "event": "user_scope_recorded", "task_id": "SD-DELIVERY-MILESTONES", "source": "Codex chat, 2026-11-11", "disposition": "User authorized applying nine proposed milestones, then preparing Execution Planning.", "follow_up": "Preserve prior delivery guardrails; leave content Stories Planned."}

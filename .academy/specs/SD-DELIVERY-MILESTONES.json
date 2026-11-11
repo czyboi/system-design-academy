@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-DELIVERY-MILESTONES",
+  "revision": 1,
+  "goal": "Record course milestones and prepare the execution plan",
+  "scope": {
+    "in_scope": [
+      "Record the approved nine milestone groups and their concrete deliverables in the delivery plan and backlog.",
+      "Define practical batches for all milestones, detailed first-milestone work and handoff criteria, and the inputs for module integration and final audit."
+    ],
+    "out_of_scope": [
+      "Claim or start any content Story, author content, change the approved baseline, merge or publish.",
+      "Add a checkpoint policy, effort or time forecasts, or a scheduling engine."
+    ]
+  },
+  "constraints": [
+    "Use the approved SDA-v1 outline unchanged and retain all existing backlog IDs, Story scopes, dependencies and Planned statuses.",
+    "Retain draft-only authoring, both independent reviews, per-module coverage and explicit human approval.",
+    "Use existing draft artifact dependencies for readiness. Milestones provide recommended work scope and order."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-plan",
+      "text": "Record nine milestones and an actionable execution plan with the first delivery scope and all handoff conditions.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "dod-verify",
+      "text": "Verify complete and unique milestone assignment, dependency-aware work, and an unchanged approved baseline.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-membership",
+      "text": "Assign every Story to exactly one milestone, preserving all existing content packages and mapped topics.",
+      "applies_to": [
+        "implementation",
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-execution",
+      "text": "Execution plan identifies authorable batches, known concrete inputs, module validation and audit gates, and exact first-milestone Story IDs.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-checks",
+      "text": "Pass required repository checks, strict baseline coverage, and milestone and backlog integrity verification.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}
