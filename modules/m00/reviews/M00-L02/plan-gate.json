@@ -1,0 +1,39 @@
+{
+  "verdict": "ready-for-human-review",
+  "checks": {
+    "coverage": "pass",
+    "pedagogy": "pass"
+  },
+  "artifact_hashes": {
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  },
+  "findings": [
+    {
+      "id": "C1",
+      "severity": "major",
+      "status": "resolved"
+    },
+    {
+      "id": "C2",
+      "severity": "major",
+      "status": "resolved"
+    },
+    {
+      "id": "P1",
+      "severity": "major",
+      "status": "resolved"
+    },
+    {
+      "id": "P2",
+      "severity": "major",
+      "status": "resolved"
+    },
+    {
+      "id": "N1",
+      "severity": "minor",
+      "status": "open"
+    }
+  ]
+}
