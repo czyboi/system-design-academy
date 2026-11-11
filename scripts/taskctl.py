@@ -496,11 +496,7 @@ def cmd_complete(args: argparse.Namespace) -> None:
     step["status"] = "completed"
     step["completed_at"] = now()
     step["completed_by"] = args.agent or step.get("agent", "unknown")
-    # Old task records keep their historical fields; they are never consulted.
-    for obsolete in ("active_fingerprint", "active_spec_hash", "completed_fingerprint",
-                     "completed_spec_hash", "completed_output_hashes", "start_input_hashes",
-                     "start_output_hashes"):
-        step.pop(obsolete, None)
+    # Historical run metadata is left untouched and is never used for state transitions.
     data["updated_at"] = now()
     refresh_task_status(data)
     save_task(data)
