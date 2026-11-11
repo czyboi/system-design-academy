@@ -79,7 +79,9 @@
         ".agents/skills/lesson-authoring/SKILL.md",
         ".agents/skills/assessment-design/SKILL.md",
         "modules/database/workflow/lesson-template.md",
-        "modules/database/workflow/assessment-template.md"
+        "modules/database/workflow/assessment-template.md",
+        ".agents/skills/content-format/SKILL.md",
+        "docs/authoring-format-contract-v1.md"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/lessons/${TASK_ID}.md",

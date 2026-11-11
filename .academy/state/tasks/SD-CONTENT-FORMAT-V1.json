@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-CONTENT-FORMAT-V1",
+  "module_id": "workflow",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-CONTENT-FORMAT-V1.json",
+  "automation_status": "not_started",
+  "current_phase": null,
+  "created_at": "2026-11-11T17:35:35Z",
+  "updated_at": "2026-11-11T17:35:35Z",
+  "execution_control": "active",
+  "notes": "Scope adjusted after user review: candidate docs plus future-only format-agent wiring. No original content or old author/assessment skills changed. Formal taskctl start/complete and local test execution have not been performed; keep not_started pending reconciliation.",
+  "steps": [
+    {
+      "step_id": "implementation",
+      "title": "Record source format audit and candidate contract",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [
+        "AGENTS.md",
+        "docs/workflow-contract.md",
+        "modules/database/workflow/lesson-template.md",
+        "modules/database/workflow/assessment-template.md",
+        "modules/database/governance/content-guidelines.md",
+        ".agents/skills/lesson-authoring/SKILL.md"
+      ],
+      "output_paths": [
+        "docs/authoring-format-contract-v1.md",
+        "docs/content-format-audit-ms01-ms02.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/module-pipeline/SKILL.md",
+        ".academy/state/task.template.json"
+      ],
+      "checkpoint": {
+        "note": "Draft candidate and future-only agent routing committed for PR review; formal taskctl lifecycle has not been executed.",
+        "next_action": "Review candidate, then reconcile workflow task in a local checkout."
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "verification",
+      "title": "Validate documentation and record checks",
+      "status": "pending",
+      "depends_on": [
+        "implementation"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "docs/authoring-format-contract-v1.md",
+        "docs/content-format-audit-ms01-ms02.md"
+      ],
+      "output_paths": [
+        ".academy/task-runs/SD-CONTENT-FORMAT-V1/report.md"
+      ],
+      "checkpoint": {
+        "note": "No checkout-based commands run yet.",
+        "next_action": "Run repo content/taskctl/test checks and record actual results."
+      },
+      "attempts": 0
+    }
+  ]
+}
