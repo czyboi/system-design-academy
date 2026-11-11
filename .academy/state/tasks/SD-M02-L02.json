@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M02-L02.json",
   "automation_status": "in_progress",
-  "current_phase": "teaching-review-r1",
+  "current_phase": "validation",
   "created_at": "2026-11-11T12:45:19Z",
-  "updated_at": "2026-11-11T13:02:54Z",
+  "updated_at": "2026-11-11T13:03:05Z",
   "execution_control": "active",
   "notes": "GitHub #30; milestone SDA-MS02, Story SDA-M02-L02; branch codex/SDA-MS02.",
   "steps": [
@@ -567,7 +567,7 @@
     {
       "step_id": "validation",
       "title": "Validate the reviewed pair and hand off without a final copy",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "technical-review-r1",
         "teaching-review-r1"
@@ -590,11 +590,34 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "requires_reviews": [
         "technical-review-r1",
         "teaching-review-r1"
-      ]
+      ],
+      "start_commit": "bb9f312bc0f874a45b1aaf3a0ffc3ab8fcd65f27",
+      "start_input_hashes": {
+        "modules/m02/lessons/revision-1/M02-L02.md": "4ac7973dec1852a2dfdac8e993fd9845094548ec03103f24d4188d90223001fe",
+        "modules/m02/assessments/revision-1/M02-L02.md": "02be246848c601b7b95b40fba590d7797be9fe9b32d17b32459e33ba1a13b016",
+        "modules/m02/evidence/M02-L02.md": "738a456a433a2e0fc668f30a5b2e0f64afac5dbb1999de31e2cfb204c5cd0336",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "scripts/validate_content.py": "a2145c121866f088d2e3544a8df4b39b078f6567eecc5e6dd5a955025f07ddce",
+        "scripts/check_course_coverage.py": "b4978b632c22108fc03a1724c34c49c5d260e37a1634cdf68799d87e1f26eb41"
+      },
+      "start_output_hashes": {
+        "modules/m02/reviews/M02-L02/report.md": null
+      },
+      "started_at": "2026-11-11T13:03:05Z",
+      "active_spec_hash": "8304656d3d2b7851880bdc4f065e47389d5613d7127128885916299bc8a46ecc",
+      "active_fingerprint": "e75710962b8037a6aab66283f8c5fd844f156e331c3bcabbcafcc58e58aad873",
+      "run_id": "SD-M02-L02-validation-20261111T130305Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ]
 }
