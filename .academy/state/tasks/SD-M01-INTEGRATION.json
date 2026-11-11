@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M01-INTEGRATION.json",
   "automation_status": "in_progress",
-  "current_phase": "plan-gate",
+  "current_phase": "author",
   "created_at": "2026-11-11T08:03:04Z",
-  "updated_at": "2026-11-11T08:10:42Z",
+  "updated_at": "2026-11-11T08:11:27Z",
   "execution_control": "active",
   "notes": "GitHub #27; milestone SDA-MS01, Story SDA-M01-INT; branch codex/SDA-MS01.",
   "steps": [
@@ -122,7 +122,7 @@
     {
       "step_id": "author",
       "title": "Draft the module exercise, reference solution and decision summary",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "research",
         "plan-gate"
@@ -147,10 +147,35 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "requires_reviews": [
         "plan-gate"
-      ]
+      ],
+      "start_commit": "9896ed65b964bff65ac78ccb457856f02b8696a8",
+      "start_input_hashes": {
+        "modules/m01/integrated/evidence.md": "b499d34f3625375ce10c57c6f925bbf3b27333358d11c051b931ef62e84d096c",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        ".agents/skills/lesson-authoring/SKILL.md": "ebf392ae7ed43459982ada6afca1409211f48c87202129fb7f7c4248d49dfdc5",
+        ".agents/skills/assessment-design/SKILL.md": "9706b86ae149ee11af45d8af92bf74459ac0ff649cbd1d22a6cccff30b173703",
+        "modules/database/governance/content-guidelines.md": "a2d64051359490a1b1202fc52710c230d9823d17a0d7dda040af4fd750983fd7",
+        "modules/database/governance/attribution-policy.md": "3125886ef90770acebf9c054e183ddf80f53f8fdad2e59d5867041623c44de75"
+      },
+      "start_output_hashes": {
+        "modules/m01/integrated/brief.md": null,
+        "modules/m01/integrated/solution-rubric.md": null,
+        "modules/m01/integrated/decision-summary.md": null
+      },
+      "started_at": "2026-11-11T08:11:27Z",
+      "active_spec_hash": "b9d6c604488002a92cbbf76f5a9a5f440365d33ebb4063016ce54dc91d3fece1",
+      "active_fingerprint": "a42c9081ec47545a3f53fbd5ea2df4fdb84f049ade1e5183cae783eb498efc48",
+      "run_id": "SD-M01-INTEGRATION-author-20261111T081127Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "technical-review",
