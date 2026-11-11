@@ -4,17 +4,17 @@
   "module_id": "curriculum-delivery",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-DELIVERY-MILESTONES.json",
-  "automation_status": "not_started",
-  "current_phase": null,
+  "automation_status": "in_progress",
+  "current_phase": "implementation",
   "created_at": "2026-11-11T07:20:34Z",
-  "updated_at": "2026-11-11T07:20:34Z",
+  "updated_at": "2026-11-11T07:20:49Z",
   "execution_control": "active",
   "notes": "GitHub #18. Approved milestone grouping and execution planning only.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Record milestones and write execution plan",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -33,7 +33,29 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "edb6fe80654178fc931f86be8bb05312d22dc11f",
+      "start_input_hashes": {
+        "curriculum/approved-baseline.json": "40f41aca40164a4ac72f119fa7ac9d8885762bb3f649d9d77fe28583bf7ae6ea",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "curriculum/revision-1/review.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287"
+      },
+      "start_output_hashes": {
+        "delivery/PLAN.md": "12632437d3131a3749ddfb4f5f68f9e979ab797cdbc2f852045e9d07ef2deba0",
+        "delivery/backlog.json": "dcea037ccaeb353a7853837ef2b26f1fac0a133654c52eaad24e6b81f8233ef7",
+        "delivery/EXECUTION_PLAN.md": null
+      },
+      "started_at": "2026-11-11T07:20:49Z",
+      "active_spec_hash": "3d5cdc2f1b30acb82801277eda1e73ec440092666edba2aea7e79963bff3ffa7",
+      "active_fingerprint": "a761f00054c304e420927b5be9a1a4a010201927d9c8995237f42d029227839f",
+      "run_id": "SD-DELIVERY-MILESTONES-implementation-20261111T072049Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "verification",
