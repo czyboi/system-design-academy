@@ -1,0 +1,19 @@
+{
+  "verdict": "ready-for-human-review",
+  "artifact_hashes": {
+    "modules/m02/integrated/brief.md": "73f6dd7763531a5b7d308817980063b07028349dc89f795c45307de283ceecd9",
+    "modules/m02/integrated/solution-rubric.md": "e89a2482b526e3d4773f7f46344081322272e34a32739a277d5d9742e22456f2",
+    "modules/m02/integrated/decision-summary.md": "997536a9d3c84e6322ae5835a6c4155932c19e2e0c4c84b6b0a959325ac8f03c",
+    "modules/m02/integrated/evidence.md": "338fa79120308d33451efc3d7fd7f78e00fff41801b6d0e45ca35faa32c393e3",
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  },
+  "findings": [
+    {
+      "id": "M02-INT-TP1",
+      "severity": "note",
+      "status": "open"
+    }
+  ]
+}

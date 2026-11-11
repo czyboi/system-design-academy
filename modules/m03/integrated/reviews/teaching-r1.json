@@ -1,0 +1,24 @@
+{
+  "verdict": "ready-for-human-review",
+  "findings": [
+    {
+      "id": "M03-INT-P1",
+      "severity": "minor",
+      "status": "resolved"
+    },
+    {
+      "id": "M03-INT-P2",
+      "severity": "note",
+      "status": "resolved"
+    }
+  ],
+  "artifact_hashes": {
+    "modules/m03/integrated/brief.md": "1ef4efe2f1e8aecefb95c62bc6626ebf2846a767625f93a2467aa5dd72334e4d",
+    "modules/m03/integrated/solution-rubric-r1.md": "b1f0d1446ba14078b0edd49f02779b22a3ab360fb1b79967a7a6b4bdd0f23f56",
+    "modules/m03/integrated/decision-summary-r1.md": "74e6b80f5fddfd0138c05e4bd6b3cc7d0ac33887f04e2f1fa8885da80164e1b6",
+    "modules/m03/integrated/evidence.md": "06c75f0365ab24401154cde9fc3df07a8a2f8f0faeefe2fa66c72ef4f32ea080",
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  }
+}
