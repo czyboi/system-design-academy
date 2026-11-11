@@ -10,7 +10,7 @@
   "created_at": null,
   "updated_at": null,
   "execution_control": "active",
-  "notes": "One draft planning step; review and validation only on explicit user request.",
+  "notes": "One draft planning step; review and validation only on explicit user request. Output paths are new task-specific drafts; do not overwrite the approved SDA-v1 baseline.",
   "steps": [
     {
       "step_id": "plan",
@@ -22,9 +22,9 @@
         ".agents/skills/curriculum-design/SKILL.md"
       ],
       "output_paths": [
-        "CURRICULUM_MASTER.md",
-        "curriculum/source-inventory.json",
-        "curriculum/coverage.csv"
+        "curriculum/${TASK_ID}/CURRICULUM_MASTER.md",
+        "curriculum/${TASK_ID}/source-inventory.json",
+        "curriculum/${TASK_ID}/coverage.csv"
       ],
       "checkpoint": {
         "note": "",
