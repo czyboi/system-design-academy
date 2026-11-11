@@ -7,7 +7,7 @@ description: Create separate System Design assessment artifacts aligned to outco
 
 ## Inputs
 
-Read the canonical task specification, coverage-reviewed curriculum, final teaching lesson, outcomes, audience, and separately declared assessment output path. The current Academy default is middle/senior engineers learning system design; learner-facing assessment content is English-only unless newer user direction says otherwise.
+Read the canonical task specification, selected approved curriculum, current draft teaching lesson, outcomes, audience, and separately declared assessment output path. The current Academy default is middle/senior engineers learning system design; learner-facing assessment content is English-only unless newer user direction says otherwise.
 
 If the lesson does not teach an outcome or a question would require untaught concepts, report the gap to the parent and stop. Do not insert a tutorial into the assessment to hide a lesson gap.
 

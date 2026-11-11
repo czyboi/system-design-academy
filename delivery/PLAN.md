@@ -6,7 +6,7 @@ The approved SDA-v1 baseline defines the teaching scope and learner prerequisite
 
 15 Epics, 73 Stories, 579 Subtasks. [backlog.json](backlog.json) records scope, source topic IDs, outputs, dependencies and acceptance criteria. These are local Jira-style IDs. Claim each Story through one Issue/spec/state/worklog and confirm exact input and output paths.
 
-One Epic covers each module, with a final-course Epic for the capstone and audit. R/G/D/A/T/P/V/H mean research, approved gate, teaching draft, companion assessment, technical/provenance review, teaching review, validation and human acceptance. D and A share the author step. The two reviews are independent and can run in parallel. Revisions are conditional, up to two cycles. H tracks a separate human decision and can be batched after the drafts pass validation.
+One Epic covers each module, with a final-course Epic for the capstone and audit. Historical backlog labels R/G/D/A/T/P/V/H mean research, course gate, teaching draft, companion assessment, technical/provenance review, teaching review, validation and human acceptance. New default execution is **research → author**, producing draft D/A together; T/P/V are optional user-triggered checks, not a mandatory automated continuation. H is a separate explicit human release decision.
 
 ## Delivery milestones
 
@@ -28,19 +28,19 @@ The lesson and module handoffs include the validated lesson and assessment draft
 
 ## Draft readiness and dependency changes
 
-The outline's learning prerequisites apply to learners. The backlog records production inputs separately. Independent parts of a package can proceed within the authorized scope. When a section consumes a specific example, diagram or assumption, integrate that section once the upstream draft is available. A module can complete integration and coverage reconciliation once its lesson drafts pass validation. The final audit consumes all module evidence and the validated capstone draft.
+The outline's learning prerequisites apply to learners. The backlog records production inputs separately. Independent parts of a package can proceed within the authorized scope. When a section consumes a specific example, diagram or assumption, integrate that section once the upstream draft is available. A module integration draft can be produced from available lesson drafts; checks/acceptance are tracked separately. A final course audit runs only when explicitly requested, against the existing module evidence and capstone draft.
 
-Record concrete references at intake or when discovered. Include the upstream Story, artifact path and section, the commit or SHA-256 used, and the downstream section or assessment item that consumes it. Declare the tracked artifact as an input to the task step that consumes it. A `composition` input gates only the section that uses it. A `preview` or `reference` can be drafted from the outline and resolved against the current target during validation.
+Record concrete references at intake or when discovered: upstream Story, artifact path/section, and consuming downstream section or assessment. Git commits can be consulted for history without recording extra checksums. A `composition` input gates only the section using it. A `preview` or `reference` can be drafted from the outline and checked against the current target on explicit request.
 
-When an upstream draft changes, use these records to identify affected teaching, assessments and integrations, including further downstream consumers. Update affected artifacts and obtain fresh reviews and validation for changed package versions. Reconcile module evidence after the new drafts pass. For unchanged consumers, record why the change has no effect and the version checked. Refresh any affected input fingerprints and keep artifact-bound reviews current. For a package yet to be drafted, record what it needs to use in the task or backlog. Keep content in draft and record explicit human approval before merging or publishing it.
+When an upstream draft changes, inspect affected lessons, assessments and integrations only within authorized scope. Update the specific artifacts requested and manually set `review_status=needs_review` for substantive changes to previously reviewed content. Do **not** auto-invalidate tasks, rerun downstream work, refresh fingerprints or launch review/validation. Record unresolved impacts for the user's next decision. Keep content as draft until explicit human approval for merge/publication.
 
 ## Acceptance and carry-forward feedback
 
 N1 from the accepted course review is recorded on M03-L02 and M06-L01. Their forward references are previews, and the detailed comparison can be assessed at integration. Each lesson companion assesses all its own outcomes. Module exercises assess the synthesis subsets in the outline.
 
-Capture each assigned topic ID, teaching path, explanatory heading and SHA-256 during lesson teaching review. Record which teaching section and assessment items support each learning outcome. At module integration, consolidate this evidence in the module's `taught-coverage.csv` and `outcome-portfolio.json`, include its synthesis outcomes, and resolve gaps against the approved outline.
+When lesson teaching review is explicitly requested, capture each assigned topic ID, teaching path and explanatory heading without a file checksum. Record which teaching section and assessment items support each learning outcome. At module integration, consolidate this evidence in the module's `taught-coverage.csv` and `outcome-portfolio.json`, include its synthesis outcomes, and resolve gaps against the approved outline.
 
-The final audit verifies all 473 approved source topic mappings against actual explanations, verifies all lesson and Academy-added outcomes and their assessment evidence, and checks cross-module consistency. It uses current artifact hashes and independent reviews. Titles, citations and assessment items alone do not establish teaching coverage.
+When requested, the final audit verifies all 473 approved source topic mappings against actual explanations, learner outcomes and assessment evidence, and checks cross-module consistency. It records findings without artifact hashes. Titles, citations and assessment items alone do not establish teaching coverage.
 
 Capstone acceptance is based on its six transfer outcomes. Review the original marketplace workload, reference design, at least two justified variants, failure and recovery traces, and the rubric mapping to CP-LO1 through CP-LO6. Use the full portfolio for the course coverage decision.
 
