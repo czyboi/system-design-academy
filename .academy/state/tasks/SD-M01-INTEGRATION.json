@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "teaching-review",
   "created_at": "2026-11-11T08:03:04Z",
-  "updated_at": "2026-11-11T08:17:19Z",
+  "updated_at": "2026-11-11T08:22:37Z",
   "execution_control": "active",
   "notes": "GitHub #27; milestone SDA-MS01, Story SDA-M01-INT; branch codex/SDA-MS01.",
   "steps": [
@@ -258,7 +258,7 @@
     {
       "step_id": "teaching-review",
       "title": "Independent module synthesis actual coverage, pedagogy, assessment and language review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -316,14 +316,21 @@
         "modules/m01/integrated/reviews/teaching.json": null
       },
       "started_at": "2026-11-11T08:17:19Z",
-      "active_spec_hash": "70beed6f1d2cda05ea7ad9e4f0d85d86224422bcf1cef6fd0cdb500d8238e384",
-      "active_fingerprint": "903fd7d842529f4fb812f85c5d4e1861191c74b13d8670342c28bca5c8722358",
       "run_id": "SD-M01-INTEGRATION-teaching-review-20261111T081719Z",
       "agent": "pedagogy_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "903fd7d842529f4fb812f85c5d4e1861191c74b13d8670342c28bca5c8722358",
+      "completed_spec_hash": "70beed6f1d2cda05ea7ad9e4f0d85d86224422bcf1cef6fd0cdb500d8238e384",
+      "completed_output_hashes": {
+        "modules/m01/integrated/reviews/teaching.md": "fd32b91c72a26bb4d602fa8f4e895257a3271abde98fac7af5879a1882c6abe9",
+        "modules/m01/integrated/reviews/teaching.json": "d8a8222c749f300e5704ac1c206babc70259a8134fb16b2968469c88f0ffa0c7"
+      },
+      "completed_at": "2026-11-11T08:22:37Z",
+      "completed_by": "pedagogy_reviewer",
+      "completed_commit": "62c4805a287b63f43f67fe74870ed5d743734ca3"
     },
     {
       "step_id": "validation",

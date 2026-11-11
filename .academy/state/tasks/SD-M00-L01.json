@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "teaching-review",
   "created_at": "2026-11-11T08:03:02Z",
-  "updated_at": "2026-11-11T08:17:07Z",
+  "updated_at": "2026-11-11T08:22:25Z",
   "execution_control": "active",
   "notes": "GitHub #20; milestone SDA-MS01, Story SDA-M00-L01; branch codex/SDA-MS01.",
   "steps": [
@@ -189,7 +189,7 @@
     {
       "step_id": "technical-review",
       "title": "Independent technical correctness and source/rights review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -244,19 +244,26 @@
         "modules/m00/reviews/M00-L01/technical.json": null
       },
       "started_at": "2026-11-11T08:17:05Z",
-      "active_spec_hash": "43cd36b928527c981094a0f96d517a725a5d5fdb0db380e5d733e68f7482354f",
-      "active_fingerprint": "496c8def01e05e49a5b0ecc77fc3c833d01a2af7f89dff8f2d4d99fd86b68fd2",
       "run_id": "SD-M00-L01-technical-review-20261111T081705Z",
       "agent": "technical_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "496c8def01e05e49a5b0ecc77fc3c833d01a2af7f89dff8f2d4d99fd86b68fd2",
+      "completed_spec_hash": "43cd36b928527c981094a0f96d517a725a5d5fdb0db380e5d733e68f7482354f",
+      "completed_output_hashes": {
+        "modules/m00/reviews/M00-L01/technical.md": "7ff5fec42fdf754c6836cd24d3877928a63dcf28dc165c7297c731f9d0e42d34",
+        "modules/m00/reviews/M00-L01/technical.json": "72d8d5b87bf338e25f99f3a8eeb236e02b0c1fbcd6777e56414eb46f12e03dfe"
+      },
+      "completed_at": "2026-11-11T08:22:22Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "62c4805a287b63f43f67fe74870ed5d743734ca3"
     },
     {
       "step_id": "teaching-review",
       "title": "Independent actual coverage, pedagogy, assessment and language review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -311,14 +318,21 @@
         "modules/m00/reviews/M00-L01/teaching.json": null
       },
       "started_at": "2026-11-11T08:17:07Z",
-      "active_spec_hash": "1b8c988844e2ce2c71dd7a22d97b1382cea7782b2391d7697505ec220aff601e",
-      "active_fingerprint": "e6b214fa6aa5871c2ac3ecdd7dedd0cbeb3dade13b036a46dd27ec5c324f964a",
       "run_id": "SD-M00-L01-teaching-review-20261111T081707Z",
       "agent": "pedagogy_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "e6b214fa6aa5871c2ac3ecdd7dedd0cbeb3dade13b036a46dd27ec5c324f964a",
+      "completed_spec_hash": "1b8c988844e2ce2c71dd7a22d97b1382cea7782b2391d7697505ec220aff601e",
+      "completed_output_hashes": {
+        "modules/m00/reviews/M00-L01/teaching.md": "3f7b89ee5457cfe518f0e461e67902ce5cbfeb65336c1b704319ee963146ae28",
+        "modules/m00/reviews/M00-L01/teaching.json": "fc663808edd6f5da76ea8e7cd395ed95c52398b5e90ef62cc881d81481304010"
+      },
+      "completed_at": "2026-11-11T08:22:25Z",
+      "completed_by": "pedagogy_reviewer",
+      "completed_commit": "62c4805a287b63f43f67fe74870ed5d743734ca3"
     },
     {
       "step_id": "validation",
