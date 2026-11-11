@@ -1,0 +1,18 @@
+{
+  "verdict": "revise",
+  "artifact_hashes": {
+    "modules/m02/lessons/M02-L02.md": "8484c8ebf86cb618ece79dfdb544505bb9efdae1329782d270037f86e2ac50d9",
+    "modules/m02/assessments/M02-L02.md": "1cd88b6721174cca06ec2a7de342667d66e2ff8469a1602337c6a638d5c38cf5",
+    "modules/m02/evidence/M02-L02.md": "738a456a433a2e0fc668f30a5b2e0f64afac5dbb1999de31e2cfb204c5cd0336",
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  },
+  "findings": [
+    {
+      "id": "NET-C1",
+      "severity": "major",
+      "status": "open"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "verdict": "ready-for-human-review",
+  "artifact_hashes": {
+    "modules/m02/lessons/M02-L01.md": "ee243ab6789cac863bdf7da72d9e7fc0beb0598fcca50d4f1330acdae90a947b",
+    "modules/m02/assessments/M02-L01.md": "75c16388b61d9990c6b8afb68f9d5c5ed60f5670154a4ce120638d991aaff050",
+    "modules/m02/evidence/M02-L01.md": "4fe31d4f84fd7c6983716a8db83110dc62bff658d2acb260ca347e28d5dfa81d",
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  },
+  "findings": []
+}
