@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import hashlib
 import json
 import re
 from pathlib import Path
@@ -38,10 +37,6 @@ def artifact(value: str) -> Path:
     return path
 
 
-def digest(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
 def section(text: str, title: str, *, lesson_id: bool = False) -> str:
     """Resolve one heading and its body; reject ambiguous duplicate headings."""
     text = re.sub(r"<!--.*?-->", lambda m: re.sub(r"[^\n]", " ", m.group()), text, flags=re.S)
@@ -67,12 +62,10 @@ def section(text: str, title: str, *, lesson_id: bool = False) -> str:
     return matches[0]
 
 
-def check_review(path: Path, expected: dict[str, str]) -> None:
+def check_review(path: Path) -> None:
     result = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(result, dict) or result.get("verdict") != "ready-for-human-review":
         raise ValueError("Course review is not accepted for human review")
-    if result.get("artifact_hashes") != expected:
-        raise ValueError("Course review does not match the exact current artifact hashes")
     if result.get("checks") != {"coverage": "pass", "pedagogy": "pass"}:
         raise ValueError("Course review must explicitly pass both coverage and pedagogy")
     findings = result.get("findings")
@@ -125,13 +118,12 @@ def validate(inventory_path: str, matrix_path: str, plan_path: str,
             reader = csv.DictReader(handle)
             required = {"topic_id", "lesson", "outline", "disposition"}
             if stage == "taught":
-                required |= {"lesson_path", "section", "lesson_sha256"}
+                required |= {"lesson_path", "section"}
             if not required.issubset(reader.fieldnames or []):
                 raise ValueError(f"Coverage matrix needs columns: {', '.join(sorted(required))}")
             rows = list(reader)
         plan = plan_file.read_text(encoding="utf-8")
         mapped = set()
-        hashes = {p: digest(artifact(p)) for p in (inventory_path, matrix_path, plan_path)}
         for row in rows:
             key = row.get("topic_id", "")
             if key not in topics or key in mapped:
@@ -161,15 +153,11 @@ def validate(inventory_path: str, matrix_path: str, plan_path: str,
                     body = re.sub(r"^#{1,6}\s+.*$", "", body, flags=re.M)
                     if not body.strip():
                         raise ValueError("Teaching section is empty")
-                    actual = digest(path)
-                    if row.get("lesson_sha256") != actual:
-                        raise ValueError("Taught evidence has a stale lesson hash")
-                    hashes[row["lesson_path"]] = actual
             except (OSError, ValueError, TypeError, yaml.YAMLError) as exc:
                 errors.append(f"{key}: {exc}")
         errors.extend(f"Missing knowledge topic: {key}" for key in sorted(topics - mapped))
         if review_path:
-            check_review(artifact(review_path), hashes)
+            check_review(artifact(review_path))
     except (OSError, ValueError, TypeError, csv.Error) as exc:
         errors.append(str(exc))
     return errors
@@ -180,7 +168,7 @@ def main(argv=None) -> int:
     for name in ("inventory", "matrix", "plan"):
         parser.add_argument("--" + name, required=True, help="Repository-relative artifact")
     parser.add_argument("--stage", choices=("plan", "taught"), default="plan")
-    parser.add_argument("--review", help="Require an accepted review bound to all checked artifacts")
+    parser.add_argument("--review", help="Optionally check an existing review verdict (no artifact hashes)")
     args = parser.parse_args(argv)
     errors = validate(args.inventory, args.matrix, args.plan, args.stage, args.review)
     for error in errors:

@@ -5,39 +5,22 @@
   "owner": "${OWNER}",
   "spec_path": ".academy/specs/${TASK_ID}.json",
   "automation_status": "not_started",
+  "review_status": "not_reviewed",
   "current_phase": null,
   "created_at": null,
   "updated_at": null,
   "execution_control": "active",
-  "notes": "Tooling only: replace implementation output with exact edited files before start. No learner artifact gates.",
+  "notes": "One implementation step; replace output path with actual deliverables. No auto review or validation.",
   "steps": [
     {
       "step_id": "implementation",
-      "title": "Implement scoped tooling changes",
+      "title": "Implement authorized scoped changes",
       "status": "pending",
       "depends_on": [],
-      "definition_version": "v3",
+      "definition_version": "v4",
       "input_paths": [],
       "output_paths": [
         ".academy/task-runs/${TASK_ID}/implementation.md"
-      ],
-      "checkpoint": {
-        "note": "",
-        "next_action": ""
-      },
-      "attempts": 0
-    },
-    {
-      "step_id": "verification",
-      "title": "Verify scoped changes",
-      "status": "pending",
-      "depends_on": [
-        "implementation"
-      ],
-      "definition_version": "v3",
-      "input_paths": [],
-      "output_paths": [
-        ".academy/task-runs/${TASK_ID}/report.md"
       ],
       "checkpoint": {
         "note": "",

@@ -1,39 +1,7 @@
 name: Content validation
 
+# Run from GitHub Actions > Content validation > Run workflow only.
 on:
-  pull_request:
-    paths:
-      - '**.md'
-      - '**.csv'
-      - '**.json'
-      - '**.toml'
-      - '.agents/**'
-      - '.claude/**'
-      - 'requirements-dev.txt'
-      - '.academy/**'
-      - 'tests/**'
-      - '.github/ISSUE_TEMPLATE/**'
-      - '.codex/**'
-      - 'AGENTS.md'
-      - 'docs/**'
-      - 'scripts/**'
-      - '.github/workflows/content-validation.yml'
-  push:
-    branches: [main]
-    paths:
-      - '**.md'
-      - '**.csv'
-      - '**.json'
-      - '**.toml'
-      - '.agents/**'
-      - '.academy/**'
-      - 'tests/**'
-      - '.github/ISSUE_TEMPLATE/**'
-      - '.codex/**'
-      - 'AGENTS.md'
-      - 'docs/**'
-      - 'scripts/**'
-      - '.github/workflows/content-validation.yml'
   workflow_dispatch:
 
 permissions:

@@ -166,6 +166,17 @@
     "control_reason": {
       "type": "string",
       "minLength": 1
+    },
+    "review_status": {
+      "enum": [
+        "not_reviewed",
+        "in_review",
+        "reviewed",
+        "needs_review"
+      ]
+    },
+    "review_reason": {
+      "type": "string"
     }
   },
   "additionalProperties": true

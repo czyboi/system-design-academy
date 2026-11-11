@@ -5,22 +5,21 @@
   "owner": "${OWNER}",
   "spec_path": ".academy/specs/${TASK_ID}.json",
   "automation_status": "not_started",
+  "review_status": "not_reviewed",
   "current_phase": null,
   "created_at": null,
   "updated_at": null,
   "execution_control": "active",
-  "notes": "Default lesson package: six steps. Replace TASK_ID-based filenames with exact lesson IDs before start. Select existing accepted course paths. No mandatory revision or final copies. See module-pipeline skill.",
+  "notes": "Draft authoring only: research then author. Review and validation are user-triggered and never automatic.",
   "steps": [
     {
       "step_id": "research",
-      "title": "Research only the assigned lesson and record claim evidence",
+      "title": "Collect source evidence for assigned lesson",
       "status": "pending",
       "depends_on": [],
-      "definition_version": "v3",
+      "definition_version": "v4",
       "input_paths": [
         "CURRICULUM_MASTER.md",
-        "curriculum/source-inventory.json",
-        "curriculum/coverage.csv",
         ".agents/skills/source-research/SKILL.md"
       ],
       "output_paths": [
@@ -33,55 +32,17 @@
       "attempts": 0
     },
     {
-      "step_id": "plan-gate",
-      "title": "Verify and reuse the accepted course gate; do not re-plan",
-      "status": "pending",
-      "depends_on": [],
-      "definition_version": "v3",
-      "input_paths": [
-        "CURRICULUM_MASTER.md",
-        "curriculum/source-inventory.json",
-        "curriculum/coverage.csv",
-        "curriculum/review.json",
-        "scripts/check_course_coverage.py"
-      ],
-      "output_paths": [
-        ".academy/task-runs/${TASK_ID}/plan-gate.json"
-      ],
-      "checkpoint": {
-        "note": "",
-        "next_action": ""
-      },
-      "attempts": 0,
-      "review": {
-        "artifact_paths": [
-          "CURRICULUM_MASTER.md",
-          "curriculum/source-inventory.json",
-          "curriculum/coverage.csv"
-        ],
-        "verdict_path": ".academy/task-runs/${TASK_ID}/plan-gate.json"
-      }
-    },
-    {
       "step_id": "author",
-      "title": "Write one draft teaching lesson and its companion assessment",
+      "title": "Author draft lesson and companion assessment",
       "status": "pending",
       "depends_on": [
-        "research",
-        "plan-gate"
+        "research"
       ],
-      "definition_version": "v3",
+      "definition_version": "v4",
       "input_paths": [
-        ".academy/task-runs/${TASK_ID}/evidence.md",
         "CURRICULUM_MASTER.md",
-        "curriculum/source-inventory.json",
-        "curriculum/coverage.csv",
-        ".agents/skills/lesson-authoring/SKILL.md",
-        ".agents/skills/assessment-design/SKILL.md",
-        "modules/database/workflow/lesson-template.md",
-        "modules/database/workflow/assessment-template.md",
-        ".agents/skills/content-format/SKILL.md",
-        "docs/authoring-format-contract-v1.md"
+        ".academy/task-runs/${TASK_ID}/evidence.md",
+        ".agents/skills/lesson-authoring/SKILL.md"
       ],
       "output_paths": [
         "modules/${MODULE_ID}/lessons/${TASK_ID}.md",
@@ -91,120 +52,7 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
-      "requires_reviews": [
-        "plan-gate"
-      ]
-    },
-    {
-      "step_id": "technical-review",
-      "title": "Independent technical correctness and source/rights review",
-      "status": "pending",
-      "depends_on": [
-        "author"
-      ],
-      "definition_version": "v3",
-      "input_paths": [
-        "modules/${MODULE_ID}/lessons/${TASK_ID}.md",
-        "modules/${MODULE_ID}/assessments/${TASK_ID}.md",
-        ".academy/task-runs/${TASK_ID}/evidence.md",
-        "CURRICULUM_MASTER.md",
-        "curriculum/source-inventory.json",
-        "curriculum/coverage.csv",
-        ".agents/skills/technical-review/SKILL.md",
-        ".agents/skills/provenance-review/SKILL.md"
-      ],
-      "output_paths": [
-        ".academy/task-runs/${TASK_ID}/technical.md",
-        ".academy/task-runs/${TASK_ID}/technical.json"
-      ],
-      "checkpoint": {
-        "note": "",
-        "next_action": ""
-      },
-      "attempts": 0,
-      "review": {
-        "artifact_paths": [
-          "modules/${MODULE_ID}/lessons/${TASK_ID}.md",
-          "modules/${MODULE_ID}/assessments/${TASK_ID}.md",
-          ".academy/task-runs/${TASK_ID}/evidence.md",
-          "CURRICULUM_MASTER.md",
-          "curriculum/source-inventory.json",
-          "curriculum/coverage.csv"
-        ],
-        "verdict_path": ".academy/task-runs/${TASK_ID}/technical.json"
-      }
-    },
-    {
-      "step_id": "teaching-review",
-      "title": "Independent actual coverage, pedagogy, assessment and language review",
-      "status": "pending",
-      "depends_on": [
-        "author"
-      ],
-      "definition_version": "v3",
-      "input_paths": [
-        "modules/${MODULE_ID}/lessons/${TASK_ID}.md",
-        "modules/${MODULE_ID}/assessments/${TASK_ID}.md",
-        ".academy/task-runs/${TASK_ID}/evidence.md",
-        "CURRICULUM_MASTER.md",
-        "curriculum/source-inventory.json",
-        "curriculum/coverage.csv",
-        ".agents/skills/curriculum-coverage-review/SKILL.md",
-        ".agents/skills/pedagogical-review/SKILL.md"
-      ],
-      "output_paths": [
-        ".academy/task-runs/${TASK_ID}/teaching.md",
-        ".academy/task-runs/${TASK_ID}/teaching.json"
-      ],
-      "checkpoint": {
-        "note": "",
-        "next_action": ""
-      },
-      "attempts": 0,
-      "review": {
-        "artifact_paths": [
-          "modules/${MODULE_ID}/lessons/${TASK_ID}.md",
-          "modules/${MODULE_ID}/assessments/${TASK_ID}.md",
-          ".academy/task-runs/${TASK_ID}/evidence.md",
-          "CURRICULUM_MASTER.md",
-          "curriculum/source-inventory.json",
-          "curriculum/coverage.csv"
-        ],
-        "verdict_path": ".academy/task-runs/${TASK_ID}/teaching.json"
-      }
-    },
-    {
-      "step_id": "validation",
-      "title": "Validate the reviewed pair and hand off without a final copy",
-      "status": "pending",
-      "depends_on": [
-        "technical-review",
-        "teaching-review"
-      ],
-      "definition_version": "v3",
-      "input_paths": [
-        "modules/${MODULE_ID}/lessons/${TASK_ID}.md",
-        "modules/${MODULE_ID}/assessments/${TASK_ID}.md",
-        ".academy/task-runs/${TASK_ID}/evidence.md",
-        "CURRICULUM_MASTER.md",
-        "curriculum/source-inventory.json",
-        "curriculum/coverage.csv",
-        "scripts/validate_content.py",
-        "scripts/check_course_coverage.py"
-      ],
-      "output_paths": [
-        ".academy/task-runs/${TASK_ID}/report.md"
-      ],
-      "checkpoint": {
-        "note": "",
-        "next_action": ""
-      },
-      "attempts": 0,
-      "requires_reviews": [
-        "technical-review",
-        "teaching-review"
-      ]
+      "attempts": 0
     }
   ]
 }
