@@ -10,7 +10,7 @@
   "created_at": null,
   "updated_at": null,
   "execution_control": "active",
-  "notes": "Draft authoring only: research then author. Review and validation are user-triggered and never automatic.",
+  "notes": "Draft authoring only: research then author. Review and validation are user-triggered and never automatic. Select an approved plan version when creating the task; paths here default to SDA-v1.",
   "steps": [
     {
       "step_id": "research",
@@ -19,7 +19,7 @@
       "depends_on": [],
       "definition_version": "v4",
       "input_paths": [
-        "CURRICULUM_MASTER.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
         ".agents/skills/source-research/SKILL.md"
       ],
       "output_paths": [
@@ -40,7 +40,7 @@
       ],
       "definition_version": "v4",
       "input_paths": [
-        "CURRICULUM_MASTER.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
         ".academy/task-runs/${TASK_ID}/evidence.md",
         ".agents/skills/lesson-authoring/SKILL.md"
       ],
