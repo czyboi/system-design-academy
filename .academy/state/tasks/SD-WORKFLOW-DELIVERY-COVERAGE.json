@@ -4,10 +4,10 @@
   "module_id": "curriculum-delivery",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-WORKFLOW-DELIVERY-COVERAGE.json",
-  "automation_status": "in_progress",
+  "automation_status": "automation_complete",
   "current_phase": "verification",
   "created_at": "2026-11-11T07:04:31Z",
-  "updated_at": "2026-11-11T07:10:45Z",
+  "updated_at": "2026-11-11T07:12:20Z",
   "execution_control": "active",
   "notes": "GitHub #17, revision to delivery rules from #16 and authoring metadata contract. Workflow only.",
   "steps": [
@@ -128,7 +128,7 @@
     {
       "step_id": "verification",
       "title": "Verify backlog, approved baseline and authoring contract",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "implementation"
       ],
@@ -189,8 +189,14 @@
         "reasoning_effort": null
       },
       "invalidation_reason": "Regression test used an isolated ROOT without repository skills, agents and config. Run the regression against the real repository root and retain the other implementation outputs.",
-      "active_spec_hash": "bd8a3a89c05cb704088fdbc40839b925ebf206b69299c831572d2bc8670dbecd",
-      "active_fingerprint": "8288f0f457830feb5d96d70c58ce95bb3e426b2890ead8cd6a45cce3f91299c7"
+      "completed_fingerprint": "8288f0f457830feb5d96d70c58ce95bb3e426b2890ead8cd6a45cce3f91299c7",
+      "completed_spec_hash": "bd8a3a89c05cb704088fdbc40839b925ebf206b69299c831572d2bc8670dbecd",
+      "completed_output_hashes": {
+        ".academy/task-runs/SD-WORKFLOW-DELIVERY-COVERAGE/report.md": "d7f8dfc477b09773301cf80e4c4cb71eec1be4640a1abd0e692adeae540c3e94"
+      },
+      "completed_at": "2026-11-11T07:12:20Z",
+      "completed_by": "curriculum_orchestrator",
+      "completed_commit": "3a97d9e4463200a9f503b2ea61bf9cfe4119d3dd"
     }
   ]
 }
