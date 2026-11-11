@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "author",
   "created_at": "2026-11-11T12:45:20Z",
-  "updated_at": "2026-11-11T12:49:50Z",
+  "updated_at": "2026-11-11T12:52:37Z",
   "execution_control": "active",
   "notes": "GitHub #34; milestone SDA-MS02, Story SDA-M03-L01; branch codex/SDA-MS02.",
   "steps": [
@@ -123,7 +123,7 @@
     {
       "step_id": "author",
       "title": "Write one draft teaching lesson and its companion assessment",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "research",
         "plan-gate"
@@ -171,14 +171,21 @@
         "modules/m03/assessments/M03-L01.md": null
       },
       "started_at": "2026-11-11T12:49:50Z",
-      "active_spec_hash": "9a46a6bf73b14b307cf0075b362115b93b25562fcb8feb60ac02884f9fcd92ec",
-      "active_fingerprint": "bfc9e43826418f93e3a2137d2693072f0699219d8648e28f6634517f40ee40d2",
       "run_id": "SD-M03-L01-author-20261111T124950Z",
       "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "bfc9e43826418f93e3a2137d2693072f0699219d8648e28f6634517f40ee40d2",
+      "completed_spec_hash": "9a46a6bf73b14b307cf0075b362115b93b25562fcb8feb60ac02884f9fcd92ec",
+      "completed_output_hashes": {
+        "modules/m03/lessons/M03-L01.md": "3c8726f5ce7b67533a484cc3523e60e6e7231013f7814f30400cf00ca2631d77",
+        "modules/m03/assessments/M03-L01.md": "4b98136e1c54c6d5135e6f294e743a81fa8135450a7037c1072e27d99b8c08b5"
+      },
+      "completed_at": "2026-11-11T12:52:37Z",
+      "completed_by": "lesson_author",
+      "completed_commit": "bb70e0300fad1cae951a7a7755e311d4811c5f71"
     },
     {
       "step_id": "technical-review",
