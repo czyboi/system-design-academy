@@ -7,7 +7,7 @@
   "automation_status": "blocked",
   "current_phase": "teaching-review",
   "created_at": "2026-11-11T12:45:19Z",
-  "updated_at": "2026-11-11T12:57:35Z",
+  "updated_at": "2026-11-11T12:58:19Z",
   "execution_control": "active",
   "notes": "GitHub #30; milestone SDA-MS02, Story SDA-M02-L02; branch codex/SDA-MS02.",
   "steps": [
@@ -336,8 +336,8 @@
       "completed_commit": "e2037d319283e7a2866bb16713130f10c425e6dc"
     },
     {
-      "step_id": "validation",
-      "title": "Validate the reviewed pair and hand off without a final copy",
+      "step_id": "revision-1",
+      "title": "Revise the first reviewed candidate",
       "status": "pending",
       "depends_on": [
         "technical-review",
@@ -347,6 +347,128 @@
       "input_paths": [
         "modules/m02/lessons/M02-L02.md",
         "modules/m02/assessments/M02-L02.md",
+        "modules/m02/evidence/M02-L02.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        "modules/m02/reviews/M02-L02/technical.md",
+        "modules/m02/reviews/M02-L02/technical.json",
+        "modules/m02/reviews/M02-L02/teaching.md",
+        "modules/m02/reviews/M02-L02/teaching.json"
+      ],
+      "output_paths": [
+        "modules/m02/lessons/revision-1/M02-L02.md",
+        "modules/m02/assessments/revision-1/M02-L02.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "revision_cycle": 1
+    },
+    {
+      "step_id": "technical-review-r1",
+      "title": "Independent technical correctness and source/rights review after revision",
+      "status": "pending",
+      "depends_on": [
+        "revision-1"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m02/lessons/revision-1/M02-L02.md",
+        "modules/m02/assessments/revision-1/M02-L02.md",
+        "modules/m02/evidence/M02-L02.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/technical-review/SKILL.md",
+        ".agents/skills/provenance-review/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md",
+        "modules/m02/reviews/M02-L02/technical.md",
+        "modules/m02/reviews/M02-L02/technical.json",
+        "modules/m02/reviews/M02-L02/teaching.md",
+        "modules/m02/reviews/M02-L02/teaching.json"
+      ],
+      "output_paths": [
+        "modules/m02/reviews/M02-L02/technical-r1.md",
+        "modules/m02/reviews/M02-L02/technical-r1.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/m02/lessons/revision-1/M02-L02.md",
+          "modules/m02/assessments/revision-1/M02-L02.md",
+          "modules/m02/evidence/M02-L02.md",
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m02/reviews/M02-L02/technical-r1.json"
+      }
+    },
+    {
+      "step_id": "teaching-review-r1",
+      "title": "Independent actual coverage, pedagogy, assessment and language review after revision",
+      "status": "pending",
+      "depends_on": [
+        "revision-1"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m02/lessons/revision-1/M02-L02.md",
+        "modules/m02/assessments/revision-1/M02-L02.md",
+        "modules/m02/evidence/M02-L02.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md",
+        "modules/m02/reviews/M02-L02/technical.md",
+        "modules/m02/reviews/M02-L02/technical.json",
+        "modules/m02/reviews/M02-L02/teaching.md",
+        "modules/m02/reviews/M02-L02/teaching.json"
+      ],
+      "output_paths": [
+        "modules/m02/reviews/M02-L02/teaching-r1.md",
+        "modules/m02/reviews/M02-L02/teaching-r1.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/m02/lessons/revision-1/M02-L02.md",
+          "modules/m02/assessments/revision-1/M02-L02.md",
+          "modules/m02/evidence/M02-L02.md",
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m02/reviews/M02-L02/teaching-r1.json"
+      }
+    },
+    {
+      "step_id": "validation",
+      "title": "Validate the reviewed pair and hand off without a final copy",
+      "status": "pending",
+      "depends_on": [
+        "technical-review-r1",
+        "teaching-review-r1"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m02/lessons/revision-1/M02-L02.md",
+        "modules/m02/assessments/revision-1/M02-L02.md",
         "modules/m02/evidence/M02-L02.md",
         "curriculum/revision-1/CURRICULUM_MASTER.md",
         "curriculum/revision-1/source-inventory.json",
@@ -363,8 +485,8 @@
       },
       "attempts": 0,
       "requires_reviews": [
-        "technical-review",
-        "teaching-review"
+        "technical-review-r1",
+        "teaching-review-r1"
       ]
     }
   ]

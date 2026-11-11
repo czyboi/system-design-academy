@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-M02-L02",
-  "revision": 1,
+  "revision": 2,
   "goal": "Draft and verify TCP, UDP and HTTP for SDA-M02-L02",
   "scope": {
     "in_scope": [
@@ -48,6 +48,27 @@
       "text": "Pass the applicable package checks and the repository checks, and record results and feedback disposition in the declared report.",
       "applies_to": [
         "validation"
+      ]
+    },
+    {
+      "id": "dod-revision-1",
+      "text": "Commit the revised draft paths and resolve material review findings.",
+      "applies_to": [
+        "revision-1"
+      ]
+    },
+    {
+      "id": "dod-technical-review-r1",
+      "text": "Record a fresh independent combined review bound to the complete revised package.",
+      "applies_to": [
+        "technical-review-r1"
+      ]
+    },
+    {
+      "id": "dod-teaching-review-r1",
+      "text": "Record a fresh independent combined review bound to the complete revised package.",
+      "applies_to": [
+        "teaching-review-r1"
       ]
     }
   ],
@@ -107,6 +128,27 @@
       "text": "Record independent technical and provenance findings and a verdict bound to all declared artifact hashes.",
       "applies_to": [
         "technical-review"
+      ]
+    },
+    {
+      "id": "ac-revision-1",
+      "text": "Resolve NET-C1 by teaching safety, idempotence and cacheability for all five HTTP methods under RFC 9110 and RFC 5789. Clarify PUT creation/replacement and atomic durable retry deduplication from M02-L02-TP1 and TP2. Preserve and bind fresh reviews to the new lesson and assessment paths.",
+      "applies_to": [
+        "revision-1"
+      ]
+    },
+    {
+      "id": "ac-technical-review-r1",
+      "text": "Inspect the changes and affected dependencies and verify every declared artifact hash before issuing the gate verdict.",
+      "applies_to": [
+        "technical-review-r1"
+      ]
+    },
+    {
+      "id": "ac-teaching-review-r1",
+      "text": "Inspect the changes and affected dependencies and verify every declared artifact hash before issuing the gate verdict.",
+      "applies_to": [
+        "teaching-review-r1"
       ]
     }
   ]
