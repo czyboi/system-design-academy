@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M03-INTEGRATION.json",
   "automation_status": "in_progress",
-  "current_phase": "teaching-review-r1",
+  "current_phase": "validation",
   "created_at": "2026-11-11T12:45:21Z",
-  "updated_at": "2026-11-11T13:04:24Z",
+  "updated_at": "2026-11-11T13:04:41Z",
   "execution_control": "active",
   "notes": "GitHub #37; milestone SDA-MS02, Story SDA-M03-INT; branch codex/SDA-MS02.",
   "steps": [
@@ -586,7 +586,7 @@
     {
       "step_id": "validation",
       "title": "Validate synthesis and reconcile current lesson coverage and outcomes",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "technical-review-r1",
         "teaching-review-r1"
@@ -627,11 +627,52 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "requires_reviews": [
         "technical-review-r1",
         "teaching-review-r1"
-      ]
+      ],
+      "start_commit": "e6424e321d7305e853f0a1f615336c232d02f2e0",
+      "start_input_hashes": {
+        "modules/m03/integrated/brief.md": "1ef4efe2f1e8aecefb95c62bc6626ebf2846a767625f93a2467aa5dd72334e4d",
+        "modules/m03/integrated/solution-rubric-r1.md": "b1f0d1446ba14078b0edd49f02779b22a3ab360fb1b79967a7a6b4bdd0f23f56",
+        "modules/m03/integrated/decision-summary-r1.md": "74e6b80f5fddfd0138c05e4bd6b3cc7d0ac33887f04e2f1fa8885da80164e1b6",
+        "modules/m03/integrated/evidence.md": "06c75f0365ab24401154cde9fc3df07a8a2f8f0faeefe2fa66c72ef4f32ea080",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "scripts/validate_content.py": "a2145c121866f088d2e3544a8df4b39b078f6567eecc5e6dd5a955025f07ddce",
+        "scripts/check_course_coverage.py": "b4978b632c22108fc03a1724c34c49c5d260e37a1634cdf68799d87e1f26eb41",
+        "modules/m03/lessons/M03-L01.md": "3c8726f5ce7b67533a484cc3523e60e6e7231013f7814f30400cf00ca2631d77",
+        "modules/m03/assessments/M03-L01.md": "4b98136e1c54c6d5135e6f294e743a81fa8135450a7037c1072e27d99b8c08b5",
+        "modules/m03/reviews/M03-L01/technical.json": "80baf34c07daeb0d0008e00c789206f103bfffb5825500ae5be0744fa34ad566",
+        "modules/m03/reviews/M03-L01/teaching.json": "b2405705d228df447ae59ec2c465f1b02b0cfec98a645a0e42e8b3e32e96e79c",
+        "modules/m03/reviews/M03-L01/report.md": "e800cb5db01620aec62b26c3f17957b29f7eca4d692df5d31d70c8d6b715da15",
+        "modules/m03/lessons/M03-L02.md": "bde73e9dff605f346746aee78c30a367d640c13b6c99d259e81798c509faf45d",
+        "modules/m03/assessments/M03-L02.md": "817b4d3939db28f911badcf9ebe78e122037fe1bd2d91c401ec9c4df7b2ead17",
+        "modules/m03/reviews/M03-L02/technical.json": "93049137298dcf3b21bfa651ac7a8656628d6090e8960d2be49cb9aff0d43060",
+        "modules/m03/reviews/M03-L02/teaching.json": "710f78ded9b6fd39b707d9039d22dac9a0722d3b9671e04481005bc1a62e98f3",
+        "modules/m03/reviews/M03-L02/report.md": "0be5f38b80bd448e78de24611830ae8baf1d34b4edaa06f42ec652ed9cc711e7",
+        "modules/m03/lessons/M03-L03.md": "0401035394685243c11c7ee6a62c81e11fff0a5293c127060d561557a369e6e7",
+        "modules/m03/assessments/M03-L03.md": "09ab814298ecfdbb6877870e91b1bcae62715848ae84165eec46e1ea6868d27a",
+        "modules/m03/reviews/M03-L03/technical.json": "a368edf0b61956d765ab4006cd60e83048c17378658d266be20f865c1e7303f4",
+        "modules/m03/reviews/M03-L03/teaching.json": "24d28d8b59cdc0ef09d704ce0ef4a4fbdf19e338edc76fd8ac2020dfc97e5550",
+        "modules/m03/reviews/M03-L03/report.md": "ee7ad928f59439fdf86ba292affa7db938f434ddb7b0b3b8b541a2ac23f5f373"
+      },
+      "start_output_hashes": {
+        "modules/m03/integrated/reviews/report.md": null,
+        "modules/m03/integrated/taught-coverage.csv": null,
+        "modules/m03/integrated/outcome-portfolio.json": null
+      },
+      "started_at": "2026-11-11T13:04:41Z",
+      "active_spec_hash": "293af3bebe2cdbe52cdc94c41baeeb95c2d68b52b0204a4ea9087ca15af806cb",
+      "active_fingerprint": "2b9e9a86151abbbe4af96996dca7fd3d8c9f66b7af026b4d8719202ab36e23a2",
+      "run_id": "SD-M03-INTEGRATION-validation-20261111T130440Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ]
 }
