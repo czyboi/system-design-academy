@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M02-INTEGRATION",
+  "revision": 1,
+  "goal": "Draft and verify Integrated design, reference solution and decision summary for SDA-M02-INT",
+  "scope": {
+    "in_scope": [
+      "Implement only Story SDA-M02-INT from milestone SDA-MS02 at the declared output paths.",
+      "**Integrated design exercise:** Design the public request path for a global image catalogue.\n\n**Reference solution and self-evaluation:** Reference package: DNS-to-origin sequence, protocol choice, L4/L7 comparison, origin-failure and stale-content scenarios; assess correct layer boundaries.\n\n**Synthesis outcome map:** M02-S1: trace DNS-to-origin delivery and justify proxy/CDN choices. M02-EX1 measures this synthesis outcome using M02-L01-LO1, M02-L03-LO2 and M02-L04-LO2. It does not claim all module lesson outcomes. Each lesson’s separate companion remains responsible for its complete LO1/LO2 assessment, and the course portfolio must reconcile all companions before course completion.\n\n**Decision-summary table plan:** Select routing and delivery mechanisms by payload, connection lifetime, freshness, geography and failure policy. Each eventual row states trigger, option, mechanism, benefit, cost, failure signal, when to avoid, and the lesson reference.",
+      "Consume validated packages from SDA-M02-L01, SDA-M02-L02, SDA-M02-L03, SDA-M02-L04 when reconciling coverage and outcomes."
+    ],
+    "out_of_scope": [
+      "Other milestones and changes to the approved course baseline.",
+      "Human approval, merge and learner-facing publication."
+    ]
+  },
+  "constraints": [
+    "Use English and write for middle and senior engineers with the approved entry prerequisites. Keep all learner-facing artifacts at draft status.",
+    "Use the approved SDA-v1 plan, inventory, matrix and verdict; the Primer topic map is pinned at ae9bbd7b02d90b9866215de185217d33f39ab733. Cite exact primary-source sections for technical claims and use original examples.",
+    "Two independent reviewers cover technical correctness and provenance, and actual coverage, pedagogy and language. Keep reviews bound to the exact current artifacts."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record exact primary-source evidence, limits and check dates, and reuse the exact approved course verdict after strict plan validation.",
+      "applies_to": [
+        "research",
+        "plan-gate"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Commit the draft teaching and separate assessment outputs defined by the Story.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "dod-review",
+      "text": "Commit both independent findings reports and matching verdicts for the current drafts.",
+      "applies_to": [
+        "technical-review",
+        "teaching-review"
+      ]
+    },
+    {
+      "id": "dod-validation",
+      "text": "Pass the applicable package checks and the repository checks, and record results and feedback disposition in the declared report.",
+      "applies_to": [
+        "validation"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-story-1",
+      "text": "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-story-2",
+      "text": "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-story-3",
+      "text": "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence.",
+      "applies_to": [
+        "validation"
+      ]
+    }
+  ]
+}

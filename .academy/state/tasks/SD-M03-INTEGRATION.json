@@ -1,0 +1,241 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M03-INTEGRATION",
+  "module_id": "m03",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M03-INTEGRATION.json",
+  "automation_status": "not_started",
+  "current_phase": null,
+  "created_at": "2026-11-11T12:45:21Z",
+  "updated_at": "2026-11-11T12:45:21Z",
+  "execution_control": "active",
+  "notes": "GitHub #37; milestone SDA-MS02, Story SDA-M03-INT; branch codex/SDA-MS02.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Research only the assigned lesson and record claim evidence",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/source-research/SKILL.md",
+        "delivery/backlog.json"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "plan-gate",
+      "title": "Verify and reuse the accepted course gate; do not re-plan",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        "curriculum/revision-1/review.json",
+        "scripts/check_course_coverage.py",
+        "curriculum/approved-baseline.json",
+        "delivery/backlog.json"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/reviews/plan-gate.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m03/integrated/reviews/plan-gate.json"
+      }
+    },
+    {
+      "step_id": "author",
+      "title": "Draft the module exercise, reference solution and decision summary",
+      "status": "pending",
+      "depends_on": [
+        "research",
+        "plan-gate"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m03/integrated/evidence.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md",
+        "modules/m03/lessons/M03-L01.md",
+        "modules/m03/lessons/M03-L02.md",
+        "modules/m03/lessons/M03-L03.md"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/brief.md",
+        "modules/m03/integrated/solution-rubric.md",
+        "modules/m03/integrated/decision-summary.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "requires_reviews": [
+        "plan-gate"
+      ]
+    },
+    {
+      "step_id": "technical-review",
+      "title": "Independent module synthesis technical correctness and source/rights review",
+      "status": "pending",
+      "depends_on": [
+        "author"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m03/integrated/brief.md",
+        "modules/m03/integrated/solution-rubric.md",
+        "modules/m03/integrated/decision-summary.md",
+        "modules/m03/integrated/evidence.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/technical-review/SKILL.md",
+        ".agents/skills/provenance-review/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/reviews/technical.md",
+        "modules/m03/integrated/reviews/technical.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/m03/integrated/brief.md",
+          "modules/m03/integrated/solution-rubric.md",
+          "modules/m03/integrated/decision-summary.md",
+          "modules/m03/integrated/evidence.md",
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m03/integrated/reviews/technical.json"
+      }
+    },
+    {
+      "step_id": "teaching-review",
+      "title": "Independent module synthesis actual coverage, pedagogy, assessment and language review",
+      "status": "pending",
+      "depends_on": [
+        "author"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m03/integrated/brief.md",
+        "modules/m03/integrated/solution-rubric.md",
+        "modules/m03/integrated/decision-summary.md",
+        "modules/m03/integrated/evidence.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/reviews/teaching.md",
+        "modules/m03/integrated/reviews/teaching.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/m03/integrated/brief.md",
+          "modules/m03/integrated/solution-rubric.md",
+          "modules/m03/integrated/decision-summary.md",
+          "modules/m03/integrated/evidence.md",
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m03/integrated/reviews/teaching.json"
+      }
+    },
+    {
+      "step_id": "validation",
+      "title": "Validate synthesis and reconcile current lesson coverage and outcomes",
+      "status": "pending",
+      "depends_on": [
+        "technical-review",
+        "teaching-review"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m03/integrated/brief.md",
+        "modules/m03/integrated/solution-rubric.md",
+        "modules/m03/integrated/decision-summary.md",
+        "modules/m03/integrated/evidence.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        "scripts/validate_content.py",
+        "scripts/check_course_coverage.py",
+        "modules/m03/lessons/M03-L01.md",
+        "modules/m03/assessments/M03-L01.md",
+        "modules/m03/reviews/M03-L01/technical.json",
+        "modules/m03/reviews/M03-L01/teaching.json",
+        "modules/m03/reviews/M03-L01/report.md",
+        "modules/m03/lessons/M03-L02.md",
+        "modules/m03/assessments/M03-L02.md",
+        "modules/m03/reviews/M03-L02/technical.json",
+        "modules/m03/reviews/M03-L02/teaching.json",
+        "modules/m03/reviews/M03-L02/report.md",
+        "modules/m03/lessons/M03-L03.md",
+        "modules/m03/assessments/M03-L03.md",
+        "modules/m03/reviews/M03-L03/technical.json",
+        "modules/m03/reviews/M03-L03/teaching.json",
+        "modules/m03/reviews/M03-L03/report.md"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/reviews/report.md",
+        "modules/m03/integrated/taught-coverage.csv",
+        "modules/m03/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "requires_reviews": [
+        "technical-review",
+        "teaching-review"
+      ]
+    }
+  ]
+}
