@@ -1,0 +1,12 @@
+# Evidence for M01 integrated design
+
+Checked 2026-11-11. The regional service, inputs, partitions and budgets are original hypothetical examples.
+
+| Claim ID | Claim | Publisher, version and section | Scope and confidence |
+|---|---|---|---|
+| M01-I1 | Convert workload assumptions into concrete estimates and revisit the limiting resource after changing the design or failure scenario. | Google, *The Site Reliability Workbook* (2018), Chapter 12, [Why Non-Abstract and Design Process](https://sre.google/workbook/non-abstract-design/#why-non-abstract). | Verified as a design method. Storage, traffic and capacity figures in the exercise are arithmetic on explicit inputs. |
+| M01-I2 | Use separate indicators for response success, latency and degraded quality when those measure distinct user outcomes. | Google, *The Site Reliability Workbook* (2018), Chapter 2, [A Worked Example, Table 2-1](https://sre.google/workbook/implementing-slos/#a-worked-example). | Verified. The order-status freshness limit and classification of a degraded response are exercise policy choices. |
+| M01-I3 | Sufficient pre-provisioned capacity is required to continue carrying peak load after a serving zone fails, without relying on new instances during failure. | AWS, Well-Architected Framework (2022-03-31), [REL11-BP05, Implementation guidance](https://docs.aws.amazon.com/wellarchitected/2022-03-31/framework/rel_withstand_component_failures_static_stability.html#implementation-guidance). | Verified for the AWS example. The exercise uses the general capacity principle with vendor-neutral serving paths. |
+| M01-I4 | Under independent steady-state events, an any-one-of-two read path has availability one minus the product of both down fractions. A shared required dependency multiplies that result only if independent of the combined read path. | Elementary probability, complement rule and multiplication of independent events. The solution shows the event decomposition explicitly. | Derived. Effective availability also depends on detection, routing, capacity, state and correlated failure. |
+
+The model assumes a store that supplies a linearizable authoritative operation when reachable through its valid authority and rejects commits otherwise. The local-read policy assumes a conservative lag bound and explicit fallback when authorization or lag is uncertain. Those are abstract service contracts. Their implementation and actual availability require separate testing. The approved SDA-v1 M01 integrated outline supplies the M01-S1 and M01-EX1 scope.
