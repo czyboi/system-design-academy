@@ -5,7 +5,6 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
 from scripts import validate_content as validator
 from scripts import taskctl
@@ -45,9 +44,10 @@ Discuss what happens when the input changes.
 - https://example.com/reference-a
 - https://example.com/reference-b
 ''', encoding='utf-8')
-        self.assessment.write_text('''---
+        lesson_path = self.lesson.relative_to(ROOT).as_posix()
+        self.assessment.write_text(f'''---
 status: draft
-lesson: TEST-1.md
+lesson: {lesson_path}
 outcome_map:
   LO-1:
     taught_in: Core concepts and mechanisms
@@ -58,11 +58,8 @@ outcome_map:
 EX-1: Solve this problem.
 ## Knowledge checks
 '''+''.join(f'### Q{i}\nQuestion.\nAnswer: Yes.\nExplanation: Reason.\n' for i in range(1,6))+'## Answer key / rubric\nSolution.\n', encoding='utf-8')
-        self.root_patch = patch.object(validator, 'ROOT', self.root)
-        self.root_patch.start()
 
     def tearDown(self):
-        self.root_patch.stop()
         self.temp.cleanup()
 
     def pair_errors(self):
@@ -72,12 +69,13 @@ EX-1: Solve this problem.
         self.assertEqual(self.pair_errors(), [])
 
     def test_lesson_scope_accepts_a_complete_pair_without_a_duration(self):
-        with contextlib.redirect_stdout(io.StringIO()):
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
             result = validator.main([
-                '--scope', 'lesson', '--lesson', self.lesson.name,
-                '--assessment', self.assessment.name,
+                '--scope', 'lesson', '--lesson', self.lesson.relative_to(ROOT).as_posix(),
+                '--assessment', self.assessment.relative_to(ROOT).as_posix(),
             ])
-        self.assertEqual(result, 0)
+        self.assertEqual(result, 0, output.getvalue())
 
     def test_assessment_leakage_is_rejected(self):
         with self.lesson.open('a',encoding='utf-8') as f:
