@@ -76,6 +76,27 @@
       "applies_to": [
         "validation"
       ]
+    },
+    {
+      "id": "ac-research",
+      "text": "Each externally supported claim records a verified section, version or publication, check date, and scope. Unresolved claims are flagged.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-plan",
+      "text": "Verify matching SDA-v1 approval and review hashes and exact story assignment before reusing the accepted verdict.",
+      "applies_to": [
+        "plan-gate"
+      ]
+    },
+    {
+      "id": "ac-technical",
+      "text": "The independent review records separate correctness and source or rights findings and binds its verdict to the declared artifact hashes.",
+      "applies_to": [
+        "technical-review"
+      ]
     }
   ]
 }
