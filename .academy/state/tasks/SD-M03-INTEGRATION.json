@@ -4,10 +4,10 @@
   "module_id": "m03",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M03-INTEGRATION.json",
-  "automation_status": "in_progress",
+  "automation_status": "blocked",
   "current_phase": "teaching-review",
   "created_at": "2026-11-11T12:45:21Z",
-  "updated_at": "2026-11-11T12:57:52Z",
+  "updated_at": "2026-11-11T13:00:39Z",
   "execution_control": "active",
   "notes": "GitHub #37; milestone SDA-MS02, Story SDA-M03-INT; branch codex/SDA-MS02.",
   "steps": [
@@ -195,7 +195,7 @@
     {
       "step_id": "technical-review",
       "title": "Independent module synthesis technical correctness and source/rights review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -253,19 +253,26 @@
         "modules/m03/integrated/reviews/technical.json": null
       },
       "started_at": "2026-11-11T12:57:51Z",
-      "active_spec_hash": "cb3423c95a71fd22be7396c227a8c8069d5fee2d5e33c1d1d4daa2e667bea3be",
-      "active_fingerprint": "d6c9efe3ff61cbe6d4194c073911edc7a9d4069629412bfba9489df88560e57c",
       "run_id": "SD-M03-INTEGRATION-technical-review-20261111T125751Z",
       "agent": "technical_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "d6c9efe3ff61cbe6d4194c073911edc7a9d4069629412bfba9489df88560e57c",
+      "completed_spec_hash": "cb3423c95a71fd22be7396c227a8c8069d5fee2d5e33c1d1d4daa2e667bea3be",
+      "completed_output_hashes": {
+        "modules/m03/integrated/reviews/technical.md": "c79fbcdff397ce8620ed5f6aedfe3c62064a7aa79b5fb6200ed76285b05a07be",
+        "modules/m03/integrated/reviews/technical.json": "7f29970103e4b840302a151acd8d84602fd69eac07f9eca2d3ebc0a0af1e0ac4"
+      },
+      "completed_at": "2026-11-11T13:00:36Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "6801ff36ecdc2dbeb613a1fd59b498883c495eab"
     },
     {
       "step_id": "teaching-review",
       "title": "Independent module synthesis actual coverage, pedagogy, assessment and language review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -323,14 +330,21 @@
         "modules/m03/integrated/reviews/teaching.json": null
       },
       "started_at": "2026-11-11T12:57:52Z",
-      "active_spec_hash": "f5fd9add975866ee8c7db43de5802d229a6cc318255b173e6edd53f8a1e884ba",
-      "active_fingerprint": "28d211284ec374c94883c42b4aff4f34fd9d2781fb679b71b751412558d5a51c",
       "run_id": "SD-M03-INTEGRATION-teaching-review-20261111T125752Z",
       "agent": "teaching_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "28d211284ec374c94883c42b4aff4f34fd9d2781fb679b71b751412558d5a51c",
+      "completed_spec_hash": "f5fd9add975866ee8c7db43de5802d229a6cc318255b173e6edd53f8a1e884ba",
+      "completed_output_hashes": {
+        "modules/m03/integrated/reviews/teaching.md": "7d86c62dedc0719e5bb6fc27c4e69a5d39196ec52745d5b43786a198a1d2e7ec",
+        "modules/m03/integrated/reviews/teaching.json": "4bf0586293de9b327a744856fb9c6f7bf648160b14c8abd1ba21efd8183e7dad"
+      },
+      "completed_at": "2026-11-11T13:00:39Z",
+      "completed_by": "teaching_reviewer",
+      "completed_commit": "6801ff36ecdc2dbeb613a1fd59b498883c495eab"
     },
     {
       "step_id": "validation",
