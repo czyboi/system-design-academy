@@ -7,14 +7,14 @@
   "automation_status": "in_progress",
   "current_phase": "implementation",
   "created_at": "2026-11-11T07:04:31Z",
-  "updated_at": "2026-11-11T07:04:48Z",
+  "updated_at": "2026-11-11T07:08:06Z",
   "execution_control": "active",
   "notes": "GitHub #17, revision to delivery rules from #16 and authoring metadata contract. Workflow only.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Apply delivery and lesson authoring rules",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -62,14 +62,29 @@
         "tests/test_content_validation.py": "f85a99ce3c0d35082857aa9f58a1a23633813cbe9ff2bc82d10af8f44b1866fb"
       },
       "started_at": "2026-11-11T07:04:48Z",
-      "active_spec_hash": "0e11c45ae69db7e87c5faa370258416a075cf6150865228194925644cb235940",
-      "active_fingerprint": "e2fbb98dfa8330a2146270aab392e317d18067f382e4c5b3d63cdde546a41ea3",
       "run_id": "SD-WORKFLOW-DELIVERY-COVERAGE-implementation-20261111T070447Z",
       "agent": "curriculum_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "e2fbb98dfa8330a2146270aab392e317d18067f382e4c5b3d63cdde546a41ea3",
+      "completed_spec_hash": "0e11c45ae69db7e87c5faa370258416a075cf6150865228194925644cb235940",
+      "completed_output_hashes": {
+        "delivery/PLAN.md": "12632437d3131a3749ddfb4f5f68f9e979ab797cdbc2f852045e9d07ef2deba0",
+        "delivery/backlog.json": "dcea037ccaeb353a7853837ef2b26f1fac0a133654c52eaad24e6b81f8233ef7",
+        "modules/database/governance/content-guidelines.md": "a2d64051359490a1b1202fc52710c230d9823d17a0d7dda040af4fd750983fd7",
+        "modules/database/workflow/lesson-template.md": "86036247365a195ed5c53daea87f5492613accb3397b9f3c7ac7453517059e67",
+        "modules/database/workflow/assessment-template.md": "75561b39b328c17edde3b012d2ae672eda4c0eab6f24bb095c21495a3af2c9a1",
+        ".agents/skills/lesson-authoring/SKILL.md": "ebf392ae7ed43459982ada6afca1409211f48c87202129fb7f7c4248d49dfdc5",
+        ".agents/skills/assessment-design/SKILL.md": "9706b86ae149ee11af45d8af92bf74459ac0ff649cbd1d22a6cccff30b173703",
+        ".agents/skills/pedagogical-review/SKILL.md": "50263f2199a02f12d3b431b4a40344ea605b42555eae6f629424ee6154d8b3fa",
+        "scripts/validate_content.py": "a2145c121866f088d2e3544a8df4b39b078f6567eecc5e6dd5a955025f07ddce",
+        "tests/test_content_validation.py": "2aa6b66bcadac0a1755acbfb14ff7fc3ad2e201ade0416e625ddbddf74638650"
+      },
+      "completed_at": "2026-11-11T07:08:06Z",
+      "completed_by": "curriculum_orchestrator",
+      "completed_commit": "b7550072148e552cd5786b3ae94e3ab3f8724838"
     },
     {
       "step_id": "verification",
