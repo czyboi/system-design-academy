@@ -1,0 +1,18 @@
+{
+  "verdict": "ready-for-human-review",
+  "artifact_hashes": {
+    "modules/m01/lessons/M01-L03.md": "0d0d3c67abf8807dccbef35ff5824696c3b711fca1ff0e3b842a138324388fa9",
+    "modules/m01/assessments/M01-L03.md": "40a494ebba40bd2568e8d486610b6ccd7fa11039908a283aa34029db75d3e97a",
+    "modules/m01/evidence/M01-L03.md": "e5e9a9c493353f4036ec6b0bcea7213a202b23e2f2c3df99783daa311de9394a",
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  },
+  "findings": [
+    {
+      "id": "P01",
+      "severity": "minor",
+      "status": "open"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "verdict": "revise",
+  "artifact_hashes": {
+    "modules/m01/lessons/M01-L02.md": "2448d50dbeb209a6e997a823359dd3e6b84d05b53947b897dc88107514087627",
+    "modules/m01/assessments/M01-L02.md": "94ad7ea375a21556c192cfb6ea605916fca6478e5d87972431acf5bbfa14f7bc",
+    "modules/m01/evidence/M01-L02.md": "f11a31a981c03f5ee7dfc3b9e70e116e3f776c1ce530b39e85c00bcac9190a9c",
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  },
+  "findings": [
+    {
+      "id": "P01",
+      "severity": "major",
+      "status": "open"
+    },
+    {
+      "id": "P02",
+      "severity": "minor",
+      "status": "open"
+    }
+  ]
+}
