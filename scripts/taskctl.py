@@ -6,7 +6,6 @@ import argparse
 import json
 import os
 import re
-import subprocess
 import sys
 import tempfile
 from datetime import datetime, timezone
@@ -292,25 +291,6 @@ def refresh_task_status(data: dict[str, Any]) -> None:
         data["automation_status"] = "not_started"
 
 
-def git_output(args: list[str]) -> str:
-    try:
-        result = subprocess.run(["git", *args], cwd=ROOT, check=True, text=True, capture_output=True)
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise TaskError(f"Git command failed ({' '.join(args)}): {exc}") from exc
-    return result.stdout.strip()
-
-
-
-def git_checked(args: list[str], check: bool = True) -> subprocess.CompletedProcess[str]:
-    try:
-        result = subprocess.run(["git", *args], cwd=ROOT, text=True, capture_output=True)
-    except OSError as exc:
-        raise TaskError(f"Cannot execute Git: {exc}") from exc
-    if check and result.returncode:
-        raise TaskError(f"Git command failed ({' '.join(args)}): {result.stderr.strip()}")
-    return result
-
-
 def render_template(path: Path, values: dict[str, str]) -> dict[str, Any]:
     # Parse JSON first, then render string values recursively. Never mutate raw JSON text.
     data = json.loads(path.read_text(encoding="utf-8"))
@@ -349,6 +329,7 @@ def cmd_init(args: argparse.Namespace) -> None:
         "owner": args.owner,
         "spec_path": f".academy/specs/{args.task_id}.json",
         "automation_status": "not_started",
+        "review_status": "not_reviewed",
         "created_at": now(),
         "updated_at": now(),
     })
@@ -379,6 +360,7 @@ def cmd_add_step(args: argparse.Namespace) -> None:
     data["steps"].append(new_step)
     validate_task(data)
     data["updated_at"] = now()
+    refresh_task_status(data)
     save_task(data)
     log_event(args.task_id, "step_defined", step_id=args.step_id, depends_on=args.depends_on, inputs=args.input_paths, outputs=args.output_paths)
     print(f"Added step {args.task_id}/{args.step_id}")
@@ -389,7 +371,7 @@ def cmd_status(args: argparse.Namespace) -> None:
     data = load_task(args.task_id)
     refresh_task_status(data)
     spec = load_spec(data)
-    print(f"{data['task_id']} | {data['module_id']} | automation={data['automation_status']} | owner={data['owner']}")
+    print(f"{data['task_id']} | {data['module_id']} | automation={data['automation_status']} | review={data.get('review_status', 'not_reviewed')} | owner={data['owner']}")
     print(f"Specification: {data['spec_path']} — {spec['goal']}")
     for step in data["steps"]:
         state, reason = step_status(data, step)
@@ -607,7 +589,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--output-paths", nargs="+", required=True)
     p.add_argument("--depends-on", nargs="*", default=[])
     p.set_defaults(func=cmd_add_step)
-    p = sub.add_parser("status", help="Show task state and which steps can be skipped")
+    p = sub.add_parser("status", help="Read explicit task and content-review states")
     p.add_argument("task_id")
     p.set_defaults(func=cmd_status)
     p = sub.add_parser("reconcile", help="Persist aggregate of explicit step states")
@@ -635,7 +617,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--note", required=True)
     p.add_argument("--next-action", required=True)
     p.set_defaults(func=cmd_checkpoint)
-    p = sub.add_parser("complete", help="Mark a step complete after its outputs are committed")
+    p = sub.add_parser("complete", help="Mark work complete once declared output files exist")
     p.add_argument("task_id")
     p.add_argument("step_id")
     p.add_argument("--agent")
