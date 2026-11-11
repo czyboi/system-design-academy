@@ -4,17 +4,17 @@
   "module_id": "curriculum-delivery",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-WORKFLOW-DELIVERY-COVERAGE.json",
-  "automation_status": "not_started",
-  "current_phase": null,
+  "automation_status": "in_progress",
+  "current_phase": "implementation",
   "created_at": "2026-11-11T07:04:31Z",
-  "updated_at": "2026-11-11T07:04:31Z",
+  "updated_at": "2026-11-11T07:04:48Z",
   "execution_control": "active",
   "notes": "GitHub #17, revision to delivery rules from #16 and authoring metadata contract. Workflow only.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Apply delivery and lesson authoring rules",
-      "status": "pending",
+      "status": "running",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -40,7 +40,36 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0
+      "attempts": 1,
+      "start_commit": "149dead36d5944214cb01c8759a4f171da21df81",
+      "start_input_hashes": {
+        "curriculum/approved-baseline.json": "40f41aca40164a4ac72f119fa7ac9d8885762bb3f649d9d77fe28583bf7ae6ea",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "curriculum/revision-1/review.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287"
+      },
+      "start_output_hashes": {
+        "delivery/PLAN.md": "eb8516bc40a007b69ed0bffeb29f43bb459976a3b04847afa36fcdb4382cefde",
+        "delivery/backlog.json": "659ec752f0975d95cedbacc1dd9e45052851ecc0a72fe0338bc4d327caeaf2f2",
+        "modules/database/governance/content-guidelines.md": "3413c881a7df46cc1418f6dea49fe5892ec62a2fa105e63aba721e5b0ae07601",
+        "modules/database/workflow/lesson-template.md": "d6db983b90e72a9da294f4d336bdca1e3f3d403b6a1c79fc3a0b0e77475d540d",
+        "modules/database/workflow/assessment-template.md": "a8b93ffe6964d55db2bc06c953e4dede9a593e849c91f1cc0662ec6510560d5a",
+        ".agents/skills/lesson-authoring/SKILL.md": "076d9b410da019a6457e88d13c21e18afba22555d3e59cc3395d15b2e0bf3a3c",
+        ".agents/skills/assessment-design/SKILL.md": "eea688965da5243d306b646960d02f009564c803e41fada4de6c61ef220e4975",
+        ".agents/skills/pedagogical-review/SKILL.md": "ba49779754723f92a0ded1788f1487bf6c38bc1bf1d96f6a314349da52fcd993",
+        "scripts/validate_content.py": "a9f5fdc7b5eed9df3ec0ad239a9b537464bffb67950043e88f0ecc6330cc714e",
+        "tests/test_content_validation.py": "f85a99ce3c0d35082857aa9f58a1a23633813cbe9ff2bc82d10af8f44b1866fb"
+      },
+      "started_at": "2026-11-11T07:04:48Z",
+      "active_spec_hash": "0e11c45ae69db7e87c5faa370258416a075cf6150865228194925644cb235940",
+      "active_fingerprint": "e2fbb98dfa8330a2146270aab392e317d18067f382e4c5b3d63cdde546a41ea3",
+      "run_id": "SD-WORKFLOW-DELIVERY-COVERAGE-implementation-20261111T070447Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     },
     {
       "step_id": "verification",
