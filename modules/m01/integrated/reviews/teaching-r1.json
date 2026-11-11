@@ -1,0 +1,14 @@
+{
+  "verdict": "ready-for-human-review",
+  "artifact_hashes": {
+    "modules/m01/integrated/brief.md": "66ddac307e0d17eba42e9916eeb8991ff34de3e41f3ec8ef44cfba201a582d54",
+    "modules/m01/integrated/solution-rubric.md": "281e0259f85ee696ab4703d640ed2fed3c00fd2f1f560a3007cc5a859d4c9ba0",
+    "modules/m01/integrated/decision-summary-r1.md": "142c9a0b2d07b3f7021447385ed73ed2ebcdec20ea0f10946ec53b528e85ec9c",
+    "modules/m01/integrated/evidence.md": "b499d34f3625375ce10c57c6f925bbf3b27333358d11c051b931ef62e84d096c",
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+    "modules/m01/lessons/revision-1/M01-L02.md": "e37b571f4f290c1f3083d141d4dbb96175ec48b25d27027454a1553c6b307adb"
+  },
+  "findings": []
+}
