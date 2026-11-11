@@ -4,17 +4,17 @@
   "module_id": "curriculum-delivery",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-DELIVERY-MILESTONES.json",
-  "automation_status": "automation_complete",
+  "automation_status": "in_progress",
   "current_phase": "verification",
   "created_at": "2026-11-11T07:20:34Z",
-  "updated_at": "2026-11-11T07:24:31Z",
+  "updated_at": "2026-11-11T07:26:46Z",
   "execution_control": "active",
   "notes": "GitHub #18. Approved milestone grouping and execution planning only.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Record milestones and write execution plan",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -63,12 +63,13 @@
       },
       "completed_at": "2026-11-11T07:22:35Z",
       "completed_by": "curriculum_orchestrator",
-      "completed_commit": "852570638ffbf50c7e989e1a760008c562c5bd2b"
+      "completed_commit": "852570638ffbf50c7e989e1a760008c562c5bd2b",
+      "invalidation_reason": "User correction in Codex chat: select the first delivery scope later and allow all nine milestones in one run. Remove the preselected first scope and resolve readiness by actual draft inputs. Retain milestone membership."
     },
     {
       "step_id": "verification",
       "title": "Verify milestone membership, execution order and baseline",
-      "status": "completed",
+      "status": "invalidated",
       "depends_on": [
         "implementation"
       ],
@@ -119,7 +120,8 @@
       },
       "completed_at": "2026-11-11T07:24:31Z",
       "completed_by": "curriculum_orchestrator",
-      "completed_commit": "14c86fc3b5fce6cb7f5f6e44e4038ffe1a728c18"
+      "completed_commit": "14c86fc3b5fce6cb7f5f6e44e4038ffe1a728c18",
+      "invalidation_reason": "User correction in Codex chat: select the first delivery scope later and allow all nine milestones in one run. Remove the preselected first scope and resolve readiness by actual draft inputs. Retain milestone membership."
     }
   ]
 }
