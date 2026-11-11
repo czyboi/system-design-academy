@@ -4,10 +4,10 @@
   "module_id": "m02",
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M02-L02.json",
-  "automation_status": "in_progress",
+  "automation_status": "blocked",
   "current_phase": "teaching-review",
   "created_at": "2026-11-11T12:45:19Z",
-  "updated_at": "2026-11-11T12:53:35Z",
+  "updated_at": "2026-11-11T12:57:35Z",
   "execution_control": "active",
   "notes": "GitHub #30; milestone SDA-MS02, Story SDA-M02-L02; branch codex/SDA-MS02.",
   "steps": [
@@ -190,7 +190,7 @@
     {
       "step_id": "technical-review",
       "title": "Independent technical correctness and source/rights review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -245,19 +245,26 @@
         "modules/m02/reviews/M02-L02/technical.json": null
       },
       "started_at": "2026-11-11T12:53:34Z",
-      "active_spec_hash": "89780060cb0992aa08a493668d3f562c3e9fc17c1aac607903badc5c75220d54",
-      "active_fingerprint": "1586fe48d27ab8e41033dc989bab4b5642c95f5db44548bcf098bf5e2119c2a8",
       "run_id": "SD-M02-L02-technical-review-20261111T125334Z",
       "agent": "technical_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "1586fe48d27ab8e41033dc989bab4b5642c95f5db44548bcf098bf5e2119c2a8",
+      "completed_spec_hash": "89780060cb0992aa08a493668d3f562c3e9fc17c1aac607903badc5c75220d54",
+      "completed_output_hashes": {
+        "modules/m02/reviews/M02-L02/technical.md": "8ecdbe7d5c3065d69f234db35c4d22711843120310193c6ba7ac52ce37c69708",
+        "modules/m02/reviews/M02-L02/technical.json": "648da7575469de682922aca36c0012c65e29b724d0af5510d410bf11a648acef"
+      },
+      "completed_at": "2026-11-11T12:57:32Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "e2037d319283e7a2866bb16713130f10c425e6dc"
     },
     {
       "step_id": "teaching-review",
       "title": "Independent actual coverage, pedagogy, assessment and language review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -312,14 +319,21 @@
         "modules/m02/reviews/M02-L02/teaching.json": null
       },
       "started_at": "2026-11-11T12:53:35Z",
-      "active_spec_hash": "46ec94257177af72a6eae31fcd929f718451d8fc8f3e53e5f8d533c740a03fa3",
-      "active_fingerprint": "4a89d579356c9fc608f37ac29b3c8987efdec6d0a27a58a50b6431c66b2636cc",
       "run_id": "SD-M02-L02-teaching-review-20261111T125335Z",
       "agent": "teaching_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "4a89d579356c9fc608f37ac29b3c8987efdec6d0a27a58a50b6431c66b2636cc",
+      "completed_spec_hash": "46ec94257177af72a6eae31fcd929f718451d8fc8f3e53e5f8d533c740a03fa3",
+      "completed_output_hashes": {
+        "modules/m02/reviews/M02-L02/teaching.md": "285271293ff9c9a9536a218420b0a1eeb44351311ed9726a5e96154a07a0c51d",
+        "modules/m02/reviews/M02-L02/teaching.json": "bb012ec1d9fa1aa49d775988960f301a4ac5b6c762d8550025c943885c20923f"
+      },
+      "completed_at": "2026-11-11T12:57:35Z",
+      "completed_by": "teaching_reviewer",
+      "completed_commit": "e2037d319283e7a2866bb16713130f10c425e6dc"
     },
     {
       "step_id": "validation",
