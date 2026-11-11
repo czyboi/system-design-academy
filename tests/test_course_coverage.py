@@ -37,7 +37,7 @@ class FullCoverageTests(unittest.TestCase):
         (self.root / 'inventory.json').write_text(json.dumps(self.inventory), encoding='utf-8')
 
     def write_matrix(self):
-        fields = ['topic_id', 'lesson', 'outline', 'disposition', 'lesson_path', 'section', 'lesson_sha256']
+        fields = ['topic_id', 'lesson', 'outline', 'disposition', 'lesson_path', 'section']
         with (self.root / 'matrix.csv').open('w', encoding='utf-8', newline='') as handle:
             writer = csv.DictWriter(handle, fieldnames=fields)
             writer.writeheader()
@@ -50,14 +50,11 @@ class FullCoverageTests(unittest.TestCase):
         for row in self.rows:
             path = self.root / (row['lesson'] + '.md')
             path.write_text(f"---\nid: {row['lesson']}\nstatus: draft\n---\n# Lesson\n## Mechanism\nAn explanation for the structural test.\n", encoding='utf-8')
-            row.update(lesson_path=path.name, section='Mechanism', lesson_sha256=checker.digest(path))
+            row.update(lesson_path=path.name, section='Mechanism')
         self.write_matrix()
 
     def write_review(self, stage='plan'):
-        paths = ['inventory.json', 'matrix.csv', 'plan.md']
-        if stage == 'taught':
-            paths += [row['lesson_path'] for row in self.rows]
-        self.review = {'verdict': 'ready-for-human-review', 'artifact_hashes': {p: checker.digest(self.root / p) for p in paths},
+        self.review = {'verdict': 'ready-for-human-review',
                        'checks': {'coverage': 'pass', 'pedagogy': 'pass'}, 'findings': []}
         self.save_review()
 
@@ -109,11 +106,11 @@ class FullCoverageTests(unittest.TestCase):
         self.add_teaching()
         self.assertEqual(self.errors('taught'), [])
 
-    def test_stale_hash_or_absent_lesson_fails_taught_gate(self):
+    def test_changed_lesson_does_not_invalidate_structural_coverage(self):
         self.add_teaching()
         path = self.root / self.rows[0]['lesson_path']
         path.write_text(path.read_text() + '\nChanged claim.\n', encoding='utf-8')
-        self.assertTrue(any('stale lesson hash' in e for e in self.errors('taught')))
+        self.assertEqual(self.errors('taught'), [])
         path.unlink()
         self.assertTrue(any('Missing artifact' in e for e in self.errors('taught')))
 
@@ -126,13 +123,12 @@ class FullCoverageTests(unittest.TestCase):
         path = self.root / self.rows[0]['lesson_path']
         text = path.read_text().replace('An explanation for the structural test.', '<!-- TODO -->\n### Subheading')
         path.write_text(text, encoding='utf-8')
-        self.rows[0]['lesson_sha256'] = checker.digest(path)
         self.write_matrix()
         self.assertTrue(any('empty' in e for e in self.errors('taught')))
         path.write_text(text.replace('status: draft', 'status: draft\nlesson: another.md\noutcome_map: {}'), encoding='utf-8')
         self.assertTrue(any('assessment' in e for e in self.errors('taught')))
 
-    def test_plan_review_reuse_requires_exact_hashes_and_both_checks(self):
+    def test_optional_review_checks_verdict_and_not_file_hashes(self):
         self.write_review()
         self.assertEqual(self.errors(review='review.json'), [])
         self.review['checks']['pedagogy'] = 'revise'
@@ -140,7 +136,7 @@ class FullCoverageTests(unittest.TestCase):
         self.assertTrue(self.errors(review='review.json'))
         self.write_review()
         (self.root / 'plan.md').write_text((self.root / 'plan.md').read_text() + '\nChanged scope\n', encoding='utf-8')
-        self.assertTrue(any('artifact hashes' in e for e in self.errors(review='review.json')))
+        self.assertEqual(self.errors(review='review.json'), [])
 
     def test_negative_or_false_clear_review_cannot_be_reused(self):
         self.write_review()
@@ -152,13 +148,13 @@ class FullCoverageTests(unittest.TestCase):
         self.save_review()
         self.assertTrue(any('unresolved material' in e for e in self.errors(review='review.json')))
 
-    def test_final_course_review_binds_all_taught_artifacts(self):
+    def test_optional_review_does_not_require_hashes_for_taught_content(self):
         self.add_teaching()
         self.write_review('taught')
         self.assertEqual(self.errors('taught', 'review.json'), [])
-        del self.review['artifact_hashes'][self.rows[0]['lesson_path']]
-        self.save_review()
-        self.assertTrue(self.errors('taught', 'review.json'))
+        path = self.root / self.rows[0]['lesson_path']
+        path.write_text(path.read_text() + '\nAn additional explanation.\n', encoding='utf-8')
+        self.assertEqual(self.errors('taught', 'review.json'), [])
 
     def test_missing_malformed_or_escaping_inputs_fail_closed(self):
         for contents in ('[]', '{bad', '{}'):
@@ -180,7 +176,7 @@ class FullCoverageTests(unittest.TestCase):
         self.add_teaching()
         path = self.root / self.rows[0]['lesson_path']
         path.write_text(path.read_text().replace('## Mechanism', '## Reference architecture'), encoding='utf-8')
-        self.rows[0].update(section='Reference architecture', lesson_sha256=checker.digest(path))
+        self.rows[0].update(section='Reference architecture')
         self.write_matrix()
         self.assertEqual(self.errors('taught'), [])
 
@@ -194,8 +190,7 @@ class FullCoverageTests(unittest.TestCase):
                     body = (f'## Mechanism\n### {heading}\nOnly excluded content.\n' if nested
                             else f'## {heading}\nOnly excluded content.\n')
                     path.write_text(prefix + body, encoding='utf-8')
-                    self.rows[0].update(section='Mechanism' if nested else heading,
-                                        lesson_sha256=checker.digest(path))
+                    self.rows[0].update(section='Mechanism' if nested else heading)
                     self.write_matrix()
                     self.assertTrue(self.errors('taught'))
 
