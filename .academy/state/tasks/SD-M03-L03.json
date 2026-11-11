@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "author",
   "created_at": "2026-11-11T12:45:21Z",
-  "updated_at": "2026-11-11T12:49:53Z",
+  "updated_at": "2026-11-11T12:51:37Z",
   "execution_control": "active",
   "notes": "GitHub #36; milestone SDA-MS02, Story SDA-M03-L03; branch codex/SDA-MS02.",
   "steps": [
@@ -146,8 +146,9 @@
         "modules/m03/assessments/M03-L03.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Author scoped validation flagged an unquoted colon in YAML metadata. Quoted the title and the scoped check passed.",
+        "next_action": "Commit the validated pair and start independent reviews.",
+        "at": "2026-11-11T12:51:37Z"
       },
       "attempts": 1,
       "requires_reviews": [
