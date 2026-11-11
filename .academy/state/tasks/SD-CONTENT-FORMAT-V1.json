@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-CONTENT-FORMAT-V1",
+  "module_id": "workflow",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-CONTENT-FORMAT-V1.json",
+  "automation_status": "not_started",
+  "current_phase": null,
+  "created_at": "2026-11-11T17:35:35Z",
+  "updated_at": "2026-11-11T17:35:35Z",
+  "execution_control": "active",
+  "notes": "Step-1 documentation PR drafted using GitHub connector. State initialized as pending; taskctl start/complete and repository test execution have NOT been performed in a checked-out working tree. Reconcile via taskctl before recording automation completion. No learner artifact gates.",
+  "steps": [
+    {
+      "step_id": "implementation",
+      "title": "Record source format audit and candidate contract",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [
+        "AGENTS.md",
+        "docs/workflow-contract.md",
+        "modules/database/workflow/lesson-template.md",
+        "modules/database/workflow/assessment-template.md",
+        "modules/database/governance/content-guidelines.md",
+        ".agents/skills/lesson-authoring/SKILL.md"
+      ],
+      "output_paths": [
+        "docs/authoring-format-contract-v1.md",
+        "docs/content-format-audit-ms01-ms02.md"
+      ],
+      "checkpoint": {
+        "note": "Draft files prepared in PR for human review; formal taskctl lifecycle not executed.",
+        "next_action": "Review candidate, then reconcile workflow task in a local checkout."
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "verification",
+      "title": "Validate documentation and record checks",
+      "status": "pending",
+      "depends_on": [
+        "implementation"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "docs/authoring-format-contract-v1.md",
+        "docs/content-format-audit-ms01-ms02.md"
+      ],
+      "output_paths": [
+        ".academy/task-runs/SD-CONTENT-FORMAT-V1/report.md"
+      ],
+      "checkpoint": {
+        "note": "No checkout-based commands run yet.",
+        "next_action": "Run repo content/taskctl/test checks and record actual results."
+      },
+      "attempts": 0
+    }
+  ]
+}

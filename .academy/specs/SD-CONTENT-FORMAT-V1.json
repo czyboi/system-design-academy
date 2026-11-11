@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-CONTENT-FORMAT-V1",
+  "revision": 1,
+  "goal": "Audit the MS01/MS02 authoring formats and propose a non-invasive, backward-compatible Authoring Format Contract v1 for future website consumption.",
+  "scope": {
+    "in_scope": [
+      "Inventory 13 selected lesson/companion pairs across pinned MS01/MS02 branch commits and review-backed revision paths.",
+      "Document a candidate v1 content format covering YAML, Markdown, examples, diagrams, assessment variants, asset safety and backward compatibility.",
+      "Record identified limitations and a staged follow-on plan for parser validation, loader, approval and web rendering."
+    ],
+    "out_of_scope": [
+      "Change or regenerate any lesson, assessment, source evidence, review verdict, agent profile or existing content validator.",
+      "Execute new format validation, build a loader, add a publication gate, merge milestone branches, deploy a website or approve content.",
+      "Introduce any additional LLM step/token usage in future milestone content generation."
+    ]
+  },
+  "constraints": [
+    "Keep SDA-v1 approved curriculum and MS01/MS02 artifact bytes unchanged.",
+    "Documentation is a candidate, not an enforced authoring standard; human review required before activation.",
+    "Use exact inspected branch snapshots; distinguish raw observations from runtime test claims.",
+    "Follow the existing issue/spec/state/worklog convention; do not claim taskctl verification unless executed."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-contract",
+      "text": "A candidate backward-compatible format contract is committed on a separate branch for human review.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "dod-audit",
+      "text": "A reproducible content-format audit records pinned source commits, selected revisions, syntax variants and explicit gaps.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "dod-verify",
+      "text": "Verify documentation and repository checks where executable, recording checks not run rather than inventing results.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-safe",
+      "text": "No existing lesson/assessment/integrated output, reviewer verdict, authoring behavior or public visibility is changed.",
+      "applies_to": [
+        "implementation",
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-revisions",
+      "text": "Audit identifies M01-L02 and M02-L02 revision-1 selection and alternate Answer/Explanation formatting.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-future",
+      "text": "Follow-on stages are explicitly separate: validation, thin loader, publication gate and frontend.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "ac-status",
+      "text": "Do not mark automation complete or claim CLI tests pass without taskctl/test execution.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}
