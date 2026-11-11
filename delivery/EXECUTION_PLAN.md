@@ -5,14 +5,14 @@ Select one, several or all nine milestones when authorizing a run. The [delivery
 ## Intake and execution
 
 1. Take the union of the Story IDs in the selected milestones. For each Story, reuse or create one Issue/spec/state/worklog, check task status, and declare the exact inputs, output paths and current versions. Give each artifact one writer.
-2. Verify the [approved baseline](../curriculum/approved-baseline.json) at intake. Reuse the exact approved outline, inventory, coverage matrix and review. Use the six-step lesson template for a lesson and a scoped package graph for integration, capstone or audit.
-3. Draft independent Stories or sections in parallel where practical. For `composition` inputs, finish the consuming section once the exact upstream draft is available. Resolve `preview` and `reference` links against current drafts at validation. If a needed draft is missing outside the selected scope, report the specific dependency and continue independent work in scope. Record which downstream section or assessment item uses each input.
-4. Validate the package after both independent reviews pass on its current artifacts. If a change affects another package, update the affected content and rerun the relevant checks and reviews. Reuse valid evidence, and refresh module coverage files for the versions that pass.
-5. Hand off the reviewed draft artifacts and evidence, with unresolved findings visible. Human acceptance can cover a single package or several together. Merge and publication require explicit human approval.
+2. Read the [approved SDA-v1 baseline](../curriculum/README.md) at intake. Use its approved outline, inventory and coverage matrix as the default. Use the two-step draft lesson template; integration, capstone and audits run only when separately authorized.
+3. Draft independent Stories or sections in parallel where practical. For `composition` inputs, finish the consuming section once the exact upstream draft is available. Resolve `preview` and `reference` links when the user requests validation or integration review. If a needed draft is missing outside the selected scope, report the specific dependency and continue independent work in scope. Record which downstream section or assessment item uses each input.
+4. Finish the authorized drafts and stop. Run technical/source review, coverage/pedagogy review or Python validators only when the user requests them. On substantive edits to reviewed material, explicitly flag `needs_review`; do not infer stale states or trigger review loops automatically.
+5. Hand off current draft artifacts, any requested review reports and unresolved findings. A completed draft does not imply it was reviewed/validated. Human acceptance, merge and publication require explicit human approval.
 
 ## Work by milestone
 
-Each module integration can finish as soon as its own lesson drafts pass validation. Prepare integration work while lessons are in progress. Across milestones, use the concrete inputs listed below to decide what can finish.
+Each module integration can be drafted as soon as its required lesson drafts exist; quality checks and approval are separate user-triggered steps. Prepare integration work while lessons are in progress. Across milestones, use the concrete inputs listed below to decide what can finish.
 
 | Milestone | Lesson or package batch | Handoff dependencies |
 |---|---|---|
@@ -28,6 +28,6 @@ Each module integration can finish as soon as its own lesson drafts pass validat
 
 ## Handoff checks
 
-- **Lesson package.** The teaching and assessment drafts have matching current technical/provenance and teaching/coverage verdicts, and package validation passes. Each mapped topic points to an explanatory heading and its current teaching hash. Each outcome points to a teaching section and assessment evidence.
+- **Lesson package.** The teaching and assessment drafts exist. Any requested review/validation evidence is reported separately, with manual `review_status`. Each mapped topic has a candidate teaching section; each outcome maps to lesson and assessment evidence.
 - **Module package.** The integrated brief, reference solution and rubric, decision summary, `taught-coverage.csv`, and `outcome-portfolio.json` are present at the backlog paths. Reconcile the approved topic assignments and the current lesson and module outcomes before marking module validation complete.
-- **Course package.** The capstone evaluates all six transfer outcomes with its marketplace scenario and rubric. The independent audit checks actual teaching for all 473 topic mappings, reconciles the current outcome portfolio and cross-module references, and passes the [strict taught-stage check](../docs/workflow-contract.md#full-primer-coverage-data-contract) with its current verdict. The audit delivers the combined taught matrix, outcome portfolio and review artifacts listed in the backlog.
+- **Course package.** The capstone evaluates all six transfer outcomes with its marketplace scenario and rubric. When requested, the independent audit checks actual teaching for all 473 topic mappings and reconciles the outcome portfolio; the strict taught-stage checker is a separate user-triggered operation. The audit delivers the combined taught matrix, outcome portfolio and review artifacts listed in the backlog.
