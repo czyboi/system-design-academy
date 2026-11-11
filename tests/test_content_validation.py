@@ -19,23 +19,35 @@ class ContentContractTests(unittest.TestCase):
         base.mkdir(exist_ok=True)
         self.temp = tempfile.TemporaryDirectory(dir=base)
         self.root = Path(self.temp.name)
-        self.lesson = self.root/'lesson.md'
+        self.lesson = self.root/'TEST-1.md'
         self.assessment = self.root/'assessment.md'
         self.lesson.write_text('''---
 id: TEST-1
+title: Test lesson
 status: draft
+level: intermediate
+source_review_date: 2026-11-11
 prerequisites: []
 outcomes: [LO-1]
 ---
 # Test lesson
 ## Learning outcomes
 LO-1: Make a decision.
+## Problem and motivation
+Choose a representation for this workload.
 ## Core concepts and mechanisms
 Explanation.
+## Worked example
+Apply the decision criteria to one request.
+## Trade-offs and failure modes
+Discuss what happens when the input changes.
+## References
+- https://example.com/reference-a
+- https://example.com/reference-b
 ''', encoding='utf-8')
         self.assessment.write_text('''---
 status: draft
-lesson: lesson.md
+lesson: TEST-1.md
 outcome_map:
   LO-1:
     taught_in: Core concepts and mechanisms
@@ -58,6 +70,14 @@ EX-1: Solve this problem.
 
     def test_separate_pair_maps_every_outcome(self):
         self.assertEqual(self.pair_errors(), [])
+
+    def test_lesson_scope_accepts_a_complete_pair_without_a_duration(self):
+        with contextlib.redirect_stdout(io.StringIO()):
+            result = validator.main([
+                '--scope', 'lesson', '--lesson', self.lesson.name,
+                '--assessment', self.assessment.name,
+            ])
+        self.assertEqual(result, 0)
 
     def test_assessment_leakage_is_rejected(self):
         with self.lesson.open('a',encoding='utf-8') as f:

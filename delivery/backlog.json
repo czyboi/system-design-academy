@@ -1,11 +1,11 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project_key": "SDA",
   "baseline": "curriculum/approved-baseline.json",
   "planning_task": "SD-COURSE-DELIVERY-PLAN",
   "external_tracker": null,
   "requirements_authority": "Before execution, claim one story via GitHub Issue and .academy/specs/<proposed_task_id>.json; that spec becomes canonical. Backlog is planning input, not duplicate execution specification.",
-  "dependency_semantics": "Story dependencies require accepted prerequisite packages. Subtasks additionally inherit parent story dependencies. Parent completion requires every child complete. Research can proceed early but must not claim a blocked execution step.",
+  "dependency_semantics": "Story depends_on lists validated draft packages required to complete integration or audit. Subtask depends_on is local to the package; aggregate draft inputs are checked at the consuming step. Content inputs identify the section that needs an upstream draft or a reference check. Learning prerequisites are for learners. Human acceptance subtasks record separate decisions and are not part of automation readiness or completion.",
   "items": [
     {
       "key": "SDA-M00",
@@ -169,7 +169,8 @@
         "modules/m00/reviews/M00-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -216,9 +217,7 @@
       "title": "From requirements to a defensible design",
       "status": "Planned",
       "parent": "SDA-M00",
-      "depends_on": [
-        "SDA-M00-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M00-L02",
@@ -360,7 +359,8 @@
         "modules/m00/reviews/M00-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -422,13 +422,15 @@
         "review_dir": "modules/m00/integrated/reviews",
         "summary": [
           "modules/m00/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m00/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m00/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M00-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -562,11 +564,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m00/integrated/reviews/validation.md"
+        "modules/m00/integrated/reviews/validation.md",
+        "modules/m00/integrated/taught-coverage.csv",
+        "modules/m00/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -606,9 +612,7 @@
       "title": "Capacity and latency budgets",
       "status": "Planned",
       "parent": "SDA-M01",
-      "depends_on": [
-        "SDA-M00-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M01-L01",
@@ -758,7 +762,8 @@
         "modules/m01/reviews/M01-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -805,9 +810,7 @@
       "title": "Performance versus scalability",
       "status": "Planned",
       "parent": "SDA-M01",
-      "depends_on": [
-        "SDA-M01-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M01-L02",
@@ -946,7 +949,8 @@
         "modules/m01/reviews/M01-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -993,9 +997,7 @@
       "title": "Consistency and partition decisions",
       "status": "Planned",
       "parent": "SDA-M01",
-      "depends_on": [
-        "SDA-M01-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M01-L03",
@@ -1140,7 +1142,8 @@
         "modules/m01/reviews/M01-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -1187,9 +1190,7 @@
       "title": "Availability and failover budgets",
       "status": "Planned",
       "parent": "SDA-M01",
-      "depends_on": [
-        "SDA-M01-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M01-L04",
@@ -1339,7 +1340,8 @@
         "modules/m01/reviews/M01-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -1403,13 +1405,15 @@
         "review_dir": "modules/m01/integrated/reviews",
         "summary": [
           "modules/m01/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m01/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m01/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M01-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -1543,11 +1547,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m01/integrated/reviews/validation.md"
+        "modules/m01/integrated/reviews/validation.md",
+        "modules/m01/integrated/taught-coverage.csv",
+        "modules/m01/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -1587,9 +1595,7 @@
       "title": "DNS and endpoint discovery",
       "status": "Planned",
       "parent": "SDA-M02",
-      "depends_on": [
-        "SDA-M01-L04"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M02-L01",
@@ -1736,7 +1742,8 @@
         "modules/m02/reviews/M02-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -1783,9 +1790,7 @@
       "title": "TCP, UDP and HTTP",
       "status": "Planned",
       "parent": "SDA-M02",
-      "depends_on": [
-        "SDA-M02-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M02-L02",
@@ -1931,7 +1936,8 @@
         "modules/m02/reviews/M02-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -1978,9 +1984,7 @@
       "title": "Load balancing and reverse proxies",
       "status": "Planned",
       "parent": "SDA-M02",
-      "depends_on": [
-        "SDA-M02-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M02-L03",
@@ -2133,7 +2137,8 @@
         "modules/m02/reviews/M02-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -2180,9 +2185,7 @@
       "title": "CDN push, pull and cache control",
       "status": "Planned",
       "parent": "SDA-M02",
-      "depends_on": [
-        "SDA-M02-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M02-L04",
@@ -2323,7 +2326,8 @@
         "modules/m02/reviews/M02-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -2387,13 +2391,15 @@
         "review_dir": "modules/m02/integrated/reviews",
         "summary": [
           "modules/m02/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m02/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m02/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M02-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -2527,11 +2533,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m02/integrated/reviews/validation.md"
+        "modules/m02/integrated/reviews/validation.md",
+        "modules/m02/integrated/taught-coverage.csv",
+        "modules/m02/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -2571,9 +2581,7 @@
       "title": "Application layers and microservices",
       "status": "Planned",
       "parent": "SDA-M03",
-      "depends_on": [
-        "SDA-M02-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M03-L01",
@@ -2713,7 +2721,8 @@
         "modules/m03/reviews/M03-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -2760,10 +2769,7 @@
       "title": "REST, RPC and interface contracts",
       "status": "Planned",
       "parent": "SDA-M03",
-      "depends_on": [
-        "SDA-M02-L02",
-        "SDA-M03-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M03-L02",
@@ -2806,7 +2812,15 @@
       "notes": [
         "Review N1: forward references to M03-L03 are previews/deferred comparisons, not prerequisites."
       ],
-      "proposed_task_id": "SD-M03-L02"
+      "proposed_task_id": "SD-M03-L02",
+      "content_inputs": [
+        {
+          "story": "SDA-M03-L03",
+          "artifact": "teaching",
+          "use": "preview",
+          "scope": "Preview resilient call and discovery failure traces (N1)."
+        }
+      ]
     },
     {
       "key": "SDA-M03-L02-R",
@@ -2921,7 +2935,8 @@
         "modules/m03/reviews/M03-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -2968,10 +2983,7 @@
       "title": "Service discovery and resilient calls",
       "status": "Planned",
       "parent": "SDA-M03",
-      "depends_on": [
-        "SDA-M03-L02",
-        "SDA-M02-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M03-L03",
@@ -3110,7 +3122,8 @@
         "modules/m03/reviews/M03-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -3173,13 +3186,15 @@
         "review_dir": "modules/m03/integrated/reviews",
         "summary": [
           "modules/m03/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m03/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m03/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M03-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -3313,11 +3328,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m03/integrated/reviews/validation.md"
+        "modules/m03/integrated/reviews/validation.md",
+        "modules/m03/integrated/taught-coverage.csv",
+        "modules/m03/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -3357,9 +3376,7 @@
       "title": "Relational invariants and query-driven models",
       "status": "Planned",
       "parent": "SDA-M04",
-      "depends_on": [
-        "SDA-M03-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M04-L01",
@@ -3499,7 +3516,8 @@
         "modules/m04/reviews/M04-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -3546,10 +3564,7 @@
       "title": "Single-leader and multi-writer replication",
       "status": "Planned",
       "parent": "SDA-M04",
-      "depends_on": [
-        "SDA-M04-L01",
-        "SDA-M01-L04"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M04-L02",
@@ -3691,7 +3706,8 @@
         "modules/m04/reviews/M04-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -3738,9 +3754,7 @@
       "title": "Federation, sharding and consistent hashing",
       "status": "Planned",
       "parent": "SDA-M04",
-      "depends_on": [
-        "SDA-M04-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M04-L03",
@@ -3882,7 +3896,8 @@
         "modules/m04/reviews/M04-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -3929,9 +3944,7 @@
       "title": "Denormalisation and derived views",
       "status": "Planned",
       "parent": "SDA-M04",
-      "depends_on": [
-        "SDA-M04-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M04-L04",
@@ -4070,7 +4083,8 @@
         "modules/m04/reviews/M04-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -4117,9 +4131,7 @@
       "title": "SQL tuning as an evidence loop",
       "status": "Planned",
       "parent": "SDA-M04",
-      "depends_on": [
-        "SDA-M04-L04"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M04-L05",
@@ -4266,7 +4278,8 @@
         "modules/m04/reviews/M04-L05/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -4331,13 +4344,15 @@
         "review_dir": "modules/m04/integrated/reviews",
         "summary": [
           "modules/m04/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m04/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m04/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M04-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -4471,11 +4486,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m04/integrated/reviews/validation.md"
+        "modules/m04/integrated/reviews/validation.md",
+        "modules/m04/integrated/taught-coverage.csv",
+        "modules/m04/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -4515,9 +4534,7 @@
       "title": "Key-value and document stores",
       "status": "Planned",
       "parent": "SDA-M05",
-      "depends_on": [
-        "SDA-M04-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M05-L01",
@@ -4657,7 +4674,8 @@
         "modules/m05/reviews/M05-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -4704,9 +4722,7 @@
       "title": "Wide-column and graph stores",
       "status": "Planned",
       "parent": "SDA-M05",
-      "depends_on": [
-        "SDA-M05-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M05-L02",
@@ -4849,7 +4865,8 @@
         "modules/m05/reviews/M05-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -4896,10 +4913,7 @@
       "title": "SQL versus NoSQL and distributed-store guarantees",
       "status": "Planned",
       "parent": "SDA-M05",
-      "depends_on": [
-        "SDA-M05-L02",
-        "SDA-M01-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M05-L03",
@@ -5050,7 +5064,8 @@
         "modules/m05/reviews/M05-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -5113,13 +5128,15 @@
         "review_dir": "modules/m05/integrated/reviews",
         "summary": [
           "modules/m05/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m05/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m05/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M05-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -5253,11 +5270,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m05/integrated/reviews/validation.md"
+        "modules/m05/integrated/reviews/validation.md",
+        "modules/m05/integrated/taught-coverage.csv",
+        "modules/m05/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -5297,10 +5318,7 @@
       "title": "Where and what to cache",
       "status": "Planned",
       "parent": "SDA-M06",
-      "depends_on": [
-        "SDA-M05-L01",
-        "SDA-M02-L04"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M06-L01",
@@ -5348,7 +5366,15 @@
       "notes": [
         "Review N1: forward references to M06-L02 are previews/deferred comparisons, not prerequisites."
       ],
-      "proposed_task_id": "SD-M06-L01"
+      "proposed_task_id": "SD-M06-L01",
+      "content_inputs": [
+        {
+          "story": "SDA-M06-L02",
+          "artifact": "teaching",
+          "use": "preview",
+          "scope": "Preview cache-update policy failure traces (N1)."
+        }
+      ]
     },
     {
       "key": "SDA-M06-L01-R",
@@ -5463,7 +5489,8 @@
         "modules/m06/reviews/M06-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -5510,9 +5537,7 @@
       "title": "Cache update and coherence policies",
       "status": "Planned",
       "parent": "SDA-M06",
-      "depends_on": [
-        "SDA-M06-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M06-L02",
@@ -5659,7 +5684,8 @@
         "modules/m06/reviews/M06-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -5706,10 +5732,7 @@
       "title": "Bounded LRU and distributed query cache",
       "status": "Planned",
       "parent": "SDA-M06",
-      "depends_on": [
-        "SDA-M06-L02",
-        "SDA-M04-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M06-L03",
@@ -5849,7 +5872,8 @@
         "modules/m06/reviews/M06-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -5912,13 +5936,15 @@
         "review_dir": "modules/m06/integrated/reviews",
         "summary": [
           "modules/m06/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m06/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m06/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M06-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -6052,11 +6078,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m06/integrated/reviews/validation.md"
+        "modules/m06/integrated/reviews/validation.md",
+        "modules/m06/integrated/taught-coverage.csv",
+        "modules/m06/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -6096,9 +6126,7 @@
       "title": "Message queues and task queues",
       "status": "Planned",
       "parent": "SDA-M07",
-      "depends_on": [
-        "SDA-M03-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M07-L01",
@@ -6132,7 +6160,21 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M07-L01"
+      "proposed_task_id": "SD-M07-L01",
+      "content_inputs": [
+        {
+          "story": "SDA-M03-L01",
+          "artifact": "teaching",
+          "use": "reference",
+          "scope": "Point to the detailed service ownership discussion."
+        },
+        {
+          "story": "SDA-M07-L02",
+          "artifact": "teaching",
+          "use": "reference",
+          "scope": "Point to the detailed overload and bounded back pressure mechanisms."
+        }
+      ]
     },
     {
       "key": "SDA-M07-L01-R",
@@ -6247,7 +6289,8 @@
         "modules/m07/reviews/M07-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -6294,10 +6337,7 @@
       "title": "Back pressure, bounded work and retry control",
       "status": "Planned",
       "parent": "SDA-M07",
-      "depends_on": [
-        "SDA-M07-L01",
-        "SDA-M01-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M07-L02",
@@ -6435,7 +6475,8 @@
         "modules/m07/reviews/M07-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -6482,9 +6523,7 @@
       "title": "Event logs, ordering and replay",
       "status": "Planned",
       "parent": "SDA-M07",
-      "depends_on": [
-        "SDA-M07-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M07-L03",
@@ -6622,7 +6661,8 @@
         "modules/m07/reviews/M07-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -6685,13 +6725,15 @@
         "review_dir": "modules/m07/integrated/reviews",
         "summary": [
           "modules/m07/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m07/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m07/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M07-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -6825,11 +6867,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m07/integrated/reviews/validation.md"
+        "modules/m07/integrated/reviews/validation.md",
+        "modules/m07/integrated/taught-coverage.csv",
+        "modules/m07/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -6869,9 +6915,7 @@
       "title": "MapReduce and distributed file storage",
       "status": "Planned",
       "parent": "SDA-M08",
-      "depends_on": [
-        "SDA-M07-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M08-L01",
@@ -7013,7 +7057,8 @@
         "modules/m08/reviews/M08-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -7060,9 +7105,7 @@
       "title": "Streaming aggregation, trends and top-k",
       "status": "Planned",
       "parent": "SDA-M08",
-      "depends_on": [
-        "SDA-M08-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M08-L02",
@@ -7202,7 +7245,8 @@
         "modules/m08/reviews/M08-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -7249,10 +7293,7 @@
       "title": "Indexes and scatter-gather search",
       "status": "Planned",
       "parent": "SDA-M08",
-      "depends_on": [
-        "SDA-M05-L02",
-        "SDA-M07-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M08-L03",
@@ -7390,7 +7431,8 @@
         "modules/m08/reviews/M08-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -7453,13 +7495,15 @@
         "review_dir": "modules/m08/integrated/reviews",
         "summary": [
           "modules/m08/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m08/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m08/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M08-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -7593,11 +7637,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m08/integrated/reviews/validation.md"
+        "modules/m08/integrated/reviews/validation.md",
+        "modules/m08/integrated/taught-coverage.csv",
+        "modules/m08/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -7637,10 +7685,7 @@
       "title": "Security by trust boundary",
       "status": "Planned",
       "parent": "SDA-M09",
-      "depends_on": [
-        "SDA-M03-L02",
-        "SDA-M02-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M09-L01",
@@ -7791,7 +7836,8 @@
         "modules/m09/reviews/M09-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -7838,10 +7884,7 @@
       "title": "Measure, trace and recover",
       "status": "Planned",
       "parent": "SDA-M09",
-      "depends_on": [
-        "SDA-M09-L01",
-        "SDA-M01-L04"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M09-L02",
@@ -7987,7 +8030,8 @@
         "modules/m09/reviews/M09-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -8034,10 +8078,7 @@
       "title": "Coordination and multi-data-centre control",
       "status": "Planned",
       "parent": "SDA-M09",
-      "depends_on": [
-        "SDA-M09-L02",
-        "SDA-M05-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M09-L03",
@@ -8177,7 +8218,8 @@
         "modules/m09/reviews/M09-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -8240,13 +8282,15 @@
         "review_dir": "modules/m09/integrated/reviews",
         "summary": [
           "modules/m09/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m09/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m09/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M09-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -8380,11 +8424,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m09/integrated/reviews/validation.md"
+        "modules/m09/integrated/reviews/validation.md",
+        "modules/m09/integrated/taught-coverage.csv",
+        "modules/m09/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -8424,10 +8472,7 @@
       "title": "Paste storage, short links and expiry",
       "status": "Planned",
       "parent": "SDA-M10",
-      "depends_on": [
-        "SDA-M06-L03",
-        "SDA-M09-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M10-L01",
@@ -8583,7 +8628,8 @@
         "modules/m10/reviews/M10-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -8630,10 +8676,7 @@
       "title": "Social feed publication and timelines",
       "status": "Planned",
       "parent": "SDA-M10",
-      "depends_on": [
-        "SDA-M10-L01",
-        "SDA-M07-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M10-L02",
@@ -8670,7 +8713,15 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M10-L02"
+      "proposed_task_id": "SD-M10-L02",
+      "content_inputs": [
+        {
+          "story": "SDA-M08-L03",
+          "artifact": "teaching",
+          "use": "reference",
+          "scope": "Delegate keyword indexing and shard retrieval details."
+        }
+      ]
     },
     {
       "key": "SDA-M10-L02-R",
@@ -8785,7 +8836,8 @@
         "modules/m10/reviews/M10-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -8832,10 +8884,7 @@
       "title": "Crawler and web-search composition",
       "status": "Planned",
       "parent": "SDA-M10",
-      "depends_on": [
-        "SDA-M08-L03",
-        "SDA-M10-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M10-L03",
@@ -8881,7 +8930,15 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M10-L03"
+      "proposed_task_id": "SD-M10-L03",
+      "content_inputs": [
+        {
+          "story": "SDA-M08-L03",
+          "artifact": "teaching",
+          "use": "composition",
+          "scope": "Compose the index and scatter-gather query flow with crawler freshness and snippets."
+        }
+      ]
     },
     {
       "key": "SDA-M10-L03-R",
@@ -8996,7 +9053,8 @@
         "modules/m10/reviews/M10-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -9043,10 +9101,7 @@
       "title": "Financial aggregation and budgeting",
       "status": "Planned",
       "parent": "SDA-M10",
-      "depends_on": [
-        "SDA-M08-L01",
-        "SDA-M09-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M10-L04",
@@ -9207,7 +9262,8 @@
         "modules/m10/reviews/M10-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -9254,10 +9310,7 @@
       "title": "Distributed social-graph traversal",
       "status": "Planned",
       "parent": "SDA-M10",
-      "depends_on": [
-        "SDA-M05-L02",
-        "SDA-M09-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M10-L05",
@@ -9414,7 +9467,8 @@
         "modules/m10/reviews/M10-L05/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -9461,10 +9515,7 @@
       "title": "Search query cache at service scale",
       "status": "Planned",
       "parent": "SDA-M10",
-      "depends_on": [
-        "SDA-M06-L03",
-        "SDA-M08-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M10-L06",
@@ -9501,7 +9552,15 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M10-L06"
+      "proposed_task_id": "SD-M10-L06",
+      "content_inputs": [
+        {
+          "story": "SDA-M06-L03",
+          "artifact": "teaching",
+          "use": "composition",
+          "scope": "Apply the LRU map/list and cache-fill invariants in the query API."
+        }
+      ]
     },
     {
       "key": "SDA-M10-L06-R",
@@ -9616,7 +9675,8 @@
         "modules/m10/reviews/M10-L06/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -9663,10 +9723,7 @@
       "title": "Category sales ranking",
       "status": "Planned",
       "parent": "SDA-M10",
-      "depends_on": [
-        "SDA-M08-L02",
-        "SDA-M10-L04"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M10-L07",
@@ -9816,7 +9873,8 @@
         "modules/m10/reviews/M10-L07/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -9863,10 +9921,7 @@
       "title": "Iteratively scaling a cloud application",
       "status": "Planned",
       "parent": "SDA-M10",
-      "depends_on": [
-        "SDA-M09-L02",
-        "SDA-M10-L07"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M10-L08",
@@ -10039,7 +10094,8 @@
         "modules/m10/reviews/M10-L08/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -10107,13 +10163,15 @@
         "review_dir": "modules/m10/integrated/reviews",
         "summary": [
           "modules/m10/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m10/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m10/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M10-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -10247,11 +10305,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m10/integrated/reviews/validation.md"
+        "modules/m10/integrated/reviews/validation.md",
+        "modules/m10/integrated/taught-coverage.csv",
+        "modules/m10/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -10291,9 +10353,7 @@
       "title": "File synchronisation and collaborative documents",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M10-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L01",
@@ -10432,7 +10492,8 @@
         "modules/m11/reviews/M11-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -10479,9 +10540,7 @@
       "title": "Messaging and media sharing",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M10-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L02",
@@ -10621,7 +10680,8 @@
         "modules/m11/reviews/M11-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -10668,10 +10728,7 @@
       "title": "Recommendation and graph search",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M10-L05",
-        "SDA-M08-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L03",
@@ -10810,7 +10867,8 @@
         "modules/m11/reviews/M11-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -10857,10 +10915,7 @@
       "title": "CDN as a service and global data serving",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M10-L08",
-        "SDA-M09-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L04",
@@ -10999,7 +11054,8 @@
         "modules/m11/reviews/M11-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -11046,10 +11102,7 @@
       "title": "Unique-ID service",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M10-L01",
-        "SDA-M09-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L05",
@@ -11187,7 +11240,8 @@
         "modules/m11/reviews/M11-L05/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -11234,10 +11288,7 @@
       "title": "Distributed API rate limiter",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M07-L02",
-        "SDA-M11-L05"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L06",
@@ -11375,7 +11426,8 @@
         "modules/m11/reviews/M11-L06/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -11422,10 +11474,7 @@
       "title": "Multiplayer card games and exchange order books",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M11-L06",
-        "SDA-M09-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L07",
@@ -11564,7 +11613,8 @@
         "modules/m11/reviews/M11-L07/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -11611,10 +11661,7 @@
       "title": "Memory reclamation",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M00-L01",
-        "SDA-M11-L07"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L08",
@@ -11752,7 +11799,8 @@
         "modules/m11/reviews/M11-L08/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -11799,10 +11847,7 @@
       "title": "Key-value store and disposable cache composition",
       "status": "Planned",
       "parent": "SDA-M11",
-      "depends_on": [
-        "SDA-M10-L06",
-        "SDA-M11-L08"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M11-L09",
@@ -11941,7 +11986,8 @@
         "modules/m11/reviews/M11-L09/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -12010,13 +12056,15 @@
         "review_dir": "modules/m11/integrated/reviews",
         "summary": [
           "modules/m11/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m11/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m11/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M11-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -12150,11 +12198,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m11/integrated/reviews/validation.md"
+        "modules/m11/integrated/reviews/validation.md",
+        "modules/m11/integrated/taught-coverage.csv",
+        "modules/m11/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -12194,9 +12246,7 @@
       "title": "Hash-table contracts and collisions",
       "status": "Planned",
       "parent": "SDA-M12",
-      "depends_on": [
-        "SDA-M00-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M12-L01",
@@ -12340,7 +12390,8 @@
         "modules/m12/reviews/M12-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -12387,10 +12438,7 @@
       "title": "LRU object collaboration",
       "status": "Planned",
       "parent": "SDA-M12",
-      "depends_on": [
-        "SDA-M12-L01",
-        "SDA-M06-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M12-L02",
@@ -12534,7 +12582,8 @@
         "modules/m12/reviews/M12-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -12581,9 +12630,7 @@
       "title": "Parking allocation and contiguous resources",
       "status": "Planned",
       "parent": "SDA-M12",
-      "depends_on": [
-        "SDA-M12-L01"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M12-L03",
@@ -12727,7 +12774,8 @@
         "modules/m12/reviews/M12-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -12774,9 +12822,7 @@
       "title": "Call-centre dispatch and escalation",
       "status": "Planned",
       "parent": "SDA-M12",
-      "depends_on": [
-        "SDA-M12-L03"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M12-L04",
@@ -12922,7 +12968,8 @@
         "modules/m12/reviews/M12-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -12969,9 +13016,7 @@
       "title": "Cards, decks and scoring",
       "status": "Planned",
       "parent": "SDA-M12",
-      "depends_on": [
-        "SDA-M12-L04"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M12-L05",
@@ -13117,7 +13162,8 @@
         "modules/m12/reviews/M12-L05/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -13164,10 +13210,7 @@
       "title": "Chat domain and relationship states",
       "status": "Planned",
       "parent": "SDA-M12",
-      "depends_on": [
-        "SDA-M12-L05",
-        "SDA-M11-L02"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M12-L06",
@@ -13313,7 +13356,8 @@
         "modules/m12/reviews/M12-L06/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -13379,13 +13423,15 @@
         "review_dir": "modules/m12/integrated/reviews",
         "summary": [
           "modules/m12/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m12/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m12/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M12-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -13519,11 +13565,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m12/integrated/reviews/validation.md"
+        "modules/m12/integrated/reviews/validation.md",
+        "modules/m12/integrated/taught-coverage.csv",
+        "modules/m12/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -13563,10 +13613,7 @@
       "title": "Read architecture families critically",
       "status": "Planned",
       "parent": "SDA-M13",
-      "depends_on": [
-        "SDA-M10-L08",
-        "SDA-M12-L06"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "lesson",
       "lesson_id": "M13-L01",
@@ -13702,7 +13749,8 @@
         "modules/m13/reviews/M13-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
       ]
     },
     {
@@ -13763,13 +13811,15 @@
         "review_dir": "modules/m13/integrated/reviews",
         "summary": [
           "modules/m13/integrated/decision-summary.md"
-        ]
+        ],
+        "coverage": "modules/m13/integrated/taught-coverage.csv",
+        "outcome_portfolio": "modules/m13/integrated/outcome-portfolio.json"
       },
       "proposed_task_id": "SD-M13-INTEGRATION",
       "acceptance_criteria": [
         "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
         "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
-        "Reconcile lesson companions for full lesson outcome coverage separately from synthesis outcomes."
+        "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence."
       ]
     },
     {
@@ -13903,11 +13953,15 @@
       "role": "orchestrator",
       "execution_step": "validation",
       "outputs": [
-        "modules/m13/integrated/reviews/validation.md"
+        "modules/m13/integrated/reviews/validation.md",
+        "modules/m13/integrated/taught-coverage.csv",
+        "modules/m13/integrated/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
-        "Revisions only on actual findings, maximum two automated cycles; no publication."
+        "Revisions only on actual findings, maximum two automated cycles; no publication.",
+        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
+        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
       ]
     },
     {
@@ -13945,22 +13999,7 @@
       "title": "Cross-module marketplace design capstone",
       "status": "Planned",
       "parent": "SDA-FINAL",
-      "depends_on": [
-        "SDA-M00-INT",
-        "SDA-M01-INT",
-        "SDA-M02-INT",
-        "SDA-M03-INT",
-        "SDA-M04-INT",
-        "SDA-M05-INT",
-        "SDA-M06-INT",
-        "SDA-M07-INT",
-        "SDA-M08-INT",
-        "SDA-M09-INT",
-        "SDA-M10-INT",
-        "SDA-M11-INT",
-        "SDA-M12-INT",
-        "SDA-M13-INT"
-      ],
+      "depends_on": [],
       "owner": null,
       "package_kind": "capstone",
       "scope": "**Problem:** Design an original multi-region community marketplace with listings/media, buyer/seller messaging, activity feeds, keyword search, inventory reservation, weekly category rankings and account/usage reporting. Workload parameters will be provided as a coherent original dataset when the capstone is authored.\n\n**Prerequisites:** M00–M13. **Expected output:** one design dossier that connects requirements, estimates, API/data contracts, synchronous/asynchronous flows, storage, cache, index and processing choices, geographic placement, security and operations.\n\n**Planned stages:** baseline requirements and non-goals → workload/latency budgets → first viable design → core state transitions and interfaces → failure injection (duplicate event, stale cache, hot partition, regional partition and recovery) → revised design with two rejected alternatives → oral/written design defence.\n\n**Reference-solution plan:** provide one justified baseline and at least two valid variants, including assumptions under which each is preferable. Keep inventory-reservation invariants distinct from eventually consistent feed/search/ranking views. Include calculations, request/event traces, repair paths and diagrams drawn originally for Academy.\n\n**Self-evaluation rubric plan:** requirements/estimates 15%; mechanisms and end-to-end traces 25%; invariants and failure recovery 25%; alternatives/costs 15%; security/operations 10%; clarity and evidence 10%. A serious invariant violation cannot be hidden by a high aggregate score. Thresholds and task parameters need validation when authored.\n\n**Capstone transfer outcomes and planned rubric map:** CP-LO1 frames a bounded workload and estimates a capacity/latency budget (requirements/estimates row; draws on M00–M01). CP-LO2 traces a public request and asynchronous update through interfaces, routing, storage, cache and index boundaries (mechanisms/traces row; M02–M08). CP-LO3 preserves reservation and authorisation invariants while repairing duplicate/stale/partitioned state (invariants/recovery row; M04–M09). CP-LO4 defends two alternatives by cost, failure behaviour and applicability (alternatives row; M10–M11). CP-LO5 supplies a diagnostic/recovery plan and explicit local interface contracts (security/operations and mechanisms rows; M09/M12). CP-LO6 distinguishes source evidence from assumptions in a clear design defence (clarity/evidence row; M13). These are transfer outcomes for this marketplace, not a promise to assess every lesson outcome; the complete lesson/module portfolio covers remaining domains and local models.",
@@ -14029,9 +14068,8 @@
         "capstone/CP-01/brief.md"
       ],
       "acceptance_criteria": [
-        "Coherent original workload, all planned stages and CP-LO1–CP-LO6 rubric map.",
-        "Reference baseline plus two valid variants; original failure traces and recovery paths.",
-        "Capstone measures transfer outcomes, not every lesson outcome."
+        "Create a coherent original marketplace workload and a brief covering all planned stages and six transfer outcomes.",
+        "Include the failure injection and design defence required by the approved outline."
       ]
     },
     {
@@ -14050,8 +14088,8 @@
         "capstone/CP-01/reference-solutions-rubric.md"
       ],
       "acceptance_criteria": [
-        "Assess only explicitly taught outcomes; include original exercise, worked reference solution, self-evaluation and exact outcome map.",
-        "Decision table covers each module lesson and cites its decision criteria; do not overclaim synthesis assessment coverage."
+        "Map the marketplace assessment rubric to CP-LO1 through CP-LO6 with explicit scoring criteria.",
+        "Provide a justified reference design and at least two valid variants with their assumptions, failure traces and recovery paths."
       ]
     },
     {
@@ -14091,7 +14129,8 @@
         "capstone/CP-01/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
+        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Verify that the brief and rubric assess all six transfer outcomes against the approved outline and any referenced draft content."
       ]
     },
     {
@@ -14139,18 +14178,34 @@
       "status": "Planned",
       "parent": "SDA-FINAL",
       "depends_on": [
+        "SDA-M00-INT",
+        "SDA-M01-INT",
+        "SDA-M02-INT",
+        "SDA-M03-INT",
+        "SDA-M04-INT",
+        "SDA-M05-INT",
+        "SDA-M06-INT",
+        "SDA-M07-INT",
+        "SDA-M08-INT",
+        "SDA-M09-INT",
+        "SDA-M10-INT",
+        "SDA-M11-INT",
+        "SDA-M12-INT",
+        "SDA-M13-INT",
         "SDA-CP-01"
       ],
       "owner": null,
       "package_kind": "course-audit",
       "outputs": {
         "matrix": "delivery/taught-coverage.csv",
-        "review": "delivery/course-taught-review.json"
+        "review": "delivery/course-taught-review.json",
+        "outcome_portfolio": "delivery/outcome-portfolio.json",
+        "report": "delivery/course-taught-review.md"
       },
       "acceptance_criteria": [
-        "Every one of 473 topic associations has current teaching path/heading/hash and sufficient explanation.",
-        "All lesson/module/capstone packages have current technical/provenance and coverage/pedagogy verdicts.",
-        "Independent full-course taught audit and complete outcome-assessment portfolio pass; human approval recorded separately."
+        "Verify each of 473 source topic mappings against current explanatory teaching path, heading and SHA-256.",
+        "Verify all lesson, module and capstone outcomes, including Academy additions, against current assessment evidence and reconcile cross-module references.",
+        "Require current accepted package reviews and an independent taught-coverage and pedagogy verdict. Record human approval separately."
       ]
     },
     {
@@ -14166,7 +14221,7 @@
         "delivery/outcome-portfolio.json"
       ],
       "acceptance_criteria": [
-        "Every one of 473 topic associations has current teaching path/heading/hash and sufficient explanation."
+        "Combine all module taught-evidence matrices and outcome portfolios, plus capstone transfer evidence. Check completeness, paths, headings, hashes and cross-module references."
       ]
     },
     {
@@ -14184,7 +14239,7 @@
         "delivery/course-taught-review.json"
       ],
       "acceptance_criteria": [
-        "Run strict --stage taught with fresh artifact-bound review; no missing, stale or mention-only topics."
+        "Independently verify substantive teaching and assessment alignment and bind the complete current artifact set. Run the strict taught coverage check with the current verdict."
       ]
     },
     {

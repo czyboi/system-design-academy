@@ -13,7 +13,7 @@ Do not start if the plan-stage coverage review blocks authoring, the lesson/asse
 
 ## Procedure
 
-1. Confirm lesson ID, audience, prerequisites, status, time estimate, scope, outcomes, and the exact lesson path.
+1. Confirm lesson ID, audience, prerequisites, status, scope, outcomes, and the exact lesson path.
 2. Teach the engineering problem and decision before adding terminology. Assume common backend, SQL, and application fundamentals; explain them only when they are essential to the design decision.
 3. Explain the mechanism causally: what changes in the system, why it changes, and which decision follows. Keep the exposition concise and remove repeated definitions, generic introductions, and material that does not support an outcome.
 4. Use original, realistic examples and diagrams. Explain the important nodes and flows.

@@ -3,7 +3,6 @@ id: DB-XX
 title: Lesson title
 status: draft
 level: intermediate
-estimated_time: 30–45 minutes
 prerequisites: []
 outcomes: [LO-1]
 assessment: modules/database/assessments/DB-XX.md
