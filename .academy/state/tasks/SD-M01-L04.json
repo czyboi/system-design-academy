@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "teaching-review",
   "created_at": "2026-11-11T08:03:04Z",
-  "updated_at": "2026-11-11T08:22:59Z",
+  "updated_at": "2026-11-11T08:25:09Z",
   "execution_control": "active",
   "notes": "GitHub #26; milestone SDA-MS01, Story SDA-M01-L04; branch codex/SDA-MS01.",
   "steps": [
@@ -189,7 +189,7 @@
     {
       "step_id": "technical-review",
       "title": "Independent technical correctness and source/rights review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -244,14 +244,21 @@
         "modules/m01/reviews/M01-L04/technical.json": null
       },
       "started_at": "2026-11-11T08:17:42Z",
-      "active_spec_hash": "592dd08bbffaff6dfc21f215c29be1fb46285ad7aaea3e16f5fff03adcdc5da5",
-      "active_fingerprint": "e20be06ee112190fb960183be4a7dac5865aee94080a760e1872c5962c9c3383",
       "run_id": "SD-M01-L04-technical-review-20261111T081742Z",
       "agent": "technical_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "e20be06ee112190fb960183be4a7dac5865aee94080a760e1872c5962c9c3383",
+      "completed_spec_hash": "592dd08bbffaff6dfc21f215c29be1fb46285ad7aaea3e16f5fff03adcdc5da5",
+      "completed_output_hashes": {
+        "modules/m01/reviews/M01-L04/technical.md": "940ec5cc4a3ba556bbcdb03bf8f1d0103f8ac83ff2bcb24fef2a789dd507e38e",
+        "modules/m01/reviews/M01-L04/technical.json": "a1bfa88b616dd7e0e3daa6d88ec5ebef4185915a9498f02168cfe2b9af0370d2"
+      },
+      "completed_at": "2026-11-11T08:25:09Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "d2a298169b09e4120264b2ef7aaa871a52ca1874"
     },
     {
       "step_id": "teaching-review",

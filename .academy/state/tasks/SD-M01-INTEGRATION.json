@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "teaching-review",
   "created_at": "2026-11-11T08:03:04Z",
-  "updated_at": "2026-11-11T08:22:37Z",
+  "updated_at": "2026-11-11T08:25:10Z",
   "execution_control": "active",
   "notes": "GitHub #27; milestone SDA-MS01, Story SDA-M01-INT; branch codex/SDA-MS01.",
   "steps": [
@@ -188,7 +188,7 @@
     {
       "step_id": "technical-review",
       "title": "Independent module synthesis technical correctness and source/rights review",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "author"
       ],
@@ -246,14 +246,21 @@
         "modules/m01/integrated/reviews/technical.json": null
       },
       "started_at": "2026-11-11T08:17:18Z",
-      "active_spec_hash": "0adefaf7f94328b59825a6106cd1ac7bb6d2554143db5f12e77d58b0f9ddaf78",
-      "active_fingerprint": "aa3bf52610c18629b2ad567affc30088d19fde9d8af48bd445bebcd5085460f1",
       "run_id": "SD-M01-INTEGRATION-technical-review-20261111T081718Z",
       "agent": "technical_reviewer",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "aa3bf52610c18629b2ad567affc30088d19fde9d8af48bd445bebcd5085460f1",
+      "completed_spec_hash": "0adefaf7f94328b59825a6106cd1ac7bb6d2554143db5f12e77d58b0f9ddaf78",
+      "completed_output_hashes": {
+        "modules/m01/integrated/reviews/technical.md": "c135d879f08ecde5c757df74c4bc1e68c2e9af7c8ebf2f92fa2d07cea66a58b8",
+        "modules/m01/integrated/reviews/technical.json": "1e948816b09c52abb28387dfa0eeec91021d2bb45bda4d2d5ee8bec3bffeef6f"
+      },
+      "completed_at": "2026-11-11T08:25:10Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "d2a298169b09e4120264b2ef7aaa871a52ca1874"
     },
     {
       "step_id": "teaching-review",
