@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "plan-gate",
   "created_at": "2026-11-11T08:03:04Z",
-  "updated_at": "2026-11-11T08:04:23Z",
+  "updated_at": "2026-11-11T08:05:46Z",
   "execution_control": "active",
   "notes": "GitHub #27; milestone SDA-MS01, Story SDA-M01-INT; branch codex/SDA-MS01.",
   "steps": [
@@ -56,7 +56,7 @@
     {
       "step_id": "plan-gate",
       "title": "Verify and reuse the accepted course gate; do not re-plan",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -98,14 +98,20 @@
         "modules/m01/integrated/reviews/plan-gate.json": null
       },
       "started_at": "2026-11-11T08:04:23Z",
-      "active_spec_hash": "a081e683ee50465c760d465104d7fbf94a5333485d30f5a3f566de4dc53b6b43",
-      "active_fingerprint": "6cd7a13010fcfc67684a298b6376d1127dd2d59a7b8d57bbb6e3625e0225491f",
       "run_id": "SD-M01-INTEGRATION-plan-gate-20261111T080423Z",
       "agent": "curriculum_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "6cd7a13010fcfc67684a298b6376d1127dd2d59a7b8d57bbb6e3625e0225491f",
+      "completed_spec_hash": "a081e683ee50465c760d465104d7fbf94a5333485d30f5a3f566de4dc53b6b43",
+      "completed_output_hashes": {
+        "modules/m01/integrated/reviews/plan-gate.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287"
+      },
+      "completed_at": "2026-11-11T08:05:46Z",
+      "completed_by": "curriculum_orchestrator",
+      "completed_commit": "61f2e6dfde789e328164f964936ad3e13662047f"
     },
     {
       "step_id": "author",
