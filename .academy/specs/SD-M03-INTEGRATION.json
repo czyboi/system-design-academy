@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-M03-INTEGRATION",
-  "revision": 1,
+  "revision": 2,
   "goal": "Draft and verify Integrated design, reference solution and decision summary for SDA-M03-INT",
   "scope": {
     "in_scope": [
@@ -48,6 +48,27 @@
       "text": "Pass the applicable package checks and the repository checks, and record results and feedback disposition in the declared report.",
       "applies_to": [
         "validation"
+      ]
+    },
+    {
+      "id": "dod-revision-1",
+      "text": "Commit the revised draft paths and resolve material review findings.",
+      "applies_to": [
+        "revision-1"
+      ]
+    },
+    {
+      "id": "dod-technical-review-r1",
+      "text": "Record a fresh independent combined review bound to the complete revised package.",
+      "applies_to": [
+        "technical-review-r1"
+      ]
+    },
+    {
+      "id": "dod-teaching-review-r1",
+      "text": "Record a fresh independent combined review bound to the complete revised package.",
+      "applies_to": [
+        "teaching-review-r1"
       ]
     }
   ],
@@ -96,6 +117,27 @@
       "text": "Record independent technical and provenance findings and a verdict bound to all declared artifact hashes.",
       "applies_to": [
         "technical-review"
+      ]
+    },
+    {
+      "id": "ac-revision-1",
+      "text": "Resolve M03-INT-TP1 by serializing publication with edits and approval revocations, clearing the public pointer in that same boundary and grading an explicit concurrency control. Resolve TP2 with atomic work-ID acceptance across endpoints. Address the teaching review by tracing stopped-before-acceptance and lost-after-acceptance separately and grading tests for discovery and dispatch limits.",
+      "applies_to": [
+        "revision-1"
+      ]
+    },
+    {
+      "id": "ac-technical-review-r1",
+      "text": "Inspect the changes and affected dependencies and verify every declared artifact hash before issuing the gate verdict.",
+      "applies_to": [
+        "technical-review-r1"
+      ]
+    },
+    {
+      "id": "ac-teaching-review-r1",
+      "text": "Inspect the changes and affected dependencies and verify every declared artifact hash before issuing the gate verdict.",
+      "applies_to": [
+        "teaching-review-r1"
       ]
     }
   ]

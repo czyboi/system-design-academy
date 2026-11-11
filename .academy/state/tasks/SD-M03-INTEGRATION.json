@@ -7,7 +7,7 @@
   "automation_status": "blocked",
   "current_phase": "teaching-review",
   "created_at": "2026-11-11T12:45:21Z",
-  "updated_at": "2026-11-11T13:00:39Z",
+  "updated_at": "2026-11-11T13:00:42Z",
   "execution_control": "active",
   "notes": "GitHub #37; milestone SDA-MS02, Story SDA-M03-INT; branch codex/SDA-MS02.",
   "steps": [
@@ -347,8 +347,8 @@
       "completed_commit": "6801ff36ecdc2dbeb613a1fd59b498883c495eab"
     },
     {
-      "step_id": "validation",
-      "title": "Validate synthesis and reconcile current lesson coverage and outcomes",
+      "step_id": "revision-1",
+      "title": "Revise the first reviewed candidate",
       "status": "pending",
       "depends_on": [
         "technical-review",
@@ -359,6 +359,133 @@
         "modules/m03/integrated/brief.md",
         "modules/m03/integrated/solution-rubric.md",
         "modules/m03/integrated/decision-summary.md",
+        "modules/m03/integrated/evidence.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        "modules/m03/integrated/reviews/technical.md",
+        "modules/m03/integrated/reviews/technical.json",
+        "modules/m03/integrated/reviews/teaching.md",
+        "modules/m03/integrated/reviews/teaching.json"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/solution-rubric-r1.md",
+        "modules/m03/integrated/decision-summary-r1.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "revision_cycle": 1
+    },
+    {
+      "step_id": "technical-review-r1",
+      "title": "Independent module synthesis technical correctness and source/rights review after revision",
+      "status": "pending",
+      "depends_on": [
+        "revision-1"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m03/integrated/brief.md",
+        "modules/m03/integrated/solution-rubric-r1.md",
+        "modules/m03/integrated/decision-summary-r1.md",
+        "modules/m03/integrated/evidence.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/technical-review/SKILL.md",
+        ".agents/skills/provenance-review/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md",
+        "modules/m03/integrated/reviews/technical.md",
+        "modules/m03/integrated/reviews/technical.json",
+        "modules/m03/integrated/reviews/teaching.md",
+        "modules/m03/integrated/reviews/teaching.json"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/reviews/technical-r1.md",
+        "modules/m03/integrated/reviews/technical-r1.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/m03/integrated/brief.md",
+          "modules/m03/integrated/solution-rubric-r1.md",
+          "modules/m03/integrated/decision-summary-r1.md",
+          "modules/m03/integrated/evidence.md",
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m03/integrated/reviews/technical-r1.json"
+      }
+    },
+    {
+      "step_id": "teaching-review-r1",
+      "title": "Independent module synthesis actual coverage, pedagogy, assessment and language review after revision",
+      "status": "pending",
+      "depends_on": [
+        "revision-1"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m03/integrated/brief.md",
+        "modules/m03/integrated/solution-rubric-r1.md",
+        "modules/m03/integrated/decision-summary-r1.md",
+        "modules/m03/integrated/evidence.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md",
+        "modules/m03/integrated/reviews/technical.md",
+        "modules/m03/integrated/reviews/technical.json",
+        "modules/m03/integrated/reviews/teaching.md",
+        "modules/m03/integrated/reviews/teaching.json"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/reviews/teaching-r1.md",
+        "modules/m03/integrated/reviews/teaching-r1.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 0,
+      "review": {
+        "artifact_paths": [
+          "modules/m03/integrated/brief.md",
+          "modules/m03/integrated/solution-rubric-r1.md",
+          "modules/m03/integrated/decision-summary-r1.md",
+          "modules/m03/integrated/evidence.md",
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m03/integrated/reviews/teaching-r1.json"
+      }
+    },
+    {
+      "step_id": "validation",
+      "title": "Validate synthesis and reconcile current lesson coverage and outcomes",
+      "status": "pending",
+      "depends_on": [
+        "technical-review-r1",
+        "teaching-review-r1"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m03/integrated/brief.md",
+        "modules/m03/integrated/solution-rubric-r1.md",
+        "modules/m03/integrated/decision-summary-r1.md",
         "modules/m03/integrated/evidence.md",
         "curriculum/revision-1/CURRICULUM_MASTER.md",
         "curriculum/revision-1/source-inventory.json",
@@ -392,8 +519,8 @@
       },
       "attempts": 0,
       "requires_reviews": [
-        "technical-review",
-        "teaching-review"
+        "technical-review-r1",
+        "teaching-review-r1"
       ]
     }
   ]
