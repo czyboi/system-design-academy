@@ -51,6 +51,10 @@ class FormatValidationTests(unittest.TestCase):
     def test_unclosed_fence_rejected(self):
         self.assertTrue(any("unclosed fenced" in x for x in self.check("```java\nclass X {}")))
 
+    def test_nested_fenced_code_remains_valid(self):
+        body = "- nested example\n\n    ```java\n    class X {}\n    ```\n"
+        self.assertEqual(self.check(body), [])
+
     def test_raw_html_and_mdx_rejected(self):
         self.assertTrue(any("raw HTML" in x for x in self.check("<script>alert(1)</script>")))
         self.assertTrue(any("raw HTML" in x for x in self.check("<CustomWidget />")))

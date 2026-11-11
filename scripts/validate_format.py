@@ -68,17 +68,16 @@ def _kind(path: Path) -> str:
 
 
 def _fence_closed(token, lines: list[str]) -> bool:
-    if not token.map or not token.markup:
+    """Compare parser token span with normalized content line count.
+
+    Lists and blockquotes can indent a valid closing fence more than three
+    physical spaces. The parser already removes container indentation from
+    token.content, and excludes a valid closing line from that content.
+    """
+    if not token.map:
         return False
-    marker = token.markup[0]
-    minimum = len(token.markup)
-    for raw in lines[token.map[0] + 1:token.map[1]]:
-        # Remove blockquote prefixes, if any. The parsed token already
-        # establishes that this is a fence; do not parse Markdown by regex.
-        line = re.sub(r"^(?:\s{0,3}>\s?)+", "", raw)
-        if re.fullmatch(r"[ \t]{0,3}" + re.escape(marker) + "{" + str(minimum) + r",}[ \t]*", line):
-            return True
-    return False
+    expected = token.content.count("\n") + 2
+    return token.map[1] - token.map[0] == expected
 
 
 def _link_errors(target: str, source: Path, root: Path, check_files: bool, image: bool) -> list[str]:
