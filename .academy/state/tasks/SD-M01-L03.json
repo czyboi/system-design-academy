@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M01-L03.json",
   "automation_status": "in_progress",
-  "current_phase": "teaching-review",
+  "current_phase": "validation",
   "created_at": "2026-11-11T08:03:04Z",
-  "updated_at": "2026-11-11T08:25:09Z",
+  "updated_at": "2026-11-11T08:26:21Z",
   "execution_control": "active",
   "notes": "GitHub #25; milestone SDA-MS01, Story SDA-M01-L03; branch codex/SDA-MS01.",
   "steps": [
@@ -337,7 +337,7 @@
     {
       "step_id": "validation",
       "title": "Validate the reviewed pair and hand off without a final copy",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "technical-review",
         "teaching-review"
@@ -360,11 +360,34 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 0,
+      "attempts": 1,
       "requires_reviews": [
         "technical-review",
         "teaching-review"
-      ]
+      ],
+      "start_commit": "6d23b294114724ac84f50187d2251497a5964d7f",
+      "start_input_hashes": {
+        "modules/m01/lessons/M01-L03.md": "0d0d3c67abf8807dccbef35ff5824696c3b711fca1ff0e3b842a138324388fa9",
+        "modules/m01/assessments/M01-L03.md": "40a494ebba40bd2568e8d486610b6ccd7fa11039908a283aa34029db75d3e97a",
+        "modules/m01/evidence/M01-L03.md": "e5e9a9c493353f4036ec6b0bcea7213a202b23e2f2c3df99783daa311de9394a",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "scripts/validate_content.py": "a2145c121866f088d2e3544a8df4b39b078f6567eecc5e6dd5a955025f07ddce",
+        "scripts/check_course_coverage.py": "b4978b632c22108fc03a1724c34c49c5d260e37a1634cdf68799d87e1f26eb41"
+      },
+      "start_output_hashes": {
+        "modules/m01/reviews/M01-L03/report.md": null
+      },
+      "started_at": "2026-11-11T08:26:21Z",
+      "active_spec_hash": "48807412992deb285c8ee5b487d5b99a3c96b038162cade2cf836621d5f7d81e",
+      "active_fingerprint": "b2959838745eaf7449fc4fcc8c2143aa3558382c94e1a0f91776a069bf926b59",
+      "run_id": "SD-M01-L03-validation-20261111T082621Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ]
 }
