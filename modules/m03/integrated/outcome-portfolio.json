@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M03",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M03-L01-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L01.md",
+        "section": "Worked example",
+        "sha256": "3c8726f5ce7b67533a484cc3523e60e6e7231013f7814f30400cf00ca2631d77"
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ],
+        "sha256": "4b98136e1c54c6d5135e6f294e743a81fa8135450a7037c1072e27d99b8c08b5"
+      },
+      "teaching_review": "modules/m03/reviews/M03-L01/teaching.json"
+    },
+    {
+      "outcome_id": "M03-L01-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L01.md",
+        "section": "Decision framework",
+        "sha256": "3c8726f5ce7b67533a484cc3523e60e6e7231013f7814f30400cf00ca2631d77"
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ],
+        "sha256": "4b98136e1c54c6d5135e6f294e743a81fa8135450a7037c1072e27d99b8c08b5"
+      },
+      "teaching_review": "modules/m03/reviews/M03-L01/teaching.json"
+    },
+    {
+      "outcome_id": "M03-L02-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L02.md",
+        "section": "Worked example",
+        "sha256": "bde73e9dff605f346746aee78c30a367d640c13b6c99d259e81798c509faf45d"
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L02.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "sha256": "817b4d3939db28f911badcf9ebe78e122037fe1bd2d91c401ec9c4df7b2ead17"
+      },
+      "teaching_review": "modules/m03/reviews/M03-L02/teaching.json"
+    },
+    {
+      "outcome_id": "M03-L02-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L02.md",
+        "section": "Compatibility and safe retries",
+        "sha256": "bde73e9dff605f346746aee78c30a367d640c13b6c99d259e81798c509faf45d"
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L02.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ],
+        "sha256": "817b4d3939db28f911badcf9ebe78e122037fe1bd2d91c401ec9c4df7b2ead17"
+      },
+      "teaching_review": "modules/m03/reviews/M03-L02/teaching.json"
+    },
+    {
+      "outcome_id": "M03-L03-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L03.md",
+        "section": "Worked example: stale endpoint and deadline failure trace",
+        "sha256": "0401035394685243c11c7ee6a62c81e11fff0a5293c127060d561557a369e6e7"
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ],
+        "sha256": "09ab814298ecfdbb6877870e91b1bcae62715848ae84165eec46e1ea6868d27a"
+      },
+      "teaching_review": "modules/m03/reviews/M03-L03/teaching.json"
+    },
+    {
+      "outcome_id": "M03-L03-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L03.md",
+        "section": "Core concepts and mechanisms",
+        "sha256": "0401035394685243c11c7ee6a62c81e11fff0a5293c127060d561557a369e6e7"
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ],
+        "sha256": "09ab814298ecfdbb6877870e91b1bcae62715848ae84165eec46e1ea6868d27a"
+      },
+      "teaching_review": "modules/m03/reviews/M03-L03/teaching.json"
+    },
+    {
+      "outcome_id": "M03-S1",
+      "source_lesson_outcomes": [
+        "M03-L01-LO2",
+        "M03-L02-LO1",
+        "M03-L03-LO2"
+      ],
+      "assessment": {
+        "path": "modules/m03/integrated/brief.md",
+        "items": [
+          "M03-EX1"
+        ],
+        "sha256": "1ef4efe2f1e8aecefb95c62bc6626ebf2846a767625f93a2467aa5dd72334e4d"
+      },
+      "rubric": {
+        "path": "modules/m03/integrated/solution-rubric-r1.md",
+        "section": "Self-evaluation",
+        "sha256": "b1f0d1446ba14078b0edd49f02779b22a3ab360fb1b79967a7a6b4bdd0f23f56"
+      },
+      "teaching_review": "modules/m03/integrated/reviews/teaching-r1.json"
+    }
+  ]
+}

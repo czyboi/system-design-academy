@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M02",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M02-L01-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L01.md",
+        "section": "Core concepts and mechanisms",
+        "sha256": "ee243ab6789cac863bdf7da72d9e7fc0beb0598fcca50d4f1330acdae90a947b"
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L01.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "sha256": "75c16388b61d9990c6b8afb68f9d5c5ed60f5670154a4ce120638d991aaff050"
+      },
+      "teaching_review": "modules/m02/reviews/M02-L01/teaching.json"
+    },
+    {
+      "outcome_id": "M02-L01-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L01.md",
+        "section": "Decision framework",
+        "sha256": "ee243ab6789cac863bdf7da72d9e7fc0beb0598fcca50d4f1330acdae90a947b"
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L01.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ],
+        "sha256": "75c16388b61d9990c6b8afb68f9d5c5ed60f5670154a4ce120638d991aaff050"
+      },
+      "teaching_review": "modules/m02/reviews/M02-L01/teaching.json"
+    },
+    {
+      "outcome_id": "M02-L02-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/revision-1/M02-L02.md",
+        "section": "Core concepts and mechanisms",
+        "sha256": "4ac7973dec1852a2dfdac8e993fd9845094548ec03103f24d4188d90223001fe"
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/revision-1/M02-L02.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "sha256": "02be246848c601b7b95b40fba590d7797be9fe9b32d17b32459e33ba1a13b016"
+      },
+      "teaching_review": "modules/m02/reviews/M02-L02/teaching-r1.json"
+    },
+    {
+      "outcome_id": "M02-L02-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/revision-1/M02-L02.md",
+        "section": "Decision framework",
+        "sha256": "4ac7973dec1852a2dfdac8e993fd9845094548ec03103f24d4188d90223001fe"
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/revision-1/M02-L02.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ],
+        "sha256": "02be246848c601b7b95b40fba590d7797be9fe9b32d17b32459e33ba1a13b016"
+      },
+      "teaching_review": "modules/m02/reviews/M02-L02/teaching-r1.json"
+    },
+    {
+      "outcome_id": "M02-L03-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L03.md",
+        "section": "Worked example",
+        "sha256": "698499e9f43ce500597ae6e210a1bbf740d6669345f4c1391547d5ebb251699d"
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L03.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "sha256": "4c1b0e9a2ca6985d3a998ebd5b1416cefe4bcc59497580da7368525e981f4722"
+      },
+      "teaching_review": "modules/m02/reviews/M02-L03/teaching.json"
+    },
+    {
+      "outcome_id": "M02-L03-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L03.md",
+        "section": "Decision framework",
+        "sha256": "698499e9f43ce500597ae6e210a1bbf740d6669345f4c1391547d5ebb251699d"
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L03.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ],
+        "sha256": "4c1b0e9a2ca6985d3a998ebd5b1416cefe4bcc59497580da7368525e981f4722"
+      },
+      "teaching_review": "modules/m02/reviews/M02-L03/teaching.json"
+    },
+    {
+      "outcome_id": "M02-L04-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L04.md",
+        "section": "Worked example",
+        "sha256": "323119e1d4086effe418eb6d942f1f4f2b37bc5eff6f8071ff8991b9618f3d69"
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L04.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "sha256": "e541e0836199f9432985553c38fdd10089d0a8a4ae6375484328ddc18ae0c49b"
+      },
+      "teaching_review": "modules/m02/reviews/M02-L04/teaching.json"
+    },
+    {
+      "outcome_id": "M02-L04-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L04.md",
+        "section": "Decision framework",
+        "sha256": "323119e1d4086effe418eb6d942f1f4f2b37bc5eff6f8071ff8991b9618f3d69"
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L04.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ],
+        "sha256": "e541e0836199f9432985553c38fdd10089d0a8a4ae6375484328ddc18ae0c49b"
+      },
+      "teaching_review": "modules/m02/reviews/M02-L04/teaching.json"
+    },
+    {
+      "outcome_id": "M02-S1",
+      "source_lesson_outcomes": [
+        "M02-L01-LO1",
+        "M02-L03-LO2",
+        "M02-L04-LO2"
+      ],
+      "assessment": {
+        "path": "modules/m02/integrated/brief.md",
+        "items": [
+          "M02-EX1"
+        ],
+        "sha256": "73f6dd7763531a5b7d308817980063b07028349dc89f795c45307de283ceecd9"
+      },
+      "rubric": {
+        "path": "modules/m02/integrated/solution-rubric.md",
+        "section": "Self-evaluation",
+        "sha256": "e89a2482b526e3d4773f7f46344081322272e34a32739a277d5d9742e22456f2"
+      },
+      "teaching_review": "modules/m02/integrated/reviews/teaching.json"
+    }
+  ]
+}
