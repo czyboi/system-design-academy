@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-CONTENT-FORMAT-VALIDATION",
+  "revision": 1,
+  "goal": "Implement deterministic, read-only format validation and MS01/MS02 regressions without modifying reviewed lesson outputs or adding AI invocations.",
+  "scope": {
+    "in_scope": [
+      "Add parser-backed Markdown/YAML compatibility validation in scripts/validate_format.py.",
+      "Add positive/negative unit tests and pinned snapshots for 13 selected MS01/MS02 lesson/assessment pairs and integrated files.",
+      "Run format tests in existing CI, documenting limitations and runtime evidence."
+    ],
+    "out_of_scope": [
+      "Change canonical lesson/assessment/integrated output, authoring skills, existing content validator or review verdicts.",
+      "Implement full Mermaid parsing/browser rendering, content selection, publication, auto retries, or a new LLM stage."
+    ]
+  },
+  "constraints": [
+    "Stack branch on Step 1 PR #40; no automatic merge or publication.",
+    "Preserve previous reviewed artifact bytes and task fingerprints.",
+    "Pinned tests must reference exact existing MS01/MS02 commits rather than newest branch content.",
+    "CI passing is not human publication approval; do not claim unexecuted taskctl lifecycle commands."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-validator",
+      "text": "Non-mutating format validator identifies invalid metadata, code fences, unsafe URLs/HTML and local asset errors.",
+      "applies_to": [
+        "implementation"
+      ]
+    },
+    {
+      "id": "dod-regression",
+      "text": "Unit and pinned Git-object regression tests cover all 13 existing selected MS01/MS02 lesson/assessment pairs and four module integrated outputs.",
+      "applies_to": [
+        "implementation",
+        "verification"
+      ]
+    },
+    {
+      "id": "dod-ci",
+      "text": "Existing CI executes validator and pinned tests without LLM calls.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-compat",
+      "text": "13 pinned selected lesson/assessment pairs parse without editing originals; revised M01-L02/M02-L02 supported.",
+      "applies_to": [
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-negative",
+      "text": "Negative tests cover unclosed fences, raw HTML, unsafe links, YAML duplicate metadata, missing assets and path traversal.",
+      "applies_to": [
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-no-stale",
+      "text": "Existing author/assessment skills, legacy content validator and all reviewed artifacts remain unchanged.",
+      "applies_to": [
+        "implementation",
+        "verification"
+      ]
+    },
+    {
+      "id": "ac-honesty",
+      "text": "Mermaid grammar/visual checks and unexecuted taskctl operations remain clearly marked out-of-scope.",
+      "applies_to": [
+        "verification"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-CONTENT-FORMAT-VALIDATION",
+  "module_id": "workflow",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-CONTENT-FORMAT-VALIDATION.json",
+  "automation_status": "not_started",
+  "current_phase": null,
+  "created_at": null,
+  "updated_at": null,
+  "execution_control": "active",
+  "notes": "Implementation submitted via GitHub connector; taskctl start/complete and local checkout verification NOT performed. CI will provide independent test result; status kept pending for reconciliation.",
+  "steps": [
+    {
+      "step_id": "implementation",
+      "title": "Implement deterministic format validation and tests",
+      "status": "pending",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [
+        "docs/authoring-format-contract-v1.md",
+        "scripts/validate_content.py"
+      ],
+      "output_paths": [
+        "scripts/validate_format.py",
+        "tests/test_format_validation.py",
+        ".github/workflows/content-validation.yml",
+        "requirements-dev.txt",
+        "docs/content-format-validation.md"
+      ],
+      "checkpoint": {
+        "note": "Code and docs committed on stacked PR; taskctl lifecycle was not run.",
+        "next_action": "Review and reconcile task in local checkout."
+      },
+      "attempts": 0
+    },
+    {
+      "step_id": "verification",
+      "title": "Run GitHub CI pinned format regression",
+      "status": "pending",
+      "depends_on": [
+        "implementation"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "scripts/validate_format.py",
+        "tests/test_format_validation.py",
+        ".github/workflows/content-validation.yml"
+      ],
+      "output_paths": [
+        ".academy/task-runs/SD-CONTENT-FORMAT-VALIDATION/report.md"
+      ],
+      "checkpoint": {
+        "note": "Await CI result. No locally recorded taskctl completion.",
+        "next_action": "Inspect GitHub CI and record result; reconcile workflow state when running taskctl."
+      },
+      "attempts": 0
+    }
+  ]
+}
