@@ -7,14 +7,14 @@
   "automation_status": "in_progress",
   "current_phase": "implementation",
   "created_at": "2026-11-11T07:04:31Z",
-  "updated_at": "2026-11-11T07:10:03Z",
+  "updated_at": "2026-11-11T07:10:42Z",
   "execution_control": "active",
   "notes": "GitHub #17, revision to delivery rules from #16 and authoring metadata contract. Workflow only.",
   "steps": [
     {
       "step_id": "implementation",
       "title": "Apply delivery and lesson authoring rules",
-      "status": "running",
+      "status": "completed",
       "depends_on": [],
       "definition_version": "v3",
       "input_paths": [
@@ -80,14 +80,50 @@
         ".agents/skills/assessment-design/SKILL.md": "9706b86ae149ee11af45d8af92bf74459ac0ff649cbd1d22a6cccff30b173703",
         ".agents/skills/pedagogical-review/SKILL.md": "50263f2199a02f12d3b431b4a40344ea605b42555eae6f629424ee6154d8b3fa",
         "scripts/validate_content.py": "a2145c121866f088d2e3544a8df4b39b078f6567eecc5e6dd5a955025f07ddce",
-        "tests/test_content_validation.py": "2aa6b66bcadac0a1755acbfb14ff7fc3ad2e201ade0416e625ddbddf74638650"
+        "tests/test_content_validation.py": "35f17ebf912e6ab827a92d35caac7401409c98ab6cb518c867dda2f41a5c7760"
       },
-      "completed_at": "2026-11-11T07:08:06Z",
+      "completed_at": "2026-11-11T07:10:42Z",
       "completed_by": "curriculum_orchestrator",
-      "completed_commit": "b7550072148e552cd5786b3ae94e3ab3f8724838",
+      "completed_commit": "1a00d45b93e377d564c0d060a2f040dc6cc749c7",
       "invalidation_reason": "Regression test used an isolated ROOT without repository skills, agents and config. Run the regression against the real repository root and retain the other implementation outputs.",
-      "active_spec_hash": "0e11c45ae69db7e87c5faa370258416a075cf6150865228194925644cb235940",
-      "active_fingerprint": "e2fbb98dfa8330a2146270aab392e317d18067f382e4c5b3d63cdde546a41ea3"
+      "reused_outputs": {
+        ".agents/skills/assessment-design/SKILL.md": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        },
+        ".agents/skills/lesson-authoring/SKILL.md": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        },
+        ".agents/skills/pedagogical-review/SKILL.md": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        },
+        "delivery/PLAN.md": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        },
+        "delivery/backlog.json": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        },
+        "modules/database/governance/content-guidelines.md": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        },
+        "modules/database/workflow/assessment-template.md": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        },
+        "modules/database/workflow/lesson-template.md": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        },
+        "scripts/validate_content.py": {
+          "reason": "Only the regression fixture needed correction. Delivery files, active authoring guidance and validator behavior passed their checks unchanged.",
+          "at": "2026-11-11T07:10:42Z"
+        }
+      }
     },
     {
       "step_id": "verification",
