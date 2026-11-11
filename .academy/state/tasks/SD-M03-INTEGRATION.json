@@ -7,7 +7,7 @@
   "automation_status": "in_progress",
   "current_phase": "revision-1",
   "created_at": "2026-11-11T12:45:21Z",
-  "updated_at": "2026-11-11T13:00:45Z",
+  "updated_at": "2026-11-11T13:02:29Z",
   "execution_control": "active",
   "notes": "GitHub #37; milestone SDA-MS02, Story SDA-M03-INT; branch codex/SDA-MS02.",
   "steps": [
@@ -349,7 +349,7 @@
     {
       "step_id": "revision-1",
       "title": "Revise the first reviewed candidate",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "technical-review",
         "teaching-review"
@@ -397,14 +397,21 @@
         "modules/m03/integrated/decision-summary-r1.md": null
       },
       "started_at": "2026-11-11T13:00:45Z",
-      "active_spec_hash": "e8de0dbdf1598d1045500614518f9396dd5de97b20bc4fbe4a8ce65da0a10639",
-      "active_fingerprint": "dd089e7ea1afe645c3767e73f290bc408458fb85149e0af0516af9657f96e5a4",
       "run_id": "SD-M03-INTEGRATION-revision-1-20261111T130045Z",
       "agent": "curriculum_orchestrator",
       "runtime": {
         "model": null,
         "reasoning_effort": null
-      }
+      },
+      "completed_fingerprint": "dd089e7ea1afe645c3767e73f290bc408458fb85149e0af0516af9657f96e5a4",
+      "completed_spec_hash": "e8de0dbdf1598d1045500614518f9396dd5de97b20bc4fbe4a8ce65da0a10639",
+      "completed_output_hashes": {
+        "modules/m03/integrated/solution-rubric-r1.md": "b1f0d1446ba14078b0edd49f02779b22a3ab360fb1b79967a7a6b4bdd0f23f56",
+        "modules/m03/integrated/decision-summary-r1.md": "74e6b80f5fddfd0138c05e4bd6b3cc7d0ac33887f04e2f1fa8885da80164e1b6"
+      },
+      "completed_at": "2026-11-11T13:02:29Z",
+      "completed_by": "curriculum_orchestrator",
+      "completed_commit": "4a861a569be83da51329a2deeed5688c8b56cc27"
     },
     {
       "step_id": "technical-review-r1",
