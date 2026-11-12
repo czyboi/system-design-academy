@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-12T14:58:50Z",
-  "updated_at": "2026-11-12T15:08:51Z",
+  "updated_at": "2026-11-12T15:10:51Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -75,5 +75,17 @@
       "completed_at": "2026-11-12T15:08:51Z",
       "completed_by": "codex"
     }
-  ]
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent SDA-MS02 review of M02-L04 cleared this scope.",
+      "updated_at": "2026-11-12T15:10:50Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent SDA-MS02 review of M02-L04 cleared this scope.",
+      "updated_at": "2026-11-12T15:10:51Z"
+    }
+  }
 }
