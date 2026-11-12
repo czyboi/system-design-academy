@@ -244,6 +244,7 @@ def main(argv=None) -> int:
     # Validate repo-local Agent Skills.
     skills_root = ROOT / ".agents/skills"
     skill_count = 0
+    agent_count = 0
     if args.scope == 'workflow':
         if not skills_root.exists():
             errors.append("Missing .agents/skills directory")
@@ -263,7 +264,6 @@ def main(argv=None) -> int:
 
         # Validate custom Codex agent profiles and project settings.
         agents_root = ROOT / ".codex/agents"
-        agent_count = 0
         if not agents_root.exists():
             errors.append("Missing .codex/agents directory")
         else:
@@ -307,11 +307,9 @@ def main(argv=None) -> int:
     if args.scope == 'repo':
         for path in ROOT.rglob("*.md"):
             parts = path.relative_to(ROOT).parts
-            if args.scope != 'repo' and path not in selected and parts[0] == 'modules':
-                continue
             # Nested obsolete drafts are rejected by canonical discovery; do not treat
             # their Markdown links as part of the active course.
-            if (args.scope == 'repo' and len(parts) > 4 and parts[0] == 'modules'
+            if (len(parts) > 4 and parts[0] == 'modules'
                     and parts[2] in {'lessons', 'assessments'}):
                 continue
             if path not in selected and any(part in path.relative_to(ROOT).parts for part in ('.git','.tmp','inputs','runs','task-runs')):
