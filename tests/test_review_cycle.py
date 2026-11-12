@@ -51,6 +51,31 @@ class ReviewCycleTests(unittest.TestCase):
         self.assertEqual(stopped["status"], "blocked")
         self.assertIn("verifiable source", stopped["stop_reason"])
 
+    def test_lesson_cycles_are_independent_and_do_not_wait_for_module(self):
+        a = "M00-L01"
+        b = "M00-L02"
+        for target in (a, b):
+            reports = review_cycle.state_path(target).parent
+            reports.mkdir(parents=True)
+            for role in ("technical", "pedagogy"):
+                (reports / f"{role}.md").write_text("Independent review", encoding="utf-8")
+        first = review_cycle.record(a, "ready-for-human-review", "ready-for-human-review")
+        second = review_cycle.record(b, "revise", "ready-for-human-review")
+        self.assertEqual(first["status"], "ready")
+        self.assertEqual(first["module"], "m00")
+        self.assertEqual(first["lesson"], a)
+        self.assertEqual(second["status"], "needs_revision")
+        self.assertIsNone(review_cycle.load("m00"))
+        self.assertEqual(review_cycle.begin_revision(b)["revision_attempts"], 1)
+        self.assertEqual(review_cycle.load(a)["revision_attempts"], 0)
+        self.assertEqual(review_cycle.load(b)["status"], "revising")
+
+    def test_lesson_record_requires_its_own_report(self):
+        target = "M00-L03"
+        with self.assertRaisesRegex(review_cycle.ReviewCycleError, "Missing nonempty technical"):
+            review_cycle.record(target, "ready-for-human-review", "ready-for-human-review")
+        with self.assertRaisesRegex(review_cycle.ReviewCycleError, "Target must"):
+            review_cycle.state_path("../bad")
     def test_missing_report_never_records_success(self):
         (review_cycle.state_path("m00").parent / "technical.md").unlink()
         with self.assertRaisesRegex(review_cycle.ReviewCycleError, "Missing nonempty technical"):

@@ -133,12 +133,12 @@ def review_report_paths(values: list[str], task_files: set[str]) -> set[str]:
         return set()
     modules = {
         p.split("/")[1] for p in task_files
-        if re.fullmatch(r"modules/m\\d+/(?:lessons|assessments|integrated)/[^/]+", p)
+        if re.fullmatch(r"modules/m\d+/(?:lessons|assessments|integrated)/[^/]+", p)
     }
     roles: dict[str, set[str]] = {}
     for value in values:
         match = re.fullmatch(
-            r"modules/(m\\d{2})/reviews/automatic/(?:lessons/(M\\d{2}-L\\d{2})/)?(technical|pedagogy)\\.md",
+            r"modules/(m\d{2})/reviews/automatic/(?:lessons/(M\d{2}-L\d{2})/)?(technical|pedagogy)\.md",
             value,
         )
         if not match or match.group(1) not in modules:
