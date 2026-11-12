@@ -20,3 +20,6 @@ The approved SDA-v1 outline, pinned Primer inventory and matrix define scope. Pr
 Reuses the checked DNS, HTTP, proxy and cache evidence for M02. The image-catalogue parameters and computed fetch rates are hypothetical. The topic CSV supplies teaching locations. Review reports assess coverage and teaching quality.
 
 Original Academy material adapted from [archived PR #38](https://github.com/czyboi/system-design-academy/pull/38).
+
+
+The fetch-rate model assumes a direct path for uncoalesced edge misses. Real CDN designs may serve misses from an intermediate cache or collapse requests. [CloudFront, Regional edge caches](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html#CloudFrontRegionalEdgeCache) · [CloudFront, Request collapsing](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#request-custom-request-collapsing).

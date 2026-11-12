@@ -179,9 +179,10 @@
         "M02-L04-LO2"
       ],
       "teaching": {
-        "path": "modules/m02/integrated/brief.md",
+        "path": "modules/m02/integrated/solution-rubric.md",
         "sections": [
-          "M02-S1"
+          "DNS, connections and routing",
+          "Cache behavior and origin capacity"
         ]
       },
       "assessment": {

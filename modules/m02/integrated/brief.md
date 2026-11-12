@@ -11,8 +11,8 @@ The catalogue serves public, versioned image variants and a private saved-items 
 | Input | Planning assumption |
 | --- | --- |
 | DNS change | At time zero, authoritative answers change from edge A to edge B. Resolver R1 cached the old answer with a 120 s TTL at time −30 s. Resolver R2 has no cached answer. Assume both can reach authoritative DNS and clients make fresh connection attempts using their resolver's current answer. |
-| Peak media traffic | 10,000 requests/s. At warm edges the hit rate is 98%. A cold edge receives 2,000 of these requests per second, all misses during the first measured second. The warm edges still hit 98%. |
-| Media origin capacity | 1,000 fetches/s. In the cold interval, there are 80 distinct cold keys, and the origin path can optionally coalesce concurrent requests for the same key. |
+| Peak media traffic | 10,000 requests/s. At warm edges the hit rate is 98%. A cold edge receives 2,000 of these requests per second, all misses before coalescing during the first modeled second. The warm edges still hit 98%. |
+| Media origin capacity | 1,000 fetches/s. In the cold interval, there are 80 distinct cold keys, and the path can coalesce concurrent requests for the same key. Each uncoalesced edge miss reaches the origin directly. Assume no intermediate cache hits, extra retries or other origin traffic. |
 | Origin failure | An eligible public variant is 20 s past freshness when a 90 s origin outage starts. The catalogue tolerates up to 300 s past freshness for that variant. Some variants are absent from caches. |
 | Access | The saved-items view contains user-specific data. The service must protect it from shared cache reuse. |
 
