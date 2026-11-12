@@ -349,6 +349,10 @@ class TaskCtlExplicitStateTests(unittest.TestCase):
                              "assessment": "modules/m00/assessments/M00-L01.md",
                              "evidence": "modules/m00/evidence/M00-L01.md"}}
         (self.root / "delivery/backlog.json").write_text(json.dumps({"items": [story]}), encoding="utf-8")
+        self.assertIn("does not match declared module",
+                      self.cli("init", "SD-M00-L01", "--module", "M01", "--goal", "Wrong",
+                               "--owner", "tester", "--template", ".academy/state/task.template.json",
+                               expected=2))
         self.cli("init", "SD-M00-L01", "--module", "M00", "--goal", "Write draft",
                  "--owner", "tester", "--template", ".academy/state/task.template.json")
         state = json.loads((self.root / ".academy/state/tasks/SD-M00-L01.json").read_text())
@@ -357,10 +361,6 @@ class TaskCtlExplicitStateTests(unittest.TestCase):
                          [story["outputs"]["teaching"], story["outputs"]["assessment"]])
         self.assertIn(story["outputs"]["evidence"], state["steps"][1]["input_paths"])
         self.assertNotIn("SD-M00-L01.md", str(state["steps"][1]["output_paths"]))
-        self.assertIn("does not match declared module",
-                      self.cli("init", "SD-M00-L01", "--module", "M01", "--goal", "Wrong",
-                               "--owner", "tester", "--template", ".academy/state/task.template.json",
-                               expected=2))
         self.assertIn("Expected one lesson Story",
                       self.cli("init", "SD-M00-L02", "--module", "M00", "--goal", "Unknown",
                                "--owner", "tester", "--template", ".academy/state/task.template.json",
