@@ -5,6 +5,8 @@ description: Review whether a concise System Design lesson teaches its outcomes 
 
 # Pedagogical Review
 
+Use up to three relevant, reviewer-confirmed prevention reminders selected by the parent with `learning_memory.py suggest --role pedagogy_reviewer` to watch for recurring teaching mistakes. They do not override the current curriculum, learner profile or independent evidence, and do not justify adding generic boilerplate.
+
 ## Select the assigned mode
 
 - **Plan:** read the canonical scope, audience, curriculum outlines, prerequisites, source coverage report and prior findings. Check sequence, lesson boundaries, overlap, assumed entry knowledge and whether each outline can teach its stated capability. Do not require lesson or assessment files that have not been authored. Return location-specific findings on the plan only.
