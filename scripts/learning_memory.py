@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Repository learning memory from independently reviewed, corrected module findings.
+"""Repository learning memory from independently reviewed, corrected findings.
 
 This CLI is deterministic: no model calls, content scoring or skill-file mutations.
 """
@@ -105,17 +105,21 @@ def evidence_ref(value: str) -> str:
 
 def record(*, module: str, finding_id: str, review_role: str, key: str,
            tags: str, problem: str, prevention: str, evidence: str,
-           applies_to: str) -> dict:
+           applies_to: str, lesson: str | None = None) -> dict:
+    if lesson is not None and (not re.fullmatch(r"M\d{2}-L\d{2}", lesson)
+                               or lesson[:3].lower() != module):
+        raise LearningError("Lesson must belong to the supplied module")
     if not KEY.fullmatch(key) or len(key) > 70:
         raise LearningError("Knowledge key must be a stable slug of <=70 characters")
     if review_role not in REVIEW_ROLES or not FINDING.fullmatch(finding_id):
         raise LearningError("Invalid reviewer role or finding ID")
-    current = review_cycle.load(module)
+    target = lesson or module
+    current = review_cycle.load(target)
     if (not current or current["status"] != "ready"
             or current["revision_attempts"] < 1):
         raise LearningError("Only independently re-reviewed, successfully corrected findings can be learned")
-    report = f"modules/{module}/reviews/automatic/{review_role}.md"
-    report_path = ROOT / report
+    report_path = review_cycle.state_path(target).parent / f"{review_role}.md"
+    report = report_path.relative_to(ROOT).as_posix()
     if not report_path.is_file():
         raise LearningError(f"Missing reviewer report: {report}")
     text = report_path.read_text(encoding="utf-8")
@@ -142,9 +146,11 @@ def record(*, module: str, finding_id: str, review_role: str, key: str,
                  "prevention": prevention, "applies_to": roles_list, "occurrences": []}
     occurrence = {"module": module, "finding_id": finding_id,
                   "review_role": review_role, "report": report, "evidence": evidence}
+    if lesson:
+        occurrence["lesson"] = lesson
     same = [item for item in entry["occurrences"]
-            if (item["module"], item["finding_id"], item["review_role"])
-            == (module, finding_id, review_role)]
+            if (item["module"], item.get("lesson"), item["finding_id"], item["review_role"])
+            == (module, lesson, finding_id, review_role)]
     if same:
         if same[0] != occurrence:
             raise LearningError("Conflicting evidence for existing occurrence")
@@ -201,6 +207,7 @@ def main(argv: list[str] | None = None) -> int:
     for name in ("module", "finding-id", "review-role", "key", "tags", "problem",
                  "prevention", "evidence", "applies-to"):
         p.add_argument("--" + name, required=True)
+    p.add_argument("--lesson", help="Optional reviewed lesson ID, e.g. M01-L02")
     p = sub.add_parser("suggest", help="Select only short, role-relevant verified memories")
     p.add_argument("--tags", required=True)
     p.add_argument("--role", required=True)
@@ -212,13 +219,14 @@ def main(argv: list[str] | None = None) -> int:
             result = record(module=args.module, finding_id=args.finding_id,
                             review_role=args.review_role, key=args.key, tags=args.tags,
                             problem=args.problem, prevention=args.prevention,
-                            evidence=args.evidence, applies_to=args.applies_to)
+                            evidence=args.evidence, applies_to=args.applies_to,
+                            lesson=args.lesson)
         elif args.action == "suggest":
             result = suggest(args.tags, args.role, args.limit)
         else:
             result = promotions()
         print(json.dumps(result, indent=2, ensure_ascii=False))
-    except (LearningError, OSError, ValueError, json.JSONDecodeError) as exc:
+    except (LearningError, review_cycle.ReviewCycleError, OSError, ValueError, json.JSONDecodeError) as exc:
         print(f"LEARNING MEMORY FAILED: {exc}", file=sys.stderr)
         return 2
     return 0

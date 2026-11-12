@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Explicit, bounded state for the automatic module review/revision loop.
+"""Explicit, bounded state for lesson and module review/revision cycles.
 
 Only records decisions/counters; never invokes AI, edits lessons or merges.
 """
@@ -21,10 +21,17 @@ class ReviewCycleError(Exception):
     pass
 
 
-def state_path(module: str) -> Path:
-    if not re.fullmatch(r"m\d{2}", module):
-        raise ReviewCycleError("Module must be a canonical ID such as m00 or m01")
-    return ROOT / "modules" / module / "reviews" / "automatic" / "cycle.json"
+def state_path(target: str) -> Path:
+    if re.fullmatch(r"m\d{2}", target):
+        return ROOT / "modules" / target / "reviews" / "automatic" / "cycle.json"
+    if re.fullmatch(r"M\d{2}-L\d{2}", target):
+        return ROOT / "modules" / target[:3].lower() / "reviews" / "automatic" / "lessons" / target / "cycle.json"
+    raise ReviewCycleError("Target must be a canonical module (m01) or lesson (M01-L02) ID")
+
+
+def expected_fields(target: str) -> dict:
+    state_path(target)  # Validate the ID before touching any state.
+    return {"module": target[:3].lower(), "lesson": target} if target.startswith("M") else {"module": target}
 
 
 def load(module: str) -> dict | None:
@@ -32,7 +39,9 @@ def load(module: str) -> dict | None:
     if not path.exists():
         return None
     value = json.loads(path.read_text(encoding="utf-8"))
-    if (not isinstance(value, dict) or value.get("module") != module
+    identity = expected_fields(module)
+    if (not isinstance(value, dict) or any(value.get(key) != val for key, val in identity.items())
+            or (not module.startswith("M") and value.get("lesson") is not None)
             or type(value.get("revision_attempts")) is not int
             or value["revision_attempts"] not in range(MAX_REVISIONS + 1)
             or value.get("status") not in {"needs_revision", "revising", "ready", "blocked"}
@@ -44,6 +53,7 @@ def load(module: str) -> dict | None:
 def save(module: str, state: dict) -> dict:
     path = state_path(module)
     path.parent.mkdir(parents=True, exist_ok=True)
+    state.update(expected_fields(module))
     state["updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return state
@@ -60,7 +70,7 @@ def record(module: str, technical: str, pedagogy: str) -> dict:
         report = state_path(module).parent / f"{role}.md"
         if not report.is_file() or not report.read_text(encoding="utf-8").strip():
             raise ReviewCycleError(f"Missing nonempty {role} report: {report}")
-    state = current or {"module": module, "revision_attempts": 0, "review_history": []}
+    state = current or {**expected_fields(module), "revision_attempts": 0, "review_history": []}
     attempts = state["revision_attempts"]
     accepted = technical == pedagogy == "ready-for-human-review"
     state["status"] = "ready" if accepted else ("blocked" if attempts >= MAX_REVISIONS else "needs_revision")
@@ -98,7 +108,7 @@ def stop(module: str, reason: str) -> dict:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=["record", "begin-revision", "status", "stop"])
-    parser.add_argument("module", help="Canonical module ID, e.g. m00")
+    parser.add_argument("module", help="Review target: lesson M01-L02 or module m01")
     parser.add_argument("--technical", choices=VERDICTS)
     parser.add_argument("--pedagogy", choices=VERDICTS)
     parser.add_argument("--reason", default="")

@@ -128,35 +128,48 @@ def required_module_paths(module: str) -> set[str]:
 
 
 def review_report_paths(values: list[str], task_files: set[str]) -> set[str]:
-    """Permit only complete, paired reports for modules present in this draft handoff."""
+    """Allow paired lesson reviews immediately; module reviews only at module close."""
     if not values:
         return set()
     modules = {
         p.split("/")[1] for p in task_files
-        if re.fullmatch(r"modules/m\d+/(?:lessons|assessments|integrated)/[^/]+", p)
+        if re.fullmatch(r"modules/m\\d+/(?:lessons|assessments|integrated)/[^/]+", p)
     }
     roles: dict[str, set[str]] = {}
     for value in values:
-        match = re.fullmatch(r"modules/(m\d+)/reviews/automatic/(technical|pedagogy)\.md", value)
+        match = re.fullmatch(
+            r"modules/(m\\d{2})/reviews/automatic/(?:lessons/(M\\d{2}-L\\d{2})/)?(technical|pedagogy)\\.md",
+            value,
+        )
         if not match or match.group(1) not in modules:
             raise HandoffError(f"Review report must belong to a selected module: {value}")
+        module, lesson, role = match.groups()
+        if lesson and lesson[:3].lower() != module:
+            raise HandoffError(f"Lesson report module mismatch: {value}")
         if not taskctl.relpath(value).is_file():
             raise HandoffError(f"Missing review report: {value}")
         if not taskctl.relpath(value).read_text(encoding="utf-8").strip():
             raise HandoffError(f"Empty review report: {value}")
-        roles.setdefault(match.group(1), set()).add(match.group(2))
-    for module, present in roles.items():
-        if present != {"technical", "pedagogy"}:
-            raise HandoffError(f"{module}: both technical and pedagogy reports must be supplied")
-        missing = required_module_paths(module) - task_files
+        target = lesson or module
+        roles.setdefault(target, set()).add(role)
+        if lesson:
+            needed = {f"modules/{module}/lessons/{lesson}.md",
+                      f"modules/{module}/assessments/{lesson}.md"}
+        else:
+            needed = required_module_paths(module)
+        missing = needed - task_files
         if missing:
-            raise HandoffError(f"{module}: module review cannot be handed off before every lesson and integration draft is complete: {sorted(missing)}")
-    # Make reviewer lifecycle durable alongside both report files.
-    for module in roles:
-        state = review_cycle.load(module)
+            scope = "lesson" if lesson else "module"
+            raise HandoffError(f"{target}: {scope} review cannot be handed off before its complete draft: {sorted(missing)}")
+    for target, present in roles.items():
+        if present != {"technical", "pedagogy"}:
+            raise HandoffError(f"{target}: both technical and pedagogy reports must be supplied")
+        state = review_cycle.load(target)
         if not state or state["status"] == "revising" or not state["review_history"]:
-            raise HandoffError(f"{module}: record both reviewer verdicts before handing off reports")
-    return set(values) | {f"modules/{module}/reviews/automatic/cycle.json" for module in roles}
+            raise HandoffError(f"{target}: record both reviewer verdicts before handing off reports")
+    return set(values) | {
+        review_cycle.state_path(target).relative_to(ROOT).as_posix() for target in roles
+    }
 
 
 def deliver(task_ids: list[str], remote: str = "origin",
@@ -170,6 +183,13 @@ def deliver(task_ids: list[str], remote: str = "origin",
     for module in modules:
         if review_cycle.load(module) is not None:
             all_paths.add(f"modules/{module}/reviews/automatic/cycle.json")
+    lessons = {
+        Path(path).stem for path in all_paths
+        if re.fullmatch(r"modules/m\\d{2}/lessons/M\\d{2}-L\\d{2}\\.md", path)
+    }
+    for lesson in lessons:
+        if review_cycle.load(lesson) is not None:
+            all_paths.add(review_cycle.state_path(lesson).relative_to(ROOT).as_posix())
     all_paths.update(review_report_paths(review_reports or [], all_paths))
     if review_reports:
         # Persist newly verified cross-module prevention rules together with QA reports.
@@ -207,7 +227,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("task_ids", nargs="+", help="One or more completed Academy draft task IDs")
     parser.add_argument("--remote", default="origin", help="Git remote to push (default: origin)")
     parser.add_argument("--review-report", action="append", default=[],
-                        help="Optional reviewed module report; supply both technical and pedagogy")
+                        help="Optional lesson/module review report; supply both technical and pedagogy for each target")
     args = parser.parse_args(argv)
     try:
         deliver(list(dict.fromkeys(args.task_ids)), args.remote, args.review_report)
