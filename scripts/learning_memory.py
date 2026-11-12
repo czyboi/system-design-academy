@@ -71,7 +71,8 @@ def write_memory(data: dict) -> None:
 
 def labels(value: str, allowed: set[str] | None = None) -> list[str]:
     parts = [part.strip().lower() for part in value.split(",")]
-    if not 1 <= len(parts) <= 8 or any(not TAG.fullmatch(p) for p in parts):
+    pattern = re.compile(r"[a-z0-9]+(?:[-_][a-z0-9]+)*\Z") if allowed else TAG
+    if not 1 <= len(parts) <= 8 or any(not pattern.fullmatch(p) for p in parts):
         raise LearningError("Expected 1-8 comma-separated lowercase hyphenated tags")
     if len(set(parts)) != len(parts):
         raise LearningError("Duplicate tags")
