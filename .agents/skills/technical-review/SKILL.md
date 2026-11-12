@@ -5,7 +5,7 @@ description: Independently audit a System Design lesson for correctness, assumpt
 
 # Technical Review
 
-Review first; do not rewrite.
+Review first; do not rewrite. When the parent supplies up to three topic-matched, previously resolved lessons learned from `learning_memory.py suggest --role technical_reviewer`, use them as checks for recurring problems, **not as proof**. Validate claims independently against primary sources; never relax review because a previous correction succeeded.
 
 1. Independently inspect cited primary sources.
 2. Extract high-impact claims and verify the cited source supports each one.
