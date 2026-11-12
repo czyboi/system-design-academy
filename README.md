@@ -51,4 +51,6 @@ For pinned Primer coverage, invoke `python scripts/check_course_coverage.py --in
 
 GitHub Actions: **Content validation → Run workflow** runs content validation manually. **Python regression tests** runs automatically on pull requests and pushes to `main`, and can also be run manually.
 
+A representative [three-lesson quality pilot](docs/quality-pilot.md) is scoped but not yet generated or reviewed; data-check PASS must not be mistaken for quality or real browser rendering.
+
 See [workflow contract](docs/workflow-contract.md), [task state protocol](.academy/state/README.md), and [module pipeline](.agents/skills/module-pipeline/SKILL.md). Historical reports and accepted curriculum evidence remain in Git for traceability.
