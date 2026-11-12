@@ -2,6 +2,31 @@
   "schema_version": 1,
   "entries": [
     {
+      "key": "guard-mutable-preconditions-at-write",
+      "tags": [
+        "transactions",
+        "concurrency",
+        "invariants",
+        "service-boundaries"
+      ],
+      "problem": "An earlier availability check and a transaction for subsequent writes left a mutable precondition unprotected against concurrent requests.",
+      "prevention": "Trace two callers observing the same available state. Guard the state transition with a concurrency-safe claim or constraint, roll back incomplete claims, and acknowledge after the owner commits.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "LAY-T2",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L01/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M03-L01"
+        }
+      ]
+    },
+    {
       "key": "map-each-outcome-skill-to-its-assessment",
       "tags": [
         "assessment",
