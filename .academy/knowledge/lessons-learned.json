@@ -2,6 +2,29 @@
   "schema_version": 1,
   "entries": [
     {
+      "key": "edge-miss-versus-origin-fetch-count",
+      "tags": [
+        "caching",
+        "cdn",
+        "capacity"
+      ],
+      "problem": "A capacity estimate counted edge misses as origin fetches without specifying intermediate caches or retries.",
+      "prevention": "Name the measurement boundary. State which misses are served by intermediate tiers and how coalescing and retries change origin fetches before converting a hit ratio to origin load.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m02",
+          "finding_id": "M02-INT-T1",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/technical.md",
+          "evidence": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html"
+        }
+      ]
+    },
+    {
       "key": "guard-mutable-preconditions-at-write",
       "tags": [
         "transactions",
@@ -78,6 +101,29 @@
           "review_role": "technical",
           "report": "modules/m01/reviews/automatic/technical.md",
           "evidence": "https://raft.github.io/raft.pdf#page=13"
+        }
+      ]
+    },
+    {
+      "key": "synthesis-map-points-to-worked-reasoning",
+      "tags": [
+        "assessment",
+        "outcomes",
+        "synthesis"
+      ],
+      "problem": "A synthesis outcome locator pointed to its label and lesson links instead of the section containing worked design reasoning.",
+      "prevention": "Point synthesis teaching evidence to the exact worked reasoning sections and retain the separately scoped assessed subset and rubric.",
+      "applies_to": [
+        "lesson_author",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m02",
+          "finding_id": "M02-P1",
+          "review_role": "pedagogy",
+          "report": "modules/m02/reviews/automatic/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
         }
       ]
     },

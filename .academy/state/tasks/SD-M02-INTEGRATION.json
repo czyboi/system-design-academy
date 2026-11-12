@@ -91,17 +91,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-12T14:58:50Z",
-  "updated_at": "2026-11-12T15:13:08Z",
+  "updated_at": "2026-11-12T15:14:50Z",
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Scoped correction for M02-INT-T1 and M02-P1.",
-      "updated_at": "2026-11-12T15:13:07Z"
+      "status": "reviewed",
+      "reason": "Independent SDA-MS02 review of m02 cleared this scope.",
+      "updated_at": "2026-11-12T15:14:49Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "Scoped correction for M02-INT-T1 and M02-P1.",
-      "updated_at": "2026-11-12T15:13:07Z"
+      "status": "reviewed",
+      "reason": "Independent SDA-MS02 review of m02 cleared this scope.",
+      "updated_at": "2026-11-12T15:14:50Z"
     }
   }
 }
