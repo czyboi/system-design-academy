@@ -128,6 +128,30 @@ Explanation: Because.
         self.assertEqual(validate_document(source, self.source, root=self.root), [])
         self.assertIn(body, source)
 
+    def test_unsafe_literal_link_in_fenced_example_is_not_a_real_link(self):
+        fence = chr(96) * 3
+        self.assertEqual(self.check(f'{fence}md\n[example](javascript:alert(1))\n{fence}'), [])
+
+    def test_metadata_types_and_iso_date_are_enforced(self):
+        self.assertTrue(any('level must be a nonempty string' in x
+                            for x in self.check('Body', level='[senior]')))
+        self.assertTrue(any('ISO date' in x
+                            for x in self.check('Body', source_review_date='false')))
+        self.assertEqual(self.check('Body', source_review_date='2026-11-12'), [])
+        assessment = """---
+id: 42
+status: draft
+lesson: modules/m04/lessons/M04-L01.md
+outcome_map:
+  M04-L01-LO1:
+    taught_in: Mechanism walkthrough
+    items: [EX-1, Q1]
+---
+# Assessment
+"""
+        self.assertTrue(any('id must be a nonempty string' in x for x in
+                            validate_document(assessment, self.root/'modules/m04/assessments/M04-L01.md', root=self.root)))
+
     def test_legacy_integrated_package(self):
         text = "---\nid: M04-EX1\nstatus: draft\n---\n# Brief\n## Exercise\nExplain an architecture.\n"
         self.assertEqual(validate_document(text, self.root/'modules/m04/integrated/brief.md', root=self.root), [])

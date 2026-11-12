@@ -169,6 +169,62 @@ EX-1: Solve this problem.
             ])
         self.assertEqual(result, 0, output.getvalue())
 
+    def test_lesson_assessment_link_is_checked_in_both_directions(self):
+        correct_path = self.assessment.relative_to(ROOT).as_posix()
+        self.lesson.write_text(
+            self.lesson.read_text().replace(
+                f'assessment: {correct_path}',
+                'assessment: modules/m01/assessments/WRONG.md'
+            ), encoding='utf-8'
+        )
+        self.assertTrue(any('Lesson must reference its companion assessment' in issue
+                            for issue in self.pair_errors()))
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            result = validator.main([
+                '--scope', 'lesson', '--lesson', self.lesson.relative_to(ROOT).as_posix(),
+                '--assessment', correct_path,
+            ])
+        self.assertEqual(result, 1, output.getvalue())
+
+    def test_code_fences_cannot_fake_assessment_questions_and_exercise(self):
+        fake = self.assessment.read_text(encoding='utf-8')
+        front = fake.split('\n---\n', 1)[0] + '\n---\n'
+        fence = chr(96) * 3
+        simulated = ('# Assessment\n\n' + fence + 'md\nEX-1: fake exercise\n' +
+                     ''.join(f'### Q{i}\nAnswer: fake\nExplanation: fake\n' for i in range(1, 6)) +
+                     '## Solution and rubric\n' + fence + '\n')
+        self.assessment.write_text(front + simulated, encoding='utf-8')
+        errors = self.pair_errors()
+        self.assertTrue(any('5–8 uniquely identified knowledge checks' in e for e in errors), errors)
+        self.assertTrue(any('missing practical exercise EX-1' in e for e in errors), errors)
+        self.assertTrue(any('missing exercise solution or rubric' in e for e in errors), errors)
+
+    def test_bold_answer_labels_are_read_from_rendered_markdown(self):
+        quiz = self.assessment.read_text()
+        quiz = quiz.replace('Answer: Yes.', '**Answer:** Yes.', 1)
+        quiz = quiz.replace('Explanation: Reason.', '**Explanation:** Reason.', 1)
+        self.assessment.write_text(quiz, encoding='utf-8')
+        self.assertEqual(self.pair_errors(), [])
+
+    def test_empty_answers_and_unhashable_outcomes_fail_gracefully(self):
+        quiz = self.assessment.read_text().replace('Answer: Yes.', 'Answer:   ', 1)
+        self.assessment.write_text(quiz, encoding='utf-8')
+        self.assertTrue(any('nonempty response' in issue for issue in self.pair_errors()))
+        lesson = self.lesson.read_text().replace('outcomes: [LO-1]', 'outcomes: [{unexpected: object}]')
+        self.lesson.write_text(lesson, encoding='utf-8')
+        self.assertTrue(self.pair_errors())
+
+    def test_duplicate_yaml_keys_are_rejected_by_combined_validator(self):
+        lesson = self.lesson.read_text().replace('title: Test lesson', 'title: Test lesson\ntitle: Duplicate')
+        self.lesson.write_text(lesson, encoding='utf-8')
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            result = validator.main([
+                '--scope', 'lesson', '--lesson', self.lesson.relative_to(ROOT).as_posix(),
+                '--assessment', self.assessment.relative_to(ROOT).as_posix(),
+            ])
+        self.assertEqual(result, 1, output.getvalue())
+
+
     def test_curriculum_scope_requires_real_mapping(self):
         plan=self.root/'plan.md'; matrix=self.root/'matrix.csv'
         plan.write_text('# Plan\n## SD-01\nMechanism A\n',encoding='utf-8')
@@ -299,6 +355,33 @@ class WorkflowTemplateTests(unittest.TestCase):
                 with contextlib.redirect_stdout(io.StringIO()) as output:
                     self.assertEqual(validator.main(['--scope', 'repo']), 1)
                 self.assertIn('orphan assessment', output.getvalue())
+
+
+    def test_repository_link_checker_ignores_code_fences_but_checks_real_links(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            skill = root / '.agents/skills/fixture/SKILL.md'
+            skill.parent.mkdir(parents=True)
+            skill.write_text('---\nname: fixture\ndescription: Fixture\n---\nInstructions.\n')
+            agent = root / '.codex/agents/fixture.toml'
+            agent.parent.mkdir(parents=True)
+            agent.write_text('name = "fixture"\ndescription = "Fixture"\n'
+                             'developer_instructions = "Test"\nmodel = "fixture"\n'
+                             'model_reasoning_effort = "medium"\n')
+            (root / '.codex/config.toml').write_text(
+                '[agents]\nmax_concurrent_threads_per_session = 1\n'
+                'default_subagent_model = "fixture"\n')
+            readme = root / 'README.md'
+            fence = chr(96) * 3
+            readme.write_text(f'{fence}md\n[example](missing-from-code.md)\n{fence}\n')
+            with patch.object(validator, 'ROOT', root):
+                with contextlib.redirect_stdout(io.StringIO()) as output:
+                    self.assertEqual(validator.main(['--scope', 'repo']), 0, output.getvalue())
+                readme.write_text(readme.read_text() + '\n[real](missing-real-link.md)\n')
+                with contextlib.redirect_stdout(io.StringIO()) as output:
+                    self.assertEqual(validator.main(['--scope', 'repo']), 1)
+                self.assertIn('missing-real-link.md', output.getvalue())
+                self.assertNotIn('missing-from-code.md', output.getvalue())
 
 
     def test_explicit_missing_lesson_fails(self):

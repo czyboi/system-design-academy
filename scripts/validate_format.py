@@ -184,6 +184,8 @@ def validate_document(
         reviewed = metadata.get("source_review_date")
         if isinstance(reviewed, str):
             try:
+                if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", reviewed):
+                    raise ValueError("expected YYYY-MM-DD")
                 date.fromisoformat(reviewed)
             except ValueError:
                 errors.append(f"{source}: source_review_date must be an ISO date YYYY-MM-DD")
