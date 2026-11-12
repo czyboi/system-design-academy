@@ -1,6 +1,6 @@
-# Content-quality pilot (manual, not an authoring gate)
+# Content-quality pilot (independent lesson review)
 
-**Status: cases selected; drafts not yet generated or independently reviewed.** This document is a lightweight experiment plan, **not** a new task type, workflow stage, adapter, content schema or quality verdict.
+**Status: cases selected; M01-L02 has a first draft on a separate branch but is not yet independently reviewed.** This document is a lightweight experiment plan, **not** a new task type, workflow stage, adapter, content schema or quality verdict.
 
 ## Representative cases from approved SDA-v1
 
@@ -20,7 +20,7 @@ Each pilot must use its existing backlog Story, approved outline and canonical `
 
 Research Agent must open primary sections, collect claim-level support, mark uncertainty and identify product/version boundaries **before** Author drafts. This reference list is only a starting point.
 
-## Quality assessment — independent, on demand
+## Quality assessment — automatic for each lesson
 
 For each draft, inspect actual paragraphs, diagrams, numbers and exercises against these five questions. Record specific examples/evidence and actionable defects, not a made-up numeric score:
 
@@ -30,10 +30,10 @@ For each draft, inspect actual paragraphs, diagrams, numbers and exercises again
 4. **Practical decisions:** Are realistic workload numbers, diagram flows, bottlenecks, skew, failure cases and trade-offs worked through?
 5. **Assessment alignment:** Do EX-1 and 5–8 substantive knowledge checks have defensible answers, explanations and rubric, and test material actually taught?
 
-Record **ready for human evaluation / revise / blocked** with citations to lesson sections and source evidence. AI self-checks are part of authorship; independent reviews happen **only if requested**. No reviewer can publish the draft.
+Record **ready for human evaluation / revise / blocked** with citations to lesson sections and source evidence. AI self-checks are part of authorship; **two independent reviewer agents run immediately after each lesson's draft handoff**, then targeted corrections/re-review if needed (up to two rounds per lesson). At module close, a separate synthesis review checks only integration and cross-lesson coherence. No reviewer can publish the draft.
 
 ## Format and rendering are different
 
-`python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH` may be run **on request**, to check metadata, paths, safe Markdown and local assets. A data PASS does not evaluate the five quality questions. There is currently **no actual website renderer**: Mermaid, mathematical notation, layout, solution visibility and browser security cannot be declared rendered successfully until the website exists. When a renderer is built, test these three lessons with the actual rendering library instead of recreating a second Markdown parser.
+`python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH` runs during normal scoped draft handoff to check metadata, paths, safe Markdown and local assets; repository-wide validation remains on demand. A data PASS does not evaluate the five quality questions. There is currently **no actual website renderer**: Mermaid, mathematical notation, layout, solution visibility and browser security cannot be declared rendered successfully until the website exists. When a renderer is built, test these three lessons with the actual rendering library instead of recreating a second Markdown parser.
 
 Only scale authoring after reviewing the pilot results. If a real content problem appears, update Research/Author instructions first; fix data checking only for an actual data or security defect.

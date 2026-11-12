@@ -83,6 +83,23 @@ class LearningMemoryTests(unittest.TestCase):
         self.assertEqual(candidates[0]["modules"], ["m00", "m01"])
         self.assertEqual(len(learning_memory.read_memory()["entries"]), 1)
 
+    def test_lesson_correction_is_reusable_before_module_is_complete(self):
+        self.ready("M00-L01")
+        self.ready("M00-L02")
+        args = self.arguments()
+        args["lesson"] = "M00-L01"
+        self.assertEqual(learning_memory.record(**args)["result"], "recorded")
+        self.assertEqual(learning_memory.record(**args)["result"], "unchanged")
+        args["lesson"] = "M00-L02"
+        self.assertEqual(learning_memory.record(**args)["result"], "recorded")
+        entries = learning_memory.read_memory()["entries"]
+        self.assertEqual(len(entries[0]["occurrences"]), 2)
+        self.assertEqual({o["lesson"] for o in entries[0]["occurrences"]},
+                         {"M00-L01", "M00-L02"})
+        self.assertEqual(learning_memory.promotions(), [])  # Still only one module.
+        args["lesson"] = "M01-L01"
+        with self.assertRaisesRegex(learning_memory.LearningError, "belong to"):
+            learning_memory.record(**args)
     def test_conflicting_guidance_and_unsafe_memory_are_rejected(self):
         self.ready("m00")
         learning_memory.record(**self.arguments())
