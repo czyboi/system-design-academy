@@ -3,3 +3,9 @@
 {"at": "2026-11-12T15:02:21Z", "event": "step_completed", "run_id": "SD-M02-L02-research-20261112T150220Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "research", "task_id": "SD-M02-L02", "usage": null}
 {"agent": "codex", "at": "2026-11-12T15:02:44Z", "event": "step_started", "run_id": "SD-M02-L02-author-20261112T150244Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M02-L02"}
 {"at": "2026-11-12T15:02:45Z", "event": "step_completed", "run_id": "SD-M02-L02-author-20261112T150244Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M02-L02", "usage": null}
+{"at": "2026-11-12T15:05:08Z", "event": "steps_invalidated", "reason": "Independent M02-L02 reviewer findings L02-P1", "step_ids": ["author"], "task_id": "SD-M02-L02"}
+{"agent": "codex", "at": "2026-11-12T15:05:08Z", "event": "step_started", "run_id": "SD-M02-L02-author-20261112T150508Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M02-L02"}
+{"at": "2026-11-12T15:05:09Z", "current": "needs_review", "event": "review_status_changed", "previous": "not_reviewed", "reason": "Scoped correction for L02-P1.", "scope": "technical", "task_id": "SD-M02-L02"}
+{"at": "2026-11-12T15:05:09Z", "current": "needs_review", "event": "review_status_changed", "previous": "not_reviewed", "reason": "Scoped correction for L02-P1.", "scope": "pedagogy", "task_id": "SD-M02-L02"}
+{"at": "2026-11-12T15:05:09Z", "event": "checkpoint", "next_action": "Run scoped handoff and targeted independent re-review.", "note": "Address L02-P1.", "run_id": "SD-M02-L02-author-20261112T150508Z", "step_id": "author", "task_id": "SD-M02-L02"}
+{"at": "2026-11-12T15:05:10Z", "event": "step_completed", "run_id": "SD-M02-L02-author-20261112T150508Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M02-L02", "usage": null}
