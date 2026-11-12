@@ -7,3 +7,4 @@
 {"at": "2026-11-12T09:27:21Z", "current": "in_review", "event": "review_status_changed", "previous": "not_reviewed", "reason": "Independent M01 module-close review, round 0", "scope": "pedagogy", "task_id": "SD-M01-L03"}
 {"at": "2026-11-12T09:29:38Z", "current": "reviewed", "event": "review_status_changed", "previous": "in_review", "reason": "M01 independent round 0 technical clear for this package", "scope": "technical", "task_id": "SD-M01-L03"}
 {"at": "2026-11-12T09:29:38Z", "current": "reviewed", "event": "review_status_changed", "previous": "in_review", "reason": "M01 independent round 0 pedagogy clear for this package", "scope": "pedagogy", "task_id": "SD-M01-L03"}
+{"at": "2026-11-12T10:07:54Z", "current": "needs_review", "event": "review_status_changed", "previous": "reviewed", "reason": "Targeted edits for PR #55 owner feedback at issuecomment-6820605428", "scope": "pedagogy", "task_id": "SD-M01-L03"}
