@@ -1,56 +1,35 @@
-# Task state, checkpoints, and idempotency
+# Explicit task state, handoff and completion
 
-## Canonical task specification
+## Source of truth
 
-Every task has one versioned source of truth:
-`.academy/specs/<TASK-ID>.json`.
+One Git-tracked task specification: `.academy/specs/<TASK-ID>.json`, containing goal, scope, constraints, Definition of Done and acceptance criteria. GitHub Issue tracks ownership, branch, dependencies and links, not a competing full spec.
 
-It contains the task goal, scope, constraints, Definition of Done, acceptance criteria, and per-step applicability. GitHub Issue is the coordination surface and links to that file; it must not maintain a competing copy of the detailed requirements. When Issue prose conflicts with the committed specification, the specification wins and the Issue summary should be corrected.
+Current state is in `.academy/state/tasks/<TASK-ID>.json`. Append-only worklog records decisions, steps and handoff checkpoints. Completed steps are durable historical facts and are not recalculated from file bytes.
 
-Execution state is stored separately in `.academy/state/tasks/<TASK-ID>.json`; event history is appended to `.academy/state/worklog/<TASK-ID>.jsonl`.
+## Status contract
 
-## Selective fingerprints
+- `SKIP`: the step was explicitly marked completed. Never repeat without authorization.
+- `READY`: the step is pending or was explicitly reopened and its prerequisite steps are completed.
+- `RESUME`: explicitly running; inspect its checkpoint.
+- `BLOCKED`: a hold, manually blocked step, unsatisfied dependency or an explicitly configured review gate.
+- **No `STALE` computation.** No fingerprints, input hashes, output hashes or spec-slice hashes are used.
 
-A step fingerprint includes its definition version, declared input hashes, dependency fingerprints/output hashes, and the hash of its relevant spec slice. The slice includes global goal/scope/constraints plus only DoD and acceptance-criteria entries whose `applies_to` includes that step or `*`.
+Start verifies the task spec and presence of declared inputs. Complete verifies that declared output paths exist, dependencies are still completed and any configured review gate remains satisfied; it records the explicit completion and appends a log entry. These commands do **not** run content validation, AI reviews or tests. Output files and state should be committed together for durable handoff; the CLI does not require an intermediate commit or an unchanged-output workaround.
 
-Consequences:
-- changing one step's acceptance criterion invalidates that step and its downstream dependency chain;
-- independent steps remain `SKIP`;
-- changing global goal, scope, or constraints invalidates every step because these are task-wide assumptions.
+Use `invalidate TASK-ID STEP-ID --reason "..."` to reopen intentionally. The optional `--cascade` reopens dependents only when specifically requested. File/spec changes alone do nothing to old task statuses.
 
-The task specification is validated against `.academy/state/schema/spec.schema.json`. Execution is blocked while DoD or acceptance criteria contain placeholders or lack applicability to a step.
+## Review status and risk
 
-## Reproducible execution
+`review_status` is independent of task execution: `not_reviewed`, `in_review`, `reviewed`, `needs_review`. Use `taskctl.py review-status` with an explicit reason. Review verdict files can record `block`, `revise` or `ready-for-human-review` and location-specific findings, but **do not need artifact checksums**. Legacy verdict hashes are ignored.
 
-Before a step starts, `taskctl` requires the declared inputs and task spec to be Git-tracked and clean. It records:
-- starting Git commit;
-- SHA-256 of each declared input and the task spec;
-- output hashes as they existed at start;
-- active spec hash and step fingerprint.
-
-At completion it verifies that inputs/specification did not change, the starting commit is an ancestor of HEAD, outputs exist and are tracked/clean, and every output changed in a commit after start. An unchanged pre-existing output is accepted only with explicit `--reuse-output` and a recorded reason. Reuse is narrow and visible in the task state/worklog.
-
-A completed step is reusable only when its current fingerprint and output hashes still match and the outputs remain tracked/clean.
-
-## Automation and human lifecycle
-
-`taskctl` controls only the automation lifecycle:
-`not_started → in_progress → automation_complete` (or `blocked`).
-
-Human review and release are explicit separate states:
-`automation_complete → ready_for_human_review → human_approved → published`.
-
-These are not transitions managed by taskctl. Human review/approval, PR merge, and learner-facing publication remain explicit human actions. CI passing is not human approval.
+Without automated change detection, an edit that is not reported as needing review can leave the old review status visible. Whoever makes a substantive change must explicitly flag it. Git history remains available to inspect what changed. A content review never substitutes for human approval to publish.
 
 ## Cross-provider handoff
 
-The receiving AI:
-1. Reads the GitHub Issue for owner, branch, dependencies, and links.
-2. Reads the task specification, state, and JSONL worklog from the current branch.
-3. Inspects Git status, commits, and the PR.
-4. Runs `python scripts/taskctl.py status <TASK-ID>`.
-5. Does not repeat `SKIP`; resumes only unchanged `RESUME`; starts only `READY`; inspects `STALE`; waits on `BLOCKED`.
-6. Commits the start/checkpoint before handoff and outputs before marking complete.
-7. Reports the state-file, spec-file, latest commit, blockers, and next action in the Issue.
+1. Read Issue, current spec, task state, worklog and relevant feedback.
+2. Inspect branch/PR and `git status`; use `taskctl status`.
+3. Do not rerun SKIP. Resume only authorized running work; start READY work only within user scope. Respect holds.
+4. Record outputs and task state; for cross-environment handoff commit and push outputs/spec/state/worklog together, then run `taskctl handoff TASK-ID` (remote upstream sync check). Use `--local-only` only when both agents share the checkout. For long tasks, checkpoint with a next action.
+5. Do not infer any approval from passing code checks or completed draft generation.
 
-The state file is not a distributed lock. GitHub ownership must establish one active writer per task.
+Git task state is not a distributed lock. Coordinate one active writer through GitHub ownership.

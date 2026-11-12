@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """Non-mutating Markdown/metadata format check for Academy content.
 
-Not a technical/pedagogical review, a web renderer, a publication gate, or
-an exhaustive Mermaid parser. Lesson/assessment structure remains checked by
-scripts/validate_content.py.
+Not a technical/pedagogical review, a browser renderer, or a publication gate.
+It checks YAML, Markdown tokens, local assets and safe rendering inputs only.
+Lesson/assessment metadata links are checked by scripts/validate_content.py.
 """
 from __future__ import annotations
 
 import argparse
 import re
+from datetime import date
 import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -19,9 +20,7 @@ from markdown_it import MarkdownIt
 ROOT = Path(__file__).resolve().parents[1]
 PARSER = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethrough"])
 FRONT = re.compile(r"\A---\r?\n(.*?)\r?\n---[ \t]*(?:\r?\n|\Z)", re.S)
-MATH_BLOCK = re.compile(r"(?m)^\s{0,3}\$\$\s*$")
 UNSAFE_LINK = re.compile(r"\]\(\s*[<]?(?:javascript|vbscript|data):", re.I)
-MERMAID_START = re.compile(r"^(?:flowchart|graph|sequenceDiagram|classDiagram|stateDiagram(?:-v2)?|erDiagram|gantt|pie|gitGraph|journey|mindmap|timeline|quadrantChart|requirementDiagram|C4Context|C4Container|C4Component|C4Dynamic|C4Deployment|sankey-beta|xychart-beta|block-beta)\b")
 
 
 class UniqueKeyLoader(yaml.SafeLoader):
@@ -114,6 +113,39 @@ def _link_errors(target: str, source: Path, root: Path, check_files: bool, image
     return errors
 
 
+def _link_checks(tokens, source: Path, root: Path, check_local_links: bool, start_line: int = 1) -> tuple[int, list[str]]:
+    """Inspect rendered Markdown link/image tokens; ignore code fences and code spans."""
+    checked = 0
+    errors: list[str] = []
+    for token in tokens:
+        if token.type != "inline":
+            continue
+        line = start_line + (token.map[0] if token.map else 0)
+        children = token.children or []
+        # markdown-it renders blocked schemes as plain text, not clickable links.
+        # Flag that syntax only in rendered text, never in literal code examples.
+        visible_text = "".join(child.content for child in children if child.type == "text")
+        if UNSAFE_LINK.search(visible_text):
+            errors.append(f"{source}:{line}: unsafe link target in Markdown")
+        for child in children:
+            if child.type not in {"link_open", "image"}:
+                continue
+            checked += 1
+            image = child.type == "image"
+            target = child.attrGet("src" if image else "href") or ""
+            if image and not child.content.strip():
+                errors.append(f"{source}:{line}: image requires meaningful alt text")
+            for problem in _link_errors(target, source, root, check_local_links, image):
+                errors.append(f"{source}:{line}: {problem}")
+    return checked, errors
+
+
+def validate_markdown_links(text: str, source: Path, *, root: Path = ROOT) -> tuple[int, list[str]]:
+    """Reuse the same safe-link rules for docs without YAML front matter."""
+    tokens = PARSER.parse(text)
+    return _link_checks(tokens, source, root, True)
+
+
 def validate_document(
     text: str,
     source: Path,
@@ -144,32 +176,33 @@ def validate_document(
             errors.append(f"{source}: prerequisites must be an array of strings")
         if not isinstance(metadata.get("outcomes"), list) or not metadata["outcomes"] or not all(isinstance(x, str) and x for x in metadata["outcomes"]):
             errors.append(f"{source}: outcomes must be a nonempty array of IDs")
-        for field in ("id", "title", "assessment"):
+        for field in ("id", "title", "level", "assessment"):
             if not isinstance(metadata.get(field), str) or not metadata[field].strip():
                 errors.append(f"{source}: {field} must be a nonempty string")
+        reviewed = metadata.get("source_review_date")
+        if isinstance(reviewed, str):
+            try:
+                if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", reviewed):
+                    raise ValueError("expected YYYY-MM-DD")
+                date.fromisoformat(reviewed)
+            except ValueError:
+                errors.append(f"{source}: source_review_date must be an ISO date YYYY-MM-DD")
+        elif type(reviewed) is not date:
+            errors.append(f"{source}: source_review_date must be an ISO date YYYY-MM-DD")
     elif kind == "assessment":
         if not isinstance(metadata.get("outcome_map"), dict) or not metadata["outcome_map"]:
             errors.append(f"{source}: outcome_map must be a nonempty mapping")
-        if not isinstance(metadata.get("lesson"), str):
-            errors.append(f"{source}: lesson must be a repository-relative path")
-
-    if UNSAFE_LINK.search(body):
-        errors.append(f"{source}: unsafe link target in Markdown")
+        for field in ("id", "lesson"):
+            if not isinstance(metadata.get(field), str) or not metadata[field].strip():
+                errors.append(f"{source}: {field} must be a nonempty string")
 
     try:
         tokens = PARSER.parse(body)
     except Exception as exc:
         return errors + [f"{source}: Markdown parse error: {exc}"]
     lines = body.splitlines()
-    # Do not mistake literal math syntax inside fenced code for an unsupported
-    # math feature. Math-capability checking is deliberately conservative.
-    content_lines = list(lines)
-    for token in tokens:
-        if token.type in ("fence", "code_block") and token.map:
-            for pos in range(token.map[0], token.map[1]):
-                content_lines[pos] = ""
-    if MATH_BLOCK.search("\n".join(content_lines)):
-        errors.append(f"{source}: display math syntax is not enabled in v1; request renderer extension without deleting content")
+    _, link_issues = _link_checks(tokens, source, root, check_local_links, body_start)
+    errors.extend(link_issues)
     for token in tokens:
         line = body_start + (token.map[0] if token.map else 0)
         if token.type in {"html_block", "html_inline"}:
@@ -182,21 +215,10 @@ def validate_document(
                 diagram = token.content.strip()
                 if not diagram:
                     errors.append(f"{source}:{line}: empty Mermaid diagram")
-                elif not MERMAID_START.match(diagram):
-                    errors.append(f"{source}:{line}: unrecognized Mermaid diagram declaration; full syntax/render validation is deferred")
                 if "%%{" in diagram:
                     errors.append(f"{source}:{line}: Mermaid runtime directives are not allowed")
-        if token.type != "inline":
-            continue
-        for child in token.children or []:
-            if child.type == "html_inline":
-                errors.append(f"{source}:{line}: raw HTML/MDX is not supported")
-            elif child.type in {"link_open", "image"}:
-                target = child.attrGet("href" if child.type == "link_open" else "src") or ""
-                if child.type == "image" and not child.content.strip():
-                    errors.append(f"{source}:{line}: image requires meaningful alt text")
-                for problem in _link_errors(target, source, root, check_local_links, child.type == "image"):
-                    errors.append(f"{source}:{line}: {problem}")
+        if token.type == "inline" and any(child.type == "html_inline" for child in token.children or []):
+            errors.append(f"{source}:{line}: raw HTML/MDX is not supported")
     return errors
 
 
@@ -206,8 +228,14 @@ def discover(root: Path) -> list[Path]:
     for module in (root / "modules").glob("*"):
         if not module.is_dir():
             continue
+        if (module / "content-manifest.json").exists():
+            raise ValueError(f"{module}: content-manifest.json is obsolete; keep one canonical artifact")
         for folder in ("lessons", "assessments"):
-            result.extend((module / folder).glob("**/*.md"))
+            directory = module / folder
+            nested = [p for p in directory.glob("**/*.md") if p.parent != directory]
+            if nested:
+                raise ValueError(f"{nested[0]}: nested lesson/assessment revisions are unsupported")
+            result.extend(directory.glob("*.md"))
         integrated = module / "integrated"
         for pattern in ("brief.md", "solution-rubric*.md", "decision-summary*.md"):
             result.extend(integrated.glob(pattern))
@@ -219,7 +247,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--path", action="append", help="Repository-relative artifact path; may be repeated")
     parser.add_argument("--kind", choices=["lesson", "assessment", "integrated"], help="Explicit kind for --path")
     args = parser.parse_args(argv)
-    paths = [ROOT / p for p in args.path] if args.path else discover(ROOT)
+    try:
+        paths = [ROOT / p for p in args.path] if args.path else discover(ROOT)
+    except (OSError, ValueError) as exc:
+        print(f"ERROR: {exc}")
+        return 1
     errors = []
     checked = 0
     for path in paths:

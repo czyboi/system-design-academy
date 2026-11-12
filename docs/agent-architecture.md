@@ -1,78 +1,35 @@
-# Agent Architecture
+# Agent architecture — user-directed execution
 
-## Shared and provider-specific layers
+## Layers
 
-| Layer | Responsibility | Repository location |
-|---|---|---|
-| Shared skills | Canonical procedures for research, curriculum, authoring, assessment, review, intake, and handoff | .agents/skills/ |
-| Codex adapters | Codex-specific role/configuration | .codex/agents/*.toml |
-| Claude Code adapters | Claude Code project subagents with YAML frontmatter | .claude/agents/*.md |
-| Orchestration | Parent sequences/delegates, owns shared files/state, synthesizes results | module-pipeline skill + AGENTS.md |
-| Persistent memory | Requirements, run state, checkpoints, artifact history | .academy/specs/, .academy/state/, Git commits |
+| Layer | Responsibility | Location |
+| --- | --- | --- |
+| Shared skills | Research, curriculum, authoring, optional reviews and handoff | `.agents/skills/` |
+| Provider profiles | Role and model configuration | `.codex/agents/`, `.claude/agents/` |
+| Parent orchestrator | Authorization, scoped delegation, task state, final handoff | `AGENTS.md`, module-pipeline |
+| Persistent memory | Canonical task specs, explicit state, append-only history | `.academy/specs/`, `.academy/state/`, Git |
+| GitHub | Issues, ownership, PR review and commits | GitHub |
 
-The skill content is canonical. Provider-specific agent files point to shared skills and add only role/configuration details. Do not fork the instructions per provider.
+Shared skills are canonical. A profile is an adapter, not an independently duplicated workflow. Only the parent changes shared task state; subagents own bounded, non-overlapping work. A task JSON is not a distributed lock.
 
-A skill is a reusable procedure, not an autonomous worker. A subagent is a specialist worker, not a durable workflow engine. The parent owns orchestration and task-state transitions.
+## Specialist roles
 
-## Roles
+- Source researcher: evidence for claims.
+- Curriculum designer: outline, prerequisites and coverage mapping.
+- Lesson author: English original draft lesson and assessment.
+- Technical, provenance, coverage and pedagogy reviewers: **optional, explicitly requested** audits.
+- PR reviewer: explicitly requested code/change review.
 
-- Parent/orchestrator: scope, canonical specification, ownership, shared files, checkpoints, decisions, final PR.
-- source_researcher: claim-level source evidence.
-- curriculum_designer: prerequisite map and learning sequence.
-- lesson_author: assigned draft lesson and assessments.
-- technical_reviewer: independent factual review.
-- pedagogy_reviewer: learning design and assessment review.
-- provenance_reviewer: citation, attribution, and asset-rights review.
+## Task and review status
 
-## Canonical task records
+`.academy/specs/<TASK-ID>.json` is the requirements source; Issue prose is coordination. `.academy/state/tasks/<TASK-ID>.json` records explicit step statuses, checkpoints and separate `review_status`; the JSONL worklog records past actions.
 
-- .academy/specs/<TASK-ID>.json: goal, scope, constraints, Definition of Done, acceptance criteria, and step applicability. This is canonical.
-- GitHub Issue: owner, branch, dependencies, PR/spec/state links, and short coordination summary. It is not a second copy of requirements.
-- .academy/state/tasks/<TASK-ID>.json: step DAG, active run, checkpoint, fingerprints, output hashes, and automation lifecycle.
-- .academy/state/worklog/<TASK-ID>.jsonl: append-only event history.
-- Git commits: durable outputs and audit trail.
-- GitHub PR: review and integration status.
+Task completion is not recomputed from file bytes, task requirements or dependencies. There are no active fingerprints, SHA-256 snapshots or automatic STALE cascades. `invalidate` reopens only when explicitly commanded. Review state changes manually (`not_reviewed`, `in_review`, `reviewed`, `needs_review`). Old hashes in historical files are not interpreted.
 
-## Spec-aware idempotency
+## Default operation
 
-Each step fingerprint covers its ID and definition version, hashes of declared file inputs, the canonical hash of its relevant specification slice, and dependency fingerprints/output hashes.
+Research and author one draft package, then stop. Code validators, AI reviewers, revision cycles and content audits run independently only when requested. A reviewer does not automatically launch validation, and a validation command does not call AI reviewers. Use Git commits and worklog checkpoints for continuity, not content fingerprints.
 
-A specification slice includes global goal/scope/constraints and only DoD/acceptance-criteria entries applying to that step. Changing one step-specific criterion invalidates that step and downstream dependents; unrelated steps remain SKIP. A global goal/scope/constraint change invalidates all steps because those assumptions apply to the task as a whole.
+Review status is not a human publishing approval. Do not merge or publish without user authorization. Host/sandbox permissions — not agent text — enforce read-only access; Codex child agents inherit parent permissions. Coordinate one writer to prevent races.
 
-Before start, taskctl requires Git-tracked clean inputs/specification and records a starting commit and input/output snapshots. Complete rechecks those snapshots and requires outputs to be tracked, clean, and committed after start. An unchanged existing output needs explicit, reasoned reuse.
-
-## Automation and human lifecycle
-
-The CLI controls only the automation lifecycle: not_started → in_progress → automation_complete (or blocked).
-
-Human lifecycle is separate: automation_complete → ready_for_human_review → human_approved → published. These transitions are not controlled by taskctl. Human review, PR approval/merge, and publication remain explicit human actions.
-
-## Safe parallelism and permissions
-
-- Parallelize independent research/review tasks with unique output paths.
-- Parent owns shared files, task-state transitions, and final integration.
-- Never let multiple agents write the same lesson or task state.
-- The task JSON is not a distributed lock; use GitHub Issue ownership for one active writer.
-- Codex subagents inherit parent session permissions; role instructions do not enforce read-only security.
-- Claude agent frontmatter is configuration, not a substitute for host permissions.
-- Stop after two unsuccessful revision cycles or when evidence is insufficient.
-
-## Provider usage
-
-Codex: use .codex/agents/ and shared skills under .agents/skills/. Configure actual permissions at the parent/host session layer.
-
-Claude Code: project subagents live in .claude/agents/*.md with YAML frontmatter. Each profile explicitly points to the canonical skill in .agents/skills/. The profile is an adapter, not a duplicate skill manual.
-
-Other providers / ChatGPT Work: do not assume they load Codex or Claude-specific profiles. Give role instructions explicitly and ask the agent to read the same specification, state, worklog, and shared skill. Run repository scripts where possible; do not claim validation otherwise.
-
-## Limits
-
-This is a repository-based checkpoint system, not a remote job runner or distributed lock service. It supports provider handoff through committed files; separate clones must still coordinate writer ownership through GitHub.
-
-## Compact default assignments
-
-Use module-pipeline as the sole orchestration procedure. At course level, one independent reviewer executes coverage plus plan pedagogy. At lesson level, technical-reviewer executes technical-review plus provenance-review; curriculum-coverage-reviewer executes coverage plus pedagogical-review/language. These are two independent reviewer runs, both distinct from the author. Existing specialist profiles remain available for escalation; no provider-specific duplicate workflow is introduced. Review dimensions remain separate in findings, while reports and handoffs are combined. Do not spawn every available profile by default.
-
-## Model routing
-
-Use Sol for workflow/architecture design and PR review, and Terra for bounded implementation with a clear specification. The `workflow_architect`, `pr_reviewer` and `spec_implementer` Codex profiles express these defaults; the parent should select a role appropriate to the task. Escalate missing requirements and architectural decisions to Sol. Named roles and host/session overrides can supersede project defaults, so verify observed runtime metadata. Switching models does not by itself establish token savings. Claude profiles retain `model: inherit`.
+The official curriculum version remains SDA-v1 under `curriculum/revision-1/`. Use it as the default for authoring unless the user selects a newer approved version.

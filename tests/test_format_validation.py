@@ -1,18 +1,11 @@
-"""Format-only tests; pinned milestone regression is run by GitHub CI."""
+"""Format-only regression tests for current authoring contracts."""
 from __future__ import annotations
 
-import os
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.validate_format import PARSER, split_front_matter, validate_document
-
-MS01 = "e823c8d72e59f1691ce7bfc65f37c209066eca99"
-MS02 = "ec753d7bcfd69ad68e5fff260aeb088059e42540"
-ROOT = Path(__file__).resolve().parents[1]
-
+from scripts.validate_format import PARSER, discover, validate_document
 
 def draft(body: str, **overrides: str) -> str:
     fields = {
@@ -73,7 +66,8 @@ class FormatValidationTests(unittest.TestCase):
         valid = "```mermaid\nflowchart LR\nA --> B\n```"
         self.assertEqual(self.check(valid), [])
         self.assertTrue(any("empty Mermaid" in x for x in self.check("```mermaid\n\n```")))
-        self.assertTrue(any("unrecognized Mermaid" in x for x in self.check("```mermaid\nnot-a-diagram\n```")))
+        # A future website renderer owns full Mermaid syntax checking.
+        self.assertEqual(self.check(f'{chr(96)*3}mermaid\nnewDiagramType\n{chr(96)*3}'), [])
         self.assertTrue(any("runtime directives" in x for x in self.check("```mermaid\nflowchart LR\n%%{init: {securityLevel: 'loose'}}%%\n```")))
 
     def test_missing_and_duplicate_yaml_fields_rejected(self):
@@ -107,56 +101,65 @@ Explanation: Because.
 """
         self.assertEqual(validate_document(assessment, self.root/'modules/m04/assessments/M04-L01.md', root=self.root), [])
 
+    def test_canonical_discovery_rejects_revision_folders_and_manifest(self):
+        module = self.root / "modules/m04"
+        lesson = module / "lessons/M04-L01.md"
+        companion = module / "assessments/M04-L01.md"
+        for path in (lesson, companion):
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("fixture\n", encoding="utf-8")
+        self.assertEqual(discover(self.root), [companion, lesson])
+        nested = module / "lessons/revision-1/M04-L01.md"
+        nested.parent.mkdir()
+        nested.write_text("old revision\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "nested lesson/assessment revisions"):
+            discover(self.root)
+        nested.unlink()
+        (module / "content-manifest.json").write_text("{}", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "content-manifest.json is obsolete"):
+            discover(self.root)
+
+
+    def test_free_form_rich_lesson_does_not_need_section_conversion(self):
+        body = ('## Why the cache fails\n\nA causal explanation.\n\n'
+                '| Option | Failure mode |\n| --- | --- |\n| A | Eviction |\n\n'
+                '```mermaid\nflowchart LR\nA --> B\n```\n\n'
+                '## Context-specific heading\n\nThe important trade-off.\n')
+        source = draft(body)
+        self.assertEqual(validate_document(source, self.source, root=self.root), [])
+        self.assertIn(body, source)
+
+    def test_unsafe_literal_link_in_fenced_example_is_not_a_real_link(self):
+        fence = chr(96) * 3
+        self.assertEqual(self.check(f'{fence}md\n[example](javascript:alert(1))\n{fence}'), [])
+
+    def test_metadata_types_and_iso_date_are_enforced(self):
+        self.assertTrue(any('level must be a nonempty string' in x
+                            for x in self.check('Body', level='[senior]')))
+        self.assertTrue(any('ISO date' in x
+                            for x in self.check('Body', source_review_date='false')))
+        self.assertEqual(self.check('Body', source_review_date='2026-11-12'), [])
+        assessment = """---
+id: 42
+status: draft
+lesson: modules/m04/lessons/M04-L01.md
+outcome_map:
+  M04-L01-LO1:
+    taught_in: Mechanism walkthrough
+    items: [EX-1, Q1]
+---
+# Assessment
+"""
+        self.assertTrue(any('id must be a nonempty string' in x for x in
+                            validate_document(assessment, self.root/'modules/m04/assessments/M04-L01.md', root=self.root)))
+
+    def test_technical_math_does_not_get_rejected_for_missing_web_renderer(self):
+        body = '$\nP(A | B) = P(A, B) / P(B)\n$\n'
+        self.assertEqual(self.check(body), [])
+
     def test_legacy_integrated_package(self):
         text = "---\nid: M04-EX1\nstatus: draft\n---\n# Brief\n## Exercise\nExplain an architecture.\n"
         self.assertEqual(validate_document(text, self.root/'modules/m04/integrated/brief.md', root=self.root), [])
-
-
-@unittest.skipUnless(os.getenv("SDA_TEST_PINNED_CONTENT") == "1", "pinned milestone commits are fetched by CI")
-class PinnedMilestoneRegression(unittest.TestCase):
-    """Read Git objects directly, never copy or edit hash-bound lesson files."""
-
-    def test_all_13_review_selected_lessons_and_assessments(self):
-        for commit, module, lesson_count, revised in (
-            (MS01, "m00", 2, {}),
-            (MS01, "m01", 4, {"M01-L02"}),
-            (MS02, "m02", 4, {"M02-L02"}),
-            (MS02, "m03", 3, {}),
-        ):
-            for number in range(1, lesson_count + 1):
-                lesson_id = f"{module.upper()}-L{number:02d}"
-                suffix = f"revision-1/{lesson_id}.md" if lesson_id in revised else f"{lesson_id}.md"
-                teaching = f"modules/{module}/lessons/{suffix}"
-                assessment = f"modules/{module}/assessments/{suffix}"
-                for kind, path in (("lesson", teaching), ("assessment", assessment)):
-                    with self.subTest(commit=commit, path=path):
-                        proc = subprocess.run(
-                            ["git", "show", f"{commit}:{path}"], cwd=ROOT,
-                            check=True, capture_output=True, text=True, encoding="utf-8",
-                        )
-                        problems = validate_document(proc.stdout, ROOT / path, kind=kind, check_local_links=False)
-                        self.assertEqual(problems, [], "\n".join(problems))
-                        metadata, _, _ = split_front_matter(proc.stdout)
-                        if kind == "lesson":
-                            self.assertEqual(metadata["id"], lesson_id)
-                            self.assertEqual(metadata["assessment"], assessment)
-                        else:
-                            self.assertEqual(metadata["lesson"], teaching)
-
-    def test_four_module_integrated_packages(self):
-        for commit, module, summary in (
-            (MS01, "m00", "decision-summary.md"),
-            (MS01, "m01", "decision-summary-r1.md"),
-            (MS02, "m02", "decision-summary.md"),
-            (MS02, "m03", "decision-summary-r1.md"),
-        ):
-            for name in ("brief.md", "solution-rubric.md", summary):
-                path = f"modules/{module}/integrated/{name}"
-                with self.subTest(path=path):
-                    proc = subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT,
-                                          check=True, capture_output=True, text=True, encoding="utf-8")
-                    problems = validate_document(proc.stdout, ROOT / path, kind="integrated", check_local_links=False)
-                    self.assertEqual(problems, [], "\n".join(problems))
 
 
 if __name__ == "__main__":

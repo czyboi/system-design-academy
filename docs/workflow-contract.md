@@ -1,96 +1,95 @@
-# Workflow CLI contract
+# Workflow contract — manual reviews and checks
 
-## Compact defaults and reusable course gate
+## Default task graphs
 
-The procedure is defined only in the shared [module-pipeline skill](../.agents/skills/module-pipeline/SKILL.md). Templates now contain three course-planning steps, six lesson-package steps or two tooling steps. The six-step lesson path is research, plan-gate, author, technical-review, teaching-review, validation. Existing historical task graphs are not changed automatically.
+The [shared module-pipeline skill](../.agents/skills/module-pipeline/SKILL.md) is the orchestration procedure. New templates are minimal:
 
-The technical review also executes provenance-review; the teaching review also executes pedagogical-review and language checks. Reports distinguish each assigned dimension, and a material failure in either makes the combined verdict negative. Reviewers are independent from the author and each other. Both lesson reviews bind the exact teaching file, assessment, evidence, course plan, inventory and matrix. A clear first pass ends at the same paths: no automatic revision, final-copy or recheck stage.
+- **Course planning:** one `plan` step producing a new versioned plan, source inventory and coverage matrix.
+- **Lesson package:** `research` → `author`. Author uses the declared authoring, assessment, governance and compact format instructions to produce a source-grounded draft lesson and separate companion assessment. No additional agent stage or automatic review is added.
+- **Tooling:** one `implementation` step.
 
-The course review binds plan, inventory and matrix, independently checks full-source enumeration and plan pedagogy, and includes `checks: {"coverage": "pass", "pedagogy": "pass"}` only when both pass. A legacy coverage-only report cannot be imported as this acceptance gate.
+**The authoring path ends at draft completion.** Python validation, independent AI review, rework and full course audits are **not automatic**. Invoke each separately only upon explicit user instruction. Existing historical graphs remain as recorded; their completed work is not reopened by this policy change.
 
-Before starting a lesson's plan-gate, verify the declared shared inputs with:
+## Explicit lifecycle CLI
 
-```text
-python scripts/check_course_coverage.py --inventory curriculum/source-inventory.json --matrix curriculum/coverage.csv --plan CURRICULUM_MASTER.md --stage plan --review curriculum/review.json
+```bash
+python scripts/taskctl.py init TASK-ID --module MODULE --goal "..." --owner "@owner" --template .academy/state/task.template.json
+python scripts/taskctl.py status TASK-ID
+python scripts/taskctl.py start TASK-ID STEP-ID --agent AGENT
+python scripts/taskctl.py checkpoint TASK-ID STEP-ID --note "..." --next-action "..."
+python scripts/taskctl.py start TASK-ID STEP-ID --agent AGENT --resume
+python scripts/taskctl.py complete TASK-ID STEP-ID --agent AGENT
+python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "User requested a redo"
+python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "Explicit full redo" --cascade
+python scripts/taskctl.py review-status TASK-ID --scope technical --state needs_review --reason "Substantive technical change"
+python scripts/taskctl.py review-status TASK-ID --scope pedagogy --state in_review --reason "Requested teaching review"
+# After committing AND pushing artifacts, spec, state and worklog:
+python scripts/taskctl.py handoff TASK-ID
+# Only for a handoff within the same checkout:
+python scripts/taskctl.py handoff TASK-ID --local-only
+python scripts/taskctl.py hold TASK-ID --state paused --reason "User paused"
+python scripts/taskctl.py resume-task TASK-ID --reason "User resumed"
 ```
 
-These are future canonical paths selected at intake, not a claim that accepted artifacts already exist. Failure blocks authoring. On success, verify the selected lesson ID exists in the plan and matches the task scope, copy only the unchanged accepted verdict JSON to the task plan-gate output, and record its source path/hash and reuse reason in the worklog. Commit that output, complete plan-gate, then commit state/worklog. No independent reviewer rerun is required for an unchanged accepted course gate. This does not reuse a lesson review or waive actual-teaching review.
+`status` is read-only. `reconcile` persists aggregate status computed only from explicit step/hold fields. No automatic STALE, checksum, fingerprint, dirty-input block, unchanged-output reuse flag or dependency hash cascade exists. The CLI requires declared inputs when starting and checks declared outputs, dependencies and any existing review gate when completing; a completed step may later lose outputs without changing status (read-only `WARNING` in `status`). `handoff` is an explicit, read-only Git tracking/cleanliness check for completed output files, spec, task state and worklog. For cross-environment handoff it also checks any **existing partial output from a running step** (not-yet-created outputs remain optional), then verifies local HEAD equals the upstream branch currently advertised by the remote; configure tracking with `git push -u origin HEAD` and push future commits before handoff. Use `--local-only` only when agents share a checkout. Remote access happens exclusively during this explicit command; no checksum or automatic state change occurs.
 
-The checker is read-only; it neither creates content nor produces an approval. Do not author missing curriculum during a lesson or workflow task. Resolve a separately authorized course task first. The current historical revision-3 candidate still has a pedagogy blocker and is not an accepted gate.
+For a backlog lesson, `init ... --template .academy/state/task.template.json` resolves `EVIDENCE_PATH`, `TEACHING_PATH` and `ASSESSMENT_PATH` from the Story identified by `proposed_task_id` and validates its module. Task ID (`SD-M00-L01`) is not the filename Lesson ID (`M00-L01`). A missing/ambiguous Story fails instead of guessing a path. Initialization validates both task state and its spec before writing files, so invalid templates do not leave a stranded spec.
 
-## Full Primer coverage data contract
+`complete --usage-file PATH` may record observed input/output/cached/reasoning tokens and elapsed time. The tool does not infer usage or cost. New files never record hashes; legacy task hash fields and prior reports remain historical data.
 
-The strict checker complements the older, looser `validate_content.py --scope curriculum` mapping check. Full-Primer claims must use the strict checker; a loose check cannot substitute for it.
+## Optional independent reviews
 
-Inventory JSON has `repository` equal to `https://github.com/donnemartin/system-design-primer`, a full 40-character `revision` SHA, and nonempty `entries`. Each entry has a stable unique `id`, `kind` (`topic` or `resource`), and `locator` (repository path plus heading/anchor at that revision). Resource entries also need a rationale. Knowledge entries include meaningful leaf topics, example bodies, appendices, substantive additional prompts, OOD and under-development concepts. A contribution placeholder without teaching material can be a resource with an explicit reason. Reviewers independently check the actual pinned source; an author cannot hide a missing topic by omitting its inventory row or calling it a resource.
+When requested, review the specified artifact and dimensions only. Available reviewers:
 
-The CSV matrix has exactly one row per knowledge-topic ID and columns `topic_id,lesson,outline,disposition`. Only `mapped` and `merged` dispositions satisfy full coverage. The plan uses a heading containing each lesson ID and an outline beneath that heading. The checker verifies an outline belongs to its own lesson, rather than finding the same text anywhere in the file. Resources remain in the inventory and do not inflate the covered-topic count. Optional tracks still map every topic; deferred/outside-scope knowledge blocks completeness.
+- **Technical + provenance:** correctness, assumptions, primary-source support, citation/asset rights.
+- **Coverage + pedagogy:** actual explanatory teaching, source mapping, outcomes and assessment quality.
+- **Course plan:** full Primer enumeration plus plan pedagogy.
+- **Targeted:** changed section and affected dependencies, when the user explicitly chooses it.
 
-For actual course coverage, the same matrix adds `lesson_path,section,lesson_sha256` columns. Every topic needs a matching draft teaching file, an exact explanatory heading, and its current SHA-256. The checker rejects missing artifacts, stale hashes, empty headings and assessment/reference-only locations. It cannot decide whether prose really explains a mechanism: independent teaching review is mandatory.
-
-```text
-python scripts/check_course_coverage.py --inventory curriculum/source-inventory.json --matrix curriculum/coverage.csv --plan CURRICULUM_MASTER.md --stage taught
-```
-
-A final independent course coverage/pedagogy verdict must bind the inventory, matrix, plan and all teaching files referenced by the matrix. Run the same command with `--review PATH` to verify that accepted verdict. All lesson packages additionally need current accepted technical/provenance and teaching reviews. Course completion is still not human approval or publication.
-
-Updating a taught-evidence matrix changes its hash, so preserve the earlier accepted plan matrix for in-flight tasks and create a new versioned matrix/verdict when adding teaching evidence. Select exact versioned paths at intake. Never silently rewrite shared inputs of a running task or relabel a plan-stage verdict as a taught-stage verdict.
-
-## Conditional revisions
-
-On a negative lesson review, declare a revision step with unique new pair paths, `revision_cycle: 1`, and completed review dependencies without `requires_reviews`. Add two combined rechecks bound to the revised pair plus its evidence and course inputs; repoint validation to those accepted gates. Preserve the original pair and verdicts. A necessary second revision uses new paths and cycle 2. No third automated revision is allowed without separate user-authorized work. Rechecks inspect changed content and affected dependencies and verify all current artifact hashes. Passing content is not copied merely to produce a file named final.
-
-## Review results
-
-A review step declares `review.artifact_paths` (also explicit input_paths) and `review.verdict_path` (one of its owned outputs). It produces an explanatory Markdown report plus JSON:
+A negative review should provide actionable findings. A minimal JSON verdict may be:
 
 ```json
 {
   "verdict": "revise",
-  "artifact_hashes": {"modules/example/lesson.md": "actual SHA-256 of the file bytes"},
   "findings": [{"id": "T-1", "severity": "major", "status": "open"}]
 }
 ```
 
-Verdicts: block, revise, ready-for-human-review. Severities: blocker, major, minor, note. Finding status: open or resolved. Every artifact must have its exact current hash; an accepted verdict cannot contain open blocker/major findings. The JSON is structural evidence supplied by the reviewer, not proof of technical truth or reviewer identity.
+Allowed verdicts: `block`, `revise`, `ready-for-human-review`. Severities: `blocker`, `major`, `minor`, `note`. Finding status: `open` or `resolved`. A clear verdict must have no open blocker/major finding. New verdicts **do not require artifact_hashes**; old verdict metadata may remain untouched. Review does not automatically invoke Python validation. Use `review-status --scope technical|pedagogy|coverage|provenance|REVIEW-STEP-ID` to record only the requested dimension, not to approve publication. `general` does not certify other scopes. A named review gate in a new task passes only with a completed review step, explicit matching scoped `reviewed` decision and a clear verdict; `in_review` and `needs_review` block. Gate conditions are checked again at `complete` for any running step with `requires_reviews`. Historical tasks with no new review fields preserve their previous completed-review gate behavior. If content changes materially later, flag `needs_review` explicitly.
 
-`requires_reviews` lists direct review dependencies whose verdicts must be clear. Ordinary `depends_on` requires completed, fresh execution only, allowing a revision to consume negative findings. Changing review contracts invalidates their fingerprints. Historical tasks without these additive fields retain their previous semantics; migrate an active legacy graph before relying on enforced review gates.
+Historical optional step graphs may include `requires_reviews`; new decisions require a scoped review state in addition to the verdict and completed review step. `invalidate` on a reviewed step explicitly marks its scope `needs_review`. No checksums are compared. New default drafts do not depend on review steps.
 
-Steps marked revision_cycle count toward a task-wide maximum of two automated revision starts (resuming an interrupted run does not consume another start). The engine refuses a third start; the parent records an awaiting-human hold. This limit applies to tagged revisions, so intake must classify them accurately. Further user-authorized revision work uses a new scoped task.
+## On-demand Python validation
 
-## Read-only inspection and execution controls
-
-```text
-python scripts/taskctl.py status TASK-ID
-python scripts/taskctl.py reconcile TASK-ID
-python scripts/taskctl.py hold TASK-ID --state paused --reason "User asked to stop"
-python scripts/taskctl.py hold TASK-ID --state awaiting-human --reason "Two revisions still leave a blocker"
-python scripts/taskctl.py resume-task TASK-ID --reason "User explicitly authorized resumption"
-```
-
-Status never writes. Reconcile, hold and resume-task mutate state/worklog and must be committed. Holds block both start (including --resume) and complete. They do not cancel a running external process: the parent must stop its worker as well. The command records a supplied decision; it cannot authenticate human authorization.
-
-## Runtime metadata
-
-Start accepts `--model` and `--reasoning-effort` for observed runtime values. Omit unavailable values. Complete optionally accepts `--usage-file PATH`, a repository-relative JSON object with observed nonnegative counters: input_tokens, output_tokens, cached_input_tokens, reasoning_tokens and elapsed_seconds. The worklog stores the supplied counters and runtime model beside the run ID. Counts may have provider-specific inclusion rules; do not blindly sum reasoning with output tokens or infer subscription cost from API rates. This CLI does not collect runtime usage automatically.
-
-## Content validation
-
-```text
-python scripts/validate_content.py
+```bash
+# Structural mapping, YAML metadata and Markdown safety in one command:
+python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH
+python scripts/validate_content.py --scope repo
+# Independent checks remain available on demand:
+python scripts/validate_content.py --scope curriculum --plan PATH --matrix PATH
 python scripts/validate_content.py --scope workflow
-python scripts/validate_content.py --scope curriculum --plan path/to/plan.md --matrix path/to/coverage.csv
-python scripts/validate_content.py --scope lesson --lesson path/to/lesson.md --assessment path/to/assessment.md
+python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage plan
+python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage taught
+python scripts/taskctl.py validate
+python -m unittest discover -s tests -v
 ```
 
-Default repo scope checks current `modules/*/lessons/*.md` packages and explicit `modules/*/content-manifest.json` manifests. A content manifest has draft status and a packages array of lesson/assessment repository-relative paths, including case studies if applicable. An empty authoring repository is valid; a missing explicitly selected/manifested artifact fails. The old pilot-manifest.json is a historical inventory after the user-directed content reset, not a declaration that those files currently exist. Historical runs and immutable input snapshots are excluded from global link checks; selected artifacts are still checked explicitly.
+Run only the specifically selected checks. The combined validator reuses the Markdown format module and never transforms lesson content; heading titles, the number of questions, and the presence of answer/rubric keywords are not format constraints. Those requirements remain with Author's self-check and any requested substantive review. Current Markdown checks are parser/safety smoke tests only; real browser rendering must be tested with the actual website renderer when it exists. New lessons use exactly one canonical `modules/mXX/lessons/MXX-LYY.md` and `modules/mXX/assessments/MXX-LYY.md` pair per Lesson ID, with Git as the revision history; source evidence remains under `modules/mXX/evidence/`. Repository-wide checks reject nested lesson revisions, `content-manifest.json` and orphan assessments. The approved `curriculum/revision-1/` directory is syllabus history and remains unchanged. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
 
-Lesson YAML includes prerequisites, outcome IDs and its assessment path. Companion YAML includes status: draft, lesson path, and outcome_map entries with taught_in (exact lesson heading) and items (EX-1, Q1, etc.). Each of 5–8 Q-numbered checks has Answer: and Explanation:. Structural mapping cannot establish teaching depth or assessment quality.
+GitHub Actions `content-validation.yml` has **workflow_dispatch only**; select **Content validation → Run workflow** to run those checks manually. Python regression tests run separately on pull requests and pushes to `main`, and can also be started manually.
 
-Curriculum matrices are CSV with topic, locator, disposition, lesson, outline and rationale columns. Mapped/merged rows identify existing lesson/outline text. Optional/deferred/outside-scope rows require a rationale. Independent coverage review establishes completeness against the pinned source.
+## Full Primer coverage data contract
 
-## Model configuration
+The inventory has `repository: https://github.com/donnemartin/system-design-primer`, a full 40-character Git **commit ID** in `revision`, and stable unique topic/resource entries (`id`, `kind`, `locator`). A resource entry needs a rationale. Include meaningful README body leaves, solution bodies, appendix and OOD concepts; linked third-party catalogs remain resources rather than recursively imported teaching text. The pinned commit ID identifies the source revision; it is not a checksum used to transition task state.
 
-Project parent: GPT-6.1 Sol/high. Default bounded subagent: GPT-6.1 Terra/medium. Workflow/architecture designer and PR reviewer: Sol/high. Spec implementer and lesson author: Terra/medium. Technical reviewer: Sol/high. Pedagogy: Terra/medium. Provenance: Sol/medium. Curriculum designer, coverage reviewer and source researcher: Sol/high. Four concurrent subagents, excluding the parent. Host-provided or explicitly selected role settings may override repository profiles; inspect actual runtime metadata rather than assuming the configured model was used. Claude profiles keep model: inherit because OpenAI model IDs do not configure Claude.
+The course matrix has a unique row per knowledge topic with `topic_id,lesson,outline,disposition`. Full coverage allows only `mapped`/`merged`; every topic including optional tracks needs an exact lesson and real outline. The checker verifies each outline belongs to that lesson's section.
 
-Configuration was checked against [official subagent documentation](https://learn.chatgpt.com/docs/agent-configuration/subagents) and the [model catalog](https://developers.openai.com/api/docs/models) on 2026-11-10. Availability is host/account-dependent. These are workload-based starting choices, not benchmark results; new sessions may be needed to reload profiles.
+For taught-stage structural checks, add `lesson_path,section` per row. The referenced draft teaching lesson must exist, match its ID and contain a real explanatory section. Questions, assessment text, titles and citations alone are not teaching. `lesson_sha256` is not required or checked; legacy columns are ignored. Mapping/completeness and actual depth remain separate questions that a human or explicitly requested independent reviewer must assess.
+
+The user-approved official SDA-v1 baseline is at [curriculum/revision-1/](../curriculum/README.md). Do not overwrite it with course-planning drafts. Preserve old approved-baseline files as historical decision evidence; no new checksum-based approval gate is introduced.
+
+## Release boundary and model routing
+
+No content is published or merged solely because a task reached `automation_complete`, code validation passed or a reviewer said `ready-for-human-review`. Approval and publication require an explicit human action.
+
+Model routing defaults remain in Codex/Claude profile files; the parent may delegate bounded roles and record observed runtime model/usage when available. Reviewer count is driven by the user's request, never automatic.

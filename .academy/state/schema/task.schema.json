@@ -166,6 +166,49 @@
     "control_reason": {
       "type": "string",
       "minLength": 1
+    },
+    "review_status": {
+      "enum": [
+        "not_reviewed",
+        "in_review",
+        "reviewed",
+        "needs_review"
+      ]
+    },
+    "review_reason": {
+      "type": "string"
+    },
+    "review_statuses": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status",
+          "reason"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "not_reviewed",
+              "in_review",
+              "reviewed",
+              "needs_review"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
     }
   },
   "additionalProperties": true

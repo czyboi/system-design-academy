@@ -7,9 +7,9 @@ description: Write concise, original System Design teaching lessons for experien
 
 ## Inputs
 
-Require the canonical task specification, a coverage-reviewed curriculum map, lesson template, content guidelines, attribution policy, source-research evidence, and exact declared lesson output path. For Academy work, the current default learner is a middle/senior engineer studying system design, and learner-facing prose is English-only. Follow newer explicit user direction recorded in the task specification.
+Require the canonical task specification, selected approved curriculum, source research evidence, the declared `lesson-authoring`, `assessment-design` and `content-format` skills, `GOVERNANCE.md`, and exact canonical output paths. Module-specific templates and checklists may be consulted as examples, but are not mandatory new workflow inputs or substitutes for the current curriculum. The current approved baseline is `curriculum/revision-1/`. For Academy work, the current default learner is a middle/senior engineer studying system design, and learner-facing prose is English-only. Follow newer explicit user direction recorded in the task specification.
 
-Do not start if the plan-stage coverage review blocks authoring, the lesson/assessment output paths are not separate, or a required source/review artifact is missing. Report the missing gate to the parent.
+Do not start when the user has explicitly paused work, required source evidence is absent, or the lesson/assessment output paths are not separate. Review and validation are not drafting prerequisites unless the user specifically makes them part of this task.
 
 ## Procedure
 
@@ -21,7 +21,8 @@ Do not start if the plan-stage coverage review blocks authoring, the lesson/asse
 6. Include a worked example that demonstrates the design reasoning. Keep the lesson file instructional: do not embed a quiz, knowledge-check bank, answer key, or assessment rubric.
 7. Put the practical exercise, 5–8 knowledge checks, answers/explanations, rubric, and outcome-to-item map in the separately declared companion assessment artifact. Coordinate with assessment-design; do not use questions as a substitute for teaching.
 8. Cite exact sources next to important or version-sensitive claims. Mark unresolved claims instead of guessing.
-9. Add required front matter, attribution/adaptation notes, and `status: draft`.
+9. Before handoff, compare the finished explanation against every assigned Story topic, approved outcome and acceptance criterion. Confirm that each outcome is genuinely taught by worked reasoning, not merely named in a heading. Check numerical assumptions, trace mechanisms and document unresolved evidence. This is the author's responsibility, not an additional AI reviewer or validation stage.
+10. Use `content-format` and the single data contract for front matter and Markdown; preserve attribution/adaptation notes. Choose headings to teach effectively, rather than satisfying an arbitrary section-name or link-count quota.
 
 ## Prohibited
 
@@ -33,14 +34,12 @@ Do not start if the plan-stage coverage review blocks authoring, the lesson/asse
 
 ## Output
 
-Write only the assigned teaching lesson path. Write assessment content only when separately assigned that companion path. Report evidence gaps and unresolved claims separately.
+Write only the assigned canonical teaching lesson path. Write assessment content only at the separately declared canonical companion path; do not create `revision-N` copies or a content manifest. Report evidence gaps and unresolved claims separately.
 
 ## Substantive revisions and feedback
 
-- For an existing lesson, map user and reviewer feedback to explicit task acceptance criteria and record each item as applied, deferred, or task-specific, with a reason.
-- A substantive revision changes explanations, examples, technical claims, assessments, or learning sequence. Declare separate independent review outputs for pedagogy, source-topic coverage, and relevant technical/provenance/language areas after authoring; the author cannot count self-review as independent.
-- If a required reviewer is unavailable, record the gap and leave that review gate unresolved. Do not describe the revised lesson as independently reviewed.
+For edits to an existing lesson, follow authorized scope and record material user feedback. Flag changes to previously reviewed technical claims, assessments or explanations explicitly with `taskctl review-status TASK-ID --scope technical --state needs_review --reason "..."` (and/or the explicitly affected review scope). Cosmetic changes need not reset review status.
 
-## Compact package handoff
+## Draft handoff
 
-Follow module-pipeline for the default two combined independent reviews: technical+provenance and actual coverage+pedagogy/language. Each dimension remains required, with distinct findings in its combined report. Write directly to the declared lesson/assessment paths; a passing candidate is handed off at those same paths. Do not create a second final copy or mandatory revision. Actual failed reviews require unique revised paths and fresh reviews under the two-cycle limit. This combined assignment satisfies the separate review-dimension requirement above without four separate reports.
+Write the lesson/assessment at their declared paths, record authoring completion and stop. **Do not launch independent AI reviewers, Python validation, or a revision loop automatically.** The user can later request technical/provenance review, actual coverage/pedagogy review, targeted corrections or validation independently. No duplicate final-copy step is needed, and draft completion is not publish approval.

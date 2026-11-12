@@ -13,7 +13,7 @@ Build an auditable evidence pack, not a generic essay.
 4. Open exact source pages and sections. Search snippets and model memory are discovery aids only.
 5. Record publisher, exact URL/anchor, product/version, date checked, claim supported, limitations, and confidence.
 6. Separate general principles from product-specific behavior. Never transfer PostgreSQL semantics to MySQL or MongoDB.
-7. Identify disagreements, missing evidence, stale pages, and claims needing experiments.
+7. Identify disagreements, missing evidence, stale pages, and claims needing experiments. Make the boundaries explicit so Author does not generalize a product-specific guarantee.
 8. Recommend Deep Research only for contested topics or synthesis across many independent sources; use normal search/direct docs for bounded questions.
 
 ## Output
