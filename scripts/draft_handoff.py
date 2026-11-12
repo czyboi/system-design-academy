@@ -6,6 +6,7 @@ No AI calls, content edits, full test suite, auto-fixes, PRs or merges.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
@@ -102,6 +103,28 @@ def feature_branch(task_id: str) -> str:
     raise HandoffError("Could not allocate an unused feature branch")
 
 
+def required_module_paths(module: str) -> set[str]:
+    """Identify the complete module lesson and integration packages from the approved backlog."""
+    backlog = json.loads((ROOT / "delivery/backlog.json").read_text(encoding="utf-8"))
+    stories = [
+        item for item in backlog.get("items", [])
+        if item.get("type") == "Story"
+        and item.get("parent") == f"SDA-{module.upper()}"
+        and item.get("package_kind") in {"lesson", "module-integration"}
+    ]
+    if not stories or not any(s.get("package_kind") == "module-integration" for s in stories):
+        raise HandoffError(f"{module}: no complete lesson/integration Story set in backlog")
+    required = set()
+    for story in stories:
+        outputs = story.get("outputs", {})
+        for kind in ("teaching", "assessment"):
+            path = outputs.get(kind)
+            if not isinstance(path, str) or not path:
+                raise HandoffError(f"{story.get('key')}: missing {kind} output in backlog")
+            required.add(path)
+    return required
+
+
 def review_report_paths(values: list[str], task_files: set[str]) -> set[str]:
     """Permit only complete, paired reports for modules present in this draft handoff."""
     if not values:
@@ -123,6 +146,9 @@ def review_report_paths(values: list[str], task_files: set[str]) -> set[str]:
     for module, present in roles.items():
         if present != {"technical", "pedagogy"}:
             raise HandoffError(f"{module}: both technical and pedagogy reports must be supplied")
+        missing = required_module_paths(module) - task_files
+        if missing:
+            raise HandoffError(f"{module}: module review cannot be handed off before every lesson and integration draft is complete: {sorted(missing)}")
     return set(values)
 
 
