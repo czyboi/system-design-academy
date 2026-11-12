@@ -27,8 +27,8 @@ class LearningMemoryTests(unittest.TestCase):
         parent = review_cycle.state_path(module).parent
         parent.mkdir(parents=True, exist_ok=True)
         (parent / "technical.md").write_text(
-            "| T-1 | resolved | verified using primary evidence |\n"
-            "| T-2 | resolved | verified using primary evidence |\n", encoding="utf-8")
+            "| T-1 | resolved | verified using https://www.rfc-editor.org/rfc/rfc9110 |\n"
+            "| T-2 | resolved | verified using https://www.rfc-editor.org/rfc/rfc9110 |\n", encoding="utf-8")
         (parent / "pedagogy.md").write_text(
             "| P-1 | resolved | fixed ambiguous example |\n", encoding="utf-8")
         review_cycle.save(module, {
@@ -54,7 +54,7 @@ class LearningMemoryTests(unittest.TestCase):
         self.ready("m00", attempts=1)
         arguments = self.arguments()
         arguments["finding_id"] = "T-9"
-        with self.assertRaisesRegex(learning_memory.LearningError, "does not appear"):
+        with self.assertRaisesRegex(learning_memory.LearningError, "not explicitly marked resolved"):
             learning_memory.record(**arguments)
         self.assertEqual(learning_memory.read_memory()["entries"], [])
 
