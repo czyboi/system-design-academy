@@ -1,14 +1,14 @@
-# Workflow contract — scoped automatic draft handoff, optional reviews
+# Workflow contract — scoped draft handoff and automatic module-close reviews
 
 ## Default task graphs
 
 The [shared module-pipeline skill](../.agents/skills/module-pipeline/SKILL.md) is the orchestration procedure. New templates are minimal:
 
 - **Course planning:** one `plan` step producing a new versioned plan, source inventory and coverage matrix.
-- **Lesson package:** `research` → `author`, then a parent-owned `draft_handoff.py` invocation outside the task graph. Author uses the declared authoring, assessment, governance and compact format instructions. Handoff performs scoped deterministic data/format validation and feature-branch Git delivery, with no extra AI stage.
+- **Lesson package:** `research` → `author`, then a parent-owned `draft_handoff.py` invocation outside the task graph. Author uses the declared authoring, assessment, governance and compact format instructions. Handoff performs scoped deterministic data/format validation and feature-branch Git delivery. At completion of **all lesson Stories plus the module-integration Story**, the parent also invokes two independent module-quality reviewer agents and hands off their reports. There are no extra authoring task steps.
 - **Tooling:** one `implementation` step.
 
-**Task authoring ends at draft completion, but the parent continues to the automatic scoped draft handoff.** Independent AI review, rework, full regression tests, repository-wide validation and course audits remain **on demand**. The handoff never claims teaching quality or human approval. Historical task graphs are not reopened.
+**Task authoring ends at draft completion, but the parent continues to scoped draft handoff and, at module closure, independent automatic Technical and Pedagogy Review.** Additional targeted reviews, rework, full regression tests, repository-wide validation and course audits remain **on demand**. The handoff never claims teaching quality or human approval. Historical task graphs are not reopened.
 
 ## Explicit lifecycle CLI
 
@@ -39,7 +39,11 @@ For a backlog lesson, `init ... --template .academy/state/task.template.json` re
 
 `complete --usage-file PATH` may record observed input/output/cached/reasoning tokens and elapsed time. The tool does not infer usage or cost. New files never record hashes; legacy task hash fields and prior reports remain historical data.
 
-## Optional independent reviews
+## Automatic module-close reviews and optional targeted reviews
+
+The owner's standing default: once *every* lesson package and integration Story in a module is drafted and handed off, the parent invokes two separate Codex reviewer agents, using **unchanged** profiles: `technical_reviewer` (`gpt-6.1-sol`, high) checks technical correctness and primary-source provenance; `pedagogy_reviewer` (`gpt-6.1-terra`, medium) checks teaching quality and curriculum coverage. Both assess every lesson, companion assessment and integration package within that module. Their exact procedure, completion safeguards and report locations are in `.agents/skills/module-quality-review/SKILL.md`. This happens once **per completed module**, not after each lesson; partial module runs do not trigger automatic review. The two reports live at `modules/mXX/reviews/automatic/technical.md` and `pedagogy.md`. The parent records scoped `review-status` on reviewed tasks and pushes both reports with `draft_handoff.py --review-report` while retaining the data validator, without any new agent invocation from Python. Open major/blocker issues are recorded for manual remediation, **not** automatically fixed; no unlimited re-review loop, merging or publishing. If either reviewer cannot run, module QA is incomplete and the parent must say so.
+
+For additional or individually requested review:
 
 When requested, review the specified artifact and dimensions only. Available reviewers:
 
@@ -66,6 +70,8 @@ Historical optional step graphs may include `requires_reviews`; new decisions re
 ```bash
 # Parent executes once per completed draft batch (requires Git remote credentials):
 python scripts/draft_handoff.py SD-M00-L01 SD-M00-L02
+# After separate AI reviewers complete a whole module and parent records scoped statuses:
+python scripts/draft_handoff.py SD-M00-L01 SD-M00-L02 SD-M00-INTEGRATION --review-report modules/m00/reviews/automatic/technical.md --review-report modules/m00/reviews/automatic/pedagogy.md
 # Optional standalone checks:
 # Structural mapping, YAML metadata and Markdown safety in one command:
 python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH
@@ -97,4 +103,4 @@ The user-approved official SDA-v1 baseline is at [curriculum/revision-1/](../cur
 
 No content is published or merged solely because a task reached `automation_complete`, code validation passed or a reviewer said `ready-for-human-review`. Approval and publication require an explicit human action.
 
-Model routing defaults remain in Codex/Claude profile files; the parent may delegate bounded roles and record observed runtime model/usage when available. Reviewer count is driven by the user's request, never automatic.
+Model routing defaults remain in Codex/Claude profile files; the parent may delegate bounded roles and record observed runtime model/usage when available. The standing module-close rule always triggers the two existing reviewer roles; other reviewer invocations are by explicit user request. Neither QA nor task completion constitutes human approval.
