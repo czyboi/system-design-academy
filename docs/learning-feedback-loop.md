@@ -14,13 +14,13 @@ python scripts/learning_memory.py suggest --tags system-design,pedagogy --role p
 
 Only pass matched reminders, never the entire knowledge file. Zero matches is valid. These are prompts to check prior failure modes, **not technical authority, replacements for task specs, or permission to pad a lesson**. Current primary sources and the canonical task spec take precedence.
 
-## After module QA and targeted correction
+## After per-lesson QA or module synthesis and targeted correction
 
-Only when `scripts/review_cycle.py status mXX` is `ready`, at least one corrective revision occurred, both reviewers completed independent re-review, and the final applicable report identifies the original finding as `resolved` with an exact supporting source, extract a genuinely reusable prevention rule:
+Only when `scripts/review_cycle.py status MXX-LYY` (a lesson) or `status mXX` (module synthesis) is `ready`, at least one corrective revision occurred, both reviewers completed independent re-review, and the final applicable report identifies the original finding as `resolved` with an exact supporting source, extract a genuinely reusable prevention rule. Add `--lesson MXX-LYY` for lesson-level memory; omit it for module-level memory:
 
 ```bash
 python scripts/learning_memory.py record \
-  --module m00 --review-role technical --finding-id T-1 \
+  --module m00 --lesson M00-L01 --review-role technical --finding-id T-1 \
   --key distinguish-consistency-contracts \
   --tags consistency,distributed-systems \
   --problem "Conflating distinct meanings of consistency in design decisions" \
@@ -33,7 +33,7 @@ The evidence URL above is illustrative, **not** a source endorsement. Use the re
 
 The recorder rejects unfinished/blocked/revision-0 cycles, missing/resolution-less finding IDs, unsupported/unmentioned evidence, unsafe paths, conflicting rules for an existing key and duplicate occurrence IDs. Its checks are *provenance gates*, not automated factual verification; the independent reviewer and parent must inspect whether evidence truly supports the corrected claim. Skip incidental one-off wording edits and unresolved reviewer opinions.
 
-The file `.academy/knowledge/lessons-learned.json` is versioned with the module review reports, task memory and cycle state by `draft_handoff.py --review-report`. It keeps only a short problem, short prevention guidance, tags, agent roles and cited occurrences. No new research agent, similarity service, embeddings database or model fine-tuning is needed.
+The file `.academy/knowledge/lessons-learned.json` is versioned with the matching lesson or module review reports, task memory and cycle state by `draft_handoff.py --review-report`. It keeps only a short problem, short prevention guidance, tags, agent roles and cited occurrences. No new research agent, similarity service, embeddings database or model fine-tuning is needed.
 
 ## Promote repeated problems to Skill improvements
 
@@ -41,6 +41,6 @@ The file `.academy/knowledge/lessons-learned.json` is versioned with the module 
 python scripts/learning_memory.py promotions
 ```
 
-Only an **identical stable key verified in at least two distinct modules** qualifies. The parent inspects whether the proposed rule is broadly valid, source-supported, not already in the relevant Skill, and not contradictory. If safe and meaningful, it may create a **separate pull request** with a minimal proposed Skill change, links to the evidence and a clear reason. The user reviews and merges that PR explicitly. Do not silently change Skills, agent models or permissions; do not repeatedly open the same proposal. If evidence conflicts, record the conflict and ask for review instead.
+Only an **identical stable key verified in at least two distinct modules** qualifies; multiple corrected lessons in the same module count as one module. The parent inspects whether the proposed rule is broadly valid, source-supported, not already in the relevant Skill, and not contradictory. If safe and meaningful, it may create a **separate pull request** with a minimal proposed Skill change, links to the evidence and a clear reason. The user reviews and merges that PR explicitly. Do not silently change Skills, agent models or permissions; do not repeatedly open the same proposal. If evidence conflicts, record the conflict and ask for review instead.
 
 A finding can recur despite these precautions: topic-tag retrieval may miss it, source versions may differ, or a reviewer can be wrong. The loop helps reduce repeat errors, but does not guarantee quality or substitute for human publication approval.

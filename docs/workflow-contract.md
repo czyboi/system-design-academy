@@ -39,50 +39,41 @@ For a backlog lesson, `init ... --template .academy/state/task.template.json` re
 
 `complete --usage-file PATH` may record observed input/output/cached/reasoning tokens and elapsed time. The tool does not infer usage or cost. New files never record hashes; legacy task hash fields and prior reports remain historical data.
 
-## Automatic module-close reviews and optional targeted reviews
+## Automatic per-lesson QA, lightweight module synthesis and optional reviews
 
-The owner's standing default: once *every* lesson package and integration Story in a module is drafted and handed off, the parent invokes two separate Codex reviewer agents, using **unchanged** profiles: `technical_reviewer` (`gpt-6.1-sol`, high) checks technical correctness and primary-source provenance; `pedagogy_reviewer` (`gpt-6.1-terra`, medium) checks teaching quality and curriculum coverage. Both assess every lesson, companion assessment and integration package within that module. Their exact procedure, completion safeguards and report locations are in `.agents/skills/module-quality-review/SKILL.md`. This happens once **per completed module**, not after each lesson; partial module runs do not trigger automatic review. The two reports live at `modules/mXX/reviews/automatic/technical.md` and `pedagogy.md`. The parent records scoped `review-status` on reviewed tasks and pushes both reports with `draft_handoff.py --review-report` while retaining the data validator, without any new agent invocation from Python. Open actionable findings are automatically returned to the affected Author for a **targeted correction**, followed by independent re-review of changed content and dependencies. At most **two corrective author rounds per module** are allowed; `scripts/review_cycle.py` persists attempts, review verdict history and status in `modules/mXX/reviews/automatic/cycle.json`. Unverifiable critical claims or contradictions are blocked for human action; no unlimited loop, automatic merge or publishing. If either reviewer cannot run, module QA is incomplete and the parent must say so.
+The standing default is **two independent reviewer agents right after each individual lesson draft passes scoped validation/Git handoff**, without waiting for the module. Keep existing profiles: `technical_reviewer` (Sol High) audits correctness and primary-source provenance; `pedagogy_reviewer` (Terra Medium) audits teaching and lesson-level curriculum coverage. They each review the canonical lesson/evidence/assessment pair, write specific findings and terminal verdicts, and do not rewrite content. Both reports and the separate bounded lesson cycle live at `modules/mXX/reviews/automatic/lessons/MXX-LYY/{technical.md,pedagogy.md,cycle.json}`. Parent records explicit `taskctl review-status` by scope and persists the reports with `draft_handoff.py --review-report`.
 
-For additional or individually requested review:
-
-When requested, review the specified artifact and dimensions only. Available reviewers:
-
-- **Technical + provenance:** correctness, assumptions, primary-source support, citation/asset rights.
-- **Coverage + pedagogy:** actual explanatory teaching, source mapping, outcomes and assessment quality.
-- **Course plan:** full Primer enumeration plus plan pedagogy.
-- **Targeted:** changed section and affected dependencies, when the user explicitly chooses it.
-
-A negative review should provide actionable findings. A minimal JSON verdict may be:
-
-```json
-{
-  "verdict": "revise",
-  "findings": [{"id": "T-1", "severity": "major", "status": "open"}]
-}
+```bash
+# After writing and handing off the single lesson:
+python scripts/review_cycle.py record M01-L02 --technical revise --pedagogy ready-for-human-review
+# If correction is actionable, reserve at most two revisions on THIS lesson:
+python scripts/review_cycle.py begin-revision M01-L02
+# Author patches only cited content; parent runs scoped draft handoff then both
+# independent reviewers perform targeted re-review and record updated verdicts.
+python scripts/draft_handoff.py SD-M01-L02 --review-report modules/m01/reviews/automatic/lessons/M01-L02/technical.md --review-report modules/m01/reviews/automatic/lessons/M01-L02/pedagogy.md
 ```
 
-Allowed verdicts: `block`, `revise`, `ready-for-human-review`. Severities: `blocker`, `major`, `minor`, `note`. Finding status: `open` or `resolved`. A clear verdict must have no open blocker/major finding. New verdicts **do not require artifact_hashes**; old verdict metadata may remain untouched. Review does not automatically invoke Python validation. Use `review-status --scope technical|pedagogy|coverage|provenance|REVIEW-STEP-ID` to record only the requested dimension, not to approve publication. `general` does not certify other scopes. A named review gate in a new task passes only with a completed review step, explicit matching scoped `reviewed` decision and a clear verdict; `in_review` and `needs_review` block. Gate conditions are checked again at `complete` for any running step with `requires_reviews`. Historical tasks with no new review fields preserve their previous completed-review gate behavior. If content changes materially later, flag `needs_review` explicitly.
+A `ready` or `blocked` cycle does not automatically restart. An interrupted `revising` cycle resumes its existing attempt; no unlimited repair loops. A blocked lesson requires explicit human action and is not silently carried into downstream authoring. For multiple lessons, review and correct each before drafting dependent lessons so confirmed mistakes can be avoided early.
 
-Historical optional step graphs may include `requires_reviews`; new decisions require a scoped review state in addition to the verdict and completed review step. `invalidate` on a reviewed step explicitly marks its scope `needs_review`. No checksums are compared. New default drafts do not depend on review steps.
+**Module synthesis:** After **all** lesson QA cycles are ready and the integration Story draft is handed off, invoke the same two independent reviewers once more for integration and **only** cross-lesson consistency, prerequisite progression, module coverage, duplicated content and interactions between designs. Reuse accepted per-lesson reports; do **not** redo full technical source/assessment audits for unchanged lessons. Keep the existing module-scoped paths `modules/mXX/reviews/automatic/{technical.md,pedagogy.md,cycle.json}` and `python scripts/review_cycle.py record mXX ...`. At most two separate module-synthesis correction rounds. If module corrections materially change an accepted lesson, explicitly flag and target re-review that affected lesson before declaring module ready.
 
-## Verified cross-module learning (automatic after successful correction)
+Findings in either stage must locate a specific artifact/section, identify `blocker`, `major`, `minor` or `note`, record `open`/`resolved` status, and include the source/curriculum evidence that supports resolution. Allowed verdicts are `block`, `revise`, and `ready-for-human-review`; open blocker/major findings forbid a clear verdict. Drafts, reviewer verdicts and data validation are never human publication approval. Full instructions are in `.agents/skills/module-quality-review/SKILL.md`.
 
-The parent is responsible for extracting a *small number* of transferable lessons from resolved findings **only when** `scripts/review_cycle.py status mXX` reports `ready` with at least one author correction. The recorder `scripts/learning_memory.py record` checks resolved finding ID and exact evidence reference inside the final independent review report, refuses unresolved or blocked module cycles, and deduplicates identical causes across modules. `.academy/knowledge/lessons-learned.json` stores concise problem/prevention/tag/role and cited occurrence metadata, not full review transcripts or rewritten agent prompts. `draft_handoff.py --review-report` adds this tracked memory file to the module QA Git push. The author and each reviewer retrieve at most three **tag-matched, role-appropriate** reminders with `learning_memory.py suggest`. Missing matches are normal; an AI review finding is not scientific evidence by itself.
+Additional standalone or dimension-specific review remains on demand. A combined technical/provenance or pedagogy/coverage assignment uses existing specialist skills but does not add new agent types or a quality score. `review-status --scope technical|pedagogy|coverage|provenance|REVIEW-STEP-ID` records only that scope. Material changes after review must be flagged `needs_review` explicitly; no checksum-based freshness check is implied. Historical named review gates retain their explicit status/verdict requirements.
 
-`learning_memory.py promotions` surfaces an issue only after verified occurrences in **two distinct modules**. The parent may propose a minimal Skill update through a **separate reviewable PR** after checking the current Skill for conflict, redundancy, primary-source support and outstanding proposals. No Skill is auto-edited or merged. See [learning feedback contract](learning-feedback-loop.md) for invocation details and safety limitations. No additional model or unbounded agent step is introduced.
+## Verified cross-module learning (after successful correction)
+
+Immediately after **a corrected lesson** or module synthesis has reached `ready` with independent re-review, the parent may extract a **small number** of reusable, evidence-backed resolved findings. `learning_memory.py record --module mXX --lesson MXX-LYY` reads the lesson's own review cycle and final report; without `--lesson`, it reads the module synthesis cycle. In either case it refuses unresolved/blocked work, revision-0 claims and missing exact reviewer-cited evidence. `.academy/knowledge/lessons-learned.json` stores concise hints, not the full reports or unverified AI opinions. Later Authors/reviewers retrieve at most three role- and tag-matched hints with `learning_memory.py suggest`. Repeated incidents in the **same module** do not count as cross-module recurrence.
+
+`learning_memory.py promotions` identifies reusable errors independently confirmed across **two distinct modules**. A possible Skill improvement is proposed only through a **separate human-reviewed PR**, never a silent edit/merge, and only after verifying sources, consistency and redundancy. No extra agent role, skill auto-edit or model fine-tuning is introduced.
 
 ## Automatic scoped draft checks; all broader checks on demand
 
 ```bash
 # Parent executes once per completed draft batch (requires Git remote credentials):
 python scripts/draft_handoff.py SD-M00-L01 SD-M00-L02
-# After both independent AI reviews finish, record actual verdicts:
-python scripts/review_cycle.py record m00 --technical revise --pedagogy ready-for-human-review
-# If the recorded status is needs_revision, reserve 1 of at most 2 corrective author rounds:
-python scripts/review_cycle.py begin-revision m00
-# Parent applies scoped Author fixes, focused validation/Git handoff, re-reviews and records verdicts again.
-# After the final review, hand off reports and the persisted cycle:
-python scripts/draft_handoff.py SD-M00-L01 SD-M00-L02 SD-M00-INTEGRATION --review-report modules/m00/reviews/automatic/technical.md --review-report modules/m00/reviews/automatic/pedagogy.md
+# Lesson and module review-report handoff examples are in the preceding section.
+# Parent handles two independent reviewers; this script handles only validation/Git.
 # Optional standalone checks:
 # Structural mapping, YAML metadata and Markdown safety in one command:
 python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH
@@ -96,7 +87,7 @@ python scripts/taskctl.py validate
 python -m unittest discover -s tests -v
 ```
 
-The draft handoff automatically runs only its selected lesson/assessment/integrated checks and includes any existing module QA cycle state. The parent, not Python, invokes the author and independent reviewers in the bounded feedback loop. Run all other checks only when specifically requested. The combined validator reuses the Markdown format module and never transforms lesson content; heading titles, the number of questions, and the presence of answer/rubric keywords are not format constraints. Those requirements remain with Author's self-check and any requested substantive review. Current Markdown checks are parser/safety smoke tests only; real browser rendering must be tested with the actual website renderer when it exists. New lessons use exactly one canonical `modules/mXX/lessons/MXX-LYY.md` and `modules/mXX/assessments/MXX-LYY.md` pair per Lesson ID, with Git as the revision history; source evidence remains under `modules/mXX/evidence/`. Repository-wide checks reject nested lesson revisions, `content-manifest.json` and orphan assessments. The approved `curriculum/revision-1/` directory is syllabus history and remains unchanged. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
+The draft handoff automatically runs only selected lesson/assessment/integrated checks and includes any existing lesson/module QA cycle state. The parent, not Python, invokes the author and independent reviewers in the bounded feedback loop. Run all other checks only when specifically requested. The combined validator reuses the Markdown format module and never transforms lesson content; heading titles, the number of questions, and the presence of answer/rubric keywords are not format constraints. Those requirements remain with Author's self-check and any requested substantive review. Current Markdown checks are parser/safety smoke tests only; real browser rendering must be tested with the actual website renderer when it exists. New lessons use exactly one canonical `modules/mXX/lessons/MXX-LYY.md` and `modules/mXX/assessments/MXX-LYY.md` pair per Lesson ID, with Git as the revision history; source evidence remains under `modules/mXX/evidence/`. Repository-wide checks reject nested lesson revisions, `content-manifest.json` and orphan assessments. The approved `curriculum/revision-1/` directory is syllabus history and remains unchanged. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
 
 GitHub Actions `content-validation.yml` has **workflow_dispatch only**; select **Content validation → Run workflow** to run those checks manually. Python regression tests run separately on pull requests and pushes to `main`, and can also be started manually.
 
