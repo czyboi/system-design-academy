@@ -66,7 +66,8 @@ class FormatValidationTests(unittest.TestCase):
         valid = "```mermaid\nflowchart LR\nA --> B\n```"
         self.assertEqual(self.check(valid), [])
         self.assertTrue(any("empty Mermaid" in x for x in self.check("```mermaid\n\n```")))
-        self.assertTrue(any("unrecognized Mermaid" in x for x in self.check("```mermaid\nnot-a-diagram\n```")))
+        # A future website renderer owns full Mermaid syntax checking.
+        self.assertEqual(self.check(f'{chr(96)*3}mermaid\nnewDiagramType\n{chr(96)*3}'), [])
         self.assertTrue(any("runtime directives" in x for x in self.check("```mermaid\nflowchart LR\n%%{init: {securityLevel: 'loose'}}%%\n```")))
 
     def test_missing_and_duplicate_yaml_fields_rejected(self):
@@ -151,6 +152,10 @@ outcome_map:
 """
         self.assertTrue(any('id must be a nonempty string' in x for x in
                             validate_document(assessment, self.root/'modules/m04/assessments/M04-L01.md', root=self.root)))
+
+    def test_technical_math_does_not_get_rejected_for_missing_web_renderer(self):
+        body = '$\nP(A | B) = P(A, B) / P(B)\n$\n'
+        self.assertEqual(self.check(body), [])
 
     def test_legacy_integrated_package(self):
         text = "---\nid: M04-EX1\nstatus: draft\n---\n# Brief\n## Exercise\nExplain an architecture.\n"

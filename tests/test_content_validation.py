@@ -85,34 +85,37 @@ EX-1: Solve this problem.
             ])
         self.assertEqual(result, 0, output.getvalue())
 
-    def test_assessment_leakage_is_rejected(self):
-        with self.lesson.open('a',encoding='utf-8') as f:
-            f.write('## Knowledge check\nA question\n')
-        self.assertTrue(any('companion artifact' in x for x in self.pair_errors()))
+    def test_heading_wording_does_not_control_data_validation(self):
+        with self.lesson.open('a', encoding='utf-8') as f:
+            f.write('## Knowledge check\nA question for the reader\n')
+        self.assertEqual(self.pair_errors(), [])
 
     def test_missing_companion_and_same_path_are_rejected(self):
         self.assertTrue(validator.validate_pair(self.lesson,self.lesson))
         self.assessment.unlink()
         self.assertTrue(self.pair_errors())
 
-    def test_missing_explanation_and_unmapped_outcome_are_rejected(self):
-        text=self.assessment.read_text().replace('Explanation: Reason.','',1).replace('  LO-1:', '  LO-2:')
-        self.assessment.write_text(text,encoding='utf-8')
-        errors=self.pair_errors()
-        self.assertTrue(any('Explanation:' in x for x in errors))
-        self.assertTrue(any('every lesson outcome' in x for x in errors))
+    def test_missing_explanation_is_quality_review_but_outcome_keys_are_structural(self):
+        text = self.assessment.read_text().replace('Explanation: Reason.', '', 1)
+        self.assessment.write_text(text, encoding='utf-8')
+        self.assertEqual(self.pair_errors(), [])
+        self.assessment.write_text(text.replace('  LO-1:', '  LO-2:'), encoding='utf-8')
+        self.assertTrue(any('every lesson outcome' in x for x in self.pair_errors()))
 
-    def test_missing_taught_section_and_nonexistent_item_are_rejected(self):
-        text=self.assessment.read_text().replace('Core concepts and mechanisms','Missing section').replace('[Q1, EX-1]','[Q99]')
-        self.assessment.write_text(text,encoding='utf-8')
-        self.assertTrue(any('existing teaching section' in x for x in self.pair_errors()))
-        self.assertTrue(any('existing assessment items' in x for x in self.pair_errors()))
+    def test_outcome_map_labels_are_shape_checked_not_interpreted_as_quality(self):
+        text = self.assessment.read_text().replace('Core concepts and mechanisms', 'Another explanation')
+        text = text.replace('[Q1, EX-1]', '[Q99]')
+        self.assessment.write_text(text, encoding='utf-8')
+        self.assertEqual(self.pair_errors(), [])
+        self.assessment.write_text(text.replace('items: [Q99]', 'items: []'), encoding='utf-8')
+        self.assertTrue(any('heading label and item ID strings' in x for x in self.pair_errors()))
 
-    def test_draft_only_and_question_count(self):
-        self.assessment.write_text(self.assessment.read_text().replace('status: draft','status: published').replace('### Q5','### Q4'),encoding='utf-8')
-        errors=self.pair_errors()
-        self.assertTrue(any('status: draft' in x for x in errors))
-        self.assertTrue(any('uniquely' in x for x in errors))
+    def test_draft_required_but_question_count_not_inferred(self):
+        text = self.assessment.read_text().replace('### Q5', '### Another heading')
+        self.assessment.write_text(text, encoding='utf-8')
+        self.assertEqual(self.pair_errors(), [])
+        self.assessment.write_text(text.replace('status: draft', 'status: published'), encoding='utf-8')
+        self.assertTrue(any('status: draft' in x for x in self.pair_errors()))
 
     def test_flexible_headings_do_not_block_valid_teaching(self):
         lesson = self.lesson.read_text(encoding='utf-8')
@@ -186,18 +189,11 @@ EX-1: Solve this problem.
             ])
         self.assertEqual(result, 1, output.getvalue())
 
-    def test_code_fences_cannot_fake_assessment_questions_and_exercise(self):
-        fake = self.assessment.read_text(encoding='utf-8')
-        front = fake.split('\n---\n', 1)[0] + '\n---\n'
+    def test_semantic_assessment_quality_not_guessed_from_code_fences(self):
+        front = self.assessment.read_text().split('\n---\n', 1)[0] + '\n---\n'
         fence = chr(96) * 3
-        simulated = ('# Assessment\n\n' + fence + 'md\nEX-1: fake exercise\n' +
-                     ''.join(f'### Q{i}\nAnswer: fake\nExplanation: fake\n' for i in range(1, 6)) +
-                     '## Solution and rubric\n' + fence + '\n')
-        self.assessment.write_text(front + simulated, encoding='utf-8')
-        errors = self.pair_errors()
-        self.assertTrue(any('5–8 uniquely identified knowledge checks' in e for e in errors), errors)
-        self.assertTrue(any('missing practical exercise EX-1' in e for e in errors), errors)
-        self.assertTrue(any('missing exercise solution or rubric' in e for e in errors), errors)
+        self.assessment.write_text(front + f'# Assessment\n{fence}md\nQ1\nEX-1\nrubric\n{fence}\n', encoding='utf-8')
+        self.assertEqual(self.pair_errors(), [])
 
     def test_bold_answer_labels_are_read_from_rendered_markdown(self):
         quiz = self.assessment.read_text()
@@ -206,13 +202,20 @@ EX-1: Solve this problem.
         self.assessment.write_text(quiz, encoding='utf-8')
         self.assertEqual(self.pair_errors(), [])
 
-    def test_empty_answers_and_unhashable_outcomes_fail_gracefully(self):
+    def test_empty_answers_are_quality_issues_but_bad_outcome_types_fail(self):
         quiz = self.assessment.read_text().replace('Answer: Yes.', 'Answer:   ', 1)
         self.assessment.write_text(quiz, encoding='utf-8')
-        self.assertTrue(any('nonempty response' in issue for issue in self.pair_errors()))
+        self.assertEqual(self.pair_errors(), [])
         lesson = self.lesson.read_text().replace('outcomes: [LO-1]', 'outcomes: [{unexpected: object}]')
         self.lesson.write_text(lesson, encoding='utf-8')
-        self.assertTrue(self.pair_errors())
+        self.assertTrue(any('outcomes must' in issue for issue in self.pair_errors()))
+
+    def test_assessment_id_must_match_its_lesson(self):
+        self.assessment.write_text(
+            self.assessment.read_text().replace('id: TEST-1-assessment', 'id: WRONG-assessment'),
+            encoding='utf-8',
+        )
+        self.assertTrue(any('assessment ID must match lesson ID' in x for x in self.pair_errors()))
 
     def test_duplicate_yaml_keys_are_rejected_by_combined_validator(self):
         lesson = self.lesson.read_text().replace('title: Test lesson', 'title: Test lesson\ntitle: Duplicate')
