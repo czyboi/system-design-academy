@@ -91,7 +91,7 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-12T09:18:27Z",
-  "updated_at": "2026-11-12T09:32:54Z",
+  "updated_at": "2026-11-12T10:10:39Z",
   "review_statuses": {
     "technical": {
       "status": "reviewed",
@@ -99,9 +99,9 @@
       "updated_at": "2026-11-12T09:32:53Z"
     },
     "pedagogy": {
-      "status": "reviewed",
-      "reason": "Independent M01 round 1 cleared this scope after correction of T-1 and the dependent P-2/P-3 mappings.",
-      "updated_at": "2026-11-12T09:32:54Z"
+      "status": "needs_review",
+      "reason": "PR #55 L04-P1 updates the LO2 heading references in the outcome portfolio.",
+      "updated_at": "2026-11-12T10:10:39Z"
     }
   }
 }

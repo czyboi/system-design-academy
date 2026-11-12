@@ -99,7 +99,8 @@
         "items": [
           "Q1",
           "Q2",
-          "Q3"
+          "Q3",
+          "Q6"
         ]
       }
     },
@@ -148,6 +149,7 @@
         "path": "modules/m01/lessons/M01-L04.md",
         "sections": [
           "Choose traffic roles and standby readiness",
+          "Trace a two-region recovery",
           "Replication and recovery points",
           "Model serial, parallel and shared dependencies"
         ]
