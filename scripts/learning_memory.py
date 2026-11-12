@@ -119,13 +119,17 @@ def record(*, module: str, finding_id: str, review_role: str, key: str,
     if not report_path.is_file():
         raise LearningError(f"Missing reviewer report: {report}")
     text = report_path.read_text(encoding="utf-8")
-    if not re.search(r"(?<![\w-])" + re.escape(finding_id) + r"(?![\w-])", text):
-        raise LearningError(f"{finding_id} does not appear in the final {review_role} report")
+    located = re.search(r"(?<![\w-])" + re.escape(finding_id)
+                        + r"(?![\w-])[^\n]{0,240}\bresolved\b", text, re.IGNORECASE)
+    if not located:
+        raise LearningError(f"{finding_id} is not explicitly marked resolved in the final {review_role} report")
     tags_list = labels(tags)
     roles_list = labels(applies_to, ROLES)
     problem = short_text(problem, "Problem")
     prevention = short_text(prevention, "Prevention")
     evidence = evidence_ref(evidence)
+    if evidence not in text:
+        raise LearningError("Primary/curriculum evidence must appear exactly in the final reviewer report")
     data = read_memory()
     existing = next((item for item in data["entries"] if item["key"] == key), None)
     if existing:
