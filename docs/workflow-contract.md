@@ -1,14 +1,14 @@
-# Workflow contract — manual reviews and checks
+# Workflow contract — scoped automatic draft handoff, optional reviews
 
 ## Default task graphs
 
 The [shared module-pipeline skill](../.agents/skills/module-pipeline/SKILL.md) is the orchestration procedure. New templates are minimal:
 
 - **Course planning:** one `plan` step producing a new versioned plan, source inventory and coverage matrix.
-- **Lesson package:** `research` → `author`. Author uses the declared authoring, assessment, governance and compact format instructions to produce a source-grounded draft lesson and separate companion assessment. No additional agent stage or automatic review is added.
+- **Lesson package:** `research` → `author`, then a parent-owned `draft_handoff.py` invocation outside the task graph. Author uses the declared authoring, assessment, governance and compact format instructions. Handoff performs scoped deterministic data/format validation and feature-branch Git delivery, with no extra AI stage.
 - **Tooling:** one `implementation` step.
 
-**The authoring path ends at draft completion.** Python validation, independent AI review, rework and full course audits are **not automatic**. Invoke each separately only upon explicit user instruction. Existing historical graphs remain as recorded; their completed work is not reopened by this policy change.
+**Task authoring ends at draft completion, but the parent continues to the automatic scoped draft handoff.** Independent AI review, rework, full regression tests, repository-wide validation and course audits remain **on demand**. The handoff never claims teaching quality or human approval. Historical task graphs are not reopened.
 
 ## Explicit lifecycle CLI
 
@@ -23,7 +23,9 @@ python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "User requested a 
 python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "Explicit full redo" --cascade
 python scripts/taskctl.py review-status TASK-ID --scope technical --state needs_review --reason "Substantive technical change"
 python scripts/taskctl.py review-status TASK-ID --scope pedagogy --state in_review --reason "Requested teaching review"
-# After committing AND pushing artifacts, spec, state and worklog:
+# After completed lesson/integration drafts, parent validates, commits and pushes the selected task artifacts:
+python scripts/draft_handoff.py TASK-ID [TASK-ID ...]
+# For non-draft handoff after manually committing/pushing artifacts, spec, state and worklog:
 python scripts/taskctl.py handoff TASK-ID
 # Only for a handoff within the same checkout:
 python scripts/taskctl.py handoff TASK-ID --local-only
@@ -31,7 +33,7 @@ python scripts/taskctl.py hold TASK-ID --state paused --reason "User paused"
 python scripts/taskctl.py resume-task TASK-ID --reason "User resumed"
 ```
 
-`status` is read-only. `reconcile` persists aggregate status computed only from explicit step/hold fields. No automatic STALE, checksum, fingerprint, dirty-input block, unchanged-output reuse flag or dependency hash cascade exists. The CLI requires declared inputs when starting and checks declared outputs, dependencies and any existing review gate when completing; a completed step may later lose outputs without changing status (read-only `WARNING` in `status`). `handoff` is an explicit, read-only Git tracking/cleanliness check for completed output files, spec, task state and worklog. For cross-environment handoff it also checks any **existing partial output from a running step** (not-yet-created outputs remain optional), then verifies local HEAD equals the upstream branch currently advertised by the remote; configure tracking with `git push -u origin HEAD` and push future commits before handoff. Use `--local-only` only when agents share a checkout. Remote access happens exclusively during this explicit command; no checksum or automatic state change occurs.
+`status` is read-only. `reconcile` persists aggregate status computed only from explicit step/hold fields. No automatic STALE, checksum, fingerprint, dirty-input block, unchanged-output reuse flag or dependency hash cascade exists. The CLI requires declared inputs when starting and checks declared outputs, dependencies and any existing review gate when completing; a completed step may later lose outputs without changing status (read-only `WARNING` in `status`). `handoff` is an explicit, read-only Git tracking/cleanliness check for completed output files, spec, task state and worklog. The new `draft_handoff.py` helper first runs the existing scoped lesson/assessment validator (and format validation for integrated brief/solution/summary pages), then stages only declared completed outputs and spec/state/worklog, commits and pushes once per batch. It uses an existing `codex/`, `feature/` or `feat/` branch, or creates `codex/drafts-*` when on `main` or another non-feature branch. It rejects unrelated staged files, never force-pushes or merges, and stops/report failures without auto-fixes. For cross-environment handoff it also checks any **existing partial output from a running step** (not-yet-created outputs remain optional), then verifies local HEAD equals the upstream branch currently advertised by the remote; configure tracking with `git push -u origin HEAD` and push future commits before handoff. Use `--local-only` only when agents share a checkout. Remote access happens exclusively during this explicit command; no checksum or automatic state change occurs.
 
 For a backlog lesson, `init ... --template .academy/state/task.template.json` resolves `EVIDENCE_PATH`, `TEACHING_PATH` and `ASSESSMENT_PATH` from the Story identified by `proposed_task_id` and validates its module. Task ID (`SD-M00-L01`) is not the filename Lesson ID (`M00-L01`). A missing/ambiguous Story fails instead of guessing a path. Initialization validates both task state and its spec before writing files, so invalid templates do not leave a stranded spec.
 
@@ -59,9 +61,12 @@ Allowed verdicts: `block`, `revise`, `ready-for-human-review`. Severities: `bloc
 
 Historical optional step graphs may include `requires_reviews`; new decisions require a scoped review state in addition to the verdict and completed review step. `invalidate` on a reviewed step explicitly marks its scope `needs_review`. No checksums are compared. New default drafts do not depend on review steps.
 
-## On-demand Python validation
+## Automatic scoped draft checks; all broader checks on demand
 
 ```bash
+# Parent executes once per completed draft batch (requires Git remote credentials):
+python scripts/draft_handoff.py SD-M00-L01 SD-M00-L02
+# Optional standalone checks:
 # Structural mapping, YAML metadata and Markdown safety in one command:
 python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH
 python scripts/validate_content.py --scope repo
@@ -74,7 +79,7 @@ python scripts/taskctl.py validate
 python -m unittest discover -s tests -v
 ```
 
-Run only the specifically selected checks. The combined validator reuses the Markdown format module and never transforms lesson content; heading titles, the number of questions, and the presence of answer/rubric keywords are not format constraints. Those requirements remain with Author's self-check and any requested substantive review. Current Markdown checks are parser/safety smoke tests only; real browser rendering must be tested with the actual website renderer when it exists. New lessons use exactly one canonical `modules/mXX/lessons/MXX-LYY.md` and `modules/mXX/assessments/MXX-LYY.md` pair per Lesson ID, with Git as the revision history; source evidence remains under `modules/mXX/evidence/`. Repository-wide checks reject nested lesson revisions, `content-manifest.json` and orphan assessments. The approved `curriculum/revision-1/` directory is syllabus history and remains unchanged. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
+The draft handoff automatically runs only its selected lesson/assessment/integrated checks. Run all other checks only when specifically requested. The combined validator reuses the Markdown format module and never transforms lesson content; heading titles, the number of questions, and the presence of answer/rubric keywords are not format constraints. Those requirements remain with Author's self-check and any requested substantive review. Current Markdown checks are parser/safety smoke tests only; real browser rendering must be tested with the actual website renderer when it exists. New lessons use exactly one canonical `modules/mXX/lessons/MXX-LYY.md` and `modules/mXX/assessments/MXX-LYY.md` pair per Lesson ID, with Git as the revision history; source evidence remains under `modules/mXX/evidence/`. Repository-wide checks reject nested lesson revisions, `content-manifest.json` and orphan assessments. The approved `curriculum/revision-1/` directory is syllabus history and remains unchanged. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
 
 GitHub Actions `content-validation.yml` has **workflow_dispatch only**; select **Content validation → Run workflow** to run those checks manually. Python regression tests run separately on pull requests and pushes to `main`, and can also be started manually.
 
