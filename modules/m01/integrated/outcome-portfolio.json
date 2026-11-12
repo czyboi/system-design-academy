@@ -10,7 +10,8 @@
         "path": "modules/m01/lessons/M01-L01.md",
         "sections": [
           "Estimate demand from an activity feed",
-          "Budget storage, bandwidth and the working set"
+          "Budget storage, bandwidth and the working set",
+          "Budget the latency of a request path"
         ]
       },
       "assessment": {
@@ -18,7 +19,11 @@
         "items": [
           "Q1",
           "Q2",
-          "Q3"
+          "Q3",
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
         ]
       }
     },
@@ -27,6 +32,7 @@
       "teaching": {
         "path": "modules/m01/lessons/M01-L01.md",
         "sections": [
+          "Budget storage, bandwidth and the working set",
           "Budget the latency of a request path",
           "Choose assumptions and refine the budget"
         ]
@@ -131,7 +137,8 @@
         "items": [
           "Q1",
           "Q2",
-          "Q3"
+          "Q3",
+          "EX-1"
         ]
       }
     },

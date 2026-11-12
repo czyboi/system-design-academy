@@ -43,11 +43,11 @@ Use this partition history for order 41.
 | t = 3 s | West loses connectivity to East and the third voter. Both serving regions still reach local clients through the edge. East can reach the third voter. |
 | t = 10 s | East acknowledges a commit changing Packed to Dispatched. West has no later applied barrier or update. |
 | t = 12 s | A West client looks up order 41. |
-| t = 15 s | A West warehouse tries to record Delivered. |
+| t = 15 s | A West warehouse tries to record Delivered. West returns an explicit rejection before forwarding the request, writing any status change or placing the request in a queue. |
 | t = 46 s | The West client looks up the order again. |
 | t = 55 s | Connectivity is restored. West applies the committed updates and a new barrier from a fresh challenge. |
 
-For this trace, use the listed times as conservative elapsed bounds and assume the West client cannot be routed around the partition to East. A region loss with working edge rerouting is a separate capacity case.
+For this trace, use the listed times as conservative elapsed bounds and assume the West client cannot be routed around the partition to East. The warehouse makes a single attempt, and no update commits after Dispatched. A region loss with working edge rerouting is a separate capacity case.
 
 ## Submit a design
 

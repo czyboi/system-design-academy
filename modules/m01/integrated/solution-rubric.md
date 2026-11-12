@@ -25,13 +25,15 @@ The estimate assumes one logical foreground data operation path per request. If 
 | Event | A · Current lookup | B · Bounded local lookup |
 | --- | --- | --- |
 | West lookup at 12 s | Return unavailable. West cannot establish a current read. | Return Packed with a staleness label and a conservative 12 s bound. The unseen Dispatched update was acknowledged 2 s earlier. |
-| West update at 15 s | Do not acknowledge success without authority and a committed update. West cannot form a majority. | The same rule applies. A local read permission carries no permission to commit updates. |
+| West update at 15 s | Reject explicitly before forwarding, applying or queueing Delivered. West cannot reach authority. | Reject at the same point. A local snapshot remains eligible only for bounded reads. |
 | West lookup at 46 s | Return unavailable while isolated. | Return unavailable. The last proof is 46 s old and exceeds 45 s, even if the actual order happened to be unchanged. |
-| West lookup after recovery | A reachable and current authority returns Dispatched, assuming no later successful update. | After applying the new barrier and its prefix, the West snapshot also returns Dispatched. |
+| West lookup after recovery | The current authority returns Dispatched, the last committed update in this trace. | After applying the new barrier and its prefix, the West snapshot also returns Dispatched. |
 
 At time 0, all already acknowledged updates precede the later committed barrier. Applying its contiguous prefix ensures they are reflected in the snapshot, subject to later updates in that prefix. If the elapsed upper bound is at most 45 s at the response decision, any update acknowledged more than 45 s earlier predates the challenge and is covered. Timestamping the receipt of the barrier would undercount the time already spent waiting for proof. A replica offset alone gives ordering information without a time bound. If timer continuity, barrier correlation or applied prefix evidence is missing, use the authority path or return unavailable.
 
 A majority with the eligible committed history can elect a leader and resume the current read and update paths after the system establishes authority. A heartbeat timeout triggers investigation and election logic. It supplies no proof that an isolated writer stopped. A region that lost authority can serve a valid bounded snapshot when policy B permits it. It must rejoin the authoritative history before participating in current operations. [Ongaro and Ousterhout, Raft, §§5 and 8](https://raft.github.io/raft.pdf#page=13)
+
+The exercise's rejection guarantees that West admitted no update. If the caller instead times out after submitting to a reachable authority, the outcome can be unknown. The authority may have committed the command before its reply was lost. Resolve the request using its identity and the authoritative result before deciding whether a retry should apply a new operation. [Ongaro and Ousterhout, Raft, §8](https://raft.github.io/raft.pdf#page=13)
 
 ## Evaluate latency and availability
 
@@ -45,7 +47,7 @@ For A, the available route also needs a reachable, current authority. For B, it 
 
 Choose B for customer status lookups if the 45-second contract is acceptable. It gives West a short window of valid responses during isolation and avoids routing all healthy lookups through the authority. Keep writes authoritative. Increase survivor data-path capacity and address the shared edge before committing to the availability target. If a consumer must see a completed update immediately, use the current-read path for that operation and budget its remote traffic and failure behavior.
 
-Replay matched peak traffic during a region loss and measure survivor throughput, queues, p99 and failures. During West isolation, advance the East history, confirm labeled responses inside the proof window and exercise expiry and verifier restart. Verify minority writes receive no success acknowledgment. Disable the shared edge in a separate test and measure recovery of both routes. Validate that production measurements distinguish route reachability, valid data responses and outage time.
+Replay matched peak traffic during a region loss and measure survivor throughput, queues, p99 and failures. During West isolation, advance the East history, confirm labeled responses inside the proof window and exercise expiry and verifier restart. Verify the explicit rejection of the minority write and check that it leaves no local status change, queued request or committed log entry after rejoin. Disable the shared edge in a separate test and measure recovery of both routes. Validate that production measurements distinguish route reachability, valid data responses and outage time.
 
 ## Self-evaluation rubric
 
@@ -54,7 +56,7 @@ Score each row 0 for missing, 1 for partial or 2 for complete reasoning. Accept 
 | Criterion | Full credit |
 | --- | --- |
 | Workload and budget | States units and peak factors. Counts read and write work at the relevant boundaries and sizes a survivor with explicit headroom. |
-| Read and write histories | Applies both read contracts and the age proof at each read. Rejects successful writes without a majority and explains safe recovery. |
+| Read and write histories | Applies both read contracts and the age proof at each read. Shows why the explicit minority rejection leaves no write to apply after recovery and explains how authority is re-established. |
 | Availability and latency | Calculates the time budget and conditional route estimate. Explains the shared limit and the extra conditions each policy needs. Names the request paths and measurements. |
 | Design and verification | Uses the workload and consistency contract to make a policy choice. Gives a realistic peak-failover test, a test of a shared dependency and a condition that changes the choice. |
 
