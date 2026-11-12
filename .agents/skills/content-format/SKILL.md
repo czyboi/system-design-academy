@@ -1,18 +1,15 @@
 ---
 name: content-format
-description: Keep Academy lessons and assessments renderable without compromising learning quality; used only for newly claimed authoring tasks.
+description: Compact authoring guidance for directly usable YAML and Markdown content.
 ---
 
-# Content Format (compact authoring instructions)
+# Content format
 
-The canonical representation specification is `docs/authoring-format-contract-v1.md`; consult it when a syntax or exception is unclear. These rules apply to newly generated or explicitly reopened authoring work. Old lesson snapshots are not used. Never reopen completed task history solely for formatting.
+The **single format authority** is `docs/authoring-format-contract-v1.md`; use it for required fields and supported syntax. Do not define a separate format or add a conversion layer.
 
-- **Priority:** approved curriculum/outcomes, technical accuracy, pedagogy and adequate examples/diagrams **before** presentation convenience. Format is not a reason to omit, shorten, weaken, or simplify a necessary explanation, formula, diagram, or exercise. Flag missing renderer capability or escalate an extension instead.
-- Keep one canonical `modules/mXX/lessons/MXX-LYY.md` and `modules/mXX/assessments/MXX-LYY.md` pair; Git is the revision history. No nested `revision-N` folders or content manifests. Keep Markdown + YAML front matter; no `slug`, SEO fields or schema version required.
-- Use normal CommonMark/GFM syntax (headings, paragraphs, lists, GFM tables, links, inline/fenced code). Retain flexible teaching headings. Prefer fenced code with a language when known; allow `text` for traces/diagrams-as-text.
-- Diagrams are teaching-driven, **never quota-driven**. Mermaid fences are preferred only when they faithfully represent the mechanism; an appropriate original asset or future supported notation may be needed. Do not invent Mermaid syntax, fake a diagram, or drop a useful visual.
-- Lesson front matter needs `id`, `title`, `status: draft`, `level`, `prerequisites`, `outcomes`, `assessment` and `source_review_date`. Assessment front matter needs `id`, `status: draft`, `lesson` and `outcome_map`. Keep outcome IDs, canonical paths, citations and source/license information valid; no executable embedded HTML/MDX/scripts. Images/assets require meaningful alt text and rights checks.
-- Assessment answers may be plain `Answer:`/`Explanation:` or bold `**Answer:**`/`**Explanation:**`. Preserve mappings and rubrics; no assessment content in the teaching file.
-- If a technically necessary format is not covered, **report the exact need and preserve the content requirement**; do not silently transform or delete it.
+- Write the canonical lesson and companion assessment paths directly as YAML front matter plus Markdown; Git stores revisions.
+- Preserve exact IDs, outcome maps and companion references. Use GFM with free-form headings, code, tables and teaching-driven diagrams.
+- No fixed heading names, length, link-count or diagram quota. Avoid raw HTML/MDX, unsafe links, missing image alt text and unlicensed assets.
+- Never weaken a necessary explanation, formula or example solely to fit renderer capabilities; report the limitation.
 
-No new authoring agent, review stage or LLM build step is introduced. A deterministic format validator exists at `scripts/validate_format.py` and runs only on explicit request or through the manual content-validation workflow. Model instructions alone cannot guarantee correctness.
+Teaching and assessment quality remain governed by the approved curriculum, `lesson-authoring`, `assessment-design` and `GOVERNANCE.md`. Use `scripts/validate_content.py` only when validation is requested; no extra AI or adapter stage.

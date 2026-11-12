@@ -119,6 +119,15 @@ Explanation: Because.
             discover(self.root)
 
 
+    def test_free_form_rich_lesson_does_not_need_section_conversion(self):
+        body = ('## Why the cache fails\n\nA causal explanation.\n\n'
+                '| Option | Failure mode |\n| --- | --- |\n| A | Eviction |\n\n'
+                '```mermaid\nflowchart LR\nA --> B\n```\n\n'
+                '## Context-specific heading\n\nThe important trade-off.\n')
+        source = draft(body)
+        self.assertEqual(validate_document(source, self.source, root=self.root), [])
+        self.assertIn(body, source)
+
     def test_legacy_integrated_package(self):
         text = "---\nid: M04-EX1\nstatus: draft\n---\n# Brief\n## Exercise\nExplain an architecture.\n"
         self.assertEqual(validate_document(text, self.root/'modules/m04/integrated/brief.md', root=self.root), [])

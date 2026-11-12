@@ -5,7 +5,7 @@
 The [shared module-pipeline skill](../.agents/skills/module-pipeline/SKILL.md) is the orchestration procedure. New templates are minimal:
 
 - **Course planning:** one `plan` step producing a new versioned plan, source inventory and coverage matrix.
-- **Lesson package:** `research` → `author`. Author uses the declared authoring, assessment, governance and compact format instructions to produce a source-grounded draft lesson and separate companion assessment. No additional agent stage is added. This adds no agent stage or automatic review.
+- **Lesson package:** `research` → `author`. Author uses the declared authoring, assessment, governance and compact format instructions to produce a source-grounded draft lesson and separate companion assessment. No additional agent stage or automatic review is added.
 - **Tooling:** one `implementation` step.
 
 **The authoring path ends at draft completion.** Python validation, independent AI review, rework and full course audits are **not automatic**. Invoke each separately only upon explicit user instruction. Existing historical graphs remain as recorded; their completed work is not reopened by this policy change.
@@ -62,17 +62,19 @@ Historical optional step graphs may include `requires_reviews`; new decisions re
 ## On-demand Python validation
 
 ```bash
+# Structural mapping, YAML metadata and Markdown safety in one command:
 python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH
+python scripts/validate_content.py --scope repo
+# Independent checks remain available on demand:
 python scripts/validate_content.py --scope curriculum --plan PATH --matrix PATH
 python scripts/validate_content.py --scope workflow
-python scripts/validate_content.py
 python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage plan
 python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage taught
 python scripts/taskctl.py validate
 python -m unittest discover -s tests -v
 ```
 
-Run only the specifically selected checks. New lessons use exactly one canonical `modules/mXX/lessons/MXX-LYY.md` and `modules/mXX/assessments/MXX-LYY.md` pair per Lesson ID, with Git as the revision history; source evidence remains under `modules/mXX/evidence/`. Repository-wide checks reject nested lesson revisions, `content-manifest.json` and orphan assessments. The approved `curriculum/revision-1/` directory is syllabus history and remains unchanged. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
+Run only the specifically selected checks. The combined validator reuses the Markdown format module and never transforms lesson content; fixed headings and minimum URL counts are not format constraints. New lessons use exactly one canonical `modules/mXX/lessons/MXX-LYY.md` and `modules/mXX/assessments/MXX-LYY.md` pair per Lesson ID, with Git as the revision history; source evidence remains under `modules/mXX/evidence/`. Repository-wide checks reject nested lesson revisions, `content-manifest.json` and orphan assessments. The approved `curriculum/revision-1/` directory is syllabus history and remains unchanged. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
 
 GitHub Actions `content-validation.yml` has **workflow_dispatch only**; select **Content validation → Run workflow** to run those checks manually. Python regression tests run separately on pull requests and pushes to `main`, and can also be started manually.
 

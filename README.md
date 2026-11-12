@@ -14,7 +14,7 @@ The user approved **SDA-v1** on 2026-11-10: 14 modules, 57 lessons and a cross-m
 | Lesson draft | Research → author lesson and assessment | `.academy/state/task.template.json` |
 | Tooling change | Implementation | `.academy/state/workflow.template.json` |
 
-Legacy milestone lesson drafts are not imported into this branch; the approved SDA-v1 curriculum, backlog and task history remain intact. The agent completes the requested draft and stops. The lesson author uses the [assessment-design skill](.agents/skills/assessment-design/SKILL.md), [source governance](GOVERNANCE.md) and compact [content-format skill](.agents/skills/content-format/SKILL.md) to follow [Authoring Format Contract v1](docs/authoring-format-contract-v1.md) without a new agent step. **AI review and content validation are manual, independent requests.** Python regression tests run automatically in GitHub Actions for pull requests and pushes to `main`. No fingerprint, checksum or automatic stale cascade changes completed task history. The owner can explicitly reopen a step, flag a previously reviewed draft as needing review, or invoke a focused check.
+Legacy milestone lesson drafts are not imported into this branch; the approved SDA-v1 curriculum, backlog and task history remain intact. The website will parse the exact Markdown/YAML files authored by AI using standard libraries, without any separate content adapter. The agent completes the requested draft and stops. The lesson author uses the [assessment-design skill](.agents/skills/assessment-design/SKILL.md), [source governance](GOVERNANCE.md) and compact [content-format skill](.agents/skills/content-format/SKILL.md) to follow [Authoring Format Contract v1](docs/authoring-format-contract-v1.md) without a new agent step. **AI review and content validation are manual, independent requests.** Python regression tests run automatically in GitHub Actions for pull requests and pushes to `main`. No fingerprint, checksum or automatic stale cascade changes completed task history. The owner can explicitly reopen a step, flag a previously reviewed draft as needing review, or invoke a focused check.
 
 Task specs and history: `.academy/specs/`, `.academy/state/tasks/`, `.academy/state/worklog/`. Agent skills: `.agents/skills/`. Code: `scripts/`, lessons: `modules/`.
 
@@ -41,6 +41,8 @@ Marking a task complete records the work performed; it does not mean the current
 ```bash
 pip install -r requirements-dev.txt
 python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH
+# Combined metadata, Markdown and structural validation:
+python scripts/validate_content.py --scope repo
 python scripts/taskctl.py validate
 python -m unittest discover -s tests -v
 ```

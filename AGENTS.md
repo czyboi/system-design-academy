@@ -24,7 +24,7 @@
 - After producing the requested draft, record completion and **stop**. Do not autonomously run AI reviewers, Python validation, tests, CI or a revision loop.
 - On an explicit **review** request, invoke only the requested reviewer(s): technical/source rights, teaching/coverage/pedagogy, or comprehensive. Reviewer findings must be attributable to content locations; unresolved blocker/major findings cannot be declared clear.
 - On an explicit **validation** request, run only the selected CLI checks. A review request is not implied permission to run validators, and a validation request is not implied permission to spawn AI reviewers.
-- Keep teaching and assessment separate; outcomes must be taught and assessed. Read `.agents/skills/module-pipeline/SKILL.md` for details.
+- Keep teaching and assessment separate; outcomes must be taught and assessed. AI writes canonical Markdown/YAML for direct website consumption; no custom converter. The single format authority is `docs/authoring-format-contract-v1.md`, while teaching quality remains with the authoring/assessment skills and `GOVERNANCE.md`. Read `.agents/skills/module-pipeline/SKILL.md` for details.
 - User approval is required before publication, including when a draft has passed optional review and structural checks.
 
 ## Parallelism and permissions

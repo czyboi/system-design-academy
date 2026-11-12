@@ -21,7 +21,7 @@ Do not start when the user has explicitly paused work, required source evidence 
 6. Include a worked example that demonstrates the design reasoning. Keep the lesson file instructional: do not embed a quiz, knowledge-check bank, answer key, or assessment rubric.
 7. Put the practical exercise, 5–8 knowledge checks, answers/explanations, rubric, and outcome-to-item map in the separately declared companion assessment artifact. Coordinate with assessment-design; do not use questions as a substitute for teaching.
 8. Cite exact sources next to important or version-sensitive claims. Mark unresolved claims instead of guessing.
-9. Add required front matter, attribution/adaptation notes, and `status: draft`. Follow the format skill for safe Markdown/GFM, fenced code and diagrams; if a necessary representation is unsupported, preserve the teaching requirement and flag the renderer limitation rather than simplifying content.
+9. Use `content-format` and the single data contract for front matter and Markdown; preserve attribution/adaptation notes. Choose headings to teach effectively, rather than satisfying an arbitrary section-name or link-count quota.
 
 ## Prohibited
 

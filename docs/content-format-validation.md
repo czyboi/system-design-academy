@@ -1,31 +1,17 @@
-# Authoring format validation
+# Validate canonical content
 
-Deterministic, read-only validation for [Authoring Format Contract v1](authoring-format-contract-v1.md). It **does not** certify factual correctness, teaching quality, legal rights or release approval.
-
-## Usage (on demand)
+**One public command** checks actual teaching/assessment data, when explicitly requested:
 
 ```bash
-python scripts/validate_content.py --scope lesson --lesson modules/m01/lessons/M01-L02.md --assessment modules/m01/assessments/M01-L02.md
 python scripts/validate_content.py --scope repo
-python scripts/validate_format.py
-python scripts/validate_format.py --path modules/m01/lessons/M01-L02.md
+# For one lesson pair:
+python scripts/validate_content.py --scope lesson --lesson modules/m01/lessons/M01-L02.md --assessment modules/m01/assessments/M01-L02.md
 ```
 
-**Python regression tests** run automatically in GitHub Actions for PRs/pushes to `main` with isolated fixtures. The **Content validation** GitHub Actions workflow is `workflow_dispatch` only; it checks actual source artifacts only when deliberately launched. No AI review or automatic re-generation is triggered.
+The combined command checks canonical paths, YAML metadata and duplicate keys, outcome mappings, stable question/exercise IDs, Markdown safety, images/assets and a conservative subset of Mermaid syntax. `scripts/validate_format.py` remains a reusable internal module (with a targeted diagnostic CLI), **not another required authoring or validation stage**.
 
-## Canonical content convention
+Heading wording, section counts, lesson length and source URL counts are not schema requirements. Source quality, worked examples, depth, failure analysis, legal rights and pedagogy remain the responsibility of the authoring/assessment skills and optional independent review.
 
-- One lesson file per ID under `modules/mXX/lessons/` and one companion file under `modules/mXX/assessments/`.
-- Git tracks edits. No nested lesson revisions, content selection manifest or automatic preference for the newest file.
-- Repository-wide content checks reject nested lesson/assessment revisions, obsolete `content-manifest.json` and unreferenced companion assessments; format discovery also refuses noncanonical revisions.
-- The approved syllabus at `curriculum/revision-1/` remains authoritative and is unrelated to lesson file versioning.
+GitHub Actions **Python regression tests** runs automatically against isolated fixtures on PRs and pushes to main. **Content validation** is `workflow_dispatch` only, and runs the combined command plus task-state validation when deliberately started. No LLM is used in these deterministic checks.
 
-## Format checks and limits
-
-- YAML front matter; CommonMark/GFM including code and tables; unsafe links/path traversal, missing image alt, local asset existence, raw HTML/MDX and fenced-code closure.
-- Mermaid checks only supported declarations, emptiness and unsafe directives—not full Mermaid grammar or browser fidelity.
-- Inline formulas in literal code are preserved; unsupported display math must be addressed by renderer capability, not by deleting the explanation.
-- Assessments may use normal or bold `Answer:`/`Explanation:` labels. Structural teaching and outcome mapping are checked separately by `validate_content.py`.
-- Actual website rendering, sanitization and diagram layout require a future renderer test; reviewing technical truth, educational depth and source quality remains an independent human-requested activity.
-
-Historical MS01/MS02 snapshot tests were intentionally retired. Current regression tests use synthetic fixtures only; old lesson snapshots are not required by the new workflow.
+Format PASS does not establish technical truth, teaching quality, browser/diagram rendering or publication approval. The website later reads and renders the same Markdown/YAML with ordinary libraries, preserving content instead of converting it to another schema. Unsupported technically necessary syntax should be reported, not deleted.
