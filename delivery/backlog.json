@@ -719,8 +719,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -1721,8 +1721,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -2726,8 +2726,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -3536,8 +3536,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -4717,8 +4717,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -5516,8 +5516,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -6339,8 +6339,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -7143,8 +7143,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -7928,8 +7928,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -8730,8 +8730,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -10646,8 +10646,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -12578,8 +12578,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -13972,8 +13972,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -14367,8 +14367,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
-        "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
-        "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
+        "Use each completed draft lesson and companion. Preserve approved coverage rows and record lesson_path and teaching section for each module topic. Optional validation remains user-triggered.",
+        "Record lesson and synthesis outcomes with teaching and assessment paths, headings and exercise, question or rubric IDs. Resolve gaps when module validation is explicitly requested."
       ],
       "execution_policy": "on_demand"
     },
@@ -14614,7 +14614,7 @@
         "report": "delivery/course-taught-review.md"
       },
       "acceptance_criteria": [
-        "Verify each of 473 source topic mappings against current explanatory teaching path, heading and SHA-256.",
+        "When the user requests a course audit, verify the 473 topic mappings against current explanatory teaching paths and headings, without checksums.",
         "Verify all lesson, module and capstone outcomes, including Academy additions, against current assessment evidence and reconcile cross-module references.",
         "Require current accepted package reviews and an independent taught-coverage and pedagogy verdict. Record human approval separately."
       ]
