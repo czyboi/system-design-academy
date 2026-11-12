@@ -14,7 +14,7 @@ The user approved **SDA-v1** on 2026-11-10: 14 modules, 57 lessons and a cross-m
 | Lesson draft | Research → author lesson and assessment | `.academy/state/task.template.json` |
 | Tooling change | Implementation | `.academy/state/workflow.template.json` |
 
-Legacy milestone lesson drafts are not imported into this branch; the approved SDA-v1 curriculum, backlog and task history remain intact. The website will parse the exact Markdown/YAML files authored by AI using standard libraries, without any separate content adapter. The agent completes the requested draft and stops. The lesson author uses the [assessment-design skill](.agents/skills/assessment-design/SKILL.md), [source governance](GOVERNANCE.md) and compact [content-format skill](.agents/skills/content-format/SKILL.md) to follow [Authoring Format Contract v1](docs/authoring-format-contract-v1.md) without a new agent step. **AI review and content validation are manual, independent requests.** Python regression tests run automatically in GitHub Actions for pull requests and pushes to `main`. No fingerprint, checksum or automatic stale cascade changes completed task history. The owner can explicitly reopen a step, flag a previously reviewed draft as needing review, or invoke a focused check.
+Legacy milestone lesson drafts are not imported into this branch; the approved SDA-v1 curriculum, backlog and task history remain intact. The website will parse the exact Markdown/YAML files authored by AI using standard libraries, without any separate content adapter. The author completes the requested draft; the parent orchestrator then runs a lightweight scoped validation-and-Git handoff, once per completed batch. The lesson author uses the [assessment-design skill](.agents/skills/assessment-design/SKILL.md), [source governance](GOVERNANCE.md) and compact [content-format skill](.agents/skills/content-format/SKILL.md) to follow [Authoring Format Contract v1](docs/authoring-format-contract-v1.md) without a new agent step. **Independent AI review and broader content validation are manual.** Only focused per-draft data/format validation runs automatically before committing/pushing to a feature branch. Python regression tests run automatically in GitHub Actions for pull requests and pushes to `main`. No fingerprint, checksum or automatic stale cascade changes completed task history. The owner can explicitly reopen a step, flag a previously reviewed draft as needing review, or invoke a focused check.
 
 Task specs and history: `.academy/specs/`, `.academy/state/tasks/`, `.academy/state/worklog/`. Agent skills: `.agents/skills/`. Code: `scripts/`, lessons: `modules/`.
 
@@ -32,14 +32,17 @@ python scripts/taskctl.py handoff TASK-ID --local-only
 python scripts/taskctl.py invalidate TASK-ID author --reason "User requested a rewrite"
 ```
 
-For backlog lessons, `init` resolves the correct Lesson ID-based teaching/assessment/evidence output paths from `delivery/backlog.json` and validates task state/spec before writing. Each lesson has exactly one canonical lesson/assessment/evidence path from the backlog; Git records revisions. Repository-wide validators reject obsolete nested lesson revisions, manifests and orphan assessments. `status` warns about missing completed outputs without changing historical status. The manual `handoff` command checks Git tracking, clean state and upstream remote synchronization; `--local-only` is for agents sharing a checkout. It does not check content quality.
+For backlog lessons, `init` resolves the correct Lesson ID-based teaching/assessment/evidence output paths from `delivery/backlog.json` and validates task state/spec before writing. Each lesson has exactly one canonical lesson/assessment/evidence path from the backlog; Git records revisions. Repository-wide validators reject obsolete nested lesson revisions, manifests and orphan assessments. `status` warns about missing completed outputs without changing historical status. The parent runs `scripts/draft_handoff.py` after a completed lesson or integration batch; it validates only the generated lesson/assessment pairs and integrated Markdown, selectively commits generated outputs plus task memory, pushes to an existing feature branch (or creates `codex/drafts-*`), and verifies remote handoff. The standalone `taskctl handoff` command remains a read-only Git synchronization check; `--local-only` is for agents sharing a checkout. Neither is a factual or teaching-quality review.
 
 Marking a task complete records the work performed; it does not mean the current draft was independently reviewed. A `reviewed` content status does not constitute human publishing approval.
 
-### Validation — run only when requested
+### Automatic draft handoff; broader checks on request
 
 ```bash
 pip install -r requirements-dev.txt
+# Parent orchestrator runs after completed draft task(s):
+python scripts/draft_handoff.py SD-M00-L01 SD-M00-L02
+# Extra checks are on demand:
 python scripts/validate_content.py --scope lesson --lesson PATH --assessment PATH
 # Combined metadata, Markdown and structural validation:
 python scripts/validate_content.py --scope repo
@@ -47,7 +50,7 @@ python scripts/taskctl.py validate
 python -m unittest discover -s tests -v
 ```
 
-For pinned Primer coverage, invoke `python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage plan` (or `--stage taught`) when desired. These are deterministic **data/safety** checks, not factual or pedagogical reviews. Author checks teaching depth and assessment completeness; independent qualitative review remains on demand. There is not yet a website renderer to test actual browser output.
+For pinned Primer coverage, invoke `python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage plan` (or `--stage taught`) when desired. These are deterministic **data/safety** checks, not factual or pedagogical reviews. If a scoped check or push fails, generated files remain local and the agent reports the blocker instead of fixing content automatically; no force-push, PR creation, merge or publication is performed. Author checks teaching depth and assessment completeness; independent qualitative review remains on demand. There is not yet a website renderer to test actual browser output.
 
 GitHub Actions: **Content validation → Run workflow** runs content validation manually. **Python regression tests** runs automatically on pull requests and pushes to `main`, and can also be run manually.
 

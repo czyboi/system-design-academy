@@ -22,7 +22,9 @@ python scripts/taskctl.py complete TASK-ID STEP-ID --agent AGENT
 python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "User asked to redo work"
 python scripts/taskctl.py hold TASK-ID --state paused --reason "User paused"
 python scripts/taskctl.py resume-task TASK-ID --reason "User resumed"
-# After committing AND pushing output + spec + state + worklog:
+# For completed draft task(s), automatic scoped validation, commit, push and remote handoff:
+python scripts/draft_handoff.py TASK-ID [TASK-ID ...]
+# For non-draft tasks, after manual commit/push:
 python scripts/taskctl.py handoff TASK-ID
 # Only for a handoff inside the same checkout:
 python scripts/taskctl.py handoff TASK-ID --local-only
@@ -43,8 +45,8 @@ A formatting edit need not reset review status. A substantive edit should be fla
 
 ## Manual checks
 
-No step implicitly launches an AI review, content validation, a Python test suite, or a revision loop. Select `scripts/validate_content.py`, `scripts/check_course_coverage.py`, `scripts/taskctl.py validate` or tests only when specifically requested. GitHub Actions content validation uses `workflow_dispatch` only; Python regression tests run automatically on pull requests and pushes to `main`.
+Task state transitions do not launch AI reviews, Python test suites or revision loops. After completed lesson/integration drafts, the parent separately invokes `scripts/draft_handoff.py` for scoped deterministic format/data checks and feature-branch Git delivery, without a new task step. Repository-wide validation, course coverage, task-schema checks and the regression suite remain on demand. GitHub Actions content validation uses `workflow_dispatch` only; Python regression tests run automatically on pull requests and pushes to `main`.
 
-Use the two-step lesson template (including `assessment-design`, `content-format` and governance as declared author inputs), one-step course template or one-step tooling template for new tasks. The lessons/assessments use single canonical paths from the approved backlog; no nested lesson revisions or content manifests. Invalid task/spec initialization is rejected before persisting partial files. Historical six-step workflows and reports remain unchanged; do not silently restart or migrate them. At cross-environment handoff, commit and push output/spec/state/worklog, then run `taskctl handoff TASK-ID`. This checks Git tracking, cleanliness and whether local HEAD matches the upstream branch advertised by the remote (requires an accessible remote and configured upstream). Use `--local-only` only when the receiving agent shares this checkout. Remote verification happens only at explicit handoff, never during status/start/complete. The command does not use checksums or run AI review/Python validation. Share checkpoints in the Issue when handing off.
+Use the two-step lesson template (including `assessment-design`, `content-format` and governance as declared author inputs), one-step course template or one-step tooling template for new tasks. The lessons/assessments use single canonical paths from the approved backlog; no nested lesson revisions or content manifests. Invalid task/spec initialization is rejected before persisting partial files. Historical six-step workflows and reports remain unchanged; do not silently restart or migrate them. For generated drafts, run `python scripts/draft_handoff.py TASK-ID [TASK-ID ...]` to validate, selectively commit/push outputs and task memory, and verify remote handoff. For other work, commit/push output/spec/state/worklog manually and then run `taskctl handoff TASK-ID`. The remote check verifies Git tracking, cleanliness and that local HEAD matches the advertised upstream (requires an accessible remote and configured upstream). Use `--local-only` only when the receiving agent shares this checkout. Remote verification happens only at explicit handoff, never during status/start/complete. `taskctl handoff` alone does not use checksums or run AI review/Python validation; the new wrapper calls only the scoped Python checks before it pushes. Share checkpoints in the Issue when handing off.
 
 Publication approval, PR merge and course release are human-controlled and separate from task progress.
