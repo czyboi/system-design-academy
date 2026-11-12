@@ -159,6 +159,19 @@ EX-1: Solve this problem.
             ])
         self.assertEqual(result, 1, output.getvalue())
 
+    def test_lesson_scope_does_not_fail_on_unrelated_broken_markdown(self):
+        unrelated = ROOT / '.tmp' / f'unrelated-{self.root.name}.md'
+        try:
+            unrelated.write_text('[broken](nonexistent-file-1234567.md)\n', encoding='utf-8')
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                result = validator.main([
+                    '--scope', 'lesson', '--lesson', self.lesson.relative_to(ROOT).as_posix(),
+                    '--assessment', self.assessment.relative_to(ROOT).as_posix()
+                ])
+            self.assertEqual(result, 0, output.getvalue())
+        finally:
+            unrelated.unlink(missing_ok=True)
+
     def test_no_minimum_source_url_quota(self):
         lesson = self.lesson.read_text(encoding='utf-8').replace(
             'https://example.com/reference-b', 'Referenced primary paper'

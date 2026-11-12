@@ -338,7 +338,20 @@ class TaskCtlExplicitStateTests(unittest.TestCase):
         (self.root / "outputs/research.md").unlink()
         self.assertIn("Missing:", self.cli("handoff", "TEST-1", "--local-only", expected=2))
 
+    def test_handoff_rejects_uncommitted_partial_running_outputs(self):
+        self.add_step("author", "outputs/lesson.md")
+        self.cli("start", "TEST-1", "author", "--agent", "tester")
+        self.output("outputs/lesson.md", "Partial draft, not yet committed\n")
+        self.git("add", ".academy")
+        self.git("commit", "-qm", "Commit task memory without partial draft")
+        self.assertIn("Not Git-tracked: outputs/lesson.md",
+                      self.cli("handoff", "TEST-1", "--local-only", expected=2))
+        self.git("add", ".")
+        self.git("commit", "-qm", "Commit partial draft")
+        self.assertIn("HANDOFF READY", self.cli("handoff", "TEST-1", "--local-only"))
+
     def test_handoff_requires_remote_upstream_to_be_pushed(self):
+
         self.add_step("research", "outputs/research.md")
         self.run_step("research", "outputs/research.md")
         self.git("add", ".")

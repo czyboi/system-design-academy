@@ -694,6 +694,10 @@ def cmd_handoff(args: argparse.Namespace) -> None:
     for step in data["steps"]:
         if step["status"] == "completed":
             paths.extend(step["output_paths"])
+        elif step["status"] == "running":
+            # A cross-environment handoff must not silently lose partially written work.
+            # Not-yet-created outputs are legitimate for an in-progress step.
+            paths.extend(value for value in step["output_paths"] if relpath(value).is_file())
     problems = []
     for value in sorted(set(paths)):
         if not relpath(value).is_file():

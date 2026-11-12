@@ -213,87 +213,89 @@ def main(argv=None) -> int:
                 errors.append(f"{assessment.relative_to(ROOT)}: orphan assessment without a companion lesson")
 
     source_count = 0
-    for registry in sorted((ROOT/'modules').glob('*/sources/source-registry.csv')):
-        try:
-            with registry.open(encoding="utf-8-sig", newline="") as handle:
-                reader = csv.DictReader(handle)
-                required = {"id", "title", "url", "publisher_or_author", "checked_date"}
-                missing = required - set(reader.fieldnames or [])
-                if missing:
-                    errors.append(f"Source registry missing columns: {', '.join(sorted(missing))}")
-                rows = list(reader)
-                source_count += len(rows)
-                source_ids: list[str] = []
-                for row_number, row in enumerate(rows, start=2):
-                    source_id = (row.get("id") or "").strip()
-                    if not source_id:
-                        errors.append(f"Source registry row {row_number}: missing id")
-                    source_ids.append(source_id)
-                    parsed = urlparse((row.get("url") or "").strip())
-                    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-                        errors.append(f"Source registry row {row_number}: invalid URL")
-                    for field in ("title", "publisher_or_author", "checked_date"):
-                        if not (row.get(field) or "").strip():
-                            errors.append(f"Source registry row {row_number}: missing {field}")
-                if len(source_ids) != len(set(source_ids)):
-                    errors.append("Duplicate source IDs found")
-        except (OSError, csv.Error) as exc:
-            errors.append(f"Cannot parse source registry: {exc}")
+    if args.scope == 'repo':
+        for registry in sorted((ROOT/'modules').glob('*/sources/source-registry.csv')):
+            try:
+                with registry.open(encoding="utf-8-sig", newline="") as handle:
+                    reader = csv.DictReader(handle)
+                    required = {"id", "title", "url", "publisher_or_author", "checked_date"}
+                    missing = required - set(reader.fieldnames or [])
+                    if missing:
+                        errors.append(f"Source registry missing columns: {', '.join(sorted(missing))}")
+                    rows = list(reader)
+                    source_count += len(rows)
+                    source_ids: list[str] = []
+                    for row_number, row in enumerate(rows, start=2):
+                        source_id = (row.get("id") or "").strip()
+                        if not source_id:
+                            errors.append(f"Source registry row {row_number}: missing id")
+                        source_ids.append(source_id)
+                        parsed = urlparse((row.get("url") or "").strip())
+                        if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+                            errors.append(f"Source registry row {row_number}: invalid URL")
+                        for field in ("title", "publisher_or_author", "checked_date"):
+                            if not (row.get(field) or "").strip():
+                                errors.append(f"Source registry row {row_number}: missing {field}")
+                    if len(source_ids) != len(set(source_ids)):
+                        errors.append("Duplicate source IDs found")
+            except (OSError, csv.Error) as exc:
+                errors.append(f"Cannot parse source registry: {exc}")
 
     # Validate repo-local Agent Skills.
     skills_root = ROOT / ".agents/skills"
     skill_count = 0
-    if not skills_root.exists():
-        errors.append("Missing .agents/skills directory")
-    else:
-        for skill_file in sorted(skills_root.glob("*/SKILL.md")):
-            skill_text = skill_file.read_text(encoding="utf-8")
-            skill_front = parse_front_matter(skill_text)
-            rel_skill = skill_file.relative_to(ROOT)
-            for field in ("name", "description"):
-                if not skill_front.get(field):
-                    errors.append(f"{rel_skill}: missing skill field '{field}'")
-            if not skill_text.split("---", 2)[-1].strip():
-                errors.append(f"{rel_skill}: empty skill instructions")
-            skill_count += 1
-        if skill_count == 0:
-            errors.append("No SKILL.md files found under .agents/skills")
+    if args.scope == 'workflow':
+        if not skills_root.exists():
+            errors.append("Missing .agents/skills directory")
+        else:
+            for skill_file in sorted(skills_root.glob("*/SKILL.md")):
+                skill_text = skill_file.read_text(encoding="utf-8")
+                skill_front = parse_front_matter(skill_text)
+                rel_skill = skill_file.relative_to(ROOT)
+                for field in ("name", "description"):
+                    if not skill_front.get(field):
+                        errors.append(f"{rel_skill}: missing skill field '{field}'")
+                if not skill_text.split("---", 2)[-1].strip():
+                    errors.append(f"{rel_skill}: empty skill instructions")
+                skill_count += 1
+            if skill_count == 0:
+                errors.append("No SKILL.md files found under .agents/skills")
 
-    # Validate custom Codex agent profiles and project settings.
-    agents_root = ROOT / ".codex/agents"
-    agent_count = 0
-    if not agents_root.exists():
-        errors.append("Missing .codex/agents directory")
-    else:
-        for agent_file in sorted(agents_root.glob("*.toml")):
-            rel_agent = agent_file.relative_to(ROOT)
+        # Validate custom Codex agent profiles and project settings.
+        agents_root = ROOT / ".codex/agents"
+        agent_count = 0
+        if not agents_root.exists():
+            errors.append("Missing .codex/agents directory")
+        else:
+            for agent_file in sorted(agents_root.glob("*.toml")):
+                rel_agent = agent_file.relative_to(ROOT)
+                try:
+                    agent_config = tomllib.loads(agent_file.read_text(encoding="utf-8"))
+                except (OSError, tomllib.TOMLDecodeError) as exc:
+                    errors.append(f"{rel_agent}: invalid TOML: {exc}")
+                    continue
+                for field in ("name", "description", "developer_instructions", "model", "model_reasoning_effort"):
+                    if not isinstance(agent_config.get(field), str) or not agent_config[field].strip():
+                        errors.append(f"{rel_agent}: missing/empty '{field}'")
+                if "sandbox_mode" in agent_config:
+                    errors.append(f"{rel_agent}: custom subagents inherit parent permissions; sandbox_mode is not an enforceable per-agent setting")
+                agent_count += 1
+            if agent_count == 0:
+                errors.append("No custom agent TOML files found under .codex/agents")
+
+        config_path = ROOT / ".codex/config.toml"
+        if not config_path.exists():
+            errors.append("Missing .codex/config.toml")
+        else:
             try:
-                agent_config = tomllib.loads(agent_file.read_text(encoding="utf-8"))
+                codex_config = tomllib.loads(config_path.read_text(encoding="utf-8"))
+                max_threads = codex_config.get("agents", {}).get("max_concurrent_threads_per_session")
+                if not isinstance(max_threads, int) or not 1 <= max_threads <= 16:
+                    errors.append(".codex/config.toml: max_concurrent_threads_per_session must be an integer from 1 to 16")
+                if not codex_config.get('agents', {}).get('default_subagent_model'):
+                    errors.append('Missing default subagent model')
             except (OSError, tomllib.TOMLDecodeError) as exc:
-                errors.append(f"{rel_agent}: invalid TOML: {exc}")
-                continue
-            for field in ("name", "description", "developer_instructions", "model", "model_reasoning_effort"):
-                if not isinstance(agent_config.get(field), str) or not agent_config[field].strip():
-                    errors.append(f"{rel_agent}: missing/empty '{field}'")
-            if "sandbox_mode" in agent_config:
-                errors.append(f"{rel_agent}: custom subagents inherit parent permissions; sandbox_mode is not an enforceable per-agent setting")
-            agent_count += 1
-        if agent_count == 0:
-            errors.append("No custom agent TOML files found under .codex/agents")
-
-    config_path = ROOT / ".codex/config.toml"
-    if not config_path.exists():
-        errors.append("Missing .codex/config.toml")
-    else:
-        try:
-            codex_config = tomllib.loads(config_path.read_text(encoding="utf-8"))
-            max_threads = codex_config.get("agents", {}).get("max_concurrent_threads_per_session")
-            if not isinstance(max_threads, int) or not 1 <= max_threads <= 16:
-                errors.append(".codex/config.toml: max_concurrent_threads_per_session must be an integer from 1 to 16")
-            if not codex_config.get('agents', {}).get('default_subagent_model'):
-                errors.append('Missing default subagent model')
-        except (OSError, tomllib.TOMLDecodeError) as exc:
-            errors.append(f".codex/config.toml: invalid TOML: {exc}")
+                errors.append(f".codex/config.toml: invalid TOML: {exc}")
 
     checked_links = 0
     selected = set(lesson_files) | set(pairs.values())
@@ -302,28 +304,29 @@ def main(argv=None) -> int:
             selected.add(local_path(args.plan))
         except (ValueError, TypeError):
             pass
-    for path in ROOT.rglob("*.md"):
-        parts = path.relative_to(ROOT).parts
-        if args.scope != 'repo' and path not in selected and parts[0] == 'modules':
-            continue
-        # Nested obsolete drafts are rejected by canonical discovery; do not treat
-        # their Markdown links as part of the active course.
-        if (args.scope == 'repo' and len(parts) > 4 and parts[0] == 'modules'
-                and parts[2] in {'lessons', 'assessments'}):
-            continue
-        if path not in selected and any(part in path.relative_to(ROOT).parts for part in ('.git','.tmp','inputs','runs','task-runs')):
-            continue
-        # Paired lessons/assessments have already been checked by validate_document.
-        if path in selected:
-            continue
-        try:
-            count, issues = format_rules.validate_markdown_links(
-                path.read_text(encoding="utf-8"), path, root=ROOT
-            )
-            checked_links += count
-            errors.extend(issues)
-        except (OSError, UnicodeError) as exc:
-            errors.append(f"{path.relative_to(ROOT)}: cannot validate Markdown links: {exc}")
+    if args.scope == 'repo':
+        for path in ROOT.rglob("*.md"):
+            parts = path.relative_to(ROOT).parts
+            if args.scope != 'repo' and path not in selected and parts[0] == 'modules':
+                continue
+            # Nested obsolete drafts are rejected by canonical discovery; do not treat
+            # their Markdown links as part of the active course.
+            if (args.scope == 'repo' and len(parts) > 4 and parts[0] == 'modules'
+                    and parts[2] in {'lessons', 'assessments'}):
+                continue
+            if path not in selected and any(part in path.relative_to(ROOT).parts for part in ('.git','.tmp','inputs','runs','task-runs')):
+                continue
+            # Paired lessons/assessments have already been checked by validate_document.
+            if path in selected:
+                continue
+            try:
+                count, issues = format_rules.validate_markdown_links(
+                    path.read_text(encoding="utf-8"), path, root=ROOT
+                )
+                checked_links += count
+                errors.extend(issues)
+            except (OSError, UnicodeError) as exc:
+                errors.append(f"{path.relative_to(ROOT)}: cannot validate Markdown links: {exc}")
 
     print("System Design Academy content validation")
     print(f"Lessons found: {len(lesson_ids)}")
