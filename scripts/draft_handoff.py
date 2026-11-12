@@ -13,10 +13,11 @@ import sys
 from pathlib import Path
 
 if __package__:
-    from . import taskctl, review_cycle
+    from . import taskctl, review_cycle, learning_memory
 else:
     import taskctl
     import review_cycle
+    import learning_memory
 
 ROOT = Path(__file__).resolve().parents[1]
 FEATURE_BRANCH = re.compile(r"^(codex|feature|feat)/[A-Za-z0-9._/-]+$")
@@ -165,11 +166,15 @@ def deliver(task_ids: list[str], remote: str = "origin",
         all_paths.update(task_paths(task_id))
     # Persist an in-progress revision counter even during the following draft handoff.
     modules = {p.split("/")[1] for p in all_paths
-               if re.fullmatch(r"modules/m\\d+/(?:lessons|assessments|integrated)/[^/]+", p)}
+               if re.fullmatch(r"modules/m\d+/(?:lessons|assessments|integrated)/[^/]+", p)}
     for module in modules:
         if review_cycle.load(module) is not None:
             all_paths.add(f"modules/{module}/reviews/automatic/cycle.json")
     all_paths.update(review_report_paths(review_reports or [], all_paths))
+    if review_reports:
+        # Persist newly verified cross-module prevention rules together with QA reports.
+        learning_memory.read_memory()
+        all_paths.add(learning_memory.MEMORY)
     print(f"Lightweight validation for {len(task_ids)} task(s)", flush=True)
     for command in validation_commands(all_paths):
         result = subprocess.run(command, cwd=ROOT)
