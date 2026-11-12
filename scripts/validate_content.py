@@ -14,7 +14,6 @@ import sys
 import tomllib
 from pathlib import Path
 from urllib.parse import urlparse
-import yaml
 
 # One command for structural and Markdown validation; format metadata lives in validate_format.
 if __package__:
@@ -25,16 +24,57 @@ else:
 ROOT = Path(__file__).resolve().parents[1]
 
 def parse_front_matter(text: str) -> dict:
-    if not text.startswith("---\n"):
-        return {}
-    end = text.find("\n---", 4)
-    if end < 0:
-        return {}
+    """Read YAML with the same strict parser used by format validation."""
     try:
-        fields = yaml.safe_load(text[4:end])
-        return fields if isinstance(fields, dict) else {}
-    except yaml.YAMLError:
+        return format_rules.split_front_matter(text)[0]
+    except ValueError:
         return {}
+
+
+def _visible_text(inline_token) -> str:
+    """Only rendered text; never treat fenced or inline code as assessment content."""
+    return "".join(
+        "\n" if child.type in {"softbreak", "hardbreak"} else child.content
+        for child in inline_token.children or []
+        if child.type in {"text", "softbreak", "hardbreak"}
+    )
+
+
+def _assessment_structure(markdown: str) -> tuple[set[str], set[str], list[tuple[str, str]], bool, bool]:
+    """Parse meaningful teaching/assessment blocks using the existing Markdown parser."""
+    tokens = format_rules.PARSER.parse(markdown)
+    headings: set[str] = set()
+    question_ids: set[str] = set()
+    questions: list[tuple[str, str]] = []
+    exercise_present = False
+    rubric_present = False
+    current_question: str | None = None
+    current_text: list[str] = []
+    for index, token in enumerate(tokens):
+        if token.type != "inline":
+            continue
+        visible = _visible_text(token)
+        if index > 0 and tokens[index - 1].type == "heading_open":
+            heading = visible.strip()
+            headings.add(heading.casefold())
+            if current_question is not None:
+                questions.append((current_question, "\n".join(current_text)))
+                current_question, current_text = None, []
+            found = re.match(r"^(Q\d+)\b", heading)
+            if found:
+                current_question = found.group(1)
+                question_ids.add(current_question)
+            if re.search(r"\b(?:rubric|sample solution|reference solution|answer key)\b", heading, re.I):
+                rubric_present = True
+        elif current_question is not None:
+            current_text.append(visible)
+        if re.search(r"(?:^|\n)\s*EX-1\b", visible):
+            exercise_present = True
+        if re.search(r"\b(?:rubric|sample solution|reference solution|answer key)\b", visible, re.I):
+            rubric_present = True
+    if current_question is not None:
+        questions.append((current_question, "\n".join(current_text)))
+    return headings, question_ids, questions, exercise_present, rubric_present
 
 
 def local_path(value):
@@ -45,57 +85,64 @@ def local_path(value):
     return path
 
 
-def validate_pair(lesson, assessment):
-    errors = []
+def validate_pair(lesson: Path, assessment: Path) -> list[str]:
+    errors: list[str] = []
     if lesson.resolve() == assessment.resolve():
-        return ['Lesson and assessment must have distinct paths']
+        return ["Lesson and assessment must have distinct paths"]
     try:
-        text = lesson.read_text(encoding='utf-8')
-        quiz = assessment.read_text(encoding='utf-8')
+        text = lesson.read_text(encoding="utf-8")
+        quiz = assessment.read_text(encoding="utf-8")
     except OSError as exc:
         return [str(exc)]
-    errors.extend(format_rules.validate_document(text, lesson, root=ROOT, kind='lesson'))
-    errors.extend(format_rules.validate_document(quiz, assessment, root=ROOT, kind='assessment'))
+    errors.extend(format_rules.validate_document(text, lesson, root=ROOT, kind="lesson"))
+    errors.extend(format_rules.validate_document(quiz, assessment, root=ROOT, kind="assessment"))
     front, companion = parse_front_matter(text), parse_front_matter(quiz)
-    try:
-        if local_path(companion.get('lesson', '')).resolve() != lesson.resolve():
-            errors.append('Assessment must reference its companion lesson')
-    except (ValueError, TypeError):
-        errors.append('Invalid companion lesson reference')
-    if re.search(r'^#{2,3}\s+(?:Practical exercise|Exercise|Knowledge checks?|Answer key|Answer guide|Rubric)\b', text, re.I | re.M):
-        errors.append(f'{lesson}: assessment content belongs in the companion artifact')
-    # Exercise/question IDs are stable, but section names and heading levels are flexible.
-    if not re.search(r'(?m)^\s*EX-1\b', quiz):
-        errors.append(f'{assessment}: missing practical exercise EX-1')
-    if not re.search(r'(?i)\b(?:rubric|sample solution|reference solution|answer key)\b', quiz):
-        errors.append(f'{assessment}: missing exercise solution or rubric')
-    matches = list(re.finditer(r'^#{2,6}\s+(Q\d+)\b[^\n]*', quiz, re.M))
-    ids = [m[1] for m in matches]
-    if not 5 <= len(ids) <= 8 or len(set(ids)) != len(ids):
-        errors.append('Assessment needs 5–8 uniquely identified knowledge checks')
-    for i, match in enumerate(matches):
-        block = quiz[match.end():matches[i+1].start() if i+1 < len(matches) else len(quiz)]
-        if not re.search(r'\bAnswer\s*:', block) or not re.search(r'\bExplanation\s*:', block):
-            errors.append(f'{match[1]} needs Answer: and Explanation:')
-    outcomes = front.get('outcomes')
-    mapping = companion.get('outcome_map')
-    headings = {h.strip().lower() for h in re.findall(r'^#{2,6}\s+(.+)$', text, re.M)}
-    # Field presence/types and draft status are the format module's responsibility.
+    for source, value, expected, label in (
+        (lesson, front.get("assessment"), assessment, "Lesson must reference its companion assessment"),
+        (assessment, companion.get("lesson"), lesson, "Assessment must reference its companion lesson"),
+    ):
+        try:
+            if not isinstance(value, str) or not value.strip() or local_path(value).resolve() != expected.resolve():
+                errors.append(f"{source}: {label}")
+        except (ValueError, TypeError):
+            errors.append(f"{source}: invalid companion path; {label.lower()}")
+
+    lesson_body = format_rules.split_front_matter(text)[1] if front else ""
+    assessment_body = format_rules.split_front_matter(quiz)[1] if companion else ""
+    lesson_headings, _, _, _, _ = _assessment_structure(lesson_body)
+    if any(re.match(r"^(?:practical exercise|exercise|knowledge checks?|answer key|answer guide|rubric)\b", h)
+           for h in lesson_headings):
+        errors.append(f"{lesson}: assessment content belongs in the companion artifact")
+    _, ids, questions, exercise_present, rubric_present = _assessment_structure(assessment_body)
+    if not exercise_present:
+        errors.append(f"{assessment}: missing practical exercise EX-1")
+    if not rubric_present:
+        errors.append(f"{assessment}: missing exercise solution or rubric")
+    if not 5 <= len(questions) <= 8 or len(ids) != len(questions):
+        errors.append("Assessment needs 5–8 uniquely identified knowledge checks")
+    for question_id, rendered in questions:
+        for label in ("Answer", "Explanation"):
+            if not re.search(rf"(?m)(?:^|\n)\s*(?:[-*+]\s*)?{label}:[ \t]*\S", rendered):
+                errors.append(f"{question_id} needs {label}: with a nonempty response")
+
+    outcomes = front.get("outcomes")
+    mapping = companion.get("outcome_map")
     if isinstance(outcomes, list) and all(isinstance(x, str) for x in outcomes):
         if len(set(outcomes)) != len(outcomes):
-            errors.append('Outcome IDs must be unique')
-    if not isinstance(outcomes, list) or not outcomes or not isinstance(mapping, dict) or set(mapping) != set(outcomes):
-        errors.append('Assessment outcome_map must cover every lesson outcome exactly')
+            errors.append("Outcome IDs must be unique")
+    if not isinstance(outcomes, list) or not outcomes or not all(isinstance(x, str) for x in outcomes) or not isinstance(mapping, dict) or set(mapping) != set(outcomes):
+        errors.append("Assessment outcome_map must cover every lesson outcome exactly")
     else:
         for outcome, entry in mapping.items():
             if not isinstance(entry, dict):
-                errors.append(f'Invalid mapping for {outcome}')
+                errors.append(f"Invalid mapping for {outcome}")
                 continue
-            section, items = entry.get('taught_in'), entry.get('items')
-            if not isinstance(section, str) or section.lower() not in headings:
-                errors.append(f'{outcome} needs an existing teaching section')
-            if not isinstance(items, list) or not items or any(not isinstance(x,str) or x not in set(ids)|{'EX-1'} for x in items):
-                errors.append(f'{outcome} needs existing assessment items')
+            section, items = entry.get("taught_in"), entry.get("items")
+            if not isinstance(section, str) or section.strip().casefold() not in lesson_headings:
+                errors.append(f"{outcome} needs an existing teaching section")
+            if (not isinstance(items, list) or not items or
+                any(not isinstance(x, str) or x not in ids | ({"EX-1"} if exercise_present else set()) for x in items)):
+                errors.append(f"{outcome} needs existing assessment items")
     return errors
 
 
@@ -316,20 +363,17 @@ def main(argv=None) -> int:
             continue
         if path not in selected and any(part in path.relative_to(ROOT).parts for part in ('.git','.tmp','inputs','runs','task-runs')):
             continue
-        text = path.read_text(encoding="utf-8")
-        for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", text):
-            target = target.strip().split("#", 1)[0]
-            if not target or target.startswith(("http://", "https://", "mailto:")):
-                continue
-            checked_links += 1
-            candidate = (path.parent / target).resolve()
-            try:
-                candidate.relative_to(ROOT.resolve())
-            except ValueError:
-                errors.append(f"{path.relative_to(ROOT)}: relative link escapes repository: {target}")
-                continue
-            if not candidate.exists():
-                errors.append(f"{path.relative_to(ROOT)}: broken relative link: {target}")
+        # Paired lessons/assessments have already been checked by validate_document.
+        if path in selected:
+            continue
+        try:
+            count, issues = format_rules.validate_markdown_links(
+                path.read_text(encoding="utf-8"), path, root=ROOT
+            )
+            checked_links += count
+            errors.extend(issues)
+        except (OSError, UnicodeError) as exc:
+            errors.append(f"{path.relative_to(ROOT)}: cannot validate Markdown links: {exc}")
 
     print("System Design Academy content validation")
     print(f"Lessons found: {len(lesson_ids)}")

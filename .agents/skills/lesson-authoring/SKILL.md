@@ -37,7 +37,7 @@ Write only the assigned canonical teaching lesson path. Write assessment content
 
 ## Substantive revisions and feedback
 
-For edits to an existing lesson, follow authorized scope and record material user feedback. Flag changes to previously reviewed technical claims, assessments or explanations explicitly with `taskctl review-status TASK-ID --state needs_review --reason "..."`. Cosmetic changes need not reset review status.
+For edits to an existing lesson, follow authorized scope and record material user feedback. Flag changes to previously reviewed technical claims, assessments or explanations explicitly with `taskctl review-status TASK-ID --scope technical --state needs_review --reason "..."` (and/or the explicitly affected review scope). Cosmetic changes need not reset review status.
 
 ## Draft handoff
 
