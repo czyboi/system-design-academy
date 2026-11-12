@@ -41,7 +41,7 @@ outcome_map:
 ---
 ```
 
-All fields shown are required; additional fields are optional. `prerequisites` and `outcomes` are arrays. Lesson filenames/IDs and companion paths must agree. The assessment maps every outcome to a real teaching heading and existing exercise/question IDs. `status: draft` does not mean publishable.
+All fields shown are required; additional fields are optional. `prerequisites` and `outcomes` are arrays. Lesson filenames/IDs and companion paths must agree. The assessment must map every outcome to the actual teaching section and exercise/question IDs. The data checker verifies mapping **shape and outcome keys**; an author self-check or requested quality review verifies those labels really correspond to taught content and meaningful items. `status: draft` does not mean publishable.
 
 ## Markdown
 
@@ -54,7 +54,7 @@ All fields shown are required; additional fields are optional. `prerequisites` a
 
 **Format (this file):** metadata, paths, safe Markdown and mappings. **Teaching quality:** accuracy, evidence, causal mechanisms, worked examples, trade-offs, failures, exercises and licensing are controlled by `lesson-authoring`, `assessment-design`, approved curriculum and `GOVERNANCE.md`.
 
-**On-demand validation:** `python scripts/validate_content.py --scope repo` checks metadata, canonical links and Markdown syntax/safety without rewriting files. It reuses `validate_format.py` internally. Python regression tests run automatically against isolated fixtures; AI reviews and checks of real lesson content remain manual.
+**On-demand data check:** `python scripts/validate_content.py --scope repo` checks metadata, canonical companion links, outcome-map field shape and Markdown syntax/safety without rewriting files. It reuses `validate_format.py` internally. Do not infer quiz/rubric quality from Markdown headings or keywords. Python regression tests run automatically against isolated fixtures; AI quality reviews of real lessons remain manual.
 
 **Website:** will parse this YAML/Markdown directly. Rendering security, solution visibility and human publication approval are future product concerns, not an additional content transformation pipeline.
 

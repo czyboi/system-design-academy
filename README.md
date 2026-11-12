@@ -47,7 +47,7 @@ python scripts/taskctl.py validate
 python -m unittest discover -s tests -v
 ```
 
-For pinned Primer coverage, invoke `python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage plan` (or `--stage taught`) when desired. These are deterministic checks, not factual or pedagogical reviews.
+For pinned Primer coverage, invoke `python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage plan` (or `--stage taught`) when desired. These are deterministic **data/safety** checks, not factual or pedagogical reviews. Author checks teaching depth and assessment completeness; independent qualitative review remains on demand. There is not yet a website renderer to test actual browser output.
 
 GitHub Actions: **Content validation → Run workflow** runs content validation manually. **Python regression tests** runs automatically on pull requests and pushes to `main`, and can also be run manually.
 

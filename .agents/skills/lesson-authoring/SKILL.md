@@ -21,7 +21,8 @@ Do not start when the user has explicitly paused work, required source evidence 
 6. Include a worked example that demonstrates the design reasoning. Keep the lesson file instructional: do not embed a quiz, knowledge-check bank, answer key, or assessment rubric.
 7. Put the practical exercise, 5–8 knowledge checks, answers/explanations, rubric, and outcome-to-item map in the separately declared companion assessment artifact. Coordinate with assessment-design; do not use questions as a substitute for teaching.
 8. Cite exact sources next to important or version-sensitive claims. Mark unresolved claims instead of guessing.
-9. Use `content-format` and the single data contract for front matter and Markdown; preserve attribution/adaptation notes. Choose headings to teach effectively, rather than satisfying an arbitrary section-name or link-count quota.
+9. Before handoff, compare the finished explanation against every assigned Story topic, approved outcome and acceptance criterion. Confirm that each outcome is genuinely taught by worked reasoning, not merely named in a heading. Check numerical assumptions, trace mechanisms and document unresolved evidence. This is the author's responsibility, not an additional AI reviewer or validation stage.
+10. Use `content-format` and the single data contract for front matter and Markdown; preserve attribution/adaptation notes. Choose headings to teach effectively, rather than satisfying an arbitrary section-name or link-count quota.
 
 ## Prohibited
 

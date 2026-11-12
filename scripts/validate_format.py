@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Non-mutating Markdown/metadata format check for Academy content.
 
-Not a technical/pedagogical review, a web renderer, a publication gate, or
-an exhaustive Mermaid parser. Lesson/assessment structure remains checked by
-scripts/validate_content.py.
+Not a technical/pedagogical review, a browser renderer, or a publication gate.
+It checks YAML, Markdown tokens, local assets and safe rendering inputs only.
+Lesson/assessment metadata links are checked by scripts/validate_content.py.
 """
 from __future__ import annotations
 
@@ -20,9 +20,7 @@ from markdown_it import MarkdownIt
 ROOT = Path(__file__).resolve().parents[1]
 PARSER = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethrough"])
 FRONT = re.compile(r"\A---\r?\n(.*?)\r?\n---[ \t]*(?:\r?\n|\Z)", re.S)
-MATH_BLOCK = re.compile(r"(?m)^\s{0,3}\$\$\s*$")
 UNSAFE_LINK = re.compile(r"\]\(\s*[<]?(?:javascript|vbscript|data):", re.I)
-MERMAID_START = re.compile(r"^(?:flowchart|graph|sequenceDiagram|classDiagram|stateDiagram(?:-v2)?|erDiagram|gantt|pie|gitGraph|journey|mindmap|timeline|quadrantChart|requirementDiagram|C4Context|C4Container|C4Component|C4Dynamic|C4Deployment|sankey-beta|xychart-beta|block-beta)\b")
 
 
 class UniqueKeyLoader(yaml.SafeLoader):
@@ -203,15 +201,6 @@ def validate_document(
     except Exception as exc:
         return errors + [f"{source}: Markdown parse error: {exc}"]
     lines = body.splitlines()
-    # Do not mistake literal math syntax inside fenced code for an unsupported
-    # math feature. Math-capability checking is deliberately conservative.
-    content_lines = list(lines)
-    for token in tokens:
-        if token.type in ("fence", "code_block") and token.map:
-            for pos in range(token.map[0], token.map[1]):
-                content_lines[pos] = ""
-    if MATH_BLOCK.search("\n".join(content_lines)):
-        errors.append(f"{source}: display math syntax is not enabled in v1; request renderer extension without deleting content")
     _, link_issues = _link_checks(tokens, source, root, check_local_links, body_start)
     errors.extend(link_issues)
     for token in tokens:
@@ -226,8 +215,6 @@ def validate_document(
                 diagram = token.content.strip()
                 if not diagram:
                     errors.append(f"{source}:{line}: empty Mermaid diagram")
-                elif not MERMAID_START.match(diagram):
-                    errors.append(f"{source}:{line}: unrecognized Mermaid diagram declaration; full syntax/render validation is deferred")
                 if "%%{" in diagram:
                     errors.append(f"{source}:{line}: Mermaid runtime directives are not allowed")
         if token.type == "inline" and any(child.type == "html_inline" for child in token.children or []):

@@ -20,6 +20,7 @@ If the lesson does not teach an outcome or a question would require untaught con
 5. State assumptions and units. Avoid ambiguous wording and unstated vendor/version assumptions.
 6. Ensure every item is answerable from taught material. Label optional extension items and identify any prerequisite they assume.
 7. Accept multiple valid architectures when justified. Grade reasoning, not recall of one prescribed diagram.
+8. Before handoff, verify that EX-1 contains an actual scenario, constraints and defensible solution/rubric; every Q1–Q8 item has a meaningful answer and explanation; and the mapping points to material actually taught. Do not treat the presence of labels or keywords as evidence of quality. This is author self-check, not another agent/loop.
 
 ## Output
 
