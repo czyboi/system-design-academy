@@ -13,9 +13,10 @@ import sys
 from pathlib import Path
 
 if __package__:
-    from . import taskctl
+    from . import taskctl, review_cycle
 else:
     import taskctl
+    import review_cycle
 
 ROOT = Path(__file__).resolve().parents[1]
 FEATURE_BRANCH = re.compile(r"^(codex|feature|feat)/[A-Za-z0-9._/-]+$")
@@ -149,7 +150,12 @@ def review_report_paths(values: list[str], task_files: set[str]) -> set[str]:
         missing = required_module_paths(module) - task_files
         if missing:
             raise HandoffError(f"{module}: module review cannot be handed off before every lesson and integration draft is complete: {sorted(missing)}")
-    return set(values)
+    # Make reviewer lifecycle durable alongside both report files.
+    for module in roles:
+        state = review_cycle.load(module)
+        if not state or state["status"] == "revising" or not state["review_history"]:
+            raise HandoffError(f"{module}: record both reviewer verdicts before handing off reports")
+    return set(values) | {f"modules/{module}/reviews/automatic/cycle.json" for module in roles}
 
 
 def deliver(task_ids: list[str], remote: str = "origin",
@@ -157,6 +163,12 @@ def deliver(task_ids: list[str], remote: str = "origin",
     all_paths: set[str] = set()
     for task_id in task_ids:
         all_paths.update(task_paths(task_id))
+    # Persist an in-progress revision counter even during the following draft handoff.
+    modules = {p.split("/")[1] for p in all_paths
+               if re.fullmatch(r"modules/m\\d+/(?:lessons|assessments|integrated)/[^/]+", p)}
+    for module in modules:
+        if review_cycle.load(module) is not None:
+            all_paths.add(f"modules/{module}/reviews/automatic/cycle.json")
     all_paths.update(review_report_paths(review_reports or [], all_paths))
     print(f"Lightweight validation for {len(task_ids)} task(s)", flush=True)
     for command in validation_commands(all_paths):
