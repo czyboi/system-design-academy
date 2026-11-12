@@ -57,8 +57,9 @@ class DraftHandoffTests(unittest.TestCase):
             (root / "pedagogy.md").write_text("Pedagogy review findings", encoding="utf-8")
             with patch.object(draft_handoff.taskctl, "relpath",
                               side_effect=lambda path: root / Path(path).name), \
-                 patch.object(draft_handoff, "required_module_paths", return_value=task_files):
-                self.assertEqual(draft_handoff.review_report_paths([t, p], task_files), {t, p})
+                 patch.object(draft_handoff, "required_module_paths", return_value=task_files), \
+                 patch.object(draft_handoff.review_cycle, "load", return_value={"status": "needs_revision", "review_history": [{"round": 0}]}):
+                self.assertEqual(draft_handoff.review_report_paths([t, p], task_files), {t, p, "modules/m00/reviews/automatic/cycle.json"})
                 with self.assertRaisesRegex(draft_handoff.HandoffError, "both technical and pedagogy"):
                     draft_handoff.review_report_paths([t], task_files)
                 with self.assertRaisesRegex(draft_handoff.HandoffError, "selected module"):
