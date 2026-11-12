@@ -47,6 +47,31 @@
           "evidence": "https://raft.github.io/raft.pdf#page=13"
         }
       ]
+    },
+    {
+      "key": "verify-freshness-against-runtime-evidence",
+      "tags": [
+        "consistency",
+        "replication",
+        "failover",
+        "freshness"
+      ],
+      "problem": "A failover example treated retrospective acknowledgment-history facts and a prior replica-lag sample as if they could certify live standby freshness.",
+      "prevention": "Separate stipulated history from evidence available at failover. For strict bounded-staleness reads, require proof of the primary's acknowledged history or a conservative bound; otherwise return unavailable or use an explicitly weaker read contract.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m01",
+          "finding_id": "PR55-1",
+          "review_role": "technical",
+          "report": "modules/m01/reviews/automatic/lessons/M01-L04/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/monitoring-stats.html#MONITORING-PG-STAT-REPLICATION-VIEW",
+          "lesson": "M01-L04"
+        }
+      ]
     }
   ]
 }
