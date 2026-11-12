@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M03-L03",
+  "revision": 1,
+  "goal": "Deliver the canonical SDA-v1 draft for SDA-M03-L03 — Service discovery and resilient calls",
+  "scope": {
+    "in_scope": [
+      "Use approved SDA-v1 and the canonical outputs from Story SDA-M03-L03.",
+      "**Prerequisites:** M03-L02, M02-L01\n\n**Outcomes:** M03-L03-LO1: trace/model the mechanisms below in the worked scenario. M03-L03-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Registry and DNS discovery, registration/address/port records, health endpoints, leases and stale membership; Consul/etcd/ZooKeeper role comparison and configuration key-value scope.\n2. Client-side versus server-side discovery and load balancing.\n3. Deadlines, bounded retries, backoff and failure isolation as Academy additions.\n\n**Worked-example plan:** Trace a request to a terminated worker still present in discovery.\n\n**Trade-offs and when to use/avoid:** Choose discovery ownership and failure policy; bound retry amplification and avoid depending on discovery on every hot request.\n\n**Quick-check focus:** Find the amplification caused by retries at multiple call layers. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Cover the approved topic IDs PR-H080, PR-BODY-R1-DISCOVERY-CONFIG."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate through GitHub Issue #63. Preserve archived records in PR #38 and adapt suitable draft material from ec753d7.",
+    "Write original English draft material for middle and senior engineers. Verify technical claims with exact primary sources.",
+    "Use the pinned Primer as a topic map. Keep exercises in companion artifacts and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Deliver checked claim-level evidence at the canonical path.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver all canonical Story drafts for parent-owned handoff.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record exact source sections, version or publication scope and limits. Recheck changed and volatile claims.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M03-L03 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
