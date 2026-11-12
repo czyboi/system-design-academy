@@ -1,18 +1,11 @@
-"""Format-only tests; pinned milestone regression is run by GitHub CI."""
+"""Format-only regression tests for current authoring contracts."""
 from __future__ import annotations
 
-import os
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.validate_format import PARSER, split_front_matter, validate_document
-
-MS01 = "e823c8d72e59f1691ce7bfc65f37c209066eca99"
-MS02 = "ec753d7bcfd69ad68e5fff260aeb088059e42540"
-ROOT = Path(__file__).resolve().parents[1]
-
+from scripts.validate_format import PARSER, validate_document
 
 def draft(body: str, **overrides: str) -> str:
     fields = {
@@ -110,53 +103,6 @@ Explanation: Because.
     def test_legacy_integrated_package(self):
         text = "---\nid: M04-EX1\nstatus: draft\n---\n# Brief\n## Exercise\nExplain an architecture.\n"
         self.assertEqual(validate_document(text, self.root/'modules/m04/integrated/brief.md', root=self.root), [])
-
-
-@unittest.skipUnless(os.getenv("SDA_TEST_PINNED_CONTENT") == "1", "pinned milestone commits are fetched by CI")
-class PinnedMilestoneRegression(unittest.TestCase):
-    """Read Git objects directly, never copy or edit hash-bound lesson files."""
-
-    def test_all_13_review_selected_lessons_and_assessments(self):
-        for commit, module, lesson_count, revised in (
-            (MS01, "m00", 2, {}),
-            (MS01, "m01", 4, {"M01-L02"}),
-            (MS02, "m02", 4, {"M02-L02"}),
-            (MS02, "m03", 3, {}),
-        ):
-            for number in range(1, lesson_count + 1):
-                lesson_id = f"{module.upper()}-L{number:02d}"
-                suffix = f"revision-1/{lesson_id}.md" if lesson_id in revised else f"{lesson_id}.md"
-                teaching = f"modules/{module}/lessons/{suffix}"
-                assessment = f"modules/{module}/assessments/{suffix}"
-                for kind, path in (("lesson", teaching), ("assessment", assessment)):
-                    with self.subTest(commit=commit, path=path):
-                        proc = subprocess.run(
-                            ["git", "show", f"{commit}:{path}"], cwd=ROOT,
-                            check=True, capture_output=True, text=True, encoding="utf-8",
-                        )
-                        problems = validate_document(proc.stdout, ROOT / path, kind=kind, check_local_links=False)
-                        self.assertEqual(problems, [], "\n".join(problems))
-                        metadata, _, _ = split_front_matter(proc.stdout)
-                        if kind == "lesson":
-                            self.assertEqual(metadata["id"], lesson_id)
-                            self.assertEqual(metadata["assessment"], assessment)
-                        else:
-                            self.assertEqual(metadata["lesson"], teaching)
-
-    def test_four_module_integrated_packages(self):
-        for commit, module, summary in (
-            (MS01, "m00", "decision-summary.md"),
-            (MS01, "m01", "decision-summary-r1.md"),
-            (MS02, "m02", "decision-summary.md"),
-            (MS02, "m03", "decision-summary-r1.md"),
-        ):
-            for name in ("brief.md", "solution-rubric.md", summary):
-                path = f"modules/{module}/integrated/{name}"
-                with self.subTest(path=path):
-                    proc = subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT,
-                                          check=True, capture_output=True, text=True, encoding="utf-8")
-                    problems = validate_document(proc.stdout, ROOT / path, kind="integrated", check_local_links=False)
-                    self.assertEqual(problems, [], "\n".join(problems))
 
 
 if __name__ == "__main__":

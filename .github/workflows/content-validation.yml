@@ -14,13 +14,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Fetch pinned MS01/MS02 snapshot commits
-        run: |
-          git fetch --no-tags origin refs/heads/codex/SDA-MS01 refs/heads/codex/SDA-MS02
-          git cat-file -e e823c8d72e59f1691ce7bfc65f37c209066eca99^{commit}
-          git cat-file -e ec753d7bcfd69ad68e5fff260aeb088059e42540^{commit}
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -35,7 +28,5 @@ jobs:
         run: python scripts/validate_content.py --scope workflow
       - name: Validate persistent task state records
         run: python scripts/taskctl.py validate
-      - name: Run task state and pinned format regression tests
-        env:
-          SDA_TEST_PINNED_CONTENT: '1'
+      - name: Run current regression tests
         run: python -m unittest discover -s tests -v

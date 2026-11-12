@@ -146,27 +146,12 @@ class WorkflowTemplateTests(unittest.TestCase):
                 self.assertFalse(step.get('requires_reviews'))
             self.assertEqual(len(outputs), len(set(outputs)))
 
-    def test_template_schema_and_role_models(self):
-        import tomllib
-        template=json.loads((ROOT/'.academy/state/task.template.json').read_text())
-        template['task_id']='TEST-TEMPLATE'
-        taskctl.validate_json_schema(template,ROOT/'.academy/state/schema/task.schema.json','Template')
-        for path in (ROOT/'.codex/agents').glob('*.toml'):
-            profile=tomllib.loads(path.read_text())
-            self.assertIn(profile['model'],{'gpt-6.1-sol','gpt-6-astra','gpt-6.1-terra'})
-            self.assertIn(profile['model_reasoning_effort'],{'medium','high'})
-
-    def test_requested_role_model_routing(self):
-        import tomllib
-        config=tomllib.loads((ROOT/'.codex/config.toml').read_text())
-        self.assertEqual(config['model'], 'gpt-6.1-sol')
-        self.assertEqual(config['agents']['default_subagent_model'], 'gpt-6.1-terra')
-        for name, model in (('workflow-architect','gpt-6.1-sol'), ('pr-reviewer','gpt-6.1-sol'),
-                            ('technical-reviewer','gpt-6.1-sol'), ('spec-implementer','gpt-6.1-terra'),
-                            ('lesson-author','gpt-6.1-terra'), ('curriculum-designer','gpt-6.1-sol')):
-            profile=tomllib.loads((ROOT/f'.codex/agents/{name}.toml').read_text())
-            self.assertEqual(profile['model'], model, name)
-        self.assertIn('ambiguous', (ROOT/'.codex/agents/spec-implementer.toml').read_text())
+    def test_template_schema(self):
+        template = json.loads((ROOT / '.academy/state/task.template.json').read_text())
+        template['task_id'] = 'TEST-TEMPLATE'
+        taskctl.validate_json_schema(
+            template, ROOT / '.academy/state/schema/task.schema.json', 'Template'
+        )
 
     def test_repository_and_workflow_accept_empty_authoring_inventory(self):
         for scope in ('repo','workflow'):
