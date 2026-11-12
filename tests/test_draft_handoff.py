@@ -80,9 +80,46 @@ class DraftHandoffTests(unittest.TestCase):
             with patch.object(draft_handoff.taskctl, "relpath",
                               side_effect=lambda path: root / Path(path).name), \
                  patch.object(draft_handoff, "required_module_paths", return_value=expected):
-                with self.assertRaisesRegex(draft_handoff.HandoffError, "before every lesson and integration"):
+                with self.assertRaisesRegex(draft_handoff.HandoffError, "before its complete draft"):
                     draft_handoff.review_report_paths([tech, pedagogy], selected)
 
+    def test_lesson_review_handoff_does_not_require_whole_module(self):
+        task_files = {"modules/m00/lessons/M00-L01.md",
+                      "modules/m00/assessments/M00-L01.md"}
+        t = "modules/m00/reviews/automatic/lessons/M00-L01/technical.md"
+        p = "modules/m00/reviews/automatic/lessons/M00-L01/pedagogy.md"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "technical.md").write_text("Technical review", encoding="utf-8")
+            (root / "pedagogy.md").write_text("Pedagogy review", encoding="utf-8")
+            with patch.object(draft_handoff.taskctl, "relpath",
+                              side_effect=lambda path: root / Path(path).name), \
+                 patch.object(draft_handoff, "required_module_paths",
+                              side_effect=AssertionError("should not require module closure")), \
+                 patch.object(draft_handoff.review_cycle, "load",
+                              return_value={"status": "ready", "review_history": [{"round": 0}]}):
+                self.assertEqual(
+                    draft_handoff.review_report_paths([t, p], task_files),
+                    {t, p, "modules/m00/reviews/automatic/lessons/M00-L01/cycle.json"})
+                with self.assertRaisesRegex(draft_handoff.HandoffError, "both technical and pedagogy"):
+                    draft_handoff.review_report_paths([t], task_files)
+                with self.assertRaisesRegex(draft_handoff.HandoffError, "module mismatch"):
+                    draft_handoff.review_report_paths(
+                        ["modules/m01/reviews/automatic/lessons/M00-L01/technical.md"],
+                        task_files | {"modules/m01/lessons/M01-L01.md"})
+
+    def test_lesson_report_cannot_be_handed_off_with_missing_assessment(self):
+        t = "modules/m00/reviews/automatic/lessons/M00-L01/technical.md"
+        p = "modules/m00/reviews/automatic/lessons/M00-L01/pedagogy.md"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "technical.md").write_text("Technical review", encoding="utf-8")
+            (root / "pedagogy.md").write_text("Pedagogy review", encoding="utf-8")
+            with patch.object(draft_handoff.taskctl, "relpath",
+                              side_effect=lambda path: root / Path(path).name):
+                with self.assertRaisesRegex(draft_handoff.HandoffError, "complete draft"):
+                    draft_handoff.review_report_paths(
+                        [t, p], {"modules/m00/lessons/M00-L01.md"})
     def test_module_review_reports_do_not_allow_arbitrary_files(self):
         with self.assertRaisesRegex(draft_handoff.HandoffError, "selected module"):
             draft_handoff.review_report_paths(

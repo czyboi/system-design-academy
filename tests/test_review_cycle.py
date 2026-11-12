@@ -51,6 +51,52 @@ class ReviewCycleTests(unittest.TestCase):
         self.assertEqual(stopped["status"], "blocked")
         self.assertIn("verifiable source", stopped["stop_reason"])
 
+    def test_lesson_cycles_are_independent_and_do_not_wait_for_module(self):
+        a = "M00-L01"
+        b = "M00-L02"
+        for target in (a, b):
+            reports = review_cycle.state_path(target).parent
+            reports.mkdir(parents=True)
+            for role in ("technical", "pedagogy"):
+                (reports / f"{role}.md").write_text("Independent review", encoding="utf-8")
+        first = review_cycle.record(a, "ready-for-human-review", "ready-for-human-review")
+        second = review_cycle.record(b, "revise", "ready-for-human-review")
+        self.assertEqual(first["status"], "ready")
+        self.assertEqual(first["module"], "m00")
+        self.assertEqual(first["lesson"], a)
+        self.assertEqual(second["status"], "needs_revision")
+        self.assertIsNone(review_cycle.load("m00"))
+        self.assertEqual(review_cycle.begin_revision(b)["revision_attempts"], 1)
+        self.assertEqual(review_cycle.load(a)["revision_attempts"], 0)
+        self.assertEqual(review_cycle.load(b)["status"], "revising")
+
+    def test_material_change_reopens_only_ready_lesson_with_audit_history(self):
+        target = "M00-L04"
+        reports = review_cycle.state_path(target).parent
+        reports.mkdir(parents=True)
+        for role in ("technical", "pedagogy"):
+            (reports / f"{role}.md").write_text("Review", encoding="utf-8")
+        review_cycle.record(target, "ready-for-human-review", "ready-for-human-review")
+        with self.assertRaisesRegex(review_cycle.ReviewCycleError, "reason"):
+            review_cycle.reopen(target, "")
+        reopened = review_cycle.reopen(target, "Integration changed the latency example")
+        self.assertEqual(reopened["status"], "revising")
+        self.assertEqual(reopened["revision_attempts"], 0)
+        self.assertEqual(len(reopened["review_history"]), 1)
+        self.assertEqual(len(reopened["reopen_history"]), 1)
+        revised = review_cycle.record(target, "revise", "ready-for-human-review")
+        self.assertEqual(revised["status"], "needs_revision")
+        self.assertEqual(review_cycle.begin_revision(target)["revision_attempts"], 1)
+        self.assertEqual(review_cycle.load("m00"), None)
+        with self.assertRaisesRegex(review_cycle.ReviewCycleError, "Only a previously ready"):
+            review_cycle.reopen(target, "Should not reset an active attempt")
+
+    def test_lesson_record_requires_its_own_report(self):
+        target = "M00-L03"
+        with self.assertRaisesRegex(review_cycle.ReviewCycleError, "Missing nonempty technical"):
+            review_cycle.record(target, "ready-for-human-review", "ready-for-human-review")
+        with self.assertRaisesRegex(review_cycle.ReviewCycleError, "Target must"):
+            review_cycle.state_path("../bad")
     def test_missing_report_never_records_success(self):
         (review_cycle.state_path("m00").parent / "technical.md").unlink()
         with self.assertRaisesRegex(review_cycle.ReviewCycleError, "Missing nonempty technical"):

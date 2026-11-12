@@ -27,7 +27,7 @@ Findings first, each with exact quote/location, severity, explanation, evidence 
 
 ## Machine-readable gate output
 
-Run this reviewer for the owner's standing automatic **completed-module** QA request through `module-quality-review`, or for an explicitly requested targeted/standalone review. For a declared review task, write the requested Markdown findings and optional JSON verdict using `docs/workflow-contract.md`; include finding IDs, severity and status, but no artifact checksums. An open blocker/major finding forbids `ready-for-human-review`. This reviewer cannot trigger code validation, self-revisions, or other reviewers; the parent separately coordinates the two independent module reviewers. Record content-review status explicitly when authorized; this is not human publication approval.
+Run this reviewer for the owner's standing automatic **per-lesson and module-synthesis** QA requests through `module-quality-review`, or for an explicitly requested targeted/standalone review. For a declared review task, write the requested Markdown findings and optional JSON verdict using `docs/workflow-contract.md`; include finding IDs, severity and status, but no artifact checksums. An open blocker/major finding forbids `ready-for-human-review`. This reviewer cannot trigger code validation, self-revisions, or other reviewers; the parent separately coordinates the two independent reviewers. Record content-review status explicitly when authorized; this is not human publication approval.
 
 ## Combined technical and provenance review
 
