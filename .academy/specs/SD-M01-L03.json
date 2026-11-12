@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M01-L03",
+  "revision": 1,
+  "goal": "Generate the canonical SDA-v1 draft for SDA-M01-L03 — Consistency and partition decisions",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and Story SDA-M01-L03 at its backlog paths.",
+      "**Prerequisites:** M01-L02\n\n**Outcomes:** M01-L03-LO1: trace/model the mechanisms below in the worked scenario. M01-L03-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Weak, eventual and strong consistency through observable read/write histories.\n2. CAP consistency and availability during a partition; CP and AP policies by operation.\n3. Convergence, conflict handling and read-your-writes requirements; BASE terminology with product-specific limits.\n\n**Worked-example plan:** Trace a profile update and a balance check during a network partition.\n\n**Trade-offs and when to use/avoid:** Choose per-operation semantics; avoid treating CAP as a normal-operation three-way menu.\n\n**Quick-check focus:** Classify a stale read and explain which guarantee was violated. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Cover the approved source topics PR-H036, PR-H037, PR-H038, PR-H039, PR-H041, PR-H042, PR-H043, PR-H044."
+    ],
+    "out_of_scope": [
+      "Other modules, curriculum changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate through GitHub Issue #48. Archived milestone material remains at PR #28.",
+    "Write original English draft material for middle and senior engineers. Verify important claims with exact primary sources.",
+    "Use the pinned Primer as a topic map. State assumptions and label modeled values."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Deliver the canonical claim-level research evidence.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver the canonical Story draft outputs for parent-owned scoped handoff.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Verify sources, their sections, version or publication scope, applicability and limitations.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M01-L03 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

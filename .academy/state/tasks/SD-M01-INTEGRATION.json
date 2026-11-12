@@ -1,0 +1,107 @@
+{
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Ground the integrated exercise in source evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m01/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-12T09:18:28Z",
+      "run_id": "SD-M01-INTEGRATION-research-20261112T091828Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-12T09:23:09Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Draft and reconcile the module integration",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/coverage.csv",
+        "delivery/backlog.json",
+        "GOVERNANCE.md",
+        "modules/m01/integrated/evidence.md",
+        "modules/m01/lessons/M01-L01.md",
+        "modules/m01/assessments/M01-L01.md",
+        "modules/m01/evidence/M01-L01.md",
+        "modules/m01/lessons/M01-L02.md",
+        "modules/m01/assessments/M01-L02.md",
+        "modules/m01/evidence/M01-L02.md",
+        "modules/m01/lessons/M01-L03.md",
+        "modules/m01/assessments/M01-L03.md",
+        "modules/m01/evidence/M01-L03.md",
+        "modules/m01/lessons/M01-L04.md",
+        "modules/m01/assessments/M01-L04.md",
+        "modules/m01/evidence/M01-L04.md"
+      ],
+      "output_paths": [
+        "modules/m01/integrated/brief.md",
+        "modules/m01/integrated/solution-rubric.md",
+        "modules/m01/integrated/decision-summary.md",
+        "modules/m01/integrated/taught-coverage.csv",
+        "modules/m01/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "Addressed T-1: explicit pre-admission rejection and no replay; synced portfolio for P-2 and P-3.",
+        "next_action": "Independent targeted re-review after scoped handoff.",
+        "at": "2026-11-12T09:31:07Z"
+      },
+      "attempts": 2,
+      "started_at": "2026-11-12T09:29:42Z",
+      "run_id": "SD-M01-INTEGRATION-author-20261112T092942Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-12T09:31:07Z",
+      "completed_by": "codex",
+      "invalidation_reason": "M01 module reviewer findings T-1, P-2, P-3"
+    }
+  ],
+  "notes": "",
+  "current_phase": "author",
+  "schema_version": 2,
+  "task_id": "SD-M01-INTEGRATION",
+  "module_id": "m01",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M01-INTEGRATION.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "created_at": "2026-11-12T09:18:27Z",
+  "updated_at": "2026-11-12T14:21:23Z",
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent M01 round 1 cleared this scope after correction of T-1 and the dependent P-2/P-3 mappings.",
+      "updated_at": "2026-11-12T09:32:53Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Targeted PR #55 re-review verified the L03-P1 and L04-P1 portfolio entries against their companions.",
+      "updated_at": "2026-11-12T14:21:23Z"
+    }
+  }
+}

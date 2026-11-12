@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M01-L01",
+  "module_id": "m01",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M01-L01.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-12T09:18:25Z",
+  "updated_at": "2026-11-12T09:32:52Z",
+  "execution_control": "active",
+  "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m01/evidence/M01-L01.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-12T09:18:25Z",
+      "run_id": "SD-M01-L01-research-20261112T091825Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-12T09:19:39Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m01/evidence/M01-L01.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m01/lessons/M01-L01.md",
+        "modules/m01/assessments/M01-L01.md"
+      ],
+      "checkpoint": {
+        "note": "Addressed P-1 and P-2: operation-linked latency model and complete LO1 evidence mapping.",
+        "next_action": "Independent targeted re-review after scoped handoff.",
+        "at": "2026-11-12T09:31:06Z"
+      },
+      "attempts": 2,
+      "started_at": "2026-11-12T09:29:39Z",
+      "run_id": "SD-M01-L01-author-20261112T092940Z",
+      "agent": "lesson_author",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-12T09:31:06Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "M01 module reviewer findings P-1, P-2"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent M01 round 1 cleared this scope after correction of P-1 and P-2.",
+      "updated_at": "2026-11-12T09:32:52Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent M01 round 1 cleared this scope after correction of P-1 and P-2.",
+      "updated_at": "2026-11-12T09:32:52Z"
+    }
+  }
+}

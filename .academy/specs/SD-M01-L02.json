@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M01-L02",
+  "revision": 1,
+  "goal": "Generate the first SDA-v1 quality pilot draft for Performance versus scalability",
+  "scope": {
+    "in_scope": [
+      "Generate one lesson package for Story SDA-M01-L02, the first case in docs/quality-pilot.md, from approved SDA-v1 at curriculum/revision-1/.",
+      "Deliver the backlog's canonical evidence, teaching lesson and companion assessment for M01-L02. Cover PR-H032 and PR-H034."
+    ],
+    "out_of_scope": [
+      "Other lessons, module integration, independent pilot review, and publication."
+    ]
+  },
+  "constraints": [
+    "Use the research and author steps and coordinate through GitHub Issue #47. Archived milestone material and reviews are retained at PR #28.",
+    "Use original English teaching for middle and senior engineers and keep learner-facing artifacts at draft status.",
+    "Use the pinned Primer as a topic map and exact primary-source sections for technical claims. Label all scenario values as modeled or hypothetical."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Write the canonical evidence pack with checked claim-level sources, applicability and limits.",
+      "applies_to": ["research"]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Write both canonical draft files with linked front matter and complete assessment mapping. The parent runs the standard scoped draft handoff after task completion.",
+      "applies_to": ["author"]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-sources",
+      "text": "Map both Primer topic IDs to the approved teaching sequence and record exact sources for scaling, state placement, queueing, tail latency and performance measurement.",
+      "applies_to": ["research"]
+    },
+    {
+      "id": "ac-teaching",
+      "text": "Compare a faster server with two slower servers under an original burst, explain service time, throughput, queue growth and tail risk, apply Little's Law with steady-state assumptions, and defend a change using a bottleneck, state and measurement evidence.",
+      "applies_to": ["author"]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Map Q1–Q3 to M01-L02-LO1 and Q4–Q6 plus EX-1 to M01-L02-LO2. Include explanations, a sample exercise solution and a rubric that accepts evidence-backed alternatives.",
+      "applies_to": ["author"]
+    }
+  ]
+}
