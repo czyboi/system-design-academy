@@ -5,7 +5,7 @@
 The [shared module-pipeline skill](../.agents/skills/module-pipeline/SKILL.md) is the orchestration procedure. New templates are minimal:
 
 - **Course planning:** one `plan` step producing a new versioned plan, source inventory and coverage matrix.
-- **Lesson package:** `research` → `author`. Author produces a draft lesson and a separate companion assessment.
+- **Lesson package:** `research` → `author`. Author reads the declared compact `content-format` skill, then produces a draft lesson and a separate companion assessment. This adds no agent stage or automatic review.
 - **Tooling:** one `implementation` step.
 
 **The authoring path ends at draft completion.** Python validation, independent AI review, rework and full course audits are **not automatic**. Invoke each separately only upon explicit user instruction. Existing historical graphs remain as recorded; their completed work is not reopened by this policy change.
@@ -33,7 +33,7 @@ python scripts/taskctl.py resume-task TASK-ID --reason "User resumed"
 
 `status` is read-only. `reconcile` persists aggregate status computed only from explicit step/hold fields. No automatic STALE, checksum, fingerprint, dirty-input block, unchanged-output reuse flag or dependency hash cascade exists. The CLI requires declared inputs when starting and output files when completing; a completed step may later lose outputs without changing status (read-only `WARNING` in `status`). `handoff` is an explicit, read-only Git tracking/cleanliness check for completed output files, spec, task state and worklog. For cross-environment handoff it also verifies local HEAD equals the upstream branch currently advertised by the remote; configure tracking with `git push -u origin HEAD` and push future commits before handoff. Use `--local-only` only when agents share a checkout. Remote access happens exclusively during this explicit command; no checksum or automatic state change occurs.
 
-For a backlog lesson, `init ... --template .academy/state/task.template.json` resolves `EVIDENCE_PATH`, `TEACHING_PATH` and `ASSESSMENT_PATH` from the Story identified by `proposed_task_id` and validates its module. Task ID (`SD-M00-L01`) is not the filename Lesson ID (`M00-L01`). A missing/ambiguous Story fails instead of guessing a path.
+For a backlog lesson, `init ... --template .academy/state/task.template.json` resolves `EVIDENCE_PATH`, `TEACHING_PATH` and `ASSESSMENT_PATH` from the Story identified by `proposed_task_id` and validates its module. Task ID (`SD-M00-L01`) is not the filename Lesson ID (`M00-L01`). A missing/ambiguous Story fails instead of guessing a path. Initialization validates both task state and its spec before writing files, so invalid templates do not leave a stranded spec.
 
 `complete --usage-file PATH` may record observed input/output/cached/reasoning tokens and elapsed time. The tool does not infer usage or cost. New files never record hashes; legacy task hash fields and prior reports remain historical data.
 
@@ -55,7 +55,7 @@ A negative review should provide actionable findings. A minimal JSON verdict may
 }
 ```
 
-Allowed verdicts: `block`, `revise`, `ready-for-human-review`. Severities: `blocker`, `major`, `minor`, `note`. Finding status: `open` or `resolved`. A clear verdict must have no open blocker/major finding. New verdicts **do not require artifact_hashes**; old verdict metadata may remain untouched. Review does not automatically invoke Python validation. Use `review-status --scope technical|pedagogy|coverage|provenance|REVIEW-STEP-ID` to record only the requested dimension, not to approve publication. `general` does not certify other scopes. A named review gate in a new task passes only with a completed review step, explicit matching scoped `reviewed` decision and a clear verdict; `in_review` and `needs_review` block. Historical tasks with no new review fields preserve their previous completed-review gate behavior. If content changes materially later, flag `needs_review` explicitly.
+Allowed verdicts: `block`, `revise`, `ready-for-human-review`. Severities: `blocker`, `major`, `minor`, `note`. Finding status: `open` or `resolved`. A clear verdict must have no open blocker/major finding. New verdicts **do not require artifact_hashes**; old verdict metadata may remain untouched. Review does not automatically invoke Python validation. Use `review-status --scope technical|pedagogy|coverage|provenance|REVIEW-STEP-ID` to record only the requested dimension, not to approve publication. `general` does not certify other scopes. A named review gate in a new task passes only with a completed review step, explicit matching scoped `reviewed` decision and a clear verdict; `in_review` and `needs_review` block. Gate conditions are checked again at `complete` for any running step with `requires_reviews`. Historical tasks with no new review fields preserve their previous completed-review gate behavior. If content changes materially later, flag `needs_review` explicitly.
 
 Historical optional step graphs may include `requires_reviews`; new decisions require a scoped review state in addition to the verdict and completed review step. `invalidate` on a reviewed step explicitly marks its scope `needs_review`. No checksums are compared. New default drafts do not depend on review steps.
 
@@ -72,7 +72,7 @@ python scripts/taskctl.py validate
 python -m unittest discover -s tests -v
 ```
 
-Run only the specifically selected checks. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
+Run only the specifically selected checks. Repository-wide content and format checks prefer `modules/<MODULE>/content-manifest.json` selected lesson/assessment paths, including `revision-1/` files, instead of treating obsolete versions as active. Without a manifest, the structural validator rejects nested lesson revisions rather than silently skipping them. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
 
 GitHub Actions `content-validation.yml` has **workflow_dispatch only**; select **Content validation → Run workflow** to run those checks manually. Python regression tests run separately on pull requests and pushes to `main`, and can also be started manually.
 

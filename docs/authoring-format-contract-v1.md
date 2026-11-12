@@ -1,20 +1,20 @@
-# Authoring Format Contract v1 — candidate (not enforced)
+# Authoring Format Contract v1 — authoring guidance
 
-> Status: **proposed for human review**. This document does not add new authoring gates or alter accepted lesson artifacts. Its first implementation target is backward-compatible ingestion of SDA-MS01 and SDA-MS02.
+> Status: **connected to new lesson authoring on PR #43** (effective on `main` only after merge). No automatic authoring gate or changes to completed historical artifacts. Format checks remain user-triggered.
 
 ## Adoption, quality guardrails and agent delivery
 
-This is a **draft PR**: its rules are not active on `main` until merged. After adoption, **newly claimed content tasks** include both this document and the compact shared agent instruction `.agents/skills/content-format/SKILL.md` as declared author inputs; `.agents/skills/module-pipeline/SKILL.md` passes that instruction to the agent. Existing completed authoring tasks and their hash-bound artifacts are left alone.
+For **newly claimed lesson tasks**, `.academy/state/task.template.json` declares `.agents/skills/content-format/SKILL.md` as an `author` input; Codex and Claude lesson-author adapters and the module-pipeline skill also reference it. Read this longer specification only if format details are unclear, to avoid unnecessary tokens. Historical completed authoring tasks remain completed and are never automatically invalidated.
 
 **Precedence:** approved syllabus/outcomes → technical truth and complete mechanisms → pedagogy (worked examples, helpful visuals and reasoning) → format convenience. A required mathematical expression, architecture diagram or technical illustration must never be omitted or made less accurate just to fit a supported renderer. Flag a missing capability and extend the renderer/format by a separate reviewed task. No syntax quota, section length limit or diagram quota is imposed.
 
-Before accepting newly generated output, the existing technical and teaching reviews still assess completeness, correctness and pedagogy. **These are qualitative review responsibilities, not machine-proof of no regression.** The deterministic format validator is a separate Step 2 and is not yet enforced by this PR.
+Technical/teaching reviews assess completeness, correctness and pedagogy **only when explicitly requested**. The deterministic format validator `scripts/validate_format.py` is implemented but is also run on demand, separately from automatic Python regression tests. Neither review nor validation is a default authoring dependency.
 
-This integration does not add an LLM step. Reading a compact formatting skill **does consume a small amount of input tokens** in future authoring; the later deterministic loader/validator has no LLM token cost. Avoid passing the entire specification in every agent brief when the compact instruction is sufficient.
+This integration does not add an LLM step. Reading a compact formatting skill **does consume a small amount of input tokens** in future authoring; the existing deterministic format validator has no LLM token cost. Avoid passing the entire specification in every agent brief when the compact instruction is sufficient.
 
 ## 1. Scope and authority
 
-- This contract governs **representation and safe consumption**, not what to teach. Course depth, learning outcomes, technical accuracy, source provenance, exercises, and teaching quality remain governed by the approved curriculum, `modules/database/governance/content-guidelines.md`, `.agents/skills/lesson-authoring/SKILL.md`, and existing review gates.
+- This contract governs **representation and safe consumption**, not what to teach. Course depth, learning outcomes, technical accuracy, source provenance, exercises, and teaching quality remain governed by the approved curriculum, `modules/database/governance/content-guidelines.md`, `.agents/skills/lesson-authoring/SKILL.md`, and optional independent review.
 - Applies to teaching lessons, companion assessments, and module integrated packages. Each artifact retains its own existing structure; no universal JSON rewriting or new required metadata is introduced here.
 - Canonical artifact bytes and reviewed revisions remain immutable for the purpose of this rollout. A website-specific mapping, summary, or slug must live outside reviewed Markdown until separately approved.
 - An accepted automated review (`ready-for-human-review`) is **not** human publication approval.
@@ -27,7 +27,7 @@ Lesson YAML front matter already carries `id`, `title`, `status`, `level`, `prer
 - `prerequisites` is an array of strings, but some strings identify other lessons while others describe entry knowledge. Consumers **must not** treat every string as a lesson ID or infer semantics from natural language.
 - Assessment front matter remains separate (`id`, `status`, `lesson`, `outcome_map`) and refers to actual teaching headings and assessment item IDs.
 - Integrated package formats are distinct from lesson and companion formats; do not force them to carry lesson-only metadata.
-- In the generation workflow, canonical content remains `status: draft`. Publication approval belongs to a separate, hash-bound decision record to be designed in a later step.
+- In the generation workflow, canonical content remains `status: draft`. Publication approval and version selection will have separate human-controlled records in a later website/release task; task-state progress uses no file hashes.
 
 ## 3. Markdown representation
 
@@ -61,26 +61,26 @@ Lesson YAML front matter already carries `id`, `title`, `status`, `level`, `prer
 ## 7. Revision selection, integrity, and publication
 
 - A canonical lesson ID may have multiple versioned paths. Never choose a file solely by filename, modification time, directory order, or highest `revision-N` suffix.
-- A consumer must use an explicit selected-artifact mapping backed by current teaching/technical review evidence and exact SHA-256 before treating the artifact as reviewed.
+- Repository-wide content and format checks select the explicitly listed lesson/assessment paths from each module's `content-manifest.json`. If nested revisions exist without a selection manifest, content validation reports an error rather than guessing. Historical versions remain untouched.
 - Review-ready drafts may be previewed in an access-controlled development environment; they must **not** be published publicly without independent human approval of the exact selected bytes.
-- Invalid hashes, missing assessments/assets, or unsupported constructs must fail closed rather than select another revision or silently omit content.
+- Missing selected assessments/assets or unsupported constructs must fail closed rather than silently choose another revision or omit content. Any future release-integrity hash is separate from the task lifecycle and does not enable automatic `STALE`.
 - This contract does not itself define the public JSON API, approval record schema, or deployment process. Those are separate subsequent steps.
 
 ## 8. Compatibility and evolution
 
 - **v1 compatibility promise:** the 13 selected MS01–MS02 lessons and companions must remain readable without editing their canonical bytes. Existing formatting variants are first-class fixtures.
-- Changes to presentation tooling must not invalidate completed content reviews by rewriting the original artifacts. Only modifications to reviewed source or authoritative specs should trigger the corresponding existing review/integrity logic.
+- Changes to presentation tooling must not rewrite reviewed source. When reviewed teaching content changes materially, the author or owner explicitly marks the appropriate review scope `needs_review`; no automatic review invalidation or fingerprint-based task transitions occur.
 - New syntax may be introduced once the web renderer and regression tests support it, with an explicit versioned capability note. Breaking changes require an explicit migration plan, not silent fallback.
 - Contract version `v1` in this document is a **consumer-format specification**, not the schema version of any lesson front matter.
 
-## 9. Implementation boundary (future, not part of this step)
+## 9. Implementation boundary
 
-1. Add non-mutating format validation and golden/negative tests against pinned MS01–MS02 fixtures. Prefer a standards-compliant Markdown parser over ad-hoc regex for understanding the body.
-2. Implement a thin, deterministic content loader with selected-path/hash checking. Keep the Markdown body intact.
-3. Add a separate publication gate for human-approved hashes.
-4. Integrate the website renderer and perform visual QA on tables, code, diagrams, and long lessons.
+1. **Implemented:** deterministic format validation and synthetic regression fixtures using `markdown-it-py`; historical commit-pinned snapshot tests were intentionally removed.
+2. **Future:** a thin website content loader honoring explicitly selected paths and preserving the Markdown body.
+3. **Future:** independent human approval and publication controls, separate from authoring completion.
+4. **Future:** website renderer plus visual QA for tables, code, diagrams, long lessons and assessments.
 
-No additional AI agent or LLM call is needed for deterministic build-time checks. The small format skill becomes a required authoring input for **new tasks after merge**, while deterministic renderer checks are still pending Step 2.
+The compact format skill is a required input for new lesson tasks. CI runs Python regression tests automatically, but AI reviews and content/format validation remain opt-in.
 
 ## Reference specifications
 

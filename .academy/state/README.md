@@ -7,7 +7,7 @@ There are **no automatic checksum/fingerprint comparisons** for task status. A c
 ## Lifecycle
 
 - `pending` → `running` through `start`.
-- `running` → `completed` through `complete`, after declared output files exist. Completion does not run validation or review.
+- `running` → `completed` through `complete`, after declared output files exist. Completion does not run validation or review; on historical/optional steps that declare `requires_reviews`, it rechecks the existing named review gate.
 - `running` → `running` through `start ... --resume`; consult the checkpoint.
 - `completed` → `invalidated` only through an explicit `invalidate` command. `invalidated` can then be started again.
 - `blocked` and `execution_control` holds remain manual. A dependency is ready when its preceding step has explicitly completed. `invalidate --cascade` is opt-in, never inferred.
@@ -45,6 +45,6 @@ A formatting edit need not reset review status. A substantive edit should be fla
 
 No step implicitly launches an AI review, content validation, a Python test suite, or a revision loop. Select `scripts/validate_content.py`, `scripts/check_course_coverage.py`, `scripts/taskctl.py validate` or tests only when specifically requested. GitHub Actions content validation uses `workflow_dispatch` only; Python regression tests run automatically on pull requests and pushes to `main`.
 
-Use the two-step lesson template, one-step course template or one-step tooling template for new tasks. Historical six-step workflows and reports remain unchanged; do not silently restart or migrate them. At cross-environment handoff, commit and push output/spec/state/worklog, then run `taskctl handoff TASK-ID`. This checks Git tracking, cleanliness and whether local HEAD matches the upstream branch advertised by the remote (requires an accessible remote and configured upstream). Use `--local-only` only when the receiving agent shares this checkout. Remote verification happens only at explicit handoff, never during status/start/complete. The command does not use checksums or run AI review/Python validation. Share checkpoints in the Issue when handing off.
+Use the two-step lesson template (including `content-format` as a declared author input), one-step course template or one-step tooling template for new tasks. Invalid task/spec initialization is rejected before persisting partial files. Historical six-step workflows and reports remain unchanged; do not silently restart or migrate them. At cross-environment handoff, commit and push output/spec/state/worklog, then run `taskctl handoff TASK-ID`. This checks Git tracking, cleanliness and whether local HEAD matches the upstream branch advertised by the remote (requires an accessible remote and configured upstream). Use `--local-only` only when the receiving agent shares this checkout. Remote verification happens only at explicit handoff, never during status/start/complete. The command does not use checksums or run AI review/Python validation. Share checkpoints in the Issue when handing off.
 
 Publication approval, PR merge and course release are human-controlled and separate from task progress.

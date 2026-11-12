@@ -18,7 +18,7 @@
 - Preserve old task/worklog/report history; legacy hashes are inert. Before cross-environment handoff, commit and push output, spec, task state and worklog, then run `taskctl handoff TASK-ID` to check Git-tracked/clean files and remote upstream sync. For agents sharing a checkout only, `handoff TASK-ID --local-only` skips remote verification. No checksums. A completed task with missing files shows a warning; its historical status remains unchanged.
 
 ## Default workflow
-- `.academy/state/task.template.json`: research → author draft lesson + companion assessment. `init` resolves all three output paths from the matching `delivery/backlog.json` Story (`proposed_task_id`), not by concatenating Task ID.
+- `.academy/state/task.template.json`: research → author draft lesson + companion assessment. The author reads `.agents/skills/content-format/SKILL.md` for safe, renderable Markdown without reducing technical depth. `init` resolves all three output paths from the matching `delivery/backlog.json` Story (`proposed_task_id`), not by concatenating Task ID.
 - `.academy/state/course.template.json`: draft a new versioned plan/inventory/matrix.
 - `.academy/state/workflow.template.json`: implementation.
 - After producing the requested draft, record completion and **stop**. Do not autonomously run AI reviewers, Python validation, tests, CI or a revision loop.
