@@ -11,6 +11,10 @@ Require the canonical task specification, selected approved curriculum, source r
 
 Do not start when the user has explicitly paused work, required source evidence is absent, or the lesson/assessment output paths are not separate. Review and validation are not drafting prerequisites unless the user specifically makes them part of this task.
 
+## Verified cross-module feedback
+
+Before drafting, use the parent's relevant (maximum three) reviewer-confirmed prevention reminders selected from `.academy/knowledge/lessons-learned.json` by `scripts/learning_memory.py suggest --tags ... --role lesson_author`. They are hints for avoiding previously corrected mistakes, **not** technical sources or new constraints on teaching content. Verify claims against the current task evidence and curriculum; flag conflicts instead of copying a memory blindly. No additional AI step is required; do not load the entire memory file.
+
 ## Procedure
 
 1. Confirm lesson ID, audience, prerequisites, status, scope, outcomes, and the exact lesson path.
