@@ -1,14 +1,14 @@
 ---
 name: module-pipeline
-description: Run user-directed Academy draft work; review and validation are separate opt-in operations.
+description: Run Academy drafts with scoped automatic format validation and feature-branch Git handoff; independent AI review remains opt-in.
 ---
 
-# Module pipeline — explicit steps only
+# Module pipeline — lightweight draft handoff
 
 ## Intake
 Read task-intake, current Issue, canonical spec, explicit state, worklog, Git status/commits and prior feedback. Respect holds and user scope. One writer per task. Choose the current approved curriculum baseline (SDA-v1: `curriculum/revision-1/`) unless the user selects another. For lesson tasks, `taskctl init` must resolve author/evidence output paths from that Story's `delivery/backlog.json` outputs, not the Task ID.
 
-## Default drafting (no automatic reviewers or validators)
+## Default drafting (no automatic AI reviewers)
 
 **Course task:** one plan step creating a *new versioned* inventory, course plan and source-to-lesson coverage matrix. Use pinned Primer source and original educational material. Do not overwrite the approved SDA-v1 snapshot.
 
@@ -18,7 +18,7 @@ Read task-intake, current Issue, canonical spec, explicit state, worklog, Git st
 
 **Tooling task:** one `implementation` step with scoped outputs.
 
-After the requested draft is produced, call `taskctl complete`, persist state and output, and **stop**. Do not automatically run Python validators, tests, reviewers, course gates, copy-to-final stages or revision loops. A draft need not have passed review or validation to have completed authoring.
+After the requested lesson/integration draft is produced, call `taskctl complete` and persist state/output. Then the **parent orchestrator** (not each author subagent) must run `python scripts/draft_handoff.py TASK-ID [TASK-ID ...]` once for the finished task(s). For a multi-lesson batch, pass all completed draft Task IDs together to validate each lesson/assessment pair and integrated page, commit only declared outputs plus spec/state/worklog, and push once. The helper stays on an existing `codex/`, `feature/` or `feat/` branch or creates a new `codex/drafts-*` branch; it never pushes to `main`, force-pushes, opens a PR, merges or publishes. It runs scoped deterministic Python data/format checks only, not the full regression suite. On validation or Git failure, stop and report which step failed; preserve drafts and do not auto-correct or launch a revision loop. Draft authoring completion does **not** imply independent content review or publication approval. Course/tooling tasks retain manual Git handoff.
 
 ## If the user requests review
 
@@ -28,10 +28,10 @@ Explicitly update `review-status --scope SCOPE` (`in_review`, `reviewed` or `nee
 
 ## If the user requests validation
 
-Run only the selected Python commands from `docs/workflow-contract.md`. Content validation, source coverage check, task schema check and tests are separate options. Validation is read-only for content and does not run AI reviews, create teaching text or publish anything.
+Run only the extra Python commands selected by the user from `docs/workflow-contract.md`. Repository-wide validation, course coverage, task schema checks and the test suite remain on demand; scoped draft checks are already run by `draft_handoff.py`. Validation is read-only for content and does not run AI reviews, create teaching text or publish anything.
 
 ## Revisions and handoff
 
 Edit or redo only what the user requested. To reopen completed work, issue `taskctl invalidate TASK-ID STEP-ID --reason "..."`; `--cascade` only on an explicit instruction. Never repeat `SKIP` by interpreting an old report or changed spec as stale. One can perform small authorized edits within the current draft without reopening the historical authoring task; update review state if material.
 
-Task state and JSONL worklog record decisions. Git records content; for cross-environment transfer commit and push outputs/spec/state/worklog together, then run `taskctl handoff TASK-ID` to confirm files are committed and synced with the upstream remote. Use `--local-only` solely when agents share a checkout; neither mode computes task hashes. This is a manual handoff step, not content validation. User authorization is required before PR merge, human approval or publication. Maximum two *automated* revision cycles when a user explicitly authorizes a revision workflow.
+Task state and JSONL worklog record decisions. Git records content. For default lesson/integration drafts use the automatic `draft_handoff.py` command above; for other work commit/push explicitly and run `taskctl handoff TASK-ID`. Use `--local-only` solely when agents share a checkout; neither mode computes task hashes. Handoff never substitutes for independent content review. User authorization is required before PR merge, human approval or publication. Maximum two *automated* revision cycles when a user explicitly authorizes a revision workflow.
