@@ -21,12 +21,17 @@ python scripts/taskctl.py start TASK-ID STEP-ID --agent AGENT --resume
 python scripts/taskctl.py complete TASK-ID STEP-ID --agent AGENT
 python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "User requested a redo"
 python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "Explicit full redo" --cascade
-python scripts/taskctl.py review-status TASK-ID --state needs_review --reason "Substantive content change"
+python scripts/taskctl.py review-status TASK-ID --scope technical --state needs_review --reason "Substantive technical change"
+python scripts/taskctl.py review-status TASK-ID --scope pedagogy --state in_review --reason "Requested teaching review"
+# After committing artifacts, spec, state and worklog:
+python scripts/taskctl.py handoff TASK-ID
 python scripts/taskctl.py hold TASK-ID --state paused --reason "User paused"
 python scripts/taskctl.py resume-task TASK-ID --reason "User resumed"
 ```
 
-`status` is read-only. `reconcile` persists aggregate status computed only from explicit step/hold fields. No automatic STALE, checksum, fingerprint, dirty-input block, unchanged-output reuse flag or dependency hash cascade exists. The CLI requires declared input paths when starting and output files when completing. Save and commit current artifacts, state and worklog together when ready to hand off.
+`status` is read-only. `reconcile` persists aggregate status computed only from explicit step/hold fields. No automatic STALE, checksum, fingerprint, dirty-input block, unchanged-output reuse flag or dependency hash cascade exists. The CLI requires declared inputs when starting and output files when completing; a completed step may later lose outputs without changing status (read-only `WARNING` in `status`). `handoff` is an explicit, read-only Git tracking/cleanliness check for completed output files, spec, task state and worklog. Commit the current files together and run it before cross-agent handoff; no checksum or automatic state change occurs.
+
+For a backlog lesson, `init ... --template .academy/state/task.template.json` resolves `EVIDENCE_PATH`, `TEACHING_PATH` and `ASSESSMENT_PATH` from the Story identified by `proposed_task_id` and validates its module. Task ID (`SD-M00-L01`) is not the filename Lesson ID (`M00-L01`). A missing/ambiguous Story fails instead of guessing a path.
 
 `complete --usage-file PATH` may record observed input/output/cached/reasoning tokens and elapsed time. The tool does not infer usage or cost. New files never record hashes; legacy task hash fields and prior reports remain historical data.
 
@@ -48,9 +53,9 @@ A negative review should provide actionable findings. A minimal JSON verdict may
 }
 ```
 
-Allowed verdicts: `block`, `revise`, `ready-for-human-review`. Severities: `blocker`, `major`, `minor`, `note`. Finding status: `open` or `resolved`. A clear verdict must have no open blocker/major finding. New verdicts **do not require artifact_hashes**; old verdict metadata may remain untouched. Review does not automatically invoke Python validation. Use `review-status` to record the user-requested review stage/result, not to approve publication. If content changes materially later, flag `needs_review` explicitly.
+Allowed verdicts: `block`, `revise`, `ready-for-human-review`. Severities: `blocker`, `major`, `minor`, `note`. Finding status: `open` or `resolved`. A clear verdict must have no open blocker/major finding. New verdicts **do not require artifact_hashes**; old verdict metadata may remain untouched. Review does not automatically invoke Python validation. Use `review-status --scope technical|pedagogy|coverage|provenance|REVIEW-STEP-ID` to record only the requested dimension, not to approve publication. `general` does not certify other scopes. A named review gate in a new task passes only with a completed review step, explicit matching scoped `reviewed` decision and a clear verdict; `in_review` and `needs_review` block. Historical tasks with no new review fields preserve their previous completed-review gate behavior. If content changes materially later, flag `needs_review` explicitly.
 
-Historic optional step graphs may include `requires_reviews`; those gates read the recorded verdict, not a checksum. New default drafts do not depend on review steps.
+Historical optional step graphs may include `requires_reviews`; new decisions require a scoped review state in addition to the verdict and completed review step. `invalidate` on a reviewed step explicitly marks its scope `needs_review`. No checksums are compared. New default drafts do not depend on review steps.
 
 ## On-demand Python validation
 

@@ -4,11 +4,11 @@ Select one, several or all nine milestones when authorizing a run. The [delivery
 
 ## Intake and execution
 
-1. Take the union of the Story IDs in the selected milestones. For each Story, reuse or create one Issue/spec/state/worklog, check task status, and declare the exact inputs, output paths and current versions. Give each artifact one writer.
+1. Take the union of the Story IDs in the selected milestones. For each Story, reuse or create one Issue/spec/state/worklog, check task status, and use `outputs.teaching`, `outputs.assessment` and `outputs.evidence` from that Story (not filenames formed from the proposed Task ID). Give each artifact one writer.
 2. Read the [approved SDA-v1 baseline](../curriculum/README.md) at intake. Use its approved outline, inventory and coverage matrix as the default. Use the two-step draft lesson template; integration, capstone and audits run only when separately authorized.
 3. Draft independent Stories or sections in parallel where practical. For `composition` inputs, finish the consuming section once the exact upstream draft is available. Resolve `preview` and `reference` links when the user requests validation or integration review. If a needed draft is missing outside the selected scope, report the specific dependency and continue independent work in scope. Record which downstream section or assessment item uses each input.
 4. Finish the authorized drafts and stop. Run technical/source review, coverage/pedagogy review or Python validators only when the user requests them. On substantive edits to reviewed material, explicitly flag `needs_review`; do not infer stale states or trigger review loops automatically.
-5. Hand off current draft artifacts, any requested review reports and unresolved findings. A completed draft does not imply it was reviewed/validated. Human acceptance, merge and publication require explicit human approval.
+5. Commit the draft output files, task specification, state and worklog; then run `taskctl handoff TASK-ID` before cross-agent transfer. Hand off current draft artifacts, any requested review reports and unresolved findings. A completed draft does not imply it was reviewed/validated. Human acceptance, merge and publication require explicit human approval.
 
 ## Work by milestone
 

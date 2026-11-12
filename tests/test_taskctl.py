@@ -227,21 +227,63 @@ class TaskCtlExplicitStateTests(unittest.TestCase):
     def write_verdict(self, verdict="ready-for-human-review", findings=None):
         self.output("outputs/verdict.json", json.dumps({"verdict": verdict, "findings": findings or []}))
 
-    def test_optional_review_gate_uses_verdict_not_hashes(self):
+    def test_review_gate_requires_completed_step_and_scoped_decision(self):
         self.make_review_graph()
         self.cli("start", "TEST-1", "review", "--agent", "reviewer")
         self.write_verdict("block", [{"id": "T1", "severity": "blocker", "status": "open"}])
         self.cli("complete", "TEST-1", "review")
-        status = self.cli("status", "TEST-1")
-        self.assertIn("- review: SKIP", status)
-        self.assertIn("- revision: READY", status)
-        self.assertIn("- author: BLOCKED", status)
-        self.write_verdict()
-        self.assertIn("- author: READY", self.cli("status", "TEST-1"))
-        (self.root / "docs/input.md").write_text("changed\n", encoding="utf-8")
-        self.assertIn("- author: READY", self.cli("status", "TEST-1"))
-        self.cli("review-status", "TEST-1", "--state", "needs_review", "--reason", "Changed content")
         self.assertIn("- author: BLOCKED", self.cli("status", "TEST-1"))
+        # Mutating the verdict file is not the same as accepting a review.
+        self.write_verdict()
+        self.assertIn("- author: BLOCKED", self.cli("status", "TEST-1"))
+        self.assertIn("needs an explicit reviewed decision", self.cli("status", "TEST-1"))
+        # An overall/general decision cannot substitute for a named review gate.
+        self.cli("review-status", "TEST-1", "--state", "reviewed", "--reason", "Overall note")
+        self.assertIn("- author: BLOCKED", self.cli("status", "TEST-1"))
+        self.cli("review-status", "TEST-1", "--scope", "review",
+                 "--state", "in_review", "--reason", "New inspection started")
+        self.assertIn("- author: BLOCKED", self.cli("status", "TEST-1"))
+        self.cli("review-status", "TEST-1", "--scope", "review",
+                 "--state", "reviewed", "--reason", "Reviewed current evidence")
+        self.assertIn("- author: READY", self.cli("status", "TEST-1"))
+        (self.root / "docs/input.md").write_text("changed\\n", encoding="utf-8")
+        self.assertIn("- author: READY", self.cli("status", "TEST-1"))
+        self.cli("review-status", "TEST-1", "--scope", "review",
+                 "--state", "needs_review", "--reason", "Content changed")
+        self.assertIn("- author: BLOCKED", self.cli("status", "TEST-1"))
+        self.cli("review-status", "TEST-1", "--scope", "review",
+                 "--state", "reviewed", "--reason", "Reviewed again")
+        self.cli("review-status", "TEST-1", "--state", "in_review", "--reason", "Overall review underway")
+        self.assertIn("- author: BLOCKED", self.cli("status", "TEST-1"))
+
+    def test_scoped_review_cannot_be_accepted_without_completed_clear_verdict(self):
+        self.make_review_graph()
+        self.assertIn("must be completed", self.cli("review-status", "TEST-1", "--scope", "review",
+                   "--state", "reviewed", "--reason", "Premature", expected=2))
+        self.cli("start", "TEST-1", "review", "--agent", "reviewer")
+        self.write_verdict("block", [{"id": "T1", "severity": "blocker", "status": "open"}])
+        self.cli("complete", "TEST-1", "review")
+        self.assertIn("does not have an accepted verdict", self.cli("review-status", "TEST-1",
+                      "--scope", "review", "--state", "reviewed", "--reason", "Premature", expected=2))
+
+    def test_legacy_review_graph_retains_historical_acceptance(self):
+        self.make_review_graph()
+        self.cli("start", "TEST-1", "review", "--agent", "reviewer")
+        self.write_verdict()
+        self.cli("complete", "TEST-1", "review")
+        self.edit_state(lambda data: (data.pop("review_status", None),
+                                     data.pop("review_statuses", None)))
+        self.assertIn("- author: READY", self.cli("status", "TEST-1"))
+
+    def test_review_scopes_are_independent(self):
+        self.cli("review-status", "TEST-1", "--scope", "technical",
+                 "--state", "reviewed", "--reason", "Technical review")
+        self.cli("review-status", "TEST-1", "--scope", "pedagogy",
+                 "--state", "needs_review", "--reason", "Teaching review outstanding")
+        state = self.state()["review_statuses"]
+        self.assertEqual(state["technical"]["status"], "reviewed")
+        self.assertEqual(state["pedagogy"]["status"], "needs_review")
+        self.assertEqual(self.state()["review_status"], "not_reviewed")
 
     def test_review_rejects_unresolved_major_findings(self):
         self.make_review_graph()
@@ -270,6 +312,72 @@ class TaskCtlExplicitStateTests(unittest.TestCase):
                             "--definition-version", "v1", "--input-paths", "/etc/passwd",
                             "--output-paths", "outputs/a.md", expected=2)
         self.assertIn("Unsafe repository-relative path", absolute)
+
+    def test_missing_completed_output_warns_without_staling_task(self):
+        self.add_step("research", "outputs/research.md")
+        self.run_step("research", "outputs/research.md")
+        (self.root / "outputs/research.md").unlink()
+        result = self.cli("status", "TEST-1")
+        self.assertIn("- research: SKIP", result)
+        self.assertIn("WARNING: Missing output", result)
+        self.assertEqual(self.state()["steps"][0]["status"], "completed")
+
+    def test_handoff_requires_committed_outputs_and_memory(self):
+        self.add_step("research", "outputs/research.md")
+        self.run_step("research", "outputs/research.md")
+        response = self.cli("handoff", "TEST-1", expected=2)
+        self.assertIn("Handoff not ready", response)
+        self.assertIn("Not Git-tracked: outputs/research.md", response)
+        self.git("add", ".")
+        self.git("commit", "-qm", "commit entire task handoff")
+        self.assertIn("HANDOFF READY", self.cli("handoff", "TEST-1"))
+        (self.root / "outputs/research.md").write_text("unsaved change", encoding="utf-8")
+        self.assertIn("Uncommitted:", self.cli("handoff", "TEST-1", expected=2))
+        self.git("add", ".")
+        self.git("commit", "-qm", "sync handoff")
+        (self.root / "outputs/research.md").unlink()
+        self.assertIn("Missing:", self.cli("handoff", "TEST-1", expected=2))
+
+    def test_new_lesson_init_uses_backlog_story_paths(self):
+        (self.root / "delivery").mkdir(parents=True, exist_ok=True)
+        shutil.copy2(SOURCE_ROOT / ".academy/state/task.template.json",
+                     self.root / ".academy/state/task.template.json")
+        story = {"type": "Story", "package_kind": "lesson",
+                 "proposed_task_id": "SD-M00-L01", "lesson_id": "M00-L01",
+                 "key": "SDA-M00-L01",
+                 "outputs": {"teaching": "modules/m00/lessons/M00-L01.md",
+                             "assessment": "modules/m00/assessments/M00-L01.md",
+                             "evidence": "modules/m00/evidence/M00-L01.md"}}
+        (self.root / "delivery/backlog.json").write_text(json.dumps({"items": [story]}), encoding="utf-8")
+        self.cli("init", "SD-M00-L01", "--module", "M00", "--goal", "Write draft",
+                 "--owner", "tester", "--template", ".academy/state/task.template.json")
+        state = json.loads((self.root / ".academy/state/tasks/SD-M00-L01.json").read_text())
+        self.assertEqual(state["steps"][0]["output_paths"], [story["outputs"]["evidence"]])
+        self.assertEqual(state["steps"][1]["output_paths"],
+                         [story["outputs"]["teaching"], story["outputs"]["assessment"]])
+        self.assertIn(story["outputs"]["evidence"], state["steps"][1]["input_paths"])
+        self.assertNotIn("SD-M00-L01.md", str(state["steps"][1]["output_paths"]))
+        self.assertIn("does not match declared module",
+                      self.cli("init", "SD-M00-L01", "--module", "M01", "--goal", "Wrong",
+                               "--owner", "tester", "--template", ".academy/state/task.template.json",
+                               expected=2))
+        self.assertIn("Expected one lesson Story",
+                      self.cli("init", "SD-M00-L02", "--module", "M00", "--goal", "Unknown",
+                               "--owner", "tester", "--template", ".academy/state/task.template.json",
+                               expected=2))
+
+    def test_all_backlog_lesson_paths_are_resolvable(self):
+        from scripts import taskctl
+        backlog = json.loads((SOURCE_ROOT / "delivery/backlog.json").read_text(encoding="utf-8"))
+        stories = [item for item in backlog["items"] if item.get("package_kind") == "lesson"]
+        self.assertEqual(len(stories), 57)
+        for story in stories:
+            with self.subTest(story=story["key"]):
+                module = story["lesson_id"].split("-")[0]
+                resolved = taskctl.lesson_paths_from_backlog(story["proposed_task_id"], module)
+                self.assertEqual(resolved["TEACHING_PATH"], story["outputs"]["teaching"])
+                self.assertEqual(resolved["ASSESSMENT_PATH"], story["outputs"]["assessment"])
+                self.assertEqual(resolved["EVIDENCE_PATH"], story["outputs"]["evidence"])
 
     def test_symlink_path_guard_and_no_publish_command(self):
         from scripts import taskctl

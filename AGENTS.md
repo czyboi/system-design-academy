@@ -14,11 +14,11 @@
 - `python scripts/taskctl.py status TASK-ID` reads only recorded states. `SKIP` means explicitly completed, `READY` means eligible, `RESUME` means in progress, and `BLOCKED` means a dependency, hold or manual review gate requires attention.
 - No automatic `STALE`, checksums, fingerprints or dependency invalidation. Editing files/specs never changes a completed step's status.
 - Start only authorized pending/reopened work; `taskctl start` and `complete` record progress. Only `taskctl invalidate TASK-ID STEP-ID --reason "..."` reopens completed work. `--cascade` must be specifically requested; do not infer cascades.
-- Explicitly mark meaningful changes to previously reviewed content with `taskctl review-status TASK-ID --state needs_review --reason "..."`. Harmless formatting may keep the current review status. Review status is not publication approval.
-- Preserve the old task/worklog files and previous reports as history; legacy hash fields are inert. Use Git to persist artifacts and state together at a meaningful checkpoint or handoff. Never repeat already completed work just because a shared skill changed.
+- Explicitly flag meaningful changes to reviewed content with `taskctl review-status TASK-ID --scope technical --state needs_review --reason "..."` (or the affected scope). The default `general` scope does not certify technical, pedagogy or named review gates. Review status is not publication approval.
+- Preserve old task/worklog/report history; legacy hashes are inert. After committing output, spec, task state and worklog, explicitly run `taskctl handoff TASK-ID` before telling another agent the files are ready. This checks Git tracking/clean state without checksums. A completed task with missing files shows a warning; its historical status remains unchanged.
 
 ## Default workflow
-- `.academy/state/task.template.json`: research → author draft lesson + companion assessment.
+- `.academy/state/task.template.json`: research → author draft lesson + companion assessment. `init` resolves all three output paths from the matching `delivery/backlog.json` Story (`proposed_task_id`), not by concatenating Task ID.
 - `.academy/state/course.template.json`: draft a new versioned plan/inventory/matrix.
 - `.academy/state/workflow.template.json`: implementation.
 - After producing the requested draft, record completion and **stop**. Do not autonomously run AI reviewers, Python validation, tests, CI or a revision loop.
