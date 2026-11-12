@@ -21,6 +21,14 @@
           "review_role": "pedagogy",
           "report": "modules/m01/reviews/automatic/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
+        },
+        {
+          "module": "m02",
+          "finding_id": "L02-P1",
+          "review_role": "pedagogy",
+          "report": "modules/m02/reviews/automatic/lessons/M02-L02/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M02-L02"
         }
       ]
     },
