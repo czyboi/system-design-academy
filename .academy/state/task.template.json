@@ -42,7 +42,8 @@
       "input_paths": [
         "curriculum/revision-1/CURRICULUM_MASTER.md",
         "${EVIDENCE_PATH}",
-        ".agents/skills/lesson-authoring/SKILL.md"
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md"
       ],
       "output_paths": [
         "${TEACHING_PATH}",

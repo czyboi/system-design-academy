@@ -157,12 +157,18 @@ def validate_json_schema(data: dict[str, Any], schema_path: Path, label: str) ->
         raise TaskError(f"{label} violates {schema_path.relative_to(ROOT)} at {where}: {error.message}")
 
 
-def load_spec(data: dict[str, Any], execution_ready: bool = False) -> dict[str, Any]:
-    path = relpath(data["spec_path"])
-    try:
-        spec = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        raise TaskError(f"Cannot read task specification {path}: {exc}") from exc
+def load_spec(
+    data: dict[str, Any], execution_ready: bool = False,
+    spec_override: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    if spec_override is None:
+        path = relpath(data["spec_path"])
+        try:
+            spec = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise TaskError(f"Cannot read task specification {path}: {exc}") from exc
+    else:
+        spec = spec_override
     validate_json_schema(spec, SPEC_SCHEMA, "Task specification")
     if spec["task_id"] != data["task_id"]:
         raise TaskError("Task specification task_id does not match task state")
@@ -194,7 +200,7 @@ def load_spec(data: dict[str, Any], execution_ready: bool = False) -> dict[str, 
     return spec
 
 
-def validate_task(data: dict[str, Any]) -> None:
+def validate_task(data: dict[str, Any], *, spec_override: dict[str, Any] | None = None) -> None:
     validate_json_schema(data, TASK_SCHEMA, "Task state")
     if not TASK_ID_RE.fullmatch(data["task_id"]):
         raise TaskError("Invalid task_id")
@@ -245,7 +251,7 @@ def validate_task(data: dict[str, Any]) -> None:
         visited.add(sid)
     for sid in by_id:
         visit(sid)
-    load_spec(data)
+    load_spec(data, spec_override=spec_override)
 
 def step_map(data: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {step["step_id"]: step for step in data["steps"]}
@@ -280,6 +286,31 @@ def require_active(data: dict[str, Any]) -> None:
         raise TaskError(f"Task is {data['execution_control']}; explicit resume-task with a user decision is required")
 
 
+def review_gate_blocker(data: dict[str, Any], step: dict[str, Any]) -> str | None:
+    """Check optional named review gates independently of a running step state."""
+    states = step_map(data)
+    gates = step.get("requires_reviews", [])
+    if gates and data.get("review_status") in {"in_review", "needs_review"}:
+        return f"overall review status is {data['review_status']}"
+    for gate in gates:
+        review_step = states[gate]
+        if review_step["status"] != "completed":
+            return f"review {gate} has not completed"
+        # Pre-existing v2 tasks without explicit review fields keep their historical acceptance.
+        legacy = "review_status" not in data and "review_statuses" not in data
+        if not legacy:
+            decision = data.get("review_statuses", {}).get(gate, {})
+            if decision.get("status") != "reviewed":
+                return f"review {gate} needs an explicit reviewed decision"
+        try:
+            verdict = review_result(review_step)["verdict"]
+        except TaskError as exc:
+            return str(exc)
+        if verdict != "ready-for-human-review":
+            return f"review {gate} verdict is {verdict}"
+    return None
+
+
 def step_status(data: dict[str, Any], step: dict[str, Any]) -> tuple[str, str]:
     """A completed step stays completed until someone explicitly reopens it."""
     status = step["status"]
@@ -295,25 +326,9 @@ def step_status(data: dict[str, Any], step: dict[str, Any]) -> tuple[str, str]:
     for dep_id in step["depends_on"]:
         if states[dep_id]["status"] != "completed":
             return "BLOCKED", f"dependency {dep_id} is {states[dep_id]['status']}"
-    gates = step.get("requires_reviews", [])
-    if gates and data.get("review_status") in {"in_review", "needs_review"}:
-        return "BLOCKED", f"overall review status is {data['review_status']}"
-    for gate in gates:
-        review_step = states[gate]
-        if review_step["status"] != "completed":
-            return "BLOCKED", f"review {gate} has not completed"
-        # Pre-existing v2 tasks without explicit review fields keep their historical acceptance.
-        legacy = "review_status" not in data and "review_statuses" not in data
-        if not legacy:
-            decision = data.get("review_statuses", {}).get(gate, {})
-            if decision.get("status") != "reviewed":
-                return "BLOCKED", f"review {gate} needs an explicit reviewed decision"
-        try:
-            verdict = review_result(review_step)["verdict"]
-        except TaskError as exc:
-            return "BLOCKED", str(exc)
-        if verdict != "ready-for-human-review":
-            return "BLOCKED", f"review {gate} verdict is {verdict}"
+    blocker = review_gate_blocker(data, step)
+    if blocker:
+        return "BLOCKED", blocker
     if status == "invalidated":
         return "READY", step.get("invalidation_reason", "explicitly reopened")
     return "READY", "not started"
@@ -385,10 +400,15 @@ def cmd_init(args: argparse.Namespace) -> None:
         for field in ("input_paths", "output_paths"):
             if any("${" in path for path in step[field]):
                 raise TaskError(f"Unresolved template output or input path in {step['step_id']}")
-    validate_json_schema(spec, SPEC_SCHEMA, "Task specification")
-    save_json(spec_path, spec)
-    validate_task(data)
-    save_task(data)
+    # Validate both artifacts before writing. A malformed task must not strand its spec.
+    validate_task(data, spec_override=spec)
+    try:
+        save_json(spec_path, spec)
+        save_task(data)
+    except Exception:
+        state_path.unlink(missing_ok=True)
+        spec_path.unlink(missing_ok=True)
+        raise
     log_event(args.task_id, "task_created", module_id=args.module, owner=args.owner, spec_path=data["spec_path"])
     print(f"Created {state_path.relative_to(ROOT)} and {spec_path.relative_to(ROOT)}. Complete the specification before execution.")
 
@@ -532,6 +552,9 @@ def cmd_complete(args: argparse.Namespace) -> None:
         raise TaskError(f"Unknown step: {args.step_id}")
     if step["status"] != "running":
         raise TaskError(f"Cannot complete {args.step_id}: status is {step['status']}, not running")
+    blocker = review_gate_blocker(data, step)
+    if blocker:
+        raise TaskError(f"Cannot complete {args.step_id}: {blocker}")
     missing = [value for value in step["output_paths"] if not relpath(value).is_file()]
     if missing:
         raise TaskError("Missing declared outputs: " + ", ".join(missing))

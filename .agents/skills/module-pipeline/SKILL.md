@@ -14,7 +14,7 @@ Read task-intake, current Issue, canonical spec, explicit state, worklog, Git st
 
 **Lesson task:** two steps.
 1. `research` — gather source evidence for the assigned lesson. Reuse existing evidence when suitable. Do not refresh the whole Primer inventory per lesson.
-2. `author` — write the original English draft lesson and separate companion assessment. Include prerequisites, outcomes, motivating problem, mechanism, worked example, decision criteria, failure modes, references, exercise, 5–8 checks with explanations and a rubric. Use the approved outline and assigned topics.
+2. `author` — read the declared `content-format` skill and write the original English draft lesson and separate companion assessment. Include prerequisites, outcomes, motivating problem, mechanism, worked example, decision criteria, failure modes, references, exercise, 5–8 checks with explanations and a rubric. Use the approved outline and assigned topics.
 
 **Tooling task:** one `implementation` step with scoped outputs.
 

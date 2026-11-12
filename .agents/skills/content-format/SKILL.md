@@ -5,7 +5,7 @@ description: Keep Academy lessons and assessments renderable without compromisin
 
 # Content Format (compact authoring instructions)
 
-The canonical representation specification is `docs/authoring-format-contract-v1.md`; consult it when a syntax or exception is unclear. These rules apply to **new work only after this PR is merged**. Never rewrite or reopen completed reviewed artifacts solely for formatting.
+The canonical representation specification is `docs/authoring-format-contract-v1.md`; consult it when a syntax or exception is unclear. These rules apply to new or explicitly reopened authoring work using the updated lesson template; historical completed tasks and artifacts remain unchanged. Never rewrite or reopen completed reviewed artifacts solely for formatting.
 
 - **Priority:** approved curriculum/outcomes, technical accuracy, pedagogy and adequate examples/diagrams **before** presentation convenience. Format is not a reason to omit, shorten, weaken, or simplify a necessary explanation, formula, diagram, or exercise. Flag missing renderer capability or escalate an extension instead.
 - Keep existing Markdown + YAML front matter and the separate lesson/assessment pair. Do not add `slug`, SEO fields, schema version, or new required metadata to canonical files.
@@ -15,4 +15,4 @@ The canonical representation specification is `docs/authoring-format-contract-v1
 - Assessment answers may be plain `Answer:`/`Explanation:` or bold `**Answer:**`/`**Explanation:**`. Preserve mappings and rubrics; no assessment content in the teaching file.
 - If a technically necessary format is not covered, **report the exact need and preserve the content requirement**; do not silently transform or delete it.
 
-No new authoring agent, review stage or LLM build step is introduced. Format checks will be added as deterministic CI validation in a separate scoped task; model instructions alone cannot guarantee correctness.
+No new authoring agent, review stage or LLM build step is introduced. A deterministic format validator exists at `scripts/validate_format.py` and runs only on explicit request or through the manual content-validation workflow. Model instructions alone cannot guarantee correctness.

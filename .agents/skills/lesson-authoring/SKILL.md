@@ -7,7 +7,7 @@ description: Write concise, original System Design teaching lessons for experien
 
 ## Inputs
 
-Require the canonical task specification, selected approved curriculum map, lesson template, content guidelines, attribution policy, available source-research evidence, and exact declared lesson output path. The current approved baseline is `curriculum/revision-1/`. For Academy work, the current default learner is a middle/senior engineer studying system design, and learner-facing prose is English-only. Follow newer explicit user direction recorded in the task specification.
+Require the canonical task specification, selected approved curriculum map, lesson template, the compact `.agents/skills/content-format/SKILL.md` representation rules, content guidelines, attribution policy, available source-research evidence, and exact declared lesson output path. The current approved baseline is `curriculum/revision-1/`. For Academy work, the current default learner is a middle/senior engineer studying system design, and learner-facing prose is English-only. Follow newer explicit user direction recorded in the task specification.
 
 Do not start when the user has explicitly paused work, required source evidence is absent, or the lesson/assessment output paths are not separate. Review and validation are not drafting prerequisites unless the user specifically makes them part of this task.
 
@@ -21,7 +21,7 @@ Do not start when the user has explicitly paused work, required source evidence 
 6. Include a worked example that demonstrates the design reasoning. Keep the lesson file instructional: do not embed a quiz, knowledge-check bank, answer key, or assessment rubric.
 7. Put the practical exercise, 5–8 knowledge checks, answers/explanations, rubric, and outcome-to-item map in the separately declared companion assessment artifact. Coordinate with assessment-design; do not use questions as a substitute for teaching.
 8. Cite exact sources next to important or version-sensitive claims. Mark unresolved claims instead of guessing.
-9. Add required front matter, attribution/adaptation notes, and `status: draft`.
+9. Add required front matter, attribution/adaptation notes, and `status: draft`. Follow the format skill for safe Markdown/GFM, fenced code and diagrams; if a necessary representation is unsupported, preserve the teaching requirement and flag the renderer limitation rather than simplifying content.
 
 ## Prohibited
 

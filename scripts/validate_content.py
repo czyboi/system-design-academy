@@ -127,6 +127,48 @@ def validate_plan(plan, matrix):
     return errors
 
 
+def select_repo_lessons() -> tuple[list[Path], dict[Path, Path], list[str]]:
+    """Select the active artifact per lesson rather than guessing revision paths."""
+    lessons: list[Path] = []
+    pairs: dict[Path, Path] = {}
+    errors: list[str] = []
+    modules_root = ROOT / "modules"
+    if not modules_root.is_dir():
+        return lessons, pairs, errors
+    for module in sorted(modules_root.iterdir()):
+        if not module.is_dir():
+            continue
+        lesson_dir, assessment_dir = module / "lessons", module / "assessments"
+        manifest = module / "content-manifest.json"
+        if not manifest.exists():
+            lessons.extend(sorted(lesson_dir.glob("*.md")))
+            if any(path.parent != lesson_dir for path in lesson_dir.glob("**/*.md")):
+                errors.append(
+                    f"{module.relative_to(ROOT)}: versioned lessons need a "
+                    "content-manifest.json selecting the active lesson and assessment"
+                )
+            continue
+        try:
+            data = json.loads(manifest.read_text(encoding="utf-8"))
+            if (not isinstance(data, dict) or data.get("status") != "draft"
+                    or not isinstance(data.get("packages"), list) or not data["packages"]):
+                raise ValueError("expected a draft manifest with nonempty packages")
+            for item in data["packages"]:
+                if not isinstance(item, dict):
+                    raise ValueError("each package must map lesson and assessment paths")
+                lesson = local_path(item["lesson"])
+                assessment = local_path(item["assessment"])
+                if not lesson.is_relative_to(lesson_dir) or not assessment.is_relative_to(assessment_dir):
+                    raise ValueError("selected lesson/assessment must belong to the manifest module")
+                if lesson in pairs:
+                    raise ValueError(f"duplicate selected lesson: {lesson.relative_to(ROOT)}")
+                lessons.append(lesson)
+                pairs[lesson] = assessment
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            errors.append(f"{manifest.relative_to(ROOT)}: {exc}")
+    return lessons, pairs, errors
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--scope', choices=['repo','workflow','curriculum','lesson'], default='repo')
@@ -136,8 +178,8 @@ def main(argv=None) -> int:
     errors: list[str] = []
     lesson_ids: list[str] = []
 
-    lesson_files = sorted((ROOT/'modules').glob('*/lessons/*.md')) if args.scope == 'repo' else []
-    pairs = {}
+    lesson_files: list[Path] = []
+    pairs: dict[Path, Path] = {}
     try:
         if args.scope == 'lesson':
             if not args.lesson or not args.assessment:
@@ -149,16 +191,8 @@ def main(argv=None) -> int:
                 parser.error('curriculum scope requires --plan and --matrix (CSV)')
             errors.extend(validate_plan(local_path(args.plan), local_path(args.matrix)))
         if args.scope == 'repo':
-            for manifest in (ROOT/'modules').glob('*/content-manifest.json'):
-                value = json.loads(manifest.read_text(encoding='utf-8'))
-                if value.get('status') != 'draft' or not isinstance(value.get('packages'),list):
-                    errors.append(f'{manifest}: expected a draft packages manifest')
-                    continue
-                for item in value['packages']:
-                    lesson = local_path(item['lesson'])
-                    pairs[lesson] = local_path(item['assessment'])
-                    if lesson not in lesson_files:
-                        lesson_files.append(lesson)
+            lesson_files, pairs, selection_errors = select_repo_lessons()
+            errors.extend(selection_errors)
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(str(exc))
 
@@ -302,7 +336,12 @@ def main(argv=None) -> int:
         except (ValueError, TypeError):
             pass
     for path in ROOT.rglob("*.md"):
-        if args.scope != 'repo' and path not in selected and path.relative_to(ROOT).parts[0] == 'modules':
+        parts = path.relative_to(ROOT).parts
+        if args.scope != 'repo' and path not in selected and parts[0] == 'modules':
+            continue
+        # A manifest's unselected historical lessons/assessments are not active content.
+        if (args.scope == 'repo' and path not in selected and len(parts) >= 4
+                and parts[0] == 'modules' and parts[2] in {'lessons', 'assessments'}):
             continue
         if path not in selected and any(part in path.relative_to(ROOT).parts for part in ('.git','.tmp','inputs','runs','task-runs')):
             continue
