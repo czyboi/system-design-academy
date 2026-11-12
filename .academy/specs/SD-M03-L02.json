@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M03-L02",
+  "revision": 1,
+  "goal": "Deliver the canonical SDA-v1 draft for SDA-M03-L02 — REST, RPC and interface contracts",
+  "scope": {
+    "in_scope": [
+      "Use approved SDA-v1 and the canonical outputs from Story SDA-M03-L02.",
+      "**Prerequisites:** M02-L02, M03-L01\n\n**Outcomes:** M03-L02-LO1: trace/model the mechanisms below in the worked scenario. M03-L02-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. REST resource identity, representation-based manipulation, self-descriptive messages and hypermedia as uniform-interface constraints; client/server, stateless/cache/layer constraints and their actual scope require primary-source research.\n2. RPC request/return path: client call → stub marshals procedure/arguments → transport → server stub unmarshals and dispatches → result returns in reverse; schemas, coupling, SDK/platform choices and debugging/cache limitations.\n3. Compare REST and RPC calls for public/internal APIs: operation versus resource interfaces, nested-resource round trips, payload growth, event-like queries and client compatibility.\n4. Compatibility, pagination, deadlines and idempotent retries as Academy additions.\n\n5. Compose public REST/HTTP, internal RPC and service discovery; choose interface style and endpoint-discovery ownership together using M03-L03 failure traces.\n\n**Worked-example plan:** Design resource and operation interfaces for exporting a report.\n\n**Trade-offs and when to use/avoid:** Compare interoperability, tooling, streaming and compatibility; no universal REST/RPC performance claim.\n\n**Quick-check focus:** Explain how a retried create call can produce duplicate work. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Cover the approved topic IDs PR-H150, PR-H151, PR-H152, PR-H153, PR-H154, PR-PASTEBIN-H020, PR-TWITTER-H020, PR-WEB_CRAWLER-H021, PR-MINT-H020, PR-SOCIAL_GRAPH-H017, PR-QUERY_CACHE-H020, PR-SALES_RANK-H018, PR-SCALING_AWS-H043, PR-BODY-R1-RPC-PATH, PR-BODY-R1-RPC-SDK, PR-BODY-R1-REST-IDENTITY, PR-BODY-R1-REST-SELF, PR-BODY-R1-REST-HYPERMEDIA, PR-BODY-R1-REST-COSTS."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate through GitHub Issue #62. Preserve archived records in PR #38 and adapt suitable draft material from ec753d7.",
+    "Write original English draft material for middle and senior engineers. Verify technical claims with exact primary sources.",
+    "Use the pinned Primer as a topic map. Keep exercises in companion artifacts and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Deliver checked claim-level evidence at the canonical path.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver all canonical Story drafts for parent-owned handoff.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record exact source sections, version or publication scope and limits. Recheck changed and volatile claims.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M03-L02 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
