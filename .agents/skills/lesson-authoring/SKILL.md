@@ -7,7 +7,7 @@ description: Write concise, original System Design teaching lessons for experien
 
 ## Inputs
 
-Require the canonical task specification, selected approved curriculum map, lesson template, the compact `.agents/skills/content-format/SKILL.md` representation rules, content guidelines, attribution policy, available source-research evidence, and exact declared lesson output path. The current approved baseline is `curriculum/revision-1/`. For Academy work, the current default learner is a middle/senior engineer studying system design, and learner-facing prose is English-only. Follow newer explicit user direction recorded in the task specification.
+Require the canonical task specification, selected approved curriculum, source research evidence, the declared `lesson-authoring`, `assessment-design` and `content-format` skills, `GOVERNANCE.md`, and exact canonical output paths. Module-specific templates and checklists may be consulted as examples, but are not mandatory new workflow inputs or substitutes for the current curriculum. The current approved baseline is `curriculum/revision-1/`. For Academy work, the current default learner is a middle/senior engineer studying system design, and learner-facing prose is English-only. Follow newer explicit user direction recorded in the task specification.
 
 Do not start when the user has explicitly paused work, required source evidence is absent, or the lesson/assessment output paths are not separate. Review and validation are not drafting prerequisites unless the user specifically makes them part of this task.
 
@@ -33,7 +33,7 @@ Do not start when the user has explicitly paused work, required source evidence 
 
 ## Output
 
-Write only the assigned teaching lesson path. Write assessment content only when separately assigned that companion path. Report evidence gaps and unresolved claims separately.
+Write only the assigned canonical teaching lesson path. Write assessment content only at the separately declared canonical companion path; do not create `revision-N` copies or a content manifest. Report evidence gaps and unresolved claims separately.
 
 ## Substantive revisions and feedback
 

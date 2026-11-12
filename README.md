@@ -14,7 +14,7 @@ The user approved **SDA-v1** on 2026-11-10: 14 modules, 57 lessons and a cross-m
 | Lesson draft | Research → author lesson and assessment | `.academy/state/task.template.json` |
 | Tooling change | Implementation | `.academy/state/workflow.template.json` |
 
-The agent completes the requested draft and stops. The lesson author uses the compact [content-format skill](.agents/skills/content-format/SKILL.md) to follow [Authoring Format Contract v1](docs/authoring-format-contract-v1.md) without a new agent step. **AI review and content validation are manual, independent requests.** Python regression tests run automatically in GitHub Actions for pull requests and pushes to `main`. No fingerprint, checksum or automatic stale cascade changes completed task history. The owner can explicitly reopen a step, flag a previously reviewed draft as needing review, or invoke a focused check.
+Legacy milestone lesson drafts are not imported into this branch; the approved SDA-v1 curriculum, backlog and task history remain intact. The agent completes the requested draft and stops. The lesson author uses the [assessment-design skill](.agents/skills/assessment-design/SKILL.md), [source governance](GOVERNANCE.md) and compact [content-format skill](.agents/skills/content-format/SKILL.md) to follow [Authoring Format Contract v1](docs/authoring-format-contract-v1.md) without a new agent step. **AI review and content validation are manual, independent requests.** Python regression tests run automatically in GitHub Actions for pull requests and pushes to `main`. No fingerprint, checksum or automatic stale cascade changes completed task history. The owner can explicitly reopen a step, flag a previously reviewed draft as needing review, or invoke a focused check.
 
 Task specs and history: `.academy/specs/`, `.academy/state/tasks/`, `.academy/state/worklog/`. Agent skills: `.agents/skills/`. Code: `scripts/`, lessons: `modules/`.
 
@@ -32,7 +32,7 @@ python scripts/taskctl.py handoff TASK-ID --local-only
 python scripts/taskctl.py invalidate TASK-ID author --reason "User requested a rewrite"
 ```
 
-For backlog lessons, `init` resolves the correct Lesson ID-based teaching/assessment/evidence output paths from `delivery/backlog.json` and validates task state/spec before writing. Repository-wide content/format checks use a module's `content-manifest.json` to select an active revision; without one, nested revisions require explicit selection. `status` warns about missing completed outputs without changing historical status. The manual `handoff` command checks Git tracking, clean state and upstream remote synchronization; `--local-only` is for agents sharing a checkout. It does not check content quality.
+For backlog lessons, `init` resolves the correct Lesson ID-based teaching/assessment/evidence output paths from `delivery/backlog.json` and validates task state/spec before writing. Each lesson has exactly one canonical lesson/assessment/evidence path from the backlog; Git records revisions. Repository-wide validators reject obsolete nested lesson revisions, manifests and orphan assessments. `status` warns about missing completed outputs without changing historical status. The manual `handoff` command checks Git tracking, clean state and upstream remote synchronization; `--local-only` is for agents sharing a checkout. It does not check content quality.
 
 Marking a task complete records the work performed; it does not mean the current draft was independently reviewed. A `reviewed` content status does not constitute human publishing approval.
 

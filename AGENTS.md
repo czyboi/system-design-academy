@@ -3,7 +3,7 @@
 ## Boundaries
 - Work only on the user-authorized task, module and lesson IDs. Never expand scope or generate other lessons implicitly.
 - The official SDA-v1 plan is in `curriculum/revision-1/`; root-level course files are historical candidates. Use the chosen approved version at intake.
-- Original English teaching content for middle/senior engineers; keep learner-facing lessons `status: draft`.
+- Original English teaching content for middle/senior engineers; keep learner-facing lessons `status: draft`. Use one canonical lesson/assessment/evidence file per Lesson ID from the backlog, and Git for revisions; no nested lesson revisions or content manifests.
 - Use exact primary-source references when making technical claims. Primer is a licensed topic map, not the sole factual authority; create original teaching, examples, diagrams and exercises.
 - Do not fabricate citations, legal permissions, benchmarks or test results. Do not commit credentials or private learner data.
 - Never publish, merge or claim human approval without an explicit user decision.
@@ -18,7 +18,7 @@
 - Preserve old task/worklog/report history; legacy hashes are inert. Before cross-environment handoff, commit and push output, spec, task state and worklog, then run `taskctl handoff TASK-ID` to check Git-tracked/clean files and remote upstream sync. For agents sharing a checkout only, `handoff TASK-ID --local-only` skips remote verification. No checksums. A completed task with missing files shows a warning; its historical status remains unchanged.
 
 ## Default workflow
-- `.academy/state/task.template.json`: research → author draft lesson + companion assessment. The author reads `.agents/skills/content-format/SKILL.md` for safe, renderable Markdown without reducing technical depth. `init` resolves all three output paths from the matching `delivery/backlog.json` Story (`proposed_task_id`), not by concatenating Task ID.
+- `.academy/state/task.template.json`: research → author draft lesson + companion assessment. The author reads `assessment-design`, `content-format` and `GOVERNANCE.md` (declared inputs) for outcome alignment, source integrity and safe Markdown without compromising depth. `init` resolves all three output paths from the matching `delivery/backlog.json` Story (`proposed_task_id`), not by concatenating Task ID.
 - `.academy/state/course.template.json`: draft a new versioned plan/inventory/matrix.
 - `.academy/state/workflow.template.json`: implementation.
 - After producing the requested draft, record completion and **stop**. Do not autonomously run AI reviewers, Python validation, tests, CI or a revision loop.

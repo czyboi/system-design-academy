@@ -1,33 +1,31 @@
-# Authoring format validator — Step 2
+# Authoring format validation
 
-This is the deterministic, **read-only** check for [Authoring Format Contract v1](authoring-format-contract-v1.md). A passing format check does **not** prove technical truth, teaching quality, human approval, complete Mermaid syntax, or actual website rendering.
+Deterministic, read-only validation for [Authoring Format Contract v1](authoring-format-contract-v1.md). It **does not** certify factual correctness, teaching quality, legal rights or release approval.
 
-## How to run
+## Usage (on demand)
 
-- Validate all currently authored files: `python scripts/validate_format.py`
-- Validate a single file: `python scripts/validate_format.py --path modules/m04/lessons/M04-L01.md`
-- Run ordinary tests: `python -m unittest discover -s tests -v`
-- GitHub Actions **Python regression tests** runs synthetic unit tests automatically on PRs and pushes to `main`; it does **not** run content validation on the real lessons.
-- GitHub Actions **Content validation** is `workflow_dispatch` only. Its Markdown and structural checks run only when explicitly triggered.
+```bash
+python scripts/validate_content.py --scope lesson --lesson modules/m01/lessons/M01-L02.md --assessment modules/m01/assessments/M01-L02.md
+python scripts/validate_content.py --scope repo
+python scripts/validate_format.py
+python scripts/validate_format.py --path modules/m01/lessons/M01-L02.md
+```
 
-For a module containing `content-manifest.json`, repository-wide validators check the explicitly selected lesson/assessment revision paths. An inactive older revision is not silently treated as the active lesson. Nested revisions without a manifest are an error for structural validation.
+**Python regression tests** run automatically in GitHub Actions for PRs/pushes to `main` with isolated fixtures. The **Content validation** GitHub Actions workflow is `workflow_dispatch` only; it checks actual source artifacts only when deliberately launched. No AI review or automatic re-generation is triggered.
 
-## Checked
+## Canonical content convention
 
-- YAML front matter mappings and duplicate keys; current lesson/assessment/integrated metadata structures without forcing new SEO/schema fields.
-- CommonMark + GFM tables/strikethrough via `markdown-it-py`.
-- Unclosed fenced code blocks, raw HTML and MDX-style tags, unsafe link schemes, traversal, missing local assets, image alt text, and unsafe Mermaid directives.
-- Conservative Mermaid declaration and empty-diagram checks. No diagram quota; format cannot override educational quality.
-- Standalone `$$` math markers are flagged as unsupported until renderer support is added; fenced code remains literal.
-- Plain and bold answer/explanation labels are both permitted. Existing `scripts/validate_content.py` continues checking lesson/assessment linkage, outcomes, question count and instructional structure.
+- One lesson file per ID under `modules/mXX/lessons/` and one companion file under `modules/mXX/assessments/`.
+- Git tracks edits. No nested lesson revisions, content selection manifest or automatic preference for the newest file.
+- Repository-wide content checks reject nested lesson/assessment revisions, obsolete `content-manifest.json` and unreferenced companion assessments; format discovery also refuses noncanonical revisions.
+- The approved syllabus at `curriculum/revision-1/` remains authoritative and is unrelated to lesson file versioning.
 
-## Limits and operational caveats
+## Format checks and limits
 
-- **Mermaid validation is smoke-only**, not full grammar or browser rendering. Recognized declarations do not guarantee valid diagrams. Step 5 owns renderer-level tests and visual QA.
-- Markdown validation does not sanitize HTML for the future website. The website must enforce its own safe rendering.
-- Synthetic fixtures test syntax and artifact selection without fetching old Git commits or changing existing reviewed files.
-- The active manifest and current checked-out artifacts determine what repository-wide validators inspect; historical commit-pinned snapshot regression tests are deliberately removed.
-- Errors are diagnostic. No automatic AI retries, no extra agents, and no additional LLM calls.
-- The validator does not change teaching content, evidence, historical reviews, human approval or publication status.
+- YAML front matter; CommonMark/GFM including code and tables; unsafe links/path traversal, missing image alt, local asset existence, raw HTML/MDX and fenced-code closure.
+- Mermaid checks only supported declarations, emptiness and unsafe directives—not full Mermaid grammar or browser fidelity.
+- Inline formulas in literal code are preserved; unsupported display math must be addressed by renderer capability, not by deleting the explanation.
+- Assessments may use normal or bold `Answer:`/`Explanation:` labels. Structural teaching and outcome mapping are checked separately by `validate_content.py`.
+- Actual website rendering, sanitization and diagram layout require a future renderer test; reviewing technical truth, educational depth and source quality remains an independent human-requested activity.
 
-Future website content selection and publication approval are separate steps; no task-state hashes are involved.
+Historical MS01/MS02 snapshot tests were intentionally retired. Current regression tests use synthetic fixtures only; old lesson snapshots are not required by the new workflow.
