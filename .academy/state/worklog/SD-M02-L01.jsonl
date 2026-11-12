@@ -3,3 +3,5 @@
 {"at": "2026-11-12T14:59:56Z", "event": "step_completed", "run_id": "SD-M02-L01-research-20261112T145854Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "research", "task_id": "SD-M02-L01", "usage": null}
 {"agent": "codex", "at": "2026-11-12T14:59:56Z", "event": "step_started", "run_id": "SD-M02-L01-author-20261112T145956Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M02-L01"}
 {"at": "2026-11-12T14:59:56Z", "event": "step_completed", "run_id": "SD-M02-L01-author-20261112T145956Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M02-L01", "usage": null}
+{"at": "2026-11-12T15:02:19Z", "current": "reviewed", "event": "review_status_changed", "previous": "not_reviewed", "reason": "Independent SDA-MS02 review of M02-L01 cleared this scope.", "scope": "technical", "task_id": "SD-M02-L01"}
+{"at": "2026-11-12T15:02:19Z", "current": "reviewed", "event": "review_status_changed", "previous": "not_reviewed", "reason": "Independent SDA-MS02 review of M02-L01 cleared this scope.", "scope": "pedagogy", "task_id": "SD-M02-L01"}
