@@ -42,4 +42,4 @@ For edits to an existing lesson, follow authorized scope and record material use
 
 ## Draft handoff
 
-Write the lesson/assessment at their declared paths, record authoring completion and stop. **Do not launch independent AI reviewers, Python validation, or a revision loop automatically.** The user can later request technical/provenance review, actual coverage/pedagogy review, targeted corrections or validation independently. No duplicate final-copy step is needed, and draft completion is not publish approval.
+Write the lesson/assessment at their declared paths and record authoring completion. The **parent orchestrator**, not the author subagent, then invokes the single scoped `draft_handoff.py` validation-and-Git-delivery helper for the completed task or batch. Do not independently spawn a reviewer, run the regression test suite, auto-correct validation findings or start a revision loop. The user may later request technical/provenance review, actual coverage/pedagogy review, targeted corrections or broader validation. Draft completion and successful Git delivery are not publish approval.
