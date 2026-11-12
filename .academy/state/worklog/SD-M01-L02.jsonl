@@ -3,3 +3,7 @@
 {"at": "2026-11-12T09:05:10Z", "event": "step_completed", "run_id": "SD-M01-L02-research-20261112T090411Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "research", "task_id": "SD-M01-L02", "usage": null}
 {"agent": "codex", "at": "2026-11-12T09:05:10Z", "event": "step_started", "run_id": "SD-M01-L02-author-20261112T090510Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M01-L02"}
 {"at": "2026-11-12T09:07:53Z", "event": "step_completed", "run_id": "SD-M01-L02-author-20261112T090510Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M01-L02", "usage": null}
+{"at": "2026-11-12T09:27:20Z", "current": "in_review", "event": "review_status_changed", "previous": "not_reviewed", "reason": "Independent M01 module-close review, round 0", "scope": "technical", "task_id": "SD-M01-L02"}
+{"at": "2026-11-12T09:27:21Z", "current": "in_review", "event": "review_status_changed", "previous": "not_reviewed", "reason": "Independent M01 module-close review, round 0", "scope": "pedagogy", "task_id": "SD-M01-L02"}
+{"at": "2026-11-12T09:29:37Z", "current": "reviewed", "event": "review_status_changed", "previous": "in_review", "reason": "M01 independent round 0 technical clear for this package", "scope": "technical", "task_id": "SD-M01-L02"}
+{"at": "2026-11-12T09:29:37Z", "current": "reviewed", "event": "review_status_changed", "previous": "in_review", "reason": "M01 independent round 0 pedagogy clear for this package", "scope": "pedagogy", "task_id": "SD-M01-L02"}

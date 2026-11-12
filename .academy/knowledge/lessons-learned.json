@@ -1,4 +1,52 @@
 {
   "schema_version": 1,
-  "entries": []
+  "entries": [
+    {
+      "key": "map-each-outcome-skill-to-its-assessment",
+      "tags": [
+        "assessment",
+        "outcomes",
+        "curriculum"
+      ],
+      "problem": "A composite outcome listed skills that were taught and assessed but missing from that outcome item map.",
+      "prevention": "For each action in the learner-facing outcome, link the exact teaching section and a graded item. Map shared items to every outcome they assess and synchronize the module portfolio.",
+      "applies_to": [
+        "lesson_author",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m01",
+          "finding_id": "P-2",
+          "review_role": "pedagogy",
+          "report": "modules/m01/reviews/automatic/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
+        }
+      ]
+    },
+    {
+      "key": "reject-before-admission-versus-unknown-write-outcome",
+      "tags": [
+        "consistency",
+        "partitions",
+        "failover",
+        "retries"
+      ],
+      "problem": "A missing write reply was treated as proof that the command could never change the recovered state.",
+      "prevention": "For each write failure trace, specify the admission and commit boundary, retry or replay behavior, and what the caller can prove. Verify rejection leaves no mutation or queued replay.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m01",
+          "finding_id": "T-1",
+          "review_role": "technical",
+          "report": "modules/m01/reviews/automatic/technical.md",
+          "evidence": "https://raft.github.io/raft.pdf#page=13"
+        }
+      ]
+    }
+  ]
 }
