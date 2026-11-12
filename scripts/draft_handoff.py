@@ -102,10 +102,36 @@ def feature_branch(task_id: str) -> str:
     raise HandoffError("Could not allocate an unused feature branch")
 
 
-def deliver(task_ids: list[str], remote: str = "origin") -> None:
+def review_report_paths(values: list[str], task_files: set[str]) -> set[str]:
+    """Permit only complete, paired reports for modules present in this draft handoff."""
+    if not values:
+        return set()
+    modules = {
+        p.split("/")[1] for p in task_files
+        if re.fullmatch(r"modules/m\\d+/(?:lessons|assessments|integrated)/[^/]+", p)
+    }
+    roles: dict[str, set[str]] = {}
+    for value in values:
+        match = re.fullmatch(r"modules/(m\\d+)/reviews/automatic/(technical|pedagogy)\\.md", value)
+        if not match or match.group(1) not in modules:
+            raise HandoffError(f"Review report must belong to a selected module: {value}")
+        if not taskctl.relpath(value).is_file():
+            raise HandoffError(f"Missing review report: {value}")
+        if not taskctl.relpath(value).read_text(encoding="utf-8").strip():
+            raise HandoffError(f"Empty review report: {value}")
+        roles.setdefault(match.group(1), set()).add(match.group(2))
+    for module, present in roles.items():
+        if present != {"technical", "pedagogy"}:
+            raise HandoffError(f"{module}: both technical and pedagogy reports must be supplied")
+    return set(values)
+
+
+def deliver(task_ids: list[str], remote: str = "origin",
+            review_reports: list[str] | None = None) -> None:
     all_paths: set[str] = set()
     for task_id in task_ids:
         all_paths.update(task_paths(task_id))
+    all_paths.update(review_report_paths(review_reports or [], all_paths))
     print(f"Lightweight validation for {len(task_ids)} task(s)", flush=True)
     for command in validation_commands(all_paths):
         result = subprocess.run(command, cwd=ROOT)
@@ -137,9 +163,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("task_ids", nargs="+", help="One or more completed Academy draft task IDs")
     parser.add_argument("--remote", default="origin", help="Git remote to push (default: origin)")
+    parser.add_argument("--review-report", action="append", default=[],
+                        help="Optional reviewed module report; supply both technical and pedagogy")
     args = parser.parse_args(argv)
     try:
-        deliver(list(dict.fromkeys(args.task_ids)), args.remote)
+        deliver(list(dict.fromkeys(args.task_ids)), args.remote, args.review_report)
     except (HandoffError, taskctl.TaskError, OSError, ValueError) as exc:
         print(f"HANDOFF FAILED: {exc}", file=sys.stderr)
         return 2
