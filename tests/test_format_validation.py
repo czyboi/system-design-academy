@@ -1,11 +1,12 @@
 """Format-only regression tests for current authoring contracts."""
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.validate_format import PARSER, validate_document
+from scripts.validate_format import PARSER, discover, validate_document
 
 def draft(body: str, **overrides: str) -> str:
     fields = {
@@ -99,6 +100,26 @@ Answer: Yes.
 Explanation: Because.
 """
         self.assertEqual(validate_document(assessment, self.root/'modules/m04/assessments/M04-L01.md', root=self.root), [])
+
+    def test_manifest_selection_limits_format_checks_to_active_revision(self):
+        module = self.root / "modules/m04"
+        old = module / "lessons/M04-L01.md"
+        selected = module / "lessons/revision-1/M04-L01.md"
+        companion = module / "assessments/revision-1/M04-L01.md"
+        for path in (old, selected, companion):
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("fixture\n", encoding="utf-8")
+        manifest = module / "content-manifest.json"
+        manifest.write_text(json.dumps({
+            "status": "draft",
+            "packages": [{"lesson": "modules/m04/lessons/revision-1/M04-L01.md",
+                          "assessment": "modules/m04/assessments/revision-1/M04-L01.md"}]
+        }), encoding="utf-8")
+        self.assertEqual(discover(self.root), [companion, selected])
+        manifest.write_text('{"status":"draft","packages":[]}', encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "invalid format selection"):
+            discover(self.root)
+
 
     def test_legacy_integrated_package(self):
         text = "---\nid: M04-EX1\nstatus: draft\n---\n# Brief\n## Exercise\nExplain an architecture.\n"
