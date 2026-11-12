@@ -10,7 +10,7 @@
   "created_at": null,
   "updated_at": null,
   "execution_control": "active",
-  "notes": "Lesson draft: research then author. Paths resolved from delivery/backlog.json Story outputs at init, never derived from Task ID. Reviews and validation user-triggered.",
+  "notes": "Lesson draft: research then author; one canonical lesson/assessment/evidence path per Lesson ID from backlog. Git tracks edits. Reviews and validation are user-triggered.",
   "steps": [
     {
       "step_id": "research",
@@ -38,12 +38,14 @@
       "depends_on": [
         "research"
       ],
-      "definition_version": "v5",
+      "definition_version": "v6",
       "input_paths": [
         "curriculum/revision-1/CURRICULUM_MASTER.md",
         "${EVIDENCE_PATH}",
         ".agents/skills/lesson-authoring/SKILL.md",
-        ".agents/skills/content-format/SKILL.md"
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
       ],
       "output_paths": [
         "${TEACHING_PATH}",

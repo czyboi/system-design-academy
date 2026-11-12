@@ -552,6 +552,9 @@ def cmd_complete(args: argparse.Namespace) -> None:
         raise TaskError(f"Unknown step: {args.step_id}")
     if step["status"] != "running":
         raise TaskError(f"Cannot complete {args.step_id}: status is {step['status']}, not running")
+    for dependency in step["depends_on"]:
+        if step_map(data)[dependency]["status"] != "completed":
+            raise TaskError(f"Cannot complete {args.step_id}: dependency {dependency} is not completed")
     blocker = review_gate_blocker(data, step)
     if blocker:
         raise TaskError(f"Cannot complete {args.step_id}: {blocker}")

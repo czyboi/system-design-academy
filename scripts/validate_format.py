@@ -8,7 +8,6 @@ scripts/validate_content.py.
 from __future__ import annotations
 
 import argparse
-import json
 import re
 import sys
 from pathlib import Path
@@ -207,27 +206,14 @@ def discover(root: Path) -> list[Path]:
     for module in (root / "modules").glob("*"):
         if not module.is_dir():
             continue
-        manifest = module / "content-manifest.json"
-        if manifest.exists():
-            try:
-                data = json.loads(manifest.read_text(encoding="utf-8"))
-                if (not isinstance(data, dict) or data.get("status") != "draft"
-                        or not isinstance(data.get("packages"), list) or not data["packages"]):
-                    raise ValueError("expected draft manifest with nonempty packages")
-                for item in data["packages"]:
-                    for field, folder in (("lesson", "lessons"), ("assessment", "assessments")):
-                        name = item[field]
-                        if not isinstance(name, str) or Path(name).is_absolute() or ".." in Path(name).parts:
-                            raise ValueError(f"unsafe {field} path: {name!r}")
-                        selected = (root / name).resolve()
-                        if not selected.is_relative_to((module / folder).resolve()):
-                            raise ValueError(f"selected {field} belongs outside {module.name}")
-                        result.append(selected)
-            except (OSError, ValueError, KeyError, TypeError) as exc:
-                raise ValueError(f"{manifest}: invalid format selection: {exc}") from exc
-        else:
-            for folder in ("lessons", "assessments"):
-                result.extend((module / folder).glob("**/*.md"))
+        if (module / "content-manifest.json").exists():
+            raise ValueError(f"{module}: content-manifest.json is obsolete; keep one canonical artifact")
+        for folder in ("lessons", "assessments"):
+            directory = module / folder
+            nested = [p for p in directory.glob("**/*.md") if p.parent != directory]
+            if nested:
+                raise ValueError(f"{nested[0]}: nested lesson/assessment revisions are unsupported")
+            result.extend(directory.glob("*.md"))
         integrated = module / "integrated"
         for pattern in ("brief.md", "solution-rubric*.md", "decision-summary*.md"):
             result.extend(integrated.glob(pattern))

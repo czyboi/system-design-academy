@@ -1,7 +1,6 @@
 """Format-only regression tests for current authoring contracts."""
 from __future__ import annotations
 
-import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -101,23 +100,22 @@ Explanation: Because.
 """
         self.assertEqual(validate_document(assessment, self.root/'modules/m04/assessments/M04-L01.md', root=self.root), [])
 
-    def test_manifest_selection_limits_format_checks_to_active_revision(self):
+    def test_canonical_discovery_rejects_revision_folders_and_manifest(self):
         module = self.root / "modules/m04"
-        old = module / "lessons/M04-L01.md"
-        selected = module / "lessons/revision-1/M04-L01.md"
-        companion = module / "assessments/revision-1/M04-L01.md"
-        for path in (old, selected, companion):
+        lesson = module / "lessons/M04-L01.md"
+        companion = module / "assessments/M04-L01.md"
+        for path in (lesson, companion):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("fixture\n", encoding="utf-8")
-        manifest = module / "content-manifest.json"
-        manifest.write_text(json.dumps({
-            "status": "draft",
-            "packages": [{"lesson": "modules/m04/lessons/revision-1/M04-L01.md",
-                          "assessment": "modules/m04/assessments/revision-1/M04-L01.md"}]
-        }), encoding="utf-8")
-        self.assertEqual(discover(self.root), [companion, selected])
-        manifest.write_text('{"status":"draft","packages":[]}', encoding="utf-8")
-        with self.assertRaisesRegex(ValueError, "invalid format selection"):
+        self.assertEqual(discover(self.root), [companion, lesson])
+        nested = module / "lessons/revision-1/M04-L01.md"
+        nested.parent.mkdir()
+        nested.write_text("old revision\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "nested lesson/assessment revisions"):
+            discover(self.root)
+        nested.unlink()
+        (module / "content-manifest.json").write_text("{}", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "content-manifest.json is obsolete"):
             discover(self.root)
 
 

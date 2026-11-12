@@ -403,6 +403,21 @@ class TaskCtlExplicitStateTests(unittest.TestCase):
         self.assertEqual(self.state()["steps"][2]["status"], "completed")
 
 
+    def test_complete_fails_if_dependency_reopened_mid_run(self):
+        self.add_step("research", "outputs/research.md")
+        self.add_step("author", "outputs/lesson.md", depends=("research",))
+        self.run_step("research", "outputs/research.md")
+        self.cli("start", "TEST-1", "author", "--agent", "author")
+        self.output("outputs/lesson.md")
+        self.cli("invalidate", "TEST-1", "research", "--reason", "Revisit source evidence")
+        self.assertIn("dependency research is not completed",
+                      self.cli("complete", "TEST-1", "author", expected=2))
+        self.assertEqual(self.state()["steps"][1]["status"], "running")
+        self.run_step("research", "outputs/research.md")
+        self.cli("complete", "TEST-1", "author")
+        self.assertEqual(self.state()["steps"][1]["status"], "completed")
+
+
     def test_new_lesson_init_uses_backlog_story_paths(self):
         (self.root / "delivery").mkdir(parents=True, exist_ok=True)
         shutil.copy2(SOURCE_ROOT / ".academy/state/task.template.json",

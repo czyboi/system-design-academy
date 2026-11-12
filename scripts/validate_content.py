@@ -127,46 +127,23 @@ def validate_plan(plan, matrix):
     return errors
 
 
-def select_repo_lessons() -> tuple[list[Path], dict[Path, Path], list[str]]:
-    """Select the active artifact per lesson rather than guessing revision paths."""
+def discover_canonical_content() -> tuple[list[Path], list[Path], list[str]]:
+    """One lesson and one assessment at stable paths; Git tracks revisions."""
     lessons: list[Path] = []
-    pairs: dict[Path, Path] = {}
+    assessments: list[Path] = []
     errors: list[str] = []
-    modules_root = ROOT / "modules"
-    if not modules_root.is_dir():
-        return lessons, pairs, errors
-    for module in sorted(modules_root.iterdir()):
+    for module in sorted((ROOT / "modules").glob("*")):
         if not module.is_dir():
             continue
-        lesson_dir, assessment_dir = module / "lessons", module / "assessments"
-        manifest = module / "content-manifest.json"
-        if not manifest.exists():
-            lessons.extend(sorted(lesson_dir.glob("*.md")))
-            if any(path.parent != lesson_dir for path in lesson_dir.glob("**/*.md")):
-                errors.append(
-                    f"{module.relative_to(ROOT)}: versioned lessons need a "
-                    "content-manifest.json selecting the active lesson and assessment"
-                )
-            continue
-        try:
-            data = json.loads(manifest.read_text(encoding="utf-8"))
-            if (not isinstance(data, dict) or data.get("status") != "draft"
-                    or not isinstance(data.get("packages"), list) or not data["packages"]):
-                raise ValueError("expected a draft manifest with nonempty packages")
-            for item in data["packages"]:
-                if not isinstance(item, dict):
-                    raise ValueError("each package must map lesson and assessment paths")
-                lesson = local_path(item["lesson"])
-                assessment = local_path(item["assessment"])
-                if not lesson.is_relative_to(lesson_dir) or not assessment.is_relative_to(assessment_dir):
-                    raise ValueError("selected lesson/assessment must belong to the manifest module")
-                if lesson in pairs:
-                    raise ValueError(f"duplicate selected lesson: {lesson.relative_to(ROOT)}")
-                lessons.append(lesson)
-                pairs[lesson] = assessment
-        except (OSError, ValueError, KeyError, TypeError) as exc:
-            errors.append(f"{manifest.relative_to(ROOT)}: {exc}")
-    return lessons, pairs, errors
+        if (module / "content-manifest.json").exists():
+            errors.append(f"{module.relative_to(ROOT)}: content-manifest.json is obsolete; use one canonical file per lesson")
+        for folder, found in (("lessons", lessons), ("assessments", assessments)):
+            directory = module / folder
+            found.extend(sorted(directory.glob("*.md")))
+            for nested in sorted(directory.glob("**/*.md")):
+                if nested.parent != directory:
+                    errors.append(f"{nested.relative_to(ROOT)}: nested lesson/assessment revisions are unsupported; use Git history")
+    return lessons, assessments, errors
 
 
 def main(argv=None) -> int:
@@ -179,6 +156,7 @@ def main(argv=None) -> int:
     lesson_ids: list[str] = []
 
     lesson_files: list[Path] = []
+    assessment_files: list[Path] = []
     pairs: dict[Path, Path] = {}
     try:
         if args.scope == 'lesson':
@@ -191,8 +169,8 @@ def main(argv=None) -> int:
                 parser.error('curriculum scope requires --plan and --matrix (CSV)')
             errors.extend(validate_plan(local_path(args.plan), local_path(args.matrix)))
         if args.scope == 'repo':
-            lesson_files, pairs, selection_errors = select_repo_lessons()
-            errors.extend(selection_errors)
+            lesson_files, assessment_files, discovery_errors = discover_canonical_content()
+            errors.extend(discovery_errors)
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(str(exc))
 
@@ -215,8 +193,8 @@ def main(argv=None) -> int:
         lesson_id = front.get("id", "")
         if isinstance(lesson_id, str) and lesson_id:
             lesson_ids.append(lesson_id)
-            if not path.name.startswith(lesson_id):
-                errors.append(f"{rel}: filename should begin with lesson ID {lesson_id}")
+            if path.stem != lesson_id:
+                errors.append(f"{rel}: canonical lesson filename must equal lesson ID {lesson_id}.md")
         else:
             errors.append(f'{rel}: lesson id must be a nonempty string')
 
@@ -230,6 +208,10 @@ def main(argv=None) -> int:
         try:
             assessment = pairs.get(path) or local_path(front['assessment'])
             pairs[path] = assessment
+            if args.scope == 'repo':
+                expected = path.parent.parent / 'assessments' / path.name
+                if assessment != expected:
+                    errors.append(f"{rel}: expected canonical companion {expected.relative_to(ROOT)}")
             errors.extend(validate_pair(path, assessment))
         except (ValueError, KeyError, TypeError) as exc:
             errors.append(f'{rel}: missing/invalid assessment path: {exc}')
@@ -240,6 +222,11 @@ def main(argv=None) -> int:
 
     if len(lesson_ids) != len(set(lesson_ids)):
         errors.append("Duplicate lesson IDs found in lesson front matter")
+    if args.scope == 'repo':
+        used = set(pairs.values())
+        for assessment in assessment_files:
+            if assessment not in used:
+                errors.append(f"{assessment.relative_to(ROOT)}: orphan assessment without a companion lesson")
 
     source_count = 0
     for registry in sorted((ROOT/'modules').glob('*/sources/source-registry.csv')):
@@ -339,9 +326,10 @@ def main(argv=None) -> int:
         parts = path.relative_to(ROOT).parts
         if args.scope != 'repo' and path not in selected and parts[0] == 'modules':
             continue
-        # A manifest's unselected historical lessons/assessments are not active content.
-        if (args.scope == 'repo' and path not in selected and len(parts) >= 4
-                and parts[0] == 'modules' and parts[2] in {'lessons', 'assessments'}):
+        # Nested obsolete drafts are rejected by canonical discovery; do not treat
+        # their Markdown links as part of the active course.
+        if (args.scope == 'repo' and len(parts) > 4 and parts[0] == 'modules'
+                and parts[2] in {'lessons', 'assessments'}):
             continue
         if path not in selected and any(part in path.relative_to(ROOT).parts for part in ('.git','.tmp','inputs','runs','task-runs')):
             continue

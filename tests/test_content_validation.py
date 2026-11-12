@@ -132,6 +132,8 @@ class WorkflowTemplateTests(unittest.TestCase):
                          ['${TEACHING_PATH}', '${ASSESSMENT_PATH}'])
         self.assertIn('${EVIDENCE_PATH}', steps['author']['input_paths'])
         self.assertIn('.agents/skills/content-format/SKILL.md', steps['author']['input_paths'])
+        self.assertIn('.agents/skills/assessment-design/SKILL.md', steps['author']['input_paths'])
+        self.assertIn('GOVERNANCE.md', steps['author']['input_paths'])
         self.assertIn('content-format', (ROOT/'.codex/agents/lesson-author.toml').read_text())
         self.assertIn('content-format', (ROOT/'.claude/agents/lesson-author.md').read_text())
         self.assertEqual(template['review_status'], 'not_reviewed')
@@ -188,77 +190,53 @@ class WorkflowTemplateTests(unittest.TestCase):
                     self.assertEqual(validator.main(['--scope', 'repo']), 1)
                     self.assertEqual(validator.main(['--scope', 'workflow']), 0)
 
-    def test_repo_manifest_selects_revision_not_unselected_base(self):
+    def test_repo_canonical_content_rejects_nested_revisions_and_orphans(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             module = root / 'modules/m01'
-            selected_rel = 'modules/m01/lessons/revision-1/M01-L02.md'
-            assessment_rel = 'modules/m01/assessments/revision-1/M01-L02.md'
-            selected = root / selected_rel
-            assessment = root / assessment_rel
-            selected.parent.mkdir(parents=True)
+            lesson = module / 'lessons/M01-L02.md'
+            assessment = module / 'assessments/M01-L02.md'
+            lesson.parent.mkdir(parents=True)
             assessment.parent.mkdir(parents=True)
-            selected.write_text('''---
-id: M01-L02
-title: Selected revision
-status: draft
-level: intermediate
-source_review_date: 2026-11-12
-prerequisites: []
-outcomes: [LO-1]
----
-# Selected revision
-## Learning outcomes
-LO-1: Reason about the trade-off.
-## Problem and motivation
-A problem statement.
-## Core concepts and mechanisms
-A causal explanation.
-## Worked example
-Apply the mechanism.
-## Trade-offs and failure modes
-Describe failure and the alternative.
-## References
-- https://example.com/reference-a
-- https://example.com/reference-b
-''', encoding='utf-8')
-            assessment.write_text(f'''---
-status: draft
-lesson: {selected_rel}
-outcome_map:
-  LO-1:
-    taught_in: Core concepts and mechanisms
-    items: [Q1, EX-1]
----
-# Assessment
-## Practical exercise
-EX-1: Solve a case.
-## Knowledge checks
-'''+''.join(f'### Q{i}\nAnswer: Yes.\nExplanation: Reason.\n' for i in range(1, 6))+
-            '## Answer key / rubric\nSolution.\n', encoding='utf-8')
-            old = module / 'lessons/M01-L02.md'
-            old.write_text('# Inactive broken revision\n[bad](missing.md)\n', encoding='utf-8')
-            manifest = module / 'content-manifest.json'
-            manifest.write_text(json.dumps({
-                'status': 'draft',
-                'packages': [{'lesson': selected_rel, 'assessment': assessment_rel}]
-            }), encoding='utf-8')
+            lesson.write_text('---\nid: M01-L02\nassessment: modules/m01/assessments/M01-L02.md\n---\n', encoding='utf-8')
+            assessment.write_text('---\nstatus: draft\n---\n', encoding='utf-8')
             with patch.object(validator, 'ROOT', root):
-                lessons, pairs, issues = validator.select_repo_lessons()
-                self.assertEqual(issues, [])
-                self.assertEqual(lessons, [selected])
-                self.assertEqual(pairs[selected], assessment)
-                self.assertEqual(validator.validate_pair(selected, assessment), [])
-                manifest.unlink()
-                _, _, issues = validator.select_repo_lessons()
-                self.assertTrue(any('versioned lessons need' in issue for issue in issues))
-                manifest.write_text(json.dumps({
-                    'status': 'draft', 'packages': [
-                        {'lesson': selected_rel, 'assessment': assessment_rel},
-                        {'lesson': selected_rel, 'assessment': assessment_rel}]
-                }), encoding='utf-8')
-                _, _, issues = validator.select_repo_lessons()
-                self.assertTrue(any('duplicate selected lesson' in issue for issue in issues))
+                lessons, assessments, errors = validator.discover_canonical_content()
+                self.assertEqual((lessons, assessments, errors), ([lesson], [assessment], []))
+                extra = module / 'assessments/M01-L03.md'
+                extra.write_text('unused', encoding='utf-8')
+                lessons, assessments, errors = validator.discover_canonical_content()
+                self.assertIn(extra, assessments)
+                nested = module / 'lessons/revision-1/M01-L02.md'
+                nested.parent.mkdir()
+                nested.write_text('obsolete', encoding='utf-8')
+                _, _, errors = validator.discover_canonical_content()
+                self.assertTrue(any('nested lesson/assessment revisions' in e for e in errors))
+                (module / 'content-manifest.json').write_text('{}', encoding='utf-8')
+                _, _, errors = validator.discover_canonical_content()
+                self.assertTrue(any('content-manifest.json is obsolete' in e for e in errors))
+
+    def test_repo_rejects_orphan_assessment_without_a_lesson(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            skill = root / '.agents/skills/fixture/SKILL.md'
+            skill.parent.mkdir(parents=True)
+            skill.write_text('---\nname: fixture\ndescription: Fixture\n---\nInstructions.\n', encoding='utf-8')
+            agent = root / '.codex/agents/fixture.toml'
+            agent.parent.mkdir(parents=True)
+            agent.write_text('name = "fixture"\ndescription = "Fixture"\n'
+                             'developer_instructions = "Test"\nmodel = "fixture"\n'
+                             'model_reasoning_effort = "medium"\n', encoding='utf-8')
+            (root / '.codex/config.toml').write_text(
+                '[agents]\nmax_concurrent_threads_per_session = 1\n'
+                'default_subagent_model = "fixture"\n', encoding='utf-8')
+            stray = root / 'modules/m02/assessments/M02-L01.md'
+            stray.parent.mkdir(parents=True)
+            stray.write_text('# orphan', encoding='utf-8')
+            with patch.object(validator, 'ROOT', root):
+                with contextlib.redirect_stdout(io.StringIO()) as output:
+                    self.assertEqual(validator.main(['--scope', 'repo']), 1)
+                self.assertIn('orphan assessment', output.getvalue())
 
 
     def test_explicit_missing_lesson_fails(self):
