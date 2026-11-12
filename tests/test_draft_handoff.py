@@ -56,13 +56,31 @@ class DraftHandoffTests(unittest.TestCase):
             (root / "technical.md").write_text("Technical review findings", encoding="utf-8")
             (root / "pedagogy.md").write_text("Pedagogy review findings", encoding="utf-8")
             with patch.object(draft_handoff.taskctl, "relpath",
-                              side_effect=lambda path: root / Path(path).name):
+                              side_effect=lambda path: root / Path(path).name), \
+                 patch.object(draft_handoff, "required_module_paths", return_value=task_files):
                 self.assertEqual(draft_handoff.review_report_paths([t, p], task_files), {t, p})
                 with self.assertRaisesRegex(draft_handoff.HandoffError, "both technical and pedagogy"):
                     draft_handoff.review_report_paths([t], task_files)
                 with self.assertRaisesRegex(draft_handoff.HandoffError, "selected module"):
                     draft_handoff.review_report_paths(
                         ["modules/m01/reviews/automatic/technical.md"], task_files)
+
+    def test_partial_module_cannot_hand_off_review_as_complete(self):
+        selected = {"modules/m00/lessons/M00-L01.md",
+                    "modules/m00/assessments/M00-L01.md"}
+        expected = selected | {"modules/m00/integrated/brief.md",
+                               "modules/m00/integrated/solution-rubric.md"}
+        tech = "modules/m00/reviews/automatic/technical.md"
+        pedagogy = "modules/m00/reviews/automatic/pedagogy.md"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "technical.md").write_text("Technical review", encoding="utf-8")
+            (root / "pedagogy.md").write_text("Pedagogy review", encoding="utf-8")
+            with patch.object(draft_handoff.taskctl, "relpath",
+                              side_effect=lambda path: root / Path(path).name), \
+                 patch.object(draft_handoff, "required_module_paths", return_value=expected):
+                with self.assertRaisesRegex(draft_handoff.HandoffError, "before every lesson and integration"):
+                    draft_handoff.review_report_paths([tech, pedagogy], selected)
 
     def test_module_review_reports_do_not_allow_arbitrary_files(self):
         with self.assertRaisesRegex(draft_handoff.HandoffError, "selected module"):
