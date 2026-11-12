@@ -108,11 +108,11 @@ def review_report_paths(values: list[str], task_files: set[str]) -> set[str]:
         return set()
     modules = {
         p.split("/")[1] for p in task_files
-        if re.fullmatch(r"modules/m\\d+/(?:lessons|assessments|integrated)/[^/]+", p)
+        if re.fullmatch(r"modules/m\d+/(?:lessons|assessments|integrated)/[^/]+", p)
     }
     roles: dict[str, set[str]] = {}
     for value in values:
-        match = re.fullmatch(r"modules/(m\\d+)/reviews/automatic/(technical|pedagogy)\\.md", value)
+        match = re.fullmatch(r"modules/(m\d+)/reviews/automatic/(technical|pedagogy)\.md", value)
         if not match or match.group(1) not in modules:
             raise HandoffError(f"Review report must belong to a selected module: {value}")
         if not taskctl.relpath(value).is_file():
