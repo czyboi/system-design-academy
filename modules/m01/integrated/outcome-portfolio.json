@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M01",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M01-L01-LO1",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L01.md",
+        "sections": [
+          "Estimate demand from an activity feed",
+          "Budget storage, bandwidth and the working set"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L01-LO2",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L01.md",
+        "sections": [
+          "Budget the latency of a request path",
+          "Choose assumptions and refine the budget"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L02-LO1",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L02.md",
+        "sections": [
+          "Measure the request and the workload",
+          "Trace the burst and the queue",
+          "Estimate concurrency in steady state"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L02-LO2",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L02.md",
+        "sections": [
+          "Choose the change that removes the bottleneck",
+          "Benchmark and profile the request path"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L03-LO1",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L03.md",
+        "sections": [
+          "Read and write histories",
+          "Preserve a session and reconcile edits"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L03-LO2",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L03.md",
+        "sections": [
+          "Choose operations during a partition",
+          "Preserve a session and reconcile edits"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L04-LO1",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L04.md",
+        "sections": [
+          "Trace a two-region recovery",
+          "Convert an availability target into a budget",
+          "Model serial, parallel and shared dependencies"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L04-LO2",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L04.md",
+        "sections": [
+          "Choose traffic roles and standby readiness",
+          "Replication and recovery points",
+          "Model serial, parallel and shared dependencies"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-S1",
+      "uses_lesson_outcomes": [
+        "M01-L01-LO1",
+        "M01-L03-LO2",
+        "M01-L04-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m01/integrated/brief.md",
+        "sections": [
+          "Workload and service targets",
+          "Compare two policies"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/integrated/brief.md",
+        "items": [
+          "M01-EX1"
+        ],
+        "solution_rubric": "modules/m01/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}

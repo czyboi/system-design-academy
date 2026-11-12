@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M01-INTEGRATION",
+  "revision": 1,
+  "goal": "Generate the canonical SDA-v1 draft for SDA-M01-INT — Integrated design, reference solution and decision summary",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and Story SDA-M01-INT at its backlog paths.",
+      "**Integrated design exercise:** Estimate a regional order-status service and compare two failure policies.\n\n**Reference solution and self-evaluation:** Reference package: units and peak assumptions, bottleneck budget, read/write histories, availability dependency model; assess correct assumptions rather than a single numeric answer.\n\n**Synthesis outcome map:** M01-S1: connect a workload estimate to operation-level consistency and failover choices. M01-EX1 measures this synthesis outcome using M01-L01-LO1, M01-L03-LO2 and M01-L04-LO2. It does not claim all module lesson outcomes. Each lesson’s separate companion remains responsible for its complete LO1/LO2 assessment, and the course portfolio must reconcile all companions before course completion.\n\n**Decision-summary table plan:** Compare throughput, latency, cost, consistency and failure tolerance under one explicit workload. Each eventual row states trigger, option, mechanism, benefit, cost, failure signal, when to avoid, and the lesson reference."
+    ],
+    "out_of_scope": [
+      "Other modules, curriculum changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate through GitHub Issue #53. Archived milestone material remains at PR #28.",
+    "Write original English draft material for middle and senior engineers. Verify important claims with exact primary sources.",
+    "Use the pinned Primer as a topic map. State assumptions and label modeled values."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Deliver the canonical claim-level research evidence.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver the canonical Story draft outputs for parent-owned scoped handoff.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Verify sources, their sections, version or publication scope, applicability and limitations.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
