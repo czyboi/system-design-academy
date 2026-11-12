@@ -33,7 +33,7 @@ The evidence URL above is illustrative, **not** a source endorsement. Use the re
 
 The recorder rejects unfinished/blocked/revision-0 cycles, missing/resolution-less finding IDs, unsupported/unmentioned evidence, unsafe paths, conflicting rules for an existing key and duplicate occurrence IDs. Its checks are *provenance gates*, not automated factual verification; the independent reviewer and parent must inspect whether evidence truly supports the corrected claim. Skip incidental one-off wording edits and unresolved reviewer opinions.
 
-The file `.academy/knowledge/lessons-learned.json` is versioned with the matching lesson or module review reports, task memory and cycle state by `draft_handoff.py --review-report`. It keeps only a short problem, short prevention guidance, tags, agent roles and cited occurrences. No new research agent, similarity service, embeddings database or model fine-tuning is needed.
+Record verified reusable findings **before** report handoff so the updated knowledge file is pushed with the reports. The file `.academy/knowledge/lessons-learned.json` is versioned with the matching lesson or module review reports, task memory and cycle state by `draft_handoff.py --review-report`. It keeps only a short problem, short prevention guidance, tags, agent roles and cited occurrences. No new research agent, similarity service, embeddings database or model fine-tuning is needed.
 
 ## Promote repeated problems to Skill improvements
 
