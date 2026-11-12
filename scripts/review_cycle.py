@@ -93,6 +93,23 @@ def begin_revision(module: str) -> dict:
     return save(module, current)
 
 
+def reopen(module: str, reason: str) -> dict:
+    """Explicitly start a fresh review of materially changed, previously ready content."""
+    current = load(module)
+    if not current or current["status"] != "ready":
+        raise ReviewCycleError("Only a previously ready cycle can be reopened; blocked cycles require human direction")
+    if not reason.strip():
+        raise ReviewCycleError("Reopening requires an explicit material-change reason")
+    current.setdefault("reopen_history", []).append({
+        "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "reason": reason.strip(),
+        "prior_revision_attempts": current["revision_attempts"],
+    })
+    current["revision_attempts"] = 0
+    current["status"] = "revising"
+    return save(module, current)
+
+
 def stop(module: str, reason: str) -> dict:
     """Stop safely when a claim, source or reviewer disagreement cannot be resolved."""
     current = load(module)
@@ -107,7 +124,7 @@ def stop(module: str, reason: str) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=["record", "begin-revision", "status", "stop"])
+    parser.add_argument("action", choices=["record", "begin-revision", "status", "stop", "reopen"])
     parser.add_argument("module", help="Review target: lesson M01-L02 or module m01")
     parser.add_argument("--technical", choices=VERDICTS)
     parser.add_argument("--pedagogy", choices=VERDICTS)
@@ -122,6 +139,8 @@ def main(argv: list[str] | None = None) -> int:
             state = begin_revision(args.module)
         elif args.action == "stop":
             state = stop(args.module, args.reason)
+        elif args.action == "reopen":
+            state = reopen(args.module, args.reason)
         else:
             state = load(args.module)
             if state is None:

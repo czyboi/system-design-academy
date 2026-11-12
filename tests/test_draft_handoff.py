@@ -105,7 +105,8 @@ class DraftHandoffTests(unittest.TestCase):
                     draft_handoff.review_report_paths([t], task_files)
                 with self.assertRaisesRegex(draft_handoff.HandoffError, "module mismatch"):
                     draft_handoff.review_report_paths(
-                        ["modules/m01/reviews/automatic/lessons/M00-L01/technical.md"], task_files)
+                        ["modules/m01/reviews/automatic/lessons/M00-L01/technical.md"],
+                        task_files | {"modules/m01/lessons/M01-L01.md"})
 
     def test_lesson_report_cannot_be_handed_off_with_missing_assessment(self):
         t = "modules/m00/reviews/automatic/lessons/M00-L01/technical.md"
