@@ -131,6 +131,9 @@ class WorkflowTemplateTests(unittest.TestCase):
         self.assertEqual(steps['author']['output_paths'],
                          ['${TEACHING_PATH}', '${ASSESSMENT_PATH}'])
         self.assertIn('${EVIDENCE_PATH}', steps['author']['input_paths'])
+        self.assertIn('.agents/skills/content-format/SKILL.md', steps['author']['input_paths'])
+        self.assertIn('content-format', (ROOT/'.codex/agents/lesson-author.toml').read_text())
+        self.assertIn('content-format', (ROOT/'.claude/agents/lesson-author.md').read_text())
         self.assertEqual(template['review_status'], 'not_reviewed')
 
     def test_compact_templates_have_unique_output_paths(self):
@@ -184,6 +187,79 @@ class WorkflowTemplateTests(unittest.TestCase):
                 with contextlib.redirect_stdout(io.StringIO()):
                     self.assertEqual(validator.main(['--scope', 'repo']), 1)
                     self.assertEqual(validator.main(['--scope', 'workflow']), 0)
+
+    def test_repo_manifest_selects_revision_not_unselected_base(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            module = root / 'modules/m01'
+            selected_rel = 'modules/m01/lessons/revision-1/M01-L02.md'
+            assessment_rel = 'modules/m01/assessments/revision-1/M01-L02.md'
+            selected = root / selected_rel
+            assessment = root / assessment_rel
+            selected.parent.mkdir(parents=True)
+            assessment.parent.mkdir(parents=True)
+            selected.write_text('''---
+id: M01-L02
+title: Selected revision
+status: draft
+level: intermediate
+source_review_date: 2026-11-12
+prerequisites: []
+outcomes: [LO-1]
+---
+# Selected revision
+## Learning outcomes
+LO-1: Reason about the trade-off.
+## Problem and motivation
+A problem statement.
+## Core concepts and mechanisms
+A causal explanation.
+## Worked example
+Apply the mechanism.
+## Trade-offs and failure modes
+Describe failure and the alternative.
+## References
+- https://example.com/reference-a
+- https://example.com/reference-b
+''', encoding='utf-8')
+            assessment.write_text(f'''---
+status: draft
+lesson: {selected_rel}
+outcome_map:
+  LO-1:
+    taught_in: Core concepts and mechanisms
+    items: [Q1, EX-1]
+---
+# Assessment
+## Practical exercise
+EX-1: Solve a case.
+## Knowledge checks
+'''+''.join(f'### Q{i}\nAnswer: Yes.\nExplanation: Reason.\n' for i in range(1, 6))+
+            '## Answer key / rubric\nSolution.\n', encoding='utf-8')
+            old = module / 'lessons/M01-L02.md'
+            old.write_text('# Inactive broken revision\n[bad](missing.md)\n', encoding='utf-8')
+            manifest = module / 'content-manifest.json'
+            manifest.write_text(json.dumps({
+                'status': 'draft',
+                'packages': [{'lesson': selected_rel, 'assessment': assessment_rel}]
+            }), encoding='utf-8')
+            with patch.object(validator, 'ROOT', root):
+                lessons, pairs, issues = validator.select_repo_lessons()
+                self.assertEqual(issues, [])
+                self.assertEqual(lessons, [selected])
+                self.assertEqual(pairs[selected], assessment)
+                self.assertEqual(validator.validate_pair(selected, assessment), [])
+                manifest.unlink()
+                _, _, issues = validator.select_repo_lessons()
+                self.assertTrue(any('versioned lessons need' in issue for issue in issues))
+                manifest.write_text(json.dumps({
+                    'status': 'draft', 'packages': [
+                        {'lesson': selected_rel, 'assessment': assessment_rel},
+                        {'lesson': selected_rel, 'assessment': assessment_rel}]
+                }), encoding='utf-8')
+                _, _, issues = validator.select_repo_lessons()
+                self.assertTrue(any('duplicate selected lesson' in issue for issue in issues))
+
 
     def test_explicit_missing_lesson_fails(self):
         with contextlib.redirect_stdout(io.StringIO()):

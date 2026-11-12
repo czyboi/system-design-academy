@@ -361,6 +361,48 @@ class TaskCtlExplicitStateTests(unittest.TestCase):
         self.assertIn("HANDOFF READY", self.cli("handoff", "TEST-1"))
 
 
+    def test_init_validation_failure_leaves_no_partial_task_files(self):
+        args = ("init", "RETRY-1", "--module", "demo", "--goal", "Retry initialization",
+                "--owner", "tester")
+        invalid = self.state()
+        invalid["steps"] = [{
+            "step_id": "author", "title": "Invalid conflicting paths",
+            "status": "pending", "depends_on": [], "definition_version": "v1",
+            "input_paths": ["docs/input.md"], "output_paths": ["docs/input.md"]
+        }]
+        template_path = self.root / ".academy/state/invalid.template.json"
+        template_path.write_text(json.dumps(invalid), encoding="utf-8")
+        result = self.cli(*args, "--template", ".academy/state/invalid.template.json", expected=2)
+        self.assertIn("cannot own an input as an output", result)
+        self.assertFalse((self.root / ".academy/specs/RETRY-1.json").exists())
+        self.assertFalse((self.root / ".academy/state/tasks/RETRY-1.json").exists())
+        self.cli(*args)
+        self.assertTrue((self.root / ".academy/specs/RETRY-1.json").exists())
+        self.assertTrue((self.root / ".academy/state/tasks/RETRY-1.json").exists())
+
+    def test_review_gate_rechecked_before_completing_running_step(self):
+        self.make_review_graph()
+        self.cli("start", "TEST-1", "review", "--agent", "reviewer")
+        self.write_verdict()
+        self.cli("complete", "TEST-1", "review")
+        self.cli("review-status", "TEST-1", "--scope", "review",
+                 "--state", "reviewed", "--reason", "Review accepted")
+        self.cli("start", "TEST-1", "author", "--agent", "author")
+        self.output("outputs/lesson.md")
+        self.cli("review-status", "TEST-1", "--scope", "review",
+                 "--state", "needs_review", "--reason", "Revised reviewed claim")
+        self.assertIn("needs an explicit reviewed decision",
+                      self.cli("complete", "TEST-1", "author", expected=2))
+        self.assertEqual(self.state()["steps"][2]["status"], "running")
+        self.cli("review-status", "TEST-1", "--scope", "review",
+                 "--state", "reviewed", "--reason", "Review restored")
+        self.write_verdict("revise")
+        self.assertIn("verdict is revise", self.cli("complete", "TEST-1", "author", expected=2))
+        self.write_verdict()
+        self.cli("complete", "TEST-1", "author")
+        self.assertEqual(self.state()["steps"][2]["status"], "completed")
+
+
     def test_new_lesson_init_uses_backlog_story_paths(self):
         (self.root / "delivery").mkdir(parents=True, exist_ok=True)
         shutil.copy2(SOURCE_ROOT / ".academy/state/task.template.json",
