@@ -10,7 +10,7 @@
   "created_at": null,
   "updated_at": null,
   "execution_control": "active",
-  "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent AI reviews and broad validation are on demand.",
+  "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run automatically once the full module is drafted, while extra review and broad validation remain on demand.",
   "steps": [
     {
       "step_id": "research",
