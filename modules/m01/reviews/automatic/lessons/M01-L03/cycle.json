@@ -1,0 +1,21 @@
+{
+  "module": "m01",
+  "lesson": "M01-L03",
+  "revision_attempts": 1,
+  "review_history": [
+    {
+      "round": 0,
+      "technical": "ready-for-human-review",
+      "pedagogy": "revise",
+      "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
+    }
+  ],
+  "status": "ready",
+  "updated_at": "2026-11-12T14:21:21+00:00"
+}
