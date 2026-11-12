@@ -10,7 +10,7 @@
   "created_at": null,
   "updated_at": null,
   "execution_control": "active",
-  "notes": "Draft authoring only: research then author. Review and validation are user-triggered and never automatic. Select an approved plan version when creating the task; paths here default to SDA-v1.",
+  "notes": "Lesson draft: research then author. Paths resolved from delivery/backlog.json Story outputs at init, never derived from Task ID. Reviews and validation user-triggered.",
   "steps": [
     {
       "step_id": "research",
@@ -23,7 +23,7 @@
         ".agents/skills/source-research/SKILL.md"
       ],
       "output_paths": [
-        ".academy/task-runs/${TASK_ID}/evidence.md"
+        "${EVIDENCE_PATH}"
       ],
       "checkpoint": {
         "note": "",
@@ -41,12 +41,12 @@
       "definition_version": "v4",
       "input_paths": [
         "curriculum/revision-1/CURRICULUM_MASTER.md",
-        ".academy/task-runs/${TASK_ID}/evidence.md",
+        "${EVIDENCE_PATH}",
         ".agents/skills/lesson-authoring/SKILL.md"
       ],
       "output_paths": [
-        "modules/${MODULE_ID}/lessons/${TASK_ID}.md",
-        "modules/${MODULE_ID}/assessments/${TASK_ID}.md"
+        "${TEACHING_PATH}",
+        "${ASSESSMENT_PATH}"
       ],
       "checkpoint": {
         "note": "",

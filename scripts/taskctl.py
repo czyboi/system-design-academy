@@ -6,6 +6,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 import sys
 import tempfile
 from datetime import datetime, timezone
@@ -64,6 +65,39 @@ def task_path(task_id: str) -> Path:
     if not TASK_ID_RE.fullmatch(task_id):
         raise TaskError("Task ID must be 1–64 letters, digits, dots, underscores, or hyphens; it must start with a letter or digit.")
     return TASK_DIR / f"{task_id}.json"
+
+
+def lesson_paths_from_backlog(task_id: str, module_id: str) -> dict[str, str]:
+    """Resolve lesson files from the canonical Story, never from the task ID."""
+    path = ROOT / "delivery" / "backlog.json"
+    try:
+        backlog = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise TaskError(f"Cannot read lesson backlog: {exc}") from exc
+    stories = [
+        item for item in backlog.get("items", [])
+        if item.get("type") == "Story"
+        and item.get("package_kind") == "lesson"
+        and item.get("proposed_task_id") == task_id
+    ]
+    if len(stories) != 1:
+        raise TaskError(f"Expected one lesson Story with proposed_task_id={task_id}; found {len(stories)}")
+    story = stories[0]
+    lesson_id = story.get("lesson_id")
+    if not isinstance(lesson_id, str) or not lesson_id.startswith(module_id.upper() + "-"):
+        raise TaskError(f"Lesson {task_id} does not match declared module {module_id}")
+    outputs = story.get("outputs", {})
+    keys = {"TEACHING_PATH": "teaching", "ASSESSMENT_PATH": "assessment", "EVIDENCE_PATH": "evidence"}
+    values = {"LESSON_ID": lesson_id}
+    for variable, key in keys.items():
+        value = outputs.get(key)
+        if not isinstance(value, str) or not value:
+            raise TaskError(f"Backlog Story {story['key']} has no {key} output")
+        relpath(value)
+        values[variable] = value
+    if values["TEACHING_PATH"] == values["ASSESSMENT_PATH"]:
+        raise TaskError("Lesson and assessment must have different output paths")
+    return values
 
 
 def load_task(task_id: str) -> dict[str, Any]:
@@ -261,11 +295,21 @@ def step_status(data: dict[str, Any], step: dict[str, Any]) -> tuple[str, str]:
     for dep_id in step["depends_on"]:
         if states[dep_id]["status"] != "completed":
             return "BLOCKED", f"dependency {dep_id} is {states[dep_id]['status']}"
-    if step.get("requires_reviews") and data.get("review_status") == "needs_review":
-        return "BLOCKED", "explicit review status is needs_review"
-    for gate in step.get("requires_reviews", []):
+    gates = step.get("requires_reviews", [])
+    if gates and data.get("review_status") in {"in_review", "needs_review"}:
+        return "BLOCKED", f"overall review status is {data['review_status']}"
+    for gate in gates:
+        review_step = states[gate]
+        if review_step["status"] != "completed":
+            return "BLOCKED", f"review {gate} has not completed"
+        # Pre-existing v2 tasks without explicit review fields keep their historical acceptance.
+        legacy = "review_status" not in data and "review_statuses" not in data
+        if not legacy:
+            decision = data.get("review_statuses", {}).get(gate, {})
+            if decision.get("status") != "reviewed":
+                return "BLOCKED", f"review {gate} needs an explicit reviewed decision"
         try:
-            verdict = review_result(states[gate])["verdict"]
+            verdict = review_result(review_step)["verdict"]
         except TaskError as exc:
             return "BLOCKED", str(exc)
         if verdict != "ready-for-human-review":
@@ -316,6 +360,8 @@ def cmd_init(args: argparse.Namespace) -> None:
     if state_path.exists() or spec_path.exists():
         raise TaskError(f"Task or task specification already exists for {args.task_id}")
     values = {"TASK_ID": args.task_id, "MODULE_ID": args.module, "GOAL": args.goal, "OWNER": args.owner}
+    if args.template and relpath(args.template) == relpath(".academy/state/task.template.json"):
+        values.update(lesson_paths_from_backlog(args.task_id, args.module))
     spec = render_template(relpath(args.spec_template), values)
     spec.update({"schema_version": 1, "task_id": args.task_id, "revision": 1, "goal": args.goal})
     if args.template:
@@ -335,6 +381,10 @@ def cmd_init(args: argparse.Namespace) -> None:
     })
     data.pop("goal", None)
     data.pop("status", None)
+    for step in data.get("steps", []):
+        for field in ("input_paths", "output_paths"):
+            if any("${" in path for path in step[field]):
+                raise TaskError(f"Unresolved template output or input path in {step['step_id']}")
     validate_json_schema(spec, SPEC_SCHEMA, "Task specification")
     save_json(spec_path, spec)
     validate_task(data)
@@ -372,12 +422,18 @@ def cmd_status(args: argparse.Namespace) -> None:
     refresh_task_status(data)
     spec = load_spec(data)
     print(f"{data['task_id']} | {data['module_id']} | automation={data['automation_status']} | review={data.get('review_status', 'not_reviewed')} | owner={data['owner']}")
+    for scope, record in sorted(data.get("review_statuses", {}).items()):
+        print(f"  review[{scope}]: {record['status']} — {record['reason']}")
     print(f"Specification: {data['spec_path']} — {spec['goal']}")
     for step in data["steps"]:
         state, reason = step_status(data, step)
         print(f"- {step['step_id']}: {state} — {reason}")
         if step.get("checkpoint", {}).get("next_action"):
             print(f"  next: {step['checkpoint']['next_action']}")
+        if step["status"] == "completed":
+            missing = [path for path in step["output_paths"] if not relpath(path).is_file()]
+            if missing:
+                print(f"  WARNING: Missing output(s) despite completed history: {', '.join(missing)}")
     if not data["steps"]:
         print("No steps are defined yet.")
     print("Human review, approval, and publication are separate human-controlled transitions.")
@@ -525,6 +581,10 @@ def cmd_invalidate(args: argparse.Namespace) -> None:
         step = states[sid]
         step["status"] = "invalidated"
         step["invalidation_reason"] = args.reason
+        if sid in data.get("review_statuses", {}):
+            data["review_statuses"][sid] = {
+                "status": "needs_review", "reason": args.reason, "updated_at": now()
+            }
     data["updated_at"] = now()
     refresh_task_status(data)
     save_task(data)
@@ -533,17 +593,65 @@ def cmd_invalidate(args: argparse.Namespace) -> None:
 
 
 def cmd_review_status(args: argparse.Namespace) -> None:
-    """Record an explicit content-review decision, not publication approval."""
+    """Explicitly record the review dimension or named review-step decision."""
     if not args.reason.strip():
         raise TaskError("A reason is required")
+    if not TASK_ID_RE.fullmatch(args.scope):
+        raise TaskError("Review scope must be a nonempty identifier")
     data = load_task(args.task_id)
-    previous = data.get("review_status", "not_reviewed")
-    data["review_status"] = args.state
-    data["review_reason"] = args.reason
+    review_step = step_map(data).get(args.scope)
+    if review_step and not review_step.get("review"):
+        raise TaskError(f"Scope {args.scope} is a task step, not a review step")
+    if args.state == "reviewed" and review_step:
+        if review_step["status"] != "completed":
+            raise TaskError(f"Review step {args.scope} must be completed before acceptance")
+        if review_result(review_step)["verdict"] != "ready-for-human-review":
+            raise TaskError(f"Review step {args.scope} does not have an accepted verdict")
+    previous = data.get("review_statuses", {}).get(args.scope, {}).get("status", "not_reviewed")
+    data.setdefault("review_statuses", {})[args.scope] = {
+        "status": args.state, "reason": args.reason, "updated_at": now()
+    }
+    if args.scope == "general":
+        data["review_status"] = args.state
+        data["review_reason"] = args.reason
     data["updated_at"] = now()
     save_task(data)
-    log_event(args.task_id, "review_status_changed", previous=previous, current=args.state, reason=args.reason)
-    print(f"Review status: {previous} -> {args.state} (not publication approval)")
+    log_event(args.task_id, "review_status_changed", scope=args.scope,
+              previous=previous, current=args.state, reason=args.reason)
+    print(f"Review [{args.scope}]: {previous} -> {args.state} (not publication approval)")
+
+
+def cmd_handoff(args: argparse.Namespace) -> None:
+    """Manual durability check: completed outputs and memory must be committed together."""
+    data = load_task(args.task_id)
+    paths = [data["spec_path"], f".academy/state/tasks/{args.task_id}.json",
+             f".academy/state/worklog/{args.task_id}.jsonl"]
+    for step in data["steps"]:
+        if step["status"] == "completed":
+            paths.extend(step["output_paths"])
+    problems = []
+    for value in sorted(set(paths)):
+        if not relpath(value).is_file():
+            problems.append(f"Missing: {value}")
+            continue
+        tracked = subprocess.run(
+            ["git", "ls-files", "--error-unmatch", "--", value],
+            cwd=ROOT, capture_output=True, text=True
+        )
+        if tracked.returncode:
+            problems.append(f"Not Git-tracked: {value}")
+            continue
+        dirty = subprocess.run(
+            ["git", "status", "--porcelain", "--untracked-files=all", "--", value],
+            cwd=ROOT, capture_output=True, text=True
+        )
+        if dirty.returncode:
+            problems.append(f"Git status failed: {value}: {dirty.stderr.strip()}")
+        elif dirty.stdout.strip():
+            problems.append(f"Uncommitted: {value}")
+    if problems:
+        raise TaskError("Handoff not ready. Commit output, spec, state and worklog:\n- " + "\n- ".join(problems))
+    print(f"HANDOFF READY: {args.task_id}; {len(set(paths))} committed files checked (no checksums)")
 
 
 def cmd_validate(args: argparse.Namespace) -> None:
@@ -625,11 +733,15 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--reason", required=True)
     p.add_argument("--cascade", action="store_true")
     p.set_defaults(func=cmd_invalidate)
-    p = sub.add_parser("review-status", help="Explicitly update content review status")
+    p = sub.add_parser("review-status", help="Explicitly update one review scope")
     p.add_argument("task_id")
+    p.add_argument("--scope", default="general", help="e.g. technical, pedagogy, or named review step ID")
     p.add_argument("--state", choices=["not_reviewed", "in_review", "reviewed", "needs_review"], required=True)
     p.add_argument("--reason", required=True)
     p.set_defaults(func=cmd_review_status)
+    p = sub.add_parser("handoff", help="Manually verify completed artifacts and task memory are committed")
+    p.add_argument("task_id")
+    p.set_defaults(func=cmd_handoff)
     p = sub.add_parser("validate", help="Manually validate task state schemas")
     p.set_defaults(func=cmd_validate)
     return parser

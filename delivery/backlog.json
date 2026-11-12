@@ -5,7 +5,7 @@
   "planning_task": "SD-COURSE-DELIVERY-PLAN",
   "external_tracker": null,
   "requirements_authority": "Before execution, claim one story via GitHub Issue and .academy/specs/<proposed_task_id>.json; that spec becomes canonical. Backlog is planning input, not duplicate execution specification.",
-  "dependency_semantics": "Story depends_on lists validated draft packages required to complete integration or audit. Subtask depends_on is local to the package; aggregate draft inputs are checked at the consuming step. Content inputs identify the section that needs an upstream draft or a reference check. Learning prerequisites are for learners. Human acceptance subtasks record separate decisions and are not part of automation readiness or completion.",
+  "dependency_semantics": "Draft completion requires only research + authoring. Lesson plan-gates, technical review, teaching review and Python validation are user-triggered optional stages, never automatic predecessors of authoring. Story depends_on expresses draft input readiness for integration. Human acceptance and publication decisions are separate. Historical subtask definitions are retained as opt-in checklists; checksum fields are not required for new work.",
   "milestones": [
     {
       "key": "SDA-MS01",
@@ -192,7 +192,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M00-L01"
+      "proposed_task_id": "SD-M00-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M00-L01-R",
@@ -226,7 +227,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-L01-D",
@@ -235,8 +237,7 @@
       "status": "Planned",
       "parent": "SDA-M00-L01",
       "depends_on": [
-        "SDA-M00-L01-R",
-        "SDA-M00-L01-G"
+        "SDA-M00-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -287,8 +288,9 @@
         "modules/m00/reviews/M00-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-L01-P",
@@ -307,9 +309,10 @@
         "modules/m00/reviews/M00-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-L01-V",
@@ -330,7 +333,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-L01-H",
@@ -382,7 +386,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M00-L02"
+      "proposed_task_id": "SD-M00-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M00-L02-R",
@@ -416,7 +421,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-L02-D",
@@ -425,8 +431,7 @@
       "status": "Planned",
       "parent": "SDA-M00-L02",
       "depends_on": [
-        "SDA-M00-L02-R",
-        "SDA-M00-L02-G"
+        "SDA-M00-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -477,8 +482,9 @@
         "modules/m00/reviews/M00-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-L02-P",
@@ -497,9 +503,10 @@
         "modules/m00/reviews/M00-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-L02-V",
@@ -520,7 +527,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-L02-H",
@@ -603,7 +611,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-INT-D",
@@ -612,8 +621,7 @@
       "status": "Planned",
       "parent": "SDA-M00-INT",
       "depends_on": [
-        "SDA-M00-INT-R",
-        "SDA-M00-INT-G"
+        "SDA-M00-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -665,8 +673,9 @@
         "modules/m00/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-INT-P",
@@ -685,8 +694,9 @@
         "modules/m00/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-INT-V",
@@ -711,7 +721,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M00-INT-H",
@@ -785,7 +796,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M01-L01"
+      "proposed_task_id": "SD-M01-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M01-L01-R",
@@ -819,7 +831,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L01-D",
@@ -828,8 +841,7 @@
       "status": "Planned",
       "parent": "SDA-M01-L01",
       "depends_on": [
-        "SDA-M01-L01-R",
-        "SDA-M01-L01-G"
+        "SDA-M01-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -880,8 +892,9 @@
         "modules/m01/reviews/M01-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L01-P",
@@ -900,9 +913,10 @@
         "modules/m01/reviews/M01-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L01-V",
@@ -923,7 +937,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L01-H",
@@ -972,7 +987,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M01-L02"
+      "proposed_task_id": "SD-M01-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M01-L02-R",
@@ -1006,7 +1022,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L02-D",
@@ -1015,8 +1032,7 @@
       "status": "Planned",
       "parent": "SDA-M01-L02",
       "depends_on": [
-        "SDA-M01-L02-R",
-        "SDA-M01-L02-G"
+        "SDA-M01-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -1067,8 +1083,9 @@
         "modules/m01/reviews/M01-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L02-P",
@@ -1087,9 +1104,10 @@
         "modules/m01/reviews/M01-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L02-V",
@@ -1110,7 +1128,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L02-H",
@@ -1165,7 +1184,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M01-L03"
+      "proposed_task_id": "SD-M01-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M01-L03-R",
@@ -1199,7 +1219,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L03-D",
@@ -1208,8 +1229,7 @@
       "status": "Planned",
       "parent": "SDA-M01-L03",
       "depends_on": [
-        "SDA-M01-L03-R",
-        "SDA-M01-L03-G"
+        "SDA-M01-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -1260,8 +1280,9 @@
         "modules/m01/reviews/M01-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L03-P",
@@ -1280,9 +1301,10 @@
         "modules/m01/reviews/M01-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L03-V",
@@ -1303,7 +1325,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L03-H",
@@ -1363,7 +1386,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M01-L04"
+      "proposed_task_id": "SD-M01-L04",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M01-L04-R",
@@ -1397,7 +1421,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L04-D",
@@ -1406,8 +1431,7 @@
       "status": "Planned",
       "parent": "SDA-M01-L04",
       "depends_on": [
-        "SDA-M01-L04-R",
-        "SDA-M01-L04-G"
+        "SDA-M01-L04-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -1458,8 +1482,9 @@
         "modules/m01/reviews/M01-L04/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L04-P",
@@ -1478,9 +1503,10 @@
         "modules/m01/reviews/M01-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L04-V",
@@ -1501,7 +1527,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-L04-H",
@@ -1586,7 +1613,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-INT-D",
@@ -1595,8 +1623,7 @@
       "status": "Planned",
       "parent": "SDA-M01-INT",
       "depends_on": [
-        "SDA-M01-INT-R",
-        "SDA-M01-INT-G"
+        "SDA-M01-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -1648,8 +1675,9 @@
         "modules/m01/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-INT-P",
@@ -1668,8 +1696,9 @@
         "modules/m01/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-INT-V",
@@ -1694,7 +1723,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M01-INT-H",
@@ -1765,7 +1795,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M02-L01"
+      "proposed_task_id": "SD-M02-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M02-L01-R",
@@ -1799,7 +1830,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L01-D",
@@ -1808,8 +1840,7 @@
       "status": "Planned",
       "parent": "SDA-M02-L01",
       "depends_on": [
-        "SDA-M02-L01-R",
-        "SDA-M02-L01-G"
+        "SDA-M02-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -1860,8 +1891,9 @@
         "modules/m02/reviews/M02-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L01-P",
@@ -1880,9 +1912,10 @@
         "modules/m02/reviews/M02-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L01-V",
@@ -1903,7 +1936,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L01-H",
@@ -1959,7 +1993,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M02-L02"
+      "proposed_task_id": "SD-M02-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M02-L02-R",
@@ -1993,7 +2028,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L02-D",
@@ -2002,8 +2038,7 @@
       "status": "Planned",
       "parent": "SDA-M02-L02",
       "depends_on": [
-        "SDA-M02-L02-R",
-        "SDA-M02-L02-G"
+        "SDA-M02-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -2054,8 +2089,9 @@
         "modules/m02/reviews/M02-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L02-P",
@@ -2074,9 +2110,10 @@
         "modules/m02/reviews/M02-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L02-V",
@@ -2097,7 +2134,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L02-H",
@@ -2160,7 +2198,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M02-L03"
+      "proposed_task_id": "SD-M02-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M02-L03-R",
@@ -2194,7 +2233,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L03-D",
@@ -2203,8 +2243,7 @@
       "status": "Planned",
       "parent": "SDA-M02-L03",
       "depends_on": [
-        "SDA-M02-L03-R",
-        "SDA-M02-L03-G"
+        "SDA-M02-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -2255,8 +2294,9 @@
         "modules/m02/reviews/M02-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L03-P",
@@ -2275,9 +2315,10 @@
         "modules/m02/reviews/M02-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L03-V",
@@ -2298,7 +2339,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L03-H",
@@ -2349,7 +2391,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M02-L04"
+      "proposed_task_id": "SD-M02-L04",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M02-L04-R",
@@ -2383,7 +2426,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L04-D",
@@ -2392,8 +2436,7 @@
       "status": "Planned",
       "parent": "SDA-M02-L04",
       "depends_on": [
-        "SDA-M02-L04-R",
-        "SDA-M02-L04-G"
+        "SDA-M02-L04-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -2444,8 +2487,9 @@
         "modules/m02/reviews/M02-L04/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L04-P",
@@ -2464,9 +2508,10 @@
         "modules/m02/reviews/M02-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L04-V",
@@ -2487,7 +2532,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-L04-H",
@@ -2572,7 +2618,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-INT-D",
@@ -2581,8 +2628,7 @@
       "status": "Planned",
       "parent": "SDA-M02-INT",
       "depends_on": [
-        "SDA-M02-INT-R",
-        "SDA-M02-INT-G"
+        "SDA-M02-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -2634,8 +2680,9 @@
         "modules/m02/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-INT-P",
@@ -2654,8 +2701,9 @@
         "modules/m02/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-INT-V",
@@ -2680,7 +2728,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M02-INT-H",
@@ -2744,7 +2793,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M03-L01"
+      "proposed_task_id": "SD-M03-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M03-L01-R",
@@ -2778,7 +2828,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L01-D",
@@ -2787,8 +2838,7 @@
       "status": "Planned",
       "parent": "SDA-M03-L01",
       "depends_on": [
-        "SDA-M03-L01-R",
-        "SDA-M03-L01-G"
+        "SDA-M03-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -2839,8 +2889,9 @@
         "modules/m03/reviews/M03-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L01-P",
@@ -2859,9 +2910,10 @@
         "modules/m03/reviews/M03-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L01-V",
@@ -2882,7 +2934,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L01-H",
@@ -2958,7 +3011,8 @@
           "use": "preview",
           "scope": "Preview resilient call and discovery failure traces (N1)."
         }
-      ]
+      ],
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M03-L02-R",
@@ -2992,7 +3046,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L02-D",
@@ -3001,8 +3056,7 @@
       "status": "Planned",
       "parent": "SDA-M03-L02",
       "depends_on": [
-        "SDA-M03-L02-R",
-        "SDA-M03-L02-G"
+        "SDA-M03-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -3053,8 +3107,9 @@
         "modules/m03/reviews/M03-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L02-P",
@@ -3073,9 +3128,10 @@
         "modules/m03/reviews/M03-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L02-V",
@@ -3096,7 +3152,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L02-H",
@@ -3145,7 +3202,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M03-L03"
+      "proposed_task_id": "SD-M03-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M03-L03-R",
@@ -3179,7 +3237,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L03-D",
@@ -3188,8 +3247,7 @@
       "status": "Planned",
       "parent": "SDA-M03-L03",
       "depends_on": [
-        "SDA-M03-L03-R",
-        "SDA-M03-L03-G"
+        "SDA-M03-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -3240,8 +3298,9 @@
         "modules/m03/reviews/M03-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L03-P",
@@ -3260,9 +3319,10 @@
         "modules/m03/reviews/M03-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L03-V",
@@ -3283,7 +3343,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-L03-H",
@@ -3367,7 +3428,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-INT-D",
@@ -3376,8 +3438,7 @@
       "status": "Planned",
       "parent": "SDA-M03-INT",
       "depends_on": [
-        "SDA-M03-INT-R",
-        "SDA-M03-INT-G"
+        "SDA-M03-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -3429,8 +3490,9 @@
         "modules/m03/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-INT-P",
@@ -3449,8 +3511,9 @@
         "modules/m03/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-INT-V",
@@ -3475,7 +3538,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M03-INT-H",
@@ -3539,7 +3603,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M04-L01"
+      "proposed_task_id": "SD-M04-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M04-L01-R",
@@ -3573,7 +3638,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L01-D",
@@ -3582,8 +3648,7 @@
       "status": "Planned",
       "parent": "SDA-M04-L01",
       "depends_on": [
-        "SDA-M04-L01-R",
-        "SDA-M04-L01-G"
+        "SDA-M04-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -3634,8 +3699,9 @@
         "modules/m04/reviews/M04-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L01-P",
@@ -3654,9 +3720,10 @@
         "modules/m04/reviews/M04-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L01-V",
@@ -3677,7 +3744,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L01-H",
@@ -3729,7 +3797,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M04-L02"
+      "proposed_task_id": "SD-M04-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M04-L02-R",
@@ -3763,7 +3832,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L02-D",
@@ -3772,8 +3842,7 @@
       "status": "Planned",
       "parent": "SDA-M04-L02",
       "depends_on": [
-        "SDA-M04-L02-R",
-        "SDA-M04-L02-G"
+        "SDA-M04-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -3824,8 +3893,9 @@
         "modules/m04/reviews/M04-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L02-P",
@@ -3844,9 +3914,10 @@
         "modules/m04/reviews/M04-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L02-V",
@@ -3867,7 +3938,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L02-H",
@@ -3919,7 +3991,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M04-L03"
+      "proposed_task_id": "SD-M04-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M04-L03-R",
@@ -3953,7 +4026,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L03-D",
@@ -3962,8 +4036,7 @@
       "status": "Planned",
       "parent": "SDA-M04-L03",
       "depends_on": [
-        "SDA-M04-L03-R",
-        "SDA-M04-L03-G"
+        "SDA-M04-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -4014,8 +4087,9 @@
         "modules/m04/reviews/M04-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L03-P",
@@ -4034,9 +4108,10 @@
         "modules/m04/reviews/M04-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L03-V",
@@ -4057,7 +4132,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L03-H",
@@ -4106,7 +4182,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M04-L04"
+      "proposed_task_id": "SD-M04-L04",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M04-L04-R",
@@ -4140,7 +4217,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L04-D",
@@ -4149,8 +4227,7 @@
       "status": "Planned",
       "parent": "SDA-M04-L04",
       "depends_on": [
-        "SDA-M04-L04-R",
-        "SDA-M04-L04-G"
+        "SDA-M04-L04-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -4201,8 +4278,9 @@
         "modules/m04/reviews/M04-L04/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L04-P",
@@ -4221,9 +4299,10 @@
         "modules/m04/reviews/M04-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L04-V",
@@ -4244,7 +4323,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L04-H",
@@ -4301,7 +4381,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M04-L05"
+      "proposed_task_id": "SD-M04-L05",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M04-L05-R",
@@ -4335,7 +4416,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L05-D",
@@ -4344,8 +4426,7 @@
       "status": "Planned",
       "parent": "SDA-M04-L05",
       "depends_on": [
-        "SDA-M04-L05-R",
-        "SDA-M04-L05-G"
+        "SDA-M04-L05-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -4396,8 +4477,9 @@
         "modules/m04/reviews/M04-L05/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L05-P",
@@ -4416,9 +4498,10 @@
         "modules/m04/reviews/M04-L05/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L05-V",
@@ -4439,7 +4522,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-L05-H",
@@ -4525,7 +4609,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-INT-D",
@@ -4534,8 +4619,7 @@
       "status": "Planned",
       "parent": "SDA-M04-INT",
       "depends_on": [
-        "SDA-M04-INT-R",
-        "SDA-M04-INT-G"
+        "SDA-M04-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -4587,8 +4671,9 @@
         "modules/m04/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-INT-P",
@@ -4607,8 +4692,9 @@
         "modules/m04/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-INT-V",
@@ -4633,7 +4719,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M04-INT-H",
@@ -4697,7 +4784,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M05-L01"
+      "proposed_task_id": "SD-M05-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M05-L01-R",
@@ -4731,7 +4819,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L01-D",
@@ -4740,8 +4829,7 @@
       "status": "Planned",
       "parent": "SDA-M05-L01",
       "depends_on": [
-        "SDA-M05-L01-R",
-        "SDA-M05-L01-G"
+        "SDA-M05-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -4792,8 +4880,9 @@
         "modules/m05/reviews/M05-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L01-P",
@@ -4812,9 +4901,10 @@
         "modules/m05/reviews/M05-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L01-V",
@@ -4835,7 +4925,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L01-H",
@@ -4888,7 +4979,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M05-L02"
+      "proposed_task_id": "SD-M05-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M05-L02-R",
@@ -4922,7 +5014,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L02-D",
@@ -4931,8 +5024,7 @@
       "status": "Planned",
       "parent": "SDA-M05-L02",
       "depends_on": [
-        "SDA-M05-L02-R",
-        "SDA-M05-L02-G"
+        "SDA-M05-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -4983,8 +5075,9 @@
         "modules/m05/reviews/M05-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L02-P",
@@ -5003,9 +5096,10 @@
         "modules/m05/reviews/M05-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L02-V",
@@ -5026,7 +5120,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L02-H",
@@ -5087,7 +5182,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M05-L03"
+      "proposed_task_id": "SD-M05-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M05-L03-R",
@@ -5121,7 +5217,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L03-D",
@@ -5130,8 +5227,7 @@
       "status": "Planned",
       "parent": "SDA-M05-L03",
       "depends_on": [
-        "SDA-M05-L03-R",
-        "SDA-M05-L03-G"
+        "SDA-M05-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -5182,8 +5278,9 @@
         "modules/m05/reviews/M05-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L03-P",
@@ -5202,9 +5299,10 @@
         "modules/m05/reviews/M05-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L03-V",
@@ -5225,7 +5323,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-L03-H",
@@ -5309,7 +5408,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-INT-D",
@@ -5318,8 +5418,7 @@
       "status": "Planned",
       "parent": "SDA-M05-INT",
       "depends_on": [
-        "SDA-M05-INT-R",
-        "SDA-M05-INT-G"
+        "SDA-M05-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -5371,8 +5470,9 @@
         "modules/m05/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-INT-P",
@@ -5391,8 +5491,9 @@
         "modules/m05/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-INT-V",
@@ -5417,7 +5518,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M05-INT-H",
@@ -5512,7 +5614,8 @@
           "use": "preview",
           "scope": "Preview cache-update policy failure traces (N1)."
         }
-      ]
+      ],
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M06-L01-R",
@@ -5546,7 +5649,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L01-D",
@@ -5555,8 +5659,7 @@
       "status": "Planned",
       "parent": "SDA-M06-L01",
       "depends_on": [
-        "SDA-M06-L01-R",
-        "SDA-M06-L01-G"
+        "SDA-M06-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -5607,8 +5710,9 @@
         "modules/m06/reviews/M06-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L01-P",
@@ -5627,9 +5731,10 @@
         "modules/m06/reviews/M06-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L01-V",
@@ -5650,7 +5755,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L01-H",
@@ -5707,7 +5813,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M06-L02"
+      "proposed_task_id": "SD-M06-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M06-L02-R",
@@ -5741,7 +5848,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L02-D",
@@ -5750,8 +5858,7 @@
       "status": "Planned",
       "parent": "SDA-M06-L02",
       "depends_on": [
-        "SDA-M06-L02-R",
-        "SDA-M06-L02-G"
+        "SDA-M06-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -5802,8 +5909,9 @@
         "modules/m06/reviews/M06-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L02-P",
@@ -5822,9 +5930,10 @@
         "modules/m06/reviews/M06-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L02-V",
@@ -5845,7 +5954,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L02-H",
@@ -5895,7 +6005,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M06-L03"
+      "proposed_task_id": "SD-M06-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M06-L03-R",
@@ -5929,7 +6040,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L03-D",
@@ -5938,8 +6050,7 @@
       "status": "Planned",
       "parent": "SDA-M06-L03",
       "depends_on": [
-        "SDA-M06-L03-R",
-        "SDA-M06-L03-G"
+        "SDA-M06-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -5990,8 +6101,9 @@
         "modules/m06/reviews/M06-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L03-P",
@@ -6010,9 +6122,10 @@
         "modules/m06/reviews/M06-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L03-V",
@@ -6033,7 +6146,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-L03-H",
@@ -6117,7 +6231,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-INT-D",
@@ -6126,8 +6241,7 @@
       "status": "Planned",
       "parent": "SDA-M06-INT",
       "depends_on": [
-        "SDA-M06-INT-R",
-        "SDA-M06-INT-G"
+        "SDA-M06-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -6179,8 +6293,9 @@
         "modules/m06/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-INT-P",
@@ -6199,8 +6314,9 @@
         "modules/m06/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-INT-V",
@@ -6225,7 +6341,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M06-INT-H",
@@ -6312,7 +6429,8 @@
           "use": "reference",
           "scope": "Point to the detailed overload and bounded back pressure mechanisms."
         }
-      ]
+      ],
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M07-L01-R",
@@ -6346,7 +6464,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L01-D",
@@ -6355,8 +6474,7 @@
       "status": "Planned",
       "parent": "SDA-M07-L01",
       "depends_on": [
-        "SDA-M07-L01-R",
-        "SDA-M07-L01-G"
+        "SDA-M07-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -6407,8 +6525,9 @@
         "modules/m07/reviews/M07-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L01-P",
@@ -6427,9 +6546,10 @@
         "modules/m07/reviews/M07-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L01-V",
@@ -6450,7 +6570,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L01-H",
@@ -6498,7 +6619,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M07-L02"
+      "proposed_task_id": "SD-M07-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M07-L02-R",
@@ -6532,7 +6654,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L02-D",
@@ -6541,8 +6664,7 @@
       "status": "Planned",
       "parent": "SDA-M07-L02",
       "depends_on": [
-        "SDA-M07-L02-R",
-        "SDA-M07-L02-G"
+        "SDA-M07-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -6593,8 +6715,9 @@
         "modules/m07/reviews/M07-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L02-P",
@@ -6613,9 +6736,10 @@
         "modules/m07/reviews/M07-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L02-V",
@@ -6636,7 +6760,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L02-H",
@@ -6684,7 +6809,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M07-L03"
+      "proposed_task_id": "SD-M07-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M07-L03-R",
@@ -6718,7 +6844,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L03-D",
@@ -6727,8 +6854,7 @@
       "status": "Planned",
       "parent": "SDA-M07-L03",
       "depends_on": [
-        "SDA-M07-L03-R",
-        "SDA-M07-L03-G"
+        "SDA-M07-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -6779,8 +6905,9 @@
         "modules/m07/reviews/M07-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L03-P",
@@ -6799,9 +6926,10 @@
         "modules/m07/reviews/M07-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L03-V",
@@ -6822,7 +6950,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-L03-H",
@@ -6906,7 +7035,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-INT-D",
@@ -6915,8 +7045,7 @@
       "status": "Planned",
       "parent": "SDA-M07-INT",
       "depends_on": [
-        "SDA-M07-INT-R",
-        "SDA-M07-INT-G"
+        "SDA-M07-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -6968,8 +7097,9 @@
         "modules/m07/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-INT-P",
@@ -6988,8 +7118,9 @@
         "modules/m07/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-INT-V",
@@ -7014,7 +7145,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M07-INT-H",
@@ -7080,7 +7212,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M08-L01"
+      "proposed_task_id": "SD-M08-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M08-L01-R",
@@ -7114,7 +7247,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L01-D",
@@ -7123,8 +7257,7 @@
       "status": "Planned",
       "parent": "SDA-M08-L01",
       "depends_on": [
-        "SDA-M08-L01-R",
-        "SDA-M08-L01-G"
+        "SDA-M08-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -7175,8 +7308,9 @@
         "modules/m08/reviews/M08-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L01-P",
@@ -7195,9 +7329,10 @@
         "modules/m08/reviews/M08-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L01-V",
@@ -7218,7 +7353,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L01-H",
@@ -7268,7 +7404,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M08-L02"
+      "proposed_task_id": "SD-M08-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M08-L02-R",
@@ -7302,7 +7439,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L02-D",
@@ -7311,8 +7449,7 @@
       "status": "Planned",
       "parent": "SDA-M08-L02",
       "depends_on": [
-        "SDA-M08-L02-R",
-        "SDA-M08-L02-G"
+        "SDA-M08-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -7363,8 +7500,9 @@
         "modules/m08/reviews/M08-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L02-P",
@@ -7383,9 +7521,10 @@
         "modules/m08/reviews/M08-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L02-V",
@@ -7406,7 +7545,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L02-H",
@@ -7454,7 +7594,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M08-L03"
+      "proposed_task_id": "SD-M08-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M08-L03-R",
@@ -7488,7 +7629,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L03-D",
@@ -7497,8 +7639,7 @@
       "status": "Planned",
       "parent": "SDA-M08-L03",
       "depends_on": [
-        "SDA-M08-L03-R",
-        "SDA-M08-L03-G"
+        "SDA-M08-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -7549,8 +7690,9 @@
         "modules/m08/reviews/M08-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L03-P",
@@ -7569,9 +7711,10 @@
         "modules/m08/reviews/M08-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L03-V",
@@ -7592,7 +7735,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-L03-H",
@@ -7676,7 +7820,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-INT-D",
@@ -7685,8 +7830,7 @@
       "status": "Planned",
       "parent": "SDA-M08-INT",
       "depends_on": [
-        "SDA-M08-INT-R",
-        "SDA-M08-INT-G"
+        "SDA-M08-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -7738,8 +7882,9 @@
         "modules/m08/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-INT-P",
@@ -7758,8 +7903,9 @@
         "modules/m08/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-INT-V",
@@ -7784,7 +7930,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M08-INT-H",
@@ -7859,7 +8006,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M09-L01"
+      "proposed_task_id": "SD-M09-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M09-L01-R",
@@ -7893,7 +8041,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L01-D",
@@ -7902,8 +8051,7 @@
       "status": "Planned",
       "parent": "SDA-M09-L01",
       "depends_on": [
-        "SDA-M09-L01-R",
-        "SDA-M09-L01-G"
+        "SDA-M09-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -7954,8 +8102,9 @@
         "modules/m09/reviews/M09-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L01-P",
@@ -7974,9 +8123,10 @@
         "modules/m09/reviews/M09-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L01-V",
@@ -7997,7 +8147,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L01-H",
@@ -8053,7 +8204,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M09-L02"
+      "proposed_task_id": "SD-M09-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M09-L02-R",
@@ -8087,7 +8239,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L02-D",
@@ -8096,8 +8249,7 @@
       "status": "Planned",
       "parent": "SDA-M09-L02",
       "depends_on": [
-        "SDA-M09-L02-R",
-        "SDA-M09-L02-G"
+        "SDA-M09-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -8148,8 +8300,9 @@
         "modules/m09/reviews/M09-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L02-P",
@@ -8168,9 +8321,10 @@
         "modules/m09/reviews/M09-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L02-V",
@@ -8191,7 +8345,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L02-H",
@@ -8241,7 +8396,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M09-L03"
+      "proposed_task_id": "SD-M09-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M09-L03-R",
@@ -8275,7 +8431,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L03-D",
@@ -8284,8 +8441,7 @@
       "status": "Planned",
       "parent": "SDA-M09-L03",
       "depends_on": [
-        "SDA-M09-L03-R",
-        "SDA-M09-L03-G"
+        "SDA-M09-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -8336,8 +8492,9 @@
         "modules/m09/reviews/M09-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L03-P",
@@ -8356,9 +8513,10 @@
         "modules/m09/reviews/M09-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L03-V",
@@ -8379,7 +8537,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-L03-H",
@@ -8463,7 +8622,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-INT-D",
@@ -8472,8 +8632,7 @@
       "status": "Planned",
       "parent": "SDA-M09-INT",
       "depends_on": [
-        "SDA-M09-INT-R",
-        "SDA-M09-INT-G"
+        "SDA-M09-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -8525,8 +8684,9 @@
         "modules/m09/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-INT-P",
@@ -8545,8 +8705,9 @@
         "modules/m09/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-INT-V",
@@ -8571,7 +8732,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M09-INT-H",
@@ -8651,7 +8813,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M10-L01"
+      "proposed_task_id": "SD-M10-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M10-L01-R",
@@ -8685,7 +8848,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L01-D",
@@ -8694,8 +8858,7 @@
       "status": "Planned",
       "parent": "SDA-M10-L01",
       "depends_on": [
-        "SDA-M10-L01-R",
-        "SDA-M10-L01-G"
+        "SDA-M10-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -8746,8 +8909,9 @@
         "modules/m10/reviews/M10-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L01-P",
@@ -8766,9 +8930,10 @@
         "modules/m10/reviews/M10-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L01-V",
@@ -8789,7 +8954,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L01-H",
@@ -8859,7 +9025,8 @@
           "use": "reference",
           "scope": "Delegate keyword indexing and shard retrieval details."
         }
-      ]
+      ],
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M10-L02-R",
@@ -8893,7 +9060,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L02-D",
@@ -8902,8 +9070,7 @@
       "status": "Planned",
       "parent": "SDA-M10-L02",
       "depends_on": [
-        "SDA-M10-L02-R",
-        "SDA-M10-L02-G"
+        "SDA-M10-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -8954,8 +9121,9 @@
         "modules/m10/reviews/M10-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L02-P",
@@ -8974,9 +9142,10 @@
         "modules/m10/reviews/M10-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L02-V",
@@ -8997,7 +9166,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L02-H",
@@ -9076,7 +9246,8 @@
           "use": "composition",
           "scope": "Compose the index and scatter-gather query flow with crawler freshness and snippets."
         }
-      ]
+      ],
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M10-L03-R",
@@ -9110,7 +9281,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L03-D",
@@ -9119,8 +9291,7 @@
       "status": "Planned",
       "parent": "SDA-M10-L03",
       "depends_on": [
-        "SDA-M10-L03-R",
-        "SDA-M10-L03-G"
+        "SDA-M10-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -9171,8 +9342,9 @@
         "modules/m10/reviews/M10-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L03-P",
@@ -9191,9 +9363,10 @@
         "modules/m10/reviews/M10-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L03-V",
@@ -9214,7 +9387,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L03-H",
@@ -9285,7 +9459,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M10-L04"
+      "proposed_task_id": "SD-M10-L04",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M10-L04-R",
@@ -9319,7 +9494,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L04-D",
@@ -9328,8 +9504,7 @@
       "status": "Planned",
       "parent": "SDA-M10-L04",
       "depends_on": [
-        "SDA-M10-L04-R",
-        "SDA-M10-L04-G"
+        "SDA-M10-L04-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -9380,8 +9555,9 @@
         "modules/m10/reviews/M10-L04/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L04-P",
@@ -9400,9 +9576,10 @@
         "modules/m10/reviews/M10-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L04-V",
@@ -9423,7 +9600,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L04-H",
@@ -9490,7 +9668,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M10-L05"
+      "proposed_task_id": "SD-M10-L05",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M10-L05-R",
@@ -9524,7 +9703,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L05-D",
@@ -9533,8 +9713,7 @@
       "status": "Planned",
       "parent": "SDA-M10-L05",
       "depends_on": [
-        "SDA-M10-L05-R",
-        "SDA-M10-L05-G"
+        "SDA-M10-L05-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -9585,8 +9764,9 @@
         "modules/m10/reviews/M10-L05/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L05-P",
@@ -9605,9 +9785,10 @@
         "modules/m10/reviews/M10-L05/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L05-V",
@@ -9628,7 +9809,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L05-H",
@@ -9698,7 +9880,8 @@
           "use": "composition",
           "scope": "Apply the LRU map/list and cache-fill invariants in the query API."
         }
-      ]
+      ],
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M10-L06-R",
@@ -9732,7 +9915,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L06-D",
@@ -9741,8 +9925,7 @@
       "status": "Planned",
       "parent": "SDA-M10-L06",
       "depends_on": [
-        "SDA-M10-L06-R",
-        "SDA-M10-L06-G"
+        "SDA-M10-L06-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -9793,8 +9976,9 @@
         "modules/m10/reviews/M10-L06/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L06-P",
@@ -9813,9 +9997,10 @@
         "modules/m10/reviews/M10-L06/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L06-V",
@@ -9836,7 +10021,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L06-H",
@@ -9896,7 +10082,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M10-L07"
+      "proposed_task_id": "SD-M10-L07",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M10-L07-R",
@@ -9930,7 +10117,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L07-D",
@@ -9939,8 +10127,7 @@
       "status": "Planned",
       "parent": "SDA-M10-L07",
       "depends_on": [
-        "SDA-M10-L07-R",
-        "SDA-M10-L07-G"
+        "SDA-M10-L07-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -9991,8 +10178,9 @@
         "modules/m10/reviews/M10-L07/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L07-P",
@@ -10011,9 +10199,10 @@
         "modules/m10/reviews/M10-L07/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L07-V",
@@ -10034,7 +10223,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L07-H",
@@ -10117,7 +10307,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M10-L08"
+      "proposed_task_id": "SD-M10-L08",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M10-L08-R",
@@ -10151,7 +10342,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L08-D",
@@ -10160,8 +10352,7 @@
       "status": "Planned",
       "parent": "SDA-M10-L08",
       "depends_on": [
-        "SDA-M10-L08-R",
-        "SDA-M10-L08-G"
+        "SDA-M10-L08-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -10212,8 +10403,9 @@
         "modules/m10/reviews/M10-L08/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L08-P",
@@ -10232,9 +10424,10 @@
         "modules/m10/reviews/M10-L08/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L08-V",
@@ -10255,7 +10448,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-L08-H",
@@ -10344,7 +10538,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-INT-D",
@@ -10353,8 +10548,7 @@
       "status": "Planned",
       "parent": "SDA-M10-INT",
       "depends_on": [
-        "SDA-M10-INT-R",
-        "SDA-M10-INT-G"
+        "SDA-M10-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -10406,8 +10600,9 @@
         "modules/m10/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-INT-P",
@@ -10426,8 +10621,9 @@
         "modules/m10/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-INT-V",
@@ -10452,7 +10648,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M10-INT-H",
@@ -10515,7 +10712,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L01"
+      "proposed_task_id": "SD-M11-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L01-R",
@@ -10549,7 +10747,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L01-D",
@@ -10558,8 +10757,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L01",
       "depends_on": [
-        "SDA-M11-L01-R",
-        "SDA-M11-L01-G"
+        "SDA-M11-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -10610,8 +10808,9 @@
         "modules/m11/reviews/M11-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L01-P",
@@ -10630,9 +10829,10 @@
         "modules/m11/reviews/M11-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L01-V",
@@ -10653,7 +10853,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L01-H",
@@ -10703,7 +10904,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L02"
+      "proposed_task_id": "SD-M11-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L02-R",
@@ -10737,7 +10939,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L02-D",
@@ -10746,8 +10949,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L02",
       "depends_on": [
-        "SDA-M11-L02-R",
-        "SDA-M11-L02-G"
+        "SDA-M11-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -10798,8 +11000,9 @@
         "modules/m11/reviews/M11-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L02-P",
@@ -10818,9 +11021,10 @@
         "modules/m11/reviews/M11-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L02-V",
@@ -10841,7 +11045,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L02-H",
@@ -10890,7 +11095,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L03"
+      "proposed_task_id": "SD-M11-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L03-R",
@@ -10924,7 +11130,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L03-D",
@@ -10933,8 +11140,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L03",
       "depends_on": [
-        "SDA-M11-L03-R",
-        "SDA-M11-L03-G"
+        "SDA-M11-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -10985,8 +11191,9 @@
         "modules/m11/reviews/M11-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L03-P",
@@ -11005,9 +11212,10 @@
         "modules/m11/reviews/M11-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L03-V",
@@ -11028,7 +11236,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L03-H",
@@ -11077,7 +11286,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L04"
+      "proposed_task_id": "SD-M11-L04",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L04-R",
@@ -11111,7 +11321,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L04-D",
@@ -11120,8 +11331,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L04",
       "depends_on": [
-        "SDA-M11-L04-R",
-        "SDA-M11-L04-G"
+        "SDA-M11-L04-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -11172,8 +11382,9 @@
         "modules/m11/reviews/M11-L04/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L04-P",
@@ -11192,9 +11403,10 @@
         "modules/m11/reviews/M11-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L04-V",
@@ -11215,7 +11427,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L04-H",
@@ -11263,7 +11476,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L05"
+      "proposed_task_id": "SD-M11-L05",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L05-R",
@@ -11297,7 +11511,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L05-D",
@@ -11306,8 +11521,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L05",
       "depends_on": [
-        "SDA-M11-L05-R",
-        "SDA-M11-L05-G"
+        "SDA-M11-L05-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -11358,8 +11572,9 @@
         "modules/m11/reviews/M11-L05/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L05-P",
@@ -11378,9 +11593,10 @@
         "modules/m11/reviews/M11-L05/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L05-V",
@@ -11401,7 +11617,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L05-H",
@@ -11449,7 +11666,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L06"
+      "proposed_task_id": "SD-M11-L06",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L06-R",
@@ -11483,7 +11701,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L06-D",
@@ -11492,8 +11711,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L06",
       "depends_on": [
-        "SDA-M11-L06-R",
-        "SDA-M11-L06-G"
+        "SDA-M11-L06-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -11544,8 +11762,9 @@
         "modules/m11/reviews/M11-L06/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L06-P",
@@ -11564,9 +11783,10 @@
         "modules/m11/reviews/M11-L06/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L06-V",
@@ -11587,7 +11807,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L06-H",
@@ -11636,7 +11857,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L07"
+      "proposed_task_id": "SD-M11-L07",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L07-R",
@@ -11670,7 +11892,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L07-D",
@@ -11679,8 +11902,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L07",
       "depends_on": [
-        "SDA-M11-L07-R",
-        "SDA-M11-L07-G"
+        "SDA-M11-L07-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -11731,8 +11953,9 @@
         "modules/m11/reviews/M11-L07/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L07-P",
@@ -11751,9 +11974,10 @@
         "modules/m11/reviews/M11-L07/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L07-V",
@@ -11774,7 +11998,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L07-H",
@@ -11822,7 +12047,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L08"
+      "proposed_task_id": "SD-M11-L08",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L08-R",
@@ -11856,7 +12082,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L08-D",
@@ -11865,8 +12092,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L08",
       "depends_on": [
-        "SDA-M11-L08-R",
-        "SDA-M11-L08-G"
+        "SDA-M11-L08-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -11917,8 +12143,9 @@
         "modules/m11/reviews/M11-L08/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L08-P",
@@ -11937,9 +12164,10 @@
         "modules/m11/reviews/M11-L08/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L08-V",
@@ -11960,7 +12188,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L08-H",
@@ -12009,7 +12238,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M11-L09"
+      "proposed_task_id": "SD-M11-L09",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M11-L09-R",
@@ -12043,7 +12273,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L09-D",
@@ -12052,8 +12283,7 @@
       "status": "Planned",
       "parent": "SDA-M11-L09",
       "depends_on": [
-        "SDA-M11-L09-R",
-        "SDA-M11-L09-G"
+        "SDA-M11-L09-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -12104,8 +12334,9 @@
         "modules/m11/reviews/M11-L09/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L09-P",
@@ -12124,9 +12355,10 @@
         "modules/m11/reviews/M11-L09/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L09-V",
@@ -12147,7 +12379,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-L09-H",
@@ -12237,7 +12470,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-INT-D",
@@ -12246,8 +12480,7 @@
       "status": "Planned",
       "parent": "SDA-M11-INT",
       "depends_on": [
-        "SDA-M11-INT-R",
-        "SDA-M11-INT-G"
+        "SDA-M11-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -12299,8 +12532,9 @@
         "modules/m11/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-INT-P",
@@ -12319,8 +12553,9 @@
         "modules/m11/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-INT-V",
@@ -12345,7 +12580,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M11-INT-H",
@@ -12413,7 +12649,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M12-L01"
+      "proposed_task_id": "SD-M12-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M12-L01-R",
@@ -12447,7 +12684,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L01-D",
@@ -12456,8 +12694,7 @@
       "status": "Planned",
       "parent": "SDA-M12-L01",
       "depends_on": [
-        "SDA-M12-L01-R",
-        "SDA-M12-L01-G"
+        "SDA-M12-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -12508,8 +12745,9 @@
         "modules/m12/reviews/M12-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L01-P",
@@ -12528,9 +12766,10 @@
         "modules/m12/reviews/M12-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L01-V",
@@ -12551,7 +12790,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L01-H",
@@ -12605,7 +12845,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M12-L02"
+      "proposed_task_id": "SD-M12-L02",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M12-L02-R",
@@ -12639,7 +12880,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L02-D",
@@ -12648,8 +12890,7 @@
       "status": "Planned",
       "parent": "SDA-M12-L02",
       "depends_on": [
-        "SDA-M12-L02-R",
-        "SDA-M12-L02-G"
+        "SDA-M12-L02-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -12700,8 +12941,9 @@
         "modules/m12/reviews/M12-L02/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L02-P",
@@ -12720,9 +12962,10 @@
         "modules/m12/reviews/M12-L02/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L02-V",
@@ -12743,7 +12986,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L02-H",
@@ -12797,7 +13041,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M12-L03"
+      "proposed_task_id": "SD-M12-L03",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M12-L03-R",
@@ -12831,7 +13076,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L03-D",
@@ -12840,8 +13086,7 @@
       "status": "Planned",
       "parent": "SDA-M12-L03",
       "depends_on": [
-        "SDA-M12-L03-R",
-        "SDA-M12-L03-G"
+        "SDA-M12-L03-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -12892,8 +13137,9 @@
         "modules/m12/reviews/M12-L03/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L03-P",
@@ -12912,9 +13158,10 @@
         "modules/m12/reviews/M12-L03/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L03-V",
@@ -12935,7 +13182,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L03-H",
@@ -12991,7 +13239,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M12-L04"
+      "proposed_task_id": "SD-M12-L04",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M12-L04-R",
@@ -13025,7 +13274,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L04-D",
@@ -13034,8 +13284,7 @@
       "status": "Planned",
       "parent": "SDA-M12-L04",
       "depends_on": [
-        "SDA-M12-L04-R",
-        "SDA-M12-L04-G"
+        "SDA-M12-L04-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -13086,8 +13335,9 @@
         "modules/m12/reviews/M12-L04/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L04-P",
@@ -13106,9 +13356,10 @@
         "modules/m12/reviews/M12-L04/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L04-V",
@@ -13129,7 +13380,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L04-H",
@@ -13185,7 +13437,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M12-L05"
+      "proposed_task_id": "SD-M12-L05",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M12-L05-R",
@@ -13219,7 +13472,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L05-D",
@@ -13228,8 +13482,7 @@
       "status": "Planned",
       "parent": "SDA-M12-L05",
       "depends_on": [
-        "SDA-M12-L05-R",
-        "SDA-M12-L05-G"
+        "SDA-M12-L05-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -13280,8 +13533,9 @@
         "modules/m12/reviews/M12-L05/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L05-P",
@@ -13300,9 +13554,10 @@
         "modules/m12/reviews/M12-L05/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L05-V",
@@ -13323,7 +13578,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L05-H",
@@ -13379,7 +13635,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M12-L06"
+      "proposed_task_id": "SD-M12-L06",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M12-L06-R",
@@ -13413,7 +13670,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L06-D",
@@ -13422,8 +13680,7 @@
       "status": "Planned",
       "parent": "SDA-M12-L06",
       "depends_on": [
-        "SDA-M12-L06-R",
-        "SDA-M12-L06-G"
+        "SDA-M12-L06-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -13474,8 +13731,9 @@
         "modules/m12/reviews/M12-L06/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L06-P",
@@ -13494,9 +13752,10 @@
         "modules/m12/reviews/M12-L06/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L06-V",
@@ -13517,7 +13776,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-L06-H",
@@ -13604,7 +13864,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-INT-D",
@@ -13613,8 +13874,7 @@
       "status": "Planned",
       "parent": "SDA-M12-INT",
       "depends_on": [
-        "SDA-M12-INT-R",
-        "SDA-M12-INT-G"
+        "SDA-M12-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -13666,8 +13926,9 @@
         "modules/m12/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-INT-P",
@@ -13686,8 +13947,9 @@
         "modules/m12/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-INT-V",
@@ -13712,7 +13974,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M12-INT-H",
@@ -13772,7 +14035,8 @@
         "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons."
       ],
       "notes": [],
-      "proposed_task_id": "SD-M13-L01"
+      "proposed_task_id": "SD-M13-L01",
+      "draft_completion": "research+author"
     },
     {
       "key": "SDA-M13-L01-R",
@@ -13806,7 +14070,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M13-L01-D",
@@ -13815,8 +14080,7 @@
       "status": "Planned",
       "parent": "SDA-M13-L01",
       "depends_on": [
-        "SDA-M13-L01-R",
-        "SDA-M13-L01-G"
+        "SDA-M13-L01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -13867,8 +14131,9 @@
         "modules/m13/reviews/M13-L01/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M13-L01-P",
@@ -13887,9 +14152,10 @@
         "modules/m13/reviews/M13-L01/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
-        "Record each assigned topic ID with its explanatory teaching path, heading and SHA-256. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
+        "Record each assigned topic ID with its explanatory teaching path, heading without checksums. Check every learning outcome, including Academy additions, against its teaching section and assessment items."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M13-L01-V",
@@ -13910,7 +14176,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M13-L01-H",
@@ -13992,7 +14259,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M13-INT-D",
@@ -14001,8 +14269,7 @@
       "status": "Planned",
       "parent": "SDA-M13-INT",
       "depends_on": [
-        "SDA-M13-INT-R",
-        "SDA-M13-INT-G"
+        "SDA-M13-INT-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -14054,8 +14321,9 @@
         "modules/m13/integrated/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M13-INT-P",
@@ -14074,8 +14342,9 @@
         "modules/m13/integrated/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M13-INT-V",
@@ -14100,7 +14369,8 @@
         "Revisions only on actual findings, maximum two automated cycles; no publication.",
         "Use each validated draft lesson and companion. Preserve the approved coverage rows and add lesson_path, section and lesson_sha256 for each module topic.",
         "Record each lesson and synthesis outcome with current teaching and assessment paths, hashes, headings and exercise, question or rubric IDs. Resolve gaps before completing module validation."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-M13-INT-H",
@@ -14187,7 +14457,8 @@
       ],
       "acceptance_criteria": [
         "Run strict plan check with approved review; reuse unchanged gate with provenance."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-CP-01-D",
@@ -14196,8 +14467,7 @@
       "status": "Planned",
       "parent": "SDA-CP-01",
       "depends_on": [
-        "SDA-CP-01-R",
-        "SDA-CP-01-G"
+        "SDA-CP-01-R"
       ],
       "owner": null,
       "role": "lesson_author",
@@ -14247,8 +14517,9 @@
         "capstone/CP-01/reviews/T.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings."
-      ]
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings."
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-CP-01-P",
@@ -14267,9 +14538,10 @@
         "capstone/CP-01/reviews/P.json"
       ],
       "acceptance_criteria": [
-        "Independent from author and other reviewer; bind exact artifact hashes; block on open major findings.",
+        "Independent from author and other reviewer; record the reviewed scope and decision; block on open major findings.",
         "Verify that the brief and rubric assess all six transfer outcomes against the approved outline and any referenced draft content."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-CP-01-V",
@@ -14290,7 +14562,8 @@
       "acceptance_criteria": [
         "Both current combined verdicts accepted; relevant structural checks and required repo checks pass.",
         "Revisions only on actual findings, maximum two automated cycles; no publication."
-      ]
+      ],
+      "execution_policy": "on_demand"
     },
     {
       "key": "SDA-CP-01-H",
@@ -14395,5 +14668,20 @@
         "Human decides acceptance and publication; automation never merges or publishes."
       ]
     }
-  ]
+  ],
+  "execution_policy": {
+    "default_lesson_steps": [
+      "research",
+      "author"
+    ],
+    "optional_on_demand_steps": [
+      "plan-gate",
+      "technical-review",
+      "teaching-review",
+      "validation"
+    ],
+    "manual_release_step": "human-gate",
+    "identifiers": "Use proposed_task_id for task memory and lesson_id for authored filenames. Always read teaching/assessment/evidence outputs from this Story; do not derive paths from task ID.",
+    "review_policy": "Independent review and Python validation are invoked only on explicit request. Review decisions are scoped and recorded manually. Old hashes in historical artifacts are not active gates."
+  }
 }
