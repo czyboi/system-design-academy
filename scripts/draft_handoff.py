@@ -6,15 +6,18 @@ No AI calls, content edits, full test suite, auto-fixes, PRs or merges.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
 from pathlib import Path
 
 if __package__:
-    from . import taskctl
+    from . import taskctl, review_cycle, learning_memory
 else:
     import taskctl
+    import review_cycle
+    import learning_memory
 
 ROOT = Path(__file__).resolve().parents[1]
 FEATURE_BRANCH = re.compile(r"^(codex|feature|feat)/[A-Za-z0-9._/-]+$")
@@ -102,10 +105,76 @@ def feature_branch(task_id: str) -> str:
     raise HandoffError("Could not allocate an unused feature branch")
 
 
-def deliver(task_ids: list[str], remote: str = "origin") -> None:
+def required_module_paths(module: str) -> set[str]:
+    """Identify the complete module lesson and integration packages from the approved backlog."""
+    backlog = json.loads((ROOT / "delivery/backlog.json").read_text(encoding="utf-8"))
+    stories = [
+        item for item in backlog.get("items", [])
+        if item.get("type") == "Story"
+        and item.get("parent") == f"SDA-{module.upper()}"
+        and item.get("package_kind") in {"lesson", "module-integration"}
+    ]
+    if not stories or not any(s.get("package_kind") == "module-integration" for s in stories):
+        raise HandoffError(f"{module}: no complete lesson/integration Story set in backlog")
+    required = set()
+    for story in stories:
+        outputs = story.get("outputs", {})
+        for kind in ("teaching", "assessment"):
+            path = outputs.get(kind)
+            if not isinstance(path, str) or not path:
+                raise HandoffError(f"{story.get('key')}: missing {kind} output in backlog")
+            required.add(path)
+    return required
+
+
+def review_report_paths(values: list[str], task_files: set[str]) -> set[str]:
+    """Permit only complete, paired reports for modules present in this draft handoff."""
+    if not values:
+        return set()
+    modules = {
+        p.split("/")[1] for p in task_files
+        if re.fullmatch(r"modules/m\d+/(?:lessons|assessments|integrated)/[^/]+", p)
+    }
+    roles: dict[str, set[str]] = {}
+    for value in values:
+        match = re.fullmatch(r"modules/(m\d+)/reviews/automatic/(technical|pedagogy)\.md", value)
+        if not match or match.group(1) not in modules:
+            raise HandoffError(f"Review report must belong to a selected module: {value}")
+        if not taskctl.relpath(value).is_file():
+            raise HandoffError(f"Missing review report: {value}")
+        if not taskctl.relpath(value).read_text(encoding="utf-8").strip():
+            raise HandoffError(f"Empty review report: {value}")
+        roles.setdefault(match.group(1), set()).add(match.group(2))
+    for module, present in roles.items():
+        if present != {"technical", "pedagogy"}:
+            raise HandoffError(f"{module}: both technical and pedagogy reports must be supplied")
+        missing = required_module_paths(module) - task_files
+        if missing:
+            raise HandoffError(f"{module}: module review cannot be handed off before every lesson and integration draft is complete: {sorted(missing)}")
+    # Make reviewer lifecycle durable alongside both report files.
+    for module in roles:
+        state = review_cycle.load(module)
+        if not state or state["status"] == "revising" or not state["review_history"]:
+            raise HandoffError(f"{module}: record both reviewer verdicts before handing off reports")
+    return set(values) | {f"modules/{module}/reviews/automatic/cycle.json" for module in roles}
+
+
+def deliver(task_ids: list[str], remote: str = "origin",
+            review_reports: list[str] | None = None) -> None:
     all_paths: set[str] = set()
     for task_id in task_ids:
         all_paths.update(task_paths(task_id))
+    # Persist an in-progress revision counter even during the following draft handoff.
+    modules = {p.split("/")[1] for p in all_paths
+               if re.fullmatch(r"modules/m\d+/(?:lessons|assessments|integrated)/[^/]+", p)}
+    for module in modules:
+        if review_cycle.load(module) is not None:
+            all_paths.add(f"modules/{module}/reviews/automatic/cycle.json")
+    all_paths.update(review_report_paths(review_reports or [], all_paths))
+    if review_reports:
+        # Persist newly verified cross-module prevention rules together with QA reports.
+        learning_memory.read_memory()
+        all_paths.add(learning_memory.MEMORY)
     print(f"Lightweight validation for {len(task_ids)} task(s)", flush=True)
     for command in validation_commands(all_paths):
         result = subprocess.run(command, cwd=ROOT)
@@ -137,9 +206,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("task_ids", nargs="+", help="One or more completed Academy draft task IDs")
     parser.add_argument("--remote", default="origin", help="Git remote to push (default: origin)")
+    parser.add_argument("--review-report", action="append", default=[],
+                        help="Optional reviewed module report; supply both technical and pedagogy")
     args = parser.parse_args(argv)
     try:
-        deliver(list(dict.fromkeys(args.task_ids)), args.remote)
+        deliver(list(dict.fromkeys(args.task_ids)), args.remote, args.review_report)
     except (HandoffError, taskctl.TaskError, OSError, ValueError) as exc:
         print(f"HANDOFF FAILED: {exc}", file=sys.stderr)
         return 2

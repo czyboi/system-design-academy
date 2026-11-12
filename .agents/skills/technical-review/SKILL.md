@@ -5,7 +5,7 @@ description: Independently audit a System Design lesson for correctness, assumpt
 
 # Technical Review
 
-Review first; do not rewrite.
+Review first; do not rewrite. When the parent supplies up to three topic-matched, previously resolved lessons learned from `learning_memory.py suggest --role technical_reviewer`, use them as checks for recurring problems, **not as proof**. Validate claims independently against primary sources; never relax review because a previous correction succeeded.
 
 1. Independently inspect cited primary sources.
 2. Extract high-impact claims and verify the cited source supports each one.
@@ -27,7 +27,7 @@ Findings first, each with exact quote/location, severity, explanation, evidence 
 
 ## Machine-readable gate output
 
-Run this reviewer only when explicitly requested by the user. For a declared review task, write the requested Markdown findings and optional JSON verdict using `docs/workflow-contract.md`; include finding IDs, severity and status, but no artifact checksums. An open blocker/major finding forbids `ready-for-human-review`. No reviewer may trigger code validation or other reviewers automatically. Record content-review status explicitly when authorized; this is not human publication approval.
+Run this reviewer for the owner's standing automatic **completed-module** QA request through `module-quality-review`, or for an explicitly requested targeted/standalone review. For a declared review task, write the requested Markdown findings and optional JSON verdict using `docs/workflow-contract.md`; include finding IDs, severity and status, but no artifact checksums. An open blocker/major finding forbids `ready-for-human-review`. This reviewer cannot trigger code validation, self-revisions, or other reviewers; the parent separately coordinates the two independent module reviewers. Record content-review status explicitly when authorized; this is not human publication approval.
 
 ## Combined technical and provenance review
 

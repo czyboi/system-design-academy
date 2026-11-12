@@ -11,6 +11,10 @@ Require the canonical task specification, selected approved curriculum, source r
 
 Do not start when the user has explicitly paused work, required source evidence is absent, or the lesson/assessment output paths are not separate. Review and validation are not drafting prerequisites unless the user specifically makes them part of this task.
 
+## Verified cross-module feedback
+
+Before drafting, use the parent's relevant (maximum three) reviewer-confirmed prevention reminders selected from `.academy/knowledge/lessons-learned.json` by `scripts/learning_memory.py suggest --tags ... --role lesson_author`. They are hints for avoiding previously corrected mistakes, **not** technical sources or new constraints on teaching content. Verify claims against the current task evidence and curriculum; flag conflicts instead of copying a memory blindly. No additional AI step is required; do not load the entire memory file.
+
 ## Procedure
 
 1. Confirm lesson ID, audience, prerequisites, status, scope, outcomes, and the exact lesson path.
@@ -42,4 +46,4 @@ For edits to an existing lesson, follow authorized scope and record material use
 
 ## Draft handoff
 
-Write the lesson/assessment at their declared paths and record authoring completion. The **parent orchestrator**, not the author subagent, then invokes the single scoped `draft_handoff.py` validation-and-Git-delivery helper for the completed task or batch. Do not independently spawn a reviewer, run the regression test suite, auto-correct validation findings or start a revision loop. The user may later request technical/provenance review, actual coverage/pedagogy review, targeted corrections or broader validation. Draft completion and successful Git delivery are not publish approval.
+Write the lesson/assessment at their declared paths and record authoring completion. The **parent orchestrator**, not the author subagent, then invokes the single scoped `draft_handoff.py` validation-and-Git-delivery helper for the completed task or batch. Do not independently spawn a reviewer or start an autonomous correction loop; the **parent** may return specific review findings to this Author for at most two module-level corrective rounds. Make precise edits to the affected lesson/assessment, preserving correct material, and report what changed. The parent orchestrator also triggers independent technical/provenance and coverage/pedagogy review **once the full module and integration are finished**, using `module-quality-review`; the author does not self-review. After automatic QA, the parent may authorize bounded corrective edits from the reviewers' located findings and independent targeted re-review under `module-quality-review`. The user may request additional corrections/review or broader validation. Draft completion, quality review and successful Git delivery are not publish approval.

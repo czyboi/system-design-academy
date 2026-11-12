@@ -5,6 +5,8 @@ description: Review whether a concise System Design lesson teaches its outcomes 
 
 # Pedagogical Review
 
+Use up to three relevant, reviewer-confirmed prevention reminders selected by the parent with `learning_memory.py suggest --role pedagogy_reviewer` to watch for recurring teaching mistakes. They do not override the current curriculum, learner profile or independent evidence, and do not justify adding generic boilerplate.
+
 ## Select the assigned mode
 
 - **Plan:** read the canonical scope, audience, curriculum outlines, prerequisites, source coverage report and prior findings. Check sequence, lesson boundaries, overlap, assumed entry knowledge and whether each outline can teach its stated capability. Do not require lesson or assessment files that have not been authored. Return location-specific findings on the plan only.
@@ -32,7 +34,7 @@ Return findings with artifact/location, learner impact, severity, and recommende
 
 ## Machine-readable gate output
 
-Run this reviewer only when explicitly requested by the user. For a declared review task, write the requested Markdown findings and optional JSON verdict using `docs/workflow-contract.md`; include finding IDs, severity and status, but no artifact checksums. An open blocker/major finding forbids `ready-for-human-review`. No reviewer may trigger code validation or other reviewers automatically. Record content-review status explicitly when authorized; this is not human publication approval.
+Run this reviewer for the owner's standing automatic **completed-module** QA request through `module-quality-review`, or for an explicitly requested targeted/standalone review. For a declared review task, write the requested Markdown findings and optional JSON verdict using `docs/workflow-contract.md`; include finding IDs, severity and status, but no artifact checksums. An open blocker/major finding forbids `ready-for-human-review`. This reviewer cannot trigger code validation, self-revisions, or other reviewers; the parent separately coordinates the two independent module reviewers. Record content-review status explicitly when authorized; this is not human publication approval.
 
 ## Combined review assignment
 
