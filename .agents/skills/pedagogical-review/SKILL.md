@@ -32,7 +32,7 @@ Return findings with artifact/location, learner impact, severity, and recommende
 
 ## Machine-readable gate output
 
-Run this reviewer only when explicitly requested by the user. For a declared review task, write the requested Markdown findings and optional JSON verdict using `docs/workflow-contract.md`; include finding IDs, severity and status, but no artifact checksums. An open blocker/major finding forbids `ready-for-human-review`. No reviewer may trigger code validation or other reviewers automatically. Record content-review status explicitly when authorized; this is not human publication approval.
+Run this reviewer for the owner's standing automatic **completed-module** QA request through `module-quality-review`, or for an explicitly requested targeted/standalone review. For a declared review task, write the requested Markdown findings and optional JSON verdict using `docs/workflow-contract.md`; include finding IDs, severity and status, but no artifact checksums. An open blocker/major finding forbids `ready-for-human-review`. This reviewer cannot trigger code validation, self-revisions, or other reviewers; the parent separately coordinates the two independent module reviewers. Record content-review status explicitly when authorized; this is not human publication approval.
 
 ## Combined review assignment
 
