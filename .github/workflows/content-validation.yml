@@ -20,11 +20,7 @@ jobs:
           python-version: '3.12'
       - name: Install validation dependencies
         run: pip install -r requirements-dev.txt
-      - name: Validate current lesson packages, workflow configuration and relative links
-        run: python scripts/validate_content.py
-      - name: Validate authored Markdown format (no LLM)
-        run: python scripts/validate_format.py
-      - name: Validate workflow configuration independently
-        run: python scripts/validate_content.py --scope workflow
+      - name: Validate canonical content, YAML, Markdown and relative links (no LLM)
+        run: python scripts/validate_content.py --scope repo
       - name: Validate persistent task state records
         run: python scripts/taskctl.py validate

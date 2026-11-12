@@ -29,6 +29,7 @@ level: intermediate
 source_review_date: 2026-11-11
 prerequisites: []
 outcomes: [LO-1]
+assessment: PLACEHOLDER_ASSESSMENT
 ---
 # Test lesson
 ## Learning outcomes
@@ -46,7 +47,13 @@ Discuss what happens when the input changes.
 - https://example.com/reference-b
 ''', encoding='utf-8')
         lesson_path = self.lesson.relative_to(ROOT).as_posix()
+        assessment_path = self.assessment.relative_to(ROOT).as_posix()
+        self.lesson.write_text(
+            self.lesson.read_text().replace('PLACEHOLDER_ASSESSMENT', assessment_path),
+            encoding='utf-8'
+        )
         self.assessment.write_text(f'''---
+id: TEST-1-assessment
 status: draft
 lesson: {lesson_path}
 outcome_map:
@@ -104,8 +111,63 @@ EX-1: Solve this problem.
     def test_draft_only_and_question_count(self):
         self.assessment.write_text(self.assessment.read_text().replace('status: draft','status: published').replace('### Q5','### Q4'),encoding='utf-8')
         errors=self.pair_errors()
-        self.assertTrue(any('remain draft' in x for x in errors))
+        self.assertTrue(any('status: draft' in x for x in errors))
         self.assertTrue(any('uniquely' in x for x in errors))
+
+    def test_flexible_headings_do_not_block_valid_teaching(self):
+        lesson = self.lesson.read_text(encoding='utf-8')
+        for old, new in (
+            ('Learning outcomes', 'Learning objectives'),
+            ('Problem and motivation', 'Scenario and constraints'),
+            ('Core concepts and mechanisms', 'Mechanism walkthrough'),
+            ('Worked example', 'End-to-end design walkthrough'),
+            ('Trade-offs and failure modes', 'Failure analysis and alternatives'),
+            ('References', 'Primary sources'),
+        ):
+            lesson = lesson.replace(old, new)
+        self.lesson.write_text(lesson, encoding='utf-8')
+        quiz = self.assessment.read_text(encoding='utf-8')
+        quiz = quiz.replace('Core concepts and mechanisms', 'Mechanism walkthrough')
+        quiz = quiz.replace('## Practical exercise', '## Applied design challenge')
+        quiz = quiz.replace('## Knowledge checks', '## Check your reasoning')
+        quiz = quiz.replace('## Answer key / rubric', '## Solution and rubric')
+        quiz = quiz.replace('### Q', '#### Q')
+        self.assessment.write_text(quiz, encoding='utf-8')
+        self.assertEqual(self.pair_errors(), [])
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            result = validator.main([
+                '--scope', 'lesson', '--lesson', self.lesson.relative_to(ROOT).as_posix(),
+                '--assessment', self.assessment.relative_to(ROOT).as_posix(),
+            ])
+        self.assertEqual(result, 0, output.getvalue())
+
+    def test_one_validation_entry_checks_missing_metadata_and_unsafe_html(self):
+        self.lesson.write_text(
+            self.lesson.read_text().replace('title: Test lesson\n', '') + '\n<script>unsafe</script>\n',
+            encoding='utf-8'
+        )
+        errors = self.pair_errors()
+        self.assertTrue(any("missing metadata field 'title'" in x for x in errors))
+        self.assertTrue(any('raw HTML' in x for x in errors))
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            result = validator.main([
+                '--scope', 'lesson', '--lesson', self.lesson.relative_to(ROOT).as_posix(),
+                '--assessment', self.assessment.relative_to(ROOT).as_posix(),
+            ])
+        self.assertEqual(result, 1, output.getvalue())
+
+    def test_no_minimum_source_url_quota(self):
+        lesson = self.lesson.read_text(encoding='utf-8').replace(
+            'https://example.com/reference-b', 'Referenced primary paper'
+        )
+        self.lesson.write_text(lesson, encoding='utf-8')
+        self.assertEqual(self.pair_errors(), [])
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            result = validator.main([
+                '--scope', 'lesson', '--lesson', self.lesson.relative_to(ROOT).as_posix(),
+                '--assessment', self.assessment.relative_to(ROOT).as_posix(),
+            ])
+        self.assertEqual(result, 0, output.getvalue())
 
     def test_curriculum_scope_requires_real_mapping(self):
         plan=self.root/'plan.md'; matrix=self.root/'matrix.csv'

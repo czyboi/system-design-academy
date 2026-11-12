@@ -16,20 +16,13 @@ from pathlib import Path
 from urllib.parse import urlparse
 import yaml
 
+# One command for structural and Markdown validation; format metadata lives in validate_format.
+if __package__:
+    from . import validate_format as format_rules
+else:
+    import validate_format as format_rules
+
 ROOT = Path(__file__).resolve().parents[1]
-
-REQUIRED_FRONT_MATTER = (
-    "id", "title", "status", "level", "source_review_date"
-)
-REQUIRED_SECTIONS = {
-    "learning outcomes": re.compile(r"^##\s+(?:\d+\.\s*)?Learning outcomes\b", re.I | re.M),
-    "motivation": re.compile(r"^##\s+Problem and motivation", re.I | re.M),
-    "mechanism": re.compile(r"^##\s+Core concepts and mechanisms", re.I | re.M),
-    "worked example": re.compile(r"^##\s+Worked example", re.I | re.M),
-    "trade-offs": re.compile(r"^##\s+Trade-offs and failure modes", re.I | re.M),
-    "references": re.compile(r"^##\s+(?:\d+\.\s*)?References\b", re.I | re.M),
-}
-
 
 def parse_front_matter(text: str) -> dict:
     if not text.startswith("---\n"):
@@ -61,9 +54,9 @@ def validate_pair(lesson, assessment):
         quiz = assessment.read_text(encoding='utf-8')
     except OSError as exc:
         return [str(exc)]
+    errors.extend(format_rules.validate_document(text, lesson, root=ROOT, kind='lesson'))
+    errors.extend(format_rules.validate_document(quiz, assessment, root=ROOT, kind='assessment'))
     front, companion = parse_front_matter(text), parse_front_matter(quiz)
-    if front.get('status') != 'draft' or companion.get('status') != 'draft':
-        errors.append('Lesson and assessment must remain draft')
     try:
         if local_path(companion.get('lesson', '')).resolve() != lesson.resolve():
             errors.append('Assessment must reference its companion lesson')
@@ -71,10 +64,12 @@ def validate_pair(lesson, assessment):
         errors.append('Invalid companion lesson reference')
     if re.search(r'^#{2,3}\s+(?:Practical exercise|Exercise|Knowledge checks?|Answer key|Answer guide|Rubric)\b', text, re.I | re.M):
         errors.append(f'{lesson}: assessment content belongs in the companion artifact')
-    for heading in ('Practical exercise', 'Knowledge checks', 'Answer key / rubric'):
-        if not re.search(r'^##\s+'+re.escape(heading)+r'\s*$', quiz, re.I | re.M):
-            errors.append(f'{assessment}: missing {heading}')
-    matches = list(re.finditer(r'^###\s+(Q\d+)\b[^\n]*', quiz, re.M))
+    # Exercise/question IDs are stable, but section names and heading levels are flexible.
+    if not re.search(r'(?m)^\s*EX-1\b', quiz):
+        errors.append(f'{assessment}: missing practical exercise EX-1')
+    if not re.search(r'(?i)\b(?:rubric|sample solution|reference solution|answer key)\b', quiz):
+        errors.append(f'{assessment}: missing exercise solution or rubric')
+    matches = list(re.finditer(r'^#{2,6}\s+(Q\d+)\b[^\n]*', quiz, re.M))
     ids = [m[1] for m in matches]
     if not 5 <= len(ids) <= 8 or len(set(ids)) != len(ids):
         errors.append('Assessment needs 5–8 uniquely identified knowledge checks')
@@ -84,14 +79,12 @@ def validate_pair(lesson, assessment):
             errors.append(f'{match[1]} needs Answer: and Explanation:')
     outcomes = front.get('outcomes')
     mapping = companion.get('outcome_map')
-    headings = {h.strip().lower() for h in re.findall(r'^##\s+(.+)$', text, re.M)}
-    if not isinstance(front.get('prerequisites'), list):
-        errors.append('Lesson prerequisites must be a list')
-    if not isinstance(outcomes, list) or not outcomes or not all(isinstance(x, str) and x for x in outcomes):
-        errors.append('Lesson outcomes must be a nonempty list of IDs')
-    elif len(set(outcomes)) != len(outcomes):
-        errors.append('Outcome IDs must be unique')
-    elif not isinstance(mapping, dict) or set(mapping) != set(outcomes):
+    headings = {h.strip().lower() for h in re.findall(r'^#{2,6}\s+(.+)$', text, re.M)}
+    # Field presence/types and draft status are the format module's responsibility.
+    if isinstance(outcomes, list) and all(isinstance(x, str) for x in outcomes):
+        if len(set(outcomes)) != len(outcomes):
+            errors.append('Outcome IDs must be unique')
+    if not isinstance(outcomes, list) or not outcomes or not isinstance(mapping, dict) or set(mapping) != set(outcomes):
         errors.append('Assessment outcome_map must cover every lesson outcome exactly')
     else:
         for outcome, entry in mapping.items():
@@ -186,10 +179,6 @@ def main(argv=None) -> int:
             errors.append(f"{rel}: missing or malformed YAML front matter")
             continue
 
-        for field in REQUIRED_FRONT_MATTER:
-            if not front.get(field):
-                errors.append(f"{rel}: missing front-matter field '{field}'")
-
         lesson_id = front.get("id", "")
         if isinstance(lesson_id, str) and lesson_id:
             lesson_ids.append(lesson_id)
@@ -198,13 +187,6 @@ def main(argv=None) -> int:
         else:
             errors.append(f'{rel}: lesson id must be a nonempty string')
 
-        status = str(front.get("status", "")).lower()
-        if status != "draft":
-            errors.append(f"{rel}: invalid status '{status}'; generated content must not be approved/published")
-
-        for section, pattern in REQUIRED_SECTIONS.items():
-            if not pattern.search(text):
-                errors.append(f"{rel}: missing required section '{section}'")
         try:
             assessment = pairs.get(path) or local_path(front['assessment'])
             pairs[path] = assessment
@@ -216,13 +198,18 @@ def main(argv=None) -> int:
         except (ValueError, KeyError, TypeError) as exc:
             errors.append(f'{rel}: missing/invalid assessment path: {exc}')
 
-        urls = set(re.findall(r"https?://[^\s)\]>]+", text))
-        if len(urls) < 2:
-            errors.append(f"{rel}: expected at least 2 explicit source URLs; found {len(urls)}")
-
     if len(lesson_ids) != len(set(lesson_ids)):
         errors.append("Duplicate lesson IDs found in lesson front matter")
     if args.scope == 'repo':
+        # Integrated packages share the Markdown rules, not the lesson schema.
+        try:
+            for artifact in format_rules.discover(ROOT):
+                if "integrated" in artifact.parts:
+                    errors.extend(format_rules.validate_document(
+                        artifact.read_text(encoding='utf-8'), artifact, root=ROOT, kind='integrated'
+                    ))
+        except (OSError, ValueError, UnicodeError) as exc:
+            errors.append(f"Cannot validate integrated content: {exc}")
         used = set(pairs.values())
         for assessment in assessment_files:
             if assessment not in used:
@@ -255,10 +242,6 @@ def main(argv=None) -> int:
                     errors.append("Duplicate source IDs found")
         except (OSError, csv.Error) as exc:
             errors.append(f"Cannot parse source registry: {exc}")
-
-    # The retired pilot-manifest.json is historical planning data. Active
-    # manifests use content-manifest.json and explicit package artifact paths.
-
 
     # Validate repo-local Agent Skills.
     skills_root = ROOT / ".agents/skills"

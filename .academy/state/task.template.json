@@ -38,7 +38,7 @@
       "depends_on": [
         "research"
       ],
-      "definition_version": "v6",
+      "definition_version": "v7",
       "input_paths": [
         "curriculum/revision-1/CURRICULUM_MASTER.md",
         "${EVIDENCE_PATH}",
