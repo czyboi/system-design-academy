@@ -14,7 +14,7 @@ The user approved **SDA-v1** on 2026-11-10: 14 modules, 57 lessons and a cross-m
 | Lesson draft | Research → author lesson and assessment | `.academy/state/task.template.json` |
 | Tooling change | Implementation | `.academy/state/workflow.template.json` |
 
-The agent completes the requested draft and stops. **AI review, Python validation and GitHub Actions validation are all manual, independent requests.** No fingerprint, checksum or automatic stale cascade changes completed task history. The owner can explicitly reopen a step, flag a previously reviewed draft as needing review, or invoke a focused check.
+The agent completes the requested draft and stops. **AI review and content validation are manual, independent requests.** Python regression tests run automatically in GitHub Actions for pull requests and pushes to `main`. No fingerprint, checksum or automatic stale cascade changes completed task history. The owner can explicitly reopen a step, flag a previously reviewed draft as needing review, or invoke a focused check.
 
 Task specs and history: `.academy/specs/`, `.academy/state/tasks/`, `.academy/state/worklog/`. Agent skills: `.agents/skills/`. Code: `scripts/`, lessons: `modules/`.
 
@@ -45,6 +45,6 @@ python -m unittest discover -s tests -v
 
 For pinned Primer coverage, invoke `python scripts/check_course_coverage.py --inventory PATH --matrix PATH --plan PATH --stage plan` (or `--stage taught`) when desired. These are deterministic checks, not factual or pedagogical reviews.
 
-GitHub Actions: **Content validation → Run workflow**. The validation workflow has only the `workflow_dispatch` trigger; it does not run automatically on pushes or PRs.
+GitHub Actions: **Content validation → Run workflow** runs content validation manually. **Python regression tests** runs automatically on pull requests and pushes to `main`, and can also be run manually.
 
 See [workflow contract](docs/workflow-contract.md), [task state protocol](.academy/state/README.md), and [module pipeline](.agents/skills/module-pipeline/SKILL.md). Historical reports and accepted curriculum evidence remain in Git for traceability.

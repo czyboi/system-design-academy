@@ -41,7 +41,7 @@ A formatting edit need not reset review status. A substantive edit should be fla
 
 ## Manual checks
 
-No step implicitly launches an AI review, content validation, a Python test suite, or a revision loop. Select `scripts/validate_content.py`, `scripts/check_course_coverage.py`, `scripts/taskctl.py validate` or tests only when specifically requested. GitHub Actions validation uses `workflow_dispatch` only.
+No step implicitly launches an AI review, content validation, a Python test suite, or a revision loop. Select `scripts/validate_content.py`, `scripts/check_course_coverage.py`, `scripts/taskctl.py validate` or tests only when specifically requested. GitHub Actions content validation uses `workflow_dispatch` only; Python regression tests run automatically on pull requests and pushes to `main`.
 
 Use the two-step lesson template, one-step course template or one-step tooling template for new tasks. Historical six-step workflows and reports remain unchanged; do not silently restart or migrate them. At handoff, commit output/spec/state/worklog together and run `taskctl handoff TASK-ID` (read-only Git tracking and dirty-file check, no checksums). The command does not run review or Python validation. Share checkpoints in the Issue when handing off.
 

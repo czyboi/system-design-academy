@@ -72,7 +72,7 @@ python -m unittest discover -s tests -v
 
 Run only the specifically selected checks. The strict coverage checker may also be given `--review PATH` to check a **supplied** course verdict's coverage/pedagogy flags; it no longer compares artifact hashes or treats a changed lesson's SHA as stale. It remains a structural check, not evidence of factual or teaching quality.
 
-GitHub Actions `content-validation.yml` has **workflow_dispatch only**; select **Content validation → Run workflow** to execute CI checks manually.
+GitHub Actions `content-validation.yml` has **workflow_dispatch only**; select **Content validation → Run workflow** to run those checks manually. Python regression tests run separately on pull requests and pushes to `main`, and can also be started manually.
 
 ## Full Primer coverage data contract
 

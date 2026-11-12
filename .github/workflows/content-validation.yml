@@ -28,5 +28,3 @@ jobs:
         run: python scripts/validate_content.py --scope workflow
       - name: Validate persistent task state records
         run: python scripts/taskctl.py validate
-      - name: Run current regression tests
-        run: python -m unittest discover -s tests -v
