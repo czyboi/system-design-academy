@@ -65,6 +65,12 @@ Allowed verdicts: `block`, `revise`, `ready-for-human-review`. Severities: `bloc
 
 Historical optional step graphs may include `requires_reviews`; new decisions require a scoped review state in addition to the verdict and completed review step. `invalidate` on a reviewed step explicitly marks its scope `needs_review`. No checksums are compared. New default drafts do not depend on review steps.
 
+## Verified cross-module learning (automatic after successful correction)
+
+The parent is responsible for extracting a *small number* of transferable lessons from resolved findings **only when** `scripts/review_cycle.py status mXX` reports `ready` with at least one author correction. The recorder `scripts/learning_memory.py record` checks resolved finding ID and exact evidence reference inside the final independent review report, refuses unresolved or blocked module cycles, and deduplicates identical causes across modules. `.academy/knowledge/lessons-learned.json` stores concise problem/prevention/tag/role and cited occurrence metadata, not full review transcripts or rewritten agent prompts. `draft_handoff.py --review-report` adds this tracked memory file to the module QA Git push. The author and each reviewer retrieve at most three **tag-matched, role-appropriate** reminders with `learning_memory.py suggest`. Missing matches are normal; an AI review finding is not scientific evidence by itself.
+
+`learning_memory.py promotions` surfaces an issue only after verified occurrences in **two distinct modules**. The parent may propose a minimal Skill update through a **separate reviewable PR** after checking the current Skill for conflict, redundancy, primary-source support and outstanding proposals. No Skill is auto-edited or merged. See [learning feedback contract](learning-feedback-loop.md) for invocation details and safety limitations. No additional model or unbounded agent step is introduced.
+
 ## Automatic scoped draft checks; all broader checks on demand
 
 ```bash
