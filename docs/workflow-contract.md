@@ -23,13 +23,15 @@ python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "User requested a 
 python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "Explicit full redo" --cascade
 python scripts/taskctl.py review-status TASK-ID --scope technical --state needs_review --reason "Substantive technical change"
 python scripts/taskctl.py review-status TASK-ID --scope pedagogy --state in_review --reason "Requested teaching review"
-# After committing artifacts, spec, state and worklog:
+# After committing AND pushing artifacts, spec, state and worklog:
 python scripts/taskctl.py handoff TASK-ID
+# Only for a handoff within the same checkout:
+python scripts/taskctl.py handoff TASK-ID --local-only
 python scripts/taskctl.py hold TASK-ID --state paused --reason "User paused"
 python scripts/taskctl.py resume-task TASK-ID --reason "User resumed"
 ```
 
-`status` is read-only. `reconcile` persists aggregate status computed only from explicit step/hold fields. No automatic STALE, checksum, fingerprint, dirty-input block, unchanged-output reuse flag or dependency hash cascade exists. The CLI requires declared inputs when starting and output files when completing; a completed step may later lose outputs without changing status (read-only `WARNING` in `status`). `handoff` is an explicit, read-only Git tracking/cleanliness check for completed output files, spec, task state and worklog. Commit the current files together and run it before cross-agent handoff; no checksum or automatic state change occurs.
+`status` is read-only. `reconcile` persists aggregate status computed only from explicit step/hold fields. No automatic STALE, checksum, fingerprint, dirty-input block, unchanged-output reuse flag or dependency hash cascade exists. The CLI requires declared inputs when starting and output files when completing; a completed step may later lose outputs without changing status (read-only `WARNING` in `status`). `handoff` is an explicit, read-only Git tracking/cleanliness check for completed output files, spec, task state and worklog. For cross-environment handoff it also verifies local HEAD equals the upstream branch currently advertised by the remote; configure tracking with `git push -u origin HEAD` and push future commits before handoff. Use `--local-only` only when agents share a checkout. Remote access happens exclusively during this explicit command; no checksum or automatic state change occurs.
 
 For a backlog lesson, `init ... --template .academy/state/task.template.json` resolves `EVIDENCE_PATH`, `TEACHING_PATH` and `ASSESSMENT_PATH` from the Story identified by `proposed_task_id` and validates its module. Task ID (`SD-M00-L01`) is not the filename Lesson ID (`M00-L01`). A missing/ambiguous Story fails instead of guessing a path.
 

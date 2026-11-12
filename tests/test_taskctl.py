@@ -325,18 +325,41 @@ class TaskCtlExplicitStateTests(unittest.TestCase):
     def test_handoff_requires_committed_outputs_and_memory(self):
         self.add_step("research", "outputs/research.md")
         self.run_step("research", "outputs/research.md")
-        response = self.cli("handoff", "TEST-1", expected=2)
+        response = self.cli("handoff", "TEST-1", "--local-only", expected=2)
         self.assertIn("Handoff not ready", response)
         self.assertIn("Not Git-tracked: outputs/research.md", response)
         self.git("add", ".")
         self.git("commit", "-qm", "commit entire task handoff")
-        self.assertIn("HANDOFF READY", self.cli("handoff", "TEST-1"))
+        self.assertIn("HANDOFF READY", self.cli("handoff", "TEST-1", "--local-only"))
         (self.root / "outputs/research.md").write_text("unsaved change", encoding="utf-8")
-        self.assertIn("Uncommitted:", self.cli("handoff", "TEST-1", expected=2))
+        self.assertIn("Uncommitted:", self.cli("handoff", "TEST-1", "--local-only", expected=2))
         self.git("add", ".")
         self.git("commit", "-qm", "sync handoff")
         (self.root / "outputs/research.md").unlink()
-        self.assertIn("Missing:", self.cli("handoff", "TEST-1", expected=2))
+        self.assertIn("Missing:", self.cli("handoff", "TEST-1", "--local-only", expected=2))
+
+    def test_handoff_requires_remote_upstream_to_be_pushed(self):
+        self.add_step("research", "outputs/research.md")
+        self.run_step("research", "outputs/research.md")
+        self.git("add", ".")
+        self.git("commit", "-qm", "local task result")
+        self.assertIn("accessible upstream", self.cli("handoff", "TEST-1", expected=2))
+        self.assertIn("HANDOFF READY", self.cli("handoff", "TEST-1", "--local-only"))
+
+        bare_remote = self.root / ".git" / "handoff-remote.git"
+        self.git("init", "--bare", "-q", str(bare_remote))
+        self.git("remote", "add", "origin", str(bare_remote))
+        self.git("push", "-u", "origin", "HEAD")
+        self.assertIn("HANDOFF READY", self.cli("handoff", "TEST-1"))
+        self.assertIn("destination=origin/", self.cli("handoff", "TEST-1"))
+
+        self.output("outputs/research.md", "second committed revision\n")
+        self.git("add", ".")
+        self.git("commit", "-qm", "unpushed result")
+        self.assertIn("not pushed/synced", self.cli("handoff", "TEST-1", expected=2))
+        self.git("push", "origin", "HEAD")
+        self.assertIn("HANDOFF READY", self.cli("handoff", "TEST-1"))
+
 
     def test_new_lesson_init_uses_backlog_story_paths(self):
         (self.root / "delivery").mkdir(parents=True, exist_ok=True)

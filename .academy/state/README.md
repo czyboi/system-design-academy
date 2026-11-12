@@ -22,8 +22,10 @@ python scripts/taskctl.py complete TASK-ID STEP-ID --agent AGENT
 python scripts/taskctl.py invalidate TASK-ID STEP-ID --reason "User asked to redo work"
 python scripts/taskctl.py hold TASK-ID --state paused --reason "User paused"
 python scripts/taskctl.py resume-task TASK-ID --reason "User resumed"
-# After committing output + spec + state + worklog, manually verify handoff:
+# After committing AND pushing output + spec + state + worklog:
 python scripts/taskctl.py handoff TASK-ID
+# Only for a handoff inside the same checkout:
+python scripts/taskctl.py handoff TASK-ID --local-only
 ```
 
 ## Separate review state
@@ -43,6 +45,6 @@ A formatting edit need not reset review status. A substantive edit should be fla
 
 No step implicitly launches an AI review, content validation, a Python test suite, or a revision loop. Select `scripts/validate_content.py`, `scripts/check_course_coverage.py`, `scripts/taskctl.py validate` or tests only when specifically requested. GitHub Actions content validation uses `workflow_dispatch` only; Python regression tests run automatically on pull requests and pushes to `main`.
 
-Use the two-step lesson template, one-step course template or one-step tooling template for new tasks. Historical six-step workflows and reports remain unchanged; do not silently restart or migrate them. At handoff, commit output/spec/state/worklog together and run `taskctl handoff TASK-ID` (read-only Git tracking and dirty-file check, no checksums). The command does not run review or Python validation. Share checkpoints in the Issue when handing off.
+Use the two-step lesson template, one-step course template or one-step tooling template for new tasks. Historical six-step workflows and reports remain unchanged; do not silently restart or migrate them. At cross-environment handoff, commit and push output/spec/state/worklog, then run `taskctl handoff TASK-ID`. This checks Git tracking, cleanliness and whether local HEAD matches the upstream branch advertised by the remote (requires an accessible remote and configured upstream). Use `--local-only` only when the receiving agent shares this checkout. Remote verification happens only at explicit handoff, never during status/start/complete. The command does not use checksums or run AI review/Python validation. Share checkpoints in the Issue when handing off.
 
 Publication approval, PR merge and course release are human-controlled and separate from task progress.

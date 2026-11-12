@@ -25,12 +25,14 @@ python scripts/taskctl.py status TASK-ID
 python scripts/taskctl.py start TASK-ID author --agent lesson_author
 python scripts/taskctl.py complete TASK-ID author --agent lesson_author
 python scripts/taskctl.py review-status TASK-ID --scope technical --state needs_review --reason "Revised a technical claim"
-# Run after committing output, task state, spec and worklog:
+# Run after committing and pushing output, task state, spec and worklog:
 python scripts/taskctl.py handoff TASK-ID
+# Same-checkout handoff only:
+python scripts/taskctl.py handoff TASK-ID --local-only
 python scripts/taskctl.py invalidate TASK-ID author --reason "User requested a rewrite"
 ```
 
-For backlog lessons, `init` resolves the correct Lesson ID-based teaching/assessment/evidence output paths from `delivery/backlog.json`. `status` warns about missing completed outputs without changing historical status. The manual `handoff` command checks Git tracking and clean state, not content quality.
+For backlog lessons, `init` resolves the correct Lesson ID-based teaching/assessment/evidence output paths from `delivery/backlog.json`. `status` warns about missing completed outputs without changing historical status. The manual `handoff` command checks Git tracking, clean state and upstream remote synchronization; `--local-only` is for agents sharing a checkout. It does not check content quality.
 
 Marking a task complete records the work performed; it does not mean the current draft was independently reviewed. A `reviewed` content status does not constitute human publishing approval.
 

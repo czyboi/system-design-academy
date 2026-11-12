@@ -621,6 +621,45 @@ def cmd_review_status(args: argparse.Namespace) -> None:
     print(f"Review [{args.scope}]: {previous} -> {args.state} (not publication approval)")
 
 
+def verify_remote_handoff() -> str:
+    """Confirm HEAD equals the configured upstream branch on the actual remote."""
+    def git(*arguments: str) -> str:
+        try:
+            result = subprocess.run(
+                ["git", *arguments], cwd=ROOT, capture_output=True, text=True, timeout=20
+            )
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            raise TaskError("Remote handoff verification could not complete") from exc
+        if result.returncode:
+            raise TaskError(
+                "Remote handoff requires an accessible upstream branch; "
+                "configure it with 'git push -u origin HEAD' or use --local-only "
+                "for a handoff within the same checkout"
+            )
+        return result.stdout.strip()
+
+    branch = git("symbolic-ref", "--quiet", "--short", "HEAD")
+    remote = git("config", "--get", f"branch.{branch}.remote")
+    remote_ref = git("config", "--get", f"branch.{branch}.merge")
+    if remote == "." or not remote_ref.startswith("refs/heads/"):
+        raise TaskError("Remote handoff requires an upstream remote branch (not a local branch)")
+    local_head = git("rev-parse", "HEAD")
+    advertised = git("ls-remote", "--heads", remote, remote_ref)
+    remote_head = next(
+        (parts[0] for line in advertised.splitlines()
+         if len(parts := line.split("\t", 1)) == 2 and parts[1] == remote_ref),
+        None,
+    )
+    if not remote_head:
+        raise TaskError(f"Upstream {remote}/{remote_ref.removeprefix('refs/heads/')} is missing on remote")
+    if local_head != remote_head:
+        raise TaskError(
+            f"Local HEAD is not pushed/synced to {remote}/{remote_ref.removeprefix('refs/heads/')}; "
+            "push the branch before cross-environment handoff"
+        )
+    return f"{remote}/{remote_ref.removeprefix('refs/heads/')}"
+
+
 def cmd_handoff(args: argparse.Namespace) -> None:
     """Manual durability check: completed outputs and memory must be committed together."""
     data = load_task(args.task_id)
@@ -651,7 +690,9 @@ def cmd_handoff(args: argparse.Namespace) -> None:
             problems.append(f"Uncommitted: {value}")
     if problems:
         raise TaskError("Handoff not ready. Commit output, spec, state and worklog:\n- " + "\n- ".join(problems))
-    print(f"HANDOFF READY: {args.task_id}; {len(set(paths))} committed files checked (no checksums)")
+    remote_note = "local checkout only" if args.local_only else verify_remote_handoff()
+    print(f"HANDOFF READY: {args.task_id}; {len(set(paths))} committed files checked; "
+          f"destination={remote_note} (no checksums)")
 
 
 def cmd_validate(args: argparse.Namespace) -> None:
@@ -739,8 +780,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--state", choices=["not_reviewed", "in_review", "reviewed", "needs_review"], required=True)
     p.add_argument("--reason", required=True)
     p.set_defaults(func=cmd_review_status)
-    p = sub.add_parser("handoff", help="Manually verify completed artifacts and task memory are committed")
+    p = sub.add_parser("handoff", help="Verify committed artifacts and upstream remote sync")
     p.add_argument("task_id")
+    p.add_argument("--local-only", action="store_true",
+                   help="Skip remote verification for handoff within the same checkout")
     p.set_defaults(func=cmd_handoff)
     p = sub.add_parser("validate", help="Manually validate task state schemas")
     p.set_defaults(func=cmd_validate)

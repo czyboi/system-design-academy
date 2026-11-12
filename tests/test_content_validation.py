@@ -5,6 +5,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts import validate_content as validator
 from scripts import taskctl
@@ -153,10 +154,36 @@ class WorkflowTemplateTests(unittest.TestCase):
             template, ROOT / '.academy/state/schema/task.schema.json', 'Template'
         )
 
-    def test_repository_and_workflow_accept_empty_authoring_inventory(self):
-        for scope in ('repo','workflow'):
-            with contextlib.redirect_stdout(io.StringIO()):
-                self.assertEqual(validator.main(['--scope',scope]),0)
+    def test_repository_and_workflow_accept_isolated_empty_inventory(self):
+        # Regression CI must not validate real authored lessons.
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            skill = root / '.agents/skills/fixture/SKILL.md'
+            skill.parent.mkdir(parents=True)
+            skill.write_text('---\nname: fixture\ndescription: Fixture\n---\nInstructions.\n', encoding='utf-8')
+            agent = root / '.codex/agents/fixture.toml'
+            agent.parent.mkdir(parents=True)
+            agent.write_text(
+                'name = "fixture"\ndescription = "Fixture"\n'
+                'developer_instructions = "Test"\nmodel = "fixture-model"\n'
+                'model_reasoning_effort = "medium"\n', encoding='utf-8'
+            )
+            (root / '.codex/config.toml').write_text(
+                '[agents]\nmax_concurrent_threads_per_session = 1\n'
+                'default_subagent_model = "fixture-model"\n', encoding='utf-8'
+            )
+            with patch.object(validator, 'ROOT', root):
+                for scope in ('repo', 'workflow'):
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        self.assertEqual(validator.main(['--scope', scope]), 0)
+
+                # Validate broken fixture lessons only, never the real repository.
+                lesson = root / 'modules/fixture/lessons/BAD-L01.md'
+                lesson.parent.mkdir(parents=True)
+                lesson.write_text('# Missing front matter\n', encoding='utf-8')
+                with contextlib.redirect_stdout(io.StringIO()):
+                    self.assertEqual(validator.main(['--scope', 'repo']), 1)
+                    self.assertEqual(validator.main(['--scope', 'workflow']), 0)
 
     def test_explicit_missing_lesson_fails(self):
         with contextlib.redirect_stdout(io.StringIO()):

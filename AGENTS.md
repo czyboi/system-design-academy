@@ -15,7 +15,7 @@
 - No automatic `STALE`, checksums, fingerprints or dependency invalidation. Editing files/specs never changes a completed step's status.
 - Start only authorized pending/reopened work; `taskctl start` and `complete` record progress. Only `taskctl invalidate TASK-ID STEP-ID --reason "..."` reopens completed work. `--cascade` must be specifically requested; do not infer cascades.
 - Explicitly flag meaningful changes to reviewed content with `taskctl review-status TASK-ID --scope technical --state needs_review --reason "..."` (or the affected scope). The default `general` scope does not certify technical, pedagogy or named review gates. Review status is not publication approval.
-- Preserve old task/worklog/report history; legacy hashes are inert. After committing output, spec, task state and worklog, explicitly run `taskctl handoff TASK-ID` before telling another agent the files are ready. This checks Git tracking/clean state without checksums. A completed task with missing files shows a warning; its historical status remains unchanged.
+- Preserve old task/worklog/report history; legacy hashes are inert. Before cross-environment handoff, commit and push output, spec, task state and worklog, then run `taskctl handoff TASK-ID` to check Git-tracked/clean files and remote upstream sync. For agents sharing a checkout only, `handoff TASK-ID --local-only` skips remote verification. No checksums. A completed task with missing files shows a warning; its historical status remains unchanged.
 
 ## Default workflow
 - `.academy/state/task.template.json`: research → author draft lesson + companion assessment. `init` resolves all three output paths from the matching `delivery/backlog.json` Story (`proposed_task_id`), not by concatenating Task ID.
