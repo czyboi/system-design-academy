@@ -47,6 +47,14 @@
           "report": "modules/m03/reviews/automatic/lessons/M03-L02/technical.md",
           "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
           "lesson": "M03-L02"
+        },
+        {
+          "module": "m03",
+          "finding_id": "API-T3",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L02/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L02"
         }
       ]
     },
@@ -88,6 +96,13 @@
           "report": "modules/m02/reviews/automatic/lessons/M02-L04/technical.md",
           "evidence": "https://github.com/czyboi/system-design-academy/blob/0dcef2a098ab1d3b9ba347aeac4b924ff69ba71b/.academy/specs/SD-M02-L04.json#L66-L68",
           "lesson": "M02-L04"
+        },
+        {
+          "module": "m02",
+          "finding_id": "M02-INT-T3",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/technical.md",
+          "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis"
         }
       ]
     },

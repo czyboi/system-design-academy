@@ -59,3 +59,37 @@ Reviewed `31b2eb0` against `fdbe268`. The [answer and rubric](../../../../assess
 | P-MS02-CORRECT-L02-1 | note | resolved | [Approved M03-L02 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l02) |
 
 **Current verdict: ready-for-human-review.** Pedagogy and assigned coverage only.
+
+## Publication-readiness targeted re-review at `0dcef2a`, 2026-11-13
+
+Reviewed the M03-L02 changes since `3c0205c`, the companion and its outcome maps, the [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l02), and the assigned 19-row ledger above against actual teaching. The audience remains middle/senior self-study engineers. The [owner's feedback](https://github.com/czyboi/system-design-academy/pull/66#issuecomment-6846736588) requires publication-complete instruction and targeted independent review. No matched prevention reminders were supplied.
+
+### Coverage recheck
+
+The existing ledger's dispositions remain supported: the five main RPC/REST rows and six body-mechanism rows are taught in the resource, RPC and worked-example sections; the eight case communications rows are merged into the common export mechanism and distinct workload sketches. The changed example strengthens resource identity, self-description, hypermedia and the RPC request/return path without removing their explanations. No assigned row has become mention-only or assessment-only, and no new material coverage gap was identified. This is a scoped check of the accepted pinned Primer inventory and the [approved coverage map](../../../../../../curriculum/revision-1/coverage.csv), not a new course-wide inventory.
+
+### Pedagogy and assessment recheck
+
+The [worked example](../../../../lessons/M03-L02.md#worked-example) now gives the authenticated POST, durable claim and 202 response with status link, followed by an authenticated GET and later download link. It traces export ID `42` through both stubs and the worker's durable acceptance, then shows why a lost reply leaves an unknown outcome and why a same-ID retry resolves to one recorded operation. Its optional `progressPercent` example retains existing status values and links, and calls for testing both client versions. Together with the preceding compatibility and retry explanation, the learner can reproduce the intended decisions without the answer key.
+
+The separate [assessment](../../../../assessments/M03-L02.md) still transfers these mechanisms to reservation, including durable identity, deadline, discovery, pagination and compatibility. Q1–Q6 include explanations; EX-1 and its rubric assess the stated design decisions, with alternative valid contracts accepted. Both outcome maps identify the teaching sections and cross-outcome Q5/EX-1 consistently. The stale-endpoint preview remains linked to the canonical adjacent lesson; no new prerequisite or sequence gap was found in the changed scope.
+
+| Finding | Severity | Status | Evidence and action |
+| --- | --- | --- | --- |
+| P-PR66-L02-1 | note | resolved | The [worked example](../../../../lessons/M03-L02.md#worked-example) supplies the requested public contract, RPC path, lost-reply recovery and compatible evolution. No further pedagogy edit is required for this finding. |
+| P-PR66-L02-2 | note | resolved | The [companion outcome map](../../../../assessments/M03-L02.md#outcome-map) maps both outcomes to taught sections and matching items; its exercise and rubric transfer the mechanisms. No further map correction is required. |
+
+**Current verdict: ready-for-human-review.** This is a pedagogy and assigned-coverage judgment only; technical and human publication decisions remain separate.
+
+## Correction re-review at `a78f38c`, 2026-11-13
+
+Reviewed the M03-L02 diff from `0dcef2a`, the adjacent [lesson](../../../../lessons/M03-L02.md#worked-example), [companion](../../../../assessments/M03-L02.md) and outcome maps against the approved outline and the assigned pinned-source ledger above. The pending record now connects the committed caller/key and filters to dispatch after a restart; shared worker acceptance and the reverse reply explain the same-ID duplicate outcome. A lost reply or expired dispatch deadline leaves the record pending, later bounded cycles reuse its stored identity within the recovery and deduplication windows, and expiry without resolution stops automatic sends and requires authoritative reconciliation. The example distinguishes acceptance from completed `ready` status. These causal branches are available in teaching before the learner reaches EX-1.
+
+The status and file responses explicitly carry the private no-store policy and require authorization. Optional progress is conditional on existing clients and validators accepting unknown fields; the lesson tests both version directions and offers an opt-in shape for strict clients. Q1–Q6 and EX-1 remain answerable from the lesson, and both outcome maps remain consistent. The reservation rubric's pending identity, restart recovery and bounded deadline apply the taught model; the lesson's additional reconciliation branch does not contradict its specified answer. The revised trace retains instructional evidence for the assigned RPC/REST and merged case rows; no new coverage gap was found.
+
+| Finding | Severity | Status | Evidence and action |
+| --- | --- | --- | --- |
+| P-PR66-L02-1 | note | resolved | [Worked example](../../../../lessons/M03-L02.md#worked-example) now includes durable pending dispatch, bounded recovery and reconciliation alongside the public and RPC trace. No further pedagogical correction identified. |
+| P-PR66-L02-2 | note | resolved | [Companion outcome map and rubric](../../../../assessments/M03-L02.md#outcome-map) remain aligned with the corrected teaching. No further map correction identified. |
+
+**Current verdict: ready-for-human-review.** Pedagogy and assigned coverage only; this is not technical or human publication approval.
