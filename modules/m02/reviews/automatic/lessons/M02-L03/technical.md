@@ -32,3 +32,15 @@ No open technical or provenance findings in the changed scope.
 The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
 
 **Human-feedback re-review verdict: `ready-for-human-review`.**
+
+## PR #66 SLO correction re-review
+
+Reviewed `3566553..6131840` against the second P2 finding in [PR #66](https://github.com/czyboi/system-design-academy/pull/66#issuecomment-6846111131).
+
+| ID | Status | Verification | Evidence |
+| --- | --- | --- | --- |
+| MS02-PR66-P2-2 | resolved | `modules/m02/assessments/M02-L03.md:20–22,80–84` uses all valid original operations first submitted within the 60-second recovery window for the 99% success target. Each operation gets one second from first submission, with attempts joined by ID and late, shed or unresolved operations consuming the budget if they fail to succeed in time. The separate admitted-operation p99 starts at first submission, includes waits and retries, and assigns unresolved admitted operations the deadline duration. The example's 970/1,000 is 97%, which fails even with a 200 ms admitted p99. The rubric scores the two measures separately. | [Google SRE Workbook, What to Measure](https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis) |
+
+The pool budget still allows 165 web connections. With the smaller cap already deployed, 14 × 11 = 154 leaves 11 for headroom. If failed pools retain 30 each, 12 × 11 + 2 × 30 = 192 exceeds the web budget. The sample keeps safe same-ID replay within the remaining deadline and checks survivor capacity before replacements arrive. The pool math establishes connection exposure. The zone-loss drill must establish timely success and admitted latency. [RFC 9110 §9.2.2](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2)
+
+**PR #66 correction re-review verdict: `ready-for-human-review`.**

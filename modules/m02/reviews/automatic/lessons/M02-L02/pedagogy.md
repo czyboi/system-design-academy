@@ -47,3 +47,13 @@ Reviewed the changed lesson and companion at `fdbe268` against the [approved out
 | P-MS02-HUMAN-L02-1 | note | resolved | [Lesson, Worked example](../../../../lessons/M02-L02.md#worked-example) and [assessment, Answer key / rubric](../../../../assessments/M02-L02.md#answer-key--rubric) |
 
 **Current verdict: ready-for-human-review.** Coverage and pedagogy only.
+
+## Human SLO-feedback targeted re-review, 2026-11-13
+
+Reviewed the `3566553..6131840` change to [EX-1](../../../../assessments/M02-L02.md#practical-exercise) and its [answer and rubric](../../../../assessments/M02-L02.md#answer-key--rubric) against [PR #66 feedback](https://github.com/czyboi/system-design-academy/pull/66#issuecomment-6846111131). The scenario defines a 60-second population of intended reading/dashboard pairs, a 98% delivery threshold and a separate 95% display threshold among timely deliveries. The model counts missed and late deliveries in the delivery denominator, counts obsolete discards as display misses, follows end-of-window readings through their deadlines and illustrates a failed delivery target despite acceptable display latency. The rubric awards one point to each measurement. The lesson's datagram delivery and measured workload sections support the assessment, and the existing EX-1 outcome mappings remain appropriate.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-PR66-L02-1 | major | resolved | [Approved M02-L02 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m02-l02) and [lesson, Worked example](../../../../lessons/M02-L02.md#worked-example) |
+
+**Current verdict: ready-for-human-review.** Targeted pedagogy re-review only.

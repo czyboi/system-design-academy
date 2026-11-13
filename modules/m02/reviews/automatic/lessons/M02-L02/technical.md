@@ -43,3 +43,15 @@ No open technical or provenance findings in the changed scope.
 The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
 
 **Human-feedback re-review verdict: `ready-for-human-review`.**
+
+## PR #66 SLO correction re-review
+
+Reviewed `3566553..6131840` against the first P2 finding in [PR #66](https://github.com/czyboi/system-design-academy/pull/66#issuecomment-6846111131).
+
+| ID | Status | Verification | Evidence |
+| --- | --- | --- | --- |
+| MS02-PR66-P2-1 | resolved | `modules/m02/assessments/M02-L02.md:18–25,83–94` counts all intended reading/dashboard pairs generated in the 60-second window for the 98% delivery target. Loss, lateness and shedding use that budget. The display target uses the timely-delivery cohort and counts obsolete discards as misses. The trace follows each pair past the window as necessary and joins source, arrival and display by identity. The example gives 97% delivery and about 97.94% display, so display can pass while delivery fails. The rubric awards these checks separately. | [Google SRE Workbook, What to Measure](https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis) |
+
+The modeled HTTP buffer cap remains 320 connections. The datagram option budgets resources separately and retains congestion response. The ticket replay policy still uses one durable identity within its two-attempt, two-second budget. The load test is the evidence required to establish the scenario's targets. [RFC 8085 §3.1](https://www.rfc-editor.org/rfc/rfc8085.html#section-3.1)
+
+**PR #66 correction re-review verdict: `ready-for-human-review`.**

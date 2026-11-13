@@ -46,3 +46,13 @@ Reviewed the changed lesson and companion at `fdbe268` against the [approved out
 | P-MS02-HUMAN-L03-1 | note | resolved | [Lesson, Proxy work and horizontal scaling](../../../../lessons/M02-L03.md#proxy-work-and-horizontal-scaling) and [assessment, Practical exercise](../../../../assessments/M02-L03.md#practical-exercise) |
 
 **Current verdict: ready-for-human-review.** Coverage and pedagogy only.
+
+## Human SLO-feedback targeted re-review, 2026-11-13
+
+Reviewed the `3566553..6131840` change to [EX-1](../../../../assessments/M02-L03.md#practical-exercise) and its [answer and rubric](../../../../assessments/M02-L03.md#answer-key--rubric) against [PR #66 feedback](https://github.com/czyboi/system-design-academy/pull/66#issuecomment-6846111131). The scenario requires 99% timely success among all valid original operations first submitted during the recovery window, counts failed, shed and unresolved operations against that budget, and defines admitted-operation p99 separately. The model follows late-window submissions to deadline and demonstrates that 970/1,000 successes fails even at 200 ms admitted p99. The rubric assigns one point to each measure. The lesson's pool budgeting, bounded waits and latency-with-rejection observations support the exercise, and EX-1 remains correctly mapped to both outcomes.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-PR66-L03-1 | major | resolved | [Approved M02-L03 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m02-l03) and [lesson, Proxy work and horizontal scaling](../../../../lessons/M02-L03.md#proxy-work-and-horizontal-scaling) |
+
+**Current verdict: ready-for-human-review.** Targeted pedagogy re-review only.

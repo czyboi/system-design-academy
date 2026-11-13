@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-12T14:58:49Z",
-  "updated_at": "2026-11-13T06:41:30Z",
+  "updated_at": "2026-11-13T06:43:04Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -78,14 +78,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "PR #66 human feedback 6846111131: separate delivery or successful operations from latency in M02-L02 and M02-L03",
-      "updated_at": "2026-11-13T06:41:29Z"
+      "status": "reviewed",
+      "reason": "Independent scoped re-review at 6131840 cleared the PR #66 P2 assessment changes.",
+      "updated_at": "2026-11-13T06:43:04Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "PR #66 human feedback 6846111131: separate delivery or successful operations from latency in M02-L02 and M02-L03",
-      "updated_at": "2026-11-13T06:41:30Z"
+      "status": "reviewed",
+      "reason": "Independent scoped re-review at 6131840 cleared the PR #66 P2 assessment changes.",
+      "updated_at": "2026-11-13T06:43:04Z"
     }
   }
 }
