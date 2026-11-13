@@ -14,7 +14,8 @@ Two mobile client versions coexist. Clients sometimes retry a create after losin
 
 1. Compare a modular application with isolated renderer capacity, a separately deployed renderer, and a service per catalogue entity. Choose one and assign ownership of item version, publication state, rendering and retries. Identify the invariant and the transaction that protects it.
 2. Define the editor-facing create and status interfaces and the renderer operation. Trace request and reply. Specify duplicate requests, compatibility and how a delayed result for an older version is handled.
-3. Compare caller-side and intermediary-side endpoint selection for this workload. Trace the stopped renderer and a lost reply after acceptance. Specify remaining deadline, attempt ownership, bounded concurrency and behavior while discovery is unavailable. State which observations would justify your split.
+3. Compare caller-side and intermediary-side endpoint selection for this workload. Trace the stopped renderer and a lost reply after acceptance. Specify remaining deadline, attempt ownership, bounded concurrency and behavior while discovery is unavailable.
+4. Define pass criteria for a peak-load failure drill and for correctness tests that force concurrent publication, edit and revocation in different orders. State which results would justify your split.
 
 [Reference solution and rubric](solution-rubric.md) · [Decision summary](decision-summary.md)
 

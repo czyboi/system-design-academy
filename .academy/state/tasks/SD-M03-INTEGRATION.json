@@ -88,17 +88,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-12T14:58:53Z",
-  "updated_at": "2026-11-13T00:49:07Z",
+  "updated_at": "2026-11-13T02:44:47Z",
   "review_statuses": {
     "technical": {
-      "status": "reviewed",
-      "reason": "Independent SDA-MS02 m03 verdict ready-for-human-review.",
-      "updated_at": "2026-11-13T00:49:06Z"
+      "status": "needs_review",
+      "reason": "Material assessment and rubric changes addressing SDA-MS02 human content feedback in Issue #64 comment 6841513179",
+      "updated_at": "2026-11-13T02:44:47Z"
     },
     "pedagogy": {
-      "status": "reviewed",
-      "reason": "Independent SDA-MS02 m03 verdict ready-for-human-review.",
-      "updated_at": "2026-11-13T00:49:07Z"
+      "status": "needs_review",
+      "reason": "Material assessment and rubric changes addressing SDA-MS02 human content feedback in Issue #64 comment 6841513179",
+      "updated_at": "2026-11-13T02:44:47Z"
     }
   }
 }

@@ -33,13 +33,13 @@ The durable record covers acceptance of the logical job. If processing restarts,
 
 ## Self-evaluation
 
-Award 2 for complete reasoning, 1 for a correct but incomplete argument and 0 for a missing or contradictory argument.
+Score each criterion independently. Award 2 for the evidence in the table, 1 for a plausible but incomplete argument, and 0 for missing or contradictory reasoning. A proposal meets the design requirements only if it preserves publication eligibility under races, prevents duplicate logical work within the declared retry and recovery window, and bounds work during overload and discovery failure. A design that meets these requirements still needs the verification evidence for full credit.
 
 | Criterion | Evidence for full credit |
 | --- | --- |
 | Boundary and invariant | Compare alternatives using the scenario’s CPU constraint and the delay allowance. Name the state owner and show how the publication guard serializes with concurrent version changes and approval revocations. |
 | Interface trace | Specify resource and operation semantics, stub path, private status, compatibility and durable duplicate handling. |
 | Failure policy | Trace elapsed and remaining time, justify discovery ownership, and give the retry owner a total attempt cap and a stable operation identity. State an in-flight cap and where work waits at saturation. Bound cache age during registry failure and specify how to defer, resume or expire work. |
-| Verification | Propose load and worker-loss tests, including how to validate the maximum endpoint age and in-flight cap. Exercise both orderings of a render completion racing with an edit or revocation. After approving v1 and editing to v2, verify that a v2 result stays private until v2 is approved. |
+| Verification | At the modeled peak, stop a worker and interrupt discovery. Check metadata p99 at or below 200 ms, preview completion against the two-minute target, queue age, retry rate, and the selected endpoint-age and in-flight caps. Drop a reply after durable acceptance and check for one logical job. Force both orderings of publication racing an edit or revocation. After approving v1 and editing to v2, verify that v2 stays private until explicitly approved. Equivalent tests earn credit when they demonstrate the same constraints. |
 
 Other choices earn credit if they protect the current-version invariant and bound work within the stated failure policies. An authoritative accepted record resolves whether the renderer accepted the work ID. An absent or pending record leaves room for an earlier attempt to apply. Preserve the covered work ID or require authoritative terminal evidence of non-application before assigning a fresh one.

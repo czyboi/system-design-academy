@@ -20,8 +20,8 @@ The catalogue serves public, versioned image variants and a private saved-items 
 
 1. Trace DNS to the edge, edge hit and edge miss, and response to the browser. Predict the endpoint for R1 and R2 at time +60 s and say which assumption could change the result.
 2. Choose the browser and origin protocols and identify TLS boundaries. Explain where L4 balancing suffices and why the component routing media and saved-items by HTTP path needs L7 visibility.
-3. Compare warm and cold media origin load. Propose a way to stay within capacity and state the conditions it relies on. Specify media and private cache policies, replacement, and behavior for stale and absent objects during the origin outage.
-4. Identify an observable signal for DNS convergence, overload and freshness. Explain how you would verify the behavior under failure.
+3. Compare warm and cold media origin load with no collapsing and with ideal collapsing. Recalculate the cold case if the same burst is split across four independent domains, each seeing all 80 keys and collapsing each key once locally. Explain how a shared upstream cache, nonoverlapping requests or origin retries change the count. Defend a capacity policy and specify media and private cache policies, replacement, and behavior for stale and absent objects during the origin outage.
+4. Design a cold-start test that verifies the 1,000 fetches/s capacity at the origin and reports shed traffic. Identify how to verify DNS convergence, freshness and private response isolation during failure.
 
 [Reference solution and rubric](solution-rubric.md) · [Decision summary](decision-summary.md)
 

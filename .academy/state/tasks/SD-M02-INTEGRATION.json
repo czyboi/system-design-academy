@@ -91,17 +91,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-12T14:58:50Z",
-  "updated_at": "2026-11-12T15:14:50Z",
+  "updated_at": "2026-11-13T02:44:45Z",
   "review_statuses": {
     "technical": {
-      "status": "reviewed",
-      "reason": "Independent SDA-MS02 review of m02 cleared this scope.",
-      "updated_at": "2026-11-12T15:14:49Z"
+      "status": "needs_review",
+      "reason": "Material assessment and rubric changes addressing SDA-MS02 human content feedback in Issue #64 comment 6841513179",
+      "updated_at": "2026-11-13T02:44:44Z"
     },
     "pedagogy": {
-      "status": "reviewed",
-      "reason": "Independent SDA-MS02 review of m02 cleared this scope.",
-      "updated_at": "2026-11-12T15:14:50Z"
+      "status": "needs_review",
+      "reason": "Material assessment and rubric changes addressing SDA-MS02 human content feedback in Issue #64 comment 6841513179",
+      "updated_at": "2026-11-13T02:44:45Z"
     }
   }
 }
