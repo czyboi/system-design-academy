@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-13T13:27:34Z",
-  "updated_at": "2026-11-13T13:44:55Z",
+  "updated_at": "2026-11-13T13:48:53Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -61,19 +61,33 @@
         "modules/m04/assessments/M04-L03.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Resolved T1/T2 through observable guarded cutover, exclusion of late activation, and explicit ring convention.",
+        "next_action": "Scoped handoff and targeted independent re-review.",
+        "at": "2026-11-13T13:48:52Z"
       },
-      "attempts": 1,
-      "started_at": "2026-11-13T13:44:05Z",
-      "run_id": "SD-M04-L03-author-20261113T134405Z",
-      "agent": "codex",
+      "attempts": 2,
+      "started_at": "2026-11-13T13:47:51Z",
+      "run_id": "SD-M04-L03-author-20261113T134751Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-13T13:44:55Z",
-      "completed_by": "codex"
+      "completed_at": "2026-11-13T13:48:53Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Resolve M04-L03-T1/T2 in Stage A revision 1."
     }
-  ]
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Independent review at ac46917 returned revise. See the scoped report.",
+      "updated_at": "2026-11-13T13:47:50Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent review at ac46917 returned ready-for-human-review. See the scoped report.",
+      "updated_at": "2026-11-13T13:47:50Z"
+    }
+  }
 }
