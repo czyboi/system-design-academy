@@ -2,6 +2,30 @@
   "schema_version": 1,
   "entries": [
     {
+      "key": "bind-approval-to-the-approved-version",
+      "tags": [
+        "transactions",
+        "concurrency",
+        "invariants",
+        "service-boundaries"
+      ],
+      "problem": "A boolean approval could survive a version change and authorize publication of a new version the editor never approved.",
+      "prevention": "Bind approval to the reviewed version. Require the current, approved and result versions to match at the guarded write. Trace approval of one version followed by an edit and completion of the new version.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "M03-SYN-T1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED"
+        }
+      ]
+    },
+    {
       "key": "edge-miss-versus-origin-fetch-count",
       "tags": [
         "caching",
@@ -21,6 +45,30 @@
           "review_role": "technical",
           "report": "modules/m02/reviews/automatic/technical.md",
           "evidence": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html"
+        }
+      ]
+    },
+    {
+      "key": "grade-each-required-design-decision",
+      "tags": [
+        "assessment",
+        "rubrics",
+        "synthesis",
+        "failure-modes"
+      ],
+      "problem": "A rubric awarded full credit without requiring a concurrency bound and discovery-outage policy requested by the exercise.",
+      "prevention": "Compare each required design decision in the prompt to full-credit evidence. Distinguish stating the policy and bounds from proposing tests for that policy.",
+      "applies_to": [
+        "lesson_author",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "P-M03-S1-02",
+          "review_role": "pedagogy",
+          "report": "modules/m03/reviews/automatic/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
         }
       ]
     },
