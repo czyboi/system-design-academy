@@ -14,7 +14,7 @@ If the lesson does not teach an outcome or a question would require untaught con
 ## Procedure
 
 1. Keep the assessment in its own companion artifact; do not edit the teaching lesson or turn it into a question bank.
-2. Map every outcome to at least one assessment item and identify the exact lesson section that teaches it.
+2. For each assessable action in an outcome, identify a graded item and the exact teaching sections it uses. Map shared items to every outcome they assess. Keep the front matter, narrative outcome map and any module portfolio consistent.
 3. Provide one practical exercise with requirements, constraints, deliverables, solution or rubric, and a defensible sample answer.
 4. Provide 5–8 knowledge checks with correct answers and concise reasoning. Mix explanation, diagnosis, calculation, design choice, and trade-off questions; use recall only where useful.
 5. State assumptions and units. Avoid ambiguous wording and unstated vendor/version assumptions.
