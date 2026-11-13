@@ -61,21 +61,21 @@
         "modules/m03/integrated/outcome-portfolio.json"
       ],
       "checkpoint": {
-        "note": "Address M03-SYN-T1, M03-SYN-T2, M03-SYN-P1, P-M03-S1-01, P-M03-S1-02.",
-        "next_action": "Scoped handoff and independent targeted re-review.",
-        "at": "2026-11-13T00:47:40Z"
+        "note": "Addressed M03-SYN-T3 through T7 and P-PR66-M03-1 through 3: cohort, scoring, bounded work, recovery and compatibility.",
+        "next_action": "Scoped draft handoff and independent targeted synthesis re-review.",
+        "at": "2026-11-13T08:26:25Z"
       },
-      "attempts": 2,
-      "started_at": "2026-11-13T00:47:40Z",
-      "run_id": "SD-M03-INTEGRATION-author-20261113T004740Z",
-      "agent": "codex",
+      "attempts": 3,
+      "started_at": "2026-11-13T08:23:34Z",
+      "run_id": "SD-M03-INTEGRATION-author-20261113T082334Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-13T00:47:41Z",
-      "completed_by": "codex",
-      "invalidation_reason": "Independent reviewer findings M03-SYN-T1, M03-SYN-T2, M03-SYN-P1, P-M03-S1-01, P-M03-S1-02"
+      "completed_at": "2026-11-13T08:26:25Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "PR #66 Stage B findings M03-SYN-T3 through T7 and P-PR66-M03-1 through 3"
     }
   ],
   "notes": "",
@@ -88,7 +88,7 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-12T14:58:53Z",
-  "updated_at": "2026-11-13T07:13:19Z",
+  "updated_at": "2026-11-13T08:26:25Z",
   "review_statuses": {
     "technical": {
       "status": "needs_review",
