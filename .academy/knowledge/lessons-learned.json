@@ -213,6 +213,32 @@
       ]
     },
     {
+      "key": "gate-replayed-success-on-durability",
+      "tags": [
+        "replication",
+        "failover",
+        "idempotency",
+        "durability"
+      ],
+      "problem": "An idempotent retry could report success from a locally committed record before the required standby made it durable.",
+      "prevention": "Require the same durability proof on original and replayed success. Check the designated standby and matching history before confirming locally recovered operation records.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L02-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L02/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT",
+          "lesson": "M04-L02"
+        }
+      ]
+    },
+    {
       "key": "grade-each-required-design-decision",
       "tags": [
         "assessment",
