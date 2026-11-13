@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-13T13:27:34Z",
-  "updated_at": "2026-11-13T13:33:58Z",
+  "updated_at": "2026-11-13T13:35:28Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -80,14 +80,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "M04-L01-T1/T2 require attempt fencing and precise references.",
-      "updated_at": "2026-11-13T13:32:19Z"
+      "status": "reviewed",
+      "reason": "Independent round 1 cleared T1/T2 at da9134c.",
+      "updated_at": "2026-11-13T13:35:27Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "M04-L01-P1/P2 require an attachment failure trace and rollback example.",
-      "updated_at": "2026-11-13T13:32:19Z"
+      "status": "reviewed",
+      "reason": "Independent round 1 cleared P1/P2 at da9134c.",
+      "updated_at": "2026-11-13T13:35:28Z"
     }
   }
 }

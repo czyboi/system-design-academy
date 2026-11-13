@@ -187,6 +187,32 @@
       ]
     },
     {
+      "key": "fence-artifact-publish-before-cleanup",
+      "tags": [
+        "object-storage",
+        "transactions",
+        "concurrency",
+        "cleanup"
+      ],
+      "problem": "Pending-only publication could expose an object after cleanup deleted the retired upload attempt.",
+      "prevention": "Guard publication and retirement by the same durable attempt token and state on the owning row. Trace both orders and keep cleanup tracking until late uploads can no longer recreate the object.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L01-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L01/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M04-L01"
+        }
+      ]
+    },
+    {
       "key": "grade-each-required-design-decision",
       "tags": [
         "assessment",
