@@ -1,7 +1,7 @@
 {
   "module": "m03",
   "lesson": "M03-L03",
-  "revision_attempts": 0,
+  "revision_attempts": 1,
   "review_history": [
     {
       "round": 0,
@@ -26,10 +26,22 @@
       "technical": "ready-for-human-review",
       "pedagogy": "ready-for-human-review",
       "result": "ready"
+    },
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "revise",
+      "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
     }
   ],
-  "status": "revising",
-  "updated_at": "2026-11-13T08:50:14.544Z",
+  "status": "ready",
+  "updated_at": "2026-11-13T12:52:04+00:00",
   "reopen_history": [
     {
       "at": "2026-11-13T02:44:49+00:00",

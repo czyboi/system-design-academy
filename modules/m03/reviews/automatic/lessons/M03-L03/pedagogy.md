@@ -54,3 +54,23 @@ Reviewed `31b2eb0` against `fdbe268`. The [lesson](../../../../lessons/M03-L03.m
 | P-MS02-CORRECT-L03-1 | note | resolved | [Approved M03-L03 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l03) |
 
 **Current verdict: ready-for-human-review.** Pedagogy and assigned coverage only.
+
+## Targeted assessment re-review at f1bda28, 2026-11-13
+
+Reviewed only the assessment change from `99dd109` to `f1bda28` and its necessary teaching dependencies. EX-1 defines original-call outcomes and the rubric separately credits the success budget, concurrency controls, and a test; LO2 is mapped to EX-1. Two material issues remain:
+
+- **P-M03-L03-03 — Major, open — [lesson, Trade-offs and failure modes](../../../../lessons/M03-L03.md#trade-offs-and-failure-modes); [assessment, EX-1 and Answer key / rubric](../../../../assessments/M03-L03.md#practical-exercise):** The lesson teaches a concurrency cap and monitoring rejection, attempt rate and latency, but does not teach an original-call cohort, a timely-success/error denominator or how attempt duration and retries constrain its success rate. The new exercise requires and grades those decisions, and the explanation appears only in its answer key. A learner cannot derive the intended measurement and capacity comparison from the lesson itself. Teach a concise original-call measurement and capacity example in the lesson, including failed and late calls, before assessing its application. The [approved task specification](../../../../../../.academy/specs/SD-M03-L03.json) requires outcomes to be taught and assessed and success measurement under failure constraints.
+- **P-M03-L03-04 — Major, open — [assessment, Answer key / rubric](../../../../assessments/M03-L03.md#answer-key--rubric):** The sample caps each upstream attempt at 180 ms yet assumes each attempt holds a proxy slot for an average 200 ms, without describing any additional slot-holding time. Its 500 completions/s calculation therefore does not follow from the stated sample policy. It also names no actual observation window for its 95% target despite requiring one, leaving the outage-cutoff effect impossible to reproduce for the sample cohort. Align slot occupancy with the attempt cap or explicitly explain additional occupancy, and specify a cohort window and consistent retry/capacity assumptions for the calculation. The [task specification](../../../../../../.academy/specs/SD-M03-L03.json) requires a named population, window and threshold.
+
+**Current verdict: revise.** This targeted verdict concerns pedagogy only; it is not technical or human approval.
+
+## Targeted correction re-review at fefd326, 2026-11-13
+
+Reviewed the changes from `f1bda28` to `fefd326` and the affected EX-1 rubric and LO2 mapping.
+
+| Finding | Status | Resolution evidence |
+| --- | --- | --- |
+| P-M03-L03-03 | resolved | [Lesson, Trade-offs and failure modes](../../../../lessons/M03-L03.md#trade-offs-and-failure-modes) teaches a cohort of original valid calls, individual deadlines, misses including late and unresolved work, retry accounting, and a separately qualified steady-capacity calculation. [EX-1 and rubric](../../../../assessments/M03-L03.md#practical-exercise) apply and separately score the budget and capacity decision; the outcome map locates this evidence for LO2. |
+| P-M03-L03-04 | resolved | [Assessment, Answer key / rubric](../../../../assessments/M03-L03.md#answer-key--rubric) specifies the 120-second original-call cohort, follows each call through its own 500 ms deadline, and uses 160 ms average occupancy consistent with the 180 ms attempt cap. It separates the approximate steady-phase 625 attempts/s from the explicitly assumed fail-closed outage bound of 60,000/120,000 successes, and identifies distinct mitigations. |
+
+**Current verdict: ready-for-human-review.** This targeted verdict concerns pedagogy only; it is not technical or human approval.

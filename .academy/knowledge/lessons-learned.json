@@ -127,6 +127,14 @@
           "review_role": "technical",
           "report": "modules/m02/reviews/automatic/technical.md",
           "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis"
+        },
+        {
+          "module": "m03",
+          "finding_id": "M03-L03-T-OVERLOAD-1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
+          "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis",
+          "lesson": "M03-L03"
         }
       ]
     },

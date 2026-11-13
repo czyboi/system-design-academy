@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-12T14:58:53Z",
-  "updated_at": "2026-11-13T08:59:13Z",
+  "updated_at": "2026-11-13T12:52:04Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -80,14 +80,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "PR #66 revised M03-L03 EX-1 original-request error budget, reference answer and grading rubric; targeted independent re-review is pending.",
-      "updated_at": "2026-11-13T08:50:24.985Z"
+      "status": "reviewed",
+      "reason": "PR #66 independent targeted re-review at fefd326 resolved the overload error-budget findings and verified the lesson, model answer and rubric alignment.",
+      "updated_at": "2026-11-13T12:52:04Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "PR #66 revised M03-L03 EX-1 original-request error budget, reference answer and grading rubric; targeted independent re-review is pending.",
-      "updated_at": "2026-11-13T08:50:24.985Z"
+      "status": "reviewed",
+      "reason": "PR #66 independent targeted re-review at fefd326 resolved the overload error-budget findings and verified the lesson, model answer and rubric alignment.",
+      "updated_at": "2026-11-13T12:52:04Z"
     }
   }
 }
