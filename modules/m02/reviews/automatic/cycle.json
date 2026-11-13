@@ -1,6 +1,6 @@
 {
   "module": "m02",
-  "revision_attempts": 0,
+  "revision_attempts": 1,
   "review_history": [
     {
       "round": 0,
@@ -19,10 +19,16 @@
       "technical": "ready-for-human-review",
       "pedagogy": "ready-for-human-review",
       "result": "ready"
+    },
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "revise",
+      "result": "needs_revision"
     }
   ],
   "status": "revising",
-  "updated_at": "2026-11-13T07:13:19+00:00",
+  "updated_at": "2026-11-13T08:05:46+00:00",
   "reopen_history": [
     {
       "at": "2026-11-13T02:44:49+00:00",

@@ -64,21 +64,21 @@
         "modules/m02/integrated/outcome-portfolio.json"
       ],
       "checkpoint": {
-        "note": "Address M02-INT-T1 and M02-P1.",
-        "next_action": "Run scoped handoff and targeted independent re-review.",
-        "at": "2026-11-12T15:13:08Z"
+        "note": "Addressed M02-INT-T2/T3 and M02-P2 with full-drain origin accounting, worked viewer outcomes and independent grading.",
+        "next_action": "Scoped draft handoff and independent targeted synthesis re-review.",
+        "at": "2026-11-13T08:07:06Z"
       },
-      "attempts": 2,
-      "started_at": "2026-11-12T15:13:07Z",
-      "run_id": "SD-M02-INTEGRATION-author-20261112T151307Z",
-      "agent": "codex",
+      "attempts": 3,
+      "started_at": "2026-11-13T08:05:46Z",
+      "run_id": "SD-M02-INTEGRATION-author-20261113T080546Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-12T15:13:08Z",
-      "completed_by": "codex",
-      "invalidation_reason": "Independent m02 reviewer findings M02-INT-T1 and M02-P1"
+      "completed_at": "2026-11-13T08:07:06Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "PR #66 Stage B findings M02-INT-T2/T3 and M02-P2"
     }
   ],
   "notes": "",
@@ -91,7 +91,7 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-12T14:58:50Z",
-  "updated_at": "2026-11-13T07:13:19Z",
+  "updated_at": "2026-11-13T08:07:06Z",
   "review_statuses": {
     "technical": {
       "status": "needs_review",
