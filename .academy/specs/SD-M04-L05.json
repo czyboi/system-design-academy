@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M04-L05",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M04-L05 — SQL tuning as an evidence loop",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and canonical backlog outputs for SDA-M04-L05.",
+      "**Prerequisites:** M04-L04\n\n**Outcomes:** M04-L05-LO1: trace/model the mechanisms below in the worked scenario. M04-L05-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Benchmark and profile before changes; query plans and slow-query evidence.\n2. Tighten schema: type/range/precision, nullability, CHAR/VARCHAR/TEXT, decimal money and external blobs.\n3. B-tree and composite-index access, read/write/memory trade-offs and bulk load/rebuild.\n4. Expensive joins, partition pruning/hot tables and query-shape changes.\n5. Query-cache tuning as historical product behaviour; verify version and distinguish application caching.\n\n6. Compare read replicas, federation, sharding, denormalisation and query tuning by the measured read/write/storage bottleneck and affected transaction boundary.\n\n**Worked-example plan:** Compare two query plans and a schema/index change under the same workload.\n\n**Trade-offs and when to use/avoid:** Choose measured improvements; source-era type and query-cache advice must be verified, corrected or explicitly historical.\n\n**Quick-check focus:** Explain why an index or partition can increase cost for this workload. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Teach the mapped topics PR-H100, PR-H101, PR-H102, PR-H103, PR-H104, PR-H105, PR-WEB_CRAWLER-H017, PR-SOCIAL_GRAPH-H013, PR-QUERY_CACHE-H016, PR-SCALING_AWS-H039."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate ownership through GitHub Issue #71 on codex/drafts-sda-ms03.",
+    "Write original English for middle and senior engineers. Use the pinned Primer as a topic map and verify technical claims with exact primary sources.",
+    "Keep learner-facing status draft, separate teaching from assessment and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level evidence at the canonical path with exact source sections, applicable versions and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver complete teaching and assessment artifacts at the canonical paths for scoped draft handoff and independent review.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record and verify the primary source section, version or publication scope, and applicability for every material claim.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M04-L05 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-failure-criteria",
+      "text": "Trace the mechanism and failure behavior, ground decisions in stated evidence, and define the user-visible measurement population, window and threshold wherever the scenario uses an SLO.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
