@@ -59,7 +59,7 @@
         "failure-modes"
       ],
       "problem": "A recovery or performance target can appear satisfied when its time window and denominator are ambiguous, slow or failed jobs are excluded, or admission shedding hides unsuccessful requests.",
-      "prevention": "For each SLO-like exercise, define the target population, measurement window, start and end events, acceptable threshold, and treatment of rejected, timed-out, expired, failed and late operations. Measure at the relevant system boundary, distinguish admitted latency from end-to-end success, and grade verification against those definitions rather than an attractive metric alone.",
+      "prevention": "Define each SLO's population, measurement window, numerator/denominator, threshold, and start/end events. Count rejected, timed-out, failed, expired and late operations explicitly. Report admitted latency separately from end-to-end success and load shedding. Grade verification using those boundaries, not a metric that excludes unsuccessful work.",
       "applies_to": [
         "lesson_author",
         "technical_reviewer",
@@ -92,7 +92,7 @@
         "system-design"
       ],
       "problem": "Technically accurate lessons and complete outcome mappings passed review, but several exercises initially tested recall or isolated arithmetic rather than the architectural reasoning expected of middle+/senior engineers.",
-      "prevention": "Check the intended learner level before accepting an assessment. Keep prerequisite theory concise, but make suitable practical exercises require a defensible design under realistic constraints and failures, explicit assumptions and alternatives, quantitative reasoning where relevant, and verification evidence. Score those target skills in the rubric rather than merely accepting a plausible component choice. Do not force every lesson into a staff-level exercise.",
+      "prevention": "For middle+/senior learners, keep theory concise. Exercises must demand design choices under realistic constraints and failures, with assumptions, alternatives, trade-offs and verification. Add capacity or concurrency reasoning when relevant. Give full rubric credit for design reasoning, not recall or isolated arithmetic.",
       "applies_to": [
         "lesson_author",
         "pedagogy_reviewer"
@@ -103,7 +103,7 @@
           "finding_id": "P-MS02-HUMAN-L03-1",
           "review_role": "pedagogy",
           "report": "modules/m02/reviews/automatic/lessons/M02-L03/pedagogy.md",
-          "evidence": "https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M02-L03"
         }
       ]
