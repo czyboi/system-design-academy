@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M05-L01",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M05-L01 — Key-value and document stores",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and canonical backlog outputs for SDA-M05-L01.",
+      "**Prerequisites:** M04-L03\n\n**Outcomes:** M05-L01-LO1: trace/model the mechanisms below in the worked scenario. M05-L01-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Key-value operations, hash/ordered access and application-owned relationships.\n2. Documents, nested aggregates, indexes and schema evolution.\n3. Redis, Memcached, MongoDB and DynamoDB as distinct research cases; BASE is not a product guarantee.\n\n**Worked-example plan:** Compare storing a session token with a product aggregate queried by attributes.\n\n**Trade-offs and when to use/avoid:** Use key-value for known-key access; use documents when aggregate retrieval and indexed fields fit; verify transaction scope.\n\n**Quick-check focus:** Explain why arbitrary attribute search changes a key-value design. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Teach the mapped topics PR-H108, PR-H110, PR-ARCH-MONGODB."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate ownership through GitHub Issue #73 on codex/drafts-sda-ms03.",
+    "Write original English for middle and senior engineers. Use the pinned Primer as a topic map and verify technical claims with exact primary sources.",
+    "Keep learner-facing status draft, separate teaching from assessment and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level evidence at the canonical path with exact source sections, applicable versions and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver complete teaching and assessment artifacts at the canonical paths for scoped draft handoff and independent review.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record and verify the primary source section, version or publication scope, and applicability for every material claim.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M05-L01 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-failure-criteria",
+      "text": "Trace the mechanism and failure behavior, ground decisions in stated evidence, and define the user-visible measurement population, window and threshold wherever the scenario uses an SLO.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
