@@ -1,6 +1,6 @@
 ---
 name: lesson-authoring
-description: Write concise, original System Design teaching lessons for experienced engineers using the approved curriculum and evidence pack.
+description: Write concise, publication-ready, original System Design teaching lessons for experienced engineers using the approved curriculum and evidence pack.
 ---
 
 # Lesson Authoring
@@ -10,6 +10,12 @@ description: Write concise, original System Design teaching lessons for experien
 Require the canonical task specification, selected approved curriculum, source research evidence, the declared `lesson-authoring`, `assessment-design` and `content-format` skills, `GOVERNANCE.md`, and exact canonical output paths. Module-specific templates and checklists may be consulted as examples, but are not mandatory new workflow inputs or substitutes for the current curriculum. The current approved baseline is `curriculum/revision-1/`. For Academy work, the current default learner is a middle/senior engineer studying system design, and learner-facing prose is English-only. Follow newer explicit user direction recorded in the task specification.
 
 Do not start when the user has explicitly paused work, required source evidence is absent, or the lesson/assessment output paths are not separate. Review and validation are not drafting prerequisites unless the user specifically makes them part of this task.
+
+## Publication-ready authoring standard
+
+The `draft` front-matter status means **awaiting human approval**, not incomplete or demo-grade content. At handoff the lesson and companion must be educationally complete for publication: every assigned outcome is explained through causal mechanism and worked reasoning, with a precise trace, diagram or concrete interface when prose alone leaves a material gap. Do not pad for length or require universal diagram/code quotas. A learner must not depend on the answer key to understand missing lesson mechanisms.
+
+For design exercises, independently check system capacity and **user-visible success**. State each important SLO's original-operation population, measurement window, start/end events, threshold and what rejected, failed, timed-out or late work counts as. Grade admitted/successful latency separately so excessive shedding cannot make a design look successful. Flag unresolved teaching or assessment gaps instead of deferring them to a post-merge phase. Apply these expectations through the existing self-check and independent reviews; add no agents or workflow stages.
 
 ## Verified cross-module feedback
 

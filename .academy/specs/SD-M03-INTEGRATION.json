@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "task_id": "SD-M03-INTEGRATION",
-  "revision": 1,
-  "goal": "Deliver the canonical SDA-v1 draft for SDA-M03-INT — Integrated design, reference solution and decision summary",
+  "revision": 2,
+  "goal": "Deliver the publication-ready SDA-v1 learner content (kept as draft pending human approval) for SDA-M03-INT — Integrated design, reference solution and decision summary",
   "scope": {
     "in_scope": [
       "Use approved SDA-v1 and the canonical outputs from Story SDA-M03-INT.",
@@ -27,7 +27,7 @@
     },
     {
       "id": "dod-draft",
-      "text": "Deliver all canonical Story drafts for parent-owned handoff.",
+      "text": "Deliver canonical Story teaching and assessment/integration content at publication quality, with no known substantive learning, correctness, scoring, or measurement gaps; keep the workflow status draft until human approval.",
       "applies_to": [
         "author"
       ]
@@ -58,6 +58,13 @@
     {
       "id": "ac-draft-3",
       "text": "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-publication-readiness",
+      "text": "Produce complete learner-facing teaching and assessment artifacts at author handoff, not prototypes. Explain assigned mechanisms causally with a concrete trace, API contract or diagram when needed. Grade design under realistic failure and user-success constraints, naming SLO population/window/threshold and counting shed, rejected, expired, failed or late work where applicable. No filler or diagram quota; human publication approval remains separate.",
       "applies_to": [
         "author"
       ]
