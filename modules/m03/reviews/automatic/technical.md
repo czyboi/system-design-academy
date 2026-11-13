@@ -46,3 +46,27 @@ Reviewed 2026-11-13 at correction handoff `7049534a56600c4cc5560e3e2a4ebac38a1eb
 The revised decision summary supplies the portfolio’s M03-S1 teaching section before the exercise. Its boundary, contract and retry sequence use the same approved lesson-outcome subset. The correction handoff contains no lesson changes and preserves the M03-L02 preview link.
 
 `ready-for-human-review`. All original findings are resolved. No open blocker or major findings.
+
+## 2026-11-13 targeted re-review after content feedback
+
+Reviewed the integration delta `e805261..31b2eb0` at `31b2eb0a9fe4f3d3373a711c3e60a285705199e9`. Scope covers the revised M03-EX1 verification task and rubric, with the existing invariant, contracts and deadline behavior checked against the accepted lessons. [Issue #64 content feedback](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179)
+
+| ID | Severity | Status | Location | Evidence and suggested correction |
+| --- | --- | --- | --- | --- |
+| M03-SYN-T3 | minor | open | `modules/m03/integrated/solution-rubric.md:43`, Verification | “Preview completion against the two-minute target” gives the time limit but leaves the measured population implicit. A time-to-ready sample drawn only from completed previews could look healthy while the queue expires slow jobs. Use the accepted-job cohort and measure from durable acceptance to ready within 120 seconds. Count expired and failed jobs in the cohort and state the drill's failure duration. This supplies a checkable pass criterion using the existing target. [Google SRE Workbook, What to Measure: Using SLIs](https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis) |
+
+- The guard and verification at `modules/m03/integrated/solution-rubric.md:10,40,43` preserve M03-SYN-T1. The same-row guard binds current, approved and rendered versions. Both edit/revocation interleavings are exercised, and v2 remains private after editing an approved v1 until v2 is explicitly approved. The guard describes the state transition. The rubric asks the learner to verify it under a forced race. [PostgreSQL 18 §13.2.1](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED)
+- The verification criteria at `modules/m03/integrated/solution-rubric.md:36,42–45` preserve the distinction between a lost reply and a duplicate logical job. They require a reply drop after durable acceptance, one logical job, and the chosen retry, cache-age and in-flight limits under worker loss and discovery interruption. The 300 ms trace and illustrative five-second and 16 outstanding dispatch-call settings are unchanged. Those caps bound caller-tracked dispatch, while M03-L03 separately identifies active receiver work. An unknown outcome keeps the same covered work ID unless authoritative terminal evidence permits a fresh identity. [Amazon Builders’ Library, Making retries safe with idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) · [gRPC Deadlines, Deadlines on the Server](https://grpc.io/docs/guides/deadlines/#deadlines-on-the-server)
+- The revised prompt at `modules/m03/integrated/brief.md:15–18` asks for a boundary choice and verification. The rubric gives separate credit for the invariant, interface, failure policy and tests. It states the existing metadata threshold of p99 ≤ 200 ms and accepts equivalent tests and design choices that meet the same constraints. The alternative modular deployment remains explicitly viable at `modules/m03/integrated/solution-rubric.md:12`. No rights finding. The changed content consists of original verification criteria. The previously resolved retry-policy and HTTP 202 findings remain resolved. [Amazon Builders’ Library, Timeouts, retries, and backoff with jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/) · [RFC 9110 §15.3.3](https://www.rfc-editor.org/rfc/rfc9110.html#section-15.3.3)
+
+**Targeted verdict: `ready-for-human-review`.** No open blocker or major findings. M03-SYN-T3 is a measurement-precision clarification.
+
+### Measurement clarification recheck
+
+Reviewed 2026-11-13 in the working-tree follow-up to `ca62eea`. The verification row at `modules/m03/integrated/solution-rubric.md:43` states the drill duration and follows every accepted preview from durable acceptance to its own two-minute deadline. Expired, failed and late jobs count as misses. A job accepted at the end of the drill therefore receives the same observation window as an earlier one, and a design cannot improve the measured completion result by dropping slow jobs. The edit preserves the existing race, duplicate-handling, retry and capacity checks and accepts equivalent verification.
+
+| ID | Status | Evidence |
+| --- | --- | --- |
+| M03-SYN-T3 | resolved | https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis |
+
+**Measurement clarification verdict: `ready-for-human-review`.** All findings in the scoped re-review are resolved.

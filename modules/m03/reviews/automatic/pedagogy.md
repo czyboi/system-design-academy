@@ -27,3 +27,13 @@ Reviewed the corrections handed off at `7049534a56600c4cc5560e3e2a4ebac38a1eba36
 The M03-S1 teaching record now points to the instructional synthesis in `decision-summary.md`, which explains the three constituent skills and links directly to the respective lesson worked examples and discovery mechanism. Its `uses_lesson_outcomes` retains exactly the approved three IDs, each resolving to the corresponding lesson teaching record; the brief and solution remain assessment evidence. The failure-policy rubric now requires an in-flight cap and where saturated work waits, a bounded cache age and the defer/resume/expiry policy during discovery failure. The reference supplies an example and retains the two-point criterion scale and alternative designs.
 
 **Current verdict: ready-for-human-review.** This verdict covers module pedagogy and assigned coverage, not technical or human approval.
+
+## Human-feedback scoped re-review — 2026-11-13
+
+Reviewed integration changes from `e805261` through `31b2eb0` after issue #64 feedback, preserving the previous coverage, sequence and finding history. Brief item 4 now explicitly asks for peak-load failure-drill pass criteria and concurrency tests in multiple publication, edit and revocation orders. The rubric states design requirements for publication eligibility, duplicate logical work and bounded load separately from the verification evidence required for full credit. Its verification criterion names observable performance, queue, retry and limit checks, reply-loss and race tests, and accepts equivalent tests that establish the same constraints. The 2/1/0 criteria remain independent; the prior synthesis outcome subset and portfolio links remain unchanged.
+
+No new open findings in this scoped review. **Verdict: ready-for-human-review.** This is a pedagogy and assigned-coverage verdict, not human or technical approval.
+
+## Verification wording follow-up
+
+Reviewed the subsequent working-tree change to the Verification row of `modules/m03/integrated/solution-rubric.md`. Specifying the drill duration and tracking every preview accepted during the drill through its two-minute deadline, including expired, failed and late jobs as misses, makes the assessed cohort and outcome measurable. The existing equivalent-tests allowance remains. No new pedagogy finding; **verdict remains ready-for-human-review**.

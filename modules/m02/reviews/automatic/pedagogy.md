@@ -33,3 +33,9 @@ The brief now explicitly states that uncoalesced viewer-edge misses reach the or
 | M02-P1 | resolved | curriculum/revision-1/CURRICULUM_MASTER.md |
 
 **Round 1 verdict: ready-for-human-review.** The updated synthesis teaching locator and exercise assumptions address the findings.
+
+## Human-feedback scoped re-review — 2026-11-13
+
+Reviewed the integration changes from `e805261` through `31b2eb0` after issue #64 feedback, using the prior coverage and sequence findings. Brief item 3 now solicits the no-collapse, ideal and four-domain comparisons and asks about upstream caches, nonoverlap and retries. The solution's modeled rates are 200 warm, 2,160 cold, 240 ideal and 480 split-domain fetches/s: 160 warm misses plus 80 cold fetches in the ideal case or 320 across four independent domains. The capacity assumptions are explicit. Item 4 asks for a peak cold-start test at the origin limit and reporting of shed traffic; the verification criterion scores that evidence. The separate capacity criterion and 2/1/0 scale permit partial credit, while the freshness and privacy criterion remains independently assessed. The approved synthesis scope and portfolio assessment subset remain unchanged.
+
+No new open findings in this scoped review. **Verdict: ready-for-human-review.** This is a pedagogy and assigned-coverage verdict, not human or technical approval.

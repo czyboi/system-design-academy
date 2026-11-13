@@ -31,3 +31,19 @@ The M02-P1 portfolio correction points to the existing DNS, routing and cache wa
 | M02-INT-T1 | resolved | https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html |
 
 **Round 1 verdict: ready-for-human-review.**
+
+## 2026-11-13 targeted re-review after content feedback
+
+Reviewed the integration delta `e805261..31b2eb0` at `31b2eb0a9fe4f3d3373a711c3e60a285705199e9`. Scope covers M02-EX1, its rubric and the link to the accepted CDN lesson and companion. [Issue #64 content feedback](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179)
+
+| Finding | Status | Supporting primary source |
+| --- | --- | --- |
+| M02-INT-T1 | resolved | https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html |
+
+- The modeled second at `modules/m02/integrated/brief.md:14–15,23` and `modules/m02/integrated/solution-rubric.md:18,34` keeps 160 background warm misses during the cold burst. Warm demand is 10,000 × 2% = 200 fetches/s. Cold demand is 160 + 2,000 = 2,160 with no collapsing, 160 + 80 = 240 with one ideal domain, and 160 + 4 × 80 = 480 when each independent domain sees every key and fetches each once. The shared tier can serve hits or collapse matching requests if they overlap there. Misses outside the overlap and retries can raise origin demand. These are scenario calculations. M02-L04 describes the same mechanism with its own workload. [CloudFront request collapsing](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#request-custom-request-collapsing) · [CloudFront Origin Shield](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html)
+- The cold-start drill at `modules/m02/integrated/brief.md:24` and `modules/m02/integrated/solution-rubric.md:24,36` observes all fetch attempts at the media origin, including retries, against the 1,000 fetches/s limit. It separately records upstream outcomes, delays or rejections, and viewer latency. This avoids inferring origin demand from edge misses. CloudFront illustrates why edge counters also need vendor-specific interpretation by counting collapsed followers as hits. [CloudFront request collapsing and logging](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#request-custom-request-collapsing)
+- The freshness and privacy checks at `modules/m02/integrated/solution-rubric.md:20–24,35–38` still distinguish a stored public variant at 110 s past expiry from an absent response. They require both saved-items origin headers and cache-bypass behavior, with two-user verification of response isolation. M02-L04 separately names CloudFront's positive minimum-TTL override, so the policy must be checked as deployed. [RFC 5861 §4](https://www.rfc-editor.org/rfc/rfc5861.html#section-4) · [RFC 9111 §§5.2.2.5 and 5.2.2.7](https://www.rfc-editor.org/rfc/rfc9111.html#section-5.2.2) · [CloudFront TTL settings](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cache-key-understand-cache-policy.html#cache-policy-ttl)
+
+The delta adds original scenario arithmetic and proposed measurements. It adds no external assets or material provenance findings.
+
+**Targeted verdict: `ready-for-human-review`.** No open blocker or major findings.
