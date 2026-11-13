@@ -105,6 +105,30 @@
       ]
     },
     {
+      "key": "require-terminal-evidence-before-new-operation-key",
+      "tags": [
+        "retries",
+        "idempotency",
+        "service-discovery"
+      ],
+      "problem": "A status lookup can show no committed record while an earlier write is still in flight. A fresh key can admit a duplicate effect.",
+      "prevention": "Distinguish a confirmed committed record from absence or pending status. Require authoritative terminal evidence of non-application before using a fresh key, or retain the same identity under a durable deduplication contract that still covers it.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "DISC-T1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L03"
+        }
+      ]
+    },
+    {
       "key": "synthesis-map-points-to-worked-reasoning",
       "tags": [
         "assessment",
