@@ -285,6 +285,30 @@
       ]
     },
     {
+      "key": "scope-http-retries-by-operation-semantics",
+      "tags": [
+        "http",
+        "retry",
+        "idempotency"
+      ],
+      "problem": "A lost-response example treated durable operation IDs as required for all HTTP retries.",
+      "prevention": "Distinguish idempotent requests and confirmed non-application from ambiguous non-idempotent operations. Scope durable deduplication to the application replay contract that needs it.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m02",
+          "finding_id": "M02-L02-T3",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/lessons/M02-L02/technical.md",
+          "evidence": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2",
+          "lesson": "M02-L02"
+        }
+      ]
+    },
+    {
       "key": "separate-proxy-slots-from-receiver-work",
       "tags": [
         "deadline",
