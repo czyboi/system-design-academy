@@ -392,6 +392,31 @@
       ]
     },
     {
+      "key": "resume-projection-from-its-own-coverage",
+      "tags": [
+        "projections",
+        "checkpoint",
+        "rebuild",
+        "outbox"
+      ],
+      "problem": "The old consumer checkpoint could precede the new snapshot and lag updates already visible.",
+      "prevention": "Pair the rebuild snapshot with its continuation cursor, verify a gap-free prefix through all previously visible state, and resume the new generation from its own first unapplied record.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L04-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L04/technical.md",
+          "evidence": "https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-snapshots",
+          "lesson": "M04-L04"
+        }
+      ]
+    },
+    {
       "key": "retain-async-result-for-replay",
       "tags": [
         "idempotency",
@@ -462,6 +487,31 @@
           "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
           "evidence": "https://grpc.io/docs/guides/deadlines/#deadlines-on-the-server",
           "lesson": "M03-L03"
+        }
+      ]
+    },
+    {
+      "key": "serialize-full-projection-snapshot",
+      "tags": [
+        "projections",
+        "transactions",
+        "outbox",
+        "concurrency"
+      ],
+      "problem": "Serializing a version increment after the contributing reads let a higher version carry stale payload.",
+      "prevention": "Lock the aggregate before every contributing read or mutation and commit the resulting version and complete payload in the same source transaction.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L04-T2",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L04/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M04-L04"
         }
       ]
     },
