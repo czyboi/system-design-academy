@@ -28,8 +28,8 @@
       "result": "ready"
     }
   ],
-  "status": "ready",
-  "updated_at": "2026-11-13T06:43:03+00:00",
+  "status": "revising",
+  "updated_at": "2026-11-13T07:13:19+00:00",
   "reopen_history": [
     {
       "at": "2026-11-13T02:44:48+00:00",
@@ -39,6 +39,11 @@
     {
       "at": "2026-11-13T06:41:29+00:00",
       "reason": "PR #66 human feedback 6846111131: separate delivery or successful operations from latency in M02-L02 and M02-L03",
+      "prior_revision_attempts": 0
+    },
+    {
+      "at": "2026-11-13T07:13:19+00:00",
+      "reason": "Publication-readiness revisions to PR #66 teaching/assessment or module integration at d24791f require independent scoped re-review",
       "prior_revision_attempts": 0
     }
   ]

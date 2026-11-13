@@ -88,17 +88,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-12T14:58:53Z",
-  "updated_at": "2026-11-13T02:55:10Z",
+  "updated_at": "2026-11-13T07:13:19Z",
   "review_statuses": {
     "technical": {
-      "status": "reviewed",
-      "reason": "Independent synthesis re-review cleared the Issue #64 changes and the final preview measurement clarification.",
-      "updated_at": "2026-11-13T02:55:10Z"
+      "status": "needs_review",
+      "reason": "Material content changes at d24791f; scoped independent QA required before ready-for-human-review",
+      "updated_at": "2026-11-13T07:13:19Z"
     },
     "pedagogy": {
-      "status": "reviewed",
-      "reason": "Independent synthesis re-review cleared the Issue #64 changes and the final preview measurement clarification.",
-      "updated_at": "2026-11-13T02:55:10Z"
+      "status": "needs_review",
+      "reason": "Material content changes at d24791f; scoped independent QA required before ready-for-human-review",
+      "updated_at": "2026-11-13T07:13:19Z"
     }
   }
 }
