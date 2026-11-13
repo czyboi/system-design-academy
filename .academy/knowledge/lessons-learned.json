@@ -344,6 +344,32 @@
       ]
     },
     {
+      "key": "measure-per-loop-on-each-plan",
+      "tags": [
+        "sql",
+        "query-plans",
+        "indexing",
+        "benchmarking"
+      ],
+      "problem": "The candidate plan reused a per-loop average from a larger baseline population without evidence.",
+      "prevention": "Give each plan its own observed or explicitly assumed rows per loop when a rewrite changes the input population, and distinguish emitted rows from total work and latency.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L05-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L05/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/using-explain.html",
+          "lesson": "M04-L05"
+        }
+      ]
+    },
+    {
       "key": "reject-before-admission-versus-unknown-write-outcome",
       "tags": [
         "consistency",
