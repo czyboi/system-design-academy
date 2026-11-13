@@ -343,6 +343,31 @@
       ]
     },
     {
+      "key": "reject-delayed-activation-at-resource",
+      "tags": [
+        "sharding",
+        "migration",
+        "fencing",
+        "epochs"
+      ],
+      "problem": "A delayed activation could reopen a shard after its directory authority had been superseded.",
+      "prevention": "Persist a monotonic closed-through epoch at the protected shard. Serialize open, fence and admission through the same gate and trace an old command arriving after rollback.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L03-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L03/technical.md",
+          "evidence": "https://www.usenix.org/legacy/event/osdi06/tech/full_papers/burrows/burrows.pdf#page=5",
+          "lesson": "M04-L03"
+        }
+      ]
+    },
+    {
       "key": "require-terminal-evidence-before-new-operation-key",
       "tags": [
         "retries",
