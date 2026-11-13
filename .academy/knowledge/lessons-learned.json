@@ -80,6 +80,14 @@
           "review_role": "technical",
           "report": "modules/m03/reviews/automatic/technical.md",
           "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis"
+        },
+        {
+          "module": "m02",
+          "finding_id": "M02-L04-T2",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/lessons/M02-L04/technical.md",
+          "evidence": "https://github.com/czyboi/system-design-academy/blob/0dcef2a098ab1d3b9ba347aeac4b924ff69ba71b/.academy/specs/SD-M02-L04.json#L66-L68",
+          "lesson": "M02-L04"
         }
       ]
     },

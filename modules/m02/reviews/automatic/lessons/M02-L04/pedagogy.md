@@ -34,3 +34,44 @@ Reviewed the changed lesson and companion at `fdbe268` against the [approved out
 | P-MS02-HUMAN-L04-1 | note | resolved | [Lesson, Worked example](../../../../lessons/M02-L04.md#worked-example) and [assessment, Answer key / rubric](../../../../assessments/M02-L04.md#answer-key--rubric) |
 
 **Current verdict: ready-for-human-review.** Coverage and pedagogy only.
+
+## Publication-readiness targeted re-review at `0dcef2a`, 2026-11-13
+
+Lesson-mode combined pedagogy and coverage re-review for M02-L04, middle/senior self-study, following [PR #66 feedback](https://github.com/czyboi/system-design-academy/pull/66#issuecomment-6846736588). Inspected the `3c0205c..0dcef2a` lesson and assessment changes, nearby exercise and rubric, the approved [outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m02-l04), and assigned [coverage rows](../../../../../../curriculum/revision-1/coverage.csv). The pinned source remains the [Primer CDN section](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/README.md#L619-L652), revision `ae9bbd7b02d90b9866215de185217d33f39ab733`; the accepted ledger above remains applicable. No matched prevention reminders were supplied.
+
+### Coverage
+
+| Assigned source row and locator | Actual lesson teaching and assessment | Status / depth and rationale |
+| --- | --- | --- |
+| PR-H062, CDN, README L619 | Population and placement; EX-1 | taught: distributed edges, local reuse and upstream misses. |
+| PR-H063, push, README L634 | Population and placement; Q5 | taught: advance distribution, release fit and unused-resource trade-off. |
+| PR-H064, pull, README L640 | Population and placement; Q1 and EX-1 | taught: demand-driven fetch, reuse and cold-origin pressure. |
+| PR-H065, disadvantages, README L648 | Trade-offs and failure modes; EX-1 | taught: freshness, origin dependence, cost and privacy constraints. |
+
+No assigned source topic has a material teaching gap. The added validation explanation supports the Academy freshness and cache-control scope; it does not displace the mapped CDN mechanisms.
+
+### Pedagogy and assessment
+
+| Finding | Severity | Status | Evidence and learner impact |
+| --- | --- | --- | --- |
+| P-MS02-HUMAN-L04-1 | note | resolved | The earlier collapse-domain explanation and exercise/rubric remain in [Worked example](../../../../lessons/M02-L04.md#worked-example) and [Answer key / rubric](../../../../assessments/M02-L04.md#answer-key--rubric). |
+| P-L04-PUB-1 | note | resolved | [Revalidation and conditional requests](../../../../lessons/M02-L04.md#revalidation-and-conditional-requests) gives the stored English variant, freshness expiry, validator request, unchanged `304` and changed full-response paths, metadata/body reuse, error constraint, and language separation. It teaches `no-cache`, `no-store` and `private` distinctions and warns that CDN configuration and authentication matter. A learner can reason through Q7 from the lesson without its key. |
+| P-L04-PUB-2 | note | resolved | [Q7](../../../../assessments/M02-L04.md#q7) has an answer and explanation matching the instruction; both front-matter and narrative outcome maps include it for LO1 and LO2. Seven explained checks, the separate EX-1 and its alternative-accepting rubric remain present. Q7 tests the directive distinction; EX-1 and the other checks provide the broader design decisions for LO2. |
+
+The existing exercise's language-key, old-reference, outage and privacy reasoning remains supported by the lesson. The capacity exercise retains explicit overlap assumptions, origin-boundary measurement and a trade-off for a bounded policy. No new material pedagogy or assigned-coverage finding is open.
+
+**Verdict: ready-for-human-review.** This is a pedagogy and assigned curriculum-coverage verdict, not technical approval, human approval or publication authorization.
+
+## Correction re-review at `54b7566`, 2026-11-13
+
+Reviewed the M02-L04 lesson and companion changes in `0dcef2a..54b7566`, plus adjacent teaching, assessment and the assigned coverage ledger above. The assigned Primer rows PR-H062–PR-H065 retain their taught dispositions. This is a targeted independent pedagogy and coverage re-review.
+
+| Finding | Severity | Status | Evidence and re-review result |
+| --- | --- | --- | --- |
+| P-L04-PUB-1 | note | resolved | [Revalidation and conditional requests](../../../../lessons/M02-L04.md#revalidation-and-conditional-requests) still traces the matching English variant through conditional GET, bodyless `304` and metadata/body reuse, nonmatching successful GET, and the origin-error limit. It distinguishes unqualified directives and directs learners to check the actual CDN policy. |
+| P-L04-PUB-2 | note | resolved | [Q7](../../../../assessments/M02-L04.md#q7) now requires and explains a directive choice for each stated requirement. The lesson teaches the distinction, and both the front-matter and narrative maps include Q7 under LO1 and LO2. |
+| P-L04-PUB-3 | note | resolved | [EX-1](../../../../assessments/M02-L04.md#practical-exercise) separates the 100 origin-attempt first-second limit, including retries, from 99% of 1,200 original valid arrivals receiving the correct variant within two seconds of each arrival. Rejected, failed and late work remains in the viewer denominator. The [answer and rubric](../../../../assessments/M02-L04.md#answer-key--rubric) give a conditional imperfect-collapse example, measure both limits, explain the 12-request failure budget, deny capacity-policy credit for a cap alone, and accept credible alternatives or identified failure with mitigation. |
+
+The seven explained checks, language and privacy exercise, mapped outcomes and previously taught CDN choices remain coherent after the changes. No material teaching, assessment or assigned-coverage finding is open.
+
+**Verdict: ready-for-human-review.** Pedagogy and assigned curriculum coverage only; this is not technical approval, human approval or publication authorization.
