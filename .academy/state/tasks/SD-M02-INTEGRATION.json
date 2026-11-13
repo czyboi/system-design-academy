@@ -64,21 +64,21 @@
         "modules/m02/integrated/outcome-portfolio.json"
       ],
       "checkpoint": {
-        "note": "Addressed M02-INT-T2/T3 and M02-P2 with full-drain origin accounting, worked viewer outcomes and independent grading.",
-        "next_action": "Scoped draft handoff and independent targeted synthesis re-review.",
-        "at": "2026-11-13T08:07:06Z"
+        "note": "Addressed remaining M02-INT-T3: 40 extra attempts are bounded across replay and the full drain.",
+        "next_action": "Scoped draft handoff and targeted independent re-review.",
+        "at": "2026-11-13T08:24:02Z"
       },
-      "attempts": 3,
-      "started_at": "2026-11-13T08:05:46Z",
-      "run_id": "SD-M02-INTEGRATION-author-20261113T080546Z",
+      "attempts": 4,
+      "started_at": "2026-11-13T08:23:33Z",
+      "run_id": "SD-M02-INTEGRATION-author-20261113T082333Z",
       "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-13T08:07:06Z",
+      "completed_at": "2026-11-13T08:24:02Z",
       "completed_by": "lesson_author",
-      "invalidation_reason": "PR #66 Stage B findings M02-INT-T2/T3 and M02-P2"
+      "invalidation_reason": "PR #66 Stage B round 1: M02-INT-T3 remaining retry/validation window wording"
     }
   ],
   "notes": "",
@@ -91,7 +91,7 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-12T14:58:50Z",
-  "updated_at": "2026-11-13T08:07:06Z",
+  "updated_at": "2026-11-13T08:24:02Z",
   "review_statuses": {
     "technical": {
       "status": "needs_review",
