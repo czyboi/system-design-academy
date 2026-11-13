@@ -1,0 +1,37 @@
+# M05-L01 technical and provenance review
+
+Round 0 reviewed the lesson, companion and evidence at draft commit `f99e5b9` on 2026-11-13.
+
+## Technical findings
+
+| ID | Severity | Status | Location | Finding and correction | Primary evidence |
+| --- | --- | --- | --- | --- | --- |
+| M05-L01-T1 | major | open | Lesson lines 35–41. Companion lines 18, 44–46 and 62–68, EX-1, Q4 and Session access and revocation. | “A revoked token must never be accepted after a confirmed revocation” can include validations whose authoritative read saw active before a concurrent revocation, but whose decision or response comes later. The proposed authoritative read cannot by itself enforce that stronger timing. State the ordering boundary. For the lookup design, acknowledge revocation after the authoritative write succeeds, guarantee that validations starting their authoritative check after confirmation see revoked, and trace a check that overlaps revocation. If protected actions themselves need the stronger rule, coordinate action admission against revocation. Give the learner a concrete eligible read, such as a strongly consistent `GetItem` on the same single-region DynamoDB base table used to write revocation, with cache hits treated as hints and fail-closed behavior when the authority is unavailable. Update the prompt, answer and rubric to use the same contract. | [DynamoDB strongly consistent reads](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html#HowItWorks.ReadConsistency.StronglyConsistentReads), [GetItem](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html), [MongoDB 8.0 linearizable read concern, prior completed writes](https://www.mongodb.com/docs/v8.0/reference/read-concern-linearizable/) |
+| M05-L01-T2 | major | open | Lesson line 31, schema rollout. Companion lines 18, 38–40 and 64–70, EX-1, Q3 and Migration rubric. | The sample offers dual indexes and queries as an alternative while old readers still query only top-level `price`. A nested-only document still disappears from those readers, and an old writer that updates only `price` can leave a new nested value stale. Keep top-level price as the canonical compatibility and browse field on every document while those readers or writers remain. If both fields are used, explain how compatible writers maintain them in one atomic document update and how stale or old writers are handled. Deploy compatible reads and writers, backfill and verify, then retire the old field and index only after old dependents are gone. Dual-path queries help readers that actually execute both branches. | [MongoDB 8.0 schema versioning, query and update both paths](https://www.mongodb.com/docs/v8.0/data-modeling/design-patterns/data-versioning/schema-versioning/), [single-document write atomicity](https://www.mongodb.com/docs/v8.0/core/write-operations-atomicity/) |
+| M05-L01-T3 | minor | open | Lesson lines 23 and 27. Evidence rows Document aggregate and Partition and sort key. | Add the exact MongoDB equality and range index guidance and the DynamoDB key-condition documentation. If the ordered listing is intended to answer the active-product query, include active status in its membership rule or explicitly describe post-filtering and its read cost. A category and price key alone does not select active products. | [MongoDB 8.0 ESR guideline](https://www.mongodb.com/docs/v8.0/tutorial/equality-sort-range-guideline/), [DynamoDB Query key conditions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.KeyConditionExpressions.html) |
+
+Redis `GET` retrieves a string at an exact key and `ZRANGE` reads explicitly maintained sorted-set members. Memcached's text protocol supports keyed reads and writes and expiry, and eviction can happen before expiry. MongoDB single-document updates are atomic across the changed embedded fields. DynamoDB table and local-index strong reads are supported, while global secondary index reads remain eventually consistent. Product guarantees stay scoped to the documented API and deployment. [Redis GET](https://redis.io/docs/latest/commands/get/), [ZRANGE](https://redis.io/docs/latest/commands/zrange/), [Memcached text protocol](https://docs.memcached.org/protocols/basic/), [Memcached evictions](https://docs.memcached.org/serverguide/maintenance/#evictions), [MongoDB 8.0 atomicity](https://www.mongodb.com/docs/v8.0/core/write-operations-atomicity/), [DynamoDB read consistency](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html).
+
+## Provenance
+
+The package identifies product documentation and the approved Primer topic inventory. Session and catalogue examples are original and the draft includes no third-party diagrams, code samples or assets.
+
+## Verdict
+
+`revise`
+
+## Round 1 targeted re-review
+
+Reviewed the lesson, companion and evidence at draft commit `f69ce20` on 2026-11-13.
+
+| ID | Status | Verification | Primary evidence |
+| --- | --- | --- | --- |
+| M05-L01-T1 | resolved | The revised package places confirmation after the authoritative write succeeds and scopes the promise to an authoritative check starting afterward. Its sample uses a strongly consistent `GetItem` on the same single-region DynamoDB base table. It denies a revoked token despite a stale cache hit, uses the authority on a miss and fails closed if the authority is unavailable. An overlapping read may observe the earlier active state, and the text identifies coordinated protected-action admission as a distinct stronger contract. | [DynamoDB UpdateItem](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html), [GetItem](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html), [strongly consistent reads](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html) |
+| M05-L01-T2 | resolved | The lesson and sample retain top-level `price` as the canonical indexed field during coexistence, so unchanged old readers can still browse all products and old writers cannot make the authoritative field stale. The migration upgrades or retires old writers before relying on dual fields, maintains the two representations atomically, backfills and verifies the nested value before changing the read path, and retains the old field and index through the last old dependency. Dual-path querying is correctly scoped to upgraded readers. | [MongoDB 8.0 schema versioning](https://www.mongodb.com/docs/v8.0/data-modeling/design-patterns/data-versioning/schema-versioning/), [single-document write atomicity](https://www.mongodb.com/docs/v8.0/core/write-operations-atomicity/) |
+| M05-L01-T3 | resolved | The MongoDB access path leads with category and status equality before the price range. The DynamoDB example includes active membership, uses exact partition-key equality and bounds the fixed-width price sort key. Both the lesson and evidence cite the matching primary source. | [MongoDB 8.0 equality, sort and range guideline](https://www.mongodb.com/docs/v8.0/tutorial/equality-sort-range-guideline/), [DynamoDB Query key conditions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.KeyConditionExpressions.html) |
+
+The revision preserves the original vendor boundaries for Redis, Memcached, MongoDB and DynamoDB. The added product examples cite documented operations and add no imported assets.
+
+### Verdict
+
+`ready-for-human-review`

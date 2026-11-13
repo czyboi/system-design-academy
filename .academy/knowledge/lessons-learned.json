@@ -139,6 +139,31 @@
       ]
     },
     {
+      "key": "define-revocation-check-boundary",
+      "tags": [
+        "revocation",
+        "cache",
+        "consistency",
+        "authorization"
+      ],
+      "problem": "An authoritative check that started before revocation could return success afterward under an underspecified timing contract.",
+      "prevention": "Define revocation confirmation and the protected validation or action boundary, trace concurrent checks, and verify post-confirmation decisions against the exact authoritative operation.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m05",
+          "finding_id": "M05-L01-T1",
+          "review_role": "technical",
+          "report": "modules/m05/reviews/automatic/lessons/M05-L01/technical.md",
+          "evidence": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html",
+          "lesson": "M05-L01"
+        }
+      ]
+    },
+    {
       "key": "design-assessments-for-target-audience",
       "tags": [
         "assessment",
