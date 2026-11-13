@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-13T13:27:34Z",
-  "updated_at": "2026-11-13T13:37:46Z",
+  "updated_at": "2026-11-13T13:41:56Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -61,19 +61,33 @@
         "modules/m04/assessments/M04-L02.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Resolved T1/T2 through fixed-standby durability proof, replayed acknowledgement policy, explicit failover traces and exact sources.",
+        "next_action": "Scoped handoff and targeted independent re-review.",
+        "at": "2026-11-13T13:41:55Z"
       },
-      "attempts": 1,
-      "started_at": "2026-11-13T13:36:26Z",
-      "run_id": "SD-M04-L02-author-20261113T133626Z",
-      "agent": "codex",
+      "attempts": 2,
+      "started_at": "2026-11-13T13:40:49Z",
+      "run_id": "SD-M04-L02-author-20261113T134049Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-13T13:37:46Z",
-      "completed_by": "codex"
+      "completed_at": "2026-11-13T13:41:56Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Resolve M04-L02-T1/T2 in Stage A revision 1."
     }
-  ]
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "T1/T2 require remote durability proof for replayed success and exact source scope.",
+      "updated_at": "2026-11-13T13:40:48Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent round 0 cleared pedagogy and mapped coverage at 3668bc3.",
+      "updated_at": "2026-11-13T13:40:48Z"
+    }
+  }
 }
