@@ -1,0 +1,13 @@
+# Source evidence for M04-INTEGRATION
+
+Checked 2026-11-13. The workload, observed drill counts, log positions and capacity assumptions in M04-EX1 are hypothetical teaching inputs. No benchmark was run.
+
+| Decision | Evidence | Scope |
+| --- | --- | --- |
+| Preserve an order's customer and line invariants | [M04-L01 evidence](../evidence/M04-L01.md), [PostgreSQL 18 foreign keys](https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK), [transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html) | One transactional owner for the order, stock and lines. A referencing key must remain valid within that owner. |
+| Qualify replica reads and promotion | [M04-L02 evidence](../evidence/M04-L02.md), [PostgreSQL 18 acknowledgement settings](https://www.postgresql.org/docs/18/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT), [failover](https://www.postgresql.org/docs/18/warm-standby-failover.html) | Flush and replay are distinct. A strict request requires proof of the acknowledged history and eligible replay. |
+| Fence and move row ownership | [M04-L03 evidence](../evidence/M04-L03.md), [Vitess 24 SwitchTraffic](https://vitess.io/docs/24.0/reference/vreplication/reshard/#switchtraffic), [etcd v3.6 API guarantees](https://etcd.io/docs/v3.6/learning/api_guarantees/) | Copy and catch-up are common primitives. The write gate, migration epochs and invariants in this exercise are an application design. |
+| Move repeated aggregation off the request path | [M04-L04 evidence](../evidence/M04-L04.md), [PostgreSQL 18 materialized views](https://www.postgresql.org/docs/18/rules-materializedviews.html) | Freshness and repair are required when using a derived view. It does not own checkout or stock. |
+| Identify a query-plan bottleneck before changing topology | [M04-L05 evidence](../evidence/M04-L05.md), [PostgreSQL 18 EXPLAIN ANALYZE](https://www.postgresql.org/docs/18/using-explain.html), [B-tree and ordering](https://www.postgresql.org/docs/18/indexes-ordering.html) | Repeated-node output is approximate rows per loop times loops. The observed request outcomes and work counts are different measures. |
+
+The approved M04 synthesis uses M04-L02-LO2, M04-L03-LO2 and M04-L05-LO1. M04-L01 defines order ownership and M04-L04 supplies an alternative display path. Each lesson companion retains its own outcomes. Examples, traces and exercises are original.

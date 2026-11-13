@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M04-INTEGRATION",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M04-INT — Integrated design, reference solution and decision summary",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and canonical backlog outputs for SDA-M04-INT.",
+      "**Integrated design exercise:** Evolve an order database under read growth, write growth and a hot tenant.\n\n**Reference solution and self-evaluation:** Reference package: query workload, schema/index changes, replica policy, partition routing and migration risks; assess invariants and benchmark plan.\n\n**Synthesis outcome map:** M04-S1: select a scaling change and show the query/replication evidence that justifies it. M04-EX1 measures this synthesis outcome using M04-L02-LO2, M04-L03-LO2 and M04-L05-LO1. It does not claim all module lesson outcomes. Each lesson's separate companion remains responsible for its complete LO1/LO2 assessment, and the course portfolio must reconcile all companions before course completion.\n\n**Decision-summary table plan:** Compare tuning, replicas, federation, sharding and denormalisation by the constrained resource and affected invariants. Each eventual row states trigger, option, mechanism, benefit, cost, failure signal, when to avoid, and the lesson reference."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate ownership through GitHub Issue #72 on codex/drafts-sda-ms03.",
+    "Write original English for middle and senior engineers. Use the pinned Primer as a topic map and verify technical claims with exact primary sources.",
+    "Keep learner-facing status draft, separate teaching from assessment and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level evidence at the canonical path with exact source sections, applicable versions and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver complete teaching and assessment artifacts at the canonical paths for scoped draft handoff and independent review.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record and verify the primary source section, version or publication scope, and applicability for every material claim.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-failure-criteria",
+      "text": "Trace the mechanism and failure behavior, ground decisions in stated evidence, and define the user-visible measurement population, window and threshold wherever the scenario uses an SLO.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

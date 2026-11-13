@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M04",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M04-L01-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L01.md",
+        "sections": [
+          "Give each invariant an enforcement point",
+          "Walk a checkout race",
+          "Shape reads around ownership"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L01-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L01.md",
+        "sections": [
+          "Shape reads around ownership",
+          "Put large attachments on their own path"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L02-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L02.md",
+        "sections": [
+          "Follow the log to a reader",
+          "Promote one writer and account for lost history",
+          "Reconcile concurrent writers"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L02-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L02.md",
+        "sections": [
+          "Follow the log to a reader",
+          "Promote one writer and account for lost history",
+          "Reconcile concurrent writers",
+          "Choose by workload and failure contract"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L03-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L03.md",
+        "sections": [
+          "Split by domain or by row",
+          "Choose the unit of routing",
+          "Trace movement on a ring",
+          "Move data with one writable owner"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L03-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L03.md",
+        "sections": [
+          "Split by domain or by row",
+          "Choose the unit of routing",
+          "Trace movement on a ring",
+          "Move data with one writable owner"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L04-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L04.md",
+        "sections": [
+          "Keep the ledger authoritative",
+          "Trace the failed second write",
+          "Measure freshness and rebuild"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L04-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L04.md",
+        "sections": [
+          "Keep the ledger authoritative",
+          "Trace the failed second write",
+          "Measure freshness and rebuild",
+          "Decide whether to duplicate"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L05-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L05.md",
+        "sections": [
+          "Find the expensive work",
+          "Walk two plans under one workload",
+          "Tighten storage and account for index cost"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L05.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L05-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L05.md",
+        "sections": [
+          "Walk two plans under one workload",
+          "Tighten storage and account for index cost",
+          "Separate pruning, scaling and caching",
+          "Decide by the measured bottleneck"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L05.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-S1",
+      "uses_lesson_outcomes": [
+        "M04-L02-LO2",
+        "M04-L03-LO2",
+        "M04-L05-LO1"
+      ],
+      "teaching": {
+        "path": "modules/m04/integrated/decision-summary.md",
+        "sections": [
+          "Match the scaling change to the evidence"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/integrated/brief.md",
+        "items": [
+          "M04-EX1"
+        ],
+        "solution_rubric": "modules/m04/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}

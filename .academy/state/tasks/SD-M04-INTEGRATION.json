@@ -1,0 +1,111 @@
+{
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Reconcile integrated scenario evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        ".agents/skills/source-research/SKILL.md",
+        "modules/m04/lessons/M04-L01.md",
+        "modules/m04/assessments/M04-L01.md",
+        "modules/m04/evidence/M04-L01.md",
+        "modules/m04/lessons/M04-L02.md",
+        "modules/m04/assessments/M04-L02.md",
+        "modules/m04/evidence/M04-L02.md",
+        "modules/m04/lessons/M04-L03.md",
+        "modules/m04/assessments/M04-L03.md",
+        "modules/m04/evidence/M04-L03.md",
+        "modules/m04/lessons/M04-L04.md",
+        "modules/m04/assessments/M04-L04.md",
+        "modules/m04/evidence/M04-L04.md",
+        "modules/m04/lessons/M04-L05.md",
+        "modules/m04/assessments/M04-L05.md",
+        "modules/m04/evidence/M04-L05.md"
+      ],
+      "output_paths": [
+        "modules/m04/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-13T14:18:58Z",
+      "run_id": "SD-M04-INTEGRATION-research-20261113T141858Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-13T14:19:24Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Draft and reconcile module synthesis",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        "curriculum/revision-1/coverage.csv",
+        "GOVERNANCE.md",
+        "modules/m04/integrated/evidence.md",
+        "modules/m04/lessons/M04-L01.md",
+        "modules/m04/assessments/M04-L01.md",
+        "modules/m04/evidence/M04-L01.md",
+        "modules/m04/lessons/M04-L02.md",
+        "modules/m04/assessments/M04-L02.md",
+        "modules/m04/evidence/M04-L02.md",
+        "modules/m04/lessons/M04-L03.md",
+        "modules/m04/assessments/M04-L03.md",
+        "modules/m04/evidence/M04-L03.md",
+        "modules/m04/lessons/M04-L04.md",
+        "modules/m04/assessments/M04-L04.md",
+        "modules/m04/evidence/M04-L04.md",
+        "modules/m04/lessons/M04-L05.md",
+        "modules/m04/assessments/M04-L05.md",
+        "modules/m04/evidence/M04-L05.md"
+      ],
+      "output_paths": [
+        "modules/m04/integrated/brief.md",
+        "modules/m04/integrated/solution-rubric.md",
+        "modules/m04/integrated/decision-summary.md",
+        "modules/m04/integrated/taught-coverage.csv",
+        "modules/m04/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-13T14:19:24Z",
+      "run_id": "SD-M04-INTEGRATION-author-20261113T141924Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-13T14:22:06Z",
+      "completed_by": "codex"
+    }
+  ],
+  "notes": "",
+  "current_phase": "author",
+  "schema_version": 2,
+  "task_id": "SD-M04-INTEGRATION",
+  "module_id": "m04",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M04-INTEGRATION.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "created_at": "2026-11-13T13:27:46Z",
+  "updated_at": "2026-11-13T14:22:06Z"
+}
