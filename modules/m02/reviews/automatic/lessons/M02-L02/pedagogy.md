@@ -37,3 +37,13 @@ Reviewed the correction at `371735c`. The LO2 front matter and narrative outcome
 | L02-P1 | resolved | curriculum/revision-1/CURRICULUM_MASTER.md |
 
 **Round 1 verdict: ready-for-human-review.** The revised outcome map addresses the finding.
+
+## Human-feedback targeted re-review, 2026-11-13
+
+Reviewed the changed lesson and companion at `fdbe268` against the [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m02-l02) and the prior topic ledger. The existing topic dispositions remain supported. TCP acknowledgment, datagram responsibility, retry identity and pool budgeting are taught in the mapped lesson sections. EX-1 requires a latency and connection-budget choice, a lost-response trace, overload handling and measurement. Its scoring awards credit to delivery choices, safe retries, capacity and verification, and permits alternative transports. The six explained checks remain mapped, including the UDP teaching section for LO2.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-HUMAN-L02-1 | note | resolved | [Lesson, Worked example](../../../../lessons/M02-L02.md#worked-example) and [assessment, Answer key / rubric](../../../../assessments/M02-L02.md#answer-key--rubric) |
+
+**Current verdict: ready-for-human-review.** Coverage and pedagogy only.

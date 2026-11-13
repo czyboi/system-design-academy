@@ -24,3 +24,13 @@ LO1 is taught in Population and placement, Cache keys, freshness and privacy, an
 The companion includes six explained checks, a separate exercise, a sample answer and a four-dimension rubric. The rubric accepts alternative designs that satisfy the constraints. The lesson names M02-L03 as its prerequisite.
 
 **Verdict: ready-for-human-review.** This verdict covers pedagogy and assigned curriculum coverage.
+
+## Human-feedback targeted re-review, 2026-11-13
+
+Reviewed the changed lesson and companion at `fdbe268` against the [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m02-l04) and the prior topic ledger. The previous coverage evidence remains present. The worked example now explains independent collapse domains and the origin measurement boundary. EX-1 requires calculation for four cold edges, an ideal shared tier and a bounded origin policy when collapsing falls short. The rubric separately grades variant/freshness/privacy reasoning, estimates, capacity trade-offs and tests. The practical scenario has stated assumptions, and the original six explained checks and outcome maps remain intact.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-HUMAN-L04-1 | note | resolved | [Lesson, Worked example](../../../../lessons/M02-L04.md#worked-example) and [assessment, Answer key / rubric](../../../../assessments/M02-L04.md#answer-key--rubric) |
+
+**Current verdict: ready-for-human-review.** Coverage and pedagogy only.

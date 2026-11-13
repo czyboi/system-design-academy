@@ -26,6 +26,31 @@
       ]
     },
     {
+      "key": "claim-retry-identity-before-dispatch",
+      "tags": [
+        "idempotency",
+        "retry",
+        "concurrency",
+        "api-contract"
+      ],
+      "problem": "Concurrent API retries can assign different downstream operation IDs when the caller key has no atomic claim before dispatch.",
+      "prevention": "Before dispatch, atomically claim the caller-scoped key and persist the input and stable downstream ID. Recover pending dispatch with that ID, and deduplicate the effect at the receiver.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "MS02-H-T-API-1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L02/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L02"
+        }
+      ]
+    },
+    {
       "key": "edge-miss-versus-origin-fetch-count",
       "tags": [
         "caching",
@@ -172,6 +197,56 @@
           "review_role": "technical",
           "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
           "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L03"
+        }
+      ]
+    },
+    {
+      "key": "retain-async-result-for-replay",
+      "tags": [
+        "idempotency",
+        "async-work",
+        "retry",
+        "partial-failure"
+      ],
+      "problem": "A durable seen-ID marker can suppress retries after a lost reply yet leave the caller without a recoverable result.",
+      "prevention": "Persist the result by stable operation ID before acknowledging completion, return it on covered replay or status lookup, and use an idempotent output write across the crash window.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "MS02-H-T-LAY-1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L01/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L01"
+        }
+      ]
+    },
+    {
+      "key": "separate-proxy-slots-from-receiver-work",
+      "tags": [
+        "deadline",
+        "retry",
+        "overload",
+        "concurrency"
+      ],
+      "problem": "A proxy timeout can free a slot while the receiver continues executing the attempt.",
+      "prevention": "Name the concurrency measurement boundary. Propagate the remaining deadline and bound active receiver work separately when proxy slot release does not confirm termination.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "MS02-H-T-DISC-1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
+          "evidence": "https://grpc.io/docs/guides/deadlines/#deadlines-on-the-server",
           "lesson": "M03-L03"
         }
       ]

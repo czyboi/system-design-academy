@@ -31,3 +31,15 @@ Reviewed `0ef85c8..371735c` for the canonical lesson, assessment and evidence. T
 | L02-P1 | resolved | The M02-L02 companion includes the same UDP heading in the YAML outcome map and the narrative row for LO2. |
 
 **Round 1 verdict: ready-for-human-review.**
+
+## Human-feedback technical re-review, 2026-11-13
+
+Reviewed `e805261..fdbe268` for M02-L02 in response to [issue #64](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179). Scope covers the changed teaching, companion and canonical evidence.
+
+No open technical or provenance findings in the changed scope.
+
+`modules/m02/lessons/M02-L02.md` and companion Q1 and Q3 distinguish cumulative ACK N, receipt, application commitment and deduplication. The buffer-only upper bound is 30 × 1,024 ÷ 96 = 320 connections, so 400 clients exceed it by 80. The two-attempt ticket budget retains the same durable caller-scoped ID and input, and an elapsed deadline leaves the outcome unknown. The test counts discarded and lost readings separately from displayed latency. [RFC 9293 §3.4](https://www.rfc-editor.org/rfc/rfc9293.html#section-3.4) · [RFC 8085 §§3.1, 3.3](https://www.rfc-editor.org/rfc/rfc8085.html#section-3.1) · [AWS Builders' Library, idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)
+
+The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
+
+**Human-feedback re-review verdict: `ready-for-human-review`.**

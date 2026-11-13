@@ -20,3 +20,15 @@ Reviewed 2026-11-12 at draft handoff `2171a9d`. Scope covers the canonical load 
 The evidence pack distinguishes general protocol behavior from NGINX and ALB capabilities. Academy scenarios and arithmetic are illustrative. The attribution credits Donne Martin and identifies the pinned Primer revision for topic selection. The canonical draft identifies its archived Academy predecessor and links the earlier evidence matrix. The lesson and assessment contain no reproduced third-party diagrams, code or other assets. [Pinned Primer license](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/LICENSE.txt)
 
 **Verdict: ready-for-human-review.** The reviewed package has no open technical or provenance finding requiring a correction round.
+
+## Human-feedback technical re-review, 2026-11-13
+
+Reviewed `e805261..fdbe268` for M02-L03 in response to [issue #64](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179). Scope covers the changed teaching, companion and canonical evidence.
+
+No open technical or provenance findings in the changed scope.
+
+`modules/m02/assessments/M02-L03.md:74–78` accounts for 165 connections after the reserve, 14 overlapping pools, and 154 connections under the 11-per-instance proposal. The 11 headroom assumes the two failed pools already obey the smaller limit. The answer distinguishes path selection at the TLS termination boundary, local session loss, and an ambiguous purchase result. Same-ID replay depends on the durable contract and remaining deadline. [NGINX HTTP proxy, proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) · [RFC 9110 §9.2.2](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2)
+
+The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
+
+**Human-feedback re-review verdict: `ready-for-human-review`.**

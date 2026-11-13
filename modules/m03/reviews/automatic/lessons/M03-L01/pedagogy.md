@@ -33,3 +33,23 @@ Reviewed the LAY-T2 correction at `fc8d61a` in the lesson, EX-1 and its outcome 
 | LAY-T2 | resolved | [M03-L01 lesson, Costs of a remote boundary](../../../../lessons/M03-L01.md#costs-of-a-remote-boundary) · [Approved M03-L01 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l01) |
 
 **Round 1 verdict: ready-for-human-review.** This re-review covers the changed teaching, assessment and outcome mapping.
+
+## Human-feedback targeted re-review, 2026-11-13
+
+Reviewed the changed lesson and companion at `fdbe268` against the [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l01) and the previous source-topic ledger. The layer, microservice and remote-boundary dispositions remain supported. The guarded ownership and durable-work teaching, including the new lost-reply trace, supports the exercise's concurrency, pending work and boundary recovery tasks. EX-1 specifies peak load, capacity and acceptable receipt delay. Its rubric awards points to invariant ownership, durable duplicate-safe processing, trade-offs and failure verification, with a modular application accepted as an alternative. The six checks and mapped outcomes remain aligned.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-HUMAN-L01-1 | note | resolved | [Lesson, Costs of a remote boundary](../../../../lessons/M03-L01.md#costs-of-a-remote-boundary) and [assessment, Practical exercise](../../../../assessments/M03-L01.md#practical-exercise) |
+
+**Current verdict: ready-for-human-review.** Coverage and pedagogy only.
+
+## Technical-correction targeted re-review, 2026-11-13
+
+Reviewed `31b2eb0` against `fdbe268`. The [worked example](../../../../lessons/M03-L01.md#worked-example) now teaches the stable output identity, durable completed reference and idempotent result transition. The [exercise answer and rubric](../../../../assessments/M03-L01.md#answer-key--rubric) apply that mechanism to a lost PDF reply and crash, while retaining credit for durable recovery and verification. The lesson outcome mapping and previously reviewed assigned-topic coverage remain supported.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-CORRECT-L01-1 | note | resolved | [Approved M03-L01 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l01) |
+
+**Current verdict: ready-for-human-review.** Pedagogy and assigned coverage only.

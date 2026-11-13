@@ -39,3 +39,23 @@ LO1 is taught in the resource, RPC, retry and worked-example sections and assess
 No open pedagogy or assigned-coverage findings. The documented M03-L03 preview dependency remains to be reconciled during the milestone integration.
 
 **Verdict: ready-for-human-review.** This verdict covers pedagogy and the assigned curriculum topics.
+
+## Human-feedback targeted re-review, 2026-11-13
+
+Reviewed the changed lesson and companion at `fdbe268` against the [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l02) and prior topic ledger. Existing resource, RPC and case-study explanations remain present. Compatibility and safe retries teaches caller-and-key lookup, payload comparison and the distinction between item count and byte bounds. EX-1 applies them across public and internal boundaries with two app versions, deadline and a lost reply. Its rubric separately grades trace, discovery alternatives, durable identity, pagination and compatibility, and failure verification. Q1–Q6 and both outcome maps remain aligned.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-HUMAN-L02-1 | note | resolved | [Lesson, Compatibility and safe retries](../../../../lessons/M03-L02.md#compatibility-and-safe-retries) and [assessment, Answer key / rubric](../../../../assessments/M03-L02.md#answer-key--rubric) |
+
+**Current verdict: ready-for-human-review.** Coverage and pedagogy only.
+
+## Technical-correction targeted re-review, 2026-11-13
+
+Reviewed `31b2eb0` against `fdbe268`. The [answer and rubric](../../../../assessments/M03-L02.md#answer-key--rubric) now describe and grade an atomic caller/key claim, a pending reservation identity before dispatch, and recovery with that identity. [Compatibility and safe retries](../../../../lessons/M03-L02.md#compatibility-and-safe-retries) teaches atomic key/operation recording and comparison of the stored payload. The concurrent-claim detail applies that taught contract to the stated design task. Existing checks, mappings and assigned-topic coverage remain supported.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-CORRECT-L02-1 | note | resolved | [Approved M03-L02 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l02) |
+
+**Current verdict: ready-for-human-review.** Pedagogy and assigned coverage only.

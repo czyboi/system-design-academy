@@ -19,3 +19,15 @@ Reviewed 2026-11-12 at draft handoff `e496b9a`. Scope covers the canonical CDN l
 The evidence pack separates general HTTP behavior from CloudFront configuration and labels examples as Academy designs. The lesson credits Donne Martin, the pinned Primer revision and CC BY 4.0 for topic selection. The archived Academy matrix is linked. The text uses original Academy examples and contains no reproduced third-party diagrams, code or other assets. [Pinned Primer license](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/LICENSE.txt)
 
 **Verdict: ready-for-human-review.** No open technical or provenance finding requires a correction round.
+
+## Human-feedback technical re-review, 2026-11-13
+
+Reviewed `e805261..fdbe268` for M02-L04 in response to [issue #64](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179). Scope covers the changed teaching, companion and canonical evidence.
+
+No open technical or provenance findings in the changed scope.
+
+`modules/m02/assessments/M02-L04.md:20,76–78` derives 160 direct origin fetches, 40 with ideal cross-edge collapsing, and 80 with two independent groups. These are conditional on overlap and shared keys. Origin attempts include retries against the 100-fetch scenario limit. The outage trace distinguishes eligible stale copies from absent variants and tests privacy with two users. [CloudFront, request collapsing](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html#request-custom-request-collapsing) · [RFC 9111 §4.1](https://www.rfc-editor.org/rfc/rfc9111.html#section-4.1) · [RFC 5861 §4](https://www.rfc-editor.org/rfc/rfc5861.html#section-4)
+
+The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
+
+**Human-feedback re-review verdict: `ready-for-human-review`.**

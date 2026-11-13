@@ -19,3 +19,27 @@ Reviewed 2026-11-12 at draft handoff `29e2cf2`. Scope covers the canonical DNS l
 The evidence pack separates IETF protocol behavior and current AWS policy behavior from the Academy scenarios. Donne Martin and the pinned Primer revision are credited for topic selection. The archived Academy matrix is linked, and the lesson and assessment contain original scenarios without external diagrams, code or other reproduced assets. [Pinned Primer license](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/LICENSE.txt)
 
 **Verdict: ready-for-human-review.** No open technical or provenance finding requires a correction round.
+
+## Human-feedback technical re-review, 2026-11-13
+
+Reviewed `e805261..fdbe268` for M02-L01 in response to [issue #64](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179). Scope covers the changed teaching, companion and canonical evidence.
+
+| ID | Severity | Status | Location | Finding and correction | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| MS02-H-T-DNS-1 | major | open | `modules/m02/assessments/M02-L01.md:18,76` | The objective can be read as 99% of all requests issued during the first minute succeeding. The proposed 20-second interruption can miss that target even at uniform traffic. Define a post-recovery sample window beginning by t = 60 s and its denominator, or revise the failover design and assumptions to meet a first-minute request SLO. | [RFC 1034 §3.2.1](https://www.rfc-editor.org/rfc/rfc1034.html#section-3.2.1) |
+
+The authoritative service performs the 2:1 selection. Recursive reuse changes the request distribution, and −30 + 300 gives expiry at t = 270 s. The ingress path depends on clients receiving its address in advance and on West capacity. Serving stale depends on the resolver's refresh-failure policy. [Route 53 weighted routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html) · [RFC 8767 §4](https://www.rfc-editor.org/rfc/rfc8767.html#section-4)
+
+The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
+
+**Human-feedback re-review verdict: `revise`.**
+
+## Human-feedback correction re-review, 2026-11-13
+
+Reviewed `fdbe268..31b2eb0` for the finding below and adjacent regressions.
+
+| ID | Status | Verification | Primary evidence |
+| --- | --- | --- | --- |
+| MS02-H-T-DNS-1 | resolved | `modules/m02/assessments/M02-L01.md:18,74–78` defines both the recovery deadline and the per-group denominator. Requests issued at `60 ≤ t < 120 s` form the post-recovery sample. An available ingress reroute at 20 s precedes that window, while the modeled larger resolver can still supply the East address throughout it because expiry remains at 270 s. The 2:1 authoritative-selection explanation is intact. | [RFC 1034 §3.6](https://www.rfc-editor.org/rfc/rfc1034.html#section-3.6) · [Route 53 weighted routing](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html) |
+
+**Correction re-review verdict: `ready-for-human-review`.**

@@ -31,3 +31,27 @@ Reviewed correction handoff `fc8d61a` on 2026-11-12.
 The lesson now distinguishes the availability observation from the guarded mutation and scopes the predicate recheck to PostgreSQL 18 Read Committed for a predetermined seat row. The companion asks learners to resolve concurrent requests for the same seat. Its answer guards each claim, rolls back every claim if one fails, and commits the claims, reservation, and pending receipt together before acknowledging success. The rubric accepts an equivalent concurrency-safe mechanism with all-or-nothing commit. The LO1 map now points to the section that teaches the guard, and the claim matrix carries the same version and isolation scope. [Lesson, Costs of a remote boundary](../../../../lessons/M03-L01.md#costs-of-a-remote-boundary) · [Companion, EX-1 and rubric](../../../../assessments/M03-L01.md#answer-key--rubric) · [Evidence](../../../../evidence/M03-L01.md)
 
 Round 1 verdict `ready-for-human-review`.
+
+## Human-feedback technical re-review, 2026-11-13
+
+Reviewed `e805261..fdbe268` for M03-L01 in response to [issue #64](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179). Scope covers the changed teaching, companion and canonical evidence.
+
+| ID | Severity | Status | Location | Finding and correction | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| MS02-H-T-LAY-1 | major | open | `modules/m03/lessons/M03-L01.md:49` and `modules/m03/assessments/M03-L01.md:74` | A durable seen-ID record can suppress execution after the PDF is created yet leave the catalogue pending indefinitely if the result was only in the lost reply. Retain a recoverable completed-result reference by work ID, return it for replay or expose authoritative status, and explain the completion transition at the reservation owner. For an external write, use an idempotent destination under the same work ID or couple that effect to the durable completion contract. | [AWS Builders' Library, retries and semantic equivalence](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) |
+
+The guarded all-or-nothing claim and single transactional seat owner remain correct. PostgreSQL 18 at Read Committed rechecks the predicate on a row changed by a competing update after that update commits. [PostgreSQL 18 §13.2.1](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED)
+
+The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
+
+**Human-feedback re-review verdict: `revise`.**
+
+## Human-feedback correction re-review, 2026-11-13
+
+Reviewed `fdbe268..31b2eb0` for the finding below and adjacent regressions.
+
+| ID | Status | Verification | Primary evidence |
+| --- | --- | --- | --- |
+| MS02-H-T-LAY-1 | resolved | `modules/m03/lessons/M03-L01.md:49` and `modules/m03/assessments/M03-L01.md:74–78` persist the result reference before acknowledging completion. A stable output destination handles the window between the external write and that record. Retry or authoritative lookup retrieves the same result within retention, and the owner applies the matching transition idempotently. The atomic seat claim and pending-work creation remain together. | [AWS Builders' Library, retries and semantic equivalence](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) · [PostgreSQL 18 §13.2.1](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED) |
+
+**Correction re-review verdict: `ready-for-human-review`.**

@@ -34,3 +34,23 @@ Reviewed the corrected companion handed off at `4a6dc6e` against the two finding
 The EX-1 rubric now awards two of ten points for a reasoned discovery ownership choice and its trade-off, accepts either client or intermediary ownership when justified, and retains credit for the other requested actions. The sample answer illustrates the proxy choice and its capacity and availability cost. Q6 now distinguishes an authoritative committed record from an absent, stale or pending status and explains the conditions for safe retry. These changes resolve both findings.
 
 **Current verdict: ready-for-human-review.** This is a pedagogy and assigned-coverage verdict, not technical or human approval. The M03-L02 archived-link reconciliation remains an integration follow-up.
+
+## Human-feedback targeted re-review, 2026-11-13
+
+Reviewed the changed lesson and companion at `fdbe268` against the [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l03) and the prior source-topic ledger. Discovery, registration, health and configuration coverage remains taught. The added overload example teaches a concrete concurrency cap, retry accounting, rejection and recovery signals, complementing the deadline and stale-membership worked trace. EX-1 asks for numerical retry, concurrency and cache-age budgets, an ownership alternative, unknown charge outcome and a failure test. The rubric scores each requested action, including the previously corrected discovery-ownership criterion. The six explained checks and outcome mappings remain intact.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-HUMAN-L03-1 | note | resolved | [Lesson, Trade-offs and failure modes](../../../../lessons/M03-L03.md#trade-offs-and-failure-modes) and [assessment, Answer key / rubric](../../../../assessments/M03-L03.md#answer-key--rubric) |
+
+**Current verdict: ready-for-human-review.** Coverage and pedagogy only.
+
+## Technical-correction targeted re-review, 2026-11-13
+
+Reviewed `31b2eb0` against `fdbe268`. The [lesson](../../../../lessons/M03-L03.md#trade-offs-and-failure-modes) distinguishes outstanding proxy attempts from work continuing at the receiver and teaches separate measurement and control. The [exercise answer](../../../../assessments/M03-L03.md#answer-key--rubric) applies the shared deadline, proxy slots, receiver admission and recovery measurements to the stated scenario. The existing rubric awards credit to numerical budgets, overload behavior, outage fallback and testing, and accepts justified alternatives. The discovery and retry outcomes and assigned topics remain taught and assessed.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-CORRECT-L03-1 | note | resolved | [Approved M03-L03 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m03-l03) |
+
+**Current verdict: ready-for-human-review.** Pedagogy and assigned coverage only.

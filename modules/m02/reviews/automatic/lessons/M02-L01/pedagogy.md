@@ -28,3 +28,23 @@ LO1 is taught in Resolution and record roles, Routing choices and cached answers
 The lesson moves from the regional routing problem to resolution, policies, a timed two-resolver trace and the operational decision. The separate companion contains six questions with answers and explanations, plus an exercise, sample decision and ten-point rubric. Its new resolver populations test why weighted DNS answer selection cannot guarantee a per-request split. The prerequisite M01-L04 is identified in the lesson.
 
 **Verdict: ready-for-human-review.** This verdict covers pedagogy and assigned curriculum coverage.
+
+## Human-feedback targeted re-review, 2026-11-13
+
+Reviewed the changed lesson and EX-1 at `fdbe268` against the [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m02-l01) and the topic ledger above. The prior assigned-topic dispositions remain supported by the unchanged explanations. The new worked-example paragraph teaches the distinction between cached DNS data and separately reachable ingress, including capacity and reachability assumptions. The companion traces the 270-second expiry against a 60-second recovery objective and grades selection, cache reasoning, an alternative and a failure drill. Q1–Q6 remain explained and mapped. The exercise accepts other substantiated approaches.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-HUMAN-L01-1 | note | resolved | [Lesson, Worked example](../../../../lessons/M02-L01.md#worked-example) and [assessment, Practical exercise](../../../../assessments/M02-L01.md#practical-exercise) |
+
+**Current verdict: ready-for-human-review.** Coverage and pedagogy only.
+
+## Technical-correction targeted re-review, 2026-11-13
+
+Reviewed `31b2eb0` against `fdbe268`. [EX-1](../../../../assessments/M02-L01.md#practical-exercise) now defines the measured recovery window as requests issued from 60 to under 120 seconds, and its [answer](../../../../assessments/M02-L01.md#answer-key--rubric) asks for per-group success in that same window. The existing rubric awards credit for the timed trace, alternative and failure drill. The lesson's worked DNS cache trace still provides the needed instruction. This clarification leaves the mapped outcomes and previous topic dispositions intact.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-CORRECT-L01-1 | note | resolved | [Approved M02-L01 outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m02-l01) |
+
+**Current verdict: ready-for-human-review.** Pedagogy and assigned coverage only.

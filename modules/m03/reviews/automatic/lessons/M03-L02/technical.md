@@ -22,3 +22,27 @@ The claim matrix gives source and version scope for the cited dissertation, stan
 ## Verdict
 
 `ready-for-human-review`. No blocker or major findings. The two minor findings are wording clarifications.
+
+## Human-feedback technical re-review, 2026-11-13
+
+Reviewed `e805261..fdbe268` for M03-L02 in response to [issue #64](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179). Scope covers the changed teaching, companion and canonical evidence.
+
+| ID | Severity | Status | Location | Finding and correction | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| MS02-H-T-API-1 | major | open | `modules/m03/assessments/M03-L02.md:75–77` | The sample says to look up and persist the association without establishing a unique atomic claim before dispatch. Two API instances can observe an absent caller/key pair and independently call inventory with different reservation IDs. Persist one caller/key, input and pending reservation ID atomically before dispatch, and resume pending dispatch using that ID after a restart. Keep inventory's atomic identity/effect update. | [AWS Builders' Library, reducing client complexity](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) |
+
+Caller plus key is the lookup identity and the stored payload is the equivalence check. The teaching paragraph already describes atomic recording of the key and created operation. A 50-item page can contain 5,000 KB of item bodies at the assumed maximum, before envelope overhead. Separate byte limits and an application-level compatibility check make the constraints explicit. [AWS Builders' Library, changed intent](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/#same_client_request_id_different_intent) · [Protocol Buffers, updating a message type](https://protobuf.dev/programming-guides/proto3/#updating)
+
+The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
+
+**Human-feedback re-review verdict: `revise`.**
+
+## Human-feedback correction re-review, 2026-11-13
+
+Reviewed `fdbe268..31b2eb0` for the finding below and adjacent regressions.
+
+| ID | Status | Verification | Primary evidence |
+| --- | --- | --- | --- |
+| MS02-H-T-API-1 | resolved | `modules/m03/assessments/M03-L02.md:75–79` creates one unique caller/key claim and pending reservation ID before dispatch. Concurrent callers use the same durable record, mismatched input is rejected, and a restarted API resumes with the persisted ID. Inventory records that ID atomically with its effect. The answer also retains an identity or tombstone beyond the response cache and preserves the distinction between items and bytes. | [AWS Builders' Library, reducing client complexity and changed intent](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) |
+
+**Correction re-review verdict: `ready-for-human-review`.**

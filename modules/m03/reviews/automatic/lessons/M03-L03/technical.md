@@ -33,3 +33,27 @@ Reviewed 2026-11-13 against correction handoff `4a6dc6eb6d705ebeae58ea74f431ba46
 The worked example at `modules/m03/lessons/M03-L03.md:47` and Q6 and EX-1 at `modules/m03/assessments/M03-L03.md:70,74` now distinguish a committed record from absent, stale, or pending status. A fresh identity requires authoritative terminal evidence that the first attempt did not and cannot apply. This excludes the original delayed-commit case even if the status read was authoritative. The same-identity alternative remains conditional on a durable contract covering the operation. The EX-1 answer and rubric at lines 74–76 preserve the six-attempt upper bound and assess the stated discovery-ownership trade-off separately from the charge outcome. [RFC 9110 §9.2.2](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2) · [Amazon Builders’ Library, Reducing client complexity and Late arriving requests](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)
 
 `ready-for-human-review`. No open blocker or major findings.
+
+## Human-feedback technical re-review, 2026-11-13
+
+Reviewed `e805261..fdbe268` for M03-L03 in response to [issue #64](https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179). Scope covers the changed teaching, companion and canonical evidence.
+
+| ID | Severity | Status | Location | Finding and correction | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| MS02-H-T-DISC-1 | major | open | `modules/m03/assessments/M03-L03.md:18,74` and `modules/m03/lessons/M03-L03.md:55` | The exercise's capacity boundary is ambiguous. A proxy can free a slot on timeout while pricing still executes that request, and a retry can then exceed a backend work cap. Define 100 as proxy-tracked outstanding attempts, or add receiving-side admission or confirmed cancellation if 100 bounds actual work. Explicitly propagate the remaining deadline and clamp each 180 ms attempt to it. | [gRPC deadlines, server cancellation and propagation](https://grpc.io/docs/guides/deadlines/#deadlines-on-the-server) |
+
+The nested worst case is six attempts. The new policy budgets 2 × 180 + 20 = 380 ms before other path work, and distinguishes the 30-second cache interval from the fallback cutoff measured from the last successful refresh. The charge path preserves its committed, unknown and terminal non-application distinctions. [AWS Builders' Library, retries and backoff](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/) · [AWS Builders' Library, idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)
+
+The exercise and model are original illustrative material. No third-party asset was added. The prior attribution remains in the lesson.
+
+**Human-feedback re-review verdict: `revise`.**
+
+## Human-feedback correction re-review, 2026-11-13
+
+Reviewed `fdbe268..31b2eb0` for the finding below and adjacent regressions.
+
+| ID | Status | Verification | Primary evidence |
+| --- | --- | --- | --- |
+| MS02-H-T-DISC-1 | resolved | `modules/m03/assessments/M03-L03.md:18,74–78`, `modules/m03/lessons/M03-L03.md:55`, and `modules/m03/evidence/M03-L03.md` distinguish the tier-wide 100 outstanding proxy attempts from active receiver work. The receiving service has its own admission control and safe cancellation. The model propagates the remaining deadline and clamps each attempt to the smaller of 180 ms and remaining time. Discovery age remains tied to the last successful refresh, and the charge still requires a covered same-key replay or authoritative terminal evidence before a new key. | [gRPC deadlines, server handling and propagation](https://grpc.io/docs/guides/deadlines/#deadlines-on-the-server) · [AWS Builders' Library, idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) |
+
+**Correction re-review verdict: `ready-for-human-review`.**

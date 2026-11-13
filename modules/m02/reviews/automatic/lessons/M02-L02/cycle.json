@@ -1,7 +1,7 @@
 {
   "module": "m02",
   "lesson": "M02-L02",
-  "revision_attempts": 1,
+  "revision_attempts": 0,
   "review_history": [
     {
       "round": 0,
@@ -14,8 +14,21 @@
       "technical": "ready-for-human-review",
       "pedagogy": "ready-for-human-review",
       "result": "ready"
+    },
+    {
+      "round": 0,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
     }
   ],
   "status": "ready",
-  "updated_at": "2026-11-12T15:05:59+00:00"
+  "updated_at": "2026-11-13T02:48:14+00:00",
+  "reopen_history": [
+    {
+      "at": "2026-11-13T02:44:48+00:00",
+      "reason": "Material assessment and rubric changes addressing SDA-MS02 human content feedback in Issue #64 comment 6841513179",
+      "prior_revision_attempts": 1
+    }
+  ]
 }

@@ -8,8 +8,21 @@
       "technical": "ready-for-human-review",
       "pedagogy": "ready-for-human-review",
       "result": "ready"
+    },
+    {
+      "round": 0,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
     }
   ],
   "status": "ready",
-  "updated_at": "2026-11-12T15:10:50+00:00"
+  "updated_at": "2026-11-13T02:48:15+00:00",
+  "reopen_history": [
+    {
+      "at": "2026-11-13T02:44:49+00:00",
+      "reason": "Material assessment and rubric changes addressing SDA-MS02 human content feedback in Issue #64 comment 6841513179",
+      "prior_revision_attempts": 0
+    }
+  ]
 }

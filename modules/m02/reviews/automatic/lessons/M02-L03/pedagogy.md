@@ -36,3 +36,13 @@ LO1 is taught by the routing, proxy/state and worked-example sections. Q1–Q3 t
 The worked example makes a backend failure observable and distinguishes the affinity cookie from shared session state. The companion contains six explained checks and a separate exercise with sample answer and rubric. The calculation gives 180 current web connections and an equal cap of 27 under the stated 165-connection allowance. The rubric accepts other designs that satisfy the stated constraints. M02-L02 is identified as the prerequisite.
 
 **Verdict: ready-for-human-review.** This verdict covers pedagogy and assigned curriculum coverage.
+
+## Human-feedback targeted re-review, 2026-11-13
+
+Reviewed the changed lesson and companion at `fdbe268` against the [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m02-l03) and prior topic ledger. Existing assigned-topic teaching remains present. Proxy work and horizontal scaling now explicitly teach overlapping instance pools, admission and reporting rejected work alongside latency. EX-1 transfers those ideas to zone loss, delayed database connection release, a shared limiter alternative and safe purchase replay. The answer and ten-point rubric grade the overlap, failure behavior and failure-test evidence separately. Six explained checks and both outcome maps remain aligned.
+
+| Finding | Severity | Status | Evidence |
+| --- | --- | --- | --- |
+| P-MS02-HUMAN-L03-1 | note | resolved | [Lesson, Proxy work and horizontal scaling](../../../../lessons/M02-L03.md#proxy-work-and-horizontal-scaling) and [assessment, Practical exercise](../../../../assessments/M02-L03.md#practical-exercise) |
+
+**Current verdict: ready-for-human-review.** Coverage and pedagogy only.
