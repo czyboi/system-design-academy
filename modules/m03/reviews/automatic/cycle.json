@@ -31,10 +31,16 @@
       "technical": "revise",
       "pedagogy": "revise",
       "result": "needs_revision"
+    },
+    {
+      "round": 2,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
     }
   ],
-  "status": "revising",
-  "updated_at": "2026-11-13T08:29:21+00:00",
+  "status": "ready",
+  "updated_at": "2026-11-13T08:32:58+00:00",
   "reopen_history": [
     {
       "at": "2026-11-13T02:44:49+00:00",

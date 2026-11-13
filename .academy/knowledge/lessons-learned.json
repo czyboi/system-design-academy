@@ -2,6 +2,30 @@
   "schema_version": 1,
   "entries": [
     {
+      "key": "atomic-acceptance-and-runnable-intent",
+      "tags": [
+        "idempotency",
+        "dispatch",
+        "queues",
+        "failure-modes"
+      ],
+      "problem": "A durable acceptance record could survive a crash before separate enqueue, leaving retries to replay acceptance for work no worker can find.",
+      "prevention": "Make the durable pending record runnable or persist acceptance and runnable intent atomically. Test a crash after acceptance and before first execution.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "M03-SYN-T6",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/technical.md",
+          "evidence": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html#using-an-outbox-table-with-a-relational-database"
+        }
+      ]
+    },
+    {
       "key": "bind-approval-to-the-approved-version",
       "tags": [
         "transactions",
