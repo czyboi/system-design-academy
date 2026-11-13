@@ -1,0 +1,91 @@
+{
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Reconcile the integrated scenario evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-12T15:07:14Z",
+      "run_id": "SD-M03-INTEGRATION-research-20261112T150714Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-12T15:07:14Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Draft and reconcile module synthesis",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/coverage.csv",
+        "delivery/backlog.json",
+        "GOVERNANCE.md",
+        "modules/m03/integrated/evidence.md",
+        "modules/m03/lessons/M03-L01.md",
+        "modules/m03/assessments/M03-L01.md",
+        "modules/m03/evidence/M03-L01.md",
+        "modules/m03/lessons/M03-L02.md",
+        "modules/m03/assessments/M03-L02.md",
+        "modules/m03/evidence/M03-L02.md",
+        "modules/m03/lessons/M03-L03.md",
+        "modules/m03/assessments/M03-L03.md",
+        "modules/m03/evidence/M03-L03.md"
+      ],
+      "output_paths": [
+        "modules/m03/integrated/brief.md",
+        "modules/m03/integrated/solution-rubric.md",
+        "modules/m03/integrated/decision-summary.md",
+        "modules/m03/integrated/taught-coverage.csv",
+        "modules/m03/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "Reconciled M03-L02 preview and evidence with the independently reviewed M03-L03 trace; scenario timing is unchanged.",
+        "next_action": "Scoped handoff and module synthesis review.",
+        "at": "2026-11-13T00:42:49Z"
+      },
+      "attempts": 1,
+      "started_at": "2026-11-13T00:42:48Z",
+      "run_id": "SD-M03-INTEGRATION-author-20261113T004248Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-13T00:42:49Z",
+      "completed_by": "codex"
+    }
+  ],
+  "notes": "",
+  "current_phase": "author",
+  "schema_version": 2,
+  "task_id": "SD-M03-INTEGRATION",
+  "module_id": "m03",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M03-INTEGRATION.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "created_at": "2026-11-12T14:58:53Z",
+  "updated_at": "2026-11-13T00:42:49Z"
+}
