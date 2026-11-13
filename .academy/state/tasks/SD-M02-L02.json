@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-12T14:58:48Z",
-  "updated_at": "2026-11-13T07:13:19Z",
+  "updated_at": "2026-11-13T07:48:28Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -61,21 +61,21 @@
         "modules/m02/assessments/M02-L02.md"
       ],
       "checkpoint": {
-        "note": "Address L02-P1.",
-        "next_action": "Run scoped handoff and targeted independent re-review.",
-        "at": "2026-11-12T15:05:09Z"
+        "note": "Addressed M02-L02-T3/T4/T5/S1 in the loss trace, Q7, and claim evidence.",
+        "next_action": "Scoped draft handoff and independent targeted re-review.",
+        "at": "2026-11-13T07:48:27Z"
       },
-      "attempts": 2,
-      "started_at": "2026-11-12T15:05:08Z",
-      "run_id": "SD-M02-L02-author-20261112T150508Z",
-      "agent": "codex",
+      "attempts": 3,
+      "started_at": "2026-11-13T07:46:52Z",
+      "run_id": "SD-M02-L02-author-20261113T074652Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-12T15:05:10Z",
-      "completed_by": "codex",
-      "invalidation_reason": "Independent M02-L02 reviewer findings L02-P1"
+      "completed_at": "2026-11-13T07:48:28Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "PR #66 scoped re-review: M02-L02-T3, M02-L02-T4, M02-L02-T5, M02-L02-S1"
     }
   ],
   "review_statuses": {
