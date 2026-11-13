@@ -141,11 +141,9 @@
         "M03-L03-LO2"
       ],
       "teaching": {
-        "path": "modules/m03/integrated/solution-rubric.md",
+        "path": "modules/m03/integrated/decision-summary.md",
         "sections": [
-          "Ownership and deployment",
-          "Public and internal contracts",
-          "Discovery and failure trace"
+          "Connect the boundary, contract and failure policy"
         ]
       },
       "assessment": {

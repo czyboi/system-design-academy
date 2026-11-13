@@ -6,7 +6,7 @@ outcomes: [M03-S1]
 
 # Service boundaries for catalogue publishing
 
-A catalogue has an editor API, an item database and a preview renderer. In a hypothetical load test, a peak of of 900 metadata requests and 30 preview requests per second saturates shared CPU and pushes metadata p99 from 120 ms to 430 ms. The metadata target is 200 ms p99. Editors can wait up to two minutes for previews and see their progress. Editors may update an item while its preview is rendering. Only a preview for the current, approved item version can be published.
+A catalogue has an editor API, an item database and a preview renderer. In a hypothetical load test, a peak of 900 metadata requests and 30 preview requests per second saturates shared CPU and pushes metadata p99 from 120 ms to 430 ms. The metadata target is 200 ms p99. Editors can wait up to two minutes for previews and see their progress. Editors may update an item while its preview is rendering. Editors approve specific item versions. A public preview must match the current version and its approval.
 
 Two mobile client versions coexist. Clients sometimes retry a create after losing the response. A renderer can accept work durably and then lose its reply. A rolling deploy can leave a stopped renderer in discovery results. For one dispatch cycle, assume a 300 ms total wait budget, a 120 ms first attempt, up to 30 ms of jittered delay and a healthy alternate that responds in 60 ms.
 
