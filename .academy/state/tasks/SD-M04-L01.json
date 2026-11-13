@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-13T13:27:34Z",
-  "updated_at": "2026-11-13T13:29:38Z",
+  "updated_at": "2026-11-13T13:33:58Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -61,20 +61,33 @@
         "modules/m04/assessments/M04-L01.md"
       ],
       "checkpoint": {
-        "note": "Drafted normalized order model, guarded concurrent stock claim, query paths and attachment recovery.",
-        "next_action": "Complete author and hand off the canonical package for independent review.",
-        "at": "2026-11-13T13:29:38Z"
+        "note": "Addressed M04-L01-T1/T2 and P1/P2 with fenced upload publication, both race orders, rollback trace, and precise PostgreSQL sources.",
+        "next_action": "Hand off and request targeted re-review from both independent reviewers.",
+        "at": "2026-11-13T13:33:57Z"
       },
-      "attempts": 1,
-      "started_at": "2026-11-13T13:28:20Z",
-      "run_id": "SD-M04-L01-author-20261113T132820Z",
-      "agent": "codex",
+      "attempts": 2,
+      "started_at": "2026-11-13T13:32:20Z",
+      "run_id": "SD-M04-L01-author-20261113T133220Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-13T13:29:38Z",
-      "completed_by": "codex"
+      "completed_at": "2026-11-13T13:33:58Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Resolve M04-L01-T1/T2 and M04-L01-P1/P2 in Stage A revision 1."
     }
-  ]
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "M04-L01-T1/T2 require attempt fencing and precise references.",
+      "updated_at": "2026-11-13T13:32:19Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "M04-L01-P1/P2 require an attachment failure trace and rollback example.",
+      "updated_at": "2026-11-13T13:32:19Z"
+    }
+  }
 }
