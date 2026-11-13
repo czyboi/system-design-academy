@@ -2,6 +2,240 @@
   "schema_version": 1,
   "entries": [
     {
+      "key": "atomic-acceptance-and-runnable-intent",
+      "tags": [
+        "idempotency",
+        "dispatch",
+        "queues",
+        "failure-modes"
+      ],
+      "problem": "A durable acceptance record could survive a crash before separate enqueue, leaving retries to replay acceptance for work no worker can find.",
+      "prevention": "Make the durable pending record runnable or persist acceptance and runnable intent atomically. Test a crash after acceptance and before first execution.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "M03-SYN-T6",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/technical.md",
+          "evidence": "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html#using-an-outbox-table-with-a-relational-database"
+        }
+      ]
+    },
+    {
+      "key": "bind-approval-to-the-approved-version",
+      "tags": [
+        "transactions",
+        "concurrency",
+        "invariants",
+        "service-boundaries"
+      ],
+      "problem": "A boolean approval could survive a version change and authorize publication of a new version the editor never approved.",
+      "prevention": "Bind approval to the reviewed version. Require the current, approved and result versions to match at the guarded write. Trace approval of one version followed by an edit and completion of the new version.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "M03-SYN-T1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED"
+        }
+      ]
+    },
+    {
+      "key": "claim-retry-identity-before-dispatch",
+      "tags": [
+        "idempotency",
+        "retry",
+        "concurrency",
+        "api-contract"
+      ],
+      "problem": "Concurrent API retries can assign different downstream operation IDs when the caller key has no atomic claim before dispatch.",
+      "prevention": "Before dispatch, atomically claim the caller-scoped key and persist the input and stable downstream ID. Recover pending dispatch with that ID, and deduplicate the effect at the receiver.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "MS02-H-T-API-1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L02/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L02"
+        },
+        {
+          "module": "m03",
+          "finding_id": "API-T3",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L02/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L02"
+        }
+      ]
+    },
+    {
+      "key": "define-measurable-slo-boundaries",
+      "tags": [
+        "slo",
+        "observability",
+        "assessment",
+        "failure-modes"
+      ],
+      "problem": "A recovery or performance target can appear satisfied when its time window and denominator are ambiguous, slow or failed jobs are excluded, or admission shedding hides unsuccessful requests.",
+      "prevention": "Define each SLO's population, measurement window, numerator/denominator, threshold, and start/end events. Count rejected, timed-out, failed, expired and late operations explicitly. Report admitted latency separately from end-to-end success and load shedding. Grade verification using those boundaries, not a metric that excludes unsuccessful work.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m02",
+          "finding_id": "MS02-H-T-DNS-1",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/lessons/M02-L01/technical.md",
+          "evidence": "https://github.com/czyboi/system-design-academy/issues/64#issuecomment-6841513179",
+          "lesson": "M02-L01"
+        },
+        {
+          "module": "m03",
+          "finding_id": "M03-SYN-T3",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/technical.md",
+          "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis"
+        },
+        {
+          "module": "m02",
+          "finding_id": "M02-L04-T2",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/lessons/M02-L04/technical.md",
+          "evidence": "https://github.com/czyboi/system-design-academy/blob/0dcef2a098ab1d3b9ba347aeac4b924ff69ba71b/.academy/specs/SD-M02-L04.json#L66-L68",
+          "lesson": "M02-L04"
+        },
+        {
+          "module": "m02",
+          "finding_id": "M02-INT-T3",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/technical.md",
+          "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis"
+        },
+        {
+          "module": "m03",
+          "finding_id": "M03-L03-T-OVERLOAD-1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
+          "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis",
+          "lesson": "M03-L03"
+        }
+      ]
+    },
+    {
+      "key": "design-assessments-for-target-audience",
+      "tags": [
+        "assessment",
+        "audience-level",
+        "pedagogy",
+        "system-design"
+      ],
+      "problem": "Technically accurate lessons and complete outcome mappings passed review, but several exercises initially tested recall or isolated arithmetic rather than the architectural reasoning expected of middle+/senior engineers.",
+      "prevention": "For middle+/senior learners, keep theory concise. Exercises must demand design choices under realistic constraints and failures, with assumptions, alternatives, trade-offs and verification. Add capacity or concurrency reasoning when relevant. Give full rubric credit for design reasoning, not recall or isolated arithmetic.",
+      "applies_to": [
+        "lesson_author",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m02",
+          "finding_id": "P-MS02-HUMAN-L03-1",
+          "review_role": "pedagogy",
+          "report": "modules/m02/reviews/automatic/lessons/M02-L03/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M02-L03"
+        }
+      ]
+    },
+    {
+      "key": "edge-miss-versus-origin-fetch-count",
+      "tags": [
+        "caching",
+        "cdn",
+        "capacity"
+      ],
+      "problem": "A capacity estimate counted edge misses as origin fetches without specifying intermediate caches or retries.",
+      "prevention": "Name the measurement boundary. State which misses are served by intermediate tiers and how coalescing and retries change origin fetches before converting a hit ratio to origin load.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m02",
+          "finding_id": "M02-INT-T1",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/technical.md",
+          "evidence": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html"
+        }
+      ]
+    },
+    {
+      "key": "grade-each-required-design-decision",
+      "tags": [
+        "assessment",
+        "rubrics",
+        "synthesis",
+        "failure-modes"
+      ],
+      "problem": "A rubric awarded full credit without requiring a concurrency bound and discovery-outage policy requested by the exercise.",
+      "prevention": "Compare each required design decision in the prompt to full-credit evidence. Distinguish stating the policy and bounds from proposing tests for that policy.",
+      "applies_to": [
+        "lesson_author",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "P-M03-S1-02",
+          "review_role": "pedagogy",
+          "report": "modules/m03/reviews/automatic/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
+        }
+      ]
+    },
+    {
+      "key": "guard-mutable-preconditions-at-write",
+      "tags": [
+        "transactions",
+        "concurrency",
+        "invariants",
+        "service-boundaries"
+      ],
+      "problem": "An earlier availability check and a transaction for subsequent writes left a mutable precondition unprotected against concurrent requests.",
+      "prevention": "Trace two callers observing the same available state. Guard the state transition with a concurrency-safe claim or constraint, roll back incomplete claims, and acknowledge after the owner commits.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "LAY-T2",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L01/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M03-L01"
+        }
+      ]
+    },
+    {
       "key": "map-each-outcome-skill-to-its-assessment",
       "tags": [
         "assessment",
@@ -21,6 +255,14 @@
           "review_role": "pedagogy",
           "report": "modules/m01/reviews/automatic/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
+        },
+        {
+          "module": "m02",
+          "finding_id": "L02-P1",
+          "review_role": "pedagogy",
+          "report": "modules/m02/reviews/automatic/lessons/M02-L02/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M02-L02"
         }
       ]
     },
@@ -45,6 +287,127 @@
           "review_role": "technical",
           "report": "modules/m01/reviews/automatic/technical.md",
           "evidence": "https://raft.github.io/raft.pdf#page=13"
+        }
+      ]
+    },
+    {
+      "key": "require-terminal-evidence-before-new-operation-key",
+      "tags": [
+        "retries",
+        "idempotency",
+        "service-discovery"
+      ],
+      "problem": "A status lookup can show no committed record while an earlier write is still in flight. A fresh key can admit a duplicate effect.",
+      "prevention": "Distinguish a confirmed committed record from absence or pending status. Require authoritative terminal evidence of non-application before using a fresh key, or retain the same identity under a durable deduplication contract that still covers it.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "DISC-T1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L03"
+        }
+      ]
+    },
+    {
+      "key": "retain-async-result-for-replay",
+      "tags": [
+        "idempotency",
+        "async-work",
+        "retry",
+        "partial-failure"
+      ],
+      "problem": "A durable seen-ID marker can suppress retries after a lost reply yet leave the caller without a recoverable result.",
+      "prevention": "Persist the result by stable operation ID before acknowledging completion, return it on covered replay or status lookup, and use an idempotent output write across the crash window.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "MS02-H-T-LAY-1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L01/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+          "lesson": "M03-L01"
+        }
+      ]
+    },
+    {
+      "key": "scope-http-retries-by-operation-semantics",
+      "tags": [
+        "http",
+        "retry",
+        "idempotency"
+      ],
+      "problem": "A lost-response example treated durable operation IDs as required for all HTTP retries.",
+      "prevention": "Distinguish idempotent requests and confirmed non-application from ambiguous non-idempotent operations. Scope durable deduplication to the application replay contract that needs it.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m02",
+          "finding_id": "M02-L02-T3",
+          "review_role": "technical",
+          "report": "modules/m02/reviews/automatic/lessons/M02-L02/technical.md",
+          "evidence": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2",
+          "lesson": "M02-L02"
+        }
+      ]
+    },
+    {
+      "key": "separate-proxy-slots-from-receiver-work",
+      "tags": [
+        "deadline",
+        "retry",
+        "overload",
+        "concurrency"
+      ],
+      "problem": "A proxy timeout can free a slot while the receiver continues executing the attempt.",
+      "prevention": "Name the concurrency measurement boundary. Propagate the remaining deadline and bound active receiver work separately when proxy slot release does not confirm termination.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m03",
+          "finding_id": "MS02-H-T-DISC-1",
+          "review_role": "technical",
+          "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
+          "evidence": "https://grpc.io/docs/guides/deadlines/#deadlines-on-the-server",
+          "lesson": "M03-L03"
+        }
+      ]
+    },
+    {
+      "key": "synthesis-map-points-to-worked-reasoning",
+      "tags": [
+        "assessment",
+        "outcomes",
+        "synthesis"
+      ],
+      "problem": "A synthesis outcome locator pointed to its label and lesson links instead of the section containing worked design reasoning.",
+      "prevention": "Point synthesis teaching evidence to the exact worked reasoning sections and retain the separately scoped assessed subset and rubric.",
+      "applies_to": [
+        "lesson_author",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m02",
+          "finding_id": "M02-P1",
+          "review_role": "pedagogy",
+          "report": "modules/m02/reviews/automatic/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
         }
       ]
     },

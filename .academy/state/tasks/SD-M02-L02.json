@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M02-L02",
+  "module_id": "m02",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M02-L02.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-12T14:58:48Z",
+  "updated_at": "2026-11-13T07:51:56Z",
+  "execution_control": "active",
+  "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m02/evidence/M02-L02.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-12T15:02:20Z",
+      "run_id": "SD-M02-L02-research-20261112T150220Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-12T15:02:21Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m02/evidence/M02-L02.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m02/lessons/M02-L02.md",
+        "modules/m02/assessments/M02-L02.md"
+      ],
+      "checkpoint": {
+        "note": "Addressed M02-L02-T3/T4/T5/S1 in the loss trace, Q7, and claim evidence.",
+        "next_action": "Scoped draft handoff and independent targeted re-review.",
+        "at": "2026-11-13T07:48:27Z"
+      },
+      "attempts": 3,
+      "started_at": "2026-11-13T07:46:52Z",
+      "run_id": "SD-M02-L02-author-20261113T074652Z",
+      "agent": "lesson_author",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-13T07:48:28Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "PR #66 scoped re-review: M02-L02-T3, M02-L02-T4, M02-L02-T5, M02-L02-S1"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "PR #66 independent Stage A correction re-review at 954dba2 cleared the loss trace, retry guidance, Q7 and both outcome maps.",
+      "updated_at": "2026-11-13T07:51:55Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "PR #66 independent Stage A correction re-review at 954dba2 cleared the loss trace, retry guidance, Q7 and both outcome maps.",
+      "updated_at": "2026-11-13T07:51:56Z"
+    }
+  }
+}

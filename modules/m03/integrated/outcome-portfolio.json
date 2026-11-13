@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M03",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M03-L01-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L01.md",
+        "sections": [
+          "Logical layers and deployment tiers",
+          "Costs of a remote boundary",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L01-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L01.md",
+        "sections": [
+          "Logical layers and deployment tiers",
+          "Costs of a remote boundary",
+          "Worked example",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L02-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L02.md",
+        "sections": [
+          "Resource interfaces and REST constraints",
+          "RPC path and interface choices",
+          "Compatibility and safe retries",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L02.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q5"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L02-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L02.md",
+        "sections": [
+          "Resource interfaces and REST constraints",
+          "RPC path and interface choices",
+          "Compatibility and safe retries",
+          "Worked example",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L02.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L03-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L03.md",
+        "sections": [
+          "Registration, health and membership",
+          "Ownership and failure controls",
+          "Worked example: stale endpoint and deadline failure trace"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L03-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L03.md",
+        "sections": [
+          "Registration, health and membership",
+          "Ownership and failure controls",
+          "Worked example: stale endpoint and deadline failure trace",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-S1",
+      "uses_lesson_outcomes": [
+        "M03-L01-LO2",
+        "M03-L02-LO1",
+        "M03-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m03/integrated/decision-summary.md",
+        "sections": [
+          "Connect the boundary, contract and failure policy"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/integrated/brief.md",
+        "items": [
+          "M03-EX1"
+        ],
+        "solution_rubric": "modules/m03/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}

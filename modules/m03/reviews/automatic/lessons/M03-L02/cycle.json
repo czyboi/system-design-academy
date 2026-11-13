@@ -1,0 +1,51 @@
+{
+  "module": "m03",
+  "lesson": "M03-L02",
+  "revision_attempts": 1,
+  "review_history": [
+    {
+      "round": 0,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
+    },
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "ready-for-human-review",
+      "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
+    },
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "ready-for-human-review",
+      "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
+    }
+  ],
+  "status": "ready",
+  "updated_at": "2026-11-13T08:14:21+00:00",
+  "reopen_history": [
+    {
+      "at": "2026-11-13T02:44:49+00:00",
+      "reason": "Material assessment and rubric changes addressing SDA-MS02 human content feedback in Issue #64 comment 6841513179",
+      "prior_revision_attempts": 0
+    },
+    {
+      "at": "2026-11-13T07:13:19+00:00",
+      "reason": "Publication-readiness revisions to PR #66 teaching/assessment or module integration at d24791f require independent scoped re-review",
+      "prior_revision_attempts": 1
+    }
+  ]
+}

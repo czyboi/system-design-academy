@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M03-INTEGRATION",
+  "revision": 2,
+  "goal": "Deliver the publication-ready SDA-v1 learner content (kept as draft pending human approval) for SDA-M03-INT — Integrated design, reference solution and decision summary",
+  "scope": {
+    "in_scope": [
+      "Use approved SDA-v1 and the canonical outputs from Story SDA-M03-INT.",
+      "**Integrated design exercise:** Split a growing catalogue application into justified deployment boundaries.\n\n**Reference solution and self-evaluation:** Reference package: ownership boundaries, API contracts, discovery lifecycle and timeout/retry sequence; assess whether decomposition solves a real constraint.\n\n**Synthesis outcome map:** M03-S1: choose a service boundary, trace its contract and defend discovery/retry policy. M03-EX1 measures this synthesis outcome using M03-L01-LO2, M03-L02-LO1 and M03-L03-LO2. It does not claim all module lesson outcomes. Each lesson’s separate companion remains responsible for its complete LO1/LO2 assessment, and the course portfolio must reconcile all companions before course completion.\n\n**Decision-summary table plan:** Choose modular monolith or services, then REST or RPC, by ownership, coupling, compatibility and operational cost. Each eventual row states trigger, option, mechanism, benefit, cost, failure signal, when to avoid, and the lesson reference."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate through GitHub Issue #64. Preserve archived records in PR #38 and adapt suitable draft material from ec753d7.",
+    "Write original English draft material for middle and senior engineers. Verify technical claims with exact primary sources.",
+    "Use the pinned Primer as a topic map. Keep exercises in companion artifacts and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Deliver checked claim-level evidence at the canonical path.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver canonical Story teaching and assessment/integration content at publication quality, with no known substantive learning, correctness, scoring, or measurement gaps; keep the workflow status draft until human approval.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record exact source sections, version or publication scope and limits. Recheck changed and volatile claims.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-publication-readiness",
+      "text": "Produce complete learner-facing teaching and assessment artifacts at author handoff, not prototypes. Explain assigned mechanisms causally with a concrete trace, API contract or diagram when needed. Grade design under realistic failure and user-success constraints, naming SLO population/window/threshold and counting shed, rejected, expired, failed or late work where applicable. No filler or diagram quota; human publication approval remains separate.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

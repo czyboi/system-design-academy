@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M02",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M02-L01-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L01.md",
+        "sections": [
+          "Resolution and record roles",
+          "Routing choices and cached answers",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L01.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L01-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L01.md",
+        "sections": [
+          "Routing choices and cached answers",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L01.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L02-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L02.md",
+        "sections": [
+          "TCP connections, delivery and budgets",
+          "UDP datagrams and application responsibility",
+          "HTTP requests and method semantics",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L02.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L02-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L02.md",
+        "sections": [
+          "TCP connections, delivery and budgets",
+          "UDP datagrams and application responsibility",
+          "HTTP requests and method semantics",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L02.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L03-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L03.md",
+        "sections": [
+          "Routing and backend selection",
+          "Proxy work and horizontal scaling",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L03.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L03-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L03.md",
+        "sections": [
+          "Routing and backend selection",
+          "Proxy work and horizontal scaling",
+          "Worked example",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L03.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L04-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L04.md",
+        "sections": [
+          "Population and placement",
+          "Cache keys, freshness and privacy",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L04.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L04-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L04.md",
+        "sections": [
+          "Population and placement",
+          "Cache keys, freshness and privacy",
+          "Worked example",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L04.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-S1",
+      "uses_lesson_outcomes": [
+        "M02-L01-LO1",
+        "M02-L03-LO2",
+        "M02-L04-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m02/integrated/solution-rubric.md",
+        "sections": [
+          "DNS, connections and routing",
+          "Cache behavior and origin capacity"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/integrated/brief.md",
+        "items": [
+          "M02-EX1"
+        ],
+        "solution_rubric": "modules/m02/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}
