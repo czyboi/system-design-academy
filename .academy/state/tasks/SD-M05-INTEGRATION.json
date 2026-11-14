@@ -70,20 +70,21 @@
         "modules/m05/integrated/outcome-portfolio.json"
       ],
       "checkpoint": {
-        "note": "Drafted four access paths, evidence questions, cohort scores and topic/outcome reconciliation.",
-        "next_action": "Scoped handoff, then Stage B after all lesson reviews are ready.",
-        "at": "2026-11-14T10:50:21Z"
+        "note": "Applied synthesis T1 through T3 with same-snapshot browse proof, durable correction identity and audit expiry, and exact session routing.",
+        "next_action": "Scoped handoff and targeted independent Stage B re-review.",
+        "at": "2026-11-14T10:53:48Z"
       },
-      "attempts": 1,
-      "started_at": "2026-11-14T10:48:06Z",
-      "run_id": "SD-M05-INTEGRATION-author-20261114T104806Z",
-      "agent": "codex",
+      "attempts": 2,
+      "started_at": "2026-11-14T10:52:19Z",
+      "run_id": "SD-M05-INTEGRATION-author-20261114T105219Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-14T10:50:21Z",
-      "completed_by": "codex"
+      "completed_at": "2026-11-14T10:53:48Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Correct M05-SYN-T1 through T3 in synthesis round 1."
     }
   ],
   "notes": "",
@@ -96,5 +97,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-13T13:27:46Z",
-  "updated_at": "2026-11-14T10:50:21Z"
+  "updated_at": "2026-11-14T10:53:48Z",
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Stage B T1 through T3 require browse freshness evidence, audit preservation and a concrete session authority.",
+      "updated_at": "2026-11-14T10:52:18Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent Stage B round 0 cleared at 7f8154b.",
+      "updated_at": "2026-11-14T10:52:18Z"
+    }
+  }
 }

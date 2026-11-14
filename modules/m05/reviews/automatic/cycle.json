@@ -1,0 +1,14 @@
+{
+  "module": "m05",
+  "revision_attempts": 1,
+  "review_history": [
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "ready-for-human-review",
+      "result": "needs_revision"
+    }
+  ],
+  "status": "revising",
+  "updated_at": "2026-11-14T10:52:18+00:00"
+}
