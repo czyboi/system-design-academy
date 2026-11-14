@@ -7,9 +7,9 @@ status: draft
 
 ## Work through a cache failure
 
-An equipment catalogue serves repeated public searches and low-reuse staff searches. Cache ordered public result pages in the application and scope by normalized query, variant and source version. A price change that crosses a filter can make a new ID appear. Advance the catalogue generation with the authoritative write. A late fill for the earlier generation stays ineligible for a new lookup. After a rank rollout, look up the new tuple and calculate a new route.
+An equipment catalogue serves repeated public searches and low-reuse staff searches. Cache ordered public result pages in the application and scope by normalized query, variant and source version. A price change that crosses a filter can make a new ID appear. Advance the generation for the complete affected dependency domain with the authoritative write; unaffected domains retain their own generation. A late fill for the earlier generation stays ineligible for a new lookup. After a rank rollout, look up the new tuple and calculate a new route.
 
-Use sharded primary entries to spread the working set. Put the hottest public query on more than one read path when its per-key load exceeds an owner. On node loss, check replica generation and source age before reuse and protect the origin with shared fill coalescing and admission. Track slow, unavailable and ineligible original searches alongside cache hit rate. If repeated scans are evicting useful results, compare selective admission with simple LRU by their measured refill load.
+Use sharded primary entries to spread the working set. Put the hottest public query on more than one read path when its per-key load exceeds an owner. On node loss, check replica generation and source age before reuse and protect the origin with shared fill coalescing and admission. Copying cannot renew source age; account for refresh and recovery work inside the same budget and pace or shed requests when eligible copies or capacity are insufficient. Track slow, unavailable and ineligible original searches alongside cache hit rate. If repeated scans are evicting useful results, compare selective admission with simple LRU by their measured refill load.
 
 ## Choose location, granularity and update behavior together
 
