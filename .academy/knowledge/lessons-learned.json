@@ -50,6 +50,30 @@
       ]
     },
     {
+      "key": "carry-logical-receipt-across-independent-history",
+      "tags": [
+        "sharding",
+        "migration",
+        "idempotency",
+        "replication"
+      ],
+      "problem": "A WAL watermark from a source shard cannot certify state on an independently created destination shard.",
+      "prevention": "Move stable operation receipts and logical revisions with the data. Verify them on the active owner across cutover and rollback, and use WAL comparisons only within the relevant physical history.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-SYN-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/continuous-archiving.html#BACKUP-TIMELINES"
+        }
+      ]
+    },
+    {
       "key": "claim-retry-identity-before-dispatch",
       "tags": [
         "idempotency",
@@ -139,6 +163,31 @@
       ]
     },
     {
+      "key": "define-revocation-check-boundary",
+      "tags": [
+        "revocation",
+        "cache",
+        "consistency",
+        "authorization"
+      ],
+      "problem": "An authoritative check that started before revocation could return success afterward under an underspecified timing contract.",
+      "prevention": "Define revocation confirmation and the protected validation or action boundary, trace concurrent checks, and verify post-confirmation decisions against the exact authoritative operation.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m05",
+          "finding_id": "M05-L01-T1",
+          "review_role": "technical",
+          "report": "modules/m05/reviews/automatic/lessons/M05-L01/technical.md",
+          "evidence": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html",
+          "lesson": "M05-L01"
+        }
+      ]
+    },
+    {
       "key": "design-assessments-for-target-audience",
       "tags": [
         "assessment",
@@ -164,6 +213,31 @@
       ]
     },
     {
+      "key": "distinguish-event-identity-from-timestamp",
+      "tags": [
+        "wide-column",
+        "time-series",
+        "partitioning",
+        "identity"
+      ],
+      "problem": "Independent events with equal timestamps and buckets could collapse into one row and look like corrections.",
+      "prevention": "Use an immutable event ID in the row and stable bucket routing, and keep correction versions on the original event row.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m05",
+          "finding_id": "M05-L02-T2",
+          "review_role": "technical",
+          "report": "modules/m05/reviews/automatic/lessons/M05-L02/technical.md",
+          "evidence": "https://docs.cloud.google.com/bigtable/docs/schema-design",
+          "lesson": "M05-L02"
+        }
+      ]
+    },
+    {
       "key": "edge-miss-versus-origin-fetch-count",
       "tags": [
         "caching",
@@ -183,6 +257,58 @@
           "review_role": "technical",
           "report": "modules/m02/reviews/automatic/technical.md",
           "evidence": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowCloudFrontWorks.html"
+        }
+      ]
+    },
+    {
+      "key": "fence-artifact-publish-before-cleanup",
+      "tags": [
+        "object-storage",
+        "transactions",
+        "concurrency",
+        "cleanup"
+      ],
+      "problem": "Pending-only publication could expose an object after cleanup deleted the retired upload attempt.",
+      "prevention": "Guard publication and retirement by the same durable attempt token and state on the owning row. Trace both orders and keep cleanup tracking until late uploads can no longer recreate the object.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L01-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L01/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M04-L01"
+        }
+      ]
+    },
+    {
+      "key": "gate-replayed-success-on-durability",
+      "tags": [
+        "replication",
+        "failover",
+        "idempotency",
+        "durability"
+      ],
+      "problem": "An idempotent retry could report success from a locally committed record before the required standby made it durable.",
+      "prevention": "Require the same durability proof on original and replayed success. Check the designated standby and matching history before confirming locally recovered operation records.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L02-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L02/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT",
+          "lesson": "M04-L02"
         }
       ]
     },
@@ -236,6 +362,31 @@
       ]
     },
     {
+      "key": "guard-retry-with-input-bound-receipt",
+      "tags": [
+        "transactions",
+        "idempotency",
+        "dynamodb",
+        "receipt"
+      ],
+      "problem": "A missing receipt after timeout can coexist with an admitted transaction that can still commit.",
+      "prevention": "Atomically guard the effect and create an input-bound receipt. Use authoritative lookup and the same guarded operation identity on retry, and keep absence pending while the original can still commit.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m05",
+          "finding_id": "M05-L03-T1",
+          "review_role": "technical",
+          "report": "modules/m05/reviews/automatic/lessons/M05-L03/technical.md",
+          "evidence": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html",
+          "lesson": "M05-L03"
+        }
+      ]
+    },
+    {
       "key": "map-each-outcome-skill-to-its-assessment",
       "tags": [
         "assessment",
@@ -267,6 +418,32 @@
       ]
     },
     {
+      "key": "measure-per-loop-on-each-plan",
+      "tags": [
+        "sql",
+        "query-plans",
+        "indexing",
+        "benchmarking"
+      ],
+      "problem": "The candidate plan reused a per-loop average from a larger baseline population without evidence.",
+      "prevention": "Give each plan its own observed or explicitly assumed rows per loop when a rewrite changes the input population, and distinguish emitted rows from total work and latency.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L05-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L05/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/using-explain.html",
+          "lesson": "M04-L05"
+        }
+      ]
+    },
+    {
       "key": "reject-before-admission-versus-unknown-write-outcome",
       "tags": [
         "consistency",
@@ -291,6 +468,31 @@
       ]
     },
     {
+      "key": "reject-delayed-activation-at-resource",
+      "tags": [
+        "sharding",
+        "migration",
+        "fencing",
+        "epochs"
+      ],
+      "problem": "A delayed activation could reopen a shard after its directory authority had been superseded.",
+      "prevention": "Persist a monotonic closed-through epoch at the protected shard. Serialize open, fence and admission through the same gate and trace an old command arriving after rollback.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L03-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L03/technical.md",
+          "evidence": "https://www.usenix.org/legacy/event/osdi06/tech/full_papers/burrows/burrows.pdf#page=5",
+          "lesson": "M04-L03"
+        }
+      ]
+    },
+    {
       "key": "require-terminal-evidence-before-new-operation-key",
       "tags": [
         "retries",
@@ -311,6 +513,31 @@
           "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
           "evidence": "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
           "lesson": "M03-L03"
+        }
+      ]
+    },
+    {
+      "key": "resume-projection-from-its-own-coverage",
+      "tags": [
+        "projections",
+        "checkpoint",
+        "rebuild",
+        "outbox"
+      ],
+      "problem": "The old consumer checkpoint could precede the new snapshot and lag updates already visible.",
+      "prevention": "Pair the rebuild snapshot with its continuation cursor, verify a gap-free prefix through all previously visible state, and resume the new generation from its own first unapplied record.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L04-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L04/technical.md",
+          "evidence": "https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-snapshots",
+          "lesson": "M04-L04"
         }
       ]
     },
@@ -385,6 +612,31 @@
           "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
           "evidence": "https://grpc.io/docs/guides/deadlines/#deadlines-on-the-server",
           "lesson": "M03-L03"
+        }
+      ]
+    },
+    {
+      "key": "serialize-full-projection-snapshot",
+      "tags": [
+        "projections",
+        "transactions",
+        "outbox",
+        "concurrency"
+      ],
+      "problem": "Serializing a version increment after the contributing reads let a higher version carry stale payload.",
+      "prevention": "Lock the aggregate before every contributing read or mutation and commit the resulting version and complete payload in the same source transaction.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-L04-T2",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/lessons/M04-L04/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M04-L04"
         }
       ]
     },

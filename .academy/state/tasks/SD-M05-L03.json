@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M05-L03",
+  "module_id": "m05",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M05-L03.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-13T13:27:35Z",
+  "updated_at": "2026-11-14T10:50:56Z",
+  "execution_control": "active",
+  "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m05/evidence/M05-L03.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-13T13:33:23Z",
+      "run_id": "SD-M05-L03-research-20261113T133323Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-13T13:36:26Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m05/evidence/M05-L03.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m05/lessons/M05-L03.md",
+        "modules/m05/assessments/M05-L03.md"
+      ],
+      "checkpoint": {
+        "note": "Resolved T1 through T3 with input-bound receipts, guarded ambiguous-result retries, concrete transaction modes and sloppy quorum scope.",
+        "next_action": "Scoped handoff and independent targeted review.",
+        "at": "2026-11-14T10:49:54Z"
+      },
+      "attempts": 2,
+      "started_at": "2026-11-14T10:47:55Z",
+      "run_id": "SD-M05-L03-author-20261114T104755Z",
+      "agent": "lesson_author",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-14T10:49:54Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Resolve M05-L03-T1 through T3 in round 1."
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent round 1 cleared at d250834.",
+      "updated_at": "2026-11-14T10:50:55Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent round 1 cleared at d250834.",
+      "updated_at": "2026-11-14T10:50:56Z"
+    }
+  }
+}

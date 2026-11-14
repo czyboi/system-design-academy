@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M04-L02",
+  "module_id": "m04",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M04-L02.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-13T13:27:34Z",
+  "updated_at": "2026-11-13T13:43:01Z",
+  "execution_control": "active",
+  "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m04/evidence/M04-L02.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-13T13:31:48Z",
+      "run_id": "SD-M04-L02-research-20261113T133148Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-13T13:36:26Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m04/evidence/M04-L02.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m04/lessons/M04-L02.md",
+        "modules/m04/assessments/M04-L02.md"
+      ],
+      "checkpoint": {
+        "note": "Resolved T1/T2 through fixed-standby durability proof, replayed acknowledgement policy, explicit failover traces and exact sources.",
+        "next_action": "Scoped handoff and targeted independent re-review.",
+        "at": "2026-11-13T13:41:55Z"
+      },
+      "attempts": 2,
+      "started_at": "2026-11-13T13:40:49Z",
+      "run_id": "SD-M04-L02-author-20261113T134049Z",
+      "agent": "lesson_author",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-13T13:41:56Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Resolve M04-L02-T1/T2 in Stage A revision 1."
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent round 1 cleared the corrected package at 0ce6602.",
+      "updated_at": "2026-11-13T13:43:01Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent round 1 cleared the corrected package at 0ce6602.",
+      "updated_at": "2026-11-13T13:43:01Z"
+    }
+  }
+}

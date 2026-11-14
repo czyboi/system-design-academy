@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M04-L02",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M04-L02 — Single-leader and multi-writer replication",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and canonical backlog outputs for SDA-M04-L02.",
+      "**Prerequisites:** M04-L01, M01-L04\n\n**Outcomes:** M04-L02-LO1: trace/model the mechanisms below in the worked scenario. M04-L02-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Single-leader log replication, read replicas, replication lag and read routing.\n2. Promotion, fencing, acknowledged-write loss and recovery.\n3. Multi-writer replication, conflict detection/resolution and coordination latency.\n4. Replication cost, replay bottlenecks and consistency choices.\n\n**Worked-example plan:** Trace concurrent profile edits at two writers and a stale read after promotion.\n\n**Trade-offs and when to use/avoid:** Choose write authority, lag tolerance and conflict policy explicitly; replicas do not remove all write bottlenecks.\n\n**Quick-check focus:** Explain what can be lost if a leader acknowledges before replication. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Teach the mapped topics PR-H085, PR-H086, PR-H087, PR-H088, PR-H089."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate ownership through GitHub Issue #68 on codex/drafts-sda-ms03.",
+    "Write original English for middle and senior engineers. Use the pinned Primer as a topic map and verify technical claims with exact primary sources.",
+    "Keep learner-facing status draft, separate teaching from assessment and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level evidence at the canonical path with exact source sections, applicable versions and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver complete teaching and assessment artifacts at the canonical paths for scoped draft handoff and independent review.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record and verify the primary source section, version or publication scope, and applicability for every material claim.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M04-L02 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-failure-criteria",
+      "text": "Trace the mechanism and failure behavior, ground decisions in stated evidence, and define the user-visible measurement population, window and threshold wherever the scenario uses an SLO.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

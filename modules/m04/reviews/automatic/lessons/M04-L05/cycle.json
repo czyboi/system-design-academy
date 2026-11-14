@@ -1,0 +1,34 @@
+{
+  "module": "m04",
+  "lesson": "M04-L05",
+  "revision_attempts": 0,
+  "review_history": [
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "ready-for-human-review",
+      "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
+    },
+    {
+      "round": 0,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
+    }
+  ],
+  "status": "ready",
+  "updated_at": "2026-11-14T14:26:24+00:00",
+  "reopen_history": [
+    {
+      "at": "2026-11-14T11:26:57Z",
+      "reason": "M04-L05 gained runnable SQL/EXPLAIN teaching after Stage A approval; targeted independent re-review required.",
+      "prior_revision_attempts": 1
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M05",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M05-L01-LO1",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L01.md",
+        "sections": [
+          "Start with the access path",
+          "Trace an indexed product document",
+          "Compare concrete product contracts"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L01-LO2",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L01.md",
+        "sections": [
+          "Start with the access path",
+          "Trace an indexed product document",
+          "Compare concrete product contracts",
+          "Choose by lookup, invariants and change rate"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L02-LO1",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L02.md",
+        "sections": [
+          "Design wide rows for their range queries",
+          "Separate retained versions from conflict timestamps",
+          "Walk two hops from an indexed seed"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L02-LO2",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L02.md",
+        "sections": [
+          "Design wide rows for their range queries",
+          "Separate retained versions from conflict timestamps",
+          "Walk two hops from an indexed seed",
+          "Choose using locality and query promises"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L03-LO1",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L03.md",
+        "sections": [
+          "Specify what a response promises",
+          "Follow a write through replicas and repair",
+          "Reserve stock under a concrete contract"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L03-LO2",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L03.md",
+        "sections": [
+          "Choose an access path by workload",
+          "Specify what a response promises",
+          "Reserve stock under a concrete contract"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-S1",
+      "uses_lesson_outcomes": [
+        "M05-L01-LO2",
+        "M05-L02-LO2",
+        "M05-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m05/integrated/decision-summary.md",
+        "sections": [
+          "Work a storage-to-guarantee decision",
+          "Choose by access path and invariant"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/integrated/brief.md",
+        "items": [
+          "M05-EX1"
+        ],
+        "solution_rubric": "modules/m05/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}
