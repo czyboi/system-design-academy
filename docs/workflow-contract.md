@@ -39,24 +39,22 @@ For a backlog lesson, `init ... --template .academy/state/task.template.json` re
 
 `complete --usage-file PATH` may record observed input/output/cached/reasoning tokens and elapsed time. The tool does not infer usage or cost. New files never record hashes; legacy task hash fields and prior reports remain historical data.
 
-## Generation batch PR finalization
+## One Draft PR per requested generation batch
 
-This is **one PR per user-requested generation invocation**, independent of milestone scope. A request for three lessons creates one PR containing only those three lesson packages; a request for an entire milestone creates one PR for that requested batch. **Never** open one PR per lesson handoff or automatically wait until milestone completion when the requested batch is smaller.
+Each generation request gets a dedicated `codex/gen-<batch-id>` branch from `origin/main` (reuse the same branch when resuming). The request can contain one lesson, multiple lessons or a whole milestone. The parent retains the exact requested Task IDs; it does **not** wait for unrelated milestone tasks.
 
-Before the first draft handoff, the parent assigns a stable new batch ID (reuse on resume) and starts a dedicated branch from the latest main, e.g.:
-
-```bash
-git fetch origin main
-git switch -c codex/gen-<batch-id> origin/main
-```
-
-The parent continues normal scoped draft handoffs and automatic per-lesson QA. Run module synthesis only when its existing prerequisites are met. At the **very end of the requested batch**, after all requested research/author tasks and applicable QA/report handoffs (including blocked reviews) have been committed and pushed:
+`draft_handoff.py` still handles per-task scoped checks and Git push. After **all requested content and applicable bounded automatic QA/report handoffs** have finished and been pushed, parent runs:
 
 ```bash
-python scripts/finalize_generation_pr.py <batch-id> SD-M04-L01 SD-M04-L02 SD-M04-L03
+branch=$(git branch --show-current)
+gh pr list --head "$branch" --state all --json number,state,url
+# Only when no PR exists for that branch:
+gh pr create --draft --base main --head "$branch" \
+  --title "Generate: <requested Task IDs>" \
+  --body "Scope: <requested Task IDs>. Draft for human review; see QA reports."
 ```
 
-This creates a **Draft** PR against main or returns the existing open PR for the same batch branch. The finalizer verifies all requested task outputs are complete, the working tree is clean, HEAD was pushed, and the branch diff only contains declared batch artifacts, relevant review reports/cycles and shared verified learning memory. It refuses a reused milestone/previous-batch branch or unrelated files rather than opening an incorrectly scoped PR. Existing closed/merged PRs are not recreated on retries. PR creation is **not approval**, and unresolved review failures remain visible; the owner still controls merge/publication. `draft_handoff.py` deliberately never creates PRs because it executes several times within a single requested generation.
+An open PR is reused; closed/merged PRs are not recreated. If creation fails due to a concurrent PR, recheck before retrying. Report failures. This is parent orchestration, **not** a new Python finalizer, task step, AI review, or publication gate. GitHub owns mergeability and PR creation; the user controls approval, merge and publication. Unresolved QA remains visible in Draft.
 
 ## Automatic per-lesson QA, lightweight module synthesis and optional reviews
 
