@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M06-L01",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M06-L01 — Where and what to cache",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and canonical backlog outputs for SDA-M06-L01.",
+      "**Prerequisites:** M05-L01, M02-L04\n\n**Outcomes:** M06-L01-LO1: trace/model the mechanisms below in the worked scenario. M06-L01-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Client, CDN, web-server, database and application cache boundaries; internal DB cache tuning versus external RAM cache, and Redis persistence/list/sorted-set features as version-scoped comparison.\n2. Cache granularity: database rows, query results, serializable objects and fully rendered HTML; query-key hashing/dependency invalidation versus object assembly/invalidation, working-set and hit-rate budgets.\n3. TTL, eviction, hot keys, cold starts and stampedes; file-local cache state complicates cloning/autoscaling and must be externalised, shared or safely disposable.\n\n4. Compose where-to-cache, row/query/object/HTML granularity and when-to-update policies; choose among cache-aside, write-through, write-behind and refresh-ahead using the M06-L02 failure traces.\n\n**Worked-example plan:** Compute a bounded query-cache working set and trace a miss to the origin.\n\n**Trade-offs and when to use/avoid:** Cache expensive reusable work; reject unauthorised sharing or a working set with negligible reuse.\n\n**Quick-check focus:** Choose object or query caching after one object participates in many queries. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Teach the mapped topics PR-H119, PR-H120, PR-H121, PR-H122, PR-H123, PR-H124, PR-H125, PR-H126, PR-PASTEBIN-H018, PR-TWITTER-H018, PR-WEB_CRAWLER-H019, PR-MINT-H018, PR-SOCIAL_GRAPH-H015, PR-QUERY_CACHE-H018, PR-SALES_RANK-H016, PR-SCALING_AWS-H041, PR-BODY-R1-CACHE-ROW, PR-BODY-R1-CACHE-QUERY, PR-BODY-R1-CACHE-OBJECT, PR-BODY-R1-CACHE-HTML, PR-BODY-R1-CACHE-FILE, PR-BODY-R1-CACHE-QUERY-DEPS, PR-BODY-R1-CACHE-OBJECT-ASM, PR-BODY-R1-CACHE-EXAMPLES."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate ownership through GitHub Issue #79 on codex/drafts-sda-ms04.",
+    "Write original English for middle and senior engineers. Use the pinned Primer as a topic map and verify technical claims with exact primary sources.",
+    "Keep learner-facing status draft, separate teaching from assessment and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level evidence at the canonical path with exact source sections, applicable versions and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver complete teaching and assessment artifacts at the canonical paths for scoped draft handoff and independent review.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record and verify the primary source section, version or publication scope, and applicability for every material claim.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M06-L01 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-failure-criteria",
+      "text": "Trace the mechanism and failure behavior, ground decisions in stated evidence, and define the user-visible measurement population, window and threshold wherever the scenario uses an SLO.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
