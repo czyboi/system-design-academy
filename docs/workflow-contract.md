@@ -45,18 +45,18 @@ This is **one PR per user-requested generation invocation**, independent of mile
 
 Before the first draft handoff, the parent assigns a stable new batch ID (reuse on resume) and starts a dedicated branch from the latest main, e.g.:
 
-\`\`\`bash
+```bash
 git fetch origin main
 git switch -c codex/gen-<batch-id> origin/main
-\`\`\`
+```
 
 The parent continues normal scoped draft handoffs and automatic per-lesson QA. Run module synthesis only when its existing prerequisites are met. At the **very end of the requested batch**, after all requested research/author tasks and applicable QA/report handoffs (including blocked reviews) have been committed and pushed:
 
-\`\`\`bash
+```bash
 python scripts/finalize_generation_pr.py <batch-id> SD-M04-L01 SD-M04-L02 SD-M04-L03
-\`\`\`
+```
 
-This creates a **Draft** PR against main or returns the existing open PR for the same batch branch. The finalizer verifies all requested task outputs are complete, the working tree is clean, HEAD was pushed, and the branch diff only contains declared batch artifacts, relevant review reports/cycles and shared verified learning memory. It refuses a reused milestone/previous-batch branch or unrelated files rather than opening an incorrectly scoped PR. Existing closed/merged PRs are not recreated on retries. PR creation is **not approval**, and unresolved review failures remain visible; the owner still controls merge/publication. \`draft_handoff.py\` deliberately never creates PRs because it executes several times within a single requested generation.
+This creates a **Draft** PR against main or returns the existing open PR for the same batch branch. The finalizer verifies all requested task outputs are complete, the working tree is clean, HEAD was pushed, and the branch diff only contains declared batch artifacts, relevant review reports/cycles and shared verified learning memory. It refuses a reused milestone/previous-batch branch or unrelated files rather than opening an incorrectly scoped PR. Existing closed/merged PRs are not recreated on retries. PR creation is **not approval**, and unresolved review failures remain visible; the owner still controls merge/publication. `draft_handoff.py` deliberately never creates PRs because it executes several times within a single requested generation.
 
 ## Automatic per-lesson QA, lightweight module synthesis and optional reviews
 

@@ -24,13 +24,13 @@ After the requested lesson/integration draft is produced, call `taskctl complete
 
 **One user request = one generation batch = at most one Draft PR**, regardless of how many lessons or modules it contains. For example, "generate three lessons" means one PR for exactly those three requested lesson Task IDs; do not wait for the milestone and do not create a PR at each lesson handoff.
 
-At request intake, identify the exact batch Task IDs and choose a stable new lowercase batch ID, reused if this same invocation resumes. Start a **dedicated branch from current \`origin/main\`** before authoring (for example: \`git fetch origin main && git switch -c codex/gen-<batch-id> origin/main\`). Never reuse a prior generation batch, milestone branch or existing PR branch for a different request. Keep all scoped handoffs and applicable Stage A/Stage B reviews and corrections for this batch on that single branch; \`draft_handoff.py\` continues to commit/push without opening PRs.
+At request intake, identify the exact batch Task IDs and choose a stable new lowercase batch ID, reused if this same invocation resumes. Start a **dedicated branch from current `origin/main`** before authoring (for example: `git fetch origin main && git switch -c codex/gen-<batch-id> origin/main`). Never reuse a prior generation batch, milestone branch or existing PR branch for a different request. Keep all scoped handoffs and applicable Stage A/Stage B reviews and corrections for this batch on that single branch; `draft_handoff.py` continues to commit/push without opening PRs.
 
 **Only at the very end of this user-requested generation**, after every requested Task has completed authoring, all applicable bounded automatic QA/report handoffs have finished (including honest blocked outcomes), and the final content/report commit has been pushed, the parent runs:
 
-\`\`\`bash
+```bash
 python scripts/finalize_generation_pr.py <batch-id> TASK-ID [TASK-ID ...]
-\`\`\`
+```
 
 Supply **only** the Task IDs from this request. The finalizer verifies the branch matches the batch, is pushed and clean, and contains no files outside the declared tasks/QA evidence. It checks for an existing PR from the same head before creating a Draft PR; reruns reuse the existing open PR instead of creating duplicates. A closed/merged PR stops rather than silently making another. On a failed check, report the blocker rather than falling back to a milestone-wide PR. Leave unresolved QA findings visible in Draft. Never merge, approve or publish automatically.
 
