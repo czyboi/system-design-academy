@@ -136,6 +136,7 @@
       "teaching": {
         "path": "modules/m05/integrated/decision-summary.md",
         "sections": [
+          "Work a storage-to-guarantee decision",
           "Choose by access path and invariant"
         ]
       },

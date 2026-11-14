@@ -5,6 +5,12 @@ status: draft
 
 # Storage model decisions
 
+## Work a storage-to-guarantee decision
+
+A parcel service reads current state by parcel ID, fetches a parcel's ordered tracking history, and redeems one-use pickup codes. A keyed state row serves the exact-ID read. Append-only records ordered by `(parcel_id, event_time, event_id)` give bounded tracking history and distinguish events sharing a timestamp. A relational or document implementation may be simpler than a specialized wide-column store until measured history load and repair cost warrant the extra system. Any projected current state needs an explicit freshness and rebuild contract.
+
+Pickup-code redemption has a stricter rule: one successful redemption only. Commit the claim and input-bound operation receipt atomically at a coordinated authority; never grant pickup from a lagging projection. When two regions disconnect, tracking events may have a defined reconciliation policy, but both must not independently confirm the same pickup code. A timed-out admitted claim remains unknown until that authority resolves the stable operation ID. Compare a relational transaction with a concrete product's conditional transaction for failure handling, retry idempotency, p95 latency and operational cost. Choose from the **access path and the invariant**, not a generic SQL/NoSQL traffic threshold. [Key-value and documents](../lessons/M05-L01.md) · [Wide-column access](../lessons/M05-L02.md) · [Distributed guarantees](../lessons/M05-L03.md).
+
 ## Choose by access path and invariant
 
 Start from known-key lookup, indexed attributes, ordered time ranges or edge expansion, and identify the amount of data each path reads. Then mark which state changes must become visible together and which reads can lag. Compare actual API and placement guarantees. Use replay and repair for state whose representation can lag, and reserve coordinated writes for invariants that cannot be resolved after independent promises. [M05-L01](../lessons/M05-L01.md) · [M05-L02](../lessons/M05-L02.md) · [M05-L03](../lessons/M05-L03.md).

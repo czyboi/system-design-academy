@@ -1,6 +1,6 @@
 {
   "module": "m04",
-  "revision_attempts": 1,
+  "revision_attempts": 0,
   "review_history": [
     {
       "round": 0,
@@ -15,6 +15,13 @@
       "result": "ready"
     }
   ],
-  "status": "ready",
-  "updated_at": "2026-11-14T10:46:46+00:00"
+  "status": "revising",
+  "updated_at": "2026-11-14T11:26:57Z",
+  "reopen_history": [
+    {
+      "at": "2026-11-14T11:26:57Z",
+      "reason": "M04 synthesis worked reasoning and outcome locator changed after Stage B approval; targeted independent re-review required.",
+      "prior_revision_attempts": 1
+    }
+  ]
 }

@@ -97,17 +97,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-13T13:27:46Z",
-  "updated_at": "2026-11-14T11:00:43Z",
+  "updated_at": "2026-11-14T11:26:57Z",
   "review_statuses": {
     "technical": {
-      "status": "reviewed",
-      "reason": "Owner-directed targeted follow-up at 0583ebb cleared the revised rubric and confirmed T1 through T3 remain resolved.",
-      "updated_at": "2026-11-14T11:00:43Z"
+      "status": "needs_review",
+      "reason": "Earlier owner-directed rubric follow-up resolved automatic block, but new worked synthesis and mapping need targeted independent technical/pedagogy re-review.",
+      "updated_at": "2026-11-14T11:26:57Z"
     },
     "pedagogy": {
-      "status": "reviewed",
-      "reason": "Owner-directed targeted follow-up at 0583ebb resolved P2. The automatic cycle retains its recorded round 2 outcome.",
-      "updated_at": "2026-11-14T11:00:43Z"
+      "status": "needs_review",
+      "reason": "Earlier owner-directed rubric follow-up resolved automatic block, but new worked synthesis and mapping need targeted independent technical/pedagogy re-review.",
+      "updated_at": "2026-11-14T11:26:57Z"
     }
   }
 }

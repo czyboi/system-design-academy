@@ -1,7 +1,7 @@
 {
   "module": "m04",
   "lesson": "M04-L05",
-  "revision_attempts": 1,
+  "revision_attempts": 0,
   "review_history": [
     {
       "round": 0,
@@ -16,6 +16,13 @@
       "result": "ready"
     }
   ],
-  "status": "ready",
-  "updated_at": "2026-11-13T14:21:40+00:00"
+  "status": "revising",
+  "updated_at": "2026-11-14T11:26:57Z",
+  "reopen_history": [
+    {
+      "at": "2026-11-14T11:26:57Z",
+      "reason": "M04-L05 gained runnable SQL/EXPLAIN teaching after Stage A approval; targeted independent re-review required.",
+      "prior_revision_attempts": 1
+    }
+  ]
 }

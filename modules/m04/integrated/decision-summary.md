@@ -5,6 +5,12 @@ status: draft
 
 # Relational scaling decisions
 
+## Work a bottleneck-to-ownership decision
+
+A support service returns the latest 20 tickets per workspace but enriches 8,000 tickets before taking the limit. Its single writer sustains 300 updates/s under the tested workload; current writes are 140/s. First select the deterministically ordered 20 headers before enrichment **only when** enrichment does not affect eligibility or order. Test a workspace-leading ordered index, then compare plan buffers, timely read success and added index write cost. Unnecessary row work alone does not justify a replica or shard.
+
+Later, suppose one workspace generates 340 independent ticket updates/s and a physical ticket shard sustains 250/s. Hashing `workspace_id` alone leaves that workspace hot. If updates and strict invariants are project-local, routing by `(workspace_id, project_id)` can spread the writes, at the cost of a workspace-wide fan-out read. Merge per-project ordered results and label missing projects as incomplete. To migrate, copy and catch up, fence old writer admission, preserve durable operation receipts, and prove recovery before activating the new owner. Test a timed-out update retried across cutover and measure both original-request timely success and confirmed-write loss. These rates are hypothetical decision inputs. [Query tuning](../lessons/M04-L05.md) · [Sharding](../lessons/M04-L03.md) · [Replication](../lessons/M04-L02.md).
+
 ## Match the scaling change to the evidence
 
 Use the query plan to identify expensive operators under the current workload. Move filtering and bounded selection earlier when query semantics allow it. If pressure remains, compare read replicas and derived views against the required freshness. Keep the write authority clear during promotion. When the leader's writes or data outgrow one owner, route on a key that keeps each strict transaction local, and account for a tenant whose traffic overwhelms a shard. Verify the proposed design with the same load, correct-response deadline and failure schedule. [M04-L05](../lessons/M04-L05.md) · [M04-L02](../lessons/M04-L02.md) · [M04-L03](../lessons/M04-L03.md).
