@@ -73,17 +73,17 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 2,
-      "started_at": "2026-11-14T22:45:34Z",
-      "run_id": "SD-M06-INTEGRATION-author-20261114T224534Z",
+      "attempts": 3,
+      "started_at": "2026-11-14T22:48:44Z",
+      "run_id": "SD-M06-INTEGRATION-author-20261114T224844Z",
       "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-14T22:46:34Z",
+      "completed_at": "2026-11-14T22:49:12Z",
       "completed_by": "lesson_author",
-      "invalidation_reason": "Stage B correction 1 addresses M06-SYN-T1–T3 in the integration package."
+      "invalidation_reason": "Stage B correction 2 addresses remaining M06-SYN-T2 ranking authority."
     }
   ],
   "notes": "",
@@ -96,12 +96,12 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-14T15:39:18Z",
-  "updated_at": "2026-11-14T22:46:34Z",
+  "updated_at": "2026-11-14T22:49:12Z",
   "review_statuses": {
     "technical": {
       "status": "needs_review",
-      "reason": "Stage B correction 1 addresses M06-SYN-T1–T3 in the integration package.",
-      "updated_at": "2026-11-14T22:45:33Z"
+      "reason": "Stage B correction 2 addresses remaining M06-SYN-T2 ranking authority.",
+      "updated_at": "2026-11-14T22:48:44Z"
     },
     "pedagogy": {
       "status": "in_review",
