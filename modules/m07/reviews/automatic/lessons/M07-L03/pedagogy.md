@@ -1,0 +1,45 @@
+# M07-L03 independent coverage and pedagogy review
+
+Reviewed lesson-mode combined assignment at `88eb08d` for English-speaking middle/senior engineers. Inputs: SD-M07-L03 spec, approved curriculum and coverage inventory, canonical lesson, assessment and evidence. The topic map is [System Design Primer](https://github.com/donnemartin/system-design-primer/tree/ae9bbd7b02d90b9866215de185217d33f39ab733) at `ae9bbd7b02d90b9866215de185217d33f39ab733`; the accepted global inventory is reused for this lesson's assigned row.
+
+## Coverage matrix
+
+| Source topic and locator | Lesson / outcomes and actual instruction | Status | Assessment and disposition |
+| --- | --- | --- | --- |
+| PR-ARCH-KAFKA, Kafka architecture mechanism, README L1715 | M07-L03 LO1/LO2: “Choose the delivery and ordering unit” explains historical partition reads and offsets, independent groups, current Kafka assignment and durability choices; “Replay into a new index” and “Repair an incomplete history” apply replay and retention | taught | Q1–Q6 and EX-1 assess positions, replay, ordering and retention. No assigned source-row gap; P1 concerns the depth of the Academy-added repair procedure. |
+
+The approved additions—transactional outbox, duplicate-safe effects, source revisions and reconciliation—appear in the lesson. LO1 is assessed through Q1–Q3 and EX-1; LO2 through Q4–Q6 and EX-1. The illustrative scenario makes no SLO claim.
+
+## Findings
+
+**M07-L03-P1 — Major, open — repairing the missing history names a boundary but does not teach how to establish one.** Location: lesson “Repair an incomplete history,” last paragraph; assessment EX-1 and “Repair and cutover” rubric. The lesson says to take “a newer snapshot with its corresponding source and log boundary” or reconcile while “capturing overlapping changes,” then resume after “proving coverage.” It does not show how a snapshot's represented source changes are related to replay positions when changes and outbox publication continue, nor how overlap and removals are resolved. A learner cannot reproduce a safe repair from the instruction or know what evidence demonstrates coverage; EX-1 nevertheless requires recovery after its saved cursor is lost and full credit requires state paired with its continuation. Add one concrete recovery protocol with its consistency and concurrency assumptions: show how a state snapshot and a safe replay boundary are obtained, how intervening changes and deletions are covered, and what observable evidence permits cutover. Align the sample and rubric with equivalent valid repair approaches.
+
+**M07-L03-P2 — Minor, open — the assessment's record semantics are ambiguous.** Location: assessment EX-1, P0:14 and P1:8. The prompt labels P0:12 a “full update” but says P0:14 “changes” M and P1:8 “updates” K. The taught highest-revision guard works for complete replacement records, while the lesson expressly says deltas require ordered, gap-detecting processing. Without specifying those two records' form, a learner cannot tell whether to use the sample solution's revision guard or design a delta replay. State that all non-delete events in EX-1 are complete searchable replacements, or explicitly provide the delta ordering assumptions and accept an appropriate trace.
+
+## Pedagogical assessment and sequence
+
+The outage motivates independent consumer groups and replay. The trace shows positions per partition, duplicate application after a checkpoint failure, a deletion marker and a separate generation. The separate companion contains six explained checks, an exercise, a points rubric and outcome map; its main replay and messaging-choice criteria follow taught content, while repair remains under-specified as described in P1. Prerequisite M07-L02 is declared and replay traffic is bounded by reference to that lesson. The retained log versus work queue comparison and hot-key limitation support LO2 without elementary filler. No embedded quiz or material assigned-source omission was found.
+
+## Verdict
+
+**revise** — M07-L03-P1 is an open major finding and P2 an open minor finding. This review is not technical, source-rights, human, or publication approval.
+
+## Targeted revision 1 re-review — `96b2258`
+
+- **M07-L03-P1 — Major, resolved.** “Repair an incomplete history” now records and protects consumer-readable partition ends before taking a consistent authority snapshot with deletion revision markers, replays overlap from that earlier vector under revision guards, and validates against a fenced cutover barrier. It states committed-only publication, retention and full-value assumptions. Q6 and EX-1's sample and repair criterion use that protocol while the rubric accepts equivalent proven coverage.
+- **M07-L03-P2 — Minor, resolved.** EX-1 now says all non-delete events are complete searchable replacements, including M and K, so the taught highest-revision guard applies.
+- The assigned PR-ARCH-KAFKA coverage and outcome map remain intact. The revised worked trace gives the generation its own stored positions and specifies restart and fencing, making the crash trace reproducible under its stated assumptions.
+
+**M07-L03-P3 — Major, open — a new full-credit comparison is absent from EX-1's request.** Location: assessment EX-1 and “Messaging choice” rubric. EX-1 declares a delete-only topic and an out-of-order relay, then asks learners to defend a log or queue and describe hot-key parallelism. The rubric additionally requires explaining “delete-only retention versus unsafe out-of-order compaction,” although the prompt never asks to evaluate a compacted topic. A correct log-versus-queue and hot-key answer can satisfy the stated task yet lose credit for this additional comparison. Ask explicitly whether a compacted topic is safe under the stated ordering and why, or remove that comparison from the full-credit criterion while retaining the independently taught concept.
+
+## Latest verdict
+
+**revise** — P1 and P2 are resolved; P3 is an open major assessment-fairness finding. This review is not technical, source-rights, human, or publication approval.
+
+## Targeted revision 2 re-review — `526ddd2`
+
+**M07-L03-P3 — Major, resolved.** EX-1 now explicitly asks learners to “compare delete-only retention with compaction under the stated out-of-order relay.” The messaging-choice criterion assesses that comparison along with independent progress and ordering or hot-key cost. “Repair an incomplete history” teaches the relevant delayed older revision after a deletion and the resulting compaction risk; the sample solution applies it to the exercise. The affected PR-ARCH-KAFKA retention and replay coverage remains taught, and the separate outcome map remains coherent.
+
+## Latest verdict
+
+**ready-for-human-review** — P3 is resolved; P1 and P2 were resolved in revision 1. This review is not technical, source-rights, human, or publication approval.

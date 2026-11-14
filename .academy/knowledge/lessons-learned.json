@@ -789,6 +789,33 @@
       ]
     },
     {
+      "key": "verify-compaction-append-order",
+      "tags": [
+        "kafka",
+        "event-log",
+        "ordering",
+        "replay",
+        "compaction",
+        "tombstones"
+      ],
+      "problem": "A late obsolete event could become the surviving compacted value after a more recent source deletion.",
+      "prevention": "Verify actual per-key append order including uncertain resends before relying on tail compaction for source state. Trace both a fresh bootstrap and a stale nonempty snapshot across tombstone expiry.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m07",
+          "finding_id": "M07-L03-T1",
+          "review_role": "technical",
+          "report": "modules/m07/reviews/automatic/lessons/M07-L03/technical.md",
+          "evidence": "https://kafka.apache.org/42/design/design/#log-compaction",
+          "lesson": "M07-L03"
+        }
+      ]
+    },
+    {
       "key": "verify-freshness-against-runtime-evidence",
       "tags": [
         "consistency",
