@@ -12,7 +12,7 @@ A connected marketplace offers token-based sessions, product pages and browse, d
 | --- | --- |
 | Validate a session | Exact lookup by token. A validation whose authoritative check starts after acknowledged revocation must deny that token. An earlier overlapping check may succeed. Define what happens when the authority is unreachable and a cache still returns active. |
 | Browse or edit a product | Browse active products by category and price, and fetch a product aggregate by ID. A price and its bounded variant display labels must change together. Browse may lag by 15 seconds under its target. Old clients still read the existing price field during the next release. |
-| Read device telemetry | Read the last 30 minutes for one device. One device accounts for 40% of writes, and independent events can share a timestamp. Retain the original plus every accepted correction until at least 30 days after the original event time. The dashboard uses only the latest accepted correction. |
+| Read device telemetry | Read the last 30 minutes for one device. One device accounts for 40% of writes, and independent events can share a timestamp. Retain the original plus every accepted correction until at least 30 days after the original event time. The dashboard uses only the latest accepted correction. Each event has at most 100 corrections, each payload is at most 2 KiB, and event IDs are never reused. Corrections beyond that limit are rejected. |
 | Suggest relationships | Return unique second-hop sellers, excluding the seed and directly followed sellers. A supernode may need a remote lookup with tens of thousands of edges. The API must identify a partial result. |
 
 Use two hypothetical drills. For the product freshness drill, track 200 original qualifying product commits in one ten-minute window. Each commit has an isolated fixed fixture in category `boots` with active products A at 60, target B at 72 and C at 75. The edit atomically changes B to 84 and updates its labels. Browse selects active boots with price below 80, ordered by price then product ID. The initial complete result is A, B, C and the expected result after the edit is A, C. Freeze all other changes to that fixture until its probe ends.
@@ -24,8 +24,8 @@ For the relationship drill, 100 original valid requests arrive in ten minutes. T
 ## M05-EX1
 
 1. Choose an access path, data model and transactional authority for each operation. Compare at least one alternative for each. Explain partitioning, query costs, maintenance and repair workload.
-2. Trace a stale positive session cache after revocation, a product edit across the price boundary during rollout, two readings with equal event timestamps, and one bounded supernode traversal.
-3. Score both drills under the stated contracts. Give tests that isolate freshness, version retention, lost state and partial traversal. For each of the four choices, give two questions that must be answered by exact product documentation or a controlled test.
+2. Trace a stale positive session cache after revocation, a product edit across the price boundary during rollout, two readings with equal event timestamps, two simultaneous corrections to one event and a correction whose reply is lost, and one bounded supernode traversal.
+3. Score both drills under the stated contracts. Give tests that isolate freshness, version retention, lost state and partial traversal, including audit reads at the 30-day cleanup boundary and a delayed correction or retry racing cleanup. For each of the four choices, give two questions that must be answered by exact product documentation or a controlled test.
 
 [Reference solution and rubric](solution-rubric.md) · [Decision summary](decision-summary.md)
 
