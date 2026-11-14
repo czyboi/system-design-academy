@@ -469,6 +469,31 @@
       ]
     },
     {
+      "key": "publisher-confirm-requires-destination-routing",
+      "tags": [
+        "queues",
+        "rabbitmq",
+        "acknowledgements",
+        "outbox"
+      ],
+      "problem": "A positive broker confirmation was insufficient evidence the message reached the configured destination.",
+      "prevention": "For each broker confirm, verify the destination routing and durability contract before retiring durable dispatch intent. Test RabbitMQ unroutable mandatory publishes with correlated returns.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m07",
+          "finding_id": "M07-L01-T1",
+          "review_role": "technical",
+          "report": "modules/m07/reviews/automatic/lessons/M07-L01/technical.md",
+          "evidence": "https://www.rabbitmq.com/docs/4.2/confirms#when-publishes-are-confirmed",
+          "lesson": "M07-L01"
+        }
+      ]
+    },
+    {
       "key": "reject-before-admission-versus-unknown-write-outcome",
       "tags": [
         "consistency",
