@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M06-L02",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M06-L02 — Cache update and coherence policies",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and canonical backlog outputs for SDA-M06-L02.",
+      "**Prerequisites:** M06-L01\n\n**Outcomes:** M06-L02-LO1: trace/model the mechanisms below in the worked scenario. M06-L02-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Cache-aside and invalidation ordering; read-through as an Academy comparison.\n2. Write-through, write-behind and refresh-ahead state transitions.\n3. Failure windows, stale reads, lost dirty data, cache-aside miss/round-trip costs, write-through cold starts and never-read entries, refresh misprediction and repair.\n\n**Worked-example plan:** Trace a concurrent read/write and a cache crash under each policy.\n\n**Trade-offs and when to use/avoid:** Select bounded staleness versus write latency/durability; reject absolute freshness claims without assumptions.\n\n**Quick-check focus:** Identify the write-behind loss window and a suitable mitigation. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Teach the mapped topics PR-H127, PR-H128, PR-H129, PR-H130, PR-H131, PR-H132, PR-H133, PR-H134, PR-H135, PR-H136."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate ownership through GitHub Issue #80 on codex/drafts-sda-ms04.",
+    "Write original English for middle and senior engineers. Use the pinned Primer as a topic map and verify technical claims with exact primary sources.",
+    "Keep learner-facing status draft, separate teaching from assessment and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level evidence at the canonical path with exact source sections, applicable versions and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver complete teaching and assessment artifacts at the canonical paths for scoped draft handoff and independent review.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record and verify the primary source section, version or publication scope, and applicability for every material claim.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M06-L02 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-failure-criteria",
+      "text": "Trace the mechanism and failure behavior, ground decisions in stated evidence, and define the user-visible measurement population, window and threshold wherever the scenario uses an SLO.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
