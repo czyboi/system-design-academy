@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M06",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M06-L01-LO1",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L01.md",
+        "sections": [
+          "Put reuse at the right boundary",
+          "Size the catalogue and trace a miss"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L01-LO2",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L01.md",
+        "sections": [
+          "Put reuse at the right boundary",
+          "Pick the unit of reuse",
+          "Combine granularity and update policy"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L02-LO1",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L02.md",
+        "sections": [
+          "Order the cache-aside update",
+          "Fence a late fill",
+          "Trace write-through, write-behind and refresh-ahead"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L02-LO2",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L02.md",
+        "sections": [
+          "Trace write-through, write-behind and refresh-ahead",
+          "Choose by the promises clients need"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L03-LO1",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L03.md",
+        "sections": [
+          "Maintain a map and a recency list",
+          "Trace a query from lookup to invalidation",
+          "Route to the cache and lose an owner"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L03-LO2",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L03.md",
+        "sections": [
+          "Maintain a map and a recency list",
+          "Trace a query from lookup to invalidation",
+          "Route to the cache and lose an owner"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-S1",
+      "uses_lesson_outcomes": [
+        "M06-L01-LO2",
+        "M06-L02-LO1",
+        "M06-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m06/integrated/decision-summary.md",
+        "sections": [
+          "Work through a cache failure",
+          "Choose location, granularity and update behavior together"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/integrated/brief.md",
+        "items": [
+          "M06-EX1"
+        ],
+        "solution_rubric": "modules/m06/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}
