@@ -362,6 +362,31 @@
       ]
     },
     {
+      "key": "guard-retry-with-input-bound-receipt",
+      "tags": [
+        "transactions",
+        "idempotency",
+        "dynamodb",
+        "receipt"
+      ],
+      "problem": "A missing receipt after timeout can coexist with an admitted transaction that can still commit.",
+      "prevention": "Atomically guard the effect and create an input-bound receipt. Use authoritative lookup and the same guarded operation identity on retry, and keep absence pending while the original can still commit.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m05",
+          "finding_id": "M05-L03-T1",
+          "review_role": "technical",
+          "report": "modules/m05/reviews/automatic/lessons/M05-L03/technical.md",
+          "evidence": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html",
+          "lesson": "M05-L03"
+        }
+      ]
+    },
+    {
       "key": "map-each-outcome-skill-to-its-assessment",
       "tags": [
         "assessment",
