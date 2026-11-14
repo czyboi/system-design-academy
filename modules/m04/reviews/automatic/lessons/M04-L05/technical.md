@@ -33,3 +33,18 @@ The comparison still measures the same 1,000-request cohort per variant and coun
 ### Verdict
 
 `ready-for-human-review`
+
+## PR #77 targeted technical follow-up
+
+Reviewed the lesson, assessment and evidence at draft commit `49210a1` on 2026-11-14.
+
+| ID | Severity | Status | Location and verification |
+| --- | --- | --- | --- |
+| M04-L05-T2 | minor | resolved | Lesson lines 29–89, assessment lines 6–8 and 77–79, evidence line 8. Both statements use the same tenant and descending `(created_at, id)` order, return one row per selected header, and count only non-null child IDs. The materialized CTE limits header selection before the candidate joins child rows, and its outer query specifies the final order. The fixture uses a single fresh session, generates tied timestamps and zero-line headers, and builds identical indexes and planner statistics for both statements. By inspection, the ordered IDs range from 20000 to 19880 in steps of five, with five zero-count entries. [PostgreSQL 18 series generation](https://www.postgresql.org/docs/18/functions-srf.html), [joined tables](https://www.postgresql.org/docs/18/queries-table-expressions.html#QUERIES-JOIN), [aggregate functions](https://www.postgresql.org/docs/18/functions-aggregate.html), [sorting rows](https://www.postgresql.org/docs/18/queries-order.html), [CTE materialization](https://www.postgresql.org/docs/18/queries-with.html#QUERIES-WITH-CTE-MATERIALIZATION), [ANALYZE](https://www.postgresql.org/docs/18/sql-analyze.html) |
+| M04-L05-T1 | major | resolved | Lesson line 91, assessment lines 18 and 62–70, evidence line 7. The separate illustrative averages still imply about 12,000 and 100 emitted rows in the lesson, and 6,000 and 60 in the assessment. The lesson explicitly labels them hypothetical and directs the reader to inspect the actual operators and buffer activity. The companion preserves its original-request denominator and write-WAL trade-off. [PostgreSQL 18 EXPLAIN ANALYZE](https://www.postgresql.org/docs/18/using-explain.html#USING-EXPLAIN-ANALYZE) |
+
+The SQL was inspected and is untested in PostgreSQL 18. Plan shapes and performance numbers for the runnable fixture remain to be measured by the learner. The revision introduces original SQL and no third-party assets.
+
+### Verdict
+
+`ready-for-human-review`

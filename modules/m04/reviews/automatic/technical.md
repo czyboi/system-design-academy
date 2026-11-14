@@ -37,3 +37,19 @@ The revisions preserve the query plan calculation and the separate 98% asynchron
 ### Verdict
 
 `ready-for-human-review`
+
+## PR #77 targeted technical follow-up
+
+Reviewed the support-ticket decision and outcome locators at draft commit `49210a1` on 2026-11-14. The detailed integration exercise and its earlier reviews were reused.
+
+| ID | Severity | Status | Location and verification |
+| --- | --- | --- | --- |
+| M04-SYN-T3 | major | resolved | `integrated/decision-summary.md` lines 8–12. The first case gives 140 updates/s against modeled 300/s capacity and diagnoses avoidable read work. Early limiting remains conditional on enrichment preserving eligibility and rank, and the learner compares buffers, timely success and index maintenance. The later 340/s workspace exceeds one nominal 250/s shard. The project key is presented as a possible split conditional on project-local writes and strict invariants. These illustrative rates do not establish an implementable placement or prove capacity under remote acknowledgement. The detailed exercise still requires measurement on its proposed path. [PostgreSQL 18 B-tree ordering and limit](https://www.postgresql.org/docs/18/indexes-ordering.html), [PostgreSQL 18 synchronous replication](https://www.postgresql.org/docs/18/warm-standby.html#SYNCHRONOUS-REPLICATION), [Azure sharding pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding#problems-and-considerations) |
+| M04-SYN-T1 and M04-SYN-T2 | major | resolved | Decision summary line 12, with the detailed protocol at solution lines 18–20 and 26–32. The support-ticket sketch requires copying and catching up, fencing admission, retaining durable operation receipts and proving recovery before activation. The linked exercise drains admitted writes, reconciles the same operation ID after a lost reply and verifies destination durable recovery before replaying success. It still keeps original-request timely success and confirmed-write loss distinct. Product sources support the examples of write quiescence and remote flush. The logical receipt and migration activation rules are application mechanisms. [Vitess 24 Reshard cutover](https://vitess.io/docs/24.0/reference/vreplication/reshard/#--max-replication-lag-allowed), [PostgreSQL 18 synchronous commit](https://www.postgresql.org/docs/18/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT), [PostgreSQL 18 source, interrupted replication wait](https://raw.githubusercontent.com/postgres/postgres/REL_18_STABLE/src/backend/replication/syncrep.c#L274-L310) |
+| M04-SYN-T4 | minor | resolved | Decision summary line 12 limits the project split to project-local strict invariants and explicitly marks a workspace read incomplete when any required project result is missing. The existing tenant/location example still specifies composite references and coordination for wider invariants. [Azure sharding pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding#problems-and-considerations), [PostgreSQL 18 foreign keys](https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK) |
+
+The decision summary links to the relevant M04 query tuning, sharding and replication lessons. The portfolio locators at lines 173–179 and 219–224 match the exact SQL and support-ticket section headings. The new case and rates are original hypothetical teaching material. The revision introduces no third-party assets.
+
+### Verdict
+
+`ready-for-human-review`

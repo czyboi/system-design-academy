@@ -109,17 +109,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-13T13:27:46Z",
-  "updated_at": "2026-11-14T11:26:57Z",
+  "updated_at": "2026-11-14T14:26:50Z",
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "New synthesis worked example and outcome mapping after Stage B; targeted independent technical/pedagogy re-review required.",
-      "updated_at": "2026-11-14T11:26:57Z"
+      "status": "reviewed",
+      "reason": "Independent PR 77 targeted synthesis review cleared the edited content at 49210a1.",
+      "updated_at": "2026-11-14T14:26:50Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "New synthesis worked example and outcome mapping after Stage B; targeted independent technical/pedagogy re-review required.",
-      "updated_at": "2026-11-14T11:26:57Z"
+      "status": "reviewed",
+      "reason": "Independent PR 77 targeted synthesis review cleared the edited content at 49210a1.",
+      "updated_at": "2026-11-14T14:26:50Z"
     }
   }
 }

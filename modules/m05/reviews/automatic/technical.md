@@ -65,3 +65,19 @@ Reviewed the single integrated content change at draft commit `0583ebb` on 2026-
 ### Verdict
 
 `ready-for-human-review`
+
+## PR #77 targeted technical follow-up
+
+Reviewed the integrated decision summary, brief, solution and evidence at draft commit `49210a1` on 2026-11-14.
+
+| ID | Severity | Status | Location and verification |
+| --- | --- | --- | --- |
+| M05-SYN-T1 | major | resolved | Brief lines 18–20, solution lines 21–23 and 41, evidence line 8. Success still requires the complete ordered A, C response and B's applicable committed revision on the actual serving path, both observed by 15 seconds. A newer revision qualifies only with the same known expected fixture membership. The database example uses one snapshot for canonical revision and browse membership. The separate-index example correlates B's committed revision and durable event ID with the searchable generation actually used, including each required shard. A revision-bearing indexed record, removal receipt or gap-free applied position must describe that serving view, which also spans every page. Broker publication, a canonical point read or a different replica's progress supplies insufficient evidence. Outbox documentation supports the atomic publication intent. The response-to-generation proof is application instrumentation. [MongoDB 8.0 snapshot read concern and atClusterTime](https://www.mongodb.com/docs/v8.0/reference/read-concern-snapshot/#read-concern-and-atclustertime), [AWS transactional outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html#using-an-outbox-table-with-a-relational-database) |
+
+The parcel worked decision at `integrated/decision-summary.md` lines 8–12 separates keyed current state, ordered event history and code redemption. The `(parcel_id, event_time, event_id)` ordering provides a stable tie-breaker. The redemption authority commits the one-use claim and input-bound operation receipt atomically. A timed-out admitted request remains unknown until the authority resolves the same operation ID, and independent confirmation is forbidden during a partition. The linked M05 lesson scopes remain applicable. The example's durable receipt is an application contract. DynamoDB's `ClientRequestToken` alone provides only a ten-minute retry window. [PostgreSQL 18 transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html), [DynamoDB transaction actions and scope](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html#transaction-apis-txwriteitems), [DynamoDB TransactWriteItems token](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactWriteItems.html#DDB-TransactWriteItems-request-ClientRequestToken).
+
+The original browse denominator and 98% result remain intact. M05-SYN-T2 and M05-SYN-T3 remain resolved. The revision introduces no third-party assets or new vendor guarantees.
+
+### Verdict
+
+`ready-for-human-review`

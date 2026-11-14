@@ -27,10 +27,16 @@
       "result": "ready",
       "reviewed_commit": "0583ebb",
       "note": "Targeted post-limit correction and independent re-review, authorized by owner"
+    },
+    {
+      "round": 0,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
     }
   ],
-  "status": "revising",
-  "updated_at": "2026-11-14T11:26:57Z",
+  "status": "ready",
+  "updated_at": "2026-11-14T14:26:25+00:00",
   "owner_directed_resolution": {
     "authorization": "Owner-directed rubric fix after two automatic correction rounds",
     "prior_status": "blocked",

@@ -29,3 +29,13 @@ Reviewed the revised brief and reference/rubric at `4bfd404`. The checkout cohor
 The revised reference also traces a stable operation receipt and logical order revision across a location move and rollback, and tests immediate loss after the new writer becomes active. The brief asks for this trace and the rubric grades its durability barriers and recovery. Capacity placement is correctly treated as provisional until the synchronous path is measured. These additions connect the accepted replication and sharding lessons to the integrated task. Topic and outcome reconciliation and the original status cohort remain intact.
 
 **Current verdict: ready-for-human-review.** This verdict covers targeted module synthesis pedagogy and coverage.
+
+## PR #77 targeted synthesis re-review
+
+Reviewed the changed decision summary and outcome portfolio at `49210a1`, using accepted lesson-review evidence. **Work a bottleneck-to-ownership decision** transfers query-plan diagnosis to a support-ticket workload, then connects a hot workspace to project-local routing, fan-out, migration and separate success and loss measurements. Its query rewrite states the eligibility and ordering conditions, and its throughput figures are labeled hypothetical.
+
+The M04-S1 portfolio names the new worked section together with the decision table. Its lesson outcome subset remains M04-L02-LO2, M04-L03-LO2 and M04-L05-LO1. The M04-L05-LO1 portfolio entry includes **Read a concrete SQL plan**, consistent with its companion's front matter and narrative map. This progression supports transfer into the order-database exercise defined in the [approved synthesis plan](../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m04-integrated-package-plan).
+
+No new pedagogical or assigned-topic coverage finding arose in the changed scope.
+
+**Current verdict: ready-for-human-review.** This verdict covers the PR #77 targeted module synthesis pedagogy re-review.

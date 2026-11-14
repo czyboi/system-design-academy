@@ -32,3 +32,11 @@ Reviewed the revised lesson and companion at `6d5ed71`. **Walk two plans under o
 The original 1,000-request cohorts, 97% and 98.5% timely success results, 250 ms threshold and ten-minute window remain intact. Outcome maps and the previously reviewed topic dispositions remain supported.
 
 **Current verdict: ready-for-human-review.** This verdict covers the targeted pedagogy and assigned-topic coverage re-review.
+
+## PR #77 targeted re-review
+
+Reviewed the changed teaching, companion metadata and outcome portfolio at `49210a1`. **Read a concrete SQL plan** supplies a reproducible fixture with timestamp ties and zero-line orders, equivalent baseline and candidate query shapes under the stated eligibility and ordering assumptions, and guidance to compare observed plans and buffers. The independently stated per-population row averages remain clearly labeled hypothetical and separate from execution results. The existing companion exercise measures plan interpretation and preservation of ordering and zero counts.
+
+The assessment front matter and narrative outcome map both include the new teaching section for M04-L05-LO1, and the module outcome portfolio names the same section and assessment items. The [approved outline](../../../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m04-l05) calls for a comparable two-plan walkthrough and measured tuning evidence. No new pedagogical finding arose in the changed scope.
+
+**Current verdict: ready-for-human-review.** This verdict covers the PR #77 targeted pedagogy re-review.

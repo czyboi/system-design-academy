@@ -52,3 +52,11 @@ Reviewed the owner-authorized rubric correction at `0583ebb` after the two autom
 | M05-SYN-P2 | resolved | [Reference solution and rubric, Guarantees and failure traces](../../integrated/solution-rubric.md#rubric) and the [approved M05 synthesis plan](../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m05-integrated-package-plan), which asks learners to compare data models. |
 
 **Current verdict: ready-for-human-review.** This verdict covers the owner-directed targeted pedagogy and curriculum coverage follow-up.
+
+## PR #77 targeted synthesis re-review
+
+Reviewed the changed decision summary, brief, reference/rubric and outcome portfolio at `49210a1`. **Work a storage-to-guarantee decision** traces a parcel ID lookup, ordered tracking history and one-use pickup claim with a durable input-bound receipt. It compares access and operational criteria while keeping the strict claim at a coordinated authority. The M05-S1 portfolio names this worked section alongside the decision table.
+
+The revised product drill permits either a shared database snapshot or reproducible correlation to the actual search-index serving view. The reference gives a concrete generation and per-required-shard evidence path for a separate index, while retaining complete ordered A, C results and proof of the committed revision by the 15-second deadline. The rubric grades the serving-view proof rather than requiring a database-only mechanism. The 200-commit cohort and 98% result remain intact. This targeted review found no new pedagogical or coverage issue against the [approved synthesis plan](../../../../curriculum/revision-1/CURRICULUM_MASTER.md#m05-integrated-package-plan).
+
+**Current verdict: ready-for-human-review.** This verdict covers the PR #77 targeted module synthesis pedagogy re-review.
