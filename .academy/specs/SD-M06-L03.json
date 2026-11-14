@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M06-L03",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M06-L03 — Bounded LRU and distributed query cache",
+  "scope": {
+    "in_scope": [
+      "Use the approved SDA-v1 outline and canonical backlog outputs for SDA-M06-L03.",
+      "**Prerequisites:** M06-L02, M04-L03\n\n**Outcomes:** M06-L03-LO1: trace/model the mechanisms below in the worked scenario. M06-L03-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Hash lookup plus linked recency list, get/set invariants and capacity eviction.\n2. Query API hit/miss flow, query/content/ranking change invalidation.\n3. Independent, replicated and sharded cache-cluster layouts; consistent-hash routing.\n4. Partial failures, hot shards and memory/replication cost; Memcached and Redis comparison questions.\n\n**Worked-example plan:** Walk through five accesses to a capacity-three cache, then remove one cluster node.\n\n**Trade-offs and when to use/avoid:** Use LRU when recency predicts reuse; compare eviction policy and cluster topology with observed access skew.\n\n**Quick-check focus:** Find a cache/list invariant broken by updating an existing key. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Teach the mapped topics PR-ARCH-MEMCACHED, PR-ARCH-REDIS, PR-CODE-R1-QUERY-NODE."
+    ],
+    "out_of_scope": [
+      "Other milestones, workflow changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Coordinate ownership through GitHub Issue #81 on codex/drafts-sda-ms04.",
+    "Write original English for middle and senior engineers. Use the pinned Primer as a topic map and verify technical claims with exact primary sources.",
+    "Keep learner-facing status draft, separate teaching from assessment and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level evidence at the canonical path with exact source sections, applicable versions and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver complete teaching and assessment artifacts at the canonical paths for scoped draft handoff and independent review.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Record and verify the primary source section, version or publication scope, and applicability for every material claim.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M06-L03 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-failure-criteria",
+      "text": "Trace the mechanism and failure behavior, ground decisions in stated evidence, and define the user-visible measurement population, window and threshold wherever the scenario uses an SLO.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
