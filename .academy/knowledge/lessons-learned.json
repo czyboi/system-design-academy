@@ -642,6 +642,31 @@
       ]
     },
     {
+      "key": "retry-gate-includes-completion-path",
+      "tags": [
+        "retries",
+        "overload",
+        "deadlines",
+        "queues"
+      ],
+      "problem": "The retry gate considered cooldown and execution while omitting queue and publication time.",
+      "prevention": "Use the original absolute deadline and include cooldown, queueing, dispatch, execution and publication in the estimated retry duration. Recheck before dispatch.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m07",
+          "finding_id": "M07-L02-T2",
+          "review_role": "technical",
+          "report": "modules/m07/reviews/automatic/lessons/M07-L02/technical.md",
+          "evidence": "https://sre.google/sre-book/addressing-cascading-failures/#latency-and-deadlines",
+          "lesson": "M07-L02"
+        }
+      ]
+    },
+    {
       "key": "scope-http-retries-by-operation-semantics",
       "tags": [
         "http",
