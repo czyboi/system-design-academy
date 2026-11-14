@@ -7,8 +7,14 @@
       "technical": "revise",
       "pedagogy": "revise",
       "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
     }
   ],
-  "status": "revising",
-  "updated_at": "2026-11-14T10:42:56+00:00"
+  "status": "ready",
+  "updated_at": "2026-11-14T10:46:46+00:00"
 }

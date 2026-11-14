@@ -50,6 +50,30 @@
       ]
     },
     {
+      "key": "carry-logical-receipt-across-independent-history",
+      "tags": [
+        "sharding",
+        "migration",
+        "idempotency",
+        "replication"
+      ],
+      "problem": "A WAL watermark from a source shard cannot certify state on an independently created destination shard.",
+      "prevention": "Move stable operation receipts and logical revisions with the data. Verify them on the active owner across cutover and rollback, and use WAL comparisons only within the relevant physical history.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m04",
+          "finding_id": "M04-SYN-T1",
+          "review_role": "technical",
+          "report": "modules/m04/reviews/automatic/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/continuous-archiving.html#BACKUP-TIMELINES"
+        }
+      ]
+    },
+    {
       "key": "claim-retry-identity-before-dispatch",
       "tags": [
         "idempotency",
