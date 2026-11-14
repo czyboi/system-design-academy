@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-13T13:27:35Z",
-  "updated_at": "2026-11-14T10:46:06Z",
+  "updated_at": "2026-11-14T10:49:54Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -61,20 +61,33 @@
         "modules/m05/assessments/M05-L03.md"
       ],
       "checkpoint": {
-        "note": "Drafted data-model workload matrix, fixed and sloppy quorums, repair and scoped transaction contracts.",
-        "next_action": "Scoped handoff and independent Stage A review.",
-        "at": "2026-11-14T10:46:06Z"
+        "note": "Resolved T1 through T3 with input-bound receipts, guarded ambiguous-result retries, concrete transaction modes and sloppy quorum scope.",
+        "next_action": "Scoped handoff and independent targeted review.",
+        "at": "2026-11-14T10:49:54Z"
       },
-      "attempts": 1,
-      "started_at": "2026-11-14T10:44:14Z",
-      "run_id": "SD-M05-L03-author-20261114T104414Z",
-      "agent": "codex",
+      "attempts": 2,
+      "started_at": "2026-11-14T10:47:55Z",
+      "run_id": "SD-M05-L03-author-20261114T104755Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-14T10:46:06Z",
-      "completed_by": "codex"
+      "completed_at": "2026-11-14T10:49:54Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Resolve M05-L03-T1 through T3 in round 1."
     }
-  ]
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "T1 through T3 require guarded receipt retries, concrete Spanner mode and Dynamo set scope.",
+      "updated_at": "2026-11-14T10:47:54Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent Stage A round 0 cleared at 82bae71.",
+      "updated_at": "2026-11-14T10:47:54Z"
+    }
+  }
 }
