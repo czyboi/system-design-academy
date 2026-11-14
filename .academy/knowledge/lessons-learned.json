@@ -444,6 +444,31 @@
       ]
     },
     {
+      "key": "new-cache-generation-requires-visible-origin-state",
+      "tags": [
+        "caching",
+        "cache-invalidation",
+        "replication",
+        "coherence"
+      ],
+      "problem": "A new cache generation could be filled from a snapshot older than the change it represented.",
+      "prevention": "Bind fills to a source read that can see the commit associated with the captured generation. Trace commit-to-invalidation failure and repair separately.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m06",
+          "finding_id": "M06-L01-T2",
+          "review_role": "technical",
+          "report": "modules/m06/reviews/automatic/lessons/M06-L01/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M06-L01"
+        }
+      ]
+    },
+    {
       "key": "reject-before-admission-versus-unknown-write-outcome",
       "tags": [
         "consistency",
