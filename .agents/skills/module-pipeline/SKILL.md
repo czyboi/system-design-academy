@@ -20,19 +20,29 @@ Read task-intake, current Issue, canonical spec, explicit state, worklog, Git st
 
 After the requested lesson/integration draft is produced, call `taskctl complete` and persist state/output. Then the **parent orchestrator** (not each author subagent) must run `python scripts/draft_handoff.py TASK-ID [TASK-ID ...]` once for the finished task(s). For a multi-lesson batch, pass all completed draft Task IDs together to validate each lesson/assessment pair and integrated page, commit only declared outputs plus spec/state/worklog, and push once. The helper stays on an existing `codex/`, `feature/` or `feat/` branch or creates a new `codex/drafts-*` branch; it never pushes to `main`, force-pushes, opens a PR, merges or publishes. It runs scoped deterministic Python data/format checks only, not the full regression suite. On validation or Git failure, stop and report which step failed; preserve drafts and do not auto-correct or launch a revision loop. Draft authoring completion does **not** imply independent content review or publication approval. Course/tooling tasks retain manual Git handoff.
 
-## PR only after the requested generation batch finishes
+## Draft PR at the end of the requested generation batch
 
-**One user request = one generation batch = at most one Draft PR**, regardless of how many lessons or modules it contains. For example, "generate three lessons" means one PR for exactly those three requested lesson Task IDs; do not wait for the milestone and do not create a PR at each lesson handoff.
-
-At request intake, identify the exact batch Task IDs and choose a stable new lowercase batch ID, reused if this same invocation resumes. Start a **dedicated branch from current `origin/main`** before authoring (for example: `git fetch origin main && git switch -c codex/gen-<batch-id> origin/main`). Never reuse a prior generation batch, milestone branch or existing PR branch for a different request. Keep all scoped handoffs and applicable Stage A/Stage B reviews and corrections for this batch on that single branch; `draft_handoff.py` continues to commit/push without opening PRs.
-
-**Only at the very end of this user-requested generation**, after every requested Task has completed authoring, all applicable bounded automatic QA/report handoffs have finished (including honest blocked outcomes), and the final content/report commit has been pushed, the parent runs:
+One user-requested generation invocation produces **at most one Draft PR**, no matter whether the user requested one lesson, three lessons or a whole milestone. Before authoring, record the exact requested Task IDs and choose one stable batch ID (reuse on resume). Start a dedicated branch from current `origin/main`:
 
 ```bash
-python scripts/finalize_generation_pr.py <batch-id> TASK-ID [TASK-ID ...]
+git fetch origin main
+git switch -c codex/gen-<batch-id> origin/main
 ```
 
-Supply **only** the Task IDs from this request. The finalizer verifies the branch matches the batch, is pushed and clean, and contains no files outside the declared tasks/QA evidence. It checks for an existing PR from the same head before creating a Draft PR; reruns reuse the existing open PR instead of creating duplicates. A closed/merged PR stops rather than silently making another. On a failed check, report the blocker rather than falling back to a milestone-wide PR. Leave unresolved QA findings visible in Draft. Never merge, approve or publish automatically.
+On resume, switch back to the **same branch**, not a newly created one. Keep that branch limited to this request. Continue ordinary `draft_handoff.py` scoped validation/commits/pushes and applicable independent Stage A/Stage B QA; do not open a PR at each handoff.
+
+**At the very end** of this invocation, after the requested task outputs and applicable QA/report handoffs have been pushed (including truthful blocked reports), parent uses GitHub CLI:
+
+```bash
+branch=$(git branch --show-current)
+gh pr list --head "$branch" --state all --json number,state,url
+# If no PR exists for this branch:
+gh pr create --draft --base main --head "$branch" \
+  --title "Generate: <requested Task IDs>" \
+  --body "Scope: <requested Task IDs>. Draft for human review; see QA reports."
+```
+
+If a PR already exists, reuse its URL when open; if closed/merged, stop instead of recreating it. Do not run `gh pr create` when the list shows an existing PR. If creation races with another caller, recheck the list rather than opening another. Report CLI/auth/push failures instead of silently skipping the PR. PR creation is **not** owner approval or publication; never merge automatically.
 
 **Automatic per-lesson review:** Right after each completed lesson's scoped validation and feature-branch handoff, parent MUST run Stage A of `.agents/skills/module-quality-review/SKILL.md`. Invoke existing independent `technical_reviewer` (Sol High) and `pedagogy_reviewer` (Terra Medium) for that lesson/evidence/assessment pair. Record separate lesson reports and the dedicated lesson `review_cycle.py` state. If findings exist, delegate at most **two targeted author correction rounds per lesson**, with independent targeted re-review after each. Push both reports/cycle/task memory through `draft_handoff.py --review-report`; this requires **no other lesson** to be drafted. If blocked, report why, rather than silently moving on. For multi-lesson runs, resolve each lesson's review before authoring dependent lessons.
 
