@@ -1,0 +1,13 @@
+# Source evidence for M05-INTEGRATION
+
+Checked 2026-11-14. All volumes, drill outcomes and required performance thresholds are illustrative. The package uses original examples. Each row records the scope of the product comparison.
+
+| Decision | Primary evidence | Scope |
+| --- | --- | --- |
+| Confirm a revocation at the session authority | [DynamoDB GetItem](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_GetItem.html), [read consistency](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html), [M05-L01 evidence](../evidence/M05-L01.md) | Strict same-Region base-table read after a successful write. Cache failures and overlapping checks follow the stated application contract. |
+| Query and update product documents | [MongoDB 8.0 single-document atomicity](https://www.mongodb.com/docs/v8.0/core/write-operations-atomicity/), [ESR index guidance](https://www.mongodb.com/docs/v8.0/tutorial/equality-sort-range-guideline/), [M05-L01 evidence](../evidence/M05-L01.md) | The document write boundary and browse freshness requirement are independent. No claim that an arbitrary replica proves freshness. |
+| Route time ranges and retain corrections | [Bigtable schema design](https://docs.cloud.google.com/bigtable/docs/schema-design), [data API RowRange and SetCell](https://docs.cloud.google.com/bigtable/docs/reference/data/rpc/google.bigtable.v2), [garbage collection](https://docs.cloud.google.com/bigtable/docs/garbage-collection), [M05-L02 evidence](../evidence/M05-L02.md) | A row key determines locality. Cell version precision, retention and filtering are separate from event identity. |
+| Bound relationship traversal | [Neo4j Cypher bounded paths](https://neo4j.com/docs/cypher-manual/current/patterns/variable-length-paths/), [performance indexes](https://neo4j.com/docs/cypher-manual/current/indexes/performance-indexes/using-indexes/), [M05-L02 evidence](../evidence/M05-L02.md) | An index finds a seed. Remote adjacency and incomplete results are scenario behaviors and must be measured in the proposed deployment. |
+| Choose operating guarantees explicitly | [DynamoDB transactions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html), [Cloud Spanner isolation levels](https://docs.cloud.google.com/spanner/docs/isolation-levels), [M05-L03 evidence](../evidence/M05-L03.md) | Verify the exact operation, concurrency, read mode and placement contract. No general guarantee follows from the data model. |
+
+M05-S1 uses M05-L01-LO2, M05-L02-LO2 and M05-L03-LO2. Companion assessments retain the separate scope of both outcomes for each lesson.

@@ -1,0 +1,100 @@
+{
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Reconcile integrated scenario evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        ".agents/skills/source-research/SKILL.md",
+        "modules/m05/lessons/M05-L01.md",
+        "modules/m05/assessments/M05-L01.md",
+        "modules/m05/evidence/M05-L01.md",
+        "modules/m05/lessons/M05-L02.md",
+        "modules/m05/assessments/M05-L02.md",
+        "modules/m05/evidence/M05-L02.md",
+        "modules/m05/lessons/M05-L03.md",
+        "modules/m05/assessments/M05-L03.md",
+        "modules/m05/evidence/M05-L03.md"
+      ],
+      "output_paths": [
+        "modules/m05/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-14T10:47:09Z",
+      "run_id": "SD-M05-INTEGRATION-research-20261114T104709Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-14T10:48:06Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Draft and reconcile module synthesis",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        "curriculum/revision-1/coverage.csv",
+        "GOVERNANCE.md",
+        "modules/m05/integrated/evidence.md",
+        "modules/m05/lessons/M05-L01.md",
+        "modules/m05/assessments/M05-L01.md",
+        "modules/m05/evidence/M05-L01.md",
+        "modules/m05/lessons/M05-L02.md",
+        "modules/m05/assessments/M05-L02.md",
+        "modules/m05/evidence/M05-L02.md",
+        "modules/m05/lessons/M05-L03.md",
+        "modules/m05/assessments/M05-L03.md",
+        "modules/m05/evidence/M05-L03.md"
+      ],
+      "output_paths": [
+        "modules/m05/integrated/brief.md",
+        "modules/m05/integrated/solution-rubric.md",
+        "modules/m05/integrated/decision-summary.md",
+        "modules/m05/integrated/taught-coverage.csv",
+        "modules/m05/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "Drafted four access paths, evidence questions, cohort scores and topic/outcome reconciliation.",
+        "next_action": "Scoped handoff, then Stage B after all lesson reviews are ready.",
+        "at": "2026-11-14T10:50:21Z"
+      },
+      "attempts": 1,
+      "started_at": "2026-11-14T10:48:06Z",
+      "run_id": "SD-M05-INTEGRATION-author-20261114T104806Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-14T10:50:21Z",
+      "completed_by": "codex"
+    }
+  ],
+  "notes": "",
+  "current_phase": "author",
+  "schema_version": 2,
+  "task_id": "SD-M05-INTEGRATION",
+  "module_id": "m05",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M05-INTEGRATION.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "created_at": "2026-11-13T13:27:46Z",
+  "updated_at": "2026-11-14T10:50:21Z"
+}
