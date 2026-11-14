@@ -20,29 +20,15 @@ Read task-intake, current Issue, canonical spec, explicit state, worklog, Git st
 
 After the requested lesson/integration draft is produced, call `taskctl complete` and persist state/output. Then the **parent orchestrator** (not each author subagent) must run `python scripts/draft_handoff.py TASK-ID [TASK-ID ...]` once for the finished task(s). For a multi-lesson batch, pass all completed draft Task IDs together to validate each lesson/assessment pair and integrated page, commit only declared outputs plus spec/state/worklog, and push once. The helper stays on an existing `codex/`, `feature/` or `feat/` branch or creates a new `codex/drafts-*` branch; it never pushes to `main`, force-pushes, opens a PR, merges or publishes. It runs scoped deterministic Python data/format checks only, not the full regression suite. On validation or Git failure, stop and report which step failed; preserve drafts and do not auto-correct or launch a revision loop. Draft authoring completion does **not** imply independent content review or publication approval. Course/tooling tasks retain manual Git handoff.
 
-## Draft PR at the end of the requested generation batch
+## Draft PR after generation
 
-One user-requested generation invocation produces **at most one Draft PR**, no matter whether the user requested one lesson, three lessons or a whole milestone. Before authoring, record the exact requested Task IDs and choose one stable batch ID (reuse on resume). Start a dedicated branch from current `origin/main`:
-
-```bash
-git fetch origin main
-git switch -c codex/gen-<batch-id> origin/main
-```
-
-On resume, switch back to the **same branch**, not a newly created one. Keep that branch limited to this request. Continue ordinary `draft_handoff.py` scoped validation/commits/pushes and applicable independent Stage A/Stage B QA; do not open a PR at each handoff.
-
-**At the very end** of this invocation, after the requested task outputs and applicable QA/report handoffs have been pushed (including truthful blocked reports), parent uses GitHub CLI:
+Keep the existing `draft_handoff.py` branch/validation/commit/push behavior. **At the end of each user-requested generation run**, after its requested lesson/integration outputs and applicable automatic QA reports have been pushed, the parent opens one Draft PR from the current branch to `main` (whether the run produced one lesson or several):
 
 ```bash
-branch=$(git branch --show-current)
-gh pr list --head "$branch" --state all --json number,state,url
-# If no PR exists for this branch:
-gh pr create --draft --base main --head "$branch" \
-  --title "Generate: <requested Task IDs>" \
-  --body "Scope: <requested Task IDs>. Draft for human review; see QA reports."
+gh pr view --json url --jq .url || gh pr create --draft --base main --fill
 ```
 
-If a PR already exists, reuse its URL when open; if closed/merged, stop instead of recreating it. Do not run `gh pr create` when the list shows an existing PR. If creation races with another caller, recheck the list rather than opening another. Report CLI/auth/push failures instead of silently skipping the PR. PR creation is **not** owner approval or publication; never merge automatically.
+If a PR already exists for this branch, return its URL; otherwise create it once. Report failure if GitHub CLI cannot create it. Do not open PRs during intermediate handoffs, wait for unrelated milestone completion, auto-merge or publish. Unresolved QA remains visible for human review.
 
 **Automatic per-lesson review:** Right after each completed lesson's scoped validation and feature-branch handoff, parent MUST run Stage A of `.agents/skills/module-quality-review/SKILL.md`. Invoke existing independent `technical_reviewer` (Sol High) and `pedagogy_reviewer` (Terra Medium) for that lesson/evidence/assessment pair. Record separate lesson reports and the dedicated lesson `review_cycle.py` state. If findings exist, delegate at most **two targeted author correction rounds per lesson**, with independent targeted re-review after each. Push both reports/cycle/task memory through `draft_handoff.py --review-report`; this requires **no other lesson** to be drafted. If blocked, report why, rather than silently moving on. For multi-lesson runs, resolve each lesson's review before authoring dependent lessons.
 
