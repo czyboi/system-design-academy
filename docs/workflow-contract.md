@@ -39,23 +39,6 @@ For a backlog lesson, `init ... --template .academy/state/task.template.json` re
 
 `complete --usage-file PATH` may record observed input/output/cached/reasoning tokens and elapsed time. The tool does not infer usage or cost. New files never record hashes; legacy task hash fields and prior reports remain historical data.
 
-## One Draft PR per requested generation batch
-
-Each generation request gets a dedicated `codex/gen-<batch-id>` branch from `origin/main` (reuse the same branch when resuming). The request can contain one lesson, multiple lessons or a whole milestone. The parent retains the exact requested Task IDs; it does **not** wait for unrelated milestone tasks.
-
-`draft_handoff.py` still handles per-task scoped checks and Git push. After **all requested content and applicable bounded automatic QA/report handoffs** have finished and been pushed, parent runs:
-
-```bash
-branch=$(git branch --show-current)
-gh pr list --head "$branch" --state all --json number,state,url
-# Only when no PR exists for that branch:
-gh pr create --draft --base main --head "$branch" \
-  --title "Generate: <requested Task IDs>" \
-  --body "Scope: <requested Task IDs>. Draft for human review; see QA reports."
-```
-
-An open PR is reused; closed/merged PRs are not recreated. If creation fails due to a concurrent PR, recheck before retrying. Report failures. This is parent orchestration, **not** a new Python finalizer, task step, AI review, or publication gate. GitHub owns mergeability and PR creation; the user controls approval, merge and publication. Unresolved QA remains visible in Draft.
-
 ## Automatic per-lesson QA, lightweight module synthesis and optional reviews
 
 The standing default is **two independent reviewer agents right after each individual lesson draft passes scoped validation/Git handoff**, without waiting for the module. Keep existing profiles: `technical_reviewer` (Sol High) audits correctness and primary-source provenance; `pedagogy_reviewer` (Terra Medium) audits teaching and lesson-level curriculum coverage. They each review the canonical lesson/evidence/assessment pair, write specific findings and terminal verdicts, and do not rewrite content. Both reports and the separate bounded lesson cycle live at `modules/mXX/reviews/automatic/lessons/MXX-LYY/{technical.md,pedagogy.md,cycle.json}`. Parent records explicit `taskctl review-status` by scope and persists the reports with `draft_handoff.py --review-report`.
