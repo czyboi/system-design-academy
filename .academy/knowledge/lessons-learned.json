@@ -592,6 +592,31 @@
       ]
     },
     {
+      "key": "reroute-versioned-fill-through-new-key",
+      "tags": [
+        "caching",
+        "cache-invalidation",
+        "consistent-hashing",
+        "coalescing"
+      ],
+      "problem": "A fill that observed a new version could publish through the old key's route or coalescing group.",
+      "prevention": "On a generation or ranking-version mismatch, discard or re-enter lookup under the complete new key. Recompute the owner and coalescing identity and charge the retry to shared origin and time budgets.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m06",
+          "finding_id": "M06-L03-T1",
+          "review_role": "technical",
+          "report": "modules/m06/reviews/automatic/lessons/M06-L03/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M06-L03"
+        }
+      ]
+    },
+    {
       "key": "resume-projection-from-its-own-coverage",
       "tags": [
         "projections",

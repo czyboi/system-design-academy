@@ -10,3 +10,5 @@
 {"at": "2026-11-14T22:37:36Z", "event": "steps_invalidated", "reason": "Stage A revision 1 addresses M06-L03-T1–T5 and M06-L03-P1.", "step_ids": ["author"], "task_id": "SD-M06-L03"}
 {"agent": "lesson_author", "at": "2026-11-14T22:37:36Z", "event": "step_started", "run_id": "SD-M06-L03-author-20261114T223736Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M06-L03"}
 {"at": "2026-11-14T22:39:06Z", "event": "step_completed", "run_id": "SD-M06-L03-author-20261114T223736Z", "runtime": {"model": null, "reasoning_effort": null}, "step_id": "author", "task_id": "SD-M06-L03", "usage": null}
+{"at": "2026-11-14T22:40:24Z", "current": "reviewed", "event": "review_status_changed", "previous": "needs_review", "reason": "Independent review verdict ready-for-human-review. See the scope report.", "scope": "technical", "task_id": "SD-M06-L03"}
+{"at": "2026-11-14T22:40:24Z", "current": "reviewed", "event": "review_status_changed", "previous": "needs_review", "reason": "Independent review verdict ready-for-human-review. See the scope report.", "scope": "pedagogy", "task_id": "SD-M06-L03"}
