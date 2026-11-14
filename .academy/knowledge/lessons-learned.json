@@ -2,6 +2,31 @@
   "schema_version": 1,
   "entries": [
     {
+      "key": "anchor-cache-freshness-to-source-observation",
+      "tags": [
+        "caching",
+        "coherence",
+        "refresh-ahead",
+        "ttl"
+      ],
+      "problem": "A late fill could extend stale reuse when expiry was calculated from insertion.",
+      "prevention": "Anchor a hard freshness cutoff to the source observation, budget replica lag and clock uncertainty, and check the cutoff before returning hits and delayed fills. Define the response when a fresh read cannot complete.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m06",
+          "finding_id": "M06-L02-T1",
+          "review_role": "technical",
+          "report": "modules/m06/reviews/automatic/lessons/M06-L02/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED",
+          "lesson": "M06-L02"
+        }
+      ]
+    },
+    {
       "key": "atomic-acceptance-and-runnable-intent",
       "tags": [
         "idempotency",
