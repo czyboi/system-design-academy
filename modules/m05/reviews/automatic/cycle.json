@@ -13,8 +13,14 @@
       "technical": "revise",
       "pedagogy": "revise",
       "result": "needs_revision"
+    },
+    {
+      "round": 2,
+      "technical": "ready-for-human-review",
+      "pedagogy": "revise",
+      "result": "blocked"
     }
   ],
-  "status": "revising",
-  "updated_at": "2026-11-14T10:55:04+00:00"
+  "status": "blocked",
+  "updated_at": "2026-11-14T10:59:13+00:00"
 }

@@ -70,21 +70,21 @@
         "modules/m05/integrated/outcome-portfolio.json"
       ],
       "checkpoint": {
-        "note": "Resolved remaining T2 and P1 with one authoritative event-row CAS, bounded immutable payloads, same-row audit and expiry fencing, and explicit exercise cases.",
-        "next_action": "Scoped handoff and final targeted independent Stage B re-review.",
-        "at": "2026-11-14T10:56:58Z"
+        "note": "Owner-directed P2 rubric edit accepts equivalent guarantees across physical representations.",
+        "next_action": "Independent targeted re-review of revised criterion. Retain the exhausted automatic cycle history.",
+        "at": "2026-11-14T10:59:28Z"
       },
-      "attempts": 3,
-      "started_at": "2026-11-14T10:55:04Z",
-      "run_id": "SD-M05-INTEGRATION-author-20261114T105504Z",
-      "agent": "lesson_author",
+      "attempts": 4,
+      "started_at": "2026-11-14T10:59:14Z",
+      "run_id": "SD-M05-INTEGRATION-author-20261114T105914Z",
+      "agent": "codex",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-14T10:56:58Z",
-      "completed_by": "lesson_author",
-      "invalidation_reason": "Resolve M05-SYN-T2 and P1 in final bounded synthesis round."
+      "completed_at": "2026-11-14T10:59:28Z",
+      "completed_by": "codex",
+      "invalidation_reason": "Owner authorized targeted correction M05-SYN-P2 after the two automatic correction rounds."
     }
   ],
   "notes": "",
@@ -97,17 +97,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-13T13:27:46Z",
-  "updated_at": "2026-11-14T10:56:58Z",
+  "updated_at": "2026-11-14T10:59:28Z",
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Round 1 left T2 and P1 open for the telemetry acceptance and exercise trace.",
-      "updated_at": "2026-11-14T10:55:03Z"
+      "status": "reviewed",
+      "reason": "Stage B round 2 cleared T1 through T3 at 55afdc4.",
+      "updated_at": "2026-11-14T10:59:13Z"
     },
     "pedagogy": {
       "status": "needs_review",
-      "reason": "Round 1 left T2 and P1 open for the telemetry acceptance and exercise trace.",
-      "updated_at": "2026-11-14T10:55:04Z"
+      "reason": "Stage B round 2 P2 open. Owner authorized a targeted rubric edit and re-review outside the automatic cycle.",
+      "updated_at": "2026-11-14T10:59:14Z"
     }
   }
 }
