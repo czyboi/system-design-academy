@@ -189,6 +189,31 @@
       ]
     },
     {
+      "key": "distinguish-event-identity-from-timestamp",
+      "tags": [
+        "wide-column",
+        "time-series",
+        "partitioning",
+        "identity"
+      ],
+      "problem": "Independent events with equal timestamps and buckets could collapse into one row and look like corrections.",
+      "prevention": "Use an immutable event ID in the row and stable bucket routing, and keep correction versions on the original event row.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m05",
+          "finding_id": "M05-L02-T2",
+          "review_role": "technical",
+          "report": "modules/m05/reviews/automatic/lessons/M05-L02/technical.md",
+          "evidence": "https://docs.cloud.google.com/bigtable/docs/schema-design",
+          "lesson": "M05-L02"
+        }
+      ]
+    },
+    {
       "key": "edge-miss-versus-origin-fetch-count",
       "tags": [
         "caching",
