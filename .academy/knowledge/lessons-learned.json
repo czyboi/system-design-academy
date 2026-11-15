@@ -494,6 +494,31 @@
       ]
     },
     {
+      "key": "preserve-slot-invariants-during-job-recovery",
+      "tags": [
+        "queues",
+        "backpressure",
+        "overload",
+        "retries",
+        "concurrency"
+      ],
+      "problem": "A recovery transition could consume a waiting slot twice or release a physical permit before execution stopped.",
+      "prevention": "Specify reservation transfers for each recovery state. Reuse held logical slots when republishing pending work, reserve a slot for running-to-pending, and retain actual execution permits through confirmed stop.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m07",
+          "finding_id": "M07-INT-T2",
+          "review_role": "technical",
+          "report": "modules/m07/reviews/automatic/technical.md",
+          "evidence": "https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/"
+        }
+      ]
+    },
+    {
       "key": "publisher-confirm-requires-destination-routing",
       "tags": [
         "queues",
