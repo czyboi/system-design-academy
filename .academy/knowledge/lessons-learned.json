@@ -970,6 +970,32 @@
           "evidence": "https://www.postgresql.org/docs/18/tutorial-transactions.html"
         }
       ]
+    },
+    {
+      "key": "verify-reader-visible-before-index-cutover",
+      "tags": [
+        "search",
+        "indexing",
+        "projection",
+        "cutover",
+        "replay"
+      ],
+      "problem": "A replacement index reached durable replay progress while eligible stale readers could still return removed records.",
+      "prevention": "Gate read cutover on query-visible progress through the frozen replay barrier on every eligible reader. Pin the chosen generation and shard set across query, fetch and retries.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m08",
+          "finding_id": "M08-L03-T1",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/lessons/M08-L03/technical.md",
+          "evidence": "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/near-real-time.html",
+          "lesson": "M08-L03"
+        }
+      ]
     }
   ]
 }
