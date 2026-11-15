@@ -7,7 +7,7 @@
   "automation_status": "automation_complete",
   "current_phase": "author",
   "created_at": "2026-11-11T08:03:02Z",
-  "updated_at": "2026-11-15T11:09:40Z",
+  "updated_at": "2026-11-15T11:11:39Z",
   "execution_control": "active",
   "notes": "GitHub #20; milestone SDA-MS01, Story SDA-M00-L01; branch codex/SDA-MS01.",
   "steps": [
@@ -400,14 +400,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Restored archived PR #28 for Issue #52. Current independent lesson review is pending.",
-      "updated_at": "2026-11-15T11:03:53Z"
+      "status": "reviewed",
+      "reason": "Targeted Stage A re-review resolved T1, T2, T3 and P1.",
+      "updated_at": "2026-11-15T11:11:39Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "Restored archived PR #28 for Issue #52. Current independent lesson review is pending.",
-      "updated_at": "2026-11-15T11:03:53Z"
+      "status": "reviewed",
+      "reason": "Targeted Stage A re-review resolved P-1 and P-2 and confirmed all assigned Primer topics are taught.",
+      "updated_at": "2026-11-15T11:11:39Z"
     },
     "plan-gate": {
       "status": "reviewed",

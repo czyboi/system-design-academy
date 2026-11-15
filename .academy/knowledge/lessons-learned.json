@@ -263,6 +263,30 @@
       ]
     },
     {
+      "key": "distinguish-pinned-reading-from-illustrative-case",
+      "tags": [
+        "source-mapping",
+        "curriculum-coverage",
+        "study-route"
+      ],
+      "problem": "A topic about a designated introductory reading was mapped to an unrelated historical example without teaching the reading step.",
+      "prevention": "Inspect the exact pinned heading and its resource topics before mapping coverage. Teach a guided comparison with an original, self-contained example when the linked historical reading is unavailable.",
+      "applies_to": [
+        "lesson_author",
+        "pedagogy_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m00",
+          "finding_id": "P-1",
+          "review_role": "pedagogy",
+          "report": "modules/m00/reviews/automatic/lessons/M00-L01/pedagogy.md",
+          "evidence": "https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/README.md#L390-L398",
+          "lesson": "M00-L01"
+        }
+      ]
+    },
+    {
       "key": "edge-miss-versus-origin-fetch-count",
       "tags": [
         "caching",
