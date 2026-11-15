@@ -5,9 +5,9 @@
   "owner": "@czyboi",
   "spec_path": ".academy/specs/SD-M00-L02.json",
   "automation_status": "automation_complete",
-  "current_phase": "validation",
+  "current_phase": "author",
   "created_at": "2026-11-11T08:03:02Z",
-  "updated_at": "2026-11-15T11:06:53Z",
+  "updated_at": "2026-11-15T11:12:52Z",
   "execution_control": "active",
   "notes": "GitHub #21; milestone SDA-MS01, Story SDA-M00-L02; branch codex/SDA-MS01.",
   "steps": [
@@ -145,10 +145,11 @@
         "modules/m00/assessments/M00-L02.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Addressed technical T2/T1/P1/P2 and pedagogy P1 with measurable failure criteria, explicit revocation semantics, and synchronized outcome mapping.",
+        "next_action": "Run independent targeted re-review of the revised pair and evidence.",
+        "at": "2026-11-15T11:12:52Z"
       },
-      "attempts": 1,
+      "attempts": 2,
       "requires_reviews": [
         "plan-gate"
       ],
@@ -169,8 +170,8 @@
         "modules/m00/lessons/M00-L02.md": null,
         "modules/m00/assessments/M00-L02.md": null
       },
-      "started_at": "2026-11-11T08:11:24Z",
-      "run_id": "SD-M00-L02-author-20261111T081124Z",
+      "started_at": "2026-11-15T11:11:40Z",
+      "run_id": "SD-M00-L02-author-20261115T111140Z",
       "agent": "lesson_author",
       "runtime": {
         "model": null,
@@ -182,9 +183,10 @@
         "modules/m00/lessons/M00-L02.md": "73a4ff810c40917bb6890cb70d314faddfcefb0538035c7d0e8edaef64527e88",
         "modules/m00/assessments/M00-L02.md": "3a91e8662e9e9dcb553a68c651852295334634f3277fa7daca764ca5818e70cd"
       },
-      "completed_at": "2026-11-11T08:16:05Z",
+      "completed_at": "2026-11-15T11:12:52Z",
       "completed_by": "lesson_author",
-      "completed_commit": "5e889afb4f76b139324552e0ece68b8668a9a586"
+      "completed_commit": "5e889afb4f76b139324552e0ece68b8668a9a586",
+      "invalidation_reason": "Independent findings M00-L02-T2/T1/P1/P2 and M00-L02-P1"
     },
     {
       "step_id": "technical-review",
@@ -406,6 +408,11 @@
       "status": "needs_review",
       "reason": "Restored archived PR #28 for Issue #45. Current independent lesson review is pending.",
       "updated_at": "2026-11-15T11:06:53Z"
+    },
+    "plan-gate": {
+      "status": "reviewed",
+      "reason": "Reused the clear, recorded plan-gate verdict for the unchanged approved SDA-v1 baseline.",
+      "updated_at": "2026-11-15T11:11:40Z"
     }
   }
 }
