@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M07",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M07-L01-LO1",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L01.md",
+        "sections": [
+          "Separate acceptance, delivery and completion",
+          "Trace the crash around acknowledgement"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L01-LO2",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L01.md",
+        "sections": [
+          "Separate acceptance, delivery and completion",
+          "Trace the crash around acknowledgement",
+          "Compare broker and executor contracts",
+          "Decide which work waits"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L02-LO1",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L02.md",
+        "sections": [
+          "Set the boundary for queue math",
+          "Trace one burst and its recovery"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L02-LO2",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L02.md",
+        "sections": [
+          "Trace one burst and its recovery",
+          "Put back pressure where it can work",
+          "Keep retries inside the budget"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L03-LO1",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L03.md",
+        "sections": [
+          "Choose the delivery and ordering unit",
+          "Replay into a new index"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L03-LO2",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L03.md",
+        "sections": [
+          "Choose the delivery and ordering unit",
+          "Replay into a new index",
+          "Repair an incomplete history"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-S1",
+      "uses_lesson_outcomes": [
+        "M07-L01-LO1",
+        "M07-L02-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m07/integrated/decision-summary.md",
+        "sections": [
+          "Work a deferred completion decision",
+          "Compare completion, ordering and replay needs"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/integrated/brief.md",
+        "items": [
+          "M07-EX1"
+        ],
+        "solution_rubric": "modules/m07/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}
