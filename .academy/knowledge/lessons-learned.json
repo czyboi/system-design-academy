@@ -839,6 +839,30 @@
           "lesson": "M01-L04"
         }
       ]
+    },
+    {
+      "key": "verify-invalidation-domain-before-counting-cache-hits",
+      "tags": [
+        "caching",
+        "cache-invalidation",
+        "replication",
+        "capacity"
+      ],
+      "problem": "Recovery credited cache copies that could be invalidated by the same source generation change.",
+      "prevention": "Map the full invalidation domain and count recovery hits only for matching generation and rank within the original source-age limit.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m06",
+          "finding_id": "M06-SYN-T1",
+          "review_role": "technical",
+          "report": "modules/m06/reviews/automatic/technical.md",
+          "evidence": "https://www.postgresql.org/docs/18/tutorial-transactions.html"
+        }
+      ]
     }
   ]
 }
