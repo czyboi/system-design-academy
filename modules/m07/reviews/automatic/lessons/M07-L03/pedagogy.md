@@ -59,3 +59,14 @@ After the lesson-first pass, the unchanged companion was checked for compatibili
 ## Pilot verdict
 
 **revise** — P4 is an open major pedagogical finding. P5 is a local clarity improvement. This verdict does not assert technical, rights, human, or publication approval.
+
+## Pilot targeted revision 1 re-review — `a600734`
+
+- **M07-L03-P4 — Major, resolved.** In “Replay into a new index,” the lesson now shows a delayed old-owner write arriving after reassignment, then explains an application-owned epoch contract that closes the old epoch at both index and checkpoint stores, settles admitted writes, and rejects later stale requests before the new owner proceeds. The cutover paragraph separately explains closing the served generation and settling admitted effects before capturing the barrier, including the late-visible-effect failure. These explanations allow the learner to reconstruct the role of fencing in the existing replay and cutover trace. The Chubby sequencer reference identifies a related resource-side mechanism without making it the only implementation. [Chubby §2.4](https://www.usenix.org/legacy/event/osdi06/tech/full_papers/burrows/burrows.pdf#page=5).
+- **M07-L03-P5 — Minor, resolved.** “Choose the delivery and ordering unit” now defines a partition as an independently ordered sequence before explaining group assignment and next positions.
+
+The correction to the repair introduction supplies a concrete missing-update example and places protection of the continuation before the source snapshot, matching the worked repair. The revised position-20 wording identifies where the example contains a record and remains consistent with the subsequent discussion of offset holes. The lesson-first pass found no new missing causal dependency in the touched passages. The unchanged assessment's EX-1 and rubric still follow the taught trace and cutover contract. Assigned Kafka, replay, retention, ordering and outbox coverage remains present, and P1–P3 remain resolved. The pilot's progressive explanation supports the same two approved outcomes.
+
+## Latest pilot verdict
+
+**ready-for-human-review** — P4 and P5 are resolved and no open blocker or major pedagogy or assigned-coverage finding remains. This verdict concerns teaching and coverage.

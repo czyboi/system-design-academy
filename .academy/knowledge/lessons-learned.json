@@ -412,6 +412,31 @@
       ]
     },
     {
+      "key": "keep-replay-summary-consistent-with-capture-order",
+      "tags": [
+        "replay",
+        "snapshot",
+        "recovery",
+        "retention"
+      ],
+      "problem": "A simplified replay introduction inverted the snapshot and continuation order, allowing an update to fall outside both.",
+      "prevention": "Trace an update committed between the two captures. For a committed outbox and overlap repair, capture and protect log ends before the authority snapshot and keep that order in the summary.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m07",
+          "finding_id": "M07-L03-T6",
+          "review_role": "technical",
+          "report": "modules/m07/reviews/automatic/lessons/M07-L03/technical.md",
+          "evidence": "https://www.postgresql.org/docs/17/transaction-iso.html#XACT-REPEATABLE-READ",
+          "lesson": "M07-L03"
+        }
+      ]
+    },
+    {
       "key": "map-each-outcome-skill-to-its-assessment",
       "tags": [
         "assessment",

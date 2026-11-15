@@ -81,3 +81,22 @@ The original T1–T5 corrections remain present in the detailed mechanisms. T6 i
 ### Verdict
 
 `revise`
+
+## PR #88 pilot correction re-review
+
+Rechecked the edited teaching passages at `a600734` and the associated companion expectations.
+
+| ID | Status | Verification | Primary evidence |
+| --- | --- | --- | --- |
+| M07-L03-T6 | resolved | “Repair an incomplete history” now says to protect the continuation before taking the authority snapshot and explains how G could be skipped if those steps were reversed. The worked repair still pairs the earlier consumer-readable end vector with the later PostgreSQL snapshot and replays the retained overlap. Committed-only publication puts everything before the vector in the scope of the later snapshot, which may contain a newer revision. The G interleaving is an application inference. | [Kafka 4.2 KafkaConsumer.endOffsets](https://kafka.apache.org/42/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html#endOffsets(java.util.Collection)), [PostgreSQL 17 Repeatable Read](https://www.postgresql.org/docs/17/transaction-iso.html#XACT-REPEATABLE-READ), [AWS relational transactional outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html#using-an-outbox-table-with-a-relational-database) |
+| M07-L03-T7 | resolved | “Choose the delivery and ordering unit” now says reading resumes from position 20 and identifies the record at 20 as part of the worked example. Its definition of an independently ordered partition agrees with the per-partition assignments and next positions in the trace (P5). | [Kafka 4.2 KafkaConsumer, Offsets and Consumer Position and Consumer Groups](https://kafka.apache.org/42/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html) |
+
+The P4 correction describes an application-side fencing contract. A request from the old partition owner can arrive after Kafka reassigns the partition. Each store serializes epoch closure with request admission, so a request either enters before closure and is settled or is rejected. The new owner waits for both boundaries. For read cutover, the old served generation closes to index writes and settles admitted effects before taking the consumer-readable end vector. This prevents an old writer from producing a visible effect beyond the captured bound before the alias switches. The example maintains the existing generation-owned checkpoints and apply-before-advance order. [Kafka 4.2 KafkaConsumer, Consumer Groups and Storing Offsets Outside Kafka](https://kafka.apache.org/42/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html), [Kafka 4.2 KafkaConsumer.endOffsets](https://kafka.apache.org/42/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html#endOffsets(java.util.Collection))
+
+Burrows §2.4 supports the illustration of a protected service validating a lock-generation sequencer and rejecting obsolete requests. The lesson presents the two-store close-and-settle sequence as its own contract and directly cites the original paper for the illustration. The edit introduces no external asset, quotation, or additional Kafka guarantee. [Burrows, The Chubby lock service, §2.4](https://www.usenix.org/legacy/event/osdi06/tech/full_papers/burrows/burrows.pdf#page=5)
+
+The companion still exercises the same generation-owned resume, fenced partition ownership, cutover boundary and protected repair vector. The teaching correction preserves the existing trace arithmetic and replay assumptions. No open technical or provenance blockers or majors remain in the reviewed scope.
+
+### Verdict
+
+`ready-for-human-review`
