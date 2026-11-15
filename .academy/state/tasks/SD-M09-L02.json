@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T12:05:24Z",
-  "updated_at": "2026-11-15T12:19:33Z",
+  "updated_at": "2026-11-15T12:25:57Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -61,19 +61,33 @@
         "modules/m09/assessments/M09-L02.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Applied T1,T2,P1 in the end-to-end SLO join, recovery clocks and source anchors.",
+        "next_action": "Scoped draft handoff and focused independent re-review.",
+        "at": "2026-11-15T12:25:57Z"
       },
-      "attempts": 1,
-      "started_at": "2026-11-15T12:17:37Z",
-      "run_id": "SD-M09-L02-author-20261115T121737Z",
+      "attempts": 2,
+      "started_at": "2026-11-15T12:23:32Z",
+      "run_id": "SD-M09-L02-author-20261115T122332Z",
       "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-15T12:19:33Z",
-      "completed_by": "lesson_author"
+      "completed_at": "2026-11-15T12:25:57Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Resolve M09-L02-T1, T2 and P1."
     }
-  ]
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Round 0 requires an observable client-receipt boundary and precise recovery/source anchors.",
+      "updated_at": "2026-11-15T12:23:31Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Round 0 independent pedagogy and coverage verdict is ready.",
+      "updated_at": "2026-11-15T12:23:31Z"
+    }
+  }
 }

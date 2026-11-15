@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M08-INTEGRATION",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M08-INT — Integrated design, reference solution and decision summary",
+  "scope": {
+    "in_scope": [
+      "SDA-M08-INT",
+      "**Integrated design exercise:** Compute ranked category totals and query a sharded index under one slow shard.\n\n**Reference solution and self-evaluation:** Reference package: map/shuffle/reduce records, event-time policy, index layout, deadlines and merge rules; assess skew and incomplete-result semantics.\n\n**Synthesis outcome map:** M08-S1: trace ranking records and defend freshness and partial-search-result policy. M08-EX1 measures this synthesis outcome using M08-L01-LO1, M08-L02-LO2 and M08-L03-LO2. It does not claim all module lesson outcomes. Each lesson’s separate companion remains responsible for its complete LO1/LO2 assessment, and the course portfolio must reconcile all companions before course completion.\n\n**Decision-summary table plan:** Choose batch versus streaming and full versus partial results by freshness, correctness and tail-latency goals. Each eventual row states trigger, option, mechanism, benefit, cost, failure signal, when to avoid, and the lesson reference."
+    ],
+    "out_of_scope": [
+      "Other Stories, approved curriculum changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #97 coordinates ownership. Codex is the active writer on codex/drafts-sda-ms05.",
+    "Use the approved SDA-v1 outline and canonical backlog paths. Write original English drafts for middle and senior engineers.",
+    "Separate instructional content from assessment, cite primary sources at claim level, and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level source evidence with precise sections, version scope and limitations.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver completed teaching and assessment drafts at every declared canonical output path.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Support each material factual claim with exact primary evidence or identify it as a scenario assumption or inference.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Implement the approved module synthesis subset and its reference/self-evaluation plan.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Decision-summary table includes trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson reference.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Consolidate current teaching evidence for each assigned topic and reconcile every lesson and module synthesis outcome with its assessment evidence.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-teaching",
+      "text": "Trace the mechanism and failures, teach each mapped outcome, and define any user-facing success measurement over original operations.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

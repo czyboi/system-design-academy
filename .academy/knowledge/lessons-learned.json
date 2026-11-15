@@ -444,6 +444,32 @@
       ]
     },
     {
+      "key": "guard-stream-result-phase-and-retirement",
+      "tags": [
+        "streaming",
+        "replay",
+        "watermark",
+        "state-retention",
+        "checkpointing"
+      ],
+      "problem": "A delayed provisional write could replace a final result and an earlier winning correction could prevent live state retirement.",
+      "prevention": "Persist intake order and close intent. Enforce monotone provisional, final and correction writes. Retire after drain and durable intent only when the matching final or a verified covering correction is committed.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m08",
+          "finding_id": "M08-L02-T2",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/lessons/M08-L02/technical.md",
+          "evidence": "https://spark.apache.org/docs/4.0.1/streaming/getting-started.html#fault-tolerance-semantics",
+          "lesson": "M08-L02"
+        }
+      ]
+    },
+    {
       "key": "keep-replay-summary-consistent-with-capture-order",
       "tags": [
         "replay",

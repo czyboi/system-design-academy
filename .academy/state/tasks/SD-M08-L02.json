@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T12:05:03Z",
-  "updated_at": "2026-11-15T12:24:14Z",
+  "updated_at": "2026-11-15T16:24:53Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -80,14 +80,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Independent review findings require a coherent cutoff, replay and archive revision contract plus focused teaching corrections.",
-      "updated_at": "2026-11-15T12:17:41Z"
+      "status": "reviewed",
+      "reason": "Independent targeted round 2 verified the final sink transition and retirement correction.",
+      "updated_at": "2026-11-15T16:24:53Z"
     },
     "pedagogy": {
       "status": "reviewed",
-      "reason": "Round 1 independently verified P-1 and P-2 resolved.",
-      "updated_at": "2026-11-15T12:22:50Z"
+      "reason": "Independent targeted round 2 verified the final sink transition and retirement correction.",
+      "updated_at": "2026-11-15T16:24:53Z"
     }
   }
 }
