@@ -33,3 +33,11 @@ The initial finding and verdict above are retained as history and superseded by 
 The revised lesson explains the generation/ranking mismatch, complete-key rerouting, shared deadlines and separate check/fill budgets that the changed EX-1 and Q4 assess. It also distinguishes successful Redis replica promotion from a failed promotion before Q6 asks for that distinction. The original capacity-three and ring traces remain reproducible; assessment and teaching retain their scoped boundaries. No material affected coverage or teaching regression was identified.
 
 **Latest verdict: ready-for-human-review.** This is not technical, source-rights, human or publication approval.
+
+## Targeted PR re-review at 21a2e1e
+
+Scope: the `87db415..21a2e1e` ranking-authority change to M06-L03 and its connection to the existing integration solution, as requested in PR #87 comment 6892123516. This is not a repeated milestone review.
+
+The lesson's “Trace a query from lookup to invalidation” now teaches the 7/R1 to 8/R2 mismatch: discard the attempt, use an R1-capable worker or return unavailable, and change to R2 only on a fresh authoritative rollout decision permitted by the request contract. It explains recomputing the complete key and owner, joining the corresponding coalescing group, retaining the original request deadline and shared budgets, and preserving the source-observation deadline. EX-1 asks what authorizes the switch; its sample and routing/coherence rubric require the same conditions and trace. The integration solution's “Trace coherence and recovery” uses the same required-rank fallback and authorized-change rule. The prior eviction finding **M06-L03-P1 remains resolved**; no new finding or affected teaching/assessment regression was identified.
+
+**Latest verdict: ready-for-human-review.** This is not technical, source-rights, human or publication approval.

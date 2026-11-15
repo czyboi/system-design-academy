@@ -49,3 +49,17 @@ The revised exercise uses measured one-off scans to justify considering frequenc
 ### Verdict
 
 `ready-for-human-review`
+
+## Targeted re-review after PR feedback
+
+Reviewed `87db415..21a2e1e` on 2026-11-15. Round 1 verified full-key rerouting but missed that the example could let worker capability decide which rank was required. The PR feedback reopened that part of T1. [PR #87 review comment](https://github.com/czyboi/system-design-academy/pull/87#issuecomment-6892123516)
+
+| ID | Severity | Status | Verification and location | Evidence |
+| --- | --- | --- | --- | --- |
+| M06-L03-T1 | major | resolved | `lessons/M06-L03.md:45–49` and `assessments/M06-L03.md:18,60,65` discard the mismatched 7/R1 attempt and require a worker that supports R1 or an unavailable response. Selecting R2 requires both a fresh authoritative rollout decision and permission under the request contract. The retry reads a fresh primary generation, hashes the complete key to recompute the owner, and joins the new key’s fill group under the original request deadline and shared retry and origin budgets. The snapshot generation and actual rank stay bound to the result, with expiry anchored to its source observation and eligibility checked per waiter. The prompt asks learners to identify what permits switching to R2, and the rubric grades both authority conditions and rerouting. This matches the integrated recovery contract. | [PR #87 review comment](https://github.com/czyboi/system-design-academy/pull/87#issuecomment-6892123516), [M06 integrated recovery](../../../../integrated/solution-rubric.md#trace-coherence-and-recovery), [PostgreSQL 18 §13.2.1, statement snapshots](https://www.postgresql.org/docs/18/transaction-iso.html#XACT-READ-COMMITTED), [Dynamo §4.2, key position and owner](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf#page=5), [Google SRE, Handling Overload, retry budgets](https://sre.google/sre-book/handling-overload/) |
+
+T2–T5 retain their resolved status. The targeted diff changes only the lesson and companion assessment. It adds no external technical claims or third-party assets.
+
+### Verdict
+
+`ready-for-human-review`

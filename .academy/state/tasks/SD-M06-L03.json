@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-14T15:39:17Z",
-  "updated_at": "2026-11-15T09:10:57Z",
+  "updated_at": "2026-11-15T09:12:48Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -80,14 +80,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Targeted human review on PR #87 (comment 6892123516) requested matching ranking authority in the M06-L03 lesson and assessment.",
-      "updated_at": "2026-11-15T09:10:18Z"
+      "status": "reviewed",
+      "reason": "Targeted independent re-review verified the PR #87 ranking-authority correction at 21a2e1e.",
+      "updated_at": "2026-11-15T09:12:48Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "Targeted human review on PR #87 (comment 6892123516) requested matching ranking authority in the M06-L03 lesson and assessment.",
-      "updated_at": "2026-11-15T09:10:18Z"
+      "status": "reviewed",
+      "reason": "Targeted independent re-review verified the PR #87 ranking-authority correction at 21a2e1e.",
+      "updated_at": "2026-11-15T09:12:48Z"
     }
   }
 }
