@@ -898,6 +898,31 @@
       ]
     },
     {
+      "key": "verify-database-transport-hop",
+      "tags": [
+        "security",
+        "tls",
+        "trust-boundary",
+        "database"
+      ],
+      "problem": "A multi-hop financial request protected the proxy paths but left the API-to-database path unspecified.",
+      "prevention": "Enumerate every hop that carries protected data or credentials. At each termination state the next hop, intended peer verification, independent service credential and failure behavior. Carry the same boundaries into the exercise and rubric.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m09",
+          "finding_id": "M09-L01-T1",
+          "review_role": "technical",
+          "report": "modules/m09/reviews/automatic/lessons/M09-L01/technical.md",
+          "evidence": "https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html#implementing-transport-layer-protection",
+          "lesson": "M09-L01"
+        }
+      ]
+    },
+    {
       "key": "verify-freshness-against-runtime-evidence",
       "tags": [
         "consistency",
