@@ -7,7 +7,7 @@
   "automation_status": "automation_complete",
   "current_phase": "author",
   "created_at": "2026-11-11T08:03:03Z",
-  "updated_at": "2026-11-15T11:15:06Z",
+  "updated_at": "2026-11-15T11:16:56Z",
   "execution_control": "active",
   "notes": "GitHub #22; milestone SDA-MS01, Story SDA-M00-INT; branch codex/SDA-MS01.",
   "steps": [
@@ -433,14 +433,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Restored archived PR #28 for Issue #89. Current module synthesis review is pending.",
-      "updated_at": "2026-11-15T11:08:23Z"
+      "status": "reviewed",
+      "reason": "Independent Stage B confirmed post-revocation behavior and the host-loss model and verified closure of archived M00-INT-T1.",
+      "updated_at": "2026-11-15T11:16:56Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "Restored archived PR #28 for Issue #89. Current module synthesis review is pending.",
-      "updated_at": "2026-11-15T11:08:23Z"
+      "status": "reviewed",
+      "reason": "Independent Stage B confirmed the exercise and rubric, the sequence, all 10 topic rows and all 5 lesson and synthesis outcomes.",
+      "updated_at": "2026-11-15T11:16:56Z"
     },
     "plan-gate": {
       "status": "reviewed",
