@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-L04",
+  "revision": 1,
+  "goal": "Author approved M10-L04 financial aggregation/budgeting content, assessment and primary source evidence.",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-L04",
+      "Connection/consent, extraction cursor and retries, categories, budget templates, MapReduce monthly totals, OLTP/warehouse/object retention."
+    ],
+    "out_of_scope": [
+      "Other Stories, approved curriculum/workflow changes, independent QA claims, production provider access, merge/publish."
+    ]
+  },
+  "constraints": [
+    "Issue #104 on codex/drafts-sda-ms06.",
+    "Prerequisites M08-L01 and M09-L01 in unmerged MS05 Draft PR #100; do not claim main integration ready.",
+    "All same-session self-review explicitly labeled; official gates stay pending."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Scoped primary sources and unverifiable claims noted.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Complete original lesson, companion, rubric and outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-topic",
+      "text": "Every approved teaching item has decision/failure mechanism and worked trace.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assess",
+      "text": "6 answered checks plus EX-1 worked solution rubric.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-bound",
+      "text": "No inherited inaccurate provider credentials or financial advice guarantees.",
+      "applies_to": [
+        "research",
+        "author"
+      ]
+    }
+  ]
+}
