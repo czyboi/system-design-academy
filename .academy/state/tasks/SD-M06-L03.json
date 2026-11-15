@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-14T15:39:17Z",
-  "updated_at": "2026-11-14T22:40:24Z",
+  "updated_at": "2026-11-15T09:10:57Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -61,32 +61,33 @@
         "modules/m06/assessments/M06-L03.md"
       ],
       "checkpoint": {
-        "note": "",
-        "next_action": ""
+        "note": "Addressed PR #87 comment 6892123516 in the lesson and EX-1, including the rollout authority, complete key and original budgets.",
+        "next_action": "Scoped handoff and targeted independent technical and pedagogy re-review.",
+        "at": "2026-11-15T09:10:57Z"
       },
-      "attempts": 2,
-      "started_at": "2026-11-14T22:37:36Z",
-      "run_id": "SD-M06-L03-author-20261114T223736Z",
-      "agent": "lesson_author",
+      "attempts": 3,
+      "started_at": "2026-11-15T09:10:19Z",
+      "run_id": "SD-M06-L03-author-20261115T091019Z",
+      "agent": "codex",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-14T22:39:06Z",
-      "completed_by": "lesson_author",
-      "invalidation_reason": "Stage A revision 1 addresses M06-L03-T1–T5 and M06-L03-P1."
+      "completed_at": "2026-11-15T09:10:57Z",
+      "completed_by": "codex",
+      "invalidation_reason": "Targeted human review on PR #87 (comment 6892123516) requested matching ranking authority in the M06-L03 lesson and assessment."
     }
   ],
   "review_statuses": {
     "technical": {
-      "status": "reviewed",
-      "reason": "Independent review verdict ready-for-human-review. See the scope report.",
-      "updated_at": "2026-11-14T22:40:24Z"
+      "status": "needs_review",
+      "reason": "Targeted human review on PR #87 (comment 6892123516) requested matching ranking authority in the M06-L03 lesson and assessment.",
+      "updated_at": "2026-11-15T09:10:18Z"
     },
     "pedagogy": {
-      "status": "reviewed",
-      "reason": "Independent review verdict ready-for-human-review. See the scope report.",
-      "updated_at": "2026-11-14T22:40:24Z"
+      "status": "needs_review",
+      "reason": "Targeted human review on PR #87 (comment 6892123516) requested matching ranking authority in the M06-L03 lesson and assessment.",
+      "updated_at": "2026-11-15T09:10:18Z"
     }
   }
 }
