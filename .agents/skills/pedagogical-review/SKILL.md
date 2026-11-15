@@ -16,6 +16,21 @@ Use up to three relevant, reviewer-confirmed prevention reminders selected by th
 
 Read the canonical task specification, user feedback, coverage-review report, teaching lesson, companion assessment, content guidelines, and target audience. The current Academy default is middle/senior engineers learning system design; learner-facing material is English-only unless a newer user decision is recorded.
 
+## Lesson-first comprehension pass
+
+Read the teaching lesson **before** consulting its companion's answer key, sample solution or rubric. For each central outcome, attempt to reconstruct the intended reasoning using only the lesson and declared prerequisites: initial model → observable mechanism → limiting or failure condition → justified improvement → decision and cost. Locate the first unsupported transition if the chain breaks. A reader must not have to infer a missing mechanism from the assessment's model answer.
+
+Check concept dependencies at their point of use: a crucial term or contract needs a sufficient in-lesson explanation or a precise earlier prerequisite, not just a citation. Check whether the sequence makes advanced hardening intelligible without assuming that every middle/senior engineer already knows this particular distributed-systems mechanism. Apply this test proportionately: a concise explanation can pass; do not demand fixed headings, diagrams, repeated definitions, or elementary background without a specific learner-impact finding.
+
+## Calibrate teaching findings
+
+- **Blocker:** a fundamental instructional contradiction or gap makes the core lesson unusable and cannot be safely interpreted from its stated prerequisites.
+- **Major:** a missing causal step, essential concept dependency, or broken sequence prevents the intended learner from reconstructing a central mechanism or decision. Cite the exact first gap and show the reasoning it blocks.
+- **Minor:** the mechanism and decision remain followable, but a localized explanation, transition or example would make them clearer.
+- **Note:** optional presentation or stylistic preference; never block readiness solely for a preferred length, section split, or diagram.
+
+Do not promote a minor or a stylistic preference to major to force a preferred rewrite. Assess the lesson independently of the companion first, then perform the existing paired-artifact and coverage checks. An open blocker or major prevents `ready-for-human-review` through the existing review gate; do not add an agent, extra pass, score, or revision round.
+
 ## Procedure
 
 1. Review the teaching lesson and companion assessment as a pair, while checking that they have distinct purposes and paths.

@@ -34,3 +34,15 @@ The integrated fault drill defines the population as 400 original valid submissi
 ## Latest verdict
 
 **ready-for-human-review** — M07-P1 and M07-P2 are resolved within the assigned module pedagogy and coverage scope. This synthesis is not technical, source-rights, human, or publication approval.
+
+## M07-L03 pilot targeted synthesis — `02eb870`
+
+This check is limited to the changed lesson's module connections and reuses the ready Stage A lesson cycle and the previous synthesis findings. The L02 prerequisite still supplies bounded work and retry control, and L03 applies that prerequisite when bounding replay traffic in “Replay into a new index.” The L03 explanation now teaches its own assignment fencing and cutover contract, so following the L02-to-L03 sequence does not require readers to infer fencing from L02.
+
+The integrated decision summary's broker and retained-log rows still distinguish individual job delivery from independent group progress and replay, consistent with the lesson's “Choose the delivery and ordering unit.” Its preview-versus-projection paragraph preserves the boundary between completing a preview job and rebuilding a separate projection. The `PR-ARCH-KAFKA` entry in `modules/m07/integrated/taught-coverage.csv` still points to the lesson's extant “Choose the delivery and ordering unit” section. Both L03 outcome entries in `modules/m07/integrated/outcome-portfolio.json` point to extant teaching sections and the L03 companion.
+
+The integrated `brief.md` assesses M07-S1 through the preview job lifecycle and overload policy. Its outcome-portfolio entry uses L01-LO1 and L02-LO2, while the L03 portfolio entries direct replay assessment to the L03 companion. This remains consistent with the approved M07 integration scope in `curriculum/revision-1/CURRICULUM_MASTER.md`. The earlier M07-P1 and M07-P2 resolutions are unaffected by the L03-only change. No new material sequencing, coverage, or integration finding was identified in this scope.
+
+## Latest pilot synthesis verdict
+
+**ready-for-human-review** — the affected M07 teaching and coverage connections remain consistent.

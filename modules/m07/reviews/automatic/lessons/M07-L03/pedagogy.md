@@ -43,3 +43,30 @@ The outage motivates independent consumer groups and replay. The trace shows pos
 ## Latest verdict
 
 **ready-for-human-review** — P3 is resolved; P1 and P2 were resolved in revision 1. This review is not technical, source-rights, human, or publication approval.
+
+## Learner-first pilot re-review — `317a303`
+
+The lesson-first pass used the current lesson and declared prerequisite M07-L02, including its M07-L01 prerequisite, before consulting the companion. The assigned source row remains **taught** in “Choose the delivery and ordering unit” and the replay and repair sections. The approved `PR-ARCH-KAFKA` mapping is `curriculum/revision-1/coverage.csv` at README.md L1715 in the pinned [System Design Primer revision](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/README.md#L1715). The curriculum's Academy additions remain taught through the outbox publication and retained-continuation repair examples. No assigned coverage regression was found.
+
+Compared with `main` at `dc80848`, the pilot makes the search-versus-notifications motivation and independent progress explicit, introduces the snapshot-and-position replay contract before production details, places lost-cursor repair before the compaction caveat, and closes with decision criteria. The offset trace and repair assumptions remain present. The learner can follow why a saved position and durable effect belong together and why a missing continuation requires a fresh baseline. The following required dependency still interrupts the recovery reasoning.
+
+**M07-L03-P4 — Major, open — the fencing required for a safe replay and cutover is not explained.** Location: lesson “Replay into a new index,” paragraph starting “A saved index snapshot,” then the “For cutover” paragraph. The first paragraph instructs the reader to “fence workers that lose assignment” without explaining what fencing prevents or how a stale worker is denied effect and checkpoint writes after reassignment. The later cutover instruction likewise requires permanently fencing old index writers without teaching how to establish that previously active writers can no longer publish or why merely capturing an end vector while they can still publish is insufficient. Neither M07-L02 nor M07-L01 supplies this dependency. A reader can reproduce the happy-path offset arithmetic but cannot independently reconstruct the stated ownership and cutover safety contract in LO1 or defend its operational cost in LO2. Explain the stale-owner race and a concrete enforcement contract, including rejection of stale owners at the relevant effect and checkpoint boundaries and settlement of in-flight writes before the served-effect barrier. Distinguish the required guarantee from any implementation-specific mechanism, and cite evidence for material technical details. The approved scope and outcomes appear in `curriculum/revision-1/CURRICULUM_MASTER.md` under M07-L03.
+
+**M07-L03-P5 — Minor, open — the partition model is introduced through Kafka terminology before it is named as an ordered part of a log.** Location: lesson “Choose the delivery and ordering unit,” second paragraph. A short explanation that each partition is an independently ordered sequence would connect per-partition assignment and next positions to the P0/P1 trace more directly. The subsequent paragraph states append order within a partition, so the trace remains followable.
+
+After the lesson-first pass, the unchanged companion was checked for compatibility. Its six explained checks and exercise still map to both outcomes, and EX-1 requires the same fenced cutover condition. The assessment's sample uses fencing as an instruction and therefore does not supply the missing lesson mechanism in P4. Earlier findings P1, P2 and P3 remain resolved by the existing changes.
+
+## Pilot verdict
+
+**revise** — P4 is an open major pedagogical finding. P5 is a local clarity improvement. This verdict does not assert technical, rights, human, or publication approval.
+
+## Pilot targeted revision 1 re-review — `a600734`
+
+- **M07-L03-P4 — Major, resolved.** In “Replay into a new index,” the lesson now shows a delayed old-owner write arriving after reassignment, then explains an application-owned epoch contract that closes the old epoch at both index and checkpoint stores, settles admitted writes, and rejects later stale requests before the new owner proceeds. The cutover paragraph separately explains closing the served generation and settling admitted effects before capturing the barrier, including the late-visible-effect failure. These explanations allow the learner to reconstruct the role of fencing in the existing replay and cutover trace. The Chubby sequencer reference identifies a related resource-side mechanism without making it the only implementation. [Chubby §2.4](https://www.usenix.org/legacy/event/osdi06/tech/full_papers/burrows/burrows.pdf#page=5).
+- **M07-L03-P5 — Minor, resolved.** “Choose the delivery and ordering unit” now defines a partition as an independently ordered sequence before explaining group assignment and next positions.
+
+The correction to the repair introduction supplies a concrete missing-update example and places protection of the continuation before the source snapshot, matching the worked repair. The revised position-20 wording identifies where the example contains a record and remains consistent with the subsequent discussion of offset holes. The lesson-first pass found no new missing causal dependency in the touched passages. The unchanged assessment's EX-1 and rubric still follow the taught trace and cutover contract. Assigned Kafka, replay, retention, ordering and outbox coverage remains present, and P1–P3 remain resolved. The pilot's progressive explanation supports the same two approved outcomes.
+
+## Latest pilot verdict
+
+**ready-for-human-review** — P4 and P5 are resolved and no open blocker or major pedagogy or assigned-coverage finding remains. This verdict concerns teaching and coverage.

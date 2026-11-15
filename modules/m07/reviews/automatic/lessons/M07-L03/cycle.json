@@ -1,7 +1,7 @@
 {
   "module": "m07",
   "lesson": "M07-L03",
-  "revision_attempts": 2,
+  "revision_attempts": 1,
   "review_history": [
     {
       "round": 0,
@@ -20,8 +20,27 @@
       "technical": "ready-for-human-review",
       "pedagogy": "ready-for-human-review",
       "result": "ready"
+    },
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "revise",
+      "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
     }
   ],
   "status": "ready",
-  "updated_at": "2026-11-14T22:48:13+00:00"
+  "updated_at": "2026-11-15T10:52:57+00:00",
+  "reopen_history": [
+    {
+      "at": "2026-11-15T10:37:12.731Z",
+      "reason": "Authorized M07-L03 learner-path pilot changes the explanation order; targeted independent technical and pedagogy review required before ready status is restored.",
+      "prior_revision_attempts": 2
+    }
+  ]
 }
