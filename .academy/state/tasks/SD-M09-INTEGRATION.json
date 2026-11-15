@@ -1,0 +1,104 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M09-INTEGRATION",
+  "module_id": "m09",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M09-INTEGRATION.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T17:52:05.284Z",
+  "updated_at": "2026-11-15T17:52:05.284Z",
+  "execution_control": "active",
+  "notes": "Manual state transition record from ChatGPT GitHub-API authoring. No taskctl/draft_handoff.py execution, no official independent QA. All files are drafts; required validations remain pending.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Reconcile integrated scenario evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "delivery/backlog.json",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md",
+        "modules/m09/lessons/M09-L01.md",
+        "modules/m09/assessments/M09-L01.md",
+        "modules/m09/evidence/M09-L01.md",
+        "modules/m09/lessons/M09-L02.md",
+        "modules/m09/assessments/M09-L02.md",
+        "modules/m09/evidence/M09-L02.md",
+        "modules/m09/lessons/M09-L03.md",
+        "modules/m09/assessments/M09-L03.md",
+        "modules/m09/evidence/M09-L03.md"
+      ],
+      "output_paths": [
+        "modules/m09/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "Reconciled evidence from three lesson packages.",
+        "next_action": "Author integrated package"
+      },
+      "attempts": 1,
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T17:52:05.284Z",
+      "completed_at": "2026-11-15T17:52:05.284Z",
+      "completed_by": "chatgpt-single-session",
+      "run_id": "M09-INT-chatgpt-research-20261116"
+    },
+    {
+      "step_id": "author",
+      "title": "Draft and reconcile module synthesis",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "delivery/backlog.json",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/coverage.csv",
+        "GOVERNANCE.md",
+        "modules/m09/integrated/evidence.md",
+        "modules/m09/lessons/M09-L01.md",
+        "modules/m09/assessments/M09-L01.md",
+        "modules/m09/evidence/M09-L01.md",
+        "modules/m09/lessons/M09-L02.md",
+        "modules/m09/assessments/M09-L02.md",
+        "modules/m09/evidence/M09-L02.md",
+        "modules/m09/lessons/M09-L03.md",
+        "modules/m09/assessments/M09-L03.md",
+        "modules/m09/evidence/M09-L03.md"
+      ],
+      "output_paths": [
+        "modules/m09/integrated/brief.md",
+        "modules/m09/integrated/solution-rubric.md",
+        "modules/m09/integrated/decision-summary.md",
+        "modules/m09/integrated/taught-coverage.csv",
+        "modules/m09/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "All canonical outputs committed through GitHub API; no scoped draft_handoff.py.",
+        "next_action": "Run scoped Python validation, independent per-lesson/m09 Stage B QA, then taskctl handoff."
+      },
+      "attempts": 1,
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T17:52:05.284Z",
+      "completed_at": "2026-11-15T17:52:05.284Z",
+      "completed_by": "chatgpt-single-session",
+      "run_id": "M09-INT-chatgpt-author-20261116"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Independent module technical synthesis not run.",
+      "updated_at": "2026-11-15T17:52:05.284Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Independent module pedagogy/coverage synthesis not run.",
+      "updated_at": "2026-11-15T17:52:05.284Z"
+    }
+  }
+}

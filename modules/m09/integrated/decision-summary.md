@@ -1,0 +1,29 @@
+---
+id: M09-decisions
+status: draft
+---
+
+# Controls, diagnostics and coordination: a decision sequence
+
+## Follow the evidence across the service
+
+Before choosing technology, enumerate the externally visible rules: Bo must not obtain tenant D's statement; a failed authorization lookup must not grant access; an original request is successful only when the managed client receives a correct report by its deadline; and a superseded projection owner must not overwrite a newer accepted generation.
+
+The edge, proxy, API and database have **different principals and transport boundaries**. A proxy's authenticated workload cannot stand in for Bo's user identity, and a TLS edge does not protect the API-to-database hop. A user-valid JWT and a prepared query are necessary in their own scopes but cannot replace an object authorization decision. [M09-L01](../lessons/M09-L01.md).
+
+Queue wait dominates the sample trace, but a single sampled request cannot assign incident cause. Compare cohort traffic, oldest-job age, worker saturation, database waits, network latency, error rate and client outcomes. A carefully controlled change is stronger evidence than a guessed bottleneck. The recovered service must prove RTO and RPO with *data and client correctness*, not just a new leader. [M09-L02](../lessons/M09-L02.md).
+
+A coordinator grants an owner epoch; **the storage gateway** enforces that epoch when admitting a mutation. Cross-region quorum means some operations deliberately fail or wait under partition. Use a database transaction system when the actual invariant is cross-record atomicity and external ordering, not merely worker leadership. [M09-L03](../lessons/M09-L03.md).
+
+## Decision ledger
+
+| Trigger | Option | Mechanism | Benefit | Cost | Failure signal | When to avoid | Lesson |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| User token valid but row belongs to another tenant | Per-record authorization with fail-closed policy | Derive scoped user from validated token; check trusted membership and record ownership | Blocks cross-tenant read even with broad database access | Policy dependency and denial on lookup failure | Cross-tenant row returned or access granted during policy outage | Do not bypass policy merely because the token is valid | [M09-L01](../lessons/M09-L01.md) |
+| Financial data crosses proxy and database links | Authenticated encrypted hop and least-privilege principal per boundary | Verify intended peer and TLS on each hop; database service principal is separate | Reduces interception and credential reuse exposure | Certificate rotation, configuration and handshake failures | Plaintext hop, wrong peer accepted or broad service account | Encryption alone is not a substitute for authorization | [M09-L01](../lessons/M09-L01.md) |
+| User-controlled notes enter SQL and browser output | Bind SQL parameters and encode for output context; session CSRF defense | Keep values out of SQL syntax and HTML execution; validate mutation origin | Prevents distinct injection and cross-site request classes | Context-specific implementation and testing | Script executes, query changes meaning or cross-site mutation accepted | Do not assume one filter addresses all three threats | [M09-L01](../lessons/M09-L01.md) |
+| Report requests slow while queue age rises | Trace + cohort metrics + bounded profile | Separate waiting from work and compare hypotheses under controlled traffic | Finds likely bottleneck without guessing | Instrumentation overhead, sampling and sensitive-data risk | Growing original-operation failures or queue age despite interventions | Do not equate sampled traces with all original requests | [M09-L02](../lessons/M09-L02.md) |
+| Claim service recovered after an outage | Restore-and-verify drill | Restore isolated backup, compare RPO point and time usable to RTO | Evidence of actual recoverability | Test environment, controlled cutover and data verification cost | Restore too old, corruption or client errors after “up” | Do not treat replica election or backup presence as successful restore | [M09-L02](../lessons/M09-L02.md) |
+| Old owner may send delayed writes | Lease + durable monotone fencing at write target | Install new epoch barrier before replacement writes; reject old epochs | Prevents old owner overriding accepted new generation | Write-path serialization and possible degraded availability | Epoch 41 commits after installed fence 42 | Do not use lease alone for protected external mutation | [M09-L03](../lessons/M09-L03.md) |
+| Majority partition or region failure | Explicit quorum placement and fail-closed minority | New owner needs majority and an installed storage fence | Preserves safety when one independent voter fails | WAN latency, correlated failure risk and refusal under majority loss | Minority takes ownership or unconfirmed fence followed by writes | Do not claim independent domains without shared-dependency analysis | [M09-L03](../lessons/M09-L03.md) |
+| Cross-region related records need externally consistent atomic updates | Transactional database with documented isolation guarantees | Use appropriate serializable transactions, replication and time/commit ordering | Enforces broader transactional invariant than a lock | Coordination and workload/cost implications | Partial transaction or commit-order anomaly | Do not substitute a lock for multi-record atomicity | [M09-L03](../lessons/M09-L03.md) |
