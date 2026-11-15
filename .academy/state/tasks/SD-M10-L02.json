@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M10-L02",
+  "module_id": "m10",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M10-L02.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T18:08:10.198Z",
+  "updated_at": "2026-11-15T18:08:10.198Z",
+  "execution_control": "active",
+  "notes": "GitHub Issue #102; ChatGPT single writer manually recorded steps. No taskctl.py or draft_handoff.py run, no independent QA; cross-branch MS05 prereq pending merge.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m10/evidence/M10-L02.md"
+      ],
+      "checkpoint": {
+        "note": "Read primary source docs; future independent verification pending.",
+        "next_action": "Author"
+      },
+      "attempts": 1,
+      "started_at": "2026-11-15T18:08:10.198Z",
+      "completed_at": "2026-11-15T18:08:10.198Z",
+      "completed_by": "chatgpt-single-session",
+      "agent": "chatgpt-single-session",
+      "run_id": "M10-L02-chatgpt-research-20261116"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m10/evidence/M10-L02.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m10/lessons/M10-L02.md",
+        "modules/m10/assessments/M10-L02.md"
+      ],
+      "checkpoint": {
+        "note": "Same-chat author completed, self-review separate, no script handoff.",
+        "next_action": "Run scoped validator/handoff then independent QA."
+      },
+      "attempts": 1,
+      "started_at": "2026-11-15T18:08:10.198Z",
+      "completed_at": "2026-11-15T18:08:10.198Z",
+      "completed_by": "chatgpt-single-session",
+      "agent": "chatgpt-single-session",
+      "run_id": "M10-L02-chatgpt-author-20261116"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Same-chat self-review only",
+      "updated_at": "2026-11-15T18:08:10.198Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Same-chat self-review only",
+      "updated_at": "2026-11-15T18:08:10.198Z"
+    }
+  }
+}
