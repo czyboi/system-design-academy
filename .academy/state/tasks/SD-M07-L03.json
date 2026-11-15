@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-14T15:39:20Z",
-  "updated_at": "2026-11-14T22:48:14Z",
+  "updated_at": "2026-11-15T10:37:12.731Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -79,14 +79,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "reviewed",
-      "reason": "Independent review verdict ready-for-human-review. See the scope report.",
-      "updated_at": "2026-11-14T22:48:14Z"
+      "status": "needs_review",
+      "reason": "Authorized M07-L03 learner-path pilot changes the explanation order; targeted independent technical and pedagogy review required before ready status is restored.",
+      "updated_at": "2026-11-15T10:37:12.731Z"
     },
     "pedagogy": {
-      "status": "reviewed",
-      "reason": "Independent review verdict ready-for-human-review. See the scope report.",
-      "updated_at": "2026-11-14T22:48:14Z"
+      "status": "needs_review",
+      "reason": "Authorized M07-L03 learner-path pilot changes the explanation order; targeted independent technical and pedagogy review required before ready status is restored.",
+      "updated_at": "2026-11-15T10:37:12.731Z"
     }
   }
 }

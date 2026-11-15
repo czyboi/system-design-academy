@@ -17,6 +17,14 @@ The `draft` front-matter status means **awaiting human approval**, not incomplet
 
 For design exercises, independently check system capacity and **user-visible success**. State each important SLO's original-operation population, measurement window, start/end events, threshold and what rejected, failed, timed-out or late work counts as. Grade admitted/successful latency separately so excessive shedding cannot make a design look successful. Flag unresolved teaching or assessment gaps instead of deferring them to a post-merge phase. Apply these expectations through the existing self-check and independent reviews; add no agents or workflow stages.
 
+## Progressive teaching and concept dependencies
+
+For concepts with multi-step production hardening, teach the *causal progression*, not a checklist of technologies. Establish the concrete constraint and the smallest working model first; trace a normal operation, identify the failure or limit that motivates each added mechanism, then show how the hardened design changes the behavior and cost. End with the conditions for choosing or rejecting the added complexity. Preserve all required depth, but do not make production-only mechanisms appear necessary for every workload.
+
+This is a reasoning order, **not** five mandatory headings, a length target, or a requirement to reteach standard backend knowledge. For each nontrivial concept needed to follow a central explanation, either explain its role at first use or link to the specific prerequisite where it is taught. Do not treat an unexplained term, source citation, assessment answer, or later worked solution as a substitute for the missing causal link. A compact trace, state transition or diagram is useful when prose alone leaves a material gap, never as a fixed quota.
+
+In the existing author self-check, reconstruct the lesson's main decision from the lesson and declared prerequisites alone: the initial mechanism, its failure boundary, why the improvement works, and what it sacrifices. Repair only links that matter to an outcome; avoid padding correct, concise passages.
+
 ## Verified cross-module feedback
 
 Before drafting, use the parent's relevant (maximum three) reviewer-confirmed prevention reminders selected from `.academy/knowledge/lessons-learned.json` by `scripts/learning_memory.py suggest --tags ... --role lesson_author`. They are hints for avoiding previously corrected mistakes, **not** technical sources or new constraints on teaching content. Verify claims against the current task evidence and curriculum; flag conflicts instead of copying a memory blindly. No additional AI step is required; do not load the entire memory file.
