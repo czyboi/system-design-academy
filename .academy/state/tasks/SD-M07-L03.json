@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-14T15:39:20Z",
-  "updated_at": "2026-11-15T10:37:12.731Z",
+  "updated_at": "2026-11-15T10:51:26Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -64,29 +64,29 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 3,
-      "started_at": "2026-11-14T22:46:15Z",
-      "run_id": "SD-M07-L03-author-20261114T224615Z",
+      "attempts": 4,
+      "started_at": "2026-11-15T10:50:18Z",
+      "run_id": "SD-M07-L03-author-20261115T105018Z",
       "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-14T22:47:14Z",
+      "completed_at": "2026-11-15T10:51:26Z",
       "completed_by": "lesson_author",
-      "invalidation_reason": "Stage A revision 2 addresses M07-L03-T1 and M07-L03-P3."
+      "invalidation_reason": "PR #88 pilot correction round 1 addresses major M07-L03-T6 and P4 and adjacent precision findings T7 and P5."
     }
   ],
   "review_statuses": {
     "technical": {
       "status": "needs_review",
-      "reason": "Authorized M07-L03 learner-path pilot changes the explanation order; targeted independent technical and pedagogy review required before ready status is restored.",
-      "updated_at": "2026-11-15T10:37:12.731Z"
+      "reason": "Pilot findings M07-L03-T6 and T7 require targeted correction.",
+      "updated_at": "2026-11-15T10:50:17Z"
     },
     "pedagogy": {
       "status": "needs_review",
-      "reason": "Authorized M07-L03 learner-path pilot changes the explanation order; targeted independent technical and pedagogy review required before ready status is restored.",
-      "updated_at": "2026-11-15T10:37:12.731Z"
+      "reason": "Pilot findings M07-L03-P4 and P5 require targeted correction.",
+      "updated_at": "2026-11-15T10:50:17Z"
     }
   }
 }
