@@ -7,7 +7,7 @@
   "automation_status": "automation_complete",
   "current_phase": "author",
   "created_at": "2026-11-11T08:03:02Z",
-  "updated_at": "2026-11-15T11:12:52Z",
+  "updated_at": "2026-11-15T11:14:27Z",
   "execution_control": "active",
   "notes": "GitHub #21; milestone SDA-MS01, Story SDA-M00-L02; branch codex/SDA-MS01.",
   "steps": [
@@ -400,14 +400,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Restored archived PR #28 for Issue #45. Current independent lesson review is pending.",
-      "updated_at": "2026-11-15T11:06:53Z"
+      "status": "reviewed",
+      "reason": "Targeted Stage A re-review resolved T2, T1, P1 and P2.",
+      "updated_at": "2026-11-15T11:14:27Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "Restored archived PR #28 for Issue #45. Current independent lesson review is pending.",
-      "updated_at": "2026-11-15T11:06:53Z"
+      "status": "reviewed",
+      "reason": "Targeted Stage A re-review resolved P1 in the lesson package and confirmed the host-loss example and exercise align.",
+      "updated_at": "2026-11-15T11:14:27Z"
     },
     "plan-gate": {
       "status": "reviewed",

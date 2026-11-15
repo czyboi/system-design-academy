@@ -184,6 +184,14 @@
           "report": "modules/m03/reviews/automatic/lessons/M03-L03/technical.md",
           "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis",
           "lesson": "M03-L03"
+        },
+        {
+          "module": "m00",
+          "finding_id": "M00-L02-T2",
+          "review_role": "technical",
+          "report": "modules/m00/reviews/automatic/lessons/M00-L02/technical.md",
+          "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis",
+          "lesson": "M00-L02"
         }
       ]
     },

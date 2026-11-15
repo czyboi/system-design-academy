@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M00",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M00-L01-LO1",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L01.md",
+        "sections": [
+          "Core concepts and mechanisms"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M00-L01-LO2",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L01.md",
+        "sections": [
+          "Choose a study route",
+          "Worked example and historical architecture"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "Q7",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M00-L02-LO1",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L02.md",
+        "sections": [
+          "Core concepts and mechanisms"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M00-L02-LO2",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L02.md",
+        "sections": [
+          "Worked example",
+          "Estimate, measure, and revise",
+          "Time-bounded design review"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M00-S1",
+      "uses_lesson_outcomes": [
+        "M00-L02-LO1",
+        "M00-L02-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m00/integrated/brief.md",
+        "sections": [
+          "M00-EX1",
+          "Host-loss variant"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/integrated/brief.md",
+        "items": [
+          "M00-EX1"
+        ],
+        "solution_rubric": "modules/m00/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}
