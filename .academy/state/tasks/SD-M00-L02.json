@@ -1,0 +1,411 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M00-L02",
+  "module_id": "m00",
+  "owner": "@czyboi",
+  "spec_path": ".academy/specs/SD-M00-L02.json",
+  "automation_status": "automation_complete",
+  "current_phase": "validation",
+  "created_at": "2026-11-11T08:03:02Z",
+  "updated_at": "2026-11-15T11:06:53Z",
+  "execution_control": "active",
+  "notes": "GitHub #21; milestone SDA-MS01, Story SDA-M00-L02; branch codex/SDA-MS01.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Research only the assigned lesson and record claim evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/source-research/SKILL.md",
+        "delivery/backlog.json"
+      ],
+      "output_paths": [
+        "modules/m00/evidence/M00-L02.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "start_commit": "5838b0f56d6fbe4117e358109a5c5702c3291733",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        ".agents/skills/source-research/SKILL.md": "53f32f946ba59056e4e7404f5a3202d06c7ac5e89912cb6a255786e355f4efa5",
+        "delivery/backlog.json": "61a46e214f9f0c4016ab856316dee96655f32b45fc0eca9353ac080f016ac442"
+      },
+      "start_output_hashes": {
+        "modules/m00/evidence/M00-L02.md": null
+      },
+      "started_at": "2026-11-11T08:04:21Z",
+      "run_id": "SD-M00-L02-research-20261111T080421Z",
+      "agent": "source_researcher",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_fingerprint": "8f6c74fbb88e5c7d164d43e3c69c80cb994de50ba13f325d2aca98d9731e3d81",
+      "completed_spec_hash": "316d7e5c8fd9a812b84ad157f62218276868aa02dd2f84642e4a6d16dda2b23c",
+      "completed_output_hashes": {
+        "modules/m00/evidence/M00-L02.md": "f98cb1ef8c5fe0fab811649f457327c6a6ffcbc94953572bb0ed93218d4f9767"
+      },
+      "completed_at": "2026-11-11T08:10:41Z",
+      "completed_by": "source_researcher",
+      "completed_commit": "64111810f78429026084c3d8912dff8c86f41461"
+    },
+    {
+      "step_id": "plan-gate",
+      "title": "Verify and reuse the accepted course gate; do not re-plan",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v3",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        "curriculum/revision-1/review.json",
+        "scripts/check_course_coverage.py",
+        "curriculum/approved-baseline.json",
+        "delivery/backlog.json"
+      ],
+      "output_paths": [
+        "modules/m00/reviews/M00-L02/plan-gate.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "review": {
+        "artifact_paths": [
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m00/reviews/M00-L02/plan-gate.json"
+      },
+      "start_commit": "5838b0f56d6fbe4117e358109a5c5702c3291733",
+      "start_input_hashes": {
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "curriculum/revision-1/review.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287",
+        "scripts/check_course_coverage.py": "b4978b632c22108fc03a1724c34c49c5d260e37a1634cdf68799d87e1f26eb41",
+        "curriculum/approved-baseline.json": "40f41aca40164a4ac72f119fa7ac9d8885762bb3f649d9d77fe28583bf7ae6ea",
+        "delivery/backlog.json": "61a46e214f9f0c4016ab856316dee96655f32b45fc0eca9353ac080f016ac442"
+      },
+      "start_output_hashes": {
+        "modules/m00/reviews/M00-L02/plan-gate.json": null
+      },
+      "started_at": "2026-11-11T08:04:21Z",
+      "run_id": "SD-M00-L02-plan-gate-20261111T080421Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_fingerprint": "d837751645bbe7ae70dfac68a08e74182b84c54ba9beb854592e5596405f84fe",
+      "completed_spec_hash": "05434870943b53dbe03f9337206e30edd254f859956e3e7b6490b37e2284b559",
+      "completed_output_hashes": {
+        "modules/m00/reviews/M00-L02/plan-gate.json": "c3e6848df02638c9a66f169deb686a4126d2b1e964672b219de1d540457fc287"
+      },
+      "completed_at": "2026-11-11T08:05:45Z",
+      "completed_by": "curriculum_orchestrator",
+      "completed_commit": "61f2e6dfde789e328164f964936ad3e13662047f"
+    },
+    {
+      "step_id": "author",
+      "title": "Write one draft teaching lesson and its companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research",
+        "plan-gate"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m00/evidence/M00-L02.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "modules/database/workflow/lesson-template.md",
+        "modules/database/workflow/assessment-template.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md"
+      ],
+      "output_paths": [
+        "modules/m00/lessons/M00-L02.md",
+        "modules/m00/assessments/M00-L02.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "requires_reviews": [
+        "plan-gate"
+      ],
+      "start_commit": "9896ed65b964bff65ac78ccb457856f02b8696a8",
+      "start_input_hashes": {
+        "modules/m00/evidence/M00-L02.md": "f98cb1ef8c5fe0fab811649f457327c6a6ffcbc94953572bb0ed93218d4f9767",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        ".agents/skills/lesson-authoring/SKILL.md": "ebf392ae7ed43459982ada6afca1409211f48c87202129fb7f7c4248d49dfdc5",
+        ".agents/skills/assessment-design/SKILL.md": "9706b86ae149ee11af45d8af92bf74459ac0ff649cbd1d22a6cccff30b173703",
+        "modules/database/workflow/lesson-template.md": "86036247365a195ed5c53daea87f5492613accb3397b9f3c7ac7453517059e67",
+        "modules/database/workflow/assessment-template.md": "75561b39b328c17edde3b012d2ae672eda4c0eab6f24bb095c21495a3af2c9a1",
+        "modules/database/governance/content-guidelines.md": "a2d64051359490a1b1202fc52710c230d9823d17a0d7dda040af4fd750983fd7",
+        "modules/database/governance/attribution-policy.md": "3125886ef90770acebf9c054e183ddf80f53f8fdad2e59d5867041623c44de75"
+      },
+      "start_output_hashes": {
+        "modules/m00/lessons/M00-L02.md": null,
+        "modules/m00/assessments/M00-L02.md": null
+      },
+      "started_at": "2026-11-11T08:11:24Z",
+      "run_id": "SD-M00-L02-author-20261111T081124Z",
+      "agent": "lesson_author",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_fingerprint": "837718b6ec8fa419330584298fc59aa19a384f12abfc1ee9c8f276784ca04f11",
+      "completed_spec_hash": "dddcbca61834847655097eab1ce58c0444ecc28e1b43131087ef198a5e138caf",
+      "completed_output_hashes": {
+        "modules/m00/lessons/M00-L02.md": "73a4ff810c40917bb6890cb70d314faddfcefb0538035c7d0e8edaef64527e88",
+        "modules/m00/assessments/M00-L02.md": "3a91e8662e9e9dcb553a68c651852295334634f3277fa7daca764ca5818e70cd"
+      },
+      "completed_at": "2026-11-11T08:16:05Z",
+      "completed_by": "lesson_author",
+      "completed_commit": "5e889afb4f76b139324552e0ece68b8668a9a586"
+    },
+    {
+      "step_id": "technical-review",
+      "title": "Independent technical correctness and source/rights review",
+      "status": "completed",
+      "depends_on": [
+        "author"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m00/lessons/M00-L02.md",
+        "modules/m00/assessments/M00-L02.md",
+        "modules/m00/evidence/M00-L02.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/technical-review/SKILL.md",
+        ".agents/skills/provenance-review/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md"
+      ],
+      "output_paths": [
+        "modules/m00/reviews/M00-L02/technical.md",
+        "modules/m00/reviews/M00-L02/technical.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "review": {
+        "artifact_paths": [
+          "modules/m00/lessons/M00-L02.md",
+          "modules/m00/assessments/M00-L02.md",
+          "modules/m00/evidence/M00-L02.md",
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m00/reviews/M00-L02/technical.json"
+      },
+      "start_commit": "6512a3aa776b68eab32335fdeee4aef6661135b0",
+      "start_input_hashes": {
+        "modules/m00/lessons/M00-L02.md": "73a4ff810c40917bb6890cb70d314faddfcefb0538035c7d0e8edaef64527e88",
+        "modules/m00/assessments/M00-L02.md": "3a91e8662e9e9dcb553a68c651852295334634f3277fa7daca764ca5818e70cd",
+        "modules/m00/evidence/M00-L02.md": "f98cb1ef8c5fe0fab811649f457327c6a6ffcbc94953572bb0ed93218d4f9767",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        ".agents/skills/technical-review/SKILL.md": "8e5155b15e10c8a259d80e10b0da185621f5673cf7ef9fdd5a9e247e47b9b502",
+        ".agents/skills/provenance-review/SKILL.md": "314fe9ff25f14be180d26f430be9e5388a3d2de18a4e2a29798139160a2bae61",
+        "modules/database/governance/content-guidelines.md": "a2d64051359490a1b1202fc52710c230d9823d17a0d7dda040af4fd750983fd7",
+        "modules/database/governance/attribution-policy.md": "3125886ef90770acebf9c054e183ddf80f53f8fdad2e59d5867041623c44de75"
+      },
+      "start_output_hashes": {
+        "modules/m00/reviews/M00-L02/technical.md": null,
+        "modules/m00/reviews/M00-L02/technical.json": null
+      },
+      "started_at": "2026-11-11T08:17:11Z",
+      "run_id": "SD-M00-L02-technical-review-20261111T081711Z",
+      "agent": "technical_reviewer",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_fingerprint": "d950f0c26d8c9c560cfc1b58b2c7b35ca30f7f54a743eee6dad4c2e52ab87795",
+      "completed_spec_hash": "6260b8d4556bc20ef8737c6dc4b12614f66a2adafc628a634bb2f7a05bde8bb6",
+      "completed_output_hashes": {
+        "modules/m00/reviews/M00-L02/technical.md": "eaa532ae6f32ac803f5f7b144a0cd7cf7be73086378b83a9e7603d97fd6eccc2",
+        "modules/m00/reviews/M00-L02/technical.json": "de3529a39cd63fde43ba7dbf4bde99ebdc07d13a3090d3cac5ee6c69a85e5436"
+      },
+      "completed_at": "2026-11-11T08:22:29Z",
+      "completed_by": "technical_reviewer",
+      "completed_commit": "62c4805a287b63f43f67fe74870ed5d743734ca3"
+    },
+    {
+      "step_id": "teaching-review",
+      "title": "Independent actual coverage, pedagogy, assessment and language review",
+      "status": "completed",
+      "depends_on": [
+        "author"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m00/lessons/M00-L02.md",
+        "modules/m00/assessments/M00-L02.md",
+        "modules/m00/evidence/M00-L02.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md",
+        "modules/database/governance/content-guidelines.md",
+        "modules/database/governance/attribution-policy.md"
+      ],
+      "output_paths": [
+        "modules/m00/reviews/M00-L02/teaching.md",
+        "modules/m00/reviews/M00-L02/teaching.json"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "review": {
+        "artifact_paths": [
+          "modules/m00/lessons/M00-L02.md",
+          "modules/m00/assessments/M00-L02.md",
+          "modules/m00/evidence/M00-L02.md",
+          "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "curriculum/revision-1/source-inventory.json",
+          "curriculum/revision-1/coverage.csv"
+        ],
+        "verdict_path": "modules/m00/reviews/M00-L02/teaching.json"
+      },
+      "start_commit": "6512a3aa776b68eab32335fdeee4aef6661135b0",
+      "start_input_hashes": {
+        "modules/m00/lessons/M00-L02.md": "73a4ff810c40917bb6890cb70d314faddfcefb0538035c7d0e8edaef64527e88",
+        "modules/m00/assessments/M00-L02.md": "3a91e8662e9e9dcb553a68c651852295334634f3277fa7daca764ca5818e70cd",
+        "modules/m00/evidence/M00-L02.md": "f98cb1ef8c5fe0fab811649f457327c6a6ffcbc94953572bb0ed93218d4f9767",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        ".agents/skills/curriculum-coverage-review/SKILL.md": "aea2576491b4de38c1ed92ab01904548a43f71c0031bbb641ab356bed7b05654",
+        ".agents/skills/pedagogical-review/SKILL.md": "50263f2199a02f12d3b431b4a40344ea605b42555eae6f629424ee6154d8b3fa",
+        "modules/database/governance/content-guidelines.md": "a2d64051359490a1b1202fc52710c230d9823d17a0d7dda040af4fd750983fd7",
+        "modules/database/governance/attribution-policy.md": "3125886ef90770acebf9c054e183ddf80f53f8fdad2e59d5867041623c44de75"
+      },
+      "start_output_hashes": {
+        "modules/m00/reviews/M00-L02/teaching.md": null,
+        "modules/m00/reviews/M00-L02/teaching.json": null
+      },
+      "started_at": "2026-11-11T08:17:13Z",
+      "run_id": "SD-M00-L02-teaching-review-20261111T081713Z",
+      "agent": "pedagogy_reviewer",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_fingerprint": "7acd8597e220599acd58f15fda25d43eec18217e6deed3b737035e1e89face6d",
+      "completed_spec_hash": "4298b0ac40c660b57306a4a1c034f47a0ddda4f8e273a8fde1c62a8c45ce0a58",
+      "completed_output_hashes": {
+        "modules/m00/reviews/M00-L02/teaching.md": "286ff646e792b82d503d454d6eb8bfdb3544f5bd1e77bf12aee37748a58cbe82",
+        "modules/m00/reviews/M00-L02/teaching.json": "4c5588e7abbf29fb0fd6c33cf68c6506d17643cacf2f9a247a9c164593bb4040"
+      },
+      "completed_at": "2026-11-11T08:22:33Z",
+      "completed_by": "pedagogy_reviewer",
+      "completed_commit": "62c4805a287b63f43f67fe74870ed5d743734ca3"
+    },
+    {
+      "step_id": "validation",
+      "title": "Validate the reviewed pair and hand off without a final copy",
+      "status": "completed",
+      "depends_on": [
+        "technical-review",
+        "teaching-review"
+      ],
+      "definition_version": "v3",
+      "input_paths": [
+        "modules/m00/lessons/M00-L02.md",
+        "modules/m00/assessments/M00-L02.md",
+        "modules/m00/evidence/M00-L02.md",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/source-inventory.json",
+        "curriculum/revision-1/coverage.csv",
+        "scripts/validate_content.py",
+        "scripts/check_course_coverage.py"
+      ],
+      "output_paths": [
+        "modules/m00/reviews/M00-L02/report.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "requires_reviews": [
+        "technical-review",
+        "teaching-review"
+      ],
+      "start_commit": "23d9550556260b79e99cefb8c06fe68634ec984f",
+      "start_input_hashes": {
+        "modules/m00/lessons/M00-L02.md": "73a4ff810c40917bb6890cb70d314faddfcefb0538035c7d0e8edaef64527e88",
+        "modules/m00/assessments/M00-L02.md": "3a91e8662e9e9dcb553a68c651852295334634f3277fa7daca764ca5818e70cd",
+        "modules/m00/evidence/M00-L02.md": "f98cb1ef8c5fe0fab811649f457327c6a6ffcbc94953572bb0ed93218d4f9767",
+        "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+        "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+        "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c",
+        "scripts/validate_content.py": "a2145c121866f088d2e3544a8df4b39b078f6567eecc5e6dd5a955025f07ddce",
+        "scripts/check_course_coverage.py": "b4978b632c22108fc03a1724c34c49c5d260e37a1634cdf68799d87e1f26eb41"
+      },
+      "start_output_hashes": {
+        "modules/m00/reviews/M00-L02/report.md": null
+      },
+      "started_at": "2026-11-11T08:24:02Z",
+      "run_id": "SD-M00-L02-validation-20261111T082402Z",
+      "agent": "curriculum_orchestrator",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_fingerprint": "a2c5548b543ee7f1e07ef6ce8ee65426a57adb82eaccb8f51c05015272c38176",
+      "completed_spec_hash": "3ee0ef468c9d16e5f8515869acf34a72b551f32e51a9386baae2fa96e4a7fe97",
+      "completed_output_hashes": {
+        "modules/m00/reviews/M00-L02/report.md": "4c5ae0d6cf73d6fd17e454d7a3694caa6901010e0850c84fc9f4b19bae7c64e8"
+      },
+      "completed_at": "2026-11-11T08:25:10Z",
+      "completed_by": "curriculum_orchestrator",
+      "completed_commit": "d2a298169b09e4120264b2ef7aaa871a52ca1874"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Restored archived PR #28 for Issue #45. Current independent lesson review is pending.",
+      "updated_at": "2026-11-15T11:06:53Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Restored archived PR #28 for Issue #45. Current independent lesson review is pending.",
+      "updated_at": "2026-11-15T11:06:53Z"
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M00-L02",
+  "revision": 2,
+  "goal": "Draft and verify From requirements to a defensible design for SDA-M00-L02",
+  "scope": {
+    "in_scope": [
+      "Implement only Story SDA-M00-L02 from milestone SDA-MS01 at the declared output paths.",
+      "**Prerequisites:** M00-L01\n\n**Outcomes:** M00-L02-LO1: trace/model the mechanisms below in the worked scenario. M00-L02-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Clarify actors, use cases, constraints, assumptions and explicit non-goals.\n2. High-level components, interfaces and data flow before a targeted core-component deep dive.\n3. Scale iteratively: estimate, load-test, profile, change one bottleneck and reassess.\n4. Communicate alternatives, unresolved risks and evidence in a time-bounded design review.\n\n**Worked-example plan:** Take a small link-sharing service from requirements to an initial read/write path.\n\n**Trade-offs and when to use/avoid:** Spend detail on constraints that change architecture; do not introduce infrastructure without a measured or estimated need.\n\n**Quick-check focus:** Identify the requirement that would make the initial single-node design unacceptable. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map.",
+      "Teach the assigned Primer topic IDs: PR-H011, PR-H012, PR-H013, PR-H014, PR-H015."
+    ],
+    "out_of_scope": [
+      "Other milestones and changes to the approved course baseline.",
+      "Human approval, merge and learner-facing publication."
+    ]
+  },
+  "constraints": [
+    "Use English and write for middle and senior engineers with the approved entry prerequisites. Keep all learner-facing artifacts at draft status.",
+    "Use the approved SDA-v1 plan, inventory, matrix and verdict; the Primer topic map is pinned at ae9bbd7b02d90b9866215de185217d33f39ab733. Cite exact primary-source sections for technical claims and use original examples.",
+    "Two independent reviewers cover technical correctness and provenance, and actual coverage, pedagogy and language. Keep reviews bound to the exact current artifacts.",
+    "Current Milestone 1 restoration is coordinated in GitHub Issue #45. Archived PR #28 preserves the original draft and reviews."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record exact primary-source evidence, limits and check dates, and reuse the exact approved course verdict after strict plan validation.",
+      "applies_to": [
+        "research",
+        "plan-gate"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Commit the draft teaching and separate assessment outputs defined by the Story.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "dod-review",
+      "text": "Commit both independent findings reports and matching verdicts for the current drafts.",
+      "applies_to": [
+        "technical-review",
+        "teaching-review"
+      ]
+    },
+    {
+      "id": "dod-validation",
+      "text": "Pass the applicable package checks and the repository checks, and record results and feedback disposition in the declared report.",
+      "applies_to": [
+        "validation"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-story-1",
+      "text": "Teach every numbered outline item at M00-L02 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-story-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-story-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-companion",
+      "text": "Include one practical exercise, six checks with answers and explanations, a worked answer and rubric, and an exact outcome-to-heading-and-item map.",
+      "applies_to": [
+        "author",
+        "teaching-review",
+        "validation"
+      ]
+    },
+    {
+      "id": "ac-research",
+      "text": "Each externally supported claim records a verified section, version or publication, check date, and scope. Unresolved claims are flagged.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-plan",
+      "text": "Verify matching SDA-v1 approval and review hashes and exact story assignment before reusing the accepted verdict.",
+      "applies_to": [
+        "plan-gate"
+      ]
+    },
+    {
+      "id": "ac-technical",
+      "text": "The independent review records separate correctness and source or rights findings and binds its verdict to the declared artifact hashes.",
+      "applies_to": [
+        "technical-review"
+      ]
+    }
+  ]
+}
