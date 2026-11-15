@@ -57,3 +57,17 @@ T3–T5 remain resolved. The changes preserve the configured-destination acknowl
 ### Verdict
 
 `ready-for-human-review`
+
+## PR #88 targeted module consistency re-review
+
+Reviewed the M07-L03 teaching changes through `02eb870` and their connections to M07-L02 and the integrated decision summary, exercise and evidence. The lesson's accepted Stage A review and the existing integration reviews supply the prior evidence. [M07-L03 Stage A technical review](lessons/M07-L03/technical.md)
+
+- The decision summary's broker row covers work delivered to an eligible worker. Its retained-log row covers separate group positions, retention, checkpoints and hot-key limits. These match the revised opening and the independent search and notification groups. The generation-owned index checkpoint is the external-store contract for the worked recovery. The decision row still correctly describes standard group progress. [Decision summary, “Compare completion, ordering and replay needs”](../../integrated/decision-summary.md#compare-completion-ordering-and-replay-needs), [M07-L03, “Choose the delivery and ordering unit”](../../lessons/M07-L03.md#choose-the-delivery-and-ordering-unit), [Kafka 4.2 KafkaConsumer, consumer groups and external offset storage](https://kafka.apache.org/42/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html)
+- M07-EX1 still exercises one SQS Standard preview job with guarded publication, stable identity, retries and bounded execution. The decision summary makes retained distribution events a separate design choice. Expiring a preview claim prevents stale publication while a physical execution can continue. Closing a replay epoch at the index and checkpoint stores rejects stale requests and settles previously admitted effects. The latter is an application contract in the projection scenario and adds no assumption to the exercise's job claim or SQS contract. [M07-EX1 and M07-S1](../../integrated/brief.md#m07-ex1), [Reference solution](../../integrated/solution-rubric.md), [M07-L03, “Replay into a new index”](../../lessons/M07-L03.md#replay-into-a-new-index)
+- The instruction to bound replay traffic remains consistent with M07-L02's distinction between admission, dispatch and in-flight resource controls. The new sequencing explanation protects an end position per partition before taking the authority snapshot, then reuses retained overlap. That proof applies to the projection's lost-history repair. The preview exercise has its own recovery through authoritative job state and a job reconciler. The integrated evidence already locates log reconstruction in M07-L03 and its companion. [M07-L02, “Put back pressure where it can work”](../../lessons/M07-L02.md#put-back-pressure-where-it-can-work), [M07-L03, “Repair an incomplete history”](../../lessons/M07-L03.md#repair-an-incomplete-history), [Integrated evidence](../../integrated/evidence.md), [Module synthesis scope](../../../../.academy/specs/SD-M07-INTEGRATION.json)
+
+The pilot introduces no new technical or provenance finding at these module boundaries. The original integration findings retain their resolved status.
+
+### Verdict
+
+`ready-for-human-review`
