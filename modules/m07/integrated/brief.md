@@ -21,7 +21,7 @@ In a separate fault drill, measure 400 original valid submissions over the five-
 
 1. Draw the admission, dispatch, execution and terminal states. Define the identity, durable acceptance point and conditions for acknowledging a delivery. Trace a lost acceptance reply and a worker crash after publication and before acknowledgement.
 2. Compute the waiting and nonterminal limits, rejected originals, burst success and backlog drain at baseline. Defend the proposed change and test its admission and dispatch bounds. Set a deadline-aware retry policy with a shared dispatch limit.
-3. Trace an unusable input, a live worker racing a DLQ observation, and an admitted job whose delivery no longer exists. Score the fault drill and state what evidence would distinguish overload from lost work or duplicate effects.
+3. Trace an unusable input, a live worker racing a DLQ observation, and an expired running claim whose delivery no longer exists. For the last case, test both an available waiting slot and a full waiting queue while the old execution may still be running. Score the fault drill and state what evidence would distinguish overload from lost work or duplicate effects.
 
 [Reference solution and rubric](solution-rubric.md) · [Decision summary](decision-summary.md)
 
