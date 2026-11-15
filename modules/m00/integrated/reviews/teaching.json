@@ -1,0 +1,13 @@
+{
+  "verdict": "ready-for-human-review",
+  "artifact_hashes": {
+    "modules/m00/integrated/brief.md": "f0d6f451bb3ba81bf8e7dfbad4065dfe4545e12b7dc4b83ce12e12f0090d1d79",
+    "modules/m00/integrated/solution-rubric.md": "d0abd36c83b9992a19ca7f655020633dd52a72ef1a7a784b9b7d94f7396d6512",
+    "modules/m00/integrated/decision-summary.md": "e89c043a040055e092eb6cd9990dd94a0d4e4378ba21fa71c1602a48df829044",
+    "modules/m00/integrated/evidence.md": "89d184f2603bc48792e987921cc0ca171252100f16d2da9defa60a4b6a54797b",
+    "curriculum/revision-1/CURRICULUM_MASTER.md": "7aaadd334739a4bad7ee6481466eb68cf81c0d6c289bf544570724d205d464a6",
+    "curriculum/revision-1/source-inventory.json": "db7c9bb50aa0ffcd9917bb2006f00efd803bf14e270f0d8ee5190eb91623093b",
+    "curriculum/revision-1/coverage.csv": "e7be5ba5d50b6990e9cf936ee545cd5743d6585b7d8dd57e15a0c220a5bff30c"
+  },
+  "findings": []
+}
