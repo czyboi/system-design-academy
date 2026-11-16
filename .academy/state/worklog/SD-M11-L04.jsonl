@@ -1,0 +1,6 @@
+{"at":"2026-11-16T05:15:20.568Z","event":"task_created","task_id":"SD-M11-L04","module_id":"m11","owner":"czyboi","spec_path":".academy/specs/SD-M11-L04.json","issue_number":114}
+{"at":"2026-11-16T05:15:20.568Z","event":"step_started","task_id":"SD-M11-L04","step_id":"research","run_id":"M11-L04-chatgpt-research-20261116","agent":"chatgpt-single-session","note":"Recorded manually; taskctl.py not run"}
+{"at":"2026-11-16T05:15:20.568Z","event":"step_completed","task_id":"SD-M11-L04","step_id":"research","run_id":"M11-L04-chatgpt-research-20261116","usage":null,"note":"GitHub API write, no scoped script handoff"}
+{"at":"2026-11-16T05:15:20.568Z","event":"step_started","task_id":"SD-M11-L04","step_id":"author","run_id":"M11-L04-chatgpt-author-20261116","agent":"chatgpt-single-session","note":"Recorded manually; taskctl.py not run"}
+{"at":"2026-11-16T05:15:20.568Z","event":"step_completed","task_id":"SD-M11-L04","step_id":"author","run_id":"M11-L04-chatgpt-author-20261116","usage":null,"note":"GitHub API write, no scoped script handoff"}
+{"at":"2026-11-16T05:15:20.568Z","event":"checkpoint","task_id":"SD-M11-L04","step_id":"author","run_id":"M11-L04-chatgpt-author-20261116","note":"Lesson/assessment/evidence/self-review committed. Independent QA and scripts outstanding.","next_action":"Continue M11-L05; do not create early MS07 PR."}

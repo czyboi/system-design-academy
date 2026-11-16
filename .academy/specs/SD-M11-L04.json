@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L04",
+  "revision": 1,
+  "goal": "Write M11-L04 CDN service and global data serving full original lesson/assessment/evidence.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L04",
+      "Edge/origin access and mutability plus multi-region data/routing/failover capacity."
+    ],
+    "out_of_scope": [
+      "Other stories, project workflow/curriculum changes, live cloud, official independent QA or publication."
+    ]
+  },
+  "constraints": [
+    "Issue #114, branch codex/drafts-sda-ms07, prerequisites M10-L08/MS06 PR #110 and M09-L03/MS05 PR #100 unmerged.",
+    "Same-chat review only; no script or release approval claims."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Primary source claim map with exact scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Original teaching and separate assessment with solution.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-stage",
+      "text": "All approved items with failure trace, observed capacity and trade-offs.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-quiz",
+      "text": "Six checks, EX-1, rubric, outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
