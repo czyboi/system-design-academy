@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L09",
+  "revision": 1,
+  "goal": "Author M11-L09 durable key-value and disposable cache composition original teaching package.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L09",
+      "Key/command routing and expiry, cache eviction and refill, durability/replication/replay, recovery"
+    ],
+    "out_of_scope": [
+      "Other Stories, production Redis/Memcached installation or benchmarking, official QA, curriculum/workflow changes, publication"
+    ]
+  },
+  "constraints": [
+    "Issue #119; branch codex/drafts-sda-ms07. Prerequisites M10-L06 on unmerged MS06 PR #110 and M11-L08 in same branch.",
+    "No Python validation; same-ChatGPT self-review only; independent Stage A pending."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Source matrix with bounded primary citations and limitations.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Complete canonical lesson plus companion Q1–Q6 and EX-1 with explanations, rubric and LO mapping.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-mechanism",
+      "text": "Trace logical expiry vs eviction and acknowledged write survival across restart/failover.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Six answered checks and EX-1 with substantive rubric and outcome mapping.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
