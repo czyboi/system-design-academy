@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M12-L03",
+  "module_id": "m12",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M12-L03.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-16T07:29:00Z",
+  "updated_at": "2026-11-16T07:29:00Z",
+  "execution_control": "active",
+  "notes": "Manual task transitions; actual scripts and independent QA not run. Same-session self-review only.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m12/evidence/M12-L03.md"
+      ],
+      "checkpoint": {
+        "note": "Manual GitHub connector delivery. No taskctl/draft_handoff invocation.",
+        "next_action": "Independent Stage A and scoped executable validation required."
+      },
+      "attempts": 1,
+      "run_id": "SD-M12-L03-research-chatgpt-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T07:29:00Z",
+      "completed_at": "2026-11-16T07:29:00Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author lesson and companion",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m12/evidence/M12-L03.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m12/lessons/M12-L03.md",
+        "modules/m12/assessments/M12-L03.md"
+      ],
+      "checkpoint": {
+        "note": "Manual GitHub connector delivery. No taskctl/draft_handoff invocation.",
+        "next_action": "Independent Stage A and scoped executable validation required."
+      },
+      "attempts": 1,
+      "run_id": "SD-M12-L03-author-chatgpt-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T07:29:00Z",
+      "completed_at": "2026-11-16T07:29:00Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Independent Stage A pending",
+      "updated_at": "2026-11-16T07:29:00Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Independent Stage A pending",
+      "updated_at": "2026-11-16T07:29:00Z"
+    }
+  }
+}

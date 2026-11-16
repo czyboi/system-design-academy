@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M12-INTEGRATION",
+  "revision": 1,
+  "goal": "Original publishable-intended content: Integrate parking allocation extension, 48 assigned source-topic rows and 13 outcomes",
+  "scope": {
+    "in_scope": [
+      "SDA-M12-INT",
+      "Integrate parking allocation extension, 48 assigned source-topic rows and 13 outcomes"
+    ],
+    "out_of_scope": [
+      "Unrelated Stories, workflow/skills/curriculum edits, independent QA gate completion, publication"
+    ]
+  },
+  "constraints": [
+    "Issue #128, branch codex/drafts-sda-ms08.",
+    "One ChatGPT author/self-review, not independent Sol/Terra. Python validator, taskctl and draft_handoff unrun.",
+    "Independent Stage B must wait for actual Stage A. Authoring under explicit user exception only."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Claim evidence and source limitations at canonical path.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "All canonical integrated design, rubric, decision, coverage and outcome deliverables.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-coverage",
+      "text": "Full approved scope and explicit source/outcome evidence, without claiming official review PASS.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-handoff",
+      "text": "Persist task history and disclose unrun scripts and independent gates.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

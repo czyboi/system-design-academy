@@ -1,0 +1,86 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M13-INTEGRATION",
+  "module_id": "m13",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M13-INTEGRATION.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-16T07:45:00Z",
+  "updated_at": "2026-11-16T07:45:00Z",
+  "execution_control": "active",
+  "notes": "Manual content task transitions, not taskctl. Independent QA and Python validators pending. Self-review only.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m13/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "Manually recorded GitHub connector content; no Python script or independent QA performed.",
+        "next_action": "Scoped draft_handoff/content validation and independent review via Codex."
+      },
+      "attempts": 1,
+      "run_id": "SD-M13-INTEGRATION-research-chatgpt-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T07:45:00Z",
+      "completed_at": "2026-11-16T07:45:00Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author complete canonical package",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        "GOVERNANCE.md",
+        "modules/m13/integrated/evidence.md",
+        ".agents/skills/lesson-authoring/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m13/integrated/brief.md",
+        "modules/m13/integrated/solution-rubric.md",
+        "modules/m13/integrated/decision-summary.md",
+        "modules/m13/integrated/taught-coverage.csv",
+        "modules/m13/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "Manually recorded GitHub connector content; no Python script or independent QA performed.",
+        "next_action": "Scoped draft_handoff/content validation and independent review via Codex."
+      },
+      "attempts": 1,
+      "run_id": "SD-M13-INTEGRATION-author-chatgpt-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T07:45:00Z",
+      "completed_at": "2026-11-16T07:45:00Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Independent Stage B pending, Stage A not verified",
+      "updated_at": "2026-11-16T07:45:00Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Independent Stage B pending, Stage A not verified",
+      "updated_at": "2026-11-16T07:45:00Z"
+    }
+  }
+}

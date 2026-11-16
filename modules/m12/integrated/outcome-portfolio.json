@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M12",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M12-L01-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L01.md",
+        "sections": [
+          "Work the middle deletion and update trace"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L01-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L01.md",
+        "sections": [
+          "Add capacity: when and how to resize"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L02-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L02.md",
+        "sections": [
+          "Trace a collision-free sequence of object mutations"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L02-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L02.md",
+        "sections": [
+          "Implement link primitives as the only mutators"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L03-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L03.md",
+        "sections": [
+          "Trace a successful bus allocation"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L03-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L03.md",
+        "sections": [
+          "Extend the fit rule without rewriting ownership"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L04-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L04.md",
+        "sections": [
+          "Trace queueing, escalation and free capacity"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L04-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L04.md",
+        "sections": [
+          "Model policy separately from shared lifecycle"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L05-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L05.md",
+        "sections": [
+          "Trace the final deal and an exhausted deck"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L05.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L05-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L05.md",
+        "sections": [
+          "Hand totals: an ace is an option, not a constant"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L05.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L06-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L06.md",
+        "sections": [
+          "Trace a rejected friend request"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L06.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L06-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L06.md",
+        "sections": [
+          "Trace group membership and message acceptance"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L06.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-S1",
+      "uses_lesson_outcomes": [
+        "M12-L03-LO1",
+        "M12-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m12/integrated/decision-summary.md",
+        "sections": [
+          "One change reveals the ownership boundary"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/integrated/brief.md",
+        "items": [
+          "M12-EX1"
+        ],
+        "solution_rubric": "modules/m12/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}

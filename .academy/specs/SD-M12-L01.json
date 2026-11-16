@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M12-L01",
+  "revision": 1,
+  "goal": "Author original SDA-v1 M12-L01 complete publishable-intended lesson/assessment/evidence.",
+  "scope": {
+    "in_scope": [
+      "SDA-M12-L01",
+      "Approved lesson outcomes and source-topic mapping"
+    ],
+    "out_of_scope": [
+      "Other Stories, workflow and curriculum edits, official independent QA and publication"
+    ]
+  },
+  "constraints": [
+    "Issue #122; branch codex/drafts-sda-ms08 from main.",
+    "Same ChatGPT author/self-review, not Sol/Terra; Python scoped validation and draft_handoff unrun."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Canonical source evidence with bounded primary claims and rights.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Original complete lesson plus separate six answered checks/EX-1 and rubric.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-story",
+      "text": "Teach full approved M12-L01 fixed integer-key collision, update/removal and resize extension with worked trace.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "All lesson outcomes directly taught and mapped to meaningful assessment.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

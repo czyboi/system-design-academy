@@ -1,0 +1,6 @@
+{"at":"2026-11-16T07:29:00Z","task_id":"SD-M12-L06","event":"task_created","module_id":"m12","owner":"czyboi","spec_path":".academy/specs/SD-M12-L06.json","issue_number":127}
+{"at":"2026-11-16T07:29:00Z","task_id":"SD-M12-L06","event":"step_started","step_id":"research","run_id":"SD-M12-L06-research-chatgpt-20261116","agent":"chatgpt-single-session","note":"Manual record, taskctl unrun"}
+{"at":"2026-11-16T07:29:00Z","task_id":"SD-M12-L06","event":"step_completed","step_id":"research","run_id":"SD-M12-L06-research-chatgpt-20261116","usage":null,"note":"Content committed via GitHub; Python validator/handoff unrun"}
+{"at":"2026-11-16T07:29:00Z","task_id":"SD-M12-L06","event":"step_started","step_id":"author","run_id":"SD-M12-L06-author-chatgpt-20261116","agent":"chatgpt-single-session","note":"Manual record, taskctl unrun"}
+{"at":"2026-11-16T07:29:00Z","task_id":"SD-M12-L06","event":"step_completed","step_id":"author","run_id":"SD-M12-L06-author-chatgpt-20261116","usage":null,"note":"Content committed via GitHub; Python validator/handoff unrun"}
+{"at":"2026-11-16T07:29:00Z","task_id":"SD-M12-L06","event":"checkpoint","step_id":"author","note":"Lesson, assessment, evidence and labeled same-ChatGPT self-review committed; QA pending.","next_action":"Codex must run scoped validation, Stage A independent reviewers; Stage B only after all lesson cycles pass."}
