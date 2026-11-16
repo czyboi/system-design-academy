@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M09-L03",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M09-L03 — Coordination and multi-data-centre control",
+  "scope": {
+    "in_scope": [
+      "SDA-M09-L03",
+      "Teach membership, leader election, leases, fencing and locks; historical Chubby/ZooKeeper; cross-DC quorum and failure risks; Spanner clock/transaction comparison; original delayed-owner worked trace."
+    ],
+    "out_of_scope": [
+      "Other stories; approved curriculum/workflow/skills; independent reviewer approval; merge and publication."
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #96 coordinates ownership. ChatGPT resumes the closed PR #99 commit on codex/drafts-sda-ms05; no claim of Codex subagent participation.",
+    "Use approved SDA-v1 outline and canonical backlog outputs. Original English content for experienced engineers.",
+    "Keep claim-level primary evidence and assessment separate.",
+    "Independent QA gates remain pending; the same ChatGPT may only self-review."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Primary claim-level source evidence and applicability boundaries recorded.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Complete original teaching and separately mapped assessment at canonical paths.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-outcomes",
+      "text": "Each approved mechanism and decision outcome is taught with worked trace, trade-offs and failure policy.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Six answered checks, EX-1, rubric and exact lesson outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-provenance",
+      "text": "Distinguish source-specific guarantees from scenario assumptions, with no invented execution results.",
+      "applies_to": [
+        "research",
+        "author"
+      ]
+    }
+  ]
+}

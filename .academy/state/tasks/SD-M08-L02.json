@@ -1,0 +1,93 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M08-L02",
+  "module_id": "m08",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M08-L02.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T12:05:03Z",
+  "updated_at": "2026-11-15T16:24:53Z",
+  "execution_control": "active",
+  "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m08/evidence/M08-L02.md"
+      ],
+      "checkpoint": {
+        "note": "",
+        "next_action": ""
+      },
+      "attempts": 1,
+      "started_at": "2026-11-15T12:05:37Z",
+      "run_id": "SD-M08-L02-research-20261115T120537Z",
+      "agent": "codex",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-15T12:11:46Z",
+      "completed_by": "codex"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m08/evidence/M08-L02.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m08/lessons/M08-L02.md",
+        "modules/m08/assessments/M08-L02.md"
+      ],
+      "checkpoint": {
+        "note": "Applied remaining T2 with class-ordered writes and authoritative superseding-coverage retirement.",
+        "next_action": "Scoped handoff and final independent re-review of reserved revision.",
+        "at": "2026-11-15T12:24:14Z"
+      },
+      "attempts": 3,
+      "started_at": "2026-11-15T12:22:51Z",
+      "run_id": "SD-M08-L02-author-20261115T122251Z",
+      "agent": "lesson_author",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      },
+      "completed_at": "2026-11-15T12:24:14Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Resolve remaining M08-L02-T2 terminal sink transition and retirement race."
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent targeted round 2 verified the final sink transition and retirement correction.",
+      "updated_at": "2026-11-15T16:24:53Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent targeted round 2 verified the final sink transition and retirement correction.",
+      "updated_at": "2026-11-15T16:24:53Z"
+    }
+  }
+}

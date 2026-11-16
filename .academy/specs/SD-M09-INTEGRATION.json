@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M09-INTEGRATION",
+  "revision": 1,
+  "goal": "Deliver the approved M09-INT: integrated design, reference solution, decision summary, evidence, taught coverage and outcome portfolio.",
+  "scope": {
+    "in_scope": [
+      "SDA-M09-INT",
+      "Integrated security/diagnosis/stale-owner critique, source matrix, complete M09 topic mapping and synthesis outcome portfolio."
+    ],
+    "out_of_scope": [
+      "Other Stories, approved curriculum edits, workflow/skill changes, official independent QA, merge or publication."
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #98 coordinates ownership; ChatGPT writes to codex/drafts-sda-ms05 resuming closed PR #99.",
+    "Use SDA-v1 baseline; integrate only current M09-L01/L02/L03 canonical lessons.",
+    "All QA by this same ChatGPT labelled self-review; never advance official independent gates."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Support the integrated design claims with lesson source packs and explicit scenario boundaries.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver complete integrated brief, solution, summary, taught coverage and outcome portfolio at backlog paths.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-integration",
+      "text": "Teach synthesis M09-S1 through authentic interdependent design critique; assess with reference solution/rubric.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-summary",
+      "text": "Decision ledger has trigger, option, mechanism, benefit, cost, failure signal, when to avoid and lesson.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-coverage",
+      "text": "Preserve approved mapped topics with actual teaching sections and six lesson-outcome assessments plus M09-S1.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

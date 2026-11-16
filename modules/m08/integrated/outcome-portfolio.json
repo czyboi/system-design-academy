@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M08",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M08-L01-LO1",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L01.md",
+        "sections": [
+          "Trace a category from input to ranked output",
+          "Make retry outputs safe",
+          "Store inputs as replicated blocks"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L01-LO2",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L01.md",
+        "sections": [
+          "Place work near data and address skew",
+          "Store inputs as replicated blocks",
+          "Choose a processing model"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L02-LO1",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L02.md",
+        "sections": [
+          "Update an hourly result",
+          "Rank exact counts or bound the memory"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L02-LO2",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L02.md",
+        "sections": [
+          "Update an hourly result",
+          "Rank exact counts or bound the memory",
+          "Measure popularity and change separately",
+          "Match recovery to the processing system"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L03-LO1",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L03.md",
+        "sections": [
+          "Find candidates from terms",
+          "Trace a search across three shards",
+          "Keep the index current and repairable"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L03-LO2",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L03.md",
+        "sections": [
+          "Trace a search across three shards",
+          "Choose the work and failure boundary",
+          "Keep the index current and repairable"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-S1",
+      "uses_lesson_outcomes": [
+        "M08-L01-LO1",
+        "M08-L02-LO2",
+        "M08-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m08/integrated/decision-summary.md",
+        "sections": [
+          "Trace the ranking and search decisions",
+          "Compare processing and retrieval options"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/integrated/brief.md",
+        "items": [
+          "M08-EX1"
+        ],
+        "solution_rubric": "modules/m08/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}

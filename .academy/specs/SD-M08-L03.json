@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M08-L03",
+  "revision": 1,
+  "goal": "Deliver the SDA-v1 draft for SDA-M08-L03 — Indexes and scatter-gather search",
+  "scope": {
+    "in_scope": [
+      "SDA-M08-L03",
+      "**Prerequisites:** M05-L02, M07-L03\n\n**Outcomes:** M08-L03-LO1: trace/model the mechanisms below in the worked scenario. M08-L03-LO2: choose and defend an alternative using the stated decision and failure criteria.\n\n**Teaching sequence:**\n1. Document versus inverted index, tokenisation, normalisation, boolean terms and ranking inputs.\n2. Partition index/query work, scatter requests and merge/rank results.\n3. Fan-out latency, deadlines, partial failures and result completeness.\n4. Search freshness and index rebuild/repair as asynchronous projections.\n\n**Worked-example plan:** Trace a two-term query across three shards including a timed-out shard.\n\n**Trade-offs and when to use/avoid:** Choose partitioning and partial-result policy by relevance and freshness requirements; keep retrieval mechanics separate from crawler/feed composition.\n\n**Quick-check focus:** Explain what a timeout means for a globally ranked result. The separate companion measures LO1 with Q1–Q3 and LO2 with Q4–Q6 plus EX-1; it will include explanations and an outcome map."
+    ],
+    "out_of_scope": [
+      "Other Stories, approved curriculum changes, merge and publication."
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #93 coordinates ownership. Codex is the active writer on codex/drafts-sda-ms05.",
+    "Use the approved SDA-v1 outline and canonical backlog paths. Write original English drafts for middle and senior engineers.",
+    "Separate instructional content from assessment, cite primary sources at claim level, and label scenario assumptions."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Record claim-level source evidence with precise sections, version scope and limitations.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Deliver completed teaching and assessment drafts at every declared canonical output path.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-evidence",
+      "text": "Support each material factual claim with exact primary evidence or identify it as a scenario assumption or inference.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-draft-1",
+      "text": "Teach every numbered outline item at M08-L03 with problem, mechanism, worked example, trade-offs, applicability and quick checks.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-2",
+      "text": "Keep draft; companion measures lesson-specific outcomes and includes explanations, rubric and explicit map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-draft-3",
+      "text": "Cover all assigned topic IDs; preserve the approved boundaries with adjacent lessons.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-teaching",
+      "text": "Trace the mechanism and failures, teach each mapped outcome, and define any user-facing success measurement over original operations.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
