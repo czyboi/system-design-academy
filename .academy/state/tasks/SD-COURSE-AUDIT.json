@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-COURSE-AUDIT",
+  "module_id": "course",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-COURSE-AUDIT.json",
+  "automation_status": "in_progress",
+  "review_status": "not_reviewed",
+  "current_phase": "reconcile",
+  "created_at": "2026-11-16T08:52:49.336Z",
+  "updated_at": "2026-11-16T08:52:49.336Z",
+  "execution_control": "active",
+  "notes": "Preparation in progress. 473 distinct mapped topic rows and 134 outcome IDs, 473/473 row lesson paths/headings checked against six pinned Git refs. No actual independent 473-topic teaching-depth audit, 134-outcome item verification or Python PASS. Official delivery/course-taught-review.{md,json} deliberately absent; they belong to independent reviewer.",
+  "steps": [
+    {
+      "step_id": "reconcile",
+      "title": "Assemble and verify cross-module taught-coverage locations and outcome portfolio",
+      "status": "running",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/coverage.csv",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        "modules/m00/integrated/taught-coverage.csv",
+        "modules/m08/integrated/taught-coverage.csv",
+        "modules/m13/integrated/outcome-portfolio.json",
+        "capstone/CP-01/brief.md"
+      ],
+      "output_paths": [
+        "delivery/taught-coverage.csv",
+        "delivery/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "Matrix: 473 distinct IDs, 473/473 mapped lesson headings match Markdown on relevant refs; portfolio 134 distinct outcomes with declared teaching/assessment. Depth, per-item assessment, external source re-inventory and cross-module interactions not yet verified.",
+        "next_action": "Inspect actual explanatory paragraphs/assessment items, reconcile unmerged milestone sources and complete scoped data checks without inventing PASS."
+      },
+      "attempts": 1
+    },
+    {
+      "step_id": "independent_audit",
+      "title": "Independent final taught-coverage and pedagogy audit",
+      "status": "pending",
+      "depends_on": [
+        "reconcile"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "delivery/taught-coverage.csv",
+        "delivery/outcome-portfolio.json",
+        "curriculum/revision-1/source-inventory.json",
+        ".agents/skills/curriculum-coverage-review/SKILL.md",
+        ".agents/skills/pedagogical-review/SKILL.md"
+      ],
+      "output_paths": [
+        "delivery/course-taught-review.md",
+        "delivery/course-taught-review.json"
+      ],
+      "checkpoint": {
+        "note": "Not started: requires independent Codex reviewer and accepted current QA evidence; one ChatGPT author cannot certify it.",
+        "next_action": "After dependency branches and content packages reconcile, perform genuinely independent full source/lesson audit, run strict validator, and record findings."
+      },
+      "attempts": 0
+    }
+  ],
+  "review_statuses": {
+    "coverage": {
+      "status": "needs_review",
+      "reason": "473 source topics only structurally mapped; independent teaching-depth audit not performed.",
+      "updated_at": "2026-11-16T08:52:49.336Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "No independent end-to-end pedagogy audit or item-level outcome assessment verification.",
+      "updated_at": "2026-11-16T08:52:49.336Z"
+    },
+    "technical": {
+      "status": "needs_review",
+      "reason": "Prerequisite module/capstone independent technical QA not complete.",
+      "updated_at": "2026-11-16T08:52:49.336Z"
+    },
+    "provenance": {
+      "status": "needs_review",
+      "reason": "Independent source/asset rights audit outstanding.",
+      "updated_at": "2026-11-16T08:52:49.336Z"
+    }
+  }
+}

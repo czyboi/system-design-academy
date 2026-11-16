@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-COURSE-AUDIT",
+  "revision": 1,
+  "goal": "Reconcile the complete approved SDA-v1 473 source-topic mappings and all 134 learning/synthesis/transfer outcomes against actual course teaching and assessments; preserve independent whole-course audit, validation and human publication gates.",
+  "scope": {
+    "in_scope": [
+      "SDA-COURSE-AUDIT",
+      "delivery/taught-coverage.csv",
+      "delivery/outcome-portfolio.json",
+      "Non-gate structural cross-reference self-check and precise independent-audit checkpoint"
+    ],
+    "out_of_scope": [
+      "Changing approved curriculum, agent skills, workflow or task-state implementation",
+      "Fabricating deep teaching verification, independent audit verdict or executed test PASS",
+      "Merging or publishing unapproved milestones"
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #133; codex/drafts-sda-ms09; approved curriculum/revision-1.",
+    "MS01–04 sources on main; MS05, MS06, MS07 and MS08 in separate unmerged Draft PRs #100/#110/#121/#131.",
+    "All 473 current matrix dispositions remain 'mapped'; matching headings alone does not prove a topic is taught.",
+    "No official independent course review JSON/Markdown, strict course checker, regression suite or remote draft_handoff execution was performed here."
+  ],
+  "definition_of_done": [
+    {
+      "id": "reconcile",
+      "text": "Canonical coverage matrix and outcome portfolio assembled with source refs, explicitly checked paths/headings, and any unresolved content-evidence gaps recorded.",
+      "applies_to": [
+        "reconcile"
+      ]
+    },
+    {
+      "id": "independent_audit",
+      "text": "An independent coverage/pedagogy review must inspect actual teaching depth for each approved topic, verify outcome assessment items/cross-module dependencies and record official results.",
+      "applies_to": [
+        "independent_audit"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-473",
+      "text": "Each of 473 source topics receives actual explanatory-teaching judgment, not only a mapped location.",
+      "applies_to": [
+        "independent_audit"
+      ]
+    },
+    {
+      "id": "ac-outcomes",
+      "text": "All lesson, synthesis, and capstone outcomes must be checked against real teaching and assessment evidence.",
+      "applies_to": [
+        "independent_audit"
+      ]
+    },
+    {
+      "id": "ac-approval",
+      "text": "Independent accepted reviews, relevant validators and human acceptance required before course publication.",
+      "applies_to": [
+        "independent_audit"
+      ]
+    }
+  ]
+}
