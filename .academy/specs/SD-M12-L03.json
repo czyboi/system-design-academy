@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M12-L03",
+  "revision": 1,
+  "goal": "Author SDA-v1 M12-L03 original complete publishable-intended package.",
+  "scope": {
+    "in_scope": [
+      "SDA-M12-L03",
+      "Parking contiguity, atomic allocation/release and extension"
+    ],
+    "out_of_scope": [
+      "Other Stories, workflow/skills/curriculum edits, official independent QA and publication"
+    ]
+  },
+  "constraints": [
+    "Issue #124; branch codex/drafts-sda-ms08 from main.",
+    "Same-session ChatGPT review only; scoped Python validators and draft_handoff not executed."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Claim-level source evidence, rights and limitations.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Complete canonical lesson and separate six checks/EX-1 reference answer/rubric.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-instruction",
+      "text": "Fully teach Parking contiguity, atomic allocation/release and extension as approved source-constrained object design.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Both outcomes mapped to actual teaching and graded items.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
