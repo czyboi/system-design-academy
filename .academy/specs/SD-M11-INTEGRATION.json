@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-INTEGRATION",
+  "revision": 1,
+  "goal": "Deliver canonical M11-S1 complete module synthesis package: uniqueness versus strict global rolling quota.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-INT",
+      "Nine M11 lesson evidence/assessment packages; M11-S1 comparison, 16 approved source topics, all 19 outcomes"
+    ],
+    "out_of_scope": [
+      "New QA pass claims, additional lesson topics, changes to workflow/skills/curriculum, publication"
+    ]
+  },
+  "constraints": [
+    "Issue #120; branch codex/drafts-sda-ms07; M10 and M09 prerequisites on separate unmerged Draft PRs.",
+    "Independent Stage A for M11-L01–L09 and Stage B synthesis remains pending, per user exception authoring may proceed.",
+    "Python scoped validation and draft_handoff not executed in this GitHub-connector environment."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Cross-lesson source and rights evidence reconciled at integrated/evidence.md.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Original M11-EX1, reference solution/rubric, decision table, all source-topic mapping and outcome portfolio.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-synthesis",
+      "text": "Explicit invariant/failure-policy comparison with two defensible options per domain and user-visible denominator.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-coverage",
+      "text": "All 16 approved M11 topic IDs and 18 lesson LOs plus M11-S1 mapped to actual teaching/assessment.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-no-forged-gates",
+      "text": "All independent review gates remain pending with limitations disclosed.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

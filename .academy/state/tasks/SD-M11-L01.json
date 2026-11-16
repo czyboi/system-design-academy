@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M11-L01",
+  "module_id": "m11",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M11-L01.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-16T05:06:29.135Z",
+  "updated_at": "2026-11-16T05:06:29.135Z",
+  "execution_control": "active",
+  "notes": "GitHub API direct author, manually recorded step events; taskctl/draft_handoff/review_cycle and repository validation unrun. QA remains pending, prereq MS06 PR #110 unmerged.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m11/evidence/M11-L01.md"
+      ],
+      "checkpoint": {
+        "note": "Opened rsync/Automerge primary sources; independent review pending.",
+        "next_action": "Author"
+      },
+      "attempts": 1,
+      "run_id": "M11-L01-chatgpt-research-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T05:06:29.135Z",
+      "completed_at": "2026-11-16T05:06:29.135Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m11/evidence/M11-L01.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m11/lessons/M11-L01.md",
+        "modules/m11/assessments/M11-L01.md"
+      ],
+      "checkpoint": {
+        "note": "Content/evidence/self-review committed via GitHub API. No scoped script handoff.",
+        "next_action": "Independent Stage A and deterministic scoped validation pending."
+      },
+      "attempts": 1,
+      "run_id": "M11-L01-chatgpt-author-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T05:06:29.135Z",
+      "completed_at": "2026-11-16T05:06:29.135Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Same-chat self-review only",
+      "updated_at": "2026-11-16T05:06:29.135Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Same-chat self-review only",
+      "updated_at": "2026-11-16T05:06:29.135Z"
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M11-INTEGRATION",
+  "module_id": "m11",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M11-INTEGRATION.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-16T07:02:00Z",
+  "updated_at": "2026-11-16T07:02:00Z",
+  "execution_control": "active",
+  "notes": "Manually recorded research/author through GitHub; independent QA not conducted and no Python validators executed.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Reconcile integrated scenario evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        "curriculum/revision-1/coverage.csv",
+        "GOVERNANCE.md",
+        "modules/m11/lessons/M11-L01.md",
+        "modules/m11/assessments/M11-L01.md",
+        "modules/m11/evidence/M11-L01.md",
+        "modules/m11/lessons/M11-L02.md",
+        "modules/m11/assessments/M11-L02.md",
+        "modules/m11/evidence/M11-L02.md",
+        "modules/m11/lessons/M11-L03.md",
+        "modules/m11/assessments/M11-L03.md",
+        "modules/m11/evidence/M11-L03.md",
+        "modules/m11/lessons/M11-L04.md",
+        "modules/m11/assessments/M11-L04.md",
+        "modules/m11/evidence/M11-L04.md",
+        "modules/m11/lessons/M11-L05.md",
+        "modules/m11/assessments/M11-L05.md",
+        "modules/m11/evidence/M11-L05.md",
+        "modules/m11/lessons/M11-L06.md",
+        "modules/m11/assessments/M11-L06.md",
+        "modules/m11/evidence/M11-L06.md",
+        "modules/m11/lessons/M11-L07.md",
+        "modules/m11/assessments/M11-L07.md",
+        "modules/m11/evidence/M11-L07.md",
+        "modules/m11/lessons/M11-L08.md",
+        "modules/m11/assessments/M11-L08.md",
+        "modules/m11/evidence/M11-L08.md",
+        "modules/m11/lessons/M11-L09.md",
+        "modules/m11/assessments/M11-L09.md",
+        "modules/m11/evidence/M11-L09.md"
+      ],
+      "output_paths": [
+        "modules/m11/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "Content committed through GitHub connector, not scoped Python scripts; no QA pass assumed.",
+        "next_action": "Run scoped validation and independent Stage A, then Stage B when eligible."
+      },
+      "attempts": 1,
+      "run_id": "M11-INTEGRATION-chatgpt-research-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T07:02:00Z",
+      "completed_at": "2026-11-16T07:02:00Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Draft and reconcile module synthesis",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        "curriculum/revision-1/coverage.csv",
+        "GOVERNANCE.md",
+        "modules/m11/lessons/M11-L01.md",
+        "modules/m11/assessments/M11-L01.md",
+        "modules/m11/evidence/M11-L01.md",
+        "modules/m11/lessons/M11-L02.md",
+        "modules/m11/assessments/M11-L02.md",
+        "modules/m11/evidence/M11-L02.md",
+        "modules/m11/lessons/M11-L03.md",
+        "modules/m11/assessments/M11-L03.md",
+        "modules/m11/evidence/M11-L03.md",
+        "modules/m11/lessons/M11-L04.md",
+        "modules/m11/assessments/M11-L04.md",
+        "modules/m11/evidence/M11-L04.md",
+        "modules/m11/lessons/M11-L05.md",
+        "modules/m11/assessments/M11-L05.md",
+        "modules/m11/evidence/M11-L05.md",
+        "modules/m11/lessons/M11-L06.md",
+        "modules/m11/assessments/M11-L06.md",
+        "modules/m11/evidence/M11-L06.md",
+        "modules/m11/lessons/M11-L07.md",
+        "modules/m11/assessments/M11-L07.md",
+        "modules/m11/evidence/M11-L07.md",
+        "modules/m11/lessons/M11-L08.md",
+        "modules/m11/assessments/M11-L08.md",
+        "modules/m11/evidence/M11-L08.md",
+        "modules/m11/lessons/M11-L09.md",
+        "modules/m11/assessments/M11-L09.md",
+        "modules/m11/evidence/M11-L09.md"
+      ],
+      "output_paths": [
+        "modules/m11/integrated/brief.md",
+        "modules/m11/integrated/solution-rubric.md",
+        "modules/m11/integrated/decision-summary.md",
+        "modules/m11/integrated/taught-coverage.csv",
+        "modules/m11/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "Content committed through GitHub connector, not scoped Python scripts; no QA pass assumed.",
+        "next_action": "Run scoped validation and independent Stage A, then Stage B when eligible."
+      },
+      "attempts": 1,
+      "run_id": "M11-INTEGRATION-chatgpt-author-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T07:02:00Z",
+      "completed_at": "2026-11-16T07:02:00Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Independent Stage B pending, Stage A not verified",
+      "updated_at": "2026-11-16T07:02:00Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Independent Stage B pending, Stage A not verified",
+      "updated_at": "2026-11-16T07:02:00Z"
+    }
+  }
+}

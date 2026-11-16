@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L03",
+  "revision": 1,
+  "goal": "M11-L03 Recommendation and graph search complete original lesson, assessment, evidence.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L03",
+      "Candidate/event/rank flow, related products, authorized two-hop city graph, freshness and cold starts."
+    ],
+    "out_of_scope": [
+      "Other stories, approved workflow changes, model training/execution, independent QA PASS, merge/publish."
+    ]
+  },
+  "constraints": [
+    "Issue #113, branch codex/drafts-sda-ms07; M10-L05 in unmerged MS06 PR #110 and M08-L03 in unmerged MS05 PR #100.",
+    "Original case and sources; self-review non-independent, scripts unrun."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Primary claim/source evidence with version and limits.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Canonical teaching lesson plus assessment at approved paths.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "mechanism",
+      "text": "Explain recommendation/retrieval vs graph proof with worked numerical and privacy traces.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "assessment",
+      "text": "Q1–Q6, EX-1, reference/rubric/outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

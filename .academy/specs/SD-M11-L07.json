@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L07",
+  "revision": 1,
+  "goal": "Author approved M11-L07 authoritative card game and single-instrument price/time matching original publishable-intended lesson and assessment.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L07",
+      "Authoritative turns and reconnect; order entry/matching/cancellation; deterministic log, sequencing and failover."
+    ],
+    "out_of_scope": [
+      "Other stories, exchange regulation/market microstructure, game physics, official independent QA, workflow/curriculum changes, publication."
+    ]
+  },
+  "constraints": [
+    "Issue #117, branch codex/drafts-sda-ms07; prerequisites M11-L06 on branch and M09-L03 in unmerged MS05 PR #100.",
+    "ChatGPT same-session self-review is non-independent; required Python scripts were not run."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Source matrix with bounded primary citations and limitations.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Complete canonical lesson plus companion Q1–Q6 and EX-1 with explanations, rubric and LO mapping.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-mechanism",
+      "text": "Both independent domain traces, sequencing invariant and failover mechanism.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Realistic two-order race and duplicate-game example with outcome-aligned assessment.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

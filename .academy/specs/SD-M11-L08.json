@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L08",
+  "revision": 1,
+  "goal": "Author M11-L08 tracing garbage collection, reachability, STW and bounded concurrent marking original teaching package.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L08",
+      "Roots, mark/sweep, reference cycles, live-set/heap pressure, bounded mutation/barrier extension"
+    ],
+    "out_of_scope": [
+      "Full production GC implementation, other Stories, independent QA, curriculum/workflow edits, publication"
+    ]
+  },
+  "constraints": [
+    "Issue #118; branch codex/drafts-sda-ms07; approved lesson scope and prerequisites.",
+    "No Python validation, same-ChatGPT self-review only; independent Stage A pending."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Source matrix with bounded primary citations and limitations.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Complete canonical lesson plus companion Q1–Q6 and EX-1 with explanations, rubric and LO mapping.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-mechanism",
+      "text": "Graph reachability, cycle reclamation, mutation boundary and pause/live-set tradeoffs causally taught.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Six checks and EX-1 reference answer/rubric genuinely assess both outcomes.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
