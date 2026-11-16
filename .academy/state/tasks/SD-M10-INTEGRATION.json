@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M10-INTEGRATION",
+  "module_id": "m10",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M10-INTEGRATION.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-16T05:01:38.997Z",
+  "updated_at": "2026-11-16T05:01:38.997Z",
+  "execution_control": "active",
+  "notes": "GitHub API manual state record only, taskctl/draft_handoff/review_cycle.py not run. Same-chat self-review, official QA pending. 166 coverage rows, 17 outcomes, upstream MS05 unmerged.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Reconcile integrated scenario evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v1",
+      "input_paths": [
+        "delivery/backlog.json",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md",
+        "modules/m10/evidence/M10-L01.md",
+        "modules/m10/evidence/M10-L02.md",
+        "modules/m10/evidence/M10-L03.md",
+        "modules/m10/evidence/M10-L04.md",
+        "modules/m10/evidence/M10-L05.md",
+        "modules/m10/evidence/M10-L06.md",
+        "modules/m10/evidence/M10-L07.md",
+        "modules/m10/evidence/M10-L08.md"
+      ],
+      "output_paths": [
+        "modules/m10/integrated/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "Reconciled current authored evidence packs; no independent source reviewer.",
+        "next_action": "Author"
+      },
+      "attempts": 1,
+      "run_id": "M10-INT-chatgpt-research-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T05:01:38.997Z",
+      "completed_at": "2026-11-16T05:01:38.997Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Draft and reconcile module synthesis",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v1",
+      "input_paths": [
+        "delivery/backlog.json",
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "curriculum/revision-1/coverage.csv",
+        "GOVERNANCE.md",
+        "modules/m10/integrated/evidence.md",
+        "modules/m10/lessons/M10-L01.md",
+        "modules/m10/lessons/M10-L02.md",
+        "modules/m10/lessons/M10-L03.md",
+        "modules/m10/lessons/M10-L04.md",
+        "modules/m10/lessons/M10-L05.md",
+        "modules/m10/lessons/M10-L06.md",
+        "modules/m10/lessons/M10-L07.md",
+        "modules/m10/lessons/M10-L08.md",
+        "modules/m10/assessments/M10-L01.md",
+        "modules/m10/assessments/M10-L02.md",
+        "modules/m10/assessments/M10-L03.md",
+        "modules/m10/assessments/M10-L04.md",
+        "modules/m10/assessments/M10-L05.md",
+        "modules/m10/assessments/M10-L06.md",
+        "modules/m10/assessments/M10-L07.md",
+        "modules/m10/assessments/M10-L08.md"
+      ],
+      "output_paths": [
+        "modules/m10/integrated/brief.md",
+        "modules/m10/integrated/solution-rubric.md",
+        "modules/m10/integrated/decision-summary.md",
+        "modules/m10/integrated/taught-coverage.csv",
+        "modules/m10/integrated/outcome-portfolio.json"
+      ],
+      "checkpoint": {
+        "note": "Integrated case, mapping and self-review committed by API; no scoped script handoff.",
+        "next_action": "Run scoped script validation and independent Stage A and Stage B review."
+      },
+      "attempts": 1,
+      "run_id": "M10-INT-chatgpt-author-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T05:01:38.997Z",
+      "completed_at": "2026-11-16T05:01:38.997Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Independent module synthesis not run",
+      "updated_at": "2026-11-16T05:01:38.997Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Independent module synthesis not run",
+      "updated_at": "2026-11-16T05:01:38.997Z"
+    }
+  }
+}
