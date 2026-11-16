@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M11",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M11-L01-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L01.md",
+        "sections": [
+          "Start with immutable file versions and conditional metadata"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L01-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L01.md",
+        "sections": [
+          "Collaborative text: represent intent as operations"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L02-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L02.md",
+        "sections": [
+          "Commit one message and retain its original identity"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L02-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L02.md",
+        "sections": [
+          "Photo upload is a versioned publication process"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L03-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L03.md",
+        "sections": [
+          "Move from interaction events to candidate features"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L03-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L03.md",
+        "sections": [
+          "Graph search: traverse eligible edges, then rank eligible people"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L04-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L04.md",
+        "sections": [
+          "Start with one origin and a cache contract"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L04-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L04.md",
+        "sections": [
+          "Add regions with explicit consistency rules"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L05-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L05.md",
+        "sections": [
+          "Random identifiers and bounded collision risk"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L05.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L05-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L05.md",
+        "sections": [
+          "Coordinated counters and range leasing"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L05.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L06-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L06.md",
+        "sections": [
+          "Trace four algorithms on one original burst"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L06.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L06-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L06.md",
+        "sections": [
+          "Local counters cannot enforce a global per-tenant invariant"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L06.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L07-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L07.md",
+        "sections": [
+          "Duplicate and reordered action trace"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L07.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L07-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L07.md",
+        "sections": [
+          "Serialization boundary, log and recovery"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L07.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L08-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L08.md",
+        "sections": [
+          "Mark and sweep step by step"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L08.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L08-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L08.md",
+        "sections": [
+          "Choosing a collector under latency and memory pressure"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L08.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L09-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L09.md",
+        "sections": [
+          "Bound memory: expiry and eviction are not the same"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L09.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L09-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L09.md",
+        "sections": [
+          "Crash/replay trace: what survives acknowledged writes?"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L09.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-S1",
+      "uses_lesson_outcomes": [
+        "M11-L05-LO2",
+        "M11-L06-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m11/integrated/decision-summary.md",
+        "sections": [
+          "Work the cross-domain failure comparison",
+          "Domain decision table"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/integrated/brief.md",
+        "items": [
+          "M11-EX1"
+        ],
+        "solution_rubric": "modules/m11/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}
