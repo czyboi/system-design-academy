@@ -85,7 +85,7 @@
       "completed_by": "codex"
     }
   ],
-  "notes": "",
+  "notes": "2026-11-16: External IQA MS05-M08-SYN-01 correction made to integrated materials; official Stage B remains pending; no cycle or PASS asserted.",
   "current_phase": "author",
   "schema_version": 2,
   "task_id": "SD-M08-INTEGRATION",
@@ -95,5 +95,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-15T12:05:04Z",
-  "updated_at": "2026-11-15T16:24:55Z"
+  "updated_at": "2026-11-16T11:54:00Z",
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Author-side targeted correction for MS05-M08-SYN-01; official independent Stage B re-review pending (no reviewer verdict recorded).",
+      "updated_at": "2026-11-16T11:54:00Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Author-side targeted correction for MS05-M08-SYN-01; official independent Stage B re-review pending (no reviewer verdict recorded).",
+      "updated_at": "2026-11-16T11:54:00Z"
+    }
+  }
 }

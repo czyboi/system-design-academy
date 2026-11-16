@@ -9,15 +9,21 @@ status: draft
 
 ```text
 Browser --HTTPS, verified proxy--> Reverse proxy
-  --authenticated encrypted hop, validated user-delegated token--> Statement API
-  --TLS, verify intended DB server, separate limited DB principal--> SQL database
-                           |
-                           +-- durable job enqueue --> Worker -- authenticated DB access --> DB
-                           |
-                           +-- coordinator lease/epoch --> storage gateway -- tenant-fenced write --> projection
+  --authenticated encrypted hop, validated delegated token--> Statement API
+Statement API --TLS, verified DB server, limited API principal---------> SQL database
+Statement API --authenticated producer, protected enqueue-------------> Durable job queue
+Durable job queue --authenticated consumer, protected delivery--------> Report worker
+Report worker --TLS, verified DB server, separate limited principal---> SQL database
+Report worker --tenant-scoped result, protected access---------------> Result store
+Statement API --recheck requester/tenant/action--> Result store --> Browser (via API/proxy)
+Statement API --coordinator lease/epoch--> Storage gateway --fenced write--> Projection
 ```
 
 The proxy strips untrusted identity headers, authenticates its forwarding workload and forwards the user-delegated token over an authenticated channel. The API validates signature, issuer, audience, expiry and configured permissions; only then can it derive Bo's issuer-scoped subject. A valid `statements:read` claim is insufficient for statement `s-9`: Bo's trusted tenant membership is C, the row is D, so the API denies without leaking record content. If membership cannot be established, do not fall back to a cached “allow all” or to the database's broad service privileges. Bind statement ID and tenant C into a tenant-constrained parameterized query, or enforce the equivalent predicate in a trusted database policy; the API still needs an object authorization decision. The API verifies the database endpoint, negotiates the required encrypted transport and authenticates using its own restricted principal; if required verification fails, it issues no query. [M09-L01](../lessons/M09-L01.md).
+
+For the **asynchronous path**, the API first verifies the delegated user's permission to request a tenant-C report; the broad `statements:read` scope alone does not grant another tenant's records. Only its authenticated producer principal can enqueue a job. It derives the trusted tenant from policy, not an arbitrary request field, and persists a schema-validated, integrity-protected envelope `{job_id, issuer_scoped_subject_ref, tenant_id=C, action=generate_report, bounded_selection}`; the queue carries neither the raw bearer token nor statement contents. Broker access controls allow only the producer to enqueue and the intended worker principal to consume over authenticated, encrypted channels. On consumption, reject forged/altered, expired or malformed jobs; re-resolve the requester and current tenant/action/record permissions **at execution** and fail closed on a missing or failed membership lookup. If a membership is revoked during queue wait, the worker must not reuse the enqueue authorization as permanent authority. Read with a tenant- and selection-constrained predicate (or an equivalent trusted row-level policy); verify actual record ownership rather than trusting the tenant label in the job. Recheck the retrieving caller's present authorization before releasing the result, even if the job ID is known. [M09-L01](../lessons/M09-L01.md).
+
+The worker opens its **own TLS connection** with verification of the intended database server, authenticating with a **worker-specific, minimally privileged DB account** restricted to its report read paths; it does not inherit the API's credential or use a cross-tenant administrator identity. Failure of TLS identity, authorization or the DB policy check stops the job and yields a non-disclosing failure. Restrict result-store access and tenant scope; keep JWTs, sensitive report rows and credentials out of job payloads, error messages and logs. Worker and API workload identities are separate from Bo's delegated user identity. These are application-level enforcement choices, supported by [OWASP Authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html#validate-the-permissions-on-every-request) and [OWASP Database Security](https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html#implementing-transport-layer-protection); neither is a guarantee provided by a queue.
 
 A notes mutation authenticated by cookies needs a server-validated anti-CSRF mechanism appropriate to the session, input validation to business bounds, and *output-context encoding* when rendering user-supplied notes. Parameter binding prevents SQL syntax injection, not XSS or missing authorization. Encryption at rest does not replace per-record access checks, and a TLS connection terminating at the proxy does not encrypt the next hop unless explicitly configured.
 
@@ -41,7 +47,7 @@ Run a controlled mixed workload in a safe environment while instrumenting origin
 
 | Criterion | Points | Evidence for full credit |
 | --- | ---: | --- |
-| Authorization and encrypted boundaries | 3 | Three protected network hops; correct user/workload/database identities, tenant-denied record, closed membership failure and bounded notes defenses |
+| Authorization and encrypted boundaries | 3 | Protected synchronous and queue/worker/DB hops; distinct API/producer/consumer/worker DB identities; object/tenant checks at enqueue, execution and result retrieval; tamper-resistant job envelope, fail-closed lookup/revocation, tenant-scoped data access and safe logs/results; tenant-denied record and bounded notes defenses |
 | Diagnostic reconstruction | 3 | Correct 1,200 ms exclusive total, 760 ms queue interval, two falsifiable hypotheses and 930/1,000 original-operation SLI |
 | Coordination invariant | 3 | Quorum placement, confirmed durable fence before W2, stale W1 rejection, unacknowledged-fence stop and pre-install caveat |
 | Correlated risk and recovery evidence | 3 | At least two shared dependencies, backup versus election distinction and an executable-in-principle drill with outcome evidence |
