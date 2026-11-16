@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L01",
+  "revision": 1,
+  "goal": "Author approved SDA-v1 M11-L01 file synchronisation and collaboration lesson with companion and claim-level evidence.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L01",
+      "Offline chunk/version sync and conflict plus distinct OT/CRDT operation-model comparison."
+    ],
+    "out_of_scope": [
+      "Other M11 stories, changing approved project workflow/curriculum, official QA verdict, merge/publication."
+    ]
+  },
+  "constraints": [
+    "Issue #111, branch codex/drafts-sda-ms07. M10-L03 prerequisite in unmerged MS06 Draft PR #110.",
+    "Only same-session self-review; independent gates remain needs_review.",
+    "No false claims of implementing OT/CRDT or executing code/validators."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Primary source evidence with scope and unresolved claims.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Complete original lesson and companion outcome-mapped assessment.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-mechanism",
+      "text": "Every approved item taught with actual failure trace and trade-off.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-quiz",
+      "text": "Six checks, EX-1 solution/rubric and outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
