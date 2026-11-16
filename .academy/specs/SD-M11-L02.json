@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L02",
+  "revision": 1,
+  "goal": "Write SDA-v1 M11-L02 Messaging and media sharing lesson, assessment and claim-level evidence.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L02",
+      "Chat connection/offline replay/receipt states, photo upload/moderation/CDN lifecycle and group/feed visibility."
+    ],
+    "out_of_scope": [
+      "Other stories, workflow/curriculum changes, official QA, production deployment, publish/merge."
+    ]
+  },
+  "constraints": [
+    "Issue #112, one ChatGPT writer on codex/drafts-sda-ms07.",
+    "M10-L02 prerequisite in unmerged MS06 PR #110.",
+    "Self-review only; independent and script checks pending."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Source claim matrix with exact version and limits.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Complete lesson and separate graded companion.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-teach",
+      "text": "All three approved teaching items explained with causal trace and trade-offs.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-checks",
+      "text": "Q1–Q6, EX-1, full worked solution/rubric and taught outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
