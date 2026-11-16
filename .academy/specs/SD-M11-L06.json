@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L06",
+  "revision": 1,
+  "goal": "Author approved M11-L06 Distributed API rate limiter original publishable-intended lesson and assessment.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L06",
+      "Fixed/sliding windows, token/leaky buckets, distributed quota scope, atomicity, failure and fairness."
+    ],
+    "out_of_scope": [
+      "Other stories, approved project workflow/curriculum changes, official QA or publication."
+    ]
+  },
+  "constraints": [
+    "Issue #116 on branch codex/drafts-sda-ms07; approved prerequisites M07-L02 main and M11-L05 on branch.",
+    "One ChatGPT writer; self-review not independent; all scripts unrun."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Claim-level primary evidence with scope and unresolved issues.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Complete lesson and separate Q1–Q6/EX-1 assessment at backlog canonical paths.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-mechanism",
+      "text": "Four-algorithm burst trace, global quota failure and user-visible SLO causally explained.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Six answered checks, EX-1 reference solution/rubric and LO maps.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
