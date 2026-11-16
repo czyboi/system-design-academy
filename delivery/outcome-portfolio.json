@@ -1,0 +1,2621 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "status": "draft",
+  "scope": "whole-course",
+  "outcomes": [
+    {
+      "outcome_id": "M00-L01-LO1",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L01.md",
+        "sections": [
+          "Core concepts and mechanisms"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M00-L01-LO2",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L01.md",
+        "sections": [
+          "Choose a study route",
+          "Worked example and historical architecture"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "Q7",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M00-L02-LO1",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L02.md",
+        "sections": [
+          "Core concepts and mechanisms"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M00-L02-LO2",
+      "teaching": {
+        "path": "modules/m00/lessons/M00-L02.md",
+        "sections": [
+          "Worked example",
+          "Estimate, measure, and revise",
+          "Time-bounded design review"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/assessments/M00-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M00-S1",
+      "uses_lesson_outcomes": [
+        "M00-L02-LO1",
+        "M00-L02-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m00/integrated/brief.md",
+        "sections": [
+          "M00-EX1",
+          "Host-loss variant"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m00/integrated/brief.md",
+        "items": [
+          "M00-EX1"
+        ],
+        "solution_rubric": "modules/m00/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M01-L01-LO1",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L01.md",
+        "sections": [
+          "Estimate demand from an activity feed",
+          "Budget storage, bandwidth and the working set",
+          "Budget the latency of a request path"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L01-LO2",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L01.md",
+        "sections": [
+          "Budget storage, bandwidth and the working set",
+          "Budget the latency of a request path",
+          "Choose assumptions and refine the budget"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L02-LO1",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L02.md",
+        "sections": [
+          "Measure the request and the workload",
+          "Trace the burst and the queue",
+          "Estimate concurrency in steady state"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L02-LO2",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L02.md",
+        "sections": [
+          "Choose the change that removes the bottleneck",
+          "Benchmark and profile the request path"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L03-LO1",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L03.md",
+        "sections": [
+          "Read and write histories",
+          "Preserve a session and reconcile edits"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L03-LO2",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L03.md",
+        "sections": [
+          "Choose operations during a partition",
+          "Preserve a session and reconcile edits"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L04-LO1",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L04.md",
+        "sections": [
+          "Trace a two-region recovery",
+          "Convert an availability target into a budget",
+          "Model serial, parallel and shared dependencies"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-L04-LO2",
+      "teaching": {
+        "path": "modules/m01/lessons/M01-L04.md",
+        "sections": [
+          "Choose traffic roles and standby readiness",
+          "Trace a two-region recovery",
+          "Replication and recovery points",
+          "Model serial, parallel and shared dependencies"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/assessments/M01-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M01-S1",
+      "uses_lesson_outcomes": [
+        "M01-L01-LO1",
+        "M01-L03-LO2",
+        "M01-L04-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m01/integrated/brief.md",
+        "sections": [
+          "Workload and service targets",
+          "Compare two policies"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m01/integrated/brief.md",
+        "items": [
+          "M01-EX1"
+        ],
+        "solution_rubric": "modules/m01/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M02-L01-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L01.md",
+        "sections": [
+          "Resolution and record roles",
+          "Routing choices and cached answers",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L01.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L01-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L01.md",
+        "sections": [
+          "Routing choices and cached answers",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L01.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L02-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L02.md",
+        "sections": [
+          "TCP connections, delivery and budgets",
+          "UDP datagrams and application responsibility",
+          "HTTP requests and method semantics",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L02.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L02-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L02.md",
+        "sections": [
+          "TCP connections, delivery and budgets",
+          "UDP datagrams and application responsibility",
+          "HTTP requests and method semantics",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L02.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L03-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L03.md",
+        "sections": [
+          "Routing and backend selection",
+          "Proxy work and horizontal scaling",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L03.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L03-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L03.md",
+        "sections": [
+          "Routing and backend selection",
+          "Proxy work and horizontal scaling",
+          "Worked example",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L03.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L04-LO1",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L04.md",
+        "sections": [
+          "Population and placement",
+          "Cache keys, freshness and privacy",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L04.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-L04-LO2",
+      "teaching": {
+        "path": "modules/m02/lessons/M02-L04.md",
+        "sections": [
+          "Population and placement",
+          "Cache keys, freshness and privacy",
+          "Worked example",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/assessments/M02-L04.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M02-S1",
+      "uses_lesson_outcomes": [
+        "M02-L01-LO1",
+        "M02-L03-LO2",
+        "M02-L04-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m02/integrated/solution-rubric.md",
+        "sections": [
+          "DNS, connections and routing",
+          "Cache behavior and origin capacity"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m02/integrated/brief.md",
+        "items": [
+          "M02-EX1"
+        ],
+        "solution_rubric": "modules/m02/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M03-L01-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L01.md",
+        "sections": [
+          "Logical layers and deployment tiers",
+          "Costs of a remote boundary",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L01-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L01.md",
+        "sections": [
+          "Logical layers and deployment tiers",
+          "Costs of a remote boundary",
+          "Worked example",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L02-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L02.md",
+        "sections": [
+          "Resource interfaces and REST constraints",
+          "RPC path and interface choices",
+          "Compatibility and safe retries",
+          "Worked example"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L02.md",
+        "items": [
+          "EX-1",
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q5"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L02-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L02.md",
+        "sections": [
+          "Resource interfaces and REST constraints",
+          "RPC path and interface choices",
+          "Compatibility and safe retries",
+          "Worked example",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L02.md",
+        "items": [
+          "EX-1",
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L03-LO1",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L03.md",
+        "sections": [
+          "Registration, health and membership",
+          "Ownership and failure controls",
+          "Worked example: stale endpoint and deadline failure trace"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-L03-LO2",
+      "teaching": {
+        "path": "modules/m03/lessons/M03-L03.md",
+        "sections": [
+          "Registration, health and membership",
+          "Ownership and failure controls",
+          "Worked example: stale endpoint and deadline failure trace",
+          "Trade-offs and failure modes",
+          "Decision framework"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/assessments/M03-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M03-S1",
+      "uses_lesson_outcomes": [
+        "M03-L01-LO2",
+        "M03-L02-LO1",
+        "M03-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m03/integrated/decision-summary.md",
+        "sections": [
+          "Connect the boundary, contract and failure policy"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m03/integrated/brief.md",
+        "items": [
+          "M03-EX1"
+        ],
+        "solution_rubric": "modules/m03/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M04-L01-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L01.md",
+        "sections": [
+          "Give each invariant an enforcement point",
+          "Walk a checkout race",
+          "Shape reads around ownership"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L01-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L01.md",
+        "sections": [
+          "Shape reads around ownership",
+          "Put large attachments on their own path"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L02-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L02.md",
+        "sections": [
+          "Follow the log to a reader",
+          "Promote one writer and account for lost history",
+          "Reconcile concurrent writers"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L02-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L02.md",
+        "sections": [
+          "Follow the log to a reader",
+          "Promote one writer and account for lost history",
+          "Reconcile concurrent writers",
+          "Choose by workload and failure contract"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L03-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L03.md",
+        "sections": [
+          "Split by domain or by row",
+          "Choose the unit of routing",
+          "Trace movement on a ring",
+          "Move data with one writable owner"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L03-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L03.md",
+        "sections": [
+          "Split by domain or by row",
+          "Choose the unit of routing",
+          "Trace movement on a ring",
+          "Move data with one writable owner"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L04-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L04.md",
+        "sections": [
+          "Keep the ledger authoritative",
+          "Trace the failed second write",
+          "Measure freshness and rebuild"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L04-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L04.md",
+        "sections": [
+          "Keep the ledger authoritative",
+          "Trace the failed second write",
+          "Measure freshness and rebuild",
+          "Decide whether to duplicate"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L05-LO1",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L05.md",
+        "sections": [
+          "Find the expensive work",
+          "Walk two plans under one workload",
+          "Read a concrete SQL plan",
+          "Tighten storage and account for index cost"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L05.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-L05-LO2",
+      "teaching": {
+        "path": "modules/m04/lessons/M04-L05.md",
+        "sections": [
+          "Walk two plans under one workload",
+          "Tighten storage and account for index cost",
+          "Separate pruning, scaling and caching",
+          "Decide by the measured bottleneck"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/assessments/M04-L05.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M04-S1",
+      "uses_lesson_outcomes": [
+        "M04-L02-LO2",
+        "M04-L03-LO2",
+        "M04-L05-LO1"
+      ],
+      "teaching": {
+        "path": "modules/m04/integrated/decision-summary.md",
+        "sections": [
+          "Work a bottleneck-to-ownership decision",
+          "Match the scaling change to the evidence"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m04/integrated/brief.md",
+        "items": [
+          "M04-EX1"
+        ],
+        "solution_rubric": "modules/m04/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M05-L01-LO1",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L01.md",
+        "sections": [
+          "Start with the access path",
+          "Trace an indexed product document",
+          "Compare concrete product contracts"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L01-LO2",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L01.md",
+        "sections": [
+          "Start with the access path",
+          "Trace an indexed product document",
+          "Compare concrete product contracts",
+          "Choose by lookup, invariants and change rate"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L02-LO1",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L02.md",
+        "sections": [
+          "Design wide rows for their range queries",
+          "Separate retained versions from conflict timestamps",
+          "Walk two hops from an indexed seed"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L02-LO2",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L02.md",
+        "sections": [
+          "Design wide rows for their range queries",
+          "Separate retained versions from conflict timestamps",
+          "Walk two hops from an indexed seed",
+          "Choose using locality and query promises"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L03-LO1",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L03.md",
+        "sections": [
+          "Specify what a response promises",
+          "Follow a write through replicas and repair",
+          "Reserve stock under a concrete contract"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-L03-LO2",
+      "teaching": {
+        "path": "modules/m05/lessons/M05-L03.md",
+        "sections": [
+          "Choose an access path by workload",
+          "Specify what a response promises",
+          "Reserve stock under a concrete contract"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/assessments/M05-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M05-S1",
+      "uses_lesson_outcomes": [
+        "M05-L01-LO2",
+        "M05-L02-LO2",
+        "M05-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m05/integrated/decision-summary.md",
+        "sections": [
+          "Work a storage-to-guarantee decision",
+          "Choose by access path and invariant"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m05/integrated/brief.md",
+        "items": [
+          "M05-EX1"
+        ],
+        "solution_rubric": "modules/m05/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M06-L01-LO1",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L01.md",
+        "sections": [
+          "Put reuse at the right boundary",
+          "Size the catalogue and trace a miss"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L01-LO2",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L01.md",
+        "sections": [
+          "Put reuse at the right boundary",
+          "Pick the unit of reuse",
+          "Combine granularity and update policy"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L02-LO1",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L02.md",
+        "sections": [
+          "Order the cache-aside update",
+          "Fence a late fill",
+          "Trace write-through, write-behind and refresh-ahead"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L02-LO2",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L02.md",
+        "sections": [
+          "Trace write-through, write-behind and refresh-ahead",
+          "Choose by the promises clients need"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L03-LO1",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L03.md",
+        "sections": [
+          "Maintain a map and a recency list",
+          "Trace a query from lookup to invalidation",
+          "Route to the cache and lose an owner"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-L03-LO2",
+      "teaching": {
+        "path": "modules/m06/lessons/M06-L03.md",
+        "sections": [
+          "Maintain a map and a recency list",
+          "Trace a query from lookup to invalidation",
+          "Route to the cache and lose an owner"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/assessments/M06-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M06-S1",
+      "uses_lesson_outcomes": [
+        "M06-L01-LO2",
+        "M06-L02-LO1",
+        "M06-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m06/integrated/decision-summary.md",
+        "sections": [
+          "Work through a cache failure",
+          "Choose location, granularity and update behavior together"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m06/integrated/brief.md",
+        "items": [
+          "M06-EX1"
+        ],
+        "solution_rubric": "modules/m06/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M07-L01-LO1",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L01.md",
+        "sections": [
+          "Separate acceptance, delivery and completion",
+          "Trace the crash around acknowledgement"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L01-LO2",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L01.md",
+        "sections": [
+          "Separate acceptance, delivery and completion",
+          "Trace the crash around acknowledgement",
+          "Compare broker and executor contracts",
+          "Decide which work waits"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L02-LO1",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L02.md",
+        "sections": [
+          "Set the boundary for queue math",
+          "Trace one burst and its recovery"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L02-LO2",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L02.md",
+        "sections": [
+          "Trace one burst and its recovery",
+          "Put back pressure where it can work",
+          "Keep retries inside the budget"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L03-LO1",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L03.md",
+        "sections": [
+          "Choose the delivery and ordering unit",
+          "Replay into a new index"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-L03-LO2",
+      "teaching": {
+        "path": "modules/m07/lessons/M07-L03.md",
+        "sections": [
+          "Choose the delivery and ordering unit",
+          "Replay into a new index",
+          "Repair an incomplete history"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/assessments/M07-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M07-S1",
+      "uses_lesson_outcomes": [
+        "M07-L01-LO1",
+        "M07-L02-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m07/integrated/decision-summary.md",
+        "sections": [
+          "Work a deferred completion decision",
+          "Compare completion, ordering and replay needs"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m07/integrated/brief.md",
+        "items": [
+          "M07-EX1"
+        ],
+        "solution_rubric": "modules/m07/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M08-L01-LO1",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L01.md",
+        "sections": [
+          "Trace a category from input to ranked output",
+          "Make retry outputs safe",
+          "Store inputs as replicated blocks"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L01-LO2",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L01.md",
+        "sections": [
+          "Place work near data and address skew",
+          "Store inputs as replicated blocks",
+          "Choose a processing model"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L02-LO1",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L02.md",
+        "sections": [
+          "Update an hourly result",
+          "Rank exact counts or bound the memory"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L02-LO2",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L02.md",
+        "sections": [
+          "Update an hourly result",
+          "Rank exact counts or bound the memory",
+          "Measure popularity and change separately",
+          "Match recovery to the processing system"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L03-LO1",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L03.md",
+        "sections": [
+          "Find candidates from terms",
+          "Trace a search across three shards",
+          "Keep the index current and repairable"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-L03-LO2",
+      "teaching": {
+        "path": "modules/m08/lessons/M08-L03.md",
+        "sections": [
+          "Trace a search across three shards",
+          "Choose the work and failure boundary",
+          "Keep the index current and repairable"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/assessments/M08-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M08-S1",
+      "uses_lesson_outcomes": [
+        "M08-L01-LO1",
+        "M08-L02-LO2",
+        "M08-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m08/integrated/decision-summary.md",
+        "sections": [
+          "Trace the ranking and search decisions",
+          "Compare processing and retrieval options"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m08/integrated/brief.md",
+        "items": [
+          "M08-EX1"
+        ],
+        "solution_rubric": "modules/m08/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M09-L01-LO1",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L01.md",
+        "sections": [
+          "Make the access decision at the record boundary",
+          "Protect each hop and stored copy",
+          "Keep input as data and output in its context"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L01-LO2",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L01.md",
+        "sections": [
+          "Select controls for the threat"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L02-LO1",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L02.md",
+        "sections": [
+          "Measure the original request",
+          "Follow a request through waiting and work"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L02-LO2",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L02.md",
+        "sections": [
+          "Test a bottleneck hypothesis",
+          "Check recovery against objectives"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L03-LO1",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L03.md",
+        "sections": [
+          "Start with the invariant and the smallest owner model",
+          "Follow the paused owner: a lease without fencing fails",
+          "Chubby and ZooKeeper solve coordination, not arbitrary storage fencing"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L03-LO2",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L03.md",
+        "sections": [
+          "Place the quorum according to failures and latency",
+          "Why Spanner is a different choice",
+          "Define success on original operations"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-S1",
+      "uses_lesson_outcomes": [
+        "M09-L01-LO2",
+        "M09-L02-LO1",
+        "M09-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m09/integrated/decision-summary.md",
+        "sections": [
+          "Follow the evidence across the service",
+          "Decision ledger"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/integrated/brief.md",
+        "items": [
+          "M09-EX1"
+        ],
+        "solution_rubric": "modules/m09/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M10-L01-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L01.md",
+        "sections": [
+          "Start with a small workload and a precise contract",
+          "Make the first version correct before adding an object store"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L01-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L01.md",
+        "sections": [
+          "Assign an identifier without confusing representation and safety",
+          "Trace expiration through caches and cleanup"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L02-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L02.md",
+        "sections": [
+          "Begin with durable author posts and user-timeline reads",
+          "Walk two authors through two home timelines"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L02-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L02.md",
+        "sections": [
+          "Compose home feeds without putting every author on the same path",
+          "Make ordering, replies and pagination explicit"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L03-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L03.md",
+        "sections": [
+          "Make the frontier recoverable and polite",
+          "Walk a duplicate and a changed page to the index"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L03-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L03.md",
+        "sections": [
+          "Choose recrawl budget and query freshness together",
+          "Test the composed system, not just isolated stages"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L04-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L04.md",
+        "sections": [
+          "Preserve transaction identity across extraction retries",
+          "Compute one month and repair it after reclassification"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L04-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L04.md",
+        "sections": [
+          "Pick categories without disguising uncertainty",
+          "Keep notifications and storage subordinate to correct totals"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L05-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L05.md",
+        "sections": [
+          "Start with BFS and reconstruct the path",
+          "Trace a shortest path across three person servers"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L05.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L05-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L05.md",
+        "sections": [
+          "Treat visibility, caching and precomputation as proof obligations",
+          "Choose a contract before calling the service reliable"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L05.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L06-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L06.md",
+        "sections": [
+          "Start with one correct cache-aside node",
+          "The stale-fill race that TTL alone does not fix"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L06.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L06-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L06.md",
+        "sections": [
+          "Decide what changed and whether to invalidate",
+          "Trace one node loss, retry and origin overload"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L06.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L07-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L07.md",
+        "sections": [
+          "Trace two MapReduce jobs and sort safely",
+          "Publish a whole result revision, not visible partial writes"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L07.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L07-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L07.md",
+        "sections": [
+          "Resolve hot categories, boundaries and replays",
+          "Make the result measurable and falsifiable"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L07.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L08-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L08.md",
+        "sections": [
+          "Stage 2 — Separate immutable objects, SQL and network boundaries",
+          "Stage 3 — Survive one app host/AZ loss without pretending the database is solved"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L08.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L08-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L08.md",
+        "sections": [
+          "Stage 4 — Add cache, centralized state and targeted database reads",
+          "Stage 5 — Automate within bounds and isolate expensive work"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L08.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-S1",
+      "uses_lesson_outcomes": [
+        "M10-L02-LO2",
+        "M10-L03-LO1",
+        "M10-L06-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m10/integrated/decision-summary.md",
+        "sections": [
+          "Compare components only after naming the invariant",
+          "Case decisions, evidence and cost"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/integrated/brief.md",
+        "items": [
+          "M10-EX1"
+        ],
+        "solution_rubric": "modules/m10/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M11-L01-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L01.md",
+        "sections": [
+          "Start with immutable file versions and conditional metadata"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L01-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L01.md",
+        "sections": [
+          "Collaborative text: represent intent as operations"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L02-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L02.md",
+        "sections": [
+          "Commit one message and retain its original identity"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L02-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L02.md",
+        "sections": [
+          "Photo upload is a versioned publication process"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L03-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L03.md",
+        "sections": [
+          "Move from interaction events to candidate features"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L03-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L03.md",
+        "sections": [
+          "Graph search: traverse eligible edges, then rank eligible people"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L04-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L04.md",
+        "sections": [
+          "Start with one origin and a cache contract"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L04-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L04.md",
+        "sections": [
+          "Add regions with explicit consistency rules"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L05-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L05.md",
+        "sections": [
+          "Random identifiers and bounded collision risk"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L05.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L05-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L05.md",
+        "sections": [
+          "Coordinated counters and range leasing"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L05.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L06-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L06.md",
+        "sections": [
+          "Trace four algorithms on one original burst"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L06.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L06-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L06.md",
+        "sections": [
+          "Local counters cannot enforce a global per-tenant invariant"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L06.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L07-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L07.md",
+        "sections": [
+          "Duplicate and reordered action trace"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L07.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L07-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L07.md",
+        "sections": [
+          "Serialization boundary, log and recovery"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L07.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L08-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L08.md",
+        "sections": [
+          "Mark and sweep step by step"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L08.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L08-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L08.md",
+        "sections": [
+          "Choosing a collector under latency and memory pressure"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L08.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L09-LO1",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L09.md",
+        "sections": [
+          "Bound memory: expiry and eviction are not the same"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L09.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-L09-LO2",
+      "teaching": {
+        "path": "modules/m11/lessons/M11-L09.md",
+        "sections": [
+          "Crash/replay trace: what survives acknowledged writes?"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/assessments/M11-L09.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M11-S1",
+      "uses_lesson_outcomes": [
+        "M11-L05-LO2",
+        "M11-L06-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m11/integrated/decision-summary.md",
+        "sections": [
+          "Work the cross-domain failure comparison",
+          "Domain decision table"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m11/integrated/brief.md",
+        "items": [
+          "M11-EX1"
+        ],
+        "solution_rubric": "modules/m11/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M12-L01-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L01.md",
+        "sections": [
+          "Work the middle deletion and update trace"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L01-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L01.md",
+        "sections": [
+          "Add capacity: when and how to resize"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L02-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L02.md",
+        "sections": [
+          "Trace a collision-free sequence of object mutations"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L02-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L02.md",
+        "sections": [
+          "Implement link primitives as the only mutators"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L03-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L03.md",
+        "sections": [
+          "Trace a successful bus allocation"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L03-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L03.md",
+        "sections": [
+          "Extend the fit rule without rewriting ownership"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L04-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L04.md",
+        "sections": [
+          "Trace queueing, escalation and free capacity"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L04-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L04.md",
+        "sections": [
+          "Model policy separately from shared lifecycle"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L05-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L05.md",
+        "sections": [
+          "Trace the final deal and an exhausted deck"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L05.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L05-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L05.md",
+        "sections": [
+          "Hand totals: an ace is an option, not a constant"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L05.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L06-LO1",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L06.md",
+        "sections": [
+          "Trace a rejected friend request"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L06.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-L06-LO2",
+      "teaching": {
+        "path": "modules/m12/lessons/M12-L06.md",
+        "sections": [
+          "Trace group membership and message acceptance"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/assessments/M12-L06.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M12-S1",
+      "uses_lesson_outcomes": [
+        "M12-L03-LO1",
+        "M12-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m12/integrated/decision-summary.md",
+        "sections": [
+          "One change reveals the ownership boundary"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m12/integrated/brief.md",
+        "items": [
+          "M12-EX1"
+        ],
+        "solution_rubric": "modules/m12/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "M13-L01-LO1",
+      "teaching": {
+        "path": "modules/m13/lessons/M13-L01.md",
+        "sections": [
+          "Classify by contract, not recognizable product name",
+          "Storage papers teach different failure boundaries"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m13/assessments/M13-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M13-L01-LO2",
+      "teaching": {
+        "path": "modules/m13/lessons/M13-L01.md",
+        "sections": [
+          "Work the small nightly workload backward",
+          "Use an evidence ledger before transferring a design"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m13/assessments/M13-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M13-S1",
+      "uses_lesson_outcomes": [
+        "M13-L01-LO1",
+        "M13-L01-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m13/integrated/decision-summary.md",
+        "sections": [
+          "Adapt the invariant, then the infrastructure"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m13/integrated/brief.md",
+        "items": [
+          "M13-EX1"
+        ],
+        "solution_rubric": "modules/m13/integrated/solution-rubric.md"
+      }
+    },
+    {
+      "outcome_id": "CP-LO1",
+      "teaching": {
+        "path": "capstone/CP-01/brief.md",
+        "sections": [
+          "The original workload — all assumptions are synthetic",
+          "Stage 2 — Estimate capacity and budget latency"
+        ]
+      },
+      "assessment": {
+        "path": "capstone/CP-01/reference-solutions-rubric.md",
+        "items": [
+          "Requirements and estimates"
+        ]
+      },
+      "evidence_path": "capstone/CP-01/evidence.md"
+    },
+    {
+      "outcome_id": "CP-LO2",
+      "teaching": {
+        "path": "capstone/CP-01/brief.md",
+        "sections": [
+          "Stage 3 — First viable architecture",
+          "Stage 4 — Core state-machine and interface traces"
+        ]
+      },
+      "assessment": {
+        "path": "capstone/CP-01/reference-solutions-rubric.md",
+        "items": [
+          "Mechanisms and end-to-end traces"
+        ]
+      },
+      "evidence_path": "capstone/CP-01/evidence.md"
+    },
+    {
+      "outcome_id": "CP-LO3",
+      "teaching": {
+        "path": "capstone/CP-01/brief.md",
+        "sections": [
+          "Stage 1 — Bound requirements and ownership",
+          "Stage 5 — Inject failures and revise"
+        ]
+      },
+      "assessment": {
+        "path": "capstone/CP-01/reference-solutions-rubric.md",
+        "items": [
+          "Invariants and recovery"
+        ]
+      },
+      "evidence_path": "capstone/CP-01/evidence.md"
+    },
+    {
+      "outcome_id": "CP-LO4",
+      "teaching": {
+        "path": "capstone/CP-01/brief.md",
+        "sections": [
+          "Stage 6 — Compare alternatives and defend"
+        ]
+      },
+      "assessment": {
+        "path": "capstone/CP-01/reference-solutions-rubric.md",
+        "items": [
+          "Alternatives and costs"
+        ]
+      },
+      "evidence_path": "capstone/CP-01/evidence.md"
+    },
+    {
+      "outcome_id": "CP-LO5",
+      "teaching": {
+        "path": "capstone/CP-01/brief.md",
+        "sections": [
+          "Stage 4 — Core state-machine and interface traces",
+          "Stage 5 — Inject failures and revise"
+        ]
+      },
+      "assessment": {
+        "path": "capstone/CP-01/reference-solutions-rubric.md",
+        "items": [
+          "Security and operations"
+        ]
+      },
+      "evidence_path": "capstone/CP-01/evidence.md"
+    },
+    {
+      "outcome_id": "CP-LO6",
+      "teaching": {
+        "path": "capstone/CP-01/brief.md",
+        "sections": [
+          "Transfer outcomes and assessment map",
+          "Stage 6 — Compare alternatives and defend"
+        ]
+      },
+      "assessment": {
+        "path": "capstone/CP-01/reference-solutions-rubric.md",
+        "items": [
+          "Clarity and evidence"
+        ]
+      },
+      "evidence_path": "capstone/CP-01/evidence.md"
+    }
+  ]
+}
