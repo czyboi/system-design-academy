@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M13",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M13-L01-LO1",
+      "teaching": {
+        "path": "modules/m13/lessons/M13-L01.md",
+        "sections": [
+          "Classify by contract, not recognizable product name",
+          "Storage papers teach different failure boundaries"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m13/assessments/M13-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M13-L01-LO2",
+      "teaching": {
+        "path": "modules/m13/lessons/M13-L01.md",
+        "sections": [
+          "Work the small nightly workload backward",
+          "Use an evidence ledger before transferring a design"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m13/assessments/M13-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M13-S1",
+      "uses_lesson_outcomes": [
+        "M13-L01-LO1",
+        "M13-L01-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m13/integrated/decision-summary.md",
+        "sections": [
+          "Adapt the invariant, then the infrastructure"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m13/integrated/brief.md",
+        "items": [
+          "M13-EX1"
+        ],
+        "solution_rubric": "modules/m13/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}
