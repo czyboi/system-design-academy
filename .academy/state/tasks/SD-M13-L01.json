@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M13-L01",
+  "module_id": "m13",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M13-L01.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-16T07:45:00Z",
+  "updated_at": "2026-11-16T07:45:00Z",
+  "execution_control": "active",
+  "notes": "Manual content task transitions, not taskctl. Independent QA and Python validators pending. Self-review only.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m13/evidence/M13-L01.md"
+      ],
+      "checkpoint": {
+        "note": "Manually recorded GitHub connector content; no Python script or independent QA performed.",
+        "next_action": "Scoped draft_handoff/content validation and independent review via Codex."
+      },
+      "attempts": 1,
+      "run_id": "SD-M13-L01-research-chatgpt-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T07:45:00Z",
+      "completed_at": "2026-11-16T07:45:00Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author complete canonical package",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        "GOVERNANCE.md",
+        "modules/m13/evidence/M13-L01.md",
+        ".agents/skills/lesson-authoring/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m13/lessons/M13-L01.md",
+        "modules/m13/assessments/M13-L01.md"
+      ],
+      "checkpoint": {
+        "note": "Manually recorded GitHub connector content; no Python script or independent QA performed.",
+        "next_action": "Scoped draft_handoff/content validation and independent review via Codex."
+      },
+      "attempts": 1,
+      "run_id": "SD-M13-L01-author-chatgpt-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-16T07:45:00Z",
+      "completed_at": "2026-11-16T07:45:00Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Independent Stage A pending",
+      "updated_at": "2026-11-16T07:45:00Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Independent Stage A pending",
+      "updated_at": "2026-11-16T07:45:00Z"
+    }
+  }
+}
