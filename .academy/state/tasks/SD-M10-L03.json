@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M10-L03",
+  "module_id": "m10",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M10-L03.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T18:13:34.153Z",
+  "updated_at": "2026-11-15T18:13:34.153Z",
+  "execution_control": "active",
+  "notes": "GitHub API authored artifacts; taskctl, draft_handoff and validators not executed; manual task history. Same-chat review only; official QA pending.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m10/evidence/M10-L03.md"
+      ],
+      "checkpoint": {
+        "note": "Opened RFC and Google primary HTML sources.",
+        "next_action": "Author"
+      },
+      "attempts": 1,
+      "run_id": "M10-L03-chatgpt-research-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T18:13:34.153Z",
+      "completed_at": "2026-11-15T18:13:34.153Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m10/evidence/M10-L03.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m10/lessons/M10-L03.md",
+        "modules/m10/assessments/M10-L03.md"
+      ],
+      "checkpoint": {
+        "note": "Canonical artifacts and self-review committed; script handoff not run.",
+        "next_action": "Execute taskctl/draft_handoff and independent QA in actual checkout."
+      },
+      "attempts": 1,
+      "run_id": "M10-L03-chatgpt-author-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T18:13:34.153Z",
+      "completed_at": "2026-11-15T18:13:34.153Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Self-review only",
+      "updated_at": "2026-11-15T18:13:34.153Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Self-review only",
+      "updated_at": "2026-11-15T18:13:34.153Z"
+    }
+  }
+}

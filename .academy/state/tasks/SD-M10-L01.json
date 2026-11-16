@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M10-L01",
+  "module_id": "m10",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M10-L01.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T18:03:13.326Z",
+  "updated_at": "2026-11-15T18:03:13.326Z",
+  "execution_control": "active",
+  "notes": "ChatGPT single-session writes via GitHub Git Data API. Issue #101. Research and author outputs exist; taskctl.py and draft_handoff.py not executed; task transitions recorded manually (not script). Upstream MS05 PR #100 unmerged. No QA pass.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m10/evidence/M10-L01.md"
+      ],
+      "checkpoint": {
+        "note": "Source links opened; verification needs independent audit.",
+        "next_action": "Author content"
+      },
+      "attempts": 1,
+      "run_id": "M10-L01-chatgpt-research-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T18:03:13.326Z",
+      "completed_at": "2026-11-15T18:03:13.326Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m10/evidence/M10-L01.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m10/lessons/M10-L01.md",
+        "modules/m10/assessments/M10-L01.md"
+      ],
+      "checkpoint": {
+        "note": "Canonical content + self-review committed by GitHub API. Scoped script handoff unavailable.",
+        "next_action": "Run actual draft_handoff.py and independent Sol/Terra per-lesson QA."
+      },
+      "attempts": 1,
+      "run_id": "M10-L01-chatgpt-author-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T18:03:13.326Z",
+      "completed_at": "2026-11-15T18:03:13.326Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Only ChatGPT same-session self-review; independent technical/provenance QA pending",
+      "updated_at": "2026-11-15T18:03:13.326Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Only ChatGPT same-session self-review; independent pedagogy/coverage QA pending",
+      "updated_at": "2026-11-15T18:03:13.326Z"
+    }
+  }
+}

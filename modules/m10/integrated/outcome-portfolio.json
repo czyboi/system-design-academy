@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M10",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M10-L01-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L01.md",
+        "sections": [
+          "Start with a small workload and a precise contract",
+          "Make the first version correct before adding an object store"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L01-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L01.md",
+        "sections": [
+          "Assign an identifier without confusing representation and safety",
+          "Trace expiration through caches and cleanup"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L02-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L02.md",
+        "sections": [
+          "Begin with durable author posts and user-timeline reads",
+          "Walk two authors through two home timelines"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L02-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L02.md",
+        "sections": [
+          "Compose home feeds without putting every author on the same path",
+          "Make ordering, replies and pagination explicit"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L03-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L03.md",
+        "sections": [
+          "Make the frontier recoverable and polite",
+          "Walk a duplicate and a changed page to the index"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L03-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L03.md",
+        "sections": [
+          "Choose recrawl budget and query freshness together",
+          "Test the composed system, not just isolated stages"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L04-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L04.md",
+        "sections": [
+          "Preserve transaction identity across extraction retries",
+          "Compute one month and repair it after reclassification"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L04.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L04-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L04.md",
+        "sections": [
+          "Pick categories without disguising uncertainty",
+          "Keep notifications and storage subordinate to correct totals"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L04.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L05-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L05.md",
+        "sections": [
+          "Start with BFS and reconstruct the path",
+          "Trace a shortest path across three person servers"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L05.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L05-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L05.md",
+        "sections": [
+          "Treat visibility, caching and precomputation as proof obligations",
+          "Choose a contract before calling the service reliable"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L05.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L06-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L06.md",
+        "sections": [
+          "Start with one correct cache-aside node",
+          "The stale-fill race that TTL alone does not fix"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L06.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L06-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L06.md",
+        "sections": [
+          "Decide what changed and whether to invalidate",
+          "Trace one node loss, retry and origin overload"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L06.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L07-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L07.md",
+        "sections": [
+          "Trace two MapReduce jobs and sort safely",
+          "Publish a whole result revision, not visible partial writes"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L07.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L07-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L07.md",
+        "sections": [
+          "Resolve hot categories, boundaries and replays",
+          "Make the result measurable and falsifiable"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L07.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L08-LO1",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L08.md",
+        "sections": [
+          "Stage 2 — Separate immutable objects, SQL and network boundaries",
+          "Stage 3 — Survive one app host/AZ loss without pretending the database is solved"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L08.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-L08-LO2",
+      "teaching": {
+        "path": "modules/m10/lessons/M10-L08.md",
+        "sections": [
+          "Stage 4 — Add cache, centralized state and targeted database reads",
+          "Stage 5 — Automate within bounds and isolate expensive work"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/assessments/M10-L08.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M10-S1",
+      "uses_lesson_outcomes": [
+        "M10-L02-LO2",
+        "M10-L03-LO1",
+        "M10-L06-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m10/integrated/decision-summary.md",
+        "sections": [
+          "Compare components only after naming the invariant",
+          "Case decisions, evidence and cost"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m10/integrated/brief.md",
+        "items": [
+          "M10-EX1"
+        ],
+        "solution_rubric": "modules/m10/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}

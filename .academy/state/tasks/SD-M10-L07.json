@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M10-L07",
+  "module_id": "m10",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M10-L07.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T18:36:17.007Z",
+  "updated_at": "2026-11-15T18:36:17.007Z",
+  "execution_control": "active",
+  "notes": "Manual GitHub API steps; taskctl/draft_handoff/review_cycle/Python validators not run; independent QA pending.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m10/evidence/M10-L07.md"
+      ],
+      "checkpoint": {
+        "note": "Primary Google/Beam/Flink/Dataflow docs opened; independent audit pending.",
+        "next_action": "Author"
+      },
+      "attempts": 1,
+      "run_id": "M10-L07-chatgpt-research-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T18:36:17.007Z",
+      "completed_at": "2026-11-15T18:36:17.007Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m10/evidence/M10-L07.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m10/lessons/M10-L07.md",
+        "modules/m10/assessments/M10-L07.md"
+      ],
+      "checkpoint": {
+        "note": "Complete original package committed via GitHub API; script handoff unrun.",
+        "next_action": "Execute scoped scripts and independent review in checkout."
+      },
+      "attempts": 1,
+      "run_id": "M10-L07-chatgpt-author-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T18:36:17.007Z",
+      "completed_at": "2026-11-15T18:36:17.007Z",
+      "completed_by": "chatgpt-single-session"
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Same-chat only",
+      "updated_at": "2026-11-15T18:36:17.007Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Same-chat only",
+      "updated_at": "2026-11-15T18:36:17.007Z"
+    }
+  }
+}

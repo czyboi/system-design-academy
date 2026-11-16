@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-L08",
+  "revision": 1,
+  "goal": "Publishable-intended original SDA-v1 M10-L08 cloud scale progression lesson + companion assessment.",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-L08",
+      "All approved 8 teaching sequence mechanisms and five-stage original AWS application, evidence and QA checkpoint."
+    ],
+    "out_of_scope": [
+      "Approved curriculum/workflow/skills changes; official independent reviews; actual cloud deployment; merge/publication."
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #108, branch codex/drafts-sda-ms06; single ChatGPT writer.",
+    "Approved SDA-v1 curriculum, prereqs M09-L02 in unmerged MS05 Draft PR #100 and M10-L07 this branch.",
+    "No automatic QA passes or Python script success may be asserted; self-review is non-independent."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-research",
+      "text": "Evidence records exact official AWS pages and applicability scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-author",
+      "text": "Canonical original lesson/assessment with causal design, failure analysis and LO mapping.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-stage",
+      "text": "Teach all AWS stages with assumptions, request flow, capacity, security and measurable failure boundary.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Six explained checks and EX-1 with reference solution/rubric and taught outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-accuracy",
+      "text": "Explicitly distinguish RDS HA/read replicas and current vendor docs from historical Primer patterns.",
+      "applies_to": [
+        "research",
+        "author"
+      ]
+    }
+  ]
+}

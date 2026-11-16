@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-L01",
+  "revision": 1,
+  "goal": "Deliver SDA-M10-L01 publishable-intended draft content: paste storage, short URLs, expiry and analytics.",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-L01",
+      "Approved four-part lesson teaching sequence, original worked example, companion and claim-level evidence."
+    ],
+    "out_of_scope": [
+      "Other Stories or changing approved curriculum, workflow, skills; independent QA claims, merge and publication."
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #101 coordinates ownership; one ChatGPT writer on codex/drafts-sda-ms06.",
+    "Current source-of-truth SDA-v1 baseline and exact approved backlog paths. M09-L01 and M08 references are on open Draft PR #100, unmerged.",
+    "Self-review must not mark official Sol/Terra gates ready.",
+    "Reference source evidence precisely; no untested code claims."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Claim-level primary source evidence and boundaries.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Complete learner-facing teaching and companion assessment.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-outcomes",
+      "text": "Each teaching sequence item explains causal mechanism, actual trace, limits and trade-offs.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Six answered checks, EX-1 worked solution, rubric and LO teaching map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-topics",
+      "text": "Preserve assigned approved source topics and safe original content.",
+      "applies_to": [
+        "author",
+        "research"
+      ]
+    }
+  ]
+}
