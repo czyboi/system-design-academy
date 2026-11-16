@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-CP-01",
+  "revision": 1,
+  "goal": "Author the complete approved SDA-v1 multi-region marketplace capstone, reference solutions, rubric, and primary-source evidence; preserve independent QA/human approval as separate pending gates.",
+  "scope": {
+    "in_scope": [
+      "SDA-CP-01",
+      "capstone/CP-01/brief.md",
+      "capstone/CP-01/reference-solutions-rubric.md",
+      "capstone/CP-01/evidence.md",
+      "Same-ChatGPT self-review (non-gate)"
+    ],
+    "out_of_scope": [
+      "Approved curriculum or workflow changes",
+      "Claiming independent technical/pedagogy QA",
+      "Human acceptance, merge or publication"
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #132; codex/drafts-sda-ms09; approved baseline curriculum/revision-1/.",
+    "Capstone output files predate this task-state reconciliation; do not fabricate taskctl execution or model attribution.",
+    "Cross-module teaching inputs remain split across unmerged Draft PR #100, #110, #121 and #131.",
+    "No Python/CLI validator, execution test or independent QA was run in this connector session."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Primary-source and uncertainty ledger at capstone/CP-01/evidence.md",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Full original capstone scenario and reference/rubric mapping CP-LO1 through CP-LO6",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-transfer",
+      "text": "One coherent original workload, explicit invariants and failure drills, baseline and two variants, and six outcome-linked rubric categories.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-independent-qa",
+      "text": "Separate independent technical/provenance, pedagogical/coverage, source/asset QA and human approval remain pending and must never be inferred from self-review.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

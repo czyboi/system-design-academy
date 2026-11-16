@@ -1,0 +1,84 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-CP-01",
+  "module_id": "capstone",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-CP-01.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-16T08:52:49.336Z",
+  "updated_at": "2026-11-16T08:52:49.336Z",
+  "execution_control": "active",
+  "notes": "Reconciled pre-existing GitHub content into task memory. Authoring outputs existed at branch HEAD 9bf4c43; manual record is NOT taskctl/draft_handoff execution. Independent Sol/Terra/coverage/provenance/rights QA pending; no Python validation PASS; human approval pending.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect capstone primary-source evidence",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "GOVERNANCE.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "capstone/CP-01/evidence.md"
+      ],
+      "checkpoint": {
+        "note": "Existing primary-source evidence confirmed at GitHub commit 2e9182d (prior authoring). No new researcher/validator run asserted.",
+        "next_action": "Independent source applicability/provenance verification."
+      },
+      "attempts": 1
+    },
+    {
+      "step_id": "author",
+      "title": "Write original marketplace capstone and assessment/rubric",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "delivery/backlog.json",
+        "capstone/CP-01/evidence.md",
+        "GOVERNANCE.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md"
+      ],
+      "output_paths": [
+        "capstone/CP-01/brief.md",
+        "capstone/CP-01/reference-solutions-rubric.md"
+      ],
+      "checkpoint": {
+        "note": "Existing capstone and reference answer verified from branch; self-review is at capstone/CP-01/reviews/self-review.md, not official QA.",
+        "next_action": "Run declared scoped validators and independent technical/pedagogy review before human acceptance."
+      },
+      "attempts": 1
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "needs_review",
+      "reason": "Independent technical QA not performed; same-ChatGPT self-check only.",
+      "updated_at": "2026-11-16T08:52:49.336Z"
+    },
+    "pedagogy": {
+      "status": "needs_review",
+      "reason": "Independent pedagogy/coverage QA not performed.",
+      "updated_at": "2026-11-16T08:52:49.336Z"
+    },
+    "provenance": {
+      "status": "needs_review",
+      "reason": "Claim-level source and asset/license QA pending.",
+      "updated_at": "2026-11-16T08:52:49.336Z"
+    },
+    "coverage": {
+      "status": "needs_review",
+      "reason": "All six capstone transfer outcomes have documented mappings, not independently audited.",
+      "updated_at": "2026-11-16T08:52:49.336Z"
+    }
+  }
+}
