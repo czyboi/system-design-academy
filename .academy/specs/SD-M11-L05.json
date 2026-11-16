@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M11-L05",
+  "revision": 1,
+  "goal": "Author approved M11-L05 unique-ID service with failure traces, companion and verified sources.",
+  "scope": {
+    "in_scope": [
+      "SDA-M11-L05",
+      "Random IDs, namespace guard, range allocations, clock/worker/sequence, rollback/overflow/reuse."
+    ],
+    "out_of_scope": [
+      "Other stories, workflow changes, official independent QA, merge or publish."
+    ]
+  },
+  "constraints": [
+    "Issue #115 branch codex/drafts-sda-ms07, M10-L01/MS06 PR #110 and M09-L03/MS05 PR #100 are unmerged dependencies.",
+    "Only same ChatGPT self-review; no script claims."
+  ],
+  "definition_of_done": [
+    {
+      "id": "research",
+      "text": "Primary claims with source scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "author",
+      "text": "Full lesson+assessment.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-mech",
+      "text": "All approved items with two-worker failure trace, tradeoffs and falsifying tests.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-asses",
+      "text": "Six answered questions, EX-1 reference and rubric with mapped outcomes.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
