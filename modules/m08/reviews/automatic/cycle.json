@@ -1,0 +1,21 @@
+{
+  "module": "m08",
+  "revision_attempts": 2,
+  "review_history": [
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "ready-for-human-review",
+      "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "revise",
+      "pedagogy": "ready-for-human-review",
+      "result": "needs_revision"
+    }
+  ],
+  "status": "revising",
+  "updated_at": "2026-11-26T14:56:16+00:00",
+  "recovery_note": "Recovered local historical Stage B round-0 reports at 6ea945f and GitHub worklog author correction 2026-11-16 MS05-M08-SYN-01. One existing corrective round conservatively retained, not reset. Fresh independent verification pending; no accepted verdict inferred from local history."
+}

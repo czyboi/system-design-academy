@@ -73,16 +73,17 @@
         "note": "",
         "next_action": ""
       },
-      "attempts": 1,
-      "started_at": "2026-11-15T16:24:54Z",
-      "run_id": "SD-M08-INTEGRATION-author-20261115T162454Z",
-      "agent": "codex",
+      "attempts": 2,
+      "started_at": "2026-11-26T14:56:17Z",
+      "run_id": "SD-M08-INTEGRATION-author-20261126T145617Z",
+      "agent": "lesson_author",
       "runtime": {
         "model": null,
         "reasoning_effort": null
       },
-      "completed_at": "2026-11-15T16:24:55Z",
-      "completed_by": "codex"
+      "completed_at": "2026-11-26T14:58:20Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "M08-INT-T1/T2/T3/T4 and M08-P1/P2: targeted final synthesis corrections, preserve previously used round."
     }
   ],
   "notes": "2026-11-16: External IQA MS05-M08-SYN-01 correction made to integrated materials; official Stage B remains pending; no cycle or PASS asserted.",
@@ -95,17 +96,17 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-15T12:05:04Z",
-  "updated_at": "2026-11-16T11:54:00Z",
+  "updated_at": "2026-11-26T14:58:21Z",
   "review_statuses": {
     "technical": {
       "status": "needs_review",
-      "reason": "Author-side targeted correction for MS05-M08-SYN-01; official independent Stage B re-review pending (no reviewer verdict recorded).",
-      "updated_at": "2026-11-16T11:54:00Z"
+      "reason": "Reserved final round2 fixes M08-INT-T1..T4; independent targeted re-review required.",
+      "updated_at": "2026-11-26T14:58:21Z"
     },
     "pedagogy": {
       "status": "needs_review",
-      "reason": "Author-side targeted correction for MS05-M08-SYN-01; official independent Stage B re-review pending (no reviewer verdict recorded).",
-      "updated_at": "2026-11-16T11:54:00Z"
+      "reason": "Round2 adds recovery/source-cut proof and resolves M08-P1/P2 wording; independent targeted re-review required.",
+      "updated_at": "2026-11-26T14:58:21Z"
     }
   }
 }
