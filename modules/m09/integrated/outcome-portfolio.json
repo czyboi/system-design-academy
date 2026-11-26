@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "baseline": "SDA-v1",
+  "module_id": "M09",
+  "status": "draft",
+  "outcomes": [
+    {
+      "outcome_id": "M09-L01-LO1",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L01.md",
+        "sections": [
+          "Make the access decision at the record boundary",
+          "Protect each hop and stored copy",
+          "Keep input as data and output in its context"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L01.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L01-LO2",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L01.md",
+        "sections": [
+          "Select controls for the threat"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L01.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L02-LO1",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L02.md",
+        "sections": [
+          "Measure the original request",
+          "Follow a request through waiting and work"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L02.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L02-LO2",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L02.md",
+        "sections": [
+          "Measure the original request",
+          "Test a bottleneck hypothesis",
+          "Check recovery against objectives"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L02.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L03-LO1",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L03.md",
+        "sections": [
+          "Start with the invariant and the smallest owner model",
+          "Follow the paused owner: a lease without fencing fails",
+          "Chubby and ZooKeeper solve coordination, not arbitrary storage fencing"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L03.md",
+        "items": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-L03-LO2",
+      "teaching": {
+        "path": "modules/m09/lessons/M09-L03.md",
+        "sections": [
+          "Place the quorum according to failures and latency",
+          "Chubby and ZooKeeper solve coordination, not arbitrary storage fencing",
+          "Why Spanner is a different choice",
+          "Define success on original operations"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/assessments/M09-L03.md",
+        "items": [
+          "Q4",
+          "Q5",
+          "Q6",
+          "EX-1"
+        ]
+      }
+    },
+    {
+      "outcome_id": "M09-S1",
+      "uses_lesson_outcomes": [
+        "M09-L01-LO2",
+        "M09-L02-LO1",
+        "M09-L03-LO2"
+      ],
+      "teaching": {
+        "path": "modules/m09/integrated/decision-summary.md",
+        "sections": [
+          "Follow the evidence across the service",
+          "Decision ledger"
+        ]
+      },
+      "assessment": {
+        "path": "modules/m09/integrated/brief.md",
+        "items": [
+          "M09-EX1"
+        ],
+        "solution_rubric": "modules/m09/integrated/solution-rubric.md"
+      }
+    }
+  ]
+}

@@ -75,6 +75,30 @@
       ]
     },
     {
+      "key": "bind-snapshot-to-replay-continuation",
+      "tags": [
+        "streaming",
+        "replay",
+        "snapshot",
+        "checkpointing"
+      ],
+      "problem": "Initializing snapshot state and then looking up the current log end can skip records committed between the two operations.",
+      "prevention": "Bind a complete immutable snapshot to an exclusive replay continuation. Persist that position with initialized state and publication intent; retain and replay from it so admissions during startup cannot be skipped.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m08",
+          "finding_id": "M08-INT-T1",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/technical.md",
+          "evidence": "https://spark.apache.org/docs/4.0.1/streaming/apis-on-dataframes-and-datasets.html#recovering-from-failures-with-checkpointing"
+        }
+      ]
+    },
+    {
       "key": "carry-logical-receipt-across-independent-history",
       "tags": [
         "sharding",
@@ -192,6 +216,29 @@
           "report": "modules/m00/reviews/automatic/lessons/M00-L02/technical.md",
           "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis",
           "lesson": "M00-L02"
+        },
+        {
+          "module": "m09",
+          "finding_id": "M09-L02-T1",
+          "review_role": "technical",
+          "report": "modules/m09/reviews/automatic/lessons/M09-L02/technical.md",
+          "evidence": "https://sre.google/sre-book/service-level-objectives/#indicators-in-practice",
+          "lesson": "M09-L02"
+        },
+        {
+          "module": "m09",
+          "finding_id": "M09-L03-PED-01",
+          "review_role": "pedagogy",
+          "report": "modules/m09/reviews/automatic/lessons/M09-L03/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M09-L03"
+        },
+        {
+          "module": "m09",
+          "finding_id": "M09-SYN-PED-01",
+          "review_role": "pedagogy",
+          "report": "modules/m09/reviews/automatic/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
         }
       ]
     },
@@ -444,6 +491,39 @@
       ]
     },
     {
+      "key": "guard-stream-result-phase-and-retirement",
+      "tags": [
+        "streaming",
+        "replay",
+        "watermark",
+        "state-retention",
+        "checkpointing"
+      ],
+      "problem": "A delayed provisional write could replace a final result and an earlier winning correction could prevent live state retirement.",
+      "prevention": "Persist intake order and close intent. Enforce monotone provisional, final and correction writes. Retire after drain and durable intent only when the matching final or a verified covering correction is committed.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m08",
+          "finding_id": "M08-L02-T2",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/lessons/M08-L02/technical.md",
+          "evidence": "https://spark.apache.org/docs/4.0.1/streaming/getting-started.html#fault-tolerance-semantics",
+          "lesson": "M08-L02"
+        },
+        {
+          "module": "m08",
+          "finding_id": "M08-INT-T2",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/technical.md",
+          "evidence": "https://spark.apache.org/docs/4.0.1/streaming/getting-started.html#fault-tolerance-semantics"
+        }
+      ]
+    },
+    {
       "key": "keep-replay-summary-consistent-with-capture-order",
       "tags": [
         "replay",
@@ -496,6 +576,13 @@
           "report": "modules/m02/reviews/automatic/lessons/M02-L02/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M02-L02"
+        },
+        {
+          "module": "m09",
+          "finding_id": "M09-SYN-PED-02",
+          "review_role": "pedagogy",
+          "report": "modules/m09/reviews/automatic/pedagogy.md",
+          "evidence": "docs/authoring-format-contract-v1.md"
         }
       ]
     },
@@ -572,6 +659,30 @@
           "review_role": "technical",
           "report": "modules/m07/reviews/automatic/technical.md",
           "evidence": "https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/"
+        }
+      ]
+    },
+    {
+      "key": "protect-async-result-store-hops",
+      "tags": [
+        "security",
+        "tls",
+        "trust-boundary",
+        "asynchronous-work"
+      ],
+      "problem": "An asynchronous design protected its queue and database paths but left worker uploads and API retrievals at a network result store without explicit transport or workload admission.",
+      "prevention": "Trace result delivery as well as execution. Require intended-peer-verified encryption, distinct scoped workload read/write identities and failure before transfer on both result-store clients; retain fresh user authorization at release.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m09",
+          "finding_id": "M09-SYN-T1",
+          "review_role": "technical",
+          "report": "modules/m09/reviews/automatic/technical.md",
+          "evidence": "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#use-tls-for-all-pages"
         }
       ]
     },
@@ -898,6 +1009,31 @@
       ]
     },
     {
+      "key": "verify-database-transport-hop",
+      "tags": [
+        "security",
+        "tls",
+        "trust-boundary",
+        "database"
+      ],
+      "problem": "A multi-hop financial request protected the proxy paths but left the API-to-database path unspecified.",
+      "prevention": "Enumerate every hop that carries protected data or credentials. At each termination state the next hop, intended peer verification, independent service credential and failure behavior. Carry the same boundaries into the exercise and rubric.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m09",
+          "finding_id": "M09-L01-T1",
+          "review_role": "technical",
+          "report": "modules/m09/reviews/automatic/lessons/M09-L01/technical.md",
+          "evidence": "https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html#implementing-transport-layer-protection",
+          "lesson": "M09-L01"
+        }
+      ]
+    },
+    {
       "key": "verify-freshness-against-runtime-evidence",
       "tags": [
         "consistency",
@@ -943,6 +1079,39 @@
           "review_role": "technical",
           "report": "modules/m06/reviews/automatic/technical.md",
           "evidence": "https://www.postgresql.org/docs/18/tutorial-transactions.html"
+        }
+      ]
+    },
+    {
+      "key": "verify-reader-visible-before-index-cutover",
+      "tags": [
+        "search",
+        "indexing",
+        "projection",
+        "cutover",
+        "replay"
+      ],
+      "problem": "A replacement index reached durable replay progress while eligible stale readers could still return removed records.",
+      "prevention": "Gate read cutover on query-visible progress through the frozen replay barrier on every eligible reader. Pin the chosen generation and shard set across query, fetch and retries.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m08",
+          "finding_id": "M08-L03-T1",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/lessons/M08-L03/technical.md",
+          "evidence": "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/near-real-time.html",
+          "lesson": "M08-L03"
+        },
+        {
+          "module": "m08",
+          "finding_id": "M08-INT-T3",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/technical.md",
+          "evidence": "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/near-real-time.html"
         }
       ]
     }

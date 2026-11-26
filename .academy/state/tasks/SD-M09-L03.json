@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M09-L03",
+  "module_id": "m09",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M09-L03.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T17:47:38.874Z",
+  "updated_at": "2026-11-26T15:05:35+00:00",
+  "execution_control": "active",
+  "notes": "Prepared by ChatGPT using GitHub API after resuming PR #99 head. Research and author artifacts written; state transitions were recorded manually because taskctl.py was unavailable. Scoped draft_handoff.py, independent QA and remote handoff have NOT run. Do not interpret automation_complete as QA pass. Handoff awaits Codex/runtime validator.\n2026-11-26 Codex continuation: Independent Stage A ready after correction round1; source route, SLO rubric and outcome map findings resolved. Scoped validation and remote draft/report handoff succeeded; earlier unavailable-script statements above describe historical authoring only. Content remains draft awaiting human approval.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m09/evidence/M09-L03.md"
+      ],
+      "checkpoint": {
+        "note": "Primary sources inspected online; not via local taskctl.",
+        "next_action": "Author draft"
+      },
+      "attempts": 1,
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T17:47:38.874Z",
+      "completed_at": "2026-11-15T17:47:38.874Z",
+      "completed_by": "chatgpt-single-session",
+      "run_id": "M09-L03-chatgpt-research-20261116"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m09/evidence/M09-L03.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m09/lessons/M09-L03.md",
+        "modules/m09/assessments/M09-L03.md"
+      ],
+      "checkpoint": {
+        "note": "Wrote complete lesson, assessment, self-review; script handoff unavailable.",
+        "next_action": "Run scoped validation/handoff and independent QA without changing historical completed content."
+      },
+      "attempts": 2,
+      "agent": "lesson_author",
+      "started_at": "2026-11-26T14:55:52Z",
+      "completed_at": "2026-11-26T14:57:18Z",
+      "completed_by": "lesson_author",
+      "run_id": "SD-M09-L03-author-20261126T145552Z",
+      "invalidation_reason": "M09-L03-P1, M09-L03-PED-01, M09-L03-PED-02: repair source link, measurable SLO exercise and LO2 mapping.",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent targeted re-review ready-for-human-review; located findings resolved. Publication remains draft.",
+      "updated_at": "2026-11-26T14:59:18Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent targeted re-review ready-for-human-review; located findings resolved. Publication remains draft.",
+      "updated_at": "2026-11-26T14:59:18Z"
+    }
+  },
+  "control_reason": "User explicitly requested continuation after failed handoff; repair YAML scalar and complete existing MS05 QA workflow."
+}
