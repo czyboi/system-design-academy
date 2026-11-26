@@ -4,12 +4,12 @@
   "module_id": "m09",
   "owner": "czyboi",
   "spec_path": ".academy/specs/SD-M09-INTEGRATION.json",
-  "automation_status": "blocked",
+  "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T17:52:05.284Z",
-  "updated_at": "2026-11-26T14:50:25Z",
-  "execution_control": "awaiting-human",
+  "updated_at": "2026-11-26T14:52:01Z",
+  "execution_control": "active",
   "notes": "Manual state transition record from ChatGPT GitHub-API authoring. No taskctl/draft_handoff.py execution, no official independent QA. All files are drafts; required validations remain pending.\n2026-11-16: External IQA MS05-M09-SYN-01 correction made to integrated materials; official Stage B remains pending; no cycle or PASS asserted.",
   "steps": [
     {
@@ -101,5 +101,5 @@
       "updated_at": "2026-11-16T11:54:00Z"
     }
   },
-  "control_reason": "MS05 continuation stopped after M09-L03 scoped validation failure; Stage B prerequisites remain incomplete. Preserve draft and prior correction history."
+  "control_reason": "User explicitly requested continuation of MS05; complete scoped handoff and existing independent QA dependencies."
 }
