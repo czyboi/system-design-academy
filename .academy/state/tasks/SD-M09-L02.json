@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T12:05:24Z",
-  "updated_at": "2026-11-26T14:57:18Z",
+  "updated_at": "2026-11-26T14:59:18Z",
   "execution_control": "active",
   "notes": "Lesson draft: research then author; canonical lesson/assessment/evidence paths come from backlog. Parent runs scoped validation and feature-branch Git handoff after author completion; independent technical and pedagogy reviews run at module completion; detected issues feed at most two targeted corrective author rounds with re-review. Extra review and broad validation remain on demand.",
   "steps": [
@@ -80,14 +80,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Final reserved correction round2 adds identified verified Dapper mirror; targeted independent re-review required.",
-      "updated_at": "2026-11-26T14:57:18Z"
+      "status": "reviewed",
+      "reason": "Independent targeted re-review ready-for-human-review; located findings resolved. Publication remains draft.",
+      "updated_at": "2026-11-26T14:59:18Z"
     },
     "pedagogy": {
-      "status": "in_review",
-      "reason": "Independent reviewer assigned after successful scoped handoff f921f8c; prior self-review is not independent QA.",
-      "updated_at": "2026-11-26T14:53:42Z"
+      "status": "reviewed",
+      "reason": "Independent targeted re-review ready-for-human-review; located findings resolved. Publication remains draft.",
+      "updated_at": "2026-11-26T14:59:18Z"
     }
   }
 }

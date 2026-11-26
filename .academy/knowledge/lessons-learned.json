@@ -192,6 +192,22 @@
           "report": "modules/m00/reviews/automatic/lessons/M00-L02/technical.md",
           "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis",
           "lesson": "M00-L02"
+        },
+        {
+          "module": "m09",
+          "finding_id": "M09-L02-T1",
+          "review_role": "technical",
+          "report": "modules/m09/reviews/automatic/lessons/M09-L02/technical.md",
+          "evidence": "https://sre.google/sre-book/service-level-objectives/#indicators-in-practice",
+          "lesson": "M09-L02"
+        },
+        {
+          "module": "m09",
+          "finding_id": "M09-L03-PED-01",
+          "review_role": "pedagogy",
+          "report": "modules/m09/reviews/automatic/lessons/M09-L03/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M09-L03"
         }
       ]
     },

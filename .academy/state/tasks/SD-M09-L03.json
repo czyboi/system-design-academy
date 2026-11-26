@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T17:47:38.874Z",
-  "updated_at": "2026-11-26T14:57:19Z",
+  "updated_at": "2026-11-26T14:59:18Z",
   "execution_control": "active",
   "notes": "Prepared by ChatGPT using GitHub API after resuming PR #99 head. Research and author artifacts written; state transitions were recorded manually because taskctl.py was unavailable. Scoped draft_handoff.py, independent QA and remote handoff have NOT run. Do not interpret automation_complete as QA pass. Handoff awaits Codex/runtime validator.",
   "steps": [
@@ -75,14 +75,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Round1 pins ZooKeeper source and changes exercise evidence; independent targeted re-review required.",
-      "updated_at": "2026-11-26T14:57:18Z"
+      "status": "reviewed",
+      "reason": "Independent targeted re-review ready-for-human-review; located findings resolved. Publication remains draft.",
+      "updated_at": "2026-11-26T14:59:18Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "Round1 corrects PED-01/PED-02 SLO grading and outcome mapping; independent targeted re-review required.",
-      "updated_at": "2026-11-26T14:57:19Z"
+      "status": "reviewed",
+      "reason": "Independent targeted re-review ready-for-human-review; located findings resolved. Publication remains draft.",
+      "updated_at": "2026-11-26T14:59:18Z"
     }
   },
   "control_reason": "User explicitly requested continuation after failed handoff; repair YAML scalar and complete existing MS05 QA workflow."

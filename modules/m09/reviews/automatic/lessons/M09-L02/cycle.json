@@ -1,0 +1,27 @@
+{
+  "module": "m09",
+  "lesson": "M09-L02",
+  "revision_attempts": 2,
+  "review_history": [
+    {
+      "round": 0,
+      "technical": "revise",
+      "pedagogy": "ready-for-human-review",
+      "result": "needs_revision"
+    },
+    {
+      "round": 1,
+      "technical": "revise",
+      "pedagogy": "ready-for-human-review",
+      "result": "needs_revision"
+    },
+    {
+      "round": 2,
+      "technical": "ready-for-human-review",
+      "pedagogy": "ready-for-human-review",
+      "result": "ready"
+    }
+  ],
+  "status": "ready",
+  "updated_at": "2026-11-26T14:58:51+00:00"
+}
