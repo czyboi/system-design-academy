@@ -86,7 +86,7 @@
       "invalidation_reason": "M08-INT-T1/T2/T3/T4 and M08-P1/P2: targeted final synthesis corrections, preserve previously used round."
     }
   ],
-  "notes": "2026-11-16: External IQA MS05-M08-SYN-01 correction made to integrated materials; official Stage B remains pending; no cycle or PASS asserted.",
+  "notes": "2026-11-16: External IQA MS05-M08-SYN-01 correction made to integrated materials; official Stage B remains pending; no cycle or PASS asserted.\n2026-11-26 Codex continuation: Independent Stage B ready at preserved final correction round2; T1-T4 and P1/P2 resolved; accepted Stage A audits reused. Scoped validation and remote draft/report handoff succeeded; earlier unavailable-script statements above describe historical authoring only. Content remains draft awaiting human approval.",
   "current_phase": "author",
   "schema_version": 2,
   "task_id": "SD-M08-INTEGRATION",
@@ -96,7 +96,7 @@
   "automation_status": "automation_complete",
   "review_status": "not_reviewed",
   "created_at": "2026-11-15T12:05:04Z",
-  "updated_at": "2026-11-26T15:00:07Z",
+  "updated_at": "2026-11-26T15:05:35+00:00",
   "review_statuses": {
     "technical": {
       "status": "reviewed",

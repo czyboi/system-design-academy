@@ -8,9 +8,9 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T17:52:05.284Z",
-  "updated_at": "2026-11-26T15:04:39Z",
+  "updated_at": "2026-11-26T15:06:31+00:00",
   "execution_control": "active",
-  "notes": "Manual state transition record from ChatGPT GitHub-API authoring. No taskctl/draft_handoff.py execution, no official independent QA. All files are drafts; required validations remain pending.\n2026-11-16: External IQA MS05-M09-SYN-01 correction made to integrated materials; official Stage B remains pending; no cycle or PASS asserted.",
+  "notes": "Manual state transition record from ChatGPT GitHub-API authoring. No taskctl/draft_handoff.py execution, no official independent QA. All files are drafts; required validations remain pending.\n2026-11-16: External IQA MS05-M09-SYN-01 correction made to integrated materials; official Stage B remains pending; no cycle or PASS asserted.\n2026-11-26 Codex continuation: independent Stage B technical and pedagogy re-review ready; T1 and PED-01/PED-02 resolved. Scoped validation and remote draft handoff succeeded; final QA report handoff follows. Earlier unavailable-script and pending-review statements describe historical authoring. One recorded formal correction plus one prior external-IQA author correction preserved; no further automatic round used. Content remains draft pending human approval.",
   "steps": [
     {
       "step_id": "research",
@@ -96,14 +96,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Bounded synthesis correction M09-SYN-T1 adds explicit result-store transport and workload/tenant/job boundaries; independent targeted re-review required.",
-      "updated_at": "2026-11-26T15:04:39Z"
+      "status": "reviewed",
+      "reason": "Independent Stage B targeted re-review resolves M09-SYN-T1; queued and result-store security contracts/source evidence clear.",
+      "updated_at": "2026-11-26T15:06:02Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "M09-SYN-PED-01/PED-02 rubric and portfolio corrections complete; independent targeted re-review required.",
-      "updated_at": "2026-11-26T15:04:39Z"
+      "status": "reviewed",
+      "reason": "Independent Stage B targeted re-review resolves PED-01/PED-02; all26 topics and seven module outcomes reconciled.",
+      "updated_at": "2026-11-26T15:06:03Z"
     }
   },
   "control_reason": "User explicitly requested continuation of MS05; complete scoped handoff and existing independent QA dependencies."

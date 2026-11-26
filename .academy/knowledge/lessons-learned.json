@@ -232,6 +232,13 @@
           "report": "modules/m09/reviews/automatic/lessons/M09-L03/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M09-L03"
+        },
+        {
+          "module": "m09",
+          "finding_id": "M09-SYN-PED-01",
+          "review_role": "pedagogy",
+          "report": "modules/m09/reviews/automatic/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md"
         }
       ]
     },
@@ -569,6 +576,13 @@
           "report": "modules/m02/reviews/automatic/lessons/M02-L02/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M02-L02"
+        },
+        {
+          "module": "m09",
+          "finding_id": "M09-SYN-PED-02",
+          "review_role": "pedagogy",
+          "report": "modules/m09/reviews/automatic/pedagogy.md",
+          "evidence": "docs/authoring-format-contract-v1.md"
         }
       ]
     },
@@ -645,6 +659,30 @@
           "review_role": "technical",
           "report": "modules/m07/reviews/automatic/technical.md",
           "evidence": "https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/"
+        }
+      ]
+    },
+    {
+      "key": "protect-async-result-store-hops",
+      "tags": [
+        "security",
+        "tls",
+        "trust-boundary",
+        "asynchronous-work"
+      ],
+      "problem": "An asynchronous design protected its queue and database paths but left worker uploads and API retrievals at a network result store without explicit transport or workload admission.",
+      "prevention": "Trace result delivery as well as execution. Require intended-peer-verified encryption, distinct scoped workload read/write identities and failure before transfer on both result-store clients; retain fresh user authorization at release.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m09",
+          "finding_id": "M09-SYN-T1",
+          "review_role": "technical",
+          "report": "modules/m09/reviews/automatic/technical.md",
+          "evidence": "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#use-tls-for-all-pages"
         }
       ]
     },
