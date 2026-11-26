@@ -75,6 +75,30 @@
       ]
     },
     {
+      "key": "bind-snapshot-to-replay-continuation",
+      "tags": [
+        "streaming",
+        "replay",
+        "snapshot",
+        "checkpointing"
+      ],
+      "problem": "Initializing snapshot state and then looking up the current log end can skip records committed between the two operations.",
+      "prevention": "Bind a complete immutable snapshot to an exclusive replay continuation. Persist that position with initialized state and publication intent; retain and replay from it so admissions during startup cannot be skipped.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m08",
+          "finding_id": "M08-INT-T1",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/technical.md",
+          "evidence": "https://spark.apache.org/docs/4.0.1/streaming/apis-on-dataframes-and-datasets.html#recovering-from-failures-with-checkpointing"
+        }
+      ]
+    },
+    {
       "key": "carry-logical-receipt-across-independent-history",
       "tags": [
         "sharding",
@@ -482,6 +506,13 @@
           "report": "modules/m08/reviews/automatic/lessons/M08-L02/technical.md",
           "evidence": "https://spark.apache.org/docs/4.0.1/streaming/getting-started.html#fault-tolerance-semantics",
           "lesson": "M08-L02"
+        },
+        {
+          "module": "m08",
+          "finding_id": "M08-INT-T2",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/technical.md",
+          "evidence": "https://spark.apache.org/docs/4.0.1/streaming/getting-started.html#fault-tolerance-semantics"
         }
       ]
     },
@@ -1036,6 +1067,13 @@
           "report": "modules/m08/reviews/automatic/lessons/M08-L03/technical.md",
           "evidence": "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/near-real-time.html",
           "lesson": "M08-L03"
+        },
+        {
+          "module": "m08",
+          "finding_id": "M08-INT-T3",
+          "review_role": "technical",
+          "report": "modules/m08/reviews/automatic/technical.md",
+          "evidence": "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/near-real-time.html"
         }
       ]
     }
