@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T17:52:05.284Z",
-  "updated_at": "2026-11-26T14:52:01Z",
+  "updated_at": "2026-11-26T15:04:39Z",
   "execution_control": "active",
   "notes": "Manual state transition record from ChatGPT GitHub-API authoring. No taskctl/draft_handoff.py execution, no official independent QA. All files are drafts; required validations remain pending.\n2026-11-16: External IQA MS05-M09-SYN-01 correction made to integrated materials; official Stage B remains pending; no cycle or PASS asserted.",
   "steps": [
@@ -81,24 +81,29 @@
         "note": "All canonical outputs committed through GitHub API; no scoped draft_handoff.py.",
         "next_action": "Run scoped Python validation, independent per-lesson/m09 Stage B QA, then taskctl handoff."
       },
-      "attempts": 1,
-      "agent": "chatgpt-single-session",
-      "started_at": "2026-11-15T17:52:05.284Z",
-      "completed_at": "2026-11-15T17:52:05.284Z",
-      "completed_by": "chatgpt-single-session",
-      "run_id": "M09-INT-chatgpt-author-20261116"
+      "attempts": 2,
+      "agent": "lesson_author",
+      "started_at": "2026-11-26T15:03:20Z",
+      "completed_at": "2026-11-26T15:04:39Z",
+      "completed_by": "lesson_author",
+      "run_id": "SD-M09-INTEGRATION-author-20261126T150320Z",
+      "invalidation_reason": "M09-SYN-T1 result-store transport/principals; M09-SYN-PED-01 SLO grading; M09-SYN-PED-02 portfolio mappings.",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ],
   "review_statuses": {
     "technical": {
       "status": "needs_review",
-      "reason": "Author-side targeted correction for MS05-M09-SYN-01; official independent Stage B re-review pending (no reviewer verdict recorded).",
-      "updated_at": "2026-11-16T11:54:00Z"
+      "reason": "Bounded synthesis correction M09-SYN-T1 adds explicit result-store transport and workload/tenant/job boundaries; independent targeted re-review required.",
+      "updated_at": "2026-11-26T15:04:39Z"
     },
     "pedagogy": {
       "status": "needs_review",
-      "reason": "Author-side targeted correction for MS05-M09-SYN-01; official independent Stage B re-review pending (no reviewer verdict recorded).",
-      "updated_at": "2026-11-16T11:54:00Z"
+      "reason": "M09-SYN-PED-01/PED-02 rubric and portfolio corrections complete; independent targeted re-review required.",
+      "updated_at": "2026-11-26T15:04:39Z"
     }
   },
   "control_reason": "User explicitly requested continuation of MS05; complete scoped handoff and existing independent QA dependencies."

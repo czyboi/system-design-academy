@@ -66,6 +66,7 @@
       "teaching": {
         "path": "modules/m09/lessons/M09-L02.md",
         "sections": [
+          "Measure the original request",
           "Test a bottleneck hypothesis",
           "Check recovery against objectives"
         ]
@@ -106,6 +107,7 @@
         "path": "modules/m09/lessons/M09-L03.md",
         "sections": [
           "Place the quorum according to failures and latency",
+          "Chubby and ZooKeeper solve coordination, not arbitrary storage fencing",
           "Why Spanner is a different choice",
           "Define success on original operations"
         ]

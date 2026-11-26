@@ -35,6 +35,13 @@
   ],
   "acceptance_criteria": [
     {
+      "id": "ac-evidence",
+      "text": "Support the integrated design claims with the declared lesson evidence packs and explicit scenario applicability boundaries, as required by dod-evidence.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
       "id": "ac-integration",
       "text": "Teach synthesis M09-S1 through authentic interdependent design critique; assess with reference solution/rubric.",
       "applies_to": [
