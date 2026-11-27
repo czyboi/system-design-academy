@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-M10-INTEGRATION",
-  "revision": 1,
+  "revision": 2,
   "goal": "M10 integrated design, reference solution, decision summary, taught coverage and outcome portfolio.",
   "scope": {
     "in_scope": [
@@ -34,6 +34,13 @@
     }
   ],
   "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Integrated evidence reconciled from eight lesson evidence files.",
+      "applies_to": [
+        "research"
+      ]
+    },
     {
       "id": "ac-case",
       "text": "Two full systems, changed dominant constraint, worked reasoning and falsifiable tests.",

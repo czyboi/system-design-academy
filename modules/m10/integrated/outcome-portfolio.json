@@ -10,7 +10,8 @@
         "path": "modules/m10/lessons/M10-L01.md",
         "sections": [
           "Start with a small workload and a precise contract",
-          "Make the first version correct before adding an object store"
+          "Make the first version correct before adding an object store",
+          "Derive the short-link case and the analytics path"
         ]
       },
       "assessment": {
@@ -29,7 +30,8 @@
         "path": "modules/m10/lessons/M10-L01.md",
         "sections": [
           "Assign an identifier without confusing representation and safety",
-          "Trace expiration through caches and cleanup"
+          "Trace expiration through caches and cleanup",
+          "Scale only when observations justify it"
         ]
       },
       "assessment": {
@@ -86,7 +88,8 @@
         "path": "modules/m10/lessons/M10-L03.md",
         "sections": [
           "Make the frontier recoverable and polite",
-          "Walk a duplicate and a changed page to the index"
+          "Walk a duplicate and a changed page to the index",
+          "Store versions and deduplicate without deleting meaning"
         ]
       },
       "assessment": {
@@ -105,7 +108,10 @@
         "path": "modules/m10/lessons/M10-L03.md",
         "sections": [
           "Choose recrawl budget and query freshness together",
-          "Test the composed system, not just isolated stages"
+          "Test the composed system, not just isolated stages",
+          "Scope crawl input, output and cost",
+          "Make the frontier recoverable and polite",
+          "Store versions and deduplicate without deleting meaning"
         ]
       },
       "assessment": {
@@ -162,7 +168,8 @@
         "path": "modules/m10/lessons/M10-L05.md",
         "sections": [
           "Start with BFS and reconstruct the path",
-          "Trace a shortest path across three person servers"
+          "Trace a shortest path across three person servers",
+          "Bidirectional search changes the shape of work"
         ]
       },
       "assessment": {
@@ -181,7 +188,9 @@
         "path": "modules/m10/lessons/M10-L05.md",
         "sections": [
           "Treat visibility, caching and precomputation as proof obligations",
-          "Choose a contract before calling the service reliable"
+          "Choose a contract before calling the service reliable",
+          "Bidirectional search changes the shape of work",
+          "Make the directory and fetches pay for their network cost"
         ]
       },
       "assessment": {
@@ -200,7 +209,8 @@
         "path": "modules/m10/lessons/M10-L06.md",
         "sections": [
           "Start with one correct cache-aside node",
-          "The stale-fill race that TTL alone does not fix"
+          "The stale-fill race that TTL alone does not fix",
+          "Scope one search result and its budget"
         ]
       },
       "assessment": {
@@ -219,7 +229,10 @@
         "path": "modules/m10/lessons/M10-L06.md",
         "sections": [
           "Decide what changed and whether to invalidate",
-          "Trace one node loss, retry and origin overload"
+          "Trace one node loss, retry and origin overload",
+          "The stale-fill race that TTL alone does not fix",
+          "Add nodes only after measuring miss and memory cost",
+          "Compare choices with the original operations, not only hits"
         ]
       },
       "assessment": {
@@ -257,7 +270,8 @@
         "path": "modules/m10/lessons/M10-L07.md",
         "sections": [
           "Resolve hot categories, boundaries and replays",
-          "Make the result measurable and falsifiable"
+          "Make the result measurable and falsifiable",
+          "Publish a whole result revision, not visible partial writes"
         ]
       },
       "assessment": {
@@ -276,7 +290,12 @@
         "path": "modules/m10/lessons/M10-L08.md",
         "sections": [
           "Stage 2 — Separate immutable objects, SQL and network boundaries",
-          "Stage 3 — Survive one app host/AZ loss without pretending the database is solved"
+          "Stage 3 — Survive one app host/AZ loss without pretending the database is solved",
+          "Stage 0 — One useful service and explicit workload",
+          "Stage 1 — Profile and scale a single host before splitting it",
+          "Stage 4 — Add cache, centralized state and targeted database reads",
+          "Stage 5 — Automate within bounds and isolate expensive work",
+          "Operational evidence is part of the architecture"
         ]
       },
       "assessment": {
@@ -295,7 +314,12 @@
         "path": "modules/m10/lessons/M10-L08.md",
         "sections": [
           "Stage 4 — Add cache, centralized state and targeted database reads",
-          "Stage 5 — Automate within bounds and isolate expensive work"
+          "Stage 5 — Automate within bounds and isolate expensive work",
+          "Stage 0 — One useful service and explicit workload",
+          "Stage 1 — Profile and scale a single host before splitting it",
+          "Stage 2 — Separate immutable objects, SQL and network boundaries",
+          "Stage 3 — Survive one app host/AZ loss without pretending the database is solved",
+          "Operational evidence is part of the architecture"
         ]
       },
       "assessment": {
