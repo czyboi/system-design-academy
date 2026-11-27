@@ -99,6 +99,31 @@
       ]
     },
     {
+      "key": "certify-distributed-bidirectional-completion",
+      "tags": [
+        "graph",
+        "traversal",
+        "shortest-path",
+        "distributed-search"
+      ],
+      "problem": "An asynchronous bidirectional traversal treated an unspecified lower-bound rule as a shortest-path proof despite incomplete remote layers.",
+      "prevention": "Teach a checkable stopping certificate at one authorized graph revision. Mark every required layer, page and batch complete, minimize the candidate distance, and trace a delayed shorter alternative before declaring the result exact.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m10",
+          "finding_id": "M10-L05-T1",
+          "review_role": "technical",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L05/technical.md",
+          "evidence": "https://networkx.org/documentation/stable/_modules/networkx/algorithms/shortest_paths/unweighted.html#bidirectional_shortest_path",
+          "lesson": "M10-L05"
+        }
+      ]
+    },
+    {
       "key": "claim-retry-identity-before-dispatch",
       "tags": [
         "idempotency",
@@ -208,6 +233,14 @@
           "report": "modules/m10/reviews/automatic/lessons/M10-L04/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M10-L04"
+        },
+        {
+          "module": "m10",
+          "finding_id": "M10-L05-T2",
+          "review_role": "technical",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L05/technical.md",
+          "evidence": "https://sre.google/workbook/implementing-slos/#moving-from-sli-specification-to-sli-implementation",
+          "lesson": "M10-L05"
         }
       ]
     },
