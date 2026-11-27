@@ -75,6 +75,31 @@
       ]
     },
     {
+      "key": "canonicalize-revisions-before-aggregation",
+      "tags": [
+        "aggregation",
+        "replay",
+        "identity",
+        "revisions"
+      ],
+      "problem": "Distinct delivery identities for successive line revisions allowed both old and replacement quantities to enter one aggregate.",
+      "prevention": "Select the authoritative active revision per stable base identity through the frozen source cut before SUM, retain tombstones, and distinguish independent returns from replacement edits. Trace an edited quantity and its replay.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m10",
+          "finding_id": "M10-L07-T1",
+          "review_role": "technical",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L07/technical.md",
+          "evidence": "https://www.usenix.org/legacy/publications/library/proceedings/osdi04/tech/full_papers/dean/dean_html/",
+          "lesson": "M10-L07"
+        }
+      ]
+    },
+    {
       "key": "carry-logical-receipt-across-independent-history",
       "tags": [
         "sharding",
@@ -257,6 +282,14 @@
           "report": "modules/m10/reviews/automatic/lessons/M10-L06/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M10-L06"
+        },
+        {
+          "module": "m10",
+          "finding_id": "P-1",
+          "review_role": "pedagogy",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L07/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M10-L07"
         }
       ]
     },

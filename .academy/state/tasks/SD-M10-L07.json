@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T18:36:17.007Z",
-  "updated_at": "2026-11-27T08:09:08Z",
+  "updated_at": "2026-11-27T08:12:23Z",
   "execution_control": "active",
   "notes": "Manual GitHub API steps; taskctl/draft_handoff/review_cycle/Python validators not run; independent QA pending.",
   "steps": [
@@ -75,14 +75,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Resumed existing round1 after usage interruption; T1..T5 patched, targeted independent re-review required.",
-      "updated_at": "2026-11-27T08:09:07Z"
+      "status": "reviewed",
+      "reason": "Independent targeted round1 clears T1..T5 and P1/P2; existing correction resumed without increment after usage interruption.",
+      "updated_at": "2026-11-27T08:12:23Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "Round1 preserves product-key skew and grades read/publication objectives; targeted re-review required.",
-      "updated_at": "2026-11-27T08:09:08Z"
+      "status": "reviewed",
+      "reason": "Independent targeted round1 clears T1..T5 and P1/P2; existing correction resumed without increment after usage interruption.",
+      "updated_at": "2026-11-27T08:12:23Z"
     }
   }
 }
