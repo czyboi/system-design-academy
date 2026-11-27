@@ -200,6 +200,14 @@
           "report": "modules/m10/reviews/automatic/lessons/M10-L01/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M10-L01"
+        },
+        {
+          "module": "m10",
+          "finding_id": "P-1",
+          "review_role": "pedagogy",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L04/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M10-L04"
         }
       ]
     },
@@ -283,6 +291,31 @@
           "report": "modules/m05/reviews/automatic/lessons/M05-L02/technical.md",
           "evidence": "https://docs.cloud.google.com/bigtable/docs/schema-design",
           "lesson": "M05-L02"
+        }
+      ]
+    },
+    {
+      "key": "distinguish-pagination-from-source-readiness",
+      "tags": [
+        "ingestion",
+        "source-coverage",
+        "pagination",
+        "cursors"
+      ],
+      "problem": "A successful empty or fully paginated incremental fetch was treated as proof that initial source history was completely acquired.",
+      "prevention": "Define the required supported source range and a separate readiness gate. Keep initialization and partial coverage visible; pagination exhaustion alone must not publish a complete history or satisfy the initial-refresh objective.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m10",
+          "finding_id": "M10-L04-T1",
+          "review_role": "technical",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L04/technical.md",
+          "evidence": "https://plaid.com/docs/transactions/add-to-app/#fetching-transaction-data",
+          "lesson": "M10-L04"
         }
       ]
     },

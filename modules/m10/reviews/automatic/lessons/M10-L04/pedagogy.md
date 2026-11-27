@@ -1,0 +1,54 @@
+# M10-L04 — independent pedagogy and curriculum coverage review
+
+Initial Stage A, reviewed draft at `922eddd`. Audience: middle/senior engineers; English. Scope: M10-L04 only, lesson, assessment, evidence, approved `curriculum/revision-1/CURRICULUM_MASTER.md` M10-L04, `coverage.csv` and `source-inventory.json`. Source topic map: [System Design Primer Mint case](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/solutions/system_design/mint/README.md), revision `ae9bbd7b02d90b9866215de185217d33f39ab733`, steps 1–4 and assigned nested leaves; [snippets](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/solutions/system_design/mint/mint_snippets.py) and [MapReduce code](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/solutions/system_design/mint/mint_mapreduce.py). Inspected the actual pinned checkout, including source subtopics and code, not just inventory titles. Shared additional talking points H017–H023 are mapped by the approved coverage file to other lessons; this is not a whole-course audit.
+
+## Coverage matrix
+
+Locations below refer to `modules/m10/lessons/M10-L04.md`, with companion `modules/m10/assessments/M10-L04.md`. Grouped IDs retain a disposition for each assigned row.
+
+| Source topic, locator and assigned row | Outcome; teaching evidence and depth | Status; assessment; gap or rationale |
+| --- | --- | --- |
+| Scope/use cases, constraints and usage, README L5–78: H002, H003, H004, H006, H007, H008 | LO1/LO2; Define a bounded feature: connection, transaction categories, budgets, 100k accounts, daily changes and peak trigger arithmetic; limits and retention | taught; EX-1; synthetic workload replaces dated source estimates. |
+| High-level design and connector, README L79–126: H009, H010, H011 | LO1; Connect accounts and Preserve transaction identity: consent, scoped identity, credential-hash correction and staged flow | taught; Q5, EX-1. Source password-hash approach is explicitly challenged rather than copied. |
+| Extraction pipeline and record representation, README L127–178 and snippets L36: H012, BODY-EXTRACTION, CODE-TRANSACTION | LO1; Connect, Preserve and Keep notifications: initial/manual/scheduled triggers, queue, source IDs and current states, raw logs, aggregate and budget alerts | merged; Q1–Q3, EX-1. Completion notification was absent initially; resolved in round 1, see C-1 below. |
+| Seller dictionary and ranked crowd overrides, README L179–230 and snippets L20: H013, BODY-SELLER, BODY-CROWD, CODE-CATEGORIES | LO2; Pick categories: seeded dictionary, ranked precedence, crowd signal and privacy, transaction and merchant overrides | taught; Q4 and EX-1 apply override, although crowd ranking itself is not separately tested. This is an acceptable decision-level treatment of the source's heap implementation. |
+| Budget recommendation, income-tier template and sparse overrides, README L231–263 and snippets L44: H014, BODY-TEMPLATE, CODE-BUDGET | LO2; Pick categories: editable template, illustrative tier, sparse per-user category overrides and version history | taught; EX-1 applies budgets. |
+| Recompute on category edit, README L264–325: BODY-RECOMPUTE | LO1/LO2; Compute one month: 115/40 becomes 55/100, old/new contributions and stale worker guard | taught; Q4, EX-1. |
+| Monthly map/reduce and notification, README L264–325 and mapreduce L6: CODE-REDUCE | LO1; Compute one month and Keep notifications: key, signed amounts, exact reduction, dedup and versioned outbox/transition | taught; Q3–Q4, EX-1. Prerequisite M08-L01 explains partition/shuffle/reduce. |
+| Scale and data placement, README L326–386: H015, BODY-WAREHOUSE, BODY-RETENTION | LO2; Keep notifications and Defend refresh: OLTP, object logs, warehouse lag, cache stale fill, write hotspots and replica limitation | taught; Q6, EX-1. The source's fixed one-month example is a workload choice, not mandatory retention. |
+
+C-1 — **minor, resolved in round 1** (initial finding) — `modules/m10/lessons/M10-L04.md`, Connect and Keep notifications; approved sequence item 2 explicitly includes *completion/budget notifications*, and Primer README L141–160 includes completion notification. The lesson explains freshness/status and budget alerts, but never says whether a completed refresh emits a completion notification. A learner can still trace the core refresh and alert flow. Add a brief explicit completion-notification decision after committed synchronization (including when it is sent or intentionally omitted), distinguishing it from a budget alert and failed/unknown sync status. Scope rationale for omission is not recorded.
+
+## Lesson-first comprehension and outcome alignment
+
+Before reading the companion answers, the teaching text supports: stable tenant-scoped account/source identity → durable sync intent and cursor C0 → staged pages and coherent commit to C1 → canonical current representation and revision-aware category/aggregate update → threshold transition with recoverable notification intent. A crash before commit replays C0; pending/posted linkage avoids counting the same purchase twice; a stale classifier is fenced by revision/cut. The concrete monthly trace makes replacement of t4's contribution and alert implications reproducible. M08-L01 supplies the map/shuffle/reduce dependency; M09-L01 supplies the security boundary. The lesson compares scheduled/on-demand refresh and OLTP/warehouse/object storage, including freshness, costs and privacy. No major missing causal link identified in the central teaching sequence.
+
+| Approved action | Teaching evidence | Assessment evidence |
+| --- | --- | --- |
+| LO1 trace/model connector, extraction, reconciliation, monthly reduction and notification | Connect; Preserve; Compute; Keep notifications | Q1–Q3 and EX-1 require replay, identity, monthly totals and pipeline. |
+| LO2 choose/defend approach with criteria and failure modes | Pick categories; Keep notifications; Defend refresh | Q4–Q6 and EX-1 cover overrides, boundaries and storage; SLI decision grading gap P-1 resolved in round 1. |
+
+Assessment is separate, with six explained checks and one practical exercise. Alternate guarded delta and recompute designs are explicitly accepted. The scenario's pending/posted records are outside stated starting totals and the reference correctly counts q9 only when eligible. No fixed length or diagram requirement is imposed.
+
+## Pedagogy finding
+
+P-1 — **major, resolved in round 1** (initial finding) — `modules/m10/assessments/M10-L04.md`, EX-1 Deliverables, Worked reference item 6 and rubric “Storage and evidence of success”. The approved LO2 requires choosing and defending using decision and failure criteria; the lesson's “Defend the refresh decision with actual outcomes” defines a 99% target for all original authorized triggers in a five-minute ingress cohort, each reaching a reconciled view and published sync cut within 15 minutes. EX-1 asks only for an original-trigger SLI; its reference omits the 99% threshold and its rubric requires merely a client SLI denominator. It supplies no outcome counts or required pass/fail decision, so full credit can be awarded to an admitted-only or threshold-free measure and never tests whether the proposed approach meets the taught target. This prevents the exercise from reliably assessing the central LO2 decision under the stated constraint.
+
+**Required fix:** add a concrete five-minute original-trigger cohort with counts for timely reconciled-and-published success, errors/refusals/throttling, late and unknown outcomes; require a calculation and decision against 99%, including original population, deduplication, endpoints and individual 15-minute deadline. Specify the arithmetic and pass/fail in the reference, and require these elements in the rubric; do not permit excluding shed triggers or treating admission-only latency as success. Retain equivalent valid architecture choices, and measure classification separately. Approved evidence: `curriculum/revision-1/CURRICULUM_MASTER.md` M10-L04 LO2 and teaching sequence/trade-offs; `modules/m10/lessons/M10-L04.md` “Defend the refresh decision with actual outcomes”.
+
+## Initial verdict
+
+**revise** — P-1 was open and C-1 required clarification at initial review.
+
+
+## Round 1 targeted re-review
+
+Reviewed correction handoff `f0927b2`, changed lesson and companion sections and their nearby dependencies; this is not a renewed full audit. Lesson-first reconstruction: a successful empty `NOT_READY` sync stays initializing, partial data remains labelled, and only verified requested provider-supported historical coverage plus coherent cursor and view commits can produce initial completion. The per-Item application generation and expected cursor fence stale runs; opaque cursors and user category revisions have separate purposes. This addition explains the failure and corrective mechanism without needing the reference answer. The exercise explicitly locates posted q9 in February Transport, outside January's calculation, so 40 is counted once in February and January remains 115/40 then 55/100.
+
+| Finding | Status | Verified correction and evidence |
+| --- | --- | --- |
+| C-1 | resolved | `modules/m10/lessons/M10-L04.md`, “Preserve transaction identity across extraction retries” flow and “Keep notifications and storage subordinate to correct totals”: versioned/idempotent completion intent keyed by original refresh and committed generation follows required coverage and committed cursor/coherent view; partial, failed and unknown sync do not qualify; budget threshold alerts are separate. EX-1 asks for the distinction and its reference and rubric include it. Approved source mapping: `curriculum/revision-1/CURRICULUM_MASTER.md` M10-L04 teaching sequence 2. |
+| P-1 | resolved | `modules/m10/assessments/M10-L04.md`, EX-1 Scenario, Deliverables, Worked reference item 6 and rubric: 1,000 original authorized IDs in a five-minute cohort, distinct exclusive outcomes (970 timely complete, 10 partial, 8 late, 7 rejected/throttled, 5 failed/unknown), each with 15 minutes from ingress to confirmed managed-client view. It requires and grades 970/1,000 = 97%, below 99%, with failures included and admitted-only latency separate; classification accuracy is separate. `modules/m10/lessons/M10-L04.md`, “Defend the refresh decision with actual outcomes” teaches the same population, endpoint, deadline and threshold. Approved outcome: `curriculum/revision-1/CURRICULUM_MASTER.md` M10-L04 LO2. |
+
+No new pedagogical blocker or major regression found in the changed passages. Both original findings are resolved. **Verdict: ready-for-human-review.** This is not technical, source-rights, human or publication approval.
+
