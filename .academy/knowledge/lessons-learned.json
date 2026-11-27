@@ -298,6 +298,14 @@
           "report": "modules/m10/reviews/automatic/lessons/M10-L03/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M10-L03"
+        },
+        {
+          "module": "m10",
+          "finding_id": "P-1",
+          "review_role": "pedagogy",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L08/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M10-L08"
         }
       ]
     },
@@ -941,6 +949,31 @@
           "report": "modules/m02/reviews/automatic/lessons/M02-L02/technical.md",
           "evidence": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2",
           "lesson": "M02-L02"
+        }
+      ]
+    },
+    {
+      "key": "separate-origin-access-from-viewer-entitlement",
+      "tags": [
+        "security",
+        "cdn",
+        "origin-access",
+        "authorization"
+      ],
+      "problem": "A private-CDN design treated viewer signed-content authorization as an alternative to permission for the CDN to fetch its private origin.",
+      "prevention": "Trace origin and viewer authorization independently. Give the distribution scoped private-origin permission, then enforce viewer entitlement and explicit capability lifetime/revocation policy; neither control substitutes for the other.",
+      "applies_to": [
+        "lesson_author",
+        "technical_reviewer"
+      ],
+      "occurrences": [
+        {
+          "module": "m10",
+          "finding_id": "M10-L08-T1",
+          "review_role": "technical",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L08/technical.md",
+          "evidence": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html",
+          "lesson": "M10-L08"
         }
       ]
     },

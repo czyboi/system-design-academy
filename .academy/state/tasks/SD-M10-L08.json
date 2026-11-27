@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-16T04:53:28.026Z",
-  "updated_at": "2026-11-27T08:27:00Z",
+  "updated_at": "2026-11-27T08:31:10Z",
   "execution_control": "active",
   "notes": "Manual task transition record using GitHub API because no runnable repo checkout in ChatGPT. Independent QA, taskctl/draft_handoff.py, validators and human approval NOT performed. Previously published M10-L01–L07 draft artifacts unchanged.",
   "steps": [
@@ -80,14 +80,14 @@
   ],
   "review_statuses": {
     "technical": {
-      "status": "needs_review",
-      "reason": "Round1 source-backed AWS origin/viewer, replica, TLS and evidence corrections plus new scoped cache/provisioning mechanisms; targeted review required.",
-      "updated_at": "2026-11-27T08:27:00Z"
+      "status": "reviewed",
+      "reason": "Independent round1 re-review confirms all source/correctness/coverage/pedagogy findings resolved, including newly verified provisioning and cache mechanisms.",
+      "updated_at": "2026-11-27T08:31:10Z"
     },
     "pedagogy": {
-      "status": "needs_review",
-      "reason": "Round1 C1/C2/C3 teaching and fully graded original-cohort SLO/maps; targeted review required.",
-      "updated_at": "2026-11-27T08:27:00Z"
+      "status": "reviewed",
+      "reason": "Independent round1 re-review confirms all source/correctness/coverage/pedagogy findings resolved, including newly verified provisioning and cache mechanisms.",
+      "updated_at": "2026-11-27T08:31:10Z"
     }
   }
 }
