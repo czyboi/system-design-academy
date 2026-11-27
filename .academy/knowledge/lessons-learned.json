@@ -290,6 +290,14 @@
           "report": "modules/m10/reviews/automatic/lessons/M10-L07/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M10-L07"
+        },
+        {
+          "module": "m10",
+          "finding_id": "M10-L03-PED-02",
+          "review_role": "pedagogy",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L03/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M10-L03"
         }
       ]
     },
@@ -627,6 +635,14 @@
           "report": "modules/m02/reviews/automatic/lessons/M02-L02/pedagogy.md",
           "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
           "lesson": "M02-L02"
+        },
+        {
+          "module": "m10",
+          "finding_id": "M10-L03-PED-03",
+          "review_role": "pedagogy",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L03/pedagogy.md",
+          "evidence": "docs/authoring-format-contract-v1.md",
+          "lesson": "M10-L03"
         }
       ]
     },
