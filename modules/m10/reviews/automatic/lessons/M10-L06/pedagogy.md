@@ -1,0 +1,64 @@
+# M10-L06 independent pedagogy and curriculum coverage review
+
+Reviewed 2026-11-27 after scoped draft handoff `922eddd`: canonical task spec/state/worklog, approved M10-L06 outline and `curriculum/revision-1/coverage.csv`, lesson, companion assessment and evidence. Audience is middle/senior engineers. I read the lesson before the assessment answer key. I independently inspected the original [query-cache case](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/solutions/system_design/query_cache/README.md) and [query-cache snippets](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/solutions/system_design/query_cache/query_cache_snippets.py) at pinned Primer revision `ae9bbd7b02d90b9866215de185217d33f39ab733`, including source scope, hit/miss and fill, LRU skeleton, update conditions, cache placement options and snippet's map inconsistency. The source is a topic map; accepted prerequisites provide M06-L03 LRU invariants and M08-L03 search-completeness mechanics, so they are applied rather than re-audited.
+
+## Findings
+
+| ID | Severity | Status | Location | Impact, evidence and precise correction |
+| --- | --- | --- | --- | --- |
+| M10-L06-PED-01 | major | open | `modules/m10/assessments/M10-L06.md`, EX-1 Deliverables, reference solution 5 and “User SLO and failure testing” rubric | The task asks for an original-operation SLO and the rubric requires only a denominator and two traces. It does not require a five-minute cohort, first-ingress/client-validated endpoint, 300 ms deadline, 99% target, observed correct/late/rejected/failed outcomes or comparison with that target; an architecture that rejects most misses can earn full SLO credit without evaluating its actual user-facing success. The sample answer also omits the window and numerical target. Supply a synthetic original-request outcome cohort with sufficient mutually exclusive classifications, require calculating correct-complete-current results against an explicit target, and grade the full measurement window, endpoints, deadline, failure/partial/stale/late handling and admitted-only latency separately. The lesson already teaches these elements in “Compare choices with the original operations, not only hits.” Evidence: approved M10-L06 LO2 in `curriculum/revision-1/CURRICULUM_MASTER.md`, and `.agents/skills/module-quality-review/SKILL.md` publication-readiness bar, which says an exercise rubric must not pass through excessive shedding. |
+| M10-L06-PED-02 | minor | open | `modules/m10/assessments/M10-L06.md`, front-matter `outcome_map` and narrative map | LO1 names only cache-aside, yet Q1's memory arithmetic is taught in “Scope one search result and its budget.” LO2 names only node placements, though Q4 uses “Trace one node loss, retry and origin overload,” Q5 uses “Decide what changed and whether to invalidate,” and Q6 uses “The stale-fill race that TTL alone does not fix.” Add actual sections to front-matter and include stale-fill for LO2 in the narrative map; retain item IDs. Evidence: `docs/authoring-format-contract-v1.md` outcome-map requirements and the referenced lesson/assessment sections. |
+| M10-L06-COV-01 | minor | open | `modules/m10/lessons/M10-L06.md`, “Start with one correct cache-aside node”; approved `curriculum/revision-1/coverage.csv` row PR-CODE-R1-QUERY-CACHE | The assigned source-topic row explicitly includes an incomplete/wrong map attribute in addition to LRU get/set/capacity. The lesson correctly applies conceptual map/list operations and delegates full LRU mechanics to M06-L03, but does not explain the source sketch's `lookup` versus undefined `map` mismatch or its direct missing-key access. A short critique of those two error modes would make that assigned source-specific pitfall teachable without importing or re-teaching the entire LRU algorithm: use a consistent map, explicit miss handling and maintain map/list consistency on eviction. Source snippet: [pinned query_cache_snippets.py](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/solutions/system_design/query_cache/query_cache_snippets.py). |
+
+The SLO assessment gap prevents a ready verdict. The small source-code critique is a localized coverage gap; it is not a request to copy or implement the source sketch.
+
+## Assigned source-topic coverage
+
+`L` = `modules/m10/lessons/M10-L06.md`; `A` = companion assessment. Physical source locators are from approved `curriculum/revision-1/coverage.csv`. Status credits instructional explanation, not title/citation/assessment alone. All 15 source rows are assigned to this lesson; snippets and source mechanics were actually inspected. Except for the specific map defect in COV-01, the assigned mechanisms are taught in the original lesson.
+
+| Source ID and locator | Disposition, actual teaching and assessment |
+| --- | --- |
+| PR-QUERY_CACHE-H002 `README.md#L5` | taught: L “Scope one search result and its budget” defines search-cache workload and constraints; A EX-1. |
+| PR-QUERY_CACHE-H003 `#L13` | taught: L explains hit and miss use cases and origin fallback; A Q2, EX-1. |
+| PR-QUERY_CACHE-H004 `#L15` | taught: L defines scope, completeness, freshness and authorization as distinct contracts; A Q2, EX-1. |
+| PR-QUERY_CACHE-H005 `#L21` | taught: L states limited memory, hit ratio, peak QPS and origin safety assumptions; A Q1/Q4, EX-1. |
+| PR-QUERY_CACHE-H006 `#L23` | taught: L states synthetic values, key distribution and no implied benchmark; A EX-1. |
+| PR-QUERY_CACHE-H007 `#L36` | taught: L derives ~391 MiB raw value budget, ~782 MiB full replica values and mean/peak QPS with overhead separate; A Q1, EX-1. |
+| PR-QUERY_CACHE-H008 `#L57` | taught: L “Start with one correct cache-aside node” traces API/cache/index hit and miss flow; A Q2/Q3, EX-1. |
+| PR-QUERY_CACHE-H009 `#L63` | taught: L key normalization, cache hit checks, miss/fill and bounded single-flight; A Q2, EX-1. |
+| PR-QUERY_CACHE-H010 `#L67` | taught: L describes exact-key hit and metadata/source-cut authorization checks; A EX-1. |
+| PR-QUERY_CACHE-H011 `#L92` | taught: L applies map/list LRU capacity/eviction and distinguishes LRU from freshness, linking prerequisite M06-L03; A Q3, EX-1. |
+| PR-QUERY_CACHE-H012 `#L199` | taught: L “Decide what changed and whether to invalidate” traces addition, deletion, rank/alias change and dependency generation choices; A Q5/Q6, EX-1. |
+| PR-QUERY_CACHE-H013 `#L211` | taught: L compares node placements and cold failure-induced origin overload; A Q4, EX-1. |
+| PR-QUERY_CACHE-H014 `#L236` | taught: L contrasts independent, replicated and sharded placement, routing, stale replica and memory costs; A Q4, EX-1. |
+| PR-CODE-R1-QUERY-API `query_cache_snippets.py#L4` | taught: L key normalization → cache GET → origin on miss → completeness/generation-guarded fill; A Q2, EX-1. |
+| PR-CODE-R1-QUERY-CACHE `#L48` | **partly taught**: L explains correct map/list get/set/eviction concept and applies M06-L03, but does not explicitly critique the source's inconsistent map attribute and direct missing-key access; see open minor COV-01. A Q3 assesses eviction versus freshness. |
+
+## Lesson-first comprehension and outcomes
+
+The lesson starts with an explicit query key and conditional memory/origin budget, then shows hit/miss and completeness-aware fill. It walks a late g17 computation across g18 publication, explains why insertion-time TTL and eviction do not establish freshness, and distinguishes changes to candidate membership, ranking and aliases. The learner can follow the two-node scenario: 50% cold traffic plus 50% at 90% hits yields 45% overall hits and ~1,273 origin QPS, against the stated 400 QPS origin capacity. It compares sharding, replicated and independent placements and bounds warmup/admission rather than equating a cache hit with correctness. These central mechanisms and choices can be reconstructed from lesson and declared prerequisites before the answer key. The companion is separate, with six explained knowledge checks and EX-1.
+
+| Outcome | Teaching evidence | Assessment evidence |
+| --- | --- | --- |
+| M10-L06-LO1 | “Scope one search result,” “Start with one correct cache-aside node,” and “The stale-fill race” cover memory, hit/miss and guarded fill, relying on M06-L03 for full LRU invariants. | Q1–Q3 and EX-1 cover raw memory, partial-shard miss and LRU/freshness; map correction PED-02 and source-specific critique COV-01 remain. |
+| M10-L06-LO2 | “Decide what changed,” “Add nodes,” “Trace one node loss” and “Compare choices” explain invalidation, failure cost and the user-visible contract. | Q4–Q6 and EX-1 assess overload, ranking and late fill; PED-01 leaves the SLO measurement inadequately graded and PED-02 leaves teaching links incomplete. |
+
+The existing lesson distinguishes valid empty complete results from partial ones, source-generation and model-version checks, stale-fill rejection and capacity versus observed original-operation outcomes. It provides one justified strict-contract response during overload while noting the availability trade-off; it does not claim a calculation or policy choice alone proves success. No separate evaluation of product behavior or unexecuted cache/failure tests is claimed.
+
+## Verdict
+
+`revise`
+
+## Round 1 targeted re-review — 2026-11-27
+
+Reviewed correction handoff `07481ac`: the changed lesson was read before EX-1's answer and rubric, then the assessment and outcome maps were checked with their adjacent scenario and failure paths. This is a targeted review of changed material and companion effects, not a repeat audit of unaffected source topics.
+
+| ID | Status | Verification and evidence |
+| --- | --- | --- |
+| M10-L06-PED-01 | resolved | EX-1 now supplies a five-minute cohort of 1,000 original valid queries, stable IDs across retries, first ingress to client-validated receipt within 300 ms, and a 99% target for correct, complete, requested-generation and currently authorized results. The 940 qualifying + 15 partial + ten stale + five unauthorized + ten rejected + ten timed out + ten late outcomes total 1,000. The answer derives 940/1,000 = 94%, below 99%, and the rubric requires the measured numerator, all failure categories, window/endpoints/deadline and admitted-only limitation. Keeping failed originals in the denominator prevents a shedding-only pass. The lesson's success-contract section teaches these distinctions before the assessment. Evidence: `.agents/skills/module-quality-review/SKILL.md` publication-readiness bar and approved M10-L06 LO2 in `curriculum/revision-1/CURRICULUM_MASTER.md`. |
+| M10-L06-PED-02 | resolved | Assessment LO1 front matter now includes the actual memory-budget and cache-aside headings; LO2 front matter identifies invalidation, stale fill, placement, node loss and original-operation success. The LO2 narrative map also includes the stale-fill heading. Q1–Q6 and EX-1 retain their mapped IDs. Evidence: `docs/authoring-format-contract-v1.md`, outcome-map requirements. |
+| M10-L06-COV-01 | resolved | “Start with one correct cache-aside node” now identifies the pinned snippet's inconsistent initialized lookup versus undefined map and unguarded missing-key access, then states a consistent map, explicit miss result and map/list eviction consistency as the application-level correction. It delegates the full LRU invariants to M06-L03 without copying the source code. Evidence: [pinned Primer query-cache snippet](https://github.com/donnemartin/system-design-primer/blob/ae9bbd7b02d90b9866215de185217d33f39ab733/solutions/system_design/query_cache/query_cache_snippets.py), PR-CODE-R1-QUERY-CACHE row in `curriculum/revision-1/coverage.csv`. |
+
+The changed teaching distinguishes a current policy epoch from index generation. It traces revocation at 12:00:05 while g17 remains query-visible until g18 at 12:00:08, then places an individual release-admission gate after each hit, miss or coalesced waiter. It explains fail-closed policy uncertainty, the two serialized revocation/admission orders and the limit on already admitted or delivered bytes. It also explains why filtering a revoked item out of an old top-20 alone cannot prove the exact authorized replacement; the learner can reconstruct these choices before consulting EX-1. The deliverable, reference solution and rubric test the same boundaries. The illustrative origin upper bound is now explicitly conditioned on distinct uncoalesced misses, with separate policy-gate capacity; it is not presented as a measured cohort SLO or as applicable unchanged when coalescing changes work. No new pedagogical or assigned-topic regression was identified in the corrected scope.
+
+**Verdict:** `ready-for-human-review`. This does not certify technical/product claims, runtime behavior, source rights or human publication approval.

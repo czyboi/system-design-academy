@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-L06",
+  "revision": 2,
+  "goal": "Author SDA-v1 M10-L06 Search query cache at service scale lesson, assessment and source evidence",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-L06",
+      "Hit/miss/LRU, query-result key and source-cut freshness, changed ranking and content, cache topology and node-loss trace"
+    ],
+    "out_of_scope": [
+      "Other stories, changes to approved project workflow/curriculum, official independent QA or publication."
+    ]
+  },
+  "constraints": [
+    "Issue #106, branch codex/drafts-sda-ms06; one ChatGPT writer.",
+    "Approved SDA-v1; M06-L03 on main, M08-L03 in unmerged MS05 Draft PR #100.",
+    "No official Sol/Terra gate pass; no claimed Python validation."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Claim-level official source evidence and scope limits.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-author",
+      "text": "Complete publishable-intended lesson + companion assessment.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Claim-level official source evidence and scope limits.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-lesson",
+      "text": "Teach approved cache mechanisms with a worked node-loss trace and decision/failure criteria.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Q1–Q6 explained, EX-1 reference and rubric, exact outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

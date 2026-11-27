@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-L03",
+  "revision": 1,
+  "goal": "Author approved M10-L03 crawler and web-search composition original publishable-intended package.",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-L03",
+      "Frontier, deduplication, recrawl, robots, search-index visibility, bandwidth, exact/near similarity and query serving."
+    ],
+    "out_of_scope": [
+      "Other Stories, approved curriculum/workflow changes, official QA, merge and publication."
+    ]
+  },
+  "constraints": [
+    "Issue #103; one ChatGPT writer; exact backlog output paths.",
+    "Prerequisites M08-L03 in unmerged MS05 PR #100 and M10-L02 on this branch.",
+    "All self-review status pending independent QA; script validation not available."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Primary source evidence and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-author",
+      "text": "Canonical teaching, companion assessment, rubric and map.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-teach",
+      "text": "Every numbered approved teaching item with mechanism, worked trace, tradeoffs and false claims corrected.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Six checks, EX-1 reference, rubric and outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-topics",
+      "text": "Source topic mappings addressed with original examples and citations.",
+      "applies_to": [
+        "research",
+        "author"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M10-L04",
+  "module_id": "m10",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M10-L04.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T18:19:23.606Z",
+  "updated_at": "2026-11-27T02:18:50Z",
+  "execution_control": "active",
+  "notes": "GitHub API direct author; taskctl/draft_handoff unexecuted, manually recorded steps, independent QA missing; upstream MS05 PR #100 unmerged.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m10/evidence/M10-L04.md"
+      ],
+      "checkpoint": {
+        "note": "Opened Plaid and IETF/OWASP official source pages.",
+        "next_action": "Author"
+      },
+      "attempts": 1,
+      "run_id": "M10-L04-chatgpt-research-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T18:19:23.606Z",
+      "completed_at": "2026-11-15T18:19:23.606Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m10/evidence/M10-L04.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m10/lessons/M10-L04.md",
+        "modules/m10/assessments/M10-L04.md"
+      ],
+      "checkpoint": {
+        "note": "Complete candidate committed through GitHub API, not script.",
+        "next_action": "Scoped validation/handoff and independent technical/pedagogy QA."
+      },
+      "attempts": 2,
+      "run_id": "SD-M10-L04-author-20261127T021443Z",
+      "agent": "lesson_author",
+      "started_at": "2026-11-27T02:14:43Z",
+      "completed_at": "2026-11-27T02:16:41Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Independent M10-L04 T1/T2/T3, P-1, C-1: readiness, defined exercise dataset, stream fence, SLO evaluation and completion notification.",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent round1 re-review confirms all located findings resolved.",
+      "updated_at": "2026-11-27T02:18:50Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent round1 re-review confirms all located findings resolved.",
+      "updated_at": "2026-11-27T02:18:50Z"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-INTEGRATION",
+  "revision": 2,
+  "goal": "M10 integrated design, reference solution, decision summary, taught coverage and outcome portfolio.",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-INT",
+      "Compare full content platform designs and change dominant constraint; all eight M10 case decision summaries and exact source/outcome maps."
+    ],
+    "out_of_scope": [
+      "Approved curriculum/workflow/skills changes, independent review/QA gate PASS, merge/publish."
+    ]
+  },
+  "constraints": [
+    "GitHub Issue #109, branch codex/drafts-sda-ms06; all eight lesson draft outputs available.",
+    "Preserve 166 approved M10 topic rows, map 16 lesson LO1/LO2 outcomes and M10-S1.",
+    "Self-review only, upstream MS05 PR #100 unmerged, no scripted validation claims."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Integrated evidence reconciled from eight lesson evidence files.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-package",
+      "text": "Canonical integrated brief, solution, decisions, topic coverage and outcome portfolio.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Integrated evidence reconciled from eight lesson evidence files.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-case",
+      "text": "Two full systems, changed dominant constraint, worked reasoning and falsifiable tests.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-maps",
+      "text": "Source topic rows and all outcomes mapped to real lesson sections and assessments.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-table",
+      "text": "Complete decision table for eight cases with cost, failure and rejection criterion.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

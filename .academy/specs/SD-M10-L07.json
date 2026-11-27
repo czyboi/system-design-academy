@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-L07",
+  "revision": 2,
+  "goal": "Author approved SDA-v1 M10-L07 category sales ranking original lesson and assessment.",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-L07",
+      "Weekly window, dedup and category mapping, two MapReduce sort stages, versioned publication, cache, skew and late correction."
+    ],
+    "out_of_scope": [
+      "Other Stories, approved workflow/curriculum edits, official QA and publication."
+    ]
+  },
+  "constraints": [
+    "Issue #107 on branch codex/drafts-sda-ms06; same-chat self-review only.",
+    "Prereqs M08-L02 in unmerged MS05 PR #100, M10-L04 on this branch.",
+    "Independent gates pending, no script PASS claimed."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Primary claim source evidence and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-author",
+      "text": "Original learner-facing lesson and companion assessment.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Primary claim source evidence and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-topics",
+      "text": "All numbered approved items with failure/decision evidence.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-quiz",
+      "text": "Six answered checks and EX-1 with rubric and taught outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

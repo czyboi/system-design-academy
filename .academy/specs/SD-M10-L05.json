@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-L05",
+  "revision": 2,
+  "goal": "Write SDA-v1 M10-L05 distributed social-graph shortest-path lesson/assessment/evidence.",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-L05",
+      "BFS/bidirectional, per-search visited, owner lookup, three-shard batched adjacency, privacy and bounded search."
+    ],
+    "out_of_scope": [
+      "Other Stories, changing project workflow/curriculum or source data, official independent QA, merge or publication."
+    ]
+  },
+  "constraints": [
+    "Issue #105; same ChatGPT writer, self-review clearly separated.",
+    "Approved SDA-v1 case, prerequisites M05-L02 main, M09-L03 MS05 PR #100 still unmerged.",
+    "No official Sol/Terra review claims and no script PASS."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Primary claim sources with historical scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-author",
+      "text": "Complete original lesson and separate assessment with rubric.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Primary claim sources with historical scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-topics",
+      "text": "All approved graph traversal source topics taught with correct trace and decision boundaries.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-checks",
+      "text": "Six answered checks and EX-1 solution with explicit outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-errors",
+      "text": "Correct GraphQL conflation, per-request visited and shortest/approximate distinction.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}

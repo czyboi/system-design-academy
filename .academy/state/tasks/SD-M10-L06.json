@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "task_id": "SD-M10-L06",
+  "module_id": "m10",
+  "owner": "czyboi",
+  "spec_path": ".academy/specs/SD-M10-L06.json",
+  "automation_status": "automation_complete",
+  "review_status": "not_reviewed",
+  "current_phase": "author",
+  "created_at": "2026-11-15T18:32:06.830Z",
+  "updated_at": "2026-11-27T08:07:17Z",
+  "execution_control": "active",
+  "notes": "Manual step recording after GitHub API author; taskctl, draft_handoff, review_cycle and Python validators NOT run. Only same-chat self-review. Independent QA pending.",
+  "steps": [
+    {
+      "step_id": "research",
+      "title": "Collect source evidence for assigned lesson",
+      "status": "completed",
+      "depends_on": [],
+      "definition_version": "v4",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        ".agents/skills/source-research/SKILL.md"
+      ],
+      "output_paths": [
+        "modules/m10/evidence/M10-L06.md"
+      ],
+      "checkpoint": {
+        "note": "Opened Redis/AWS/RFC primary docs; independent verification pending.",
+        "next_action": "Author"
+      },
+      "attempts": 1,
+      "run_id": "M10-L06-chatgpt-research-20261116",
+      "agent": "chatgpt-single-session",
+      "started_at": "2026-11-15T18:32:06.830Z",
+      "completed_at": "2026-11-15T18:32:06.830Z",
+      "completed_by": "chatgpt-single-session"
+    },
+    {
+      "step_id": "author",
+      "title": "Author draft lesson and companion assessment",
+      "status": "completed",
+      "depends_on": [
+        "research"
+      ],
+      "definition_version": "v7",
+      "input_paths": [
+        "curriculum/revision-1/CURRICULUM_MASTER.md",
+        "modules/m10/evidence/M10-L06.md",
+        ".agents/skills/lesson-authoring/SKILL.md",
+        ".agents/skills/content-format/SKILL.md",
+        ".agents/skills/assessment-design/SKILL.md",
+        "GOVERNANCE.md"
+      ],
+      "output_paths": [
+        "modules/m10/lessons/M10-L06.md",
+        "modules/m10/assessments/M10-L06.md"
+      ],
+      "checkpoint": {
+        "note": "Original lesson, assessment, self-review committed via GitHub API. No script handoff.",
+        "next_action": "Run actual scoped validator/handoff and independent reviews."
+      },
+      "attempts": 2,
+      "run_id": "SD-M10-L06-author-20261127T022225Z",
+      "agent": "lesson_author",
+      "started_at": "2026-11-27T02:22:25Z",
+      "completed_at": "2026-11-27T02:24:37Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "T1/T2 and PED-01/PED-02/COV-01: current authorization, useful SLO, outcome maps and source-sketch critique.",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
+    }
+  ],
+  "review_statuses": {
+    "technical": {
+      "status": "reviewed",
+      "reason": "Independent round1 reports persisted complete resolved evidence and final ready verdict before agent delivery usage errors; actual artifacts read, no silence counted as QA.",
+      "updated_at": "2026-11-27T08:07:17Z"
+    },
+    "pedagogy": {
+      "status": "reviewed",
+      "reason": "Independent round1 reports persisted complete resolved evidence and final ready verdict before agent delivery usage errors; actual artifacts read, no silence counted as QA.",
+      "updated_at": "2026-11-27T08:07:17Z"
+    }
+  }
+}

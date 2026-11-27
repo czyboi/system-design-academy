@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task_id": "SD-M10-L02",
+  "revision": 2,
+  "goal": "Author SDA-v1 M10-L02 social feed publication and timelines, original learner-facing package.",
+  "scope": {
+    "in_scope": [
+      "SDA-M10-L02",
+      "Canonical lesson, assessment and evidence for social feed fan-out, author/home timelines, skew, search handoff and visibility."
+    ],
+    "out_of_scope": [
+      "Other Stories, approved curriculum and workflow edits, official QA or publication."
+    ]
+  },
+  "constraints": [
+    "Issue #102, branch codex/drafts-sda-ms06; user authorized single ChatGPT writer and explicit self-review.",
+    "Use SDA-v1 approved four-part outline; prerequisite M10-L01 on branch, M07-L03 on main; M08-L03 on unmerged MS05 PR #100.",
+    "Independent gates stay pending, exact claim sources and synthetic scenario distinction required."
+  ],
+  "definition_of_done": [
+    {
+      "id": "dod-evidence",
+      "text": "Primary source evidence with version/historical bounds.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "dod-draft",
+      "text": "Complete lesson and separate assessment.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Primary source evidence with version/historical bounds.",
+      "applies_to": [
+        "research"
+      ]
+    },
+    {
+      "id": "ac-teaching",
+      "text": "Explain every approved topic mechanism through trace, trade-offs and failure.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-assessment",
+      "text": "Six answered checks, EX-1, rubric and exact outcome map.",
+      "applies_to": [
+        "author"
+      ]
+    },
+    {
+      "id": "ac-cases",
+      "text": "Contrast ordinary and celebrity fan-out, bound privacy/search/ordering semantics.",
+      "applies_to": [
+        "author"
+      ]
+    }
+  ]
+}
