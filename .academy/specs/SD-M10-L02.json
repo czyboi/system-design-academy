@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-M10-L02",
-  "revision": 1,
+  "revision": 2,
   "goal": "Author SDA-v1 M10-L02 social feed publication and timelines, original learner-facing package.",
   "scope": {
     "in_scope": [
@@ -34,6 +34,13 @@
     }
   ],
   "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Primary source evidence with version/historical bounds.",
+      "applies_to": [
+        "research"
+      ]
+    },
     {
       "id": "ac-teaching",
       "text": "Explain every approved topic mechanism through trace, trade-offs and failure.",
