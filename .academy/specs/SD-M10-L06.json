@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-M10-L06",
-  "revision": 1,
+  "revision": 2,
   "goal": "Author SDA-v1 M10-L06 Search query cache at service scale lesson, assessment and source evidence",
   "scope": {
     "in_scope": [
@@ -34,6 +34,13 @@
     }
   ],
   "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Claim-level official source evidence and scope limits.",
+      "applies_to": [
+        "research"
+      ]
+    },
     {
       "id": "ac-lesson",
       "text": "Teach approved cache mechanisms with a worked node-loss trace and decision/failure criteria.",
