@@ -241,6 +241,22 @@
           "report": "modules/m10/reviews/automatic/lessons/M10-L05/technical.md",
           "evidence": "https://sre.google/workbook/implementing-slos/#moving-from-sli-specification-to-sli-implementation",
           "lesson": "M10-L05"
+        },
+        {
+          "module": "m10",
+          "finding_id": "P-1",
+          "review_role": "pedagogy",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L02/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M10-L02"
+        },
+        {
+          "module": "m10",
+          "finding_id": "M10-L06-PED-01",
+          "review_role": "pedagogy",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L06/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M10-L06"
         }
       ]
     },
