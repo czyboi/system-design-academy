@@ -192,6 +192,14 @@
           "report": "modules/m00/reviews/automatic/lessons/M00-L02/technical.md",
           "evidence": "https://sre.google/workbook/implementing-slos/#what-to-measure-using-slis",
           "lesson": "M00-L02"
+        },
+        {
+          "module": "m10",
+          "finding_id": "M10-L01-PED-01",
+          "review_role": "pedagogy",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L01/pedagogy.md",
+          "evidence": "curriculum/revision-1/CURRICULUM_MASTER.md",
+          "lesson": "M10-L01"
         }
       ]
     },
@@ -217,6 +225,14 @@
           "report": "modules/m05/reviews/automatic/lessons/M05-L01/technical.md",
           "evidence": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html",
           "lesson": "M05-L01"
+        },
+        {
+          "module": "m10",
+          "finding_id": "M10-L01-T1",
+          "review_role": "technical",
+          "report": "modules/m10/reviews/automatic/lessons/M10-L01/technical.md",
+          "evidence": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html#PresignedUrl-Expiration",
+          "lesson": "M10-L01"
         }
       ]
     },
