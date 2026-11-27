@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-M10-L05",
-  "revision": 1,
+  "revision": 2,
   "goal": "Write SDA-v1 M10-L05 distributed social-graph shortest-path lesson/assessment/evidence.",
   "scope": {
     "in_scope": [
@@ -34,6 +34,13 @@
     }
   ],
   "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Primary claim sources with historical scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
     {
       "id": "ac-topics",
       "text": "All approved graph traversal source topics taught with correct trace and decision boundaries.",

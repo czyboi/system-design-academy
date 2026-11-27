@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T18:24:24.850Z",
-  "updated_at": "2026-11-15T18:24:24.850Z",
+  "updated_at": "2026-11-27T02:18:06Z",
   "execution_control": "active",
   "notes": "Manual task history via GitHub API. Script validation, handoff and independent QA not run. Same-ChatGPT self-review only.",
   "steps": [
@@ -60,24 +60,29 @@
         "note": "Canonical outputs committed through GitHub API; script handoff unavailable.",
         "next_action": "Run actual draft_handoff.py and independent per-lesson QA."
       },
-      "attempts": 1,
-      "agent": "chatgpt-single-session",
-      "run_id": "M10-L05-chatgpt-author-20261116",
-      "started_at": "2026-11-15T18:24:24.850Z",
-      "completed_at": "2026-11-15T18:24:24.850Z",
-      "completed_by": "chatgpt-single-session"
+      "attempts": 2,
+      "agent": "lesson_author",
+      "run_id": "SD-M10-L05-author-20261127T021617Z",
+      "started_at": "2026-11-27T02:16:17Z",
+      "completed_at": "2026-11-27T02:18:05Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "M10-L05-T1/T2 and PED-01..03: bidirectional stopping certificate, useful-completion objective and mapping.",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ],
   "review_statuses": {
     "technical": {
       "status": "needs_review",
-      "reason": "Self-review not independent",
-      "updated_at": "2026-11-15T18:24:24.850Z"
+      "reason": "Round1 concrete complete-ball certificate and independent useful-completion objective; targeted review required.",
+      "updated_at": "2026-11-27T02:18:06Z"
     },
     "pedagogy": {
       "status": "needs_review",
-      "reason": "Self-review not independent",
-      "updated_at": "2026-11-15T18:24:24.850Z"
+      "reason": "Round1 PED-01..03 addresses causal proof and graded outcomes/maps; targeted review required.",
+      "updated_at": "2026-11-27T02:18:06Z"
     }
   }
 }
