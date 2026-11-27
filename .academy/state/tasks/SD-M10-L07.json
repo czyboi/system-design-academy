@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T18:36:17.007Z",
-  "updated_at": "2026-11-15T18:36:17.007Z",
+  "updated_at": "2026-11-27T08:09:08Z",
   "execution_control": "active",
   "notes": "Manual GitHub API steps; taskctl/draft_handoff/review_cycle/Python validators not run; independent QA pending.",
   "steps": [
@@ -60,24 +60,29 @@
         "note": "Complete original package committed via GitHub API; script handoff unrun.",
         "next_action": "Execute scoped scripts and independent review in checkout."
       },
-      "attempts": 1,
-      "run_id": "M10-L07-chatgpt-author-20261116",
-      "agent": "chatgpt-single-session",
-      "started_at": "2026-11-15T18:36:17.007Z",
-      "completed_at": "2026-11-15T18:36:17.007Z",
-      "completed_by": "chatgpt-single-session"
+      "attempts": 2,
+      "run_id": "SD-M10-L07-author-20261127T022437Z",
+      "agent": "lesson_author",
+      "started_at": "2026-11-27T02:24:37Z",
+      "completed_at": "2026-11-27T08:09:07Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "T1..T5 and P-1/P-2: active revisions, ordered input generations, product-preserving skew, cutoffs and measured SLO.",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ],
   "review_statuses": {
     "technical": {
       "status": "needs_review",
-      "reason": "Same-chat only",
-      "updated_at": "2026-11-15T18:36:17.007Z"
+      "reason": "Resumed existing round1 after usage interruption; T1..T5 patched, targeted independent re-review required.",
+      "updated_at": "2026-11-27T08:09:07Z"
     },
     "pedagogy": {
       "status": "needs_review",
-      "reason": "Same-chat only",
-      "updated_at": "2026-11-15T18:36:17.007Z"
+      "reason": "Round1 preserves product-key skew and grades read/publication objectives; targeted re-review required.",
+      "updated_at": "2026-11-27T08:09:08Z"
     }
   }
 }

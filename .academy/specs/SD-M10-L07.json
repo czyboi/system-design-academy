@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task_id": "SD-M10-L07",
-  "revision": 1,
+  "revision": 2,
   "goal": "Author approved SDA-v1 M10-L07 category sales ranking original lesson and assessment.",
   "scope": {
     "in_scope": [
@@ -34,6 +34,13 @@
     }
   ],
   "acceptance_criteria": [
+    {
+      "id": "ac-research-evidence",
+      "text": "Primary claim source evidence and scope.",
+      "applies_to": [
+        "research"
+      ]
+    },
     {
       "id": "ac-topics",
       "text": "All numbered approved items with failure/decision evidence.",
