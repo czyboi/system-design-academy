@@ -8,7 +8,7 @@
   "review_status": "not_reviewed",
   "current_phase": "author",
   "created_at": "2026-11-15T18:19:23.606Z",
-  "updated_at": "2026-11-15T18:19:23.606Z",
+  "updated_at": "2026-11-27T02:16:42Z",
   "execution_control": "active",
   "notes": "GitHub API direct author; taskctl/draft_handoff unexecuted, manually recorded steps, independent QA missing; upstream MS05 PR #100 unmerged.",
   "steps": [
@@ -60,24 +60,29 @@
         "note": "Complete candidate committed through GitHub API, not script.",
         "next_action": "Scoped validation/handoff and independent technical/pedagogy QA."
       },
-      "attempts": 1,
-      "run_id": "M10-L04-chatgpt-author-20261116",
-      "agent": "chatgpt-single-session",
-      "started_at": "2026-11-15T18:19:23.606Z",
-      "completed_at": "2026-11-15T18:19:23.606Z",
-      "completed_by": "chatgpt-single-session"
+      "attempts": 2,
+      "run_id": "SD-M10-L04-author-20261127T021443Z",
+      "agent": "lesson_author",
+      "started_at": "2026-11-27T02:14:43Z",
+      "completed_at": "2026-11-27T02:16:41Z",
+      "completed_by": "lesson_author",
+      "invalidation_reason": "Independent M10-L04 T1/T2/T3, P-1, C-1: readiness, defined exercise dataset, stream fence, SLO evaluation and completion notification.",
+      "runtime": {
+        "model": null,
+        "reasoning_effort": null
+      }
     }
   ],
   "review_statuses": {
     "technical": {
       "status": "needs_review",
-      "reason": "Same-session ChatGPT self-review only",
-      "updated_at": "2026-11-15T18:19:23.606Z"
+      "reason": "Round1 corrects Plaid history readiness, fully specified q9 and application stream generation; targeted re-review required.",
+      "updated_at": "2026-11-27T02:16:41Z"
     },
     "pedagogy": {
       "status": "needs_review",
-      "reason": "Same-session ChatGPT self-review only",
-      "updated_at": "2026-11-15T18:19:23.606Z"
+      "reason": "Round1 completion notification and useful SLO evaluation added; targeted re-review required.",
+      "updated_at": "2026-11-27T02:16:42Z"
     }
   }
 }
